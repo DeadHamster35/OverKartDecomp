@@ -1,0 +1,384 @@
+#include <actors.h>
+#include <PR/gbi.h>
+#include <main.h>
+#include <assets/common_data.h>
+#include "courses/all_course_data.h"
+
+/**
+ * @brief Renders the tree actor in Mario rawceay.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_tree1(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 16000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 250000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 3.0f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_trees_import);
+        gSPDisplayList(gDisplayListHead++, d_course_mario_raceway_dl_tree);
+    }
+}
+
+/**
+ * @brief Renders the tree actor in Yoshi Valley.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_tree2(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 4000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 250000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 2.79999995f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_trees_import);
+        gSPDisplayList(gDisplayListHead++, d_course_yoshi_valley_dl_tree);
+    }
+}
+
+/**
+ * @brief Renders the tree actor in Royal Raceway.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_tree3(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 4000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 250000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 2.79999995f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_trees_import);
+        gSPDisplayList(gDisplayListHead++, d_course_royal_raceway_dl_tree);
+    }
+}
+
+/**
+ * @brief Renders the tree actor in Moo Moo Farm.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_tree4(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 6250000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 600.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 5.0f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_trees_import);
+        gSPDisplayList(gDisplayListHead++, d_course_moo_moo_farm_dl_tree);
+    }
+}
+
+// have all the properties of the tree
+void display_tree5(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 4000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 250000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 2.79999995f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_trees_import);
+        // Why is a TLUT being used a DL here? That makes no sense
+        // Based on the TLUT being loaded above, this ought to be be another
+        // tree related DL, presumably one found in a course other than Moo Moo farm
+        //                                 0x0600FC70
+        gSPDisplayList(gDisplayListHead++, d_course_moo_moo_farm_mole_tlut);
+    }
+}
+
+/**
+ * @brief Renders the tree actor in Bowser's Castle.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_tree7(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 4000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 250000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 2.79999995f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_trees_import);
+        gSPDisplayList(gDisplayListHead++, d_course_royal_raceway_dl_castle_tree);
+    }
+}
+
+/**
+ * @brief Renders the bush actor in Bowser's Castle.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_tree8(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 640000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 250000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 2.79999995f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_trees_import);
+        gSPDisplayList(gDisplayListHead++, d_course_bowsers_castle_dl_bush);
+    }
+}
+
+/**
+ * @brief Renders the tree actor in Frappe Snowland.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_snowtree(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 4000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 250000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 2.79999995f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gSPDisplayList(gDisplayListHead++, d_course_frappe_snowland_dl_tree);
+    }
+}
+
+/**
+ * @brief Renders the a first variant of cactus in Kalimari Desert.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_saboten1(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 4000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 40000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 1.0f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gSPDisplayList(gDisplayListHead++, d_course_kalimari_desert_dl_cactus1);
+    }
+}
+
+/**
+ * @brief Renders the a second variant of cactus in Kalimari Desert.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_saboten2(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 4000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 40000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 1.0f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gSPDisplayList(gDisplayListHead++, d_course_kalimari_desert_dl_cactus2);
+    }
+}
+
+/**
+ * @brief Renders the a third variant of cactus in Kalimari Desert.
+ *
+ * @param camera
+ * @param arg1
+ * @param arg2
+ */
+void display_saboten3(Camera* camera, Mat4 arg1, Object* arg2) {
+    f32 temp_f0;
+    s16 temp_v0 = arg2->flag;
+
+    if ((temp_v0 & 0x800) != 0) {
+        return;
+    }
+
+    temp_f0 =
+        CheckDisplayRange(camera->camera_pos, arg2->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 4000000.0f);
+
+    if (temp_f0 < 0.0f) {
+        return;
+    }
+
+    if (((temp_v0 & 0x400) == 0) && (temp_f0 < 40000.0f)) {
+        DisplayShadow(arg2->position, arg2->angle, 0.80000001f);
+    }
+    arg1[3][0] = arg2->position[0];
+    arg1[3][1] = arg2->position[1];
+    arg1[3][2] = arg2->position[2];
+
+    if (SetMatrix(arg1, 0) != 0) {
+        gSPDisplayList(gDisplayListHead++, d_course_kalimari_desert_dl_cactus3);
+    }
+}

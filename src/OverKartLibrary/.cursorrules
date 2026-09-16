@@ -1,0 +1,40 @@
+# OverKart Library (LibraryDecomp copy)
+
+This directory is the live OverKart Library, compiled with **IDO** and linked into the mk64 ELF. It is not the GCC/Armips sibling `Library/` tree.
+
+Host projects override behavior by replacing `OverKartDefaults.c` (same `*Default` names). Vanilla already calls those symbols. See **`docs/host_overrides.md`**.
+
+Vanilla C must include `OverKartHooks.h`, not `MainInclude.h`.
+
+# Working Rules
+
+## Data contract
+
+Treat the Tarmac → Library → host data contract as frozen. Course headers, object layouts, and `ok_HeaderROM` at `0xBE9178` are shared across C# writers and C readers.
+
+## RAM map
+
+- Payload (`.overkart`) at `0x80400000`. OKHeader BSS may overflow into `0x80500000`; must not reach FB0 at `0x805DA800`.
+- Z at `0x80300000`. FBs at `0x805DA800` (FB0) / `0x80600000` (FB1) / `0x80700000` (FB2).
+- `gFaceBuffer` at `0x80625800` growing forward. Vtx from `0x80700000` back. DLs from `0x80800000` back.
+- `FreeMemory` 768 KB at `0x801978D0`–`0x802578D0`. `ok_ObjectPool` is leftover to `0x80400000` for `LoadOKData`.
+- `ok_FreeSpace` is a temp scratch pad for **non-course** compressed data. Do not move it onto the course pools.
+- Full map: **`docs/host_overrides.md`**.
+
+Keep `OKHeader.h` and `OKHeader.asm` in lockstep. Do not invent new RAM without asking.
+
+## Regions
+
+NTSC (USA) only for Tarmac and custom levels. Do not mix region offsets.
+
+## Library bloat
+
+Do not clean, modernize, or delete "unused" Library code. Other hosts may still depend on it.
+
+## Stack and style
+
+N64 C is IDO. Do not switch to GCC. Do not change ABI or microcode unless asked.
+
+## Hosts
+
+Amped Up / OverKart5 / new projects stay guests. Do not overlay another project's Library onto this copy. KartCheck and CameraCheck belong in the host.

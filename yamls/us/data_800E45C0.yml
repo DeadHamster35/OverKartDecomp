@@ -1,0 +1,78 @@
+:config:
+  vram:
+    addr: 0x800E45C0
+    offset: 0xE51C0
+  header:
+    code:
+      - '#include <assets/data_800E45C0.h>'
+    header:
+      - '#include <ultra64.h>'
+      - '#include <common_structs.h>'
+  tables:
+    pukupuku_material:
+      range: [0x800E45C0, 0x800E4608]
+      mode: APPEND
+pukupuku_material:
+  symbol: pukupuku_material
+  type: lights
+  offset: 0x800E45C0
+D_800E45D8:
+  symbol: D_800E45D8
+  type: lights
+  offset: 0x800E45D8
+D_800E45F0:
+  symbol: D_800E45F0
+  type: lights
+  offset: 0x800E45F0
+D_800E4608:
+  symbol: D_800E4608
+  type: lights
+  offset: 0x800E4608
+iceblock3_material:
+  symbol: iceblock3_material
+  type: lights
+  offset: 0x800E4620
+dosun_material:
+  symbol: dosun_material
+  type: lights
+  offset: 0x800E4638
+D_800E4650:
+  symbol: D_800E4650
+  type: lights
+  offset: 0x800E4650
+D_800E4668:
+  symbol: D_800E4668
+  type: lights
+  offset: 0x800E4668
+D_800E4680:
+  symbol: D_800E4680
+  type: lights
+  offset: 0x800E4680
+D_800E4698:
+  symbol: D_800E4698
+  type: lights
+  offset: 0x800E4698
+D_800E46B0:
+  symbol: D_800E46B0
+  type: lights
+  offset: 0x800E46B0
+D_800E46C8:
+  symbol: D_800E46C8
+  type: lights
+  offset: 0x800E46C8
+D_800E46E0:
+  symbol: D_800E46E0
+  type: lights
+  offset: 0x800E46E0
+sparkcoltbl:
+  symbol: sparkcoltbl
+  type: array
+  offset: 0x800E46F8
+  count: 3
+  array_type: Vec3iu
+bombcoltbl:
+  symbol: bombcoltbl
+  type: array
+  offset: 0x800E471C
+  count: 7
+  array_type: u8

@@ -1,0 +1,91 @@
+# LibraryDecomp
+
+Working clone of the mk64 decomp with OverKart Library linked natively (one IDO toolchain). Host projects (OverKart5, Amped Up, new work) override defaults — they do not re-do Armips ROM hooks.
+
+Do **not** edit KimuraDecomp (frozen 1:1 matching tree). Sibling `Library/` is historical GCC/Armips copy source only.
+
+Fork of [n64decomp/mk64](https://github.com/n64decomp/mk64). Assets are not in the tree; a US `baserom.us.z64` is required to extract and build.
+
+Upstream docs: https://n64decomp.github.io/mk64/ and https://n64decomp.github.io/mk64/compiling.html
+
+## Purpose
+
+This fork is a **bridge to existing OverKart Library projects**. Treat it as part of one pipeline:
+
+- **Tarmac** (sibling, C#) — authoring tool for custom courses and objects.
+- **Library** (sibling, C/ASM) — historical shared N64 runtime. This tree's live copy is `src/OverKartLibrary/`.
+- **OverKart5** (sibling, C/ASM) — ROM-mod host. On this tree it replaces `OverKartDefaults.c` instead of patching via `BUILD.asm`.
+
+Host start-here: **`docs/host_overrides.md`**.
+
+NTSC (USA) is the supported region for OverKart custom levels. EU/JP decomp targets exist; do not mix region offsets or add PAL/JP custom-level support unless asked.
+
+# Project Structure
+
+```
+LibraryDecomp
+├── asm/            Handwritten assembly, ROM header, boot
+├── assets/         Extracted textures (from baserom; not committed as game assets)
+├── courses/        Per-course geography, display lists, staff ghosts
+├── data/           Misc data, text, audio banks, instrument sets
+├── docs/           Decomp API/docs plus host_overrides.md
+├── enhancements/   Optional unofficial patches (e.g. flycam)
+├── include/        Headers (mk64.h, common_structs.h, PR/ libultra, assets/)
+├── src/            Game C source
+│   └── OverKartLibrary/  Native OverKart Library (IDO)
+├── textures/       Texture bitmaps
+├── tools/          Build tools, IDO recomp, mingw64, torch, asm-differ
+├── yamls/          Split/asset YAML
+├── Makefile        Primary build
+└── mk64.ld         Linker script
+```
+
+Course folders typically contain `course_data`, `course_offsets`, `course_vertices.inc.c`, `course_displaylists.inc.c`, and `course_textures.linkonly`.
+
+`src/*.inc.c` is compiled by inclusion in a parent `.c`. Makefile only rebuilds when the parent `.c` changes.
+
+# Working Rules
+
+## Approval and manual review (required)
+
+Do not create, edit, rename, or delete any file without first explaining the proposed change (which files, what will change, and why) and waiting for **explicit user approval**.
+
+Do not modify existing code or add new code until that approval is given.
+
+After approval, every new file and every change to existing code still requires a **manual code review by the user** before it is treated as done. Present the diff clearly. Do not skip review, self-approve, or treat a prior “go ahead and implement” as a waiver of review.
+
+## OverKart bridge
+
+Preserve compatibility with Library/OverKart/Tarmac unless the task is to change that contract — and then update the sibling projects in the same effort, or stop and ask.
+
+- Prefer OverKartLibrary text in the main ELF (no code DMA). If 4MB fills, linker-overflow into expansion RAM.
+- Payload (`.overkart`) starts at `0x80400000`. OKHeader BSS may overflow into `0x80500000`; must not reach FB0 at `0x805DA800`.
+- Z at `0x80300000`. Color FBs at `0x805DA800` (FB0) / `0x80600000` (FB1) / `0x80700000` (FB2).
+- `gFaceBuffer` at `0x80625800` growing forward. Vtx grow back from `0x80700000`. DLs/textures grow back from `0x80800000`.
+- `FreeMemory` is 768 KB in the original hole (`0x801978D0`–`0x802578D0`).
+- `ok_ObjectPool` is the leftover after gfx/audio up to `0x80400000` (`LoadOKData`).
+- `ok_FreeSpace` is a temp scratch pad for **non-course** compressed data. Do not move it onto the course pools.
+- `ok_HeaderROM` stays `0xBE9178`.
+- Full map: **`docs/host_overrides.md`**.
+
+Keep C headers and any ASM mirrors in lockstep. Vanilla C includes `OverKartHooks.h`, not `MainInclude.h`.
+
+## Matching and shiftability
+
+This is **not** a matching ROM: `AVOID_UB=1` and `COMPARE=0`. Do not “fix” unmatched vanilla C or RSP unless asked.
+
+Do not clean, modernize, or delete code that looks unused. No drive-by refactors.
+
+Do not nest leftover stock shape (`USbit`, Shake 0x18, Camera `velocity[3]`, Hud `tx[5]`) unless explicitly asked. Smoke: `.number` is the u16 kind; `.type` is the f32. Do not flatten `tire_FL` / `sus` / Smoke `trx` back to stock arrays.
+
+## Stack and style
+
+Match existing C/ASM style (4-space indent, clang-format in-repo). N64 types (`s32`, `f32`, `Vec3f`, etc.). Run `make format` only when asked. Use `// clang-format off` / `on` around code that must not be reformatted.
+
+Single toolchain: **IDO** (`COMPILER=ido`). Do not switch the tree to `COMPILER=gcc`. Do not change ABI or RSP (`f3dex_old`) unless asked.
+
+## Build notes
+
+Windows: toolchain at `tools/mingw64`, then `make assets && make -j`. Need `baserom.us.z64` in the repo root. EU: `make -j VERSION=eu.v10` or `eu.v11` after US assets.
+
+Rebuild after `.inc.c` edits by saving the parent `.c`, or `make clean` / `make <file>.c`. KartBot is a separate GrokBot; paste IDO/link errors here.

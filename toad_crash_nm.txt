@@ -1,0 +1,148 @@
+﻿ELF=build/us/mk64.us.elf
+C:/Users/AuditorFOB/Desktop/Code/LibraryDecomp/tools/mingw64/bin/mips64-elf-nm.exe
+C:/Users/AuditorFOB/Desktop/Code/LibraryDecomp/tools/mingw64/bin/nm.exe
+--- nm kart toad/wario/peach ---
+0f1c4ae0 D gKartPeach000
+0f1c4fc0 D gKartPeach001
+0f1c54c0 D gKartPeach002
+0f1c59c4 D gKartPeach003
+0f1c5ee4 D gKartPeach004
+0f1c6404 D gKartPeach005
+0f1c6924 D gKartPeach006
+0f1c6e6c D gKartPeach007
+0f1c73c4 D gKartPeach008
+0f1c7928 D gKartPeach009
+0f1c7e9c D gKartPeach010
+0f1c840c D gKartPeach011
+0f1c8994 D gKartPeach012
+0f1c8f18 D gKartPeach013
+0f1c94a0 D gKartPeach014
+0f1c9a2c D gKartPeach015
+0f1c9fb4 D gKartPeach016
+0f1ca55c D gKartPeach017
+0f1cab04 D gKartPeach018
+0f1cb0a8 D gKartPeach019
+0f1cb664 D gKartPeach020
+0f1cbc20 D gKartPeach021
+0f1cc0e4 D gKartPeach022
+0f1cc5cc D gKartPeach023
+0f1ccab8 D gKartPeach024
+0f1ccfd0 D gKartPeach025
+0f1cd4fc D gKartPeach026
+0f1cda0c D gKartPeach027
+0f1cdf4c D gKartPeach028
+0f1ce4a8 D gKartPeach029
+0f1cea18 D gKartPeach030
+0f1cef90 D gKartPeach031
+0f1cf520 D gKartPeach032
+0f1cfac0 D gKartPeach033
+0f1d005c D gKartPeach034
+0f1d05e4 D gKartPeach035
+0f1d0b80 D gKartPeach036
+0f1d112c D gKartPeach037
+0f1d16ec D gKartPeach038
+0f1d1ca4 D gKartPeach039
+0f1d2254 D gKartPeach040
+0f1d2814 D gKartPeach041
+0f1d2ddc D gKartPeach042
+0f1d32c8 D gKartPeach043
+0f1d37d8 D gKartPeach044
+0f1d3ce4 D gKartPeach045
+0f1d420c D gKartPeach046
+0f1d4734 D gKartPeach047
+0f1d4c98 D gKartPeach048
+0f1d51fc D gKartPeach049
+0f1d577c D gKartPeach050
+0f1d5cf4 D gKartPeach051
+0f1d6280 D gKartPeach052
+0f1d6808 D gKartPeach053
+0f1d6da8 D gKartPeach054
+0f1d7350 D gKartPeach055
+0f1d78fc D gKartPeach056
+0f1d7e98 D gKartPeach057
+0f1d8454 D gKartPeach058
+0f1d8a04 D gKartPeach059
+0f1d8fd0 D gKartPeach060
+0f1d959c D gKartPeach061
+0f1d9b74 D gKartPeach062
+0f1da130 D gKartPeach063
+0f1da5fc D gKartPeach064
+0f1daaf4 D gKartPeach065
+0f1db004 D gKartPeach066
+0f1db544 D gKartPeach067
+0f1dba78 D gKartPeach068
+0f1dbfe0 D gKartPeach069
+0f1dc554 D gKartPeach070
+0f1dcac0 D gKartPeach071
+0f1dd034 D gKartPeach072
+0f1dd5c8 D gKartPeach073
+0f1ddb68 D gKartPeach074
+0f1de0fc D gKartPeach075
+0f1de6a0 D gKartPeach076
+0f1dec4c D gKartPeach077
+0f1df1f8 D gKartPeach078
+0f1df7dc D gKartPeach079
+--- nm around 80026AB4 / 80026464 ---
+tools\mingw64\w64devkit.exe : awk: cmd. line:1: Call to undefined function
+At C:\Users\AuditorFOB\AppData\Local\Temp\ps-script-b451630b-9516-4166-b52c-573c51b28f7d.ps1:138 char:39
++ ... cho sh nm_check.sh & exit" | tools\mingw64\w64devkit.exe 2>&1 | Out-F ...
++                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (awk: cmd. line:...efined function:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+--- objdump -d around 80026AB4 ---
+
+build/us/mk64.us.elf:     file format elf32-bigmips
+
+
+Disassembly of section .main:
+
+80026a90 <change_tirecol_Pa+0x2f8>:
+80026a90:	94980254 	lhu	t8,596(a0)
+80026a94:	3c0c800e 	lui	t4,0x800e
+80026a98:	00097080 	sll	t6,t1,0x2
+80026a9c:	0018c880 	sll	t9,t8,0x2
+80026aa0:	01996021 	addu	t4,t4,t9
+80026aa4:	8d8cd9c4 	lw	t4,-9788(t4)
+80026aa8:	83b8002f 	lb	t8,47(sp)
+80026aac:	0008ca40 	sll	t9,t0,0x9
+80026ab0:	018e7821 	addu	t7,t4,t6
+80026ab4:	8ded0000 	lw	t5,0(t7)
+80026ab8:	000a7a03 	sra	t7,t2,0x8
+80026abc:	000f59c0 	sll	t3,t7,0x7
+80026ac0:	01b96021 	addu	t4,t5,t9
+80026ac4:	83af0027 	lb	t7,39(sp)
+80026ac8:	0010cb00 	sll	t9,s0,0xc
+80026acc:	00186b80 	sll	t5,t8,0xe
+80026ad0:	01b97021 	addu	t6,t5,t9
+80026ad4:	018b2821 	addu	a1,t4,t3
+80026ad8:	000f6240 	sll	t4,t7,0x9
+80026adc:	01cc5821 	addu	t3,t6,t4
+--- objdump around ra 80026464 ---
+
+build/us/mk64.us.elf:     file format elf32-bigmips
+
+
+Disassembly of section .main:
+
+80026440 <Doobj+0x48>:
+80026440:	0005c603 	sra	t8,a1,0x18
+80026444:	0006ce03 	sra	t9,a2,0x18
+80026448:	00808025 	move	s0,a0
+8002644c:	01e08825 	move	s1,t7
+80026450:	01c09025 	move	s2,t6
+80026454:	03203025 	move	a2,t9
+80026458:	03002825 	move	a1,t8
+8002645c:	0c0099e6 	jal	80026798 <change_tirecol_Pa>
+80026460:	80e74d01 	lb	a3,19713(a3)
+80026464:	960b0002 	lhu	t3,2(s0)
+80026468:	00111080 	sll	v0,s1,0x2
+8002646c:	240c0004 	li	t4,4
+80026470:	004c6804 	sllv	t5,t4,v0
+80026474:	016d7024 	and	t6,t3,t5
+80026478:	15c00003 	bnez	t6,80026488 <Doobj+0x90>
+8002647c:	02002025 	move	a0,s0
+80026480:	10000002 	b	8002648c <Doobj+0x94>
+80026484:	00001825 	move	v1,zero
+80026488:	24030008 	li	v1,8
+8002648c:	00122e00 	sll	a1,s2,0x18

@@ -1,0 +1,79 @@
+﻿==== wheel table symbols ====
+ffffffff800dd784 T gKartMarioWheels0
+ffffffff800dd7cc T gKartLuigiWheels0
+ffffffff800dd814 T gKartBowserWheels0
+ffffffff800dd85c T gKartToadWheels0
+ffffffff800dd8a4 T gKartYoshiWheels0
+ffffffff800dd8ec T gKartDKWheels0
+ffffffff800dd934 T gKartPeachWheels0
+ffffffff800dd97c T gKartWarioWheels0
+ffffffff800dd9c4 T gKartWheels0
+==== dump gKartToadWheels0 region (objdump -s) ====
+addrs:
+  gKartPeach000Wheel0=0x0f2348c8
+  gKartWario000Wheel0=0x0f2d1bec
+  gKartToad000Wheel0=0x0f362658
+  gKartMarioWheels0=0x800dd784
+  gKartLuigiWheels0=0x800dd7cc
+  gKartBowserWheels0=0x800dd814
+  gKartToadWheels0=0x800dd85c
+  gKartYoshiWheels0=0x800dd8a4
+  gKartDKWheels0=0x800dd8ec
+  gKartPeachWheels0=0x800dd934
+  gKartWarioWheels0=0x800dd97c
+  gKartWheels0=0x800dd9c4
+
+DUMP gKartToadWheels0 0x800dd85c
+
+build/us/mk64.us.elf:     file format elf32-bigmips
+
+Contents of section .main:
+ 800dd85c 0f377658 0f374c58 0f372258 0f36f858  .7vX.7LX.7"X.6.X
+ 800dd86c 0f36ce58 0f36a458 0f367a58 0f365058  .6.X.6.X.6zX.6PX
+ 800dd87c 0f362658 0f384058 0f384058 0f381858  .6&X.8@X.8@X.8.X
+ 800dd88c 0f37f058 0f37f058 0f37f058 0f37c858  .7.X.7.X.7.X.7.X
+
+
+DUMP gKartWarioWheels0 0x800dd97c
+
+build/us/mk64.us.elf:     file format elf32-bigmips
+
+Contents of section .main:
+ 800dd97c 0f2e6bec 0f2e41ec 0f2e17ec 0f2dedec  ..k...A......-..
+ 800dd98c 0f2dc3ec 0f2d99ec 0f2d6fec 0f2d45ec  .-...-...-o..-E.
+ 800dd99c 0f2d1bec 0f2f35ec 0f2f35ec 0f2f0dec  .-.../5../5../..
+ 800dd9ac 0f2ee5ec 0f2ee5ec 0f2ee5ec 0f2ebdec  ................
+
+
+DUMP gKartPeachWheels0 0x800dd934
+
+build/us/mk64.us.elf:     file format elf32-bigmips
+
+Contents of section .main:
+ 800dd934 0f2498c8 0f246ec8 0f2444c8 0f241ac8  .$...$n..$D..$..
+ 800dd944 0f23f0c8 0f23c6c8 0f239cc8 0f2372c8  .#...#...#...#r.
+ 800dd954 0f2348c8 0f2562c8 0f2562c8 0f253ac8  .#H..%b..%b..%:.
+ 800dd964 0f2512c8 0f2512c8 0f2512c8 0f24eac8  .%...%...%...$..
+
+
+DUMP gKartMarioWheels0 0x800dd784
+
+build/us/mk64.us.elf:     file format elf32-bigmips
+
+Contents of section .main:
+ 800dd784 0f11e230 0f11b830 0f118e30 0f116430  ...0...0...0..d0
+ 800dd794 0f113a30 0f111030 0f10e630 0f10bc30  ..:0...0...0...0
+ 800dd7a4 0f109230 0f12ac30 0f12ac30 0f128430  ...0...0...0...0
+ 800dd7b4 0f125c30 0f125c30 0f125c30 0f123430  ..\0..\0..\0..40
+
+
+DUMP gKartWheels0 0x800dd9c4
+
+build/us/mk64.us.elf:     file format elf32-bigmips
+
+Contents of section .main:
+ 800dd9c4 800dd784 800dd7cc 800dd8a4 800dd85c  ...............\
+ 800dd9d4 800dd8ec 800dd97c 800dd934 800dd814  .......|...4....
+ 800dd9e4 800dd7a8 800dd7f0 800dd8c8 800dd880  ................
+ 800dd9f4 800dd910 800dd9a0 800dd958 800dd838  ...........X...8
+

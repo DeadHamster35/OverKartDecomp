@@ -1,0 +1,200 @@
+/* libultra OS symbols */
+
+/* boot and osException symbols */
+/* most of these should be in hardware.h */
+
+/* exceptions */
+
+EXCEPTION_TLB_MISS = 0x80000000;
+
+/* SP */
+
+SP_DMEM       = 0xA4000000;
+SP_DMEM_UNK0  = 0xA40004C0;
+SP_DMEM_UNK1  = 0xA4000774;
+SP_IMEM       = 0xA4001000;
+
+/* Unknown */
+
+D_B0000008 = 0xB0000008;
+D_B0000010 = 0xB0000010;
+D_B0000014 = 0xB0000014;
+D_C0000000 = 0xC0000000;
+D_C0000008 = 0xC0000008;
+D_C000000C = 0xC000000C;
+
+D_000FFF00 = 0x000FFF00;
+
+D_03004000 = 0x03004000;
+D_03004800 = 0x03004800;
+D_03005000 = 0x03005000;
+D_03005800 = 0x03005800;
+D_03006000 = 0x03006000;
+D_03006800 = 0x03006800;
+D_03007000 = 0x03007000;
+D_03007800 = 0x03007800;
+D_03008000 = 0x03008000;
+D_03008800 = 0x03008800;
+
+D_05FF8DB8 = 0x05FF8DB8;
+
+D_0B002A00 = 0x0B002A00;
+
+D_A5000508 = 0xA5000508;
+D_A5000510 = 0xA5000510;
+D_E6FFFFFC = 0xE6FFFFFC;
+D_FA00000C = 0xFA00000C;
+D_FA000010 = 0xFA000010;
+D_FA000018 = 0xFA000018;
+
+/* OverKart OKAssembly.asm instruction/data patches (stock NTSC RAM). */
+nopASM = 0x80002714;
+asm_BlinkCheck = 0x800AA754;
+asm_DispOBSubPSelCursor1 = 0x800F1AB8;
+jtbl_DispObjPsel = 0x800F1A94;
+asm_DOBPSelTurnIn = 0x800A7EE8;
+asm_DOBPSelTurnOut = 0x800A7EF8;
+asm_PlayerSelectCharacter1 = 0x80095224;
+asm_PlayerSelectCharacter2 = 0x80095238;
+asm_PlayerSelectCharacter3 = 0x8009524C;
+asm_PlayerSelectCharacter4 = 0x80095260;
+asm_PlayerSelectCharacter5 = 0x80095274;
+asm_PlayerSelectCharacter6 = 0x80095288;
+asm_PlayerSelectCharacter7 = 0x8009529C;
+asm_PlayerSelectCharacter8 = 0x800952B0;
+asm_PlayerSelectDoObjectP1 = 0x80095230;
+asm_PlayerSelectDoObjectP2 = 0x80095244;
+asm_PlayerSelectDoObjectP3 = 0x80095258;
+asm_PlayerSelectDoObjectP4 = 0x8009526C;
+asm_PlayerSelectDoObjectP5 = 0x80095280;
+asm_PlayerSelectDoObjectP6 = 0x80095294;
+asm_PlayerSelectDoObjectP7 = 0x800952A8;
+asm_PlayerSelectDoObjectP8 = 0x800952BC;
+asm_PlayerSelectDoObjectSelect1 = 0x800952D0;
+asm_PlayerSelectDoObjectSelect2 = 0x800952E4;
+asm_PlayerSelectDoObjectSelect3 = 0x800952F8;
+asm_PlayerSelectDoObjectSelect4 = 0x8009530C;
+asm_PlayerSelectController = 0x800B04F0;
+asm_tempo1A = 0x800015C4;
+asm_tempo1ASpeed = 0x800015C6;
+asm_tempo1B = 0x800015C8;
+asm_tempo1BSpeed = 0x800015CA;
+asmTempoFullScreen = 0x800014CC;
+asm_tempo2A = 0x80001A38;
+asm_tempo2ASpeed = 0x80001A3A;
+asm_tempo2B = 0x80001A3C;
+asm_tempo2BSpeed = 0x80001A3E;
+asm_tempo3A = 0x80001C90;
+asm_tempo3ASpeed = 0x80001C92;
+asm_tempo3B = 0x80001C94;
+asm_tempo3BSpeed = 0x80001C96;
+asm_BorderDraw = 0x80001E64;
+asm_selectA = 0x800B3924;
+asm_selectB = 0x800B3936;
+asm_selectC = 0x800B39A4;
+asm_selectD = 0x800B39B6;
+asm_selectE = 0x800B3A38;
+asm_selectF = 0x800B3A4E;
+previewReload = 0x80094BF0;
+highpolypipeA = 0x802911E8;
+highpolypipeB = 0x802911EC;
+lowpolypipeA = 0x8029120C;
+lowpolypipeB = 0x80291210;
+bigmushroomA = 0x802911A4;
+bigmushroomB = 0x802911A8;
+bigmushroomsurfaceA = 0x80295E3C;
+bigmushroomsurfaceB = 0x80295E44;
+uraGrpA = 0x8029250C;
+uraGrpB = 0x80292510;
+audienceA = 0x802927EC;
+audienceB = 0x802927F0;
+audienceflagsA = 0x802928F0;
+audienceflagsB = 0x802928F4;
+billboard1A = 0x802927CC;
+billboard1B = 0x802927D0;
+billboard2A = 0x802927AC;
+billboard2B = 0x802927B0;
+billboardpost1A = 0x80292898;
+billboardpost1B = 0x8029289C;
+billboardpost2A = 0x80292878;
+billboardpost2B = 0x8029287C;
+fencesA = 0x802928BC;
+fencesB = 0x802928D4;
+bigsignA = 0x802A2AA4;
+bigsignB = 0x802A2AA8;
+itemboxesA = 0x8029DBD4;
+itemboxesB = 0x8029DBDC;
+battleItemBoxesA = 0x8029E0D8;
+treeslistA = 0x8029DBBC;
+treeslistB = 0x8029DBC4;
+treesdisplayA = 0x802992C8;
+treesdisplayB = 0x802992E0;
+piranhalistA = 0x8029DBC8;
+piranhalistB = 0x8029DBD0;
+piranhadisplayA = 0x80298668;
+piranhadisplayB = 0x8029866C;
+unknownA1 = 0x802956D0;
+unknownA2 = 0x802956D4;
+unknownB1 = 0x80295E3C;
+unknownB = 0x80295E44;
+unknownC1 = 0x80295E54;
+unknownC = 0x80295E5C;
+unknownD1 = 0x80295E68;
+unknownD = 0x80295E70;
+battleSurfaceA = 0x80296520;
+battleSurfaceB = 0x80296524;
+battleDisplayA = 0x80295068;
+battleDisplayB = 0x8029506C;
+sectionviewA = 0x802927FC;
+sectionviewB = 0x80292810;
+surfacemapA = 0x80295E74;
+surfacemapB = 0x80295E7C;
+asm_GPLevelSelect = 0x80002AC0;
+asm_CupCount = 0x8028E3C6;
+
+/* OverKart GameOffsets poke / heap / ROM labels (stock NTSC). Not ELF objects. */
+BalloonColorArray = 0x800E4934;
+BalloonAdjustArray = 0x800E4954;
+BalloonColorArrayB = 0x800E4974;
+BalloonAdjustArrayB = 0x800E4994;
+BattleSongID = 0x8028ED16;
+CaveFireColCheck = 0x800547CC;
+CheckFinalLapFanfareJAL = 0x8028F344;
+CheckPlayStarBGMJAL = 0x8008F820;
+CheckSplashJAL1 = 0x8002E4A8;
+CheckSplashJAL2 = 0x8002F340;
+CheckSplashJAL3 = 0x8003939C;
+KeystockBuffer = 0x802D2B80;
+KeystockCounter = 0x80162D9C;
+LakituIceBehavior = 0x800797E8;
+Snow3DAllocMapCheck1 = 0x80070784;
+Snow3DAllocMapCheck2 = 0x80070788;
+Snow3DDisplayAfterMapCheck1 = 0x80058B58;
+Snow3DDisplayAfterMapCheck2 = 0x80058B5C;
+g_3DSnowScale = 0x800EEB48;
+g_3DSnowSpawnCone = 0x8007830C;
+g_3DSnowSpawnDistanceMax = 0x80078334;
+g_3DSnowSpawnDistanceMin = 0x80078348;
+g_3DSnowSpawnHeight = 0x8007833C;
+g_3DSnowSwayMovement = 0x800EEB50;
+g_3DSnowVelocityLowLim = 0x800EEB60;
+g_3DSnowVelocityUpLim = 0x800EEB58;
+g_BattleBannerOffsets = 0x801F56E0;
+g_CourseBannerOffsets = 0x801FA860;
+g_CoursePreviewOffsets = 0x801993FC;
+g_DebugTextPalette = 0x801A6818;
+g_MUSInstrumentTable = 0x803B90B0;
+g_MUSSequenceTable = 0x803B8FB0;
+g_SnowParticleTex = 0x801C8D10;
+g_mapStartToggle = 0x8004F150;
+g_musicTempo = 0x803B1518;
+g_skySnowHitGoal = 0x800780A0;
+g_skySnowScale = 0x800EEB3C;
+g_skySnowSpawnCenterOffset = 0x80077FE8;
+g_skySnowSpawnHeight = 0x80077FD8;
+g_skySnowSpawnRadiusDensity = 0x80077FA4;
+g_skySnowVelocity = 0x800EEB40;
+r_CoursePreviewOffsets = 0x12C60C;
+songID = 0x8028ECE6;
+
+

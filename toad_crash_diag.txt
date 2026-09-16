@@ -1,0 +1,115 @@
+﻿==== PC SYMBOLIZE ====
+PC 0x80026AB4 -> SR_CU2 @ 0x40000000 typ=a delta=+0x40026AB4
+  40000000 a SR_CU2
+  40000000 a SR_CU2
+  40000000 a SR_CU2
+  40000000 a SR_CU2
+PC 0x80026464 -> SR_CU2 @ 0x40000000 typ=a delta=+0x40026464
+  40000000 a SR_CU2
+  40000000 a SR_CU2
+  40000000 a SR_CU2
+  40000000 a SR_CU2
+
+==== KART KEY SYMBOLS ====
+0f386858 D gKartToadPalette
+0f2f5f70 D gKartToad000
+0f362658 D gKartToad000Wheel0
+0f3626d8 D gKartToad000Wheel1
+0f362758 D gKartToad000Wheel2
+0f3627d8 D gKartToad000Wheel3
+0f2f5dec D gKartWarioPalette
+0f258c50 D gKartWario000
+0f2d1bec D gKartWario000Wheel0
+0f2d1c6c D gKartWario000Wheel1
+0f258ac8 D gKartPeachPalette
+0f1c4ae0 D gKartPeach000
+0f2348c8 D gKartPeach000Wheel0
+0f234948 D gKartPeach000Wheel1
+ffffffff800dd85c T gKartToadWheels0
+ffffffff800dd9c4 T gKartWheels0
+
+==== CHARACTER BANK RANGES (first frame + palette) ====
+Luigi: count=1501 min=0x0f000000 max=0xffffffff800e1b30
+Mario: count=1501 min=0x0f09ad80 max=0xffffffff800e1ab0
+Yoshi: count=1501 min=0x0f12d5b0 max=0xffffffff800e1cb0
+Peach: count=1501 min=0x0f1c4ae0 max=0xffffffff800e1db0
+Wario: count=1501 min=0x0f258c50 max=0xffffffff800e1e30
+Toad: count=1501 min=0x0f2f5f70 max=0xffffffff800e1c30
+DK: count=1501 min=0x0f3869e0 max=0xffffffff800e1d30
+Bowser: count=1501 min=0x0f438a00 max=0xffffffff800e1bb0
+
+==== ALL gKartToad* (first 30 + palette/wheels) ====
+0f2f5f70 D gKartToad000
+0f2f63d8 D gKartToad001
+0f2f685c D gKartToad002
+0f2f6ce8 D gKartToad003
+0f2f7198 D gKartToad004
+0f2f764c D gKartToad005
+0f2f7b20 D gKartToad006
+0f2f7ffc D gKartToad007
+0f2f84dc D gKartToad008
+0f2f89cc D gKartToad009
+0f2f8ec8 D gKartToad010
+0f2f93c8 D gKartToad011
+0f2f98d8 D gKartToad012
+0f2f9df0 D gKartToad013
+0f2fa31c D gKartToad014
+0f2fa850 D gKartToad015
+0f2fada8 D gKartToad016
+0f2fb2f0 D gKartToad017
+0f2fb84c D gKartToad018
+0f2fbdb4 D gKartToad019
+0f2fc330 D gKartToad020
+0f2fc8d0 D gKartToad021
+0f2fcd4c D gKartToad022
+0f2fd1d8 D gKartToad023
+0f2fd67c D gKartToad024
+...
+0f2f5f70 D gKartToad000
+0f362658 D gKartToad000Wheel0
+0f3626d8 D gKartToad000Wheel1
+0f362758 D gKartToad000Wheel2
+0f3627d8 D gKartToad000Wheel3
+0f386858 D gKartToadPalette
+KEY 0f2f5f70 D gKartToad000
+KEY 0f362658 D gKartToad000Wheel0
+KEY 0f3626d8 D gKartToad000Wheel1
+KEY 0f362758 D gKartToad000Wheel2
+KEY 0f3627d8 D gKartToad000Wheel3
+KEY 0f386858 D gKartToadPalette
+KEY ffffffff800dd85c T gKartToadWheels0
+toad_symbol_count 1501
+
+==== objdump ra site ====
+
+build/us/mk64.us.elf:     file format elf32-bigmips
+
+
+Disassembly of section .main:
+
+80026440 <Doobj+0x48>:
+80026440:	0005c603 	sra	t8,a1,0x18
+80026444:	0006ce03 	sra	t9,a2,0x18
+80026448:	00808025 	move	s0,a0
+8002644c:	01e08825 	move	s1,t7
+80026450:	01c09025 	move	s2,t6
+80026454:	03203025 	move	a2,t9
+80026458:	03002825 	move	a1,t8
+8002645c:	0c0099e6 	jal	80026798 <change_tirecol_Pa>
+80026460:	80e74d01 	lb	a3,19713(a3)
+80026464:	960b0002 	lhu	t3,2(s0)
+80026468:	00111080 	sll	v0,s1,0x2
+8002646c:	240c0004 	li	t4,4
+80026470:	004c6804 	sllv	t5,t4,v0
+80026474:	016d7024 	and	t6,t3,t5
+80026478:	15c00003 	bnez	t6,80026488 <Doobj+0x90>
+8002647c:	02002025 	move	a0,s0
+80026480:	10000002 	b	8002648c <Doobj+0x94>
+80026484:	00001825 	move	v1,zero
+80026488:	24030008 	li	v1,8
+8002648c:	00122e00 	sll	a1,s2,0x18
+==== change_tirecol_Pa bounds ====
+ffffffff80026694 T change_tirecol_calc
+ffffffff80026798 T change_tirecol_Pa
+ffffffff8002781c T tirecol_dma_Si
+ffffffff800278b4 T tirecol_dma_Pa

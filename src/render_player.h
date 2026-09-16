@@ -1,0 +1,288 @@
+#ifndef CODE_8001F980_H
+#define CODE_8001F980_H
+
+#include <common_structs.h>
+#include "buffers.h"
+#include "camera.h"
+
+#define SOME_TEXTURE_POINTER_MATH 0x800
+
+/* Function Prototypes */
+
+void check_frame(s32*, s32*);
+void CheckViewport(Player*, Camera*, s8);
+u16 viewport(Player*, Camera*, f32, f32);
+u16 slipstream_kart(Player*, f32, f32, f32);
+void init_render_player(Player*, Camera*, s8, s8);
+void CheckDMA(void);
+void CheckDMA2P(void);
+void CheckDMA3P(void);
+void CheckDMA4P(void);
+void try_rendering_player(Player*, s8, s8);
+void DrawKart(void);
+void DrawKart2P(void);
+void DrawKart3P(void);
+void DrawKart4P(void);
+void DrawKartAfter(void);
+void DrawKart2PAfter(void);
+void DrawKart3PAfter(void);
+void DrawKart4PAfter(void);
+void createaffine(Mat4, Vec3f, Vec3s);
+void trans_matrix(Mat4, Vec3f);
+void scale_matrix(Mat4, f32);
+void Affine2normMtx(Mtx*, Mat4);
+void Affine2Mtx(Mtx*, Mat4);
+bool ChaseDir(s16*, s16, s16);
+void chase_Inumber(s32*, s32, f32);
+void chase_Fnumber(f32*, f32, f32);
+void chase_Snumber(s16*, s16, f32);
+void chase_USnumber(u16*, s16, f32);
+void ken_startegy(void);
+void vtx_strategy(void);
+void vtx_calc(Player*, s8);
+void broken_calc(Player*, s8);
+void restore_calc(Player*, s8);
+void broken_set(Player*, s8, s8, s8);
+void jugemu_set(Player*, s8, s8, s8);
+void bound_calc(Player*, s8);
+void bound_set(Player*, s8, s8, s8);
+void MakeBodyColor(Player*, s8, s32, f32);
+void MakeBodyColorAdjust(Player*, s8, s32, f32);
+bool check_map_bright_before(Player*, s8);
+void check_map_bright_after(Player*, s8);
+void bright_calc(Player*, s8);
+void check_vtx(Player*, s8, s8, s8);
+void draw_shadow(Player*, s8, s8);
+void draw_result_shadow(Player*, s8, s8);
+void draw_mainkart(Player*, s8, s8, s8);
+void draw_ghostkart(Player*, s8, s8, s8);
+void draw_turbokart(Player*, s8, s8, s8);
+void draw_reflectkart(Player*, s8, s8, s8);
+void Doobj(Player*, s8, s8);
+void change_tirecol_calc(Player*, s8);
+void change_tirecol_Pa(Player*, s8, s8, s8);
+void shake_set(Player*);
+void tire_pos_calc(void);
+void debug_tire_cube(s32, s32, s32);
+
+/* This is where I'd put my static data, if I had any */
+
+extern struct_D_802F1F80* gPlayerPalette;
+extern u8* sKartUpperTexture;
+extern u8* sKartLowerTexture;
+
+extern s32 opening_flag;
+extern s16 gPlayersToRenderPlayerId[];
+extern s16 D_80164ABE[];
+extern s16 gPlayersToRenderScreenId[];
+extern Player* buffer_car[];
+extern s16 effectcount;
+extern u16 g_colorPlayer0R[];
+extern u16 bright_g[];
+extern u16 bright_b[];
+extern u16 adjust_r[];
+extern u16 adjust_g[];
+extern u16 adjust_b[];
+extern s32 color_timer[];
+
+extern s32 g_StarUseCounter[];
+
+extern Gfx common_square_plain_render[];
+extern Gfx D_0D008D58[];
+
+extern s32 gPlayersToRenderCount;
+extern void* D_800DDB5C[];
+extern Vtx* KartVtx[];
+extern f32 gCharacterSize[];
+extern s32 D_800DDE74[];
+extern Vtx D_800E51D0[];
+extern Vtx D_800E5210[];
+extern f64 D_800ED680;
+extern f64 D_800ED688;
+extern f32 D_800ED6A8;
+
+// There are actually found in data_0DD0A0_2_0.s
+extern Vtx gPlayerOneVtx[];
+extern Vtx gPlayerTwoVtx[];
+extern Vtx gPlayerThreeVtx[];
+extern Vtx gPlayerFourVtx[];
+extern Vtx gPlayerFiveVtx[];
+extern Vtx gPlayerSixVtx[];
+extern Vtx gPlayerSevenVtx[];
+extern Vtx gPlayerEightVtx[];
+
+extern u8** gKartMarioWheels0[];
+extern u8** gKartMarioWheels1[];
+extern u8** gKartLuigiWheels0[];
+extern u8** gKartLuigiWheels1[];
+extern u8** gKartBowserWheels0[];
+extern u8** gKartBowserWheels1[];
+extern u8** gKartToadWheels0[];
+extern u8** gKartToadWheels1[];
+extern u8** gKartYoshiWheels0[];
+extern u8** gKartYoshiWheels1[];
+extern u8** gKartDKWheels0[];
+extern u8** gKartDKWheels1[];
+extern u8** gKartPeachWheels0[];
+extern u8** gKartPeachWheels1[];
+extern u8** gKartWarioWheels0[];
+extern u8** gKartWarioWheels1[];
+
+extern u16** gKartWheels0[];
+extern u16** gKartWheels1[];
+
+// These all come the kart data stuff, they should end up in their own inc.c eventually
+extern u8* gKartMario168Wheel0[];
+extern u8* gKartMario147Wheel0[];
+extern u8* gKartMario126Wheel0[];
+extern u8* gKartMario105Wheel0[];
+extern u8* gKartMario084Wheel0[];
+extern u8* gKartMario063Wheel0[];
+extern u8* gKartMario042Wheel0[];
+extern u8* gKartMario021Wheel0[];
+extern u8* gKartMario000Wheel0[];
+extern u8* gKartMario269Wheel0[];
+extern u8* gKartMario269Wheel0[];
+extern u8* gKartMario249Wheel0[];
+extern u8* gKartMario229Wheel0[];
+extern u8* gKartMario229Wheel0[];
+extern u8* gKartMario229Wheel0[];
+extern u8* gKartMario209Wheel0[];
+extern u8* gKartMario189Wheel0[];
+extern u8* gKartMario189Wheel0[];
+extern u8* gKartLuigi168Wheel0[];
+extern u8* gKartLuigi147Wheel0[];
+extern u8* gKartLuigi126Wheel0[];
+extern u8* gKartLuigi105Wheel0[];
+extern u8* gKartLuigi084Wheel0[];
+extern u8* gKartLuigi063Wheel0[];
+extern u8* gKartLuigi042Wheel0[];
+extern u8* gKartLuigi021Wheel0[];
+extern u8* gKartLuigi000Wheel0[];
+extern u8* gKartLuigi269Wheel0[];
+extern u8* gKartLuigi269Wheel0[];
+extern u8* gKartLuigi249Wheel0[];
+extern u8* gKartLuigi229Wheel0[];
+extern u8* gKartLuigi229Wheel0[];
+extern u8* gKartLuigi229Wheel0[];
+extern u8* gKartLuigi209Wheel0[];
+extern u8* gKartLuigi189Wheel0[];
+extern u8* gKartLuigi189Wheel0[];
+extern u8* gKartBowser168Wheel0[];
+extern u8* gKartBowser147Wheel0[];
+extern u8* gKartBowser126Wheel0[];
+extern u8* gKartBowser105Wheel0[];
+extern u8* gKartBowser084Wheel0[];
+extern u8* gKartBowser063Wheel0[];
+extern u8* gKartBowser042Wheel0[];
+extern u8* gKartBowser021Wheel0[];
+extern u8* gKartBowser000Wheel0[];
+extern u8* gKartBowser269Wheel0[];
+extern u8* gKartBowser269Wheel0[];
+extern u8* gKartBowser249Wheel0[];
+extern u8* gKartBowser229Wheel0[];
+extern u8* gKartBowser229Wheel0[];
+extern u8* gKartBowser229Wheel0[];
+extern u8* gKartBowser209Wheel0[];
+extern u8* gKartBowser189Wheel0[];
+extern u8* gKartBowser189Wheel0[];
+extern u8* gKartToad168Wheel0[];
+extern u8* gKartToad147Wheel0[];
+extern u8* gKartToad126Wheel0[];
+extern u8* gKartToad105Wheel0[];
+extern u8* gKartToad084Wheel0[];
+extern u8* gKartToad063Wheel0[];
+extern u8* gKartToad042Wheel0[];
+extern u8* gKartToad021Wheel0[];
+extern u8* gKartToad000Wheel0[];
+extern u8* gKartToad269Wheel0[];
+extern u8* gKartToad269Wheel0[];
+extern u8* gKartToad249Wheel0[];
+extern u8* gKartToad229Wheel0[];
+extern u8* gKartToad229Wheel0[];
+extern u8* gKartToad229Wheel0[];
+extern u8* gKartToad209Wheel0[];
+extern u8* gKartToad189Wheel0[];
+extern u8* gKartToad189Wheel0[];
+extern u8* gKartYoshi168Wheel0[];
+extern u8* gKartYoshi147Wheel0[];
+extern u8* gKartYoshi126Wheel0[];
+extern u8* gKartYoshi105Wheel0[];
+extern u8* gKartYoshi084Wheel0[];
+extern u8* gKartYoshi063Wheel0[];
+extern u8* gKartYoshi042Wheel0[];
+extern u8* gKartYoshi021Wheel0[];
+extern u8* gKartYoshi000Wheel0[];
+extern u8* gKartYoshi269Wheel0[];
+extern u8* gKartYoshi269Wheel0[];
+extern u8* gKartYoshi249Wheel0[];
+extern u8* gKartYoshi229Wheel0[];
+extern u8* gKartYoshi229Wheel0[];
+extern u8* gKartYoshi229Wheel0[];
+extern u8* gKartYoshi209Wheel0[];
+extern u8* gKartYoshi189Wheel0[];
+extern u8* gKartYoshi189Wheel0[];
+extern u8* gKartDK168Wheel0[];
+extern u8* gKartDK147Wheel0[];
+extern u8* gKartDK126Wheel0[];
+extern u8* gKartDK105Wheel0[];
+extern u8* gKartDK084Wheel0[];
+extern u8* gKartDK063Wheel0[];
+extern u8* gKartDK042Wheel0[];
+extern u8* gKartDK021Wheel0[];
+extern u8* gKartDK000Wheel0[];
+extern u8* gKartDK269Wheel0[];
+extern u8* gKartDK269Wheel0[];
+extern u8* gKartDK249Wheel0[];
+extern u8* gKartDK229Wheel0[];
+extern u8* gKartDK229Wheel0[];
+extern u8* gKartDK229Wheel0[];
+extern u8* gKartDK209Wheel0[];
+extern u8* gKartDK189Wheel0[];
+extern u8* gKartDK189Wheel0[];
+extern u8* gKartPeach168Wheel0[];
+extern u8* gKartPeach147Wheel0[];
+extern u8* gKartPeach126Wheel0[];
+extern u8* gKartPeach105Wheel0[];
+extern u8* gKartPeach084Wheel0[];
+extern u8* gKartPeach063Wheel0[];
+extern u8* gKartPeach042Wheel0[];
+extern u8* gKartPeach021Wheel0[];
+extern u8* gKartPeach000Wheel0[];
+extern u8* gKartPeach269Wheel0[];
+extern u8* gKartPeach269Wheel0[];
+extern u8* gKartPeach249Wheel0[];
+extern u8* gKartPeach229Wheel0[];
+extern u8* gKartPeach229Wheel0[];
+extern u8* gKartPeach229Wheel0[];
+extern u8* gKartPeach209Wheel0[];
+extern u8* gKartPeach189Wheel0[];
+extern u8* gKartPeach189Wheel0[];
+extern u8* gKartWario168Wheel0[];
+extern u8* gKartWario147Wheel0[];
+extern u8* gKartWario126Wheel0[];
+extern u8* gKartWario105Wheel0[];
+extern u8* gKartWario084Wheel0[];
+extern u8* gKartWario063Wheel0[];
+extern u8* gKartWario042Wheel0[];
+extern u8* gKartWario021Wheel0[];
+extern u8* gKartWario000Wheel0[];
+extern u8* gKartWario269Wheel0[];
+extern u8* gKartWario269Wheel0[];
+extern u8* gKartWario249Wheel0[];
+extern u8* gKartWario229Wheel0[];
+extern u8* gKartWario229Wheel0[];
+extern u8* gKartWario229Wheel0[];
+extern u8* gKartWario209Wheel0[];
+extern u8* gKartWario189Wheel0[];
+extern u8* gKartWario189Wheel0[];
+
+extern s16 D_80165020[40];
+extern Vec3f old_velocity[8];
+extern s16 old_dir[4][8];
+extern s16 old_deg[4][8];
+extern s16 old_slipcount[4][8];
+extern s16 compel_flag[4][8];
+extern s16 draw_number[4][8];
+
+#endif

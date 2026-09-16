@@ -1,0 +1,287 @@
+#include "MainInclude.h"
+
+uint GlobalAddressA, GlobalAddressB, GlobalAddressC, GlobalAddressD;
+int GlobalIntA, GlobalIntB, GlobalIntC, GlobalIntD;
+int64     GlobalInt64;
+uint64    GlobalUInt64;
+uint GlobalUIntA, GlobalUIntB;
+
+float GlobalFloatA, GlobalFloatB, GlobalFloatC, GlobalFloatD;
+char GlobalCharA,GlobalCharB,GlobalCharC,GlobalCharD,GlobalCharE,GlobalFrameChar;
+
+short GlobalShortA, GlobalShortB, GlobalShortC, GlobalShortD;
+unsigned short GlobalUShortA, GlobalUShortB;
+bool GlobalBoolA, GlobalBoolB, GlobalBoolC, GlobalBoolD;
+short GlobalShortA, GlobalShortB;
+bool GlobalBoolA, GlobalBoolB, GlobalBoolC, GlobalBoolD;
+int LoopValue;
+uint GlobalFrameCount;
+uint ClockCycle[2], OldCycle[2];
+uint CycleCount[2];
+
+bool TempoBool, StopSwop;
+char ConsolePlatform, EmulatorPlatform;
+uint CartridgeStatus;
+
+bool SurfaceExplorerMode = false;
+bool CustomWaterHeight[8];
+short g_EchoStart = 0x19B;
+short g_EchoStop = 0x1B9;
+short CloudCourseID, Snow3DCourseID;
+char CloudCourseValue, Snow3DCourseValue, WeatherCourseValue, Toggle3DSnow;
+short BattleGametype;
+
+short MenuPosition [2];
+ushort PerspectiveValue;
+
+int wholeNumber = 0;
+int decimalNumber = 0;
+int printOffsetA, printOffsetB, printOffsetC, printOffsetD = 0;
+int minutes = 0;
+int seconds = 0;
+Object *GlobalObjectA, *GlobalObjectB;
+float ZeroVector[3] = {0.0, 0.0, 0.0};
+OKRAMHeader OverKartRAMHeader;
+
+short AnimationTimer = 0;
+short DynFPSModifier = 2;
+
+Controller *GlobalController[8] = 
+{
+     &g_Controller1,
+     &g_Controller2,
+     &g_Controller3,
+     &g_Controller4,
+     &g_ControllerMenu,
+     &g_ControllerGhost1,
+     &g_ControllerGhost2,
+     &g_ControllerGhost3,
+};
+
+Screen *GlobalScreen[4] = 
+{
+     &g_Screen1,
+     &g_Screen2,
+     &g_Screen3,
+     &g_Screen4
+};
+
+Camera *GlobalCamera[4] = 
+{
+     &g_Camera1,
+     &g_Camera2,
+     &g_Camera3,
+     &g_Camera4
+};
+
+u16 *GlobalPath[8] =
+{
+     &gNearestPathPointByPlayerId[0],
+     &gNearestPathPointByPlayerId[1],
+     &gNearestPathPointByPlayerId[2],
+     &gNearestPathPointByPlayerId[3],
+     &gNearestPathPointByPlayerId[4],
+     &gNearestPathPointByPlayerId[5],
+     &gNearestPathPointByPlayerId[6],
+     &gNearestPathPointByPlayerId[7],
+};
+
+s32 *GlobalLap[8] =
+{
+     &gLapCountByPlayerId[0],
+     &gLapCountByPlayerId[1],
+     &gLapCountByPlayerId[2],
+     &gLapCountByPlayerId[3],
+     &gLapCountByPlayerId[4],
+     &gLapCountByPlayerId[5],
+     &gLapCountByPlayerId[6],
+     &gLapCountByPlayerId[7],
+};
+
+Hud *GlobalHud[4] =
+{
+     &g_hudPlayer1,
+     &g_hudPlayer2,
+     &g_hudPlayer3,
+     &g_hudPlayer4,
+};
+
+char *GlobalLightning[8] =
+{
+     (char *) &g_lightningFlagPlayer1[0],
+     (char *) &g_lightningFlagPlayer1[1],
+     (char *) &g_lightningFlagPlayer1[2],
+     (char *) &g_lightningFlagPlayer1[3],
+     (char *) &g_lightningFlagPlayer1[4],
+     (char *) &g_lightningFlagPlayer1[5],
+     (char *) &g_lightningFlagPlayer1[6],
+     (char *) &g_lightningFlagPlayer1[7],
+};
+
+
+Playercolor *GlobalPlayercolor[8] =
+{
+     (Playercolor *) &g_colorPlayer0R[0],
+     (Playercolor *) &g_colorPlayer0R[1],
+     (Playercolor *) &g_colorPlayer0R[2],
+     (Playercolor *) &g_colorPlayer0R[3],
+     (Playercolor *) &g_colorPlayer0R[4],
+     (Playercolor *) &g_colorPlayer0R[5],
+     (Playercolor *) &g_colorPlayer0R[6],
+     (Playercolor *) &g_colorPlayer0R[7],
+};
+
+//MarioKart3D Variables
+short CoinCount[8] = {0,0,0,0,0,0,0,0};
+short IFrames[8] = {0,0,0,0,0,0,0,0};
+float AffineMatrix[4][4];
+float AffineMatrix2[4][4];
+float objectPosition[3] = {0,0,0};
+Vector objectVector[5];
+float objectVelocity[3] = {0,0,0};
+short objectAngle[3] = {0,0,0};
+short objectIndex;
+//
+//
+
+struct OKEngine EngineClass[3][3];
+
+
+/*
+#define ENGINE_BALANCE	0
+#define ENGINE_ACCEL	1
+#define ENGINE_SPEED	2
+*/
+short EngineSpeed[4][3] = { {292,288,296},{312,308,316},{322,318,326},{245,245,245}};
+short AccelerationCurve[3][10] = {{20,20,20,16,14,12,10,8,6,4},{20,20,25,26,26,20,15,8,8,8},{20,20,20,16,10,10,10,18,18,12}};
+short SteerAngle[3] = {135,125,110};
+short SteerValue[3] = {2,0,-2};
+
+short PowerBand[3] = {25, 30, 15};
+short EnginePowerDownRT[3][15] = {{0,0,0,3,0,0,0,9,9,0,0,9,0,9,9}, {0,0,0,2,0,0,0,8,8,0,0,8,0,8,8}, {0,0,0,4,0,0,0,10,10,0,0,10,0,10,10}};
+short EnginePowerDownFT[3][15] = {{0,0,0,0,0,0,0,3,3,0,0,3,0,3,3}, {0,0,0,0,0,0,0,2,2,0,0,2,0,2,2}, {0,0,0,0,0,0,0,04,04,0,0,04,0,04,04}};
+
+
+char MenuBackup = 0, MenuChanged = 0, MenuTimer = 0, StatsID = -1;
+char MenuFlash[4] = {0,0,0,0};
+char MenuProgress[4] = {0,0,0,0};
+char PlayerCharacterSelect[4] = {0,1,2,3};
+char PlayerEngineSelect[4] = {0,0,0,0};
+char PlayerSteerSelect[4] = {0,0,0,0};
+char PlayerShowStats[4] = {0,0,0,0};
+struct PlayerTextureTable BackupNamePlateTable;
+struct PlayerTextureTable BackupPortraitTable[9];
+
+//Mario Kart Stats
+
+
+
+//SharedFunctions
+long dataLength = 0; //
+int *targetAddress = &ok_Target;
+int *sourceAddress = &ok_Source;
+int *tempPointer = &ok_Pointer;
+long *graphPointer = (long*)&GraphPtrOffset;
+int *tkmPoint = &ok_TKMSpace;
+int RSPNumber;
+int RSPOffset;
+char *hex = "0123456789ABCDEF";
+
+ushort RedTextPalette[4];
+ushort BlueTextPalette[4];
+ushort GreenTextPalette[4];
+ushort WhiteTextPalette[4];
+
+char RedPaletteF3D[0xC0];
+char BluePaletteF3D[0xC0];
+char GreenPaletteF3D[0xC0];
+char WhitePaletteF3D[0xC0];
+     
+//
+
+//Stock Names
+char *stockCourseNames[] = {"Mario Raceway", "Choco Mountain", "Bowser's Castle", "Banshee Boardwalk",
+                         "Yoshi Valley", "Frappe Snowland", "Koopa Troopa Beach", "Royal Raceway",
+                         "Luigi Raceway", "Moo Moo Farm", "Toad's Turnpike","Kalimari Desert",
+                         "Sherbet Land", "Rainbow Road", "Wario Stadium", "Block Fort",
+                         "Skyscraper", "Double Deck", "D.K.'s Jungle Parkway", "Big Donut"};
+char *stockCharacterNames[] = {"MARIO", "LUIGI", "YOSHI", "TOAD", "D.K.", "WARIO", "PEACH", "BOWSER"};
+BalloonColor stockBalloonColors[] = 
+{
+     {0x00, 0xC8, 0x01, 0x00}, {0x00, 0x00, 0x70, 0x01}, {0x00, 0x10, 0x79, 0x51}, {0x00, 0x00, 0x59, 0x70}, 
+     {0x00, 0x70, 0x55, 0x00}, {0x00, 0x7A, 0x7E, 0x00}, {0x00, 0x77, 0x2C, 0x24}, {0x00, 0x30, 0x14, 0x58}
+};
+
+BalloonColor stockAdjustColors[] = 
+{
+     {0x00, 0xDC, 0x00, 0x00}, {0x00, 0x08, 0x8C, 0x06}, {0x00, 0x00, 0x00, 0x51}, {0x00, 0x00, 0x00, 0x00}, 
+     {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00}
+};
+
+
+//Custom Levels
+
+//Main
+
+struct OKObject OKObjectArray[100];
+
+
+//Multiple AI Paths Race Levels
+OKAIPath CPUPaths[8];
+
+//OKCustom Objects
+short CoinPositions[8][3]; //8 Coins XYZ
+
+short hsLabel, raceStatus, startupSwitch, courseSwapped = -1;
+bool scrollLock = false;
+int currentHeaderAddress = 0;
+
+short FireParticlePositions[8][3];
+
+ushort MenuBlink, AudioLanguage;
+short gpCourseIndex, HotSwapID, HotSwapGP, gpTimeCheck, courseValue = -1;
+short MenuAngle[4];
+
+char ButtonHolding[4];
+char ButtonTimer[4];
+ushort MenuButtonHeld[4];
+bool MenuToggle;
+float gpTotalTime = 0;
+
+
+int VersionNumber;
+
+int ParameterIndex, MenuIndex, MenuCup, MenuOverflow;
+
+
+
+//
+//
+
+
+//CustomLevels
+int ScrollValues[32][2];
+//FaceStruct *CourseFaceStruct = (FaceStruct*)(&gFaceBuffer);
+//
+//
+
+char *cupNames[] = {"Mushroom Cup","Flower Cup","Star Cup","Special Cup"};
+int cupChar[] = {12,10,8,11};
+char *courseNames[] = {"Mario Raceway", "Choco Mountain", "Bowser Castle", "Banshee Boardwalk","Yoshi Valley", "Frappe Snowland", "Koopa Troopa Beach", "Royal Raceway",
+"Luigi Raceway", "Moo Moo Farm", "Toad Turnpike","Kalimari Desert","Sherbet Land","Rainbow Road","Wario Stadium", "Block Fort", "Skyscraper", "Double Deck", "DK Jungle Parkway","Big Donut"};
+int courseChar[] = {13,14,13,17,12,15,18,13,13,12,13,15,11,12,13,10,10,11,17,9};
+
+Vector Origin = {0,0,0,};
+ObjectivePlayer       Objectives[4];
+ObjectiveObject     GameFlag[4];
+ObjectiveObject     GameBase[4];
+
+Marker* PlayerSpawnPoints;
+CTFSpawn* ObjectivePoints;
+BattleObjectivePoint* CustomObjectivePoints;
+
+float     SpawnPoint[4][3];
+char      FlagCount, TeamMode;
+char      ScoreToWin, ObjectiveCount;
+short     SpawnTime, HitstunTime;
+short     TeamScore[2];

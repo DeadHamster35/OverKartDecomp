@@ -1,0 +1,7 @@
+LibraryDecomp make -j result
+failed targets: 
+cfe=0 gcc_errors=0 link_undef=0
+
+Unique non-conflict errors:
+
+Conflicting-type unique symbols (0):

@@ -1,0 +1,23 @@
+---
+description: Host projects on OverKart Library — read docs/host_overrides.md first.
+alwaysApply: true
+---
+
+# Host Library (LibraryDecomp)
+
+Start-here: **`docs/host_overrides.md`**. Defaults live in `src/OverKartLibrary/OverKartDefaults.c`. Vanilla already calls the `*Default` names.
+
+Amped Up **Library completeness** (not host link): **`docs/ampedup_library_handoff.md`**. If the user says continue on that workstream, that file is the batch list.
+
+Work only in **this repo**. Do not edit KimuraDecomp. Sibling `Library/` is historical copy source only.
+
+- NTSC only. Tarmac `ok_HeaderROM` stays `0xBE9178`.
+- Single toolchain: **IDO**. `COMPARE=0`, `AVOID_UB=1`. Native ELF; no Library code DMA.
+- Vanilla C includes `OverKartHooks.h`, not `MainInclude.h`.
+- `ok_FreeSpace` is a temp scratch pad for non-course compressed data. Do not move it onto the course pools.
+- Payload at `0x80400000`; OKHeader BSS at payload RAM_END; may overflow into `0x80500000`, must not reach FB0 at `0x805DA800`.
+- Z at `0x80300000`. FBs at `0x805DA800` (FB0) / `0x80600000` (FB1) / `0x80700000` (FB2). `ok_ObjectPool` is leftover after gfx/audio up to `0x80400000`.
+- `gFaceBuffer` at `0x80625800` growing forward toward Vtx (from `0x80700000` back). Full map: **`docs/host_overrides.md`**.
+- Do not nest leftover stock shape (`USbit`, Shake 0x18, Hud `tx[5]`) unless asked.
+- Do not strip unused Library files. KartCheck / CameraCheck are host-owned.
+- Approval/review still apply.

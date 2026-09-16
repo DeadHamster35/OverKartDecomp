@@ -1,0 +1,139 @@
+#ifndef COURSE_H
+#define COURSE_H
+
+#include <ultra64.h>
+#include <PR/gbi.h>
+#include <macros.h>
+#include "path.h"
+
+/**
+ * @file Include for course gfx.inc.c.
+ */
+
+typedef struct {
+    Gfx* address;
+    u8 status;
+    u8 area;
+    u16 flag;
+} SEARCHLIST;
+typedef SEARCHLIST TrackSections;
+
+struct _struct_gCoursePathSizes_0x10 {
+    /* 0x00 */ u16 firstPath;
+    /* 0x02 */ u16 secondPath;
+    /* 0x04 */ u16 thirdPath;
+    /* 0x06 */ u16 fourthPath;
+    /* 0x08 */ u16 unk8;
+    /* 0x0A */ char padA[6];
+}; // size 0x10
+
+#if !ENABLE_CUSTOM_COURSE_ENGINE
+typedef enum {
+    /* 0x00 */ COURSE_MARIO_RACEWAY = 0,
+    /* 0x01 */ COURSE_CHOCO_MOUNTAIN,
+    /* 0x02 */ COURSE_BOWSER_CASTLE,
+    /* 0x03 */ COURSE_BANSHEE_BOARDWALK,
+    /* 0x04 */ COURSE_YOSHI_VALLEY,
+    /* 0x05 */ COURSE_FRAPPE_SNOWLAND,
+    /* 0x06 */ COURSE_KOOPA_BEACH,
+    /* 0x07 */ COURSE_ROYAL_RACEWAY,
+    /* 0x08 */ COURSE_LUIGI_RACEWAY,
+    /* 0x09 */ COURSE_MOO_MOO_FARM,
+    /* 0x0A */ COURSE_TOADS_TURNPIKE,
+    /* 0x0B */ COURSE_KALAMARI_DESERT,
+    /* 0x0C */ COURSE_SHERBET_LAND,
+    /* 0x0D */ COURSE_RAINBOW_ROAD,
+    /* 0x0E */ COURSE_WARIO_STADIUM,
+    /* 0x0F */ COURSE_BLOCK_FORT,
+    /* 0x10 */ COURSE_SKYSCRAPER,
+    /* 0x11 */ COURSE_DOUBLE_DECK,
+    /* 0x12 */ COURSE_DK_JUNGLE,
+    /* 0x13 */ COURSE_BIG_DONUT,
+    /* 0x14 */ COURSE_AWARD_CEREMONY,
+    /* 0x15 */ NUM_COURSES
+} COURSES;
+
+#else
+
+#define COURSE_MARIO_RACEWAY
+#define COURSE_CHOCO_MOUNTAIN
+#define COURSE_BOWSER_CASTLE
+#define COURSE_BANSHEE_BOARDWALK
+#define COURSE_YOSHI_VALLEY
+#define COURSE_FRAPPE_SNOWLAND
+#define COURSE_KOOPA_BEACH
+#define COURSE_ROYAL_RACEWAY
+#define COURSE_LUIGI_RACEWAY
+#define COURSE_MOO_MOO_FARM
+#define COURSE_TOADS_TURNPIKE
+#define COURSE_KALAMARI_DESERT
+#define COURSE_SHERBET_LAND
+#define COURSE_RAINBOW_ROAD
+#define COURSE_WARIO_STADIUM
+#define COURSE_BLOCK_FORT
+#define COURSE_SKYSCRAPER
+#define COURSE_DOUBLE_DECK
+#define COURSE_DK_JUNGLE
+#define COURSE_BIG_DONUT
+#define COURSE_AWARD_CEREMONY
+#define NUM_COURSES
+
+#endif
+
+#if !ENABLE_CUSTOM_COURSE_ENGINE
+extern s16 g_courseID;
+extern s16* distance_limmit_ptr[];
+#define GET_COURSE_800DCBB4(n) distance_limmit_ptr[g_courseID][n]
+extern f32 g_RoadWidth[];
+#define GET_COURSE_AIMaximumSeparation g_RoadWidth[g_courseID]
+extern struct _struct_gCoursePathSizes_0x10 PathLengthTable[];
+#define GET_COURSE_PathSizes PathLengthTable[g_courseID]
+extern s16 handle_max_tab[];
+#define GET_COURSE_AISteeringSensitivity handle_max_tab[g_courseID]
+extern f32 soukou_zure_max[];
+#define GET_COURSE_AIMinimumSeparation soukou_zure_max[g_courseID]
+extern CenterPathStruct* PathTableB[][4];
+#define GET_COURSE_PathTable(p) GetVAddress(PathTableB[g_courseID][p])
+extern CenterPathStruct* PathTable[][4];
+#define GET_COURSE_PathTable2(p) GetVAddress(PathTable[g_courseID][p])
+extern ActionData* cpu_BehaviourLUT[];
+#define GET_COURSE_AIBehaviour GetVAddress(cpu_BehaviourLUT[i])
+extern char* g_StringTableCourseGP[];
+#define GET_COURSE_Name g_StringTableCourseGP[g_courseID]
+extern char* g_StringTableCourse[];
+#define GET_COURSE_NameDup g_StringTableCourse[gCupCourseOrder[g_cupSelect][g_courseSelect]]
+extern char* circuit_name_short[];
+#define GET_COURSE_debugName circuit_name_short[g_courseID]
+extern f32 g_farClip;
+#define g_farClip g_farClip
+extern f32 screen_near_point;
+#define screen_near_point screen_near_point
+#define GET_COURSE_D_0D0096B8(cc) *(f32*) GetVAddress(&D_0D0096B8[g_courseID][cc])
+#define GET_COURSE_cpu_OffTrackTargetSpeed(cc) \
+    *(f32*) GetVAddress(&cpu_OffTrackTargetSpeed[g_courseID][cc])
+#define GET_COURSE_cpu_CurveTargetSpeed(cc) \
+    *(f32*) GetVAddress(&cpu_CurveTargetSpeed[g_courseID][cc])
+#define GET_COURSE_cpu_NormalTargetSpeed(cc) \
+    *(f32*) GetVAddress(&cpu_NormalTargetSpeed[g_courseID][cc])
+#else
+#define g_courseID
+#define GET_COURSE_800DCBB4(n)
+#define GET_COURSE_AIMaximumSeparation
+#define GET_COURSE_PathSizes
+#define GET_COURSE_AISteeringSensitivity
+#define GET_COURSE_AIMinimumSeparation
+#define GET_COURSE_PathTable(p)
+#define GET_COURSE_PathTable2(p)
+#define GET_COURSE_AIBehaviour
+#define GET_COURSE_Name
+#define GET_COURSE_NameDup
+#define GET_COURSE_debugName
+#define g_farClip
+#define screen_near_point
+#define GET_COURSE_D_0D0096B8(cc)
+#define GET_COURSE_cpu_OffTrackTargetSpeed(cc)
+#define GET_COURSE_cpu_CurveTargetSpeed(cc)
+#define GET_COURSE_cpu_NormalTargetSpeed(cc)
+#endif
+
+#endif // COURSE_H

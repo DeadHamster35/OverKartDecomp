@@ -1,0 +1,14 @@
+START:Sat Sep 12 17:29:52 Eastern Daylight Time 2026
+==== Build Options ====
+Version:        us
+Microcode:      f3dex_old
+Target:         mk64.us
+Compare ROM:    yes
+Build Matching: yes
+=======================
+x64 architecture in use
+Building ROM...
+[0;32mChecking if ROM matches.. [0m
+mk64.us: [0;32mOK[0m
+MAKE_EXIT:0
+DONE:Sat Sep 12 17:30:05 Eastern Daylight Time 2026
