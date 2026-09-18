@@ -2,9 +2,10 @@
 setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"
 
-rem KimuraDecomp Windows build helper (errors-focused)
+rem OverKartDecomp Windows build helper (errors-focused)
 rem Same actions as build.bat, but console output drops unused-variable
 rem noise and other low-signal unused* warnings. Full log is still saved.
+rem Default make flags: AVOID_UB=1 COMPARE=0
 rem Original full-output launcher: build.bat
 
 set "W64DEVKIT=tools\mingw64\w64devkit.exe"
@@ -34,10 +35,11 @@ if exist "C:\Program Files\SmartGit\git\cmd\git.exe" (
   set "PATH=C:\Program Files\SmartGit\git\cmd;%PATH%"
 )
 
-echo ==== KimuraDecomp Windows build (errors-focused) ====
+echo ==== OverKartDecomp Windows build (errors-focused) ====
 echo Root:    %CD%
 echo Action:  %ACTION%
 echo Version: %VERSION%
+echo Flags:   AVOID_UB=1 COMPARE=0
 echo Note:    unused-variable warnings hidden; full log -^> _build_full.log
 echo.
 
@@ -54,12 +56,12 @@ set "ROOT_POSIX=%CD:\=/%"
 )
 
 if /I "%ACTION%"=="rom" (
-  >> "%RUNSH%" echo make -j VERSION=%VERSION%
-  echo Cmd: make -j VERSION=%VERSION%
+  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
+  echo Cmd: make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
 )
 if /I "%ACTION%"=="build" (
-  >> "%RUNSH%" echo make -j VERSION=%VERSION%
-  echo Cmd: make -j VERSION=%VERSION%
+  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
+  echo Cmd: make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
 )
 if /I "%ACTION%"=="assets" (
   >> "%RUNSH%" echo make assets -j VERSION=%VERSION%
@@ -76,8 +78,8 @@ if /I "%ACTION%"=="clean" (
 if /I "%ACTION%"=="full" (
   >> "%RUNSH%" echo make -C tools -j
   >> "%RUNSH%" echo make assets -j VERSION=%VERSION%
-  >> "%RUNSH%" echo make -j VERSION=%VERSION%
-  echo Cmd: make -C tools -j ; make assets -j ; make -j
+  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
+  echo Cmd: make -C tools -j ; make assets -j ; make AVOID_UB=1 COMPARE=0 -j
 )
 
 >> "%RUNSH%" echo echo MAKE_EXIT:$?
@@ -114,9 +116,10 @@ echo Usage: build_errors.bat [action] [version]
 echo.
 echo Same actions as build.bat, but console output hides unused-variable
 echo (and similar unused*) warnings. Full unfiltered log: _build_full.log
+echo Default make flags: AVOID_UB=1 COMPARE=0
 echo.
 echo Actions:
-echo   rom      Build ROM only   (default)   make -j
+echo   rom      Build ROM only   (default)   make AVOID_UB=1 COMPARE=0 -j
 echo   build    Same as rom
 echo   assets   Extract assets               make assets -j
 echo   tools    Build host tools             make -C tools -j
@@ -131,6 +134,7 @@ echo   build_errors.bat
 echo   build_errors.bat rom us
 echo   build_errors.bat full us
 echo.
+echo OverKart-flagged build: build_overkart.bat
 echo Original full-output launcher: build.bat
 echo Requires: tools\mingw64\w64devkit.exe
 echo           baserom.^<version^>.z64 for assets/rom builds

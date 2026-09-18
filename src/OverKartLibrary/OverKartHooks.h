@@ -29,7 +29,6 @@ extern s32 ok_MusicIn3P4P;
 extern Gfx* IceKageGfx;
 
 void MapStartupDefault(short InputID);
-void OkDbgLoad(u32 stage, s32 courseId, u32 extra0, u32 extra1, const char *name);
 void InitialMapCode(void);
 void InitialMapObjectCode(void);
 void PlaceIBoxes(long BoxOffset);

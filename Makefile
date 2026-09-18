@@ -687,10 +687,15 @@ $(BUILD_DIR)/%.o: %.c
 	$(V)$(CC) -c $(CFLAGS) -o $@ $<
 	$(V)$(PYTHON) $(TOOLS_DIR)/set_o32abi_bit.py $@
 
-# Out-of-tree Cheat.c (or committed IDO object). Path is never src/OverKart5/Cheat.c.
+# Out-of-tree Cheat TU (or committed IDO object). Path is never src/OverKart5/Cheat.c.
+# Prefer Cheat_ido.c (IDO/C89 + ok5_MenuStorage); fall back to Cheat.c then lib/private.
 ifeq ($(OVERKART_BUILD),1)
-ifneq ($(wildcard $(PROTEC_DIR)/Cheat.c),)
-$(CHEAT_OBJ): $(PROTEC_DIR)/Cheat.c
+CHEAT_SRC := $(wildcard $(PROTEC_DIR)/Cheat_ido.c)
+ifeq ($(CHEAT_SRC),)
+CHEAT_SRC := $(wildcard $(PROTEC_DIR)/Cheat.c)
+endif
+ifneq ($(CHEAT_SRC),)
+$(CHEAT_OBJ): $(CHEAT_SRC)
 	$(call print,Compiling:,$<,$@)
 	$(V)$(CC_CHECK) $(CC_CHECK_CFLAGS) -MMD -MP -MT $@ -MF $(BUILD_DIR)/src/OverKart5/Cheat.d $<
 	$(V)$(CC) -c $(CFLAGS) -o $@ $<

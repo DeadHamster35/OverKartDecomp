@@ -342,9 +342,8 @@ extern long gIntMesgQueue;
 //
 
 
-/* g_resetToggle → gGamestate in StockAliases.h */
+/* g_resetToggle / g_SequenceMode → gGamestate in StockAliases.h */
 extern int g_DispTimeFlag;
-extern long g_SequenceMode;
 extern long g_NextSequenceMode;
 extern long g_gameType;
 extern short g_courseID;

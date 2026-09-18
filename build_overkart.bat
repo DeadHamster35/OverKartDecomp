@@ -2,9 +2,10 @@
 setlocal EnableExtensions EnableDelayedExpansion
 cd /d "%~dp0"
 
-rem OverKartDecomp Windows build helper
-rem Drives the bundled MinGW toolchain via tools\mingw64\w64devkit.exe
-rem Default make flags: AVOID_UB=1 COMPARE=0
+rem OverKartDecomp Windows build with OVERKART_BUILD=1
+rem Flags: AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1
+rem Deletes build\<version>\mk64.ld first so the linker script regenerates
+rem for OverKart (required when switching from OVERKART_BUILD=0).
 
 set "W64DEVKIT=tools\mingw64\w64devkit.exe"
 if not exist "%W64DEVKIT%" (
@@ -29,17 +30,22 @@ if /I not "%ACTION%"=="rom" if /I not "%ACTION%"=="build" if /I not "%ACTION%"==
   goto :help
 )
 
-rem Optional git on PATH for tools/submodule steps (SmartGit install)
 if exist "C:\Program Files\SmartGit\git\cmd\git.exe" (
   set "PATH=C:\Program Files\SmartGit\git\cmd;%PATH%"
 )
 
-echo ==== OverKartDecomp Windows build ====
+echo ==== OverKartDecomp OVERKART_BUILD=1 ====
 echo Root:    %CD%
 echo Action:  %ACTION%
 echo Version: %VERSION%
-echo Flags:   AVOID_UB=1 COMPARE=0
+echo Flags:   AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1
 echo.
+
+rem Regenerate linker script when switching OverKart on
+if exist "build\%VERSION%\mk64.ld" (
+  echo Removing build\%VERSION%\mk64.ld for OverKart relink...
+  del /q "build\%VERSION%\mk64.ld" 2>nul
+)
 
 set "RUNSH=_build_run.sh"
 set "ROOT_POSIX=%CD:\=/%"
@@ -53,12 +59,12 @@ set "ROOT_POSIX=%CD:\=/%"
 )
 
 if /I "%ACTION%"=="rom" (
-  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
-  echo Cmd: make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
+  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1 -j VERSION=%VERSION%
+  echo Cmd: make AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1 -j VERSION=%VERSION%
 )
 if /I "%ACTION%"=="build" (
-  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
-  echo Cmd: make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
+  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1 -j VERSION=%VERSION%
+  echo Cmd: make AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1 -j VERSION=%VERSION%
 )
 if /I "%ACTION%"=="assets" (
   >> "%RUNSH%" echo make assets -j VERSION=%VERSION%
@@ -75,8 +81,8 @@ if /I "%ACTION%"=="clean" (
 if /I "%ACTION%"=="full" (
   >> "%RUNSH%" echo make -C tools -j
   >> "%RUNSH%" echo make assets -j VERSION=%VERSION%
-  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 -j VERSION=%VERSION%
-  echo Cmd: make -C tools -j ; make assets -j ; make AVOID_UB=1 COMPARE=0 -j
+  >> "%RUNSH%" echo make AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1 -j VERSION=%VERSION%
+  echo Cmd: make -C tools -j ; make assets -j ; make AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1 -j
 )
 
 >> "%RUNSH%" echo echo MAKE_EXIT:$?
@@ -99,26 +105,30 @@ echo [done] Look for MAKE_EXIT:0 and mk64.%VERSION%: OK above.
 exit /b 0
 
 :help
-echo Usage: build.bat [action] [version]
+echo Usage: build_overkart.bat [action] [version]
+echo.
+echo OverKart-flagged build. Same actions as build.bat, but runs:
+echo   make AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1 -j
+echo and deletes build\^<version^>\mk64.ld first so the linker script
+echo regenerates for OVERKART_BUILD=1.
 echo.
 echo Actions:
-echo   rom      Build ROM only   (default)   make AVOID_UB=1 COMPARE=0 -j
+echo   rom      Build ROM only   (default)
 echo   build    Same as rom
-echo   assets   Extract assets               make assets -j
-echo   tools    Build host tools             make -C tools -j
-echo   clean    Clean VERSION build tree     make clean
+echo   assets   Extract assets
+echo   tools    Build host tools
+echo   clean    Clean VERSION build tree
 echo   full     tools + assets + rom
 echo   help     This text
 echo.
 echo Version: us (default), eu.v10, eu.v11, ...
 echo.
 echo Examples:
-echo   build.bat
-echo   build.bat rom us
-echo   build.bat assets
-echo   build.bat full us
+echo   build_overkart.bat
+echo   build_overkart.bat rom us
+echo   build_overkart.bat full us
 echo.
-echo OverKart-flagged build: build_overkart.bat
+echo Non-OverKart build: build.bat  ^(AVOID_UB=1 COMPARE=0 only^)
 echo Requires: tools\mingw64\w64devkit.exe
 echo           baserom.^<version^>.z64 for assets/rom builds
 exit /b 0

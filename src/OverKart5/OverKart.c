@@ -576,7 +576,7 @@ void gameCode(void)
 {	
 	#if OverKartBuild
 	{
-		//ApplyCheats();
+		ApplyCheats();
 	}
 	#endif
 

@@ -284,6 +284,7 @@ Gfx* FillRect1ColorF(Gfx*, s32, s32, s32, s32, u32, u32, u32, u32);
 #define g_zoomLevelPlayer3 kotei_gakaku_mode[2]
 #define g_zoomLevelPlayer4 kotei_gakaku_mode[3]
 #define g_resetToggle gGamestate
+#define g_SequenceMode gGamestate
 #define PlayerOK gCharacterGridIsSelected
 #define currentMenu gMenuItems[0].kind
 #define g_menuPreviewValue1 (((s8 *) &gMenuItems[11].work1)[3])

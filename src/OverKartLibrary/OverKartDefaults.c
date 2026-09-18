@@ -5,70 +5,6 @@
 void enemy_tekagen_sub(s32 playerId, Player* player);
 void RubberBandMan(s32 playerId, Player* player);
 
-#define OK_DBG_BASE 0x80550000
-
-void OkDbgLoad(u32 stage, s32 courseId, u32 extra0, u32 extra1, const char *name)
-{
-	volatile u32 *d;
-	volatile u32 *row0;
-	volatile u32 *row;
-	volatile char *fn;
-	s32 rowN;
-	int i;
-
-	d = (volatile u32 *) OK_DBG_BASE;
-	d[1] = stage;
-
-	fn = (volatile char *) (OK_DBG_BASE + 0x48);
-	if (name != NULL)
-	{
-		for (i = 0; i < 15; i++)
-		{
-			if (name[i] == 0)
-			{
-				break;
-			}
-			fn[i] = name[i];
-		}
-	}
-	else
-	{
-		i = 0;
-	}
-	for (; i < 16; i++)
-	{
-		fn[i] = 0;
-	}
-
-	rowN = courseId;
-	if ((rowN < 0) || (rowN >= 20))
-	{
-		rowN = 0;
-	}
-
-	/* GameOffsets.h types g_courseTable as long; CourseTable rows are 0x30. */
-	row0 = (volatile u32 *) &g_courseTable;
-	row = row0 + (rowN * 12);
-
-	d[0] = 0x4F4B4442;
-	d[2] = (u32) (s32) HotSwapID;
-	d[3] = (u32) (s32) g_courseID;
-	d[4] = (u32) (s32) g_loadedcourseFlag;
-	d[5] = (u32) (s32) courseValue;
-	d[6] = (u32) (s32) gpCourseIndex;
-	d[7] = (u32) courseId;
-	d[8] = row0[0];
-	d[9] = row0[2];
-	d[10] = row0[6];
-	d[11] = row[0];
-	d[12] = row[2];
-	d[13] = row[6];
-	d[14] = row[7];
-	d[15] = (u32) (s32) g_gameMode;
-	d[16] = extra0;
-	d[17] = extra1;
-}
-
 /*
  * Hook points for projects that include OverKart Library.
  * Keep stock fall-through here until a host project supplies its own.
@@ -199,7 +135,6 @@ void MapStartupDefault(short InputID)
 	LastMemoryPointer = LAST_MEMORY_TOP;
 	ObjectMemoryPointer = (uintptr_t) ok_ObjectPoolStart;
 	g_courseFaceMaxIndex = 0;
-	OkDbgLoad(2, InputID, 0, 0, "MapStartup");
 	if (HotSwapID > 0)
 	{
 		if (g_gameMode != GAMEMODE_BATTLE)
@@ -213,31 +148,20 @@ void MapStartupDefault(short InputID)
 		InputID = g_courseID;
 		g_loadedcourseFlag = g_courseID;
 	}
-	OkDbgLoad(3, InputID, 0, 0, "LoadHeader");
 	LoadCustomHeader(courseValue + gpCourseIndex);
-	OkDbgLoad(4, InputID, 0, 0, "SetCustData");
 	SetCustomData();
-	OkDbgLoad(5, InputID, 0, 0, "setSky");
 	setSky();
-	OkDbgLoad(6, InputID, 0, 0, "setWater");
 	setWater();
-	OkDbgLoad(7, InputID, 0, 0, "load_course");
 	LoadMapData(InputID);
-	OkDbgLoad(18, InputID, 0, 0, "LoadIceKage");
 	LoadIceKage();
-	OkDbgLoad(19, InputID, 0, 0, "CheckHighW");
 	CheckCourseMemoryHighWater();
 
 	if (HotSwapID > 0)
 	{
-		OkDbgLoad(20, InputID, 0, 0, "texScroll");
 		loadTextureScrollTranslucent();
-		OkDbgLoad(21, InputID, 0, 0, "KillDisp");
 		runKillDisplayObjects();
-		OkDbgLoad(22, InputID, 0, 0, "loadMinimap");
 		loadMinimap();
 	}
-	OkDbgLoad(23, InputID, 0, 0, "MapDone");
 }
 
 void DrawMapSelectDefault(void)

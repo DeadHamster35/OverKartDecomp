@@ -517,10 +517,7 @@ void decodevertex(CourseVtx* arg0, u32 vertexCount) {
     u32 offset = SEGMENT_OFFSET(arg0);
     u8*     vtxCompressed = VIRTUAL_TO_PHYSICAL2(SegmentTable[segment] + offset);
 
-    OkDbgLoad(10, 0, (u32) vtxCompressed, (u32) arg0, "decodevertex");
-    OkDbgLoad(11, 0, (u32) vtxCompressed, vertexCount, "Mio0Vtx");
     decodeMIO0(vtxCompressed, (u8*) FreeMemoryPointer);
-    OkDbgLoad(12, 0, (u32) FreeMemoryPointer, vertexCount, "Vtx2OK");
     DecodeVertex2_OK((char*) FreeMemoryPointer, vertexCount);
     SetSegment(4, (void*) VertexMemoryPointer);
 }
@@ -1426,8 +1423,6 @@ u8* load_course(s32 courseId) {
     uintptr_t compSize;
     u8* compDest;
 
-    OkDbgLoad(8, courseId, 0, 0, "load_course");
-
     courseDataRomStart = g_courseTable[courseId].dlRomStart;
     courseDataRomEnd = g_courseTable[courseId].dlRomEnd;
     offsetRomStart = g_courseTable[courseId].offsetRomStart;
@@ -1458,14 +1453,11 @@ u8* load_course(s32 courseId) {
 
     geoSize = ALIGN16((uintptr_t) vertexRomEnd - (uintptr_t) vertexRomStart);
     vtxCompressed = (u8*) FreeMemoryPointer;
-    OkDbgLoad(9, courseId, (u32) vertexRomStart, (u32) geoSize, "DmaVert");
     DMA(vtxCompressed, vertexRomStart, geoSize);
     FreeMemoryPointer += geoSize;
     SetSegment(0xF, (void*) vtxCompressed);
 
-    OkDbgLoad(10, courseId, (u32) vtxCompressed, (u32) vertexStart, "decodevertex");
     decodevertex(vertexStart, vertexCount);
-    OkDbgLoad(13, courseId, (u32) packedStart, (u32) finalDisplaylistOffset, "PackDL");
     decodedisplaylist((uintptr_t*) packedStart, (uintptr_t) finalDisplaylistOffset, unknown1);
 
     FreeMemoryPointer = StaticMemoryPointer;
@@ -1473,16 +1465,12 @@ u8* load_course(s32 courseId) {
     if (gGamestate != ENDING) {
         compSize = ALIGN16((uintptr_t) courseDataRomEnd - (uintptr_t) courseDataRomStart);
         compDest = (u8*) (MEMORY_POOL_END - compSize);
-        OkDbgLoad(14, courseId, (u32) courseDataRomStart, (u32) compSize, "DmaCourse");
         DMA(compDest, courseDataRomStart, compSize);
-        OkDbgLoad(15, courseId, (u32) compDest, (u32) compSize, "Mio0Course");
         FreeMemoryPointer = ALIGN16((uintptr_t) decodeMIO0(compDest, (u8*) StaticMemoryPointer));
         SetSegment(6, (void*) StaticMemoryPointer);
     }
 
-    OkDbgLoad(16, courseId, (u32) offsetRomStart, (u32) offsetRomEnd, "LoadOff");
     SetSegment(9, load_data((uintptr_t) offsetRomStart, (uintptr_t) offsetRomEnd));
-    OkDbgLoad(17, courseId, (u32) textures, 0, "MapTex");
     decodemaptexture(textures);
     CheckCourseMemoryHighWater();
     return vtxCompressed;

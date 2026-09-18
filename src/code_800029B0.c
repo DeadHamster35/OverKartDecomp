@@ -193,7 +193,6 @@ void InitialRaceSequence(void) {
         g_courseID = gCupCourseOrder[g_cupSelect][g_courseSelect];
     }
     g_ScreenSplitA = g_ScreenSplitB;
-    OkDbgLoad(1, g_courseID, 0, 0, "RaceInit");
     if (g_courseID != g_loadedcourseFlag) {
         race_clear_flag = 0;
         g_loadedcourseFlag = g_courseID;
