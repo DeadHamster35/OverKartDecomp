@@ -2431,7 +2431,9 @@ void RunKart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
     if (player->bump.distance_zx >= 500.0f) {
         player->sterrangle = (s16) (((s16) player->sterrangle) / 2);
     }
-    CheckSplash(player, playerId);
+    if (ok_CheckSplashEnabled) {
+        CheckSplash(player, playerId);
+    }
 }
 
 void set_hight(Player* player) {
@@ -2707,7 +2709,9 @@ void SpinKart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
             player->speed = gKartTopSpeedTable[player->kart];
         }
     }
-    CheckSplash(player, playerId);
+    if (ok_CheckSplashEnabled) {
+        CheckSplash(player, playerId);
+    }
 }
 
 void RunKartSimple(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
@@ -4764,6 +4768,9 @@ void drive_stick_control(void) {
     u16 temp_v0_5;
     u16 temp_v0_6;
 
+    if (FlyCamToggle > 0) {
+        return;
+    }
     switch (g_ScreenSplitA) {
         case SCREEN_MODE_1P:
             switch (g_gameMode) {
@@ -5089,5 +5096,7 @@ void result_runkart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playe
     if (player->bump.distance_zx >= 500.0f) {
         player->sterrangle /= 2;
     }
-    CheckSplash(player, playerId);
+    if (ok_CheckSplashEnabled) {
+        CheckSplash(player, playerId);
+    }
 }

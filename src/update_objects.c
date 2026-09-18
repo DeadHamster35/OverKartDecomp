@@ -3129,7 +3129,7 @@ void kwturiage_jugemu(s32 playerId) {
 
     objectIndex = jugemuallocptr[playerId];
     player = &gPlayerOne[playerId];
-    if ((g_courseID == COURSE_SHERBET_LAND) && (player->jugemu_flag & IS_IN_WATER)) {
+    if (((g_courseID == COURSE_SHERBET_LAND) || (ok_LakituIce != 0)) && (player->jugemu_flag & IS_IN_WATER)) {
         KWAnmStart(objectIndex, 7);
         player->jugemu_flag |= IS_FROZEN;
     } else {
@@ -3624,7 +3624,7 @@ void RouletteStart(s32 playerId, bool arg1) {
 
     if (playerHUD[playerId].goalsw == false) {
         itemWindow = ItemBoxAllocPtr[playerId];
-        if (kwanm_bitoffcheckevflag(itemWindow, 4) != 0) {
+        if ((ok_ForceRoulette != 0) || (kwanm_bitoffcheckevflag(itemWindow, 4) != 0)) {
             KWAnmStart(itemWindow, 0);
             if (arg1 != 0) {
                 playerHUD[playerId].item = arg1;

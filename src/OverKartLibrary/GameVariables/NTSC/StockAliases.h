@@ -20,14 +20,23 @@
 #include <math.h>
 #include "menus.h"
 #include "audio/external.h"
+#include <PR/libaudio.h>
 #include "code_80057C60.h"
 #include "render_objects.h"
 
+extern ALSeqFile *g_MUSTablePointer;
+extern ALSeqFile *gAlCtlHeader;
+extern ALSeqFile *gAlTbl;
+
 extern Hud playerHUD[];
 extern s32 gLapCountByPlayerId[];
+extern s32 gGPCurrentRaceRankByPlayerId[];
 extern void *gCoursesCPUBehaviour[];
 extern s16 kotei_gakaku_mode[];
 extern struct ObjBlock gMenuItems[];
+#define GlobalMenuHUD gMenuItems
+extern struct PlayerTextureTable D_800E8320[];
+#define SelectPortraitTable D_800E8320
 extern Gfx D_0D0079C8[];
 extern Gfx D_0D007B00[];
 extern Vtx D_0D005AE0[];
@@ -88,20 +97,8 @@ void SprDrawClip(s32, s32, s32, s32, s32);
 Gfx* FillRect1ColorF(Gfx*, s32, s32, s32, s32, u32, u32, u32, u32);
 
 #define MapStartup MapStartupDefault
-#define gameCode gameCodeDefault
-#define titleMenu titleMenuDefault
-#define DisplayObject DisplayObjectDefault
-#define CollideObject CollideObjectDefault
-#define ItemboxCollideCheck ItemboxCollideCheckDefault
-#define DrawPerScreen DrawPerScreenDefault
-#define allRun allRunDefault
-#define GlobalCustomCode allRunDefault
-#define PrintMenuFunction PrintMenuFunctionDefault
-#define ExecuteItemHook ExecuteItemHookDefault
-#define MiniMapDraw MiniMapDrawDefault
 #define KWKumo_Alloc_Hook KWKumo_Alloc_Hook_Default
 #define KWChart_Kumo_Hook KWChart_Kumo_Hook_Default
-#define RubberBandMan RubberBandManDefault
 
 /* libc */
 #define Sqrtf sqrtf
@@ -251,6 +248,14 @@ Gfx* FillRect1ColorF(Gfx*, s32, s32, s32, s32, u32, u32, u32, u32);
 #define g_PathPointPlayer6 gNearestPathPointByPlayerId[5]
 #define g_PathPointPlayer7 gNearestPathPointByPlayerId[6]
 #define g_PathPointPlayer8 gNearestPathPointByPlayerId[7]
+#define g_playerPosition1 gGPCurrentRaceRankByPlayerId[0]
+#define g_playerPosition2 gGPCurrentRaceRankByPlayerId[1]
+#define g_playerPosition3 gGPCurrentRaceRankByPlayerId[2]
+#define g_playerPosition4 gGPCurrentRaceRankByPlayerId[3]
+#define g_playerPosition5 gGPCurrentRaceRankByPlayerId[4]
+#define g_playerPosition6 gGPCurrentRaceRankByPlayerId[5]
+#define g_playerPosition7 gGPCurrentRaceRankByPlayerId[6]
+#define g_playerPosition8 gGPCurrentRaceRankByPlayerId[7]
 #define g_lightningFlagPlayer2 g_lightningFlagPlayer1[1]
 #define g_lightningFlagPlayer3 g_lightningFlagPlayer1[2]
 #define g_lightningFlagPlayer4 g_lightningFlagPlayer1[3]
@@ -289,8 +294,14 @@ Gfx* FillRect1ColorF(Gfx*, s32, s32, s32, s32, u32, u32, u32, u32);
 #define g_BattlePreviewValue2 (((s8 *) &gMenuItems[6].work1)[3])
 #define g_BattlePreviewValue3 (((s8 *) &gMenuItems[7].work1)[3])
 #define g_BattlePreviewValue4 (((s8 *) &gMenuItems[8].work1)[3])
+#define g_player1ScreenWidth (GlobalScreen[0]->width)
 #define RadarOn D_80165800
 #define g_timeLapChange gTimePlayerLastTouchedFinishLine
+#define g_TrialTime gTimePlayerLastTouchedFinishLine
+/* Audio headers live on the audio heap (g_MUSTablePointer / gAlCtlHeader / gAlTbl). */
+#define g_MUSSequenceTable (*(SequenceTable *) g_MUSTablePointer)
+#define g_MUSInstrumentTable (*(InstrumentTable *) gAlCtlHeader)
+#define g_MUSRawAudioTable (*(RawAudioTable *) gAlTbl)
 #define ActionData_Pointer gCoursesCPUBehaviour
 #define g_fogR fog_red
 #define g_fogG fog_green

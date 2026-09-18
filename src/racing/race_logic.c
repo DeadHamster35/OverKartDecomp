@@ -25,6 +25,9 @@
 #include "menus.h"
 #include "seq_ids.h"
 #include "OverKartHooks.h"
+#include "OverKartStruct.h"
+
+extern SaveData SaveGame;
 
 #pragma intrinsic(sqrtf)
 
@@ -148,7 +151,7 @@ void CheckFinish(void) {
 
     if (race_clear_flag) {
 
-        if (g_courseSelect == COURSE_FOUR) {
+        if (g_courseSelect == asm_CupCount) {
             next_sequence_mode = ENDING;
         } else {
             cup_number++;
@@ -419,11 +422,15 @@ UNUSED void call_next_sequence(s32 arg0) {
 
 void start_race_BGM(s32 track) {
 
-    if (g_ScreenSplitB == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+    if ((ok_MusicIn3P4P == 0) && (g_ScreenSplitB == SCREEN_MODE_3P_4P_SPLITSCREEN)) {
         return; // If 3P/4P splitscreen mode is currently on, don't play the music for the current track.
     }
 
     set_music_volume();
+
+    if (start_race_BGM_custom() != 0) {
+        return;
+    }
 
     switch (track) {
         case COURSE_MARIO_RACEWAY: // Raceways, Wario Stadium
@@ -550,7 +557,7 @@ void check_kart_rap(void) {
                     currentPosition = player->rank;
                     player->flag |= IS_CPU_PLAYER;
 
-                    if (currentPosition < 4) {
+                    if ((currentPosition < 4) || (SaveGame.GameSettings.GPMode == 1)) {
                         race_clear_flag = 1;
                     }
 
@@ -824,7 +831,7 @@ void check_pause(void) {
             continue;
         }
 
-        if (g_ScreenSplitA != SCREEN_MODE_3P_4P_SPLITSCREEN) {
+        if ((ok_MusicIn3P4P != 0) || (g_ScreenSplitA != SCREEN_MODE_3P_4P_SPLITSCREEN)) {
             if ((controller->ButtonPressed & L_TRIG) && !(controller->ButtonHeld & R_TRIG)) {
                 controller->ButtonPressed &= ~L_TRIG;
 
@@ -1262,18 +1269,18 @@ void pause_sequence(void) {
 
     switch (g_ScreenSplitA) {
         case SCREEN_MODE_1P:
-            CameraControl(gPlayerOneCopy, camera1, 0);
+            CameraCheckFunc(gPlayerOneCopy, camera1, 0);
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            CameraControl(gPlayerOneCopy, camera1, 0);
-            CameraControl(gPlayerTwoCopy, camera2, 1);
+            CameraCheckFunc(gPlayerOneCopy, camera1, 0);
+            CameraCheckFunc(gPlayerTwoCopy, camera2, 1);
             break;
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            CameraControl(gPlayerOneCopy, camera1, 0);
-            CameraControl(gPlayerTwo, camera2, 1);
-            CameraControl(gPlayerThree, camera3, 2);
-            CameraControl(gPlayerFour, camera4, 3);
+            CameraCheckFunc(gPlayerOneCopy, camera1, 0);
+            CameraCheckFunc(gPlayerTwo, camera2, 1);
+            CameraCheckFunc(gPlayerThree, camera3, 2);
+            CameraCheckFunc(gPlayerFour, camera4, 3);
             break;
     }
 }

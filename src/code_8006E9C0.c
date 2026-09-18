@@ -724,7 +724,7 @@ void kwalloc_effectram_1p(void) {
     s32 i;
 
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-    switch (g_courseID) {
+    switch (Snow3DCourseID) {
         case COURSE_MARIO_RACEWAY:
             if (gGamestate != 9) {
                 if (g_gameMode == GRAND_PRIX) {

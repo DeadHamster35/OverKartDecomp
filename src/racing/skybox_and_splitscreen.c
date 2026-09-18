@@ -18,6 +18,7 @@
 #include "math_util.h"
 #include "main.h"
 #include "menus.h"
+#include "OverKartHooks.h"
 
 Vp D_802B8880[] = {
     { { { 640, 480, 511, 0 }, { 640, 480, 511, 0 } } },
@@ -849,9 +850,9 @@ void draw_full_screen(void) {
     }
     display_object(D_800DC5EC);
     kwdisplay3D(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
-    DrawKart();
+    KartCheckFuncA();
     DisplayMap2(D_800DC5EC, PLAYER_ONE);
-    DrawKartAfter();
+    KartCheckFuncA2();
     display_object2(D_800DC5EC);
     kwdisplay3D_after(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
     kwdisplay2D_init();
@@ -859,7 +860,7 @@ void draw_full_screen(void) {
         KWDisplay2D(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
     }
     kawanoDraw2(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
-    if (two_d_flag != 0) {
+    if ((two_d_flag != 0) && (FlyCamToggle == 0)) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
     }
 }
@@ -915,9 +916,9 @@ void draw_left_screen(void) {
     }
     display_object(D_800DC5EC);
     kwdisplay3D(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
-    DrawKart();
+    KartCheckFuncA();
     DisplayMap2(D_800DC5EC, PLAYER_ONE);
-    DrawKartAfter();
+    KartCheckFuncA2();
     display_object2(D_800DC5EC);
     kwdisplay3D_after(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
     kwdisplay2D_init();
@@ -979,9 +980,9 @@ void draw_right_screen(void) {
     }
     display_object(D_800DC5F0);
     kwdisplay3D(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
-    DrawKart2P();
+    KartCheckFuncB();
     DisplayMap2(D_800DC5F0, PLAYER_TWO);
-    DrawKart2PAfter();
+    KartCheckFuncB2();
     display_object2(D_800DC5F0);
     kwdisplay2D_init();
     kwdisplay3D_after(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
@@ -1043,9 +1044,9 @@ void draw_up_screen(void) {
     }
     display_object(D_800DC5EC);
     kwdisplay3D(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
-    DrawKart();
+    KartCheckFuncA();
     DisplayMap2(D_800DC5EC, PLAYER_ONE);
-    DrawKartAfter();
+    KartCheckFuncA2();
     display_object2(D_800DC5EC);
     kwdisplay3D_after(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
     kwdisplay2D_init();
@@ -1106,9 +1107,9 @@ void draw_down_screen(void) {
     }
     display_object(D_800DC5F0);
     kwdisplay3D(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
-    DrawKart2P();
+    KartCheckFuncB();
     DisplayMap2(D_800DC5F0, PLAYER_TWO);
-    DrawKart2PAfter();
+    KartCheckFuncB2();
     display_object2(D_800DC5F0);
     kwdisplay3D_after(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
     kwdisplay2D_init();
@@ -1166,9 +1167,9 @@ void draw_up_left_screen(void) {
     }
     display_object(D_800DC5EC);
     kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
-    DrawKart();
+    KartCheckFuncA();
     DisplayMap2(D_800DC5EC, PLAYER_ONE);
-    DrawKartAfter();
+    KartCheckFuncA2();
     display_object2(D_800DC5EC);
     kwdisplay3D_after(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
     kwdisplay2D_init();
@@ -1226,9 +1227,9 @@ void draw_up_right_screen(void) {
     }
     display_object(D_800DC5F0);
     kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
-    DrawKart2P();
+    KartCheckFuncB();
     DisplayMap2(D_800DC5F0, PLAYER_TWO);
-    DrawKart2PAfter();
+    KartCheckFuncB2();
     display_object2(D_800DC5F0);
     kwdisplay3D_after(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
     kwdisplay2D_init();
@@ -1287,9 +1288,9 @@ void draw_down_left_screen(void) {
     }
     display_object(D_800DC5F4);
     kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
-    DrawKart3P();
+    KartCheckFuncC();
     DisplayMap2(D_800DC5F4, PLAYER_THREE);
-    DrawKart3PAfter();
+    KartCheckFuncC2();
     display_object2(D_800DC5F4);
     kwdisplay3D_after(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
     kwdisplay2D_init();
@@ -1356,9 +1357,9 @@ void draw_down_right_screen(void) {
     }
     display_object(D_800DC5F8);
     kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
-    DrawKart4P();
+    KartCheckFuncD();
     DisplayMap2(D_800DC5F8, PLAYER_FOUR);
-    DrawKart4PAfter();
+    KartCheckFuncD2();
     display_object2(D_800DC5F8);
     kwdisplay3D_after(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
     kwdisplay2D_init();

@@ -16,6 +16,7 @@
 #include "cpu_vehicles_camera_path.h"
 #include "code_80281C40.h"
 #include "math_util.h"
+#include "OverKartHooks.h"
 
 s32 fireworkConeColour[] = {
     0x00FF4080, // pink
@@ -458,6 +459,7 @@ void ResultsSequence(void) {
         oga_hyousyou_move();
         EtcEnemyDrive();
     }
+    ResultsCheck();
     draw_result_screen();
     func_80281540();
 #if DVDL

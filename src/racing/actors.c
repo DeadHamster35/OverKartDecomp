@@ -2272,6 +2272,7 @@ void collision_check_routin(Player* player, Object* actor) {
                 actor->flag = -0x8000;
             }
             */
+            CollideObjectDefault(player, actor);
             break;
         default:
             CollideObjectDefault(player, actor);

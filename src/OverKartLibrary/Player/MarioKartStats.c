@@ -1,35 +1,55 @@
 #include "../MainInclude.h"
 
-void SetEngine(int CharacterID, int ThisEngine)
-{     
-     KartStats.AccelerationCount[0][CharacterID] = (float)(EngineSpeed[0][ThisEngine]);
-     KartStats.AccelerationCount[1][CharacterID] = (float)(EngineSpeed[1][ThisEngine]);
-     KartStats.AccelerationCount[2][CharacterID] = (float)(EngineSpeed[2][ThisEngine]);
-     KartStats.AccelerationCount[3][CharacterID] = (float)(EngineSpeed[1][ThisEngine]);
-     KartStats.AccelerationCount[4][CharacterID] = (float)(EngineSpeed[3][ThisEngine]);
-     {
-         int ThisAccel;
-     for (ThisAccel = 0; ThisAccel < 10; ThisAccel++)
-     {
-          KartStats.Acceleration[CharacterID][ThisAccel] =((float)(AccelerationCurve[ThisEngine][ThisAccel]) / 10);
-     }
-     }
-     {
-         int ThisPower;
-     for (ThisPower = 0; ThisPower < 15; ThisPower++)
-     {
-          KartStats.PowerDownFT[CharacterID][ThisPower] =((float)(EnginePowerDownFT[ThisEngine][ThisPower]) / 100);
-          KartStats.PowerDownRT[CharacterID][ThisPower] =((float)(EnginePowerDownRT[ThisEngine][ThisPower]) / 100);
-     }
-     }
-     KartStats.PowerBandAcceleration[CharacterID] = ((float)PowerBand[ThisEngine] / 10);
+extern u8 _mainSegmentStart[];
+extern u8 _mainSegmentRomStart[];
+
+static long MainDataRom(void *ram)
+{
+     return (long) ((uintptr_t) _mainSegmentRomStart +
+                    ((uintptr_t) ram - (uintptr_t) _mainSegmentStart));
 }
 
-void SetSteering (int CharacterID, int ThisSteering)
+static void RestoreStockSpeedCap(void)
 {
-     KartStats.ProOffsetAngle[CharacterID] =((float)(SteerAngle[ThisSteering]) / 100);
-     KartStats.KartSteerLoss[CharacterID] =((float)(SteerValue[ThisSteering]) / 1000);     
-     KartStats.PowerRecover[CharacterID] =((float)(SteerValue[ThisSteering]) / 1000);     
+     int i;
+
+     for (i = 0; i < 8; i++)
+     {
+          gKartTopSpeedTable[i] = 9.0f;
+     }
+}
+
+void SetEngine(int CharacterID, int ThisEngine)
+{
+     int ThisAccel;
+     int ThisPower;
+
+     gTopSpeed50cc[CharacterID] = (float) EngineSpeed[0][ThisEngine];
+     gTopSpeed100cc[CharacterID] = (float) EngineSpeed[1][ThisEngine];
+     gTopSpeed150cc[CharacterID] = (float) EngineSpeed[2][ThisEngine];
+     gTopSpeedExtra[CharacterID] = (float) EngineSpeed[1][ThisEngine];
+     gTopSpeedBattle[CharacterID] = (float) EngineSpeed[3][ThisEngine];
+     for (ThisAccel = 0; ThisAccel < 10; ThisAccel++)
+     {
+          gKartAccelerationTables[CharacterID][ThisAccel] =
+               ((float) (AccelerationCurve[ThisEngine][ThisAccel]) / 10);
+     }
+     for (ThisPower = 0; ThisPower < 15; ThisPower++)
+     {
+          D_800E2EB0[CharacterID][ThisPower] =
+               ((float) (EnginePowerDownFT[ThisEngine][ThisPower]) / 100);
+          D_800E2E90[CharacterID][ThisPower] =
+               ((float) (EnginePowerDownRT[ThisEngine][ThisPower]) / 100);
+     }
+     gKartTripleABoost[CharacterID] = ((float) PowerBand[ThisEngine] / 10);
+     RestoreStockSpeedCap();
+}
+
+void SetSteering(int CharacterID, int ThisSteering)
+{
+     gKartHandlingTable[CharacterID] = ((float) (SteerAngle[ThisSteering]) / 100);
+     gKartTurnSpeedReductionTable0[CharacterID] = ((float) (SteerValue[ThisSteering]) / 1000);
+     gKartTurnSpeedReductionTable1[CharacterID] = ((float) (SteerValue[ThisSteering]) / 1000);
 }
 
 void dmaLoop(int loopCount)
@@ -63,7 +83,7 @@ void Unknown33Func(int mode)
      {
           case 0x00:
           {
-               *sourceAddress = 0xE36D0;
+               *sourceAddress = MainDataRom(&D_800E2AD0);
                *targetAddress = (int) &D_800E2AD0;
                dataLength = 0x1E0;
                runDMA();
@@ -89,7 +109,7 @@ void Unknown41Func(int mode)
      {
           case 0x00:
           {
-               *sourceAddress = 0xE38B0;
+               *sourceAddress = MainDataRom(&D_800E2CB0);
                *targetAddress = (int) &D_800E2CB0;
                dataLength = 0x1E0;
                runDMA();
@@ -113,7 +133,7 @@ void AccelerationFunc(int mode)
      {
           case 0x00:
           {
-               *sourceAddress = 0xE3AD0;
+               *sourceAddress = MainDataRom(&gKartAccelerationMario);
                *targetAddress = (int) &gKartAccelerationMario;
                dataLength = 0x140;
                runDMA();
@@ -134,242 +154,66 @@ void AccelerationFunc(int mode)
 
 void equalStats(int mode)
 {
-     //unknown11
-     switch(mode)
+     int i;
+
+     RestoreStockSpeedCap();
+     switch (mode)
      {
           case 0x00:
           {
-               u11_Mario = 3364;
-               u11_Luigi = 3364;
-               u11_Yoshi = 3457;
-               u11_Toad = 3457;
-               u11_DK = 3364;
-               u11_Wario = 3364;
-               u11_Peach = 3457;
-               u11_Bowser = 3364;
+               static const float stockPower50[8] = {3364.0f, 3364.0f, 3457.0f, 3457.0f, 3364.0f, 3364.0f, 3457.0f, 3364.0f};
+               static const float stockPower100[8] = {3844.0f, 3844.0f, 3943.0f, 3943.0f, 3844.0f, 3844.0f, 3943.0f, 3844.0f};
+               static const float stockPower150[8] = {4096.0f, 4096.0f, 4199.0f, 4199.0f, 4096.0f, 4096.0f, 4199.0f, 4096.0f};
+               static const float stockPowerEx[8] = {3844.0f, 3844.0f, 3943.0f, 3943.0f, 3844.0f, 3844.0f, 3943.0f, 3844.0f};
+               static const float stockCc50[8] = {290.0f, 290.0f, 294.0f, 294.0f, 290.0f, 290.0f, 294.0f, 290.0f};
+               static const float stockCc100[8] = {310.0f, 310.0f, 314.0f, 314.0f, 310.0f, 310.0f, 314.0f, 310.0f};
+               static const float stockCc150[8] = {320.0f, 320.0f, 324.0f, 324.0f, 320.0f, 320.0f, 324.0f, 320.0f};
+               static const float stockCcEx[8] = {310.0f, 310.0f, 314.0f, 314.0f, 310.0f, 310.0f, 314.0f, 310.0f};
+               static const float stockTurnA[8] = {0.0f, 0.0f, 0.002f, 0.002f, -0.002f, -0.002f, 0.002f, -0.002f};
+               static const float stockTap[8] = {2.0f, 2.0f, 3.0f, 3.0f, 1.5f, 1.5f, 3.0f, 3.0f};
+               static const float stockHandle[8] = {1.25f, 1.25f, 1.28f, 1.28f, 1.15f, 1.15f, 1.28f, 1.15f};
 
-               u12_Mario = 3844;
-               u12_Luigi = 3844;
-               u12_Yoshi = 3943;
-               u12_Toad = 3943;
-               u12_DK = 3844;
-               u12_Wario = 3844;
-               u12_Peach = 3943;
-               u12_Bowser = 3844;
-
-               u13_Mario = 4096;
-               u13_Luigi = 4096;
-               u13_Yoshi = 4199;
-               u13_Toad = 4199;
-               u13_DK = 4096;
-               u13_Wario = 4096;
-               u13_Peach = 4199;
-               u13_Bowser = 4096;
-
-               u14_Mario = 3844;
-               u14_Luigi = 3844;
-               u14_Yoshi = 3943;
-               u14_Toad = 3943;
-               u14_DK = 3844;
-               u14_Wario = 3844;
-               u14_Peach = 3943;
-               u14_Bowser = 3844;
-
-               cc50_Mario = 290;
-               cc50_Luigi = 290;
-               cc50_Yoshi = 294;
-               cc50_Toad = 294;
-               cc50_DK = 290;
-               cc50_Wario = 290;
-               cc50_Peach = 294;
-               cc50_Bowser = 290;
-
-               cc100_Mario = 310;
-               cc100_Luigi = 310;
-               cc100_Yoshi = 314;
-               cc100_Toad = 314;
-               cc100_DK = 310;
-               cc100_Wario = 310;
-               cc100_Peach = 314;
-               cc100_Bowser = 310;
-
-               cc150_Mario = 320;
-               cc150_Luigi = 320;
-               cc150_Yoshi = 324;
-               cc150_Toad = 324;
-               cc150_DK = 320;
-               cc150_Wario = 320;
-               cc150_Peach = 324;
-               cc150_Bowser = 320;
-
-               ccextra_Mario = 310;
-               ccextra_Luigi = 310;
-               ccextra_Yoshi = 314;
-               ccextra_Toad = 314;
-               ccextra_DK = 310;
-               ccextra_Wario = 310;
-               ccextra_Peach = 314;
-               ccextra_Bowser = 310;
-
-               turncoA_Mario = 0;
-               turncoA_Luigi = 0;
-               turncoA_Yoshi = 0.002;
-               turncoA_Toad = 0.002;
-               turncoA_DK = -0.002;
-               turncoA_Wario = -0.002;
-               turncoA_Peach = 0.002;
-               turncoA_Bowser = -0.002;
-               turncoB_Mario = 0;
-               turncoB_Luigi = 0;
-               turncoB_Yoshi = 0.002;
-               turncoB_Toad = 0.002;
-               turncoB_DK = -0.002;
-               turncoB_Wario = -0.002;
-               turncoB_Peach = 0.002;
-               turncoB_Bowser = -0.002;
-
-               tripleTap_Mario = 2;
-               tripleTap_Luigi = 2;
-               tripleTap_Yoshi = 3;
-               tripleTap_Toad = 3;
-               tripleTap_DK = 1.5;
-               tripleTap_Wario = 1.5;
-               tripleTap_Peach = 3;
-               tripleTap_Bowser = 3;
-
-               turncontr_Mario = 1.25;
-               turncontr_Luigi = 1.25;
-               turncontr_Yoshi = 1.28;
-               turncontr_Toad = 1.28;
-               turncontr_DK = 1.15;
-               turncontr_Wario = 1.15;
-               turncontr_Peach = 1.28;
-               turncontr_Bowser = 1.15;
+               for (i = 0; i < 8; i++)
+               {
+                    D_800E24C8[i] = stockPower50[i];
+                    D_800E24E8[i] = stockPower100[i];
+                    D_800E2508[i] = stockPower150[i];
+                    D_800E2528[i] = stockPowerEx[i];
+                    gTopSpeed50cc[i] = stockCc50[i];
+                    gTopSpeed100cc[i] = stockCc100[i];
+                    gTopSpeed150cc[i] = stockCc150[i];
+                    gTopSpeedExtra[i] = stockCcEx[i];
+                    gKartTurnSpeedReductionTable0[i] = stockTurnA[i];
+                    gKartTurnSpeedReductionTable1[i] = stockTurnA[i];
+                    gKartTripleABoost[i] = stockTap[i];
+                    gKartHandlingTable[i] = stockHandle[i];
+               }
                break;
           }
           case 0x01:
           {
-               u11_Mario = 3457;
-               u11_Luigi = 3457;
-               u11_Yoshi = 3457;
-               u11_Toad = 3457;
-               u11_DK = 3457;
-               u11_Wario = 3457;
-               u11_Peach = 3457;
-               u11_Bowser = 3457;
-
-               u12_Mario = 3943;
-               u12_Luigi = 3943;
-               u12_Yoshi = 3943;
-               u12_Toad = 3943;
-               u12_DK = 3943;
-               u12_Wario = 3943;
-               u12_Peach = 3943;
-               u12_Bowser = 3943;
-
-               u13_Mario = 4199;
-               u13_Luigi = 4199;
-               u13_Yoshi = 4199;
-               u13_Toad = 4199;
-               u13_DK = 4199;
-               u13_Wario = 4199;
-               u13_Peach = 4199;
-               u13_Bowser = 4199;
-
-               u14_Mario = 3943;
-               u14_Luigi = 3943;
-               u14_Yoshi = 3943;
-               u14_Toad = 3943;
-               u14_DK = 3943;
-               u14_Wario = 3943;
-               u14_Peach = 3943;
-               u14_Bowser = 3943;
-
-               cc50_Mario = 294;
-               cc50_Luigi = 294;
-               cc50_Yoshi = 294;
-               cc50_Toad = 294;
-               cc50_DK = 294;
-               cc50_Wario = 294;
-               cc50_Peach = 294;
-               cc50_Bowser = 294;
-
-               cc100_Mario = 314;
-               cc100_Luigi = 314;
-               cc100_Yoshi = 314;
-               cc100_Toad = 314;
-               cc100_DK = 314;
-               cc100_Wario = 314;
-               cc100_Peach = 314;
-               cc100_Bowser = 314;
-
-               cc150_Mario = 324;
-               cc150_Luigi = 324;
-               cc150_Yoshi = 324;
-               cc150_Toad = 324;
-               cc150_DK = 324;
-               cc150_Wario = 324;
-               cc150_Peach = 324;
-               cc150_Bowser = 324;
-
-               ccextra_Mario = 314;
-               ccextra_Luigi = 314;
-               ccextra_Yoshi = 314;
-               ccextra_Toad = 314;
-               ccextra_DK = 314;
-               ccextra_Wario = 314;
-               ccextra_Peach = 314;
-               ccextra_Bowser = 314;
-
-               turncoA_Mario = 0.002;
-               turncoA_Luigi = 0.002;
-               turncoA_Yoshi = 0.002;
-               turncoA_Toad = 0.002;
-               turncoA_DK = 0.002;
-               turncoA_Wario = 0.002;
-               turncoA_Peach = 0.002;
-               turncoA_Bowser = 0.002;
-               turncoB_Mario = 0.002;
-               turncoB_Luigi = 0.002;
-               turncoB_Yoshi = 0.002;
-               turncoB_Toad = 0.002;
-               turncoB_DK = 0.002;
-               turncoB_Wario = 0.002;
-               turncoB_Peach = 0.002;
-               turncoB_Bowser = 0.002;
-
-               tripleTap_Mario = 3;
-               tripleTap_Luigi = 3;
-               tripleTap_Yoshi = 3;
-               tripleTap_Toad = 3;
-               tripleTap_DK = 3;
-               tripleTap_Wario = 3;
-               tripleTap_Peach = 3;
-               tripleTap_Bowser = 3;
-
-               turncontr_Mario = 1.28;
-               turncontr_Luigi = 1.28;
-               turncontr_Yoshi = 1.28;
-               turncontr_Toad = 1.28;
-               turncontr_DK = 1.28;
-               turncontr_Wario = 1.28;
-               turncontr_Peach = 1.28;
-               turncontr_Bowser = 1.28;
+               for (i = 0; i < 8; i++)
+               {
+                    D_800E24C8[i] = 3457.0f;
+                    D_800E24E8[i] = 3943.0f;
+                    D_800E2508[i] = 4199.0f;
+                    D_800E2528[i] = 3943.0f;
+                    gTopSpeed50cc[i] = 294.0f;
+                    gTopSpeed100cc[i] = 314.0f;
+                    gTopSpeed150cc[i] = 324.0f;
+                    gTopSpeedExtra[i] = 314.0f;
+                    gKartTurnSpeedReductionTable0[i] = 0.002f;
+                    gKartTurnSpeedReductionTable1[i] = 0.002f;
+                    gKartTripleABoost[i] = 3.0f;
+                    gKartHandlingTable[i] = 1.28f;
+               }
                break;
-
-               
           }
      }
      AccelerationFunc(mode);
      Unknown33Func(mode);
      Unknown41Func(mode);
-
-
-
 }
-
-
-
 
 void RandomStats(int mode)
 {

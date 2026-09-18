@@ -63,7 +63,7 @@ void BootSegment(void);
 struct AllocOnlyPool* InitHeap(uintptr_t, uintptr_t);
 uintptr_t AllocDynamic(s32);
 uintptr_t decodeimage(s32, s32, s32);
-u8* DecodeMapImage1(u8*, u32, u32);
+u8* DecodeMapImage1(u8*, uintptr_t, uintptr_t);
 uintptr_t decodemapimage2(u8*, uintptr_t, uintptr_t);
 void decodematerial(void);
 void decodelight(Gfx*, u8*, s8);

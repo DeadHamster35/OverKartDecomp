@@ -37,21 +37,7 @@ extern long asm_PlayerSelectDoObjectSelect3; //0x800952F8
 extern long asm_PlayerSelectDoObjectSelect4; //0x8009530C
 
 extern long asm_PlayerSelectController;
-extern long asm_tempo1A; //0x800015C4  ;;3C0F8015
-extern short asm_tempo1ASpeed; //0x800015C7  ;;speed value
-extern long asm_tempo1B; //0x800015C8  ;;8DEF0114
-extern short asm_tempo1BSpeed; //0x800015CB  ;; speed value
-extern long asmTempoFullScreen;
-
-extern long asm_tempo2A; //0x80001A38  ;;3C098015
-extern short asm_tempo2ASpeed; //0x80001A3B  ;;speed value
-extern long asm_tempo2B; //0x80001A3C  ;;8D290114
-extern short asm_tempo2BSpeed; //0x80001A3F  ;; speed value
-
-extern long asm_tempo3A; //0x80001C90  ;;3C0A8015
-extern short asm_tempo3ASpeed; //don't delete this bruv
-extern long asm_tempo3B; //0x80001C94  ;;8D4A0114
-extern short asm_tempo3BSpeed; //0x80001C97  ;; speed value
+/* asm_tempo* / asmTempoFullScreen: race_sequence framerate immediates; ApplyRaceTempo */
 
 extern short asm_selectA; //0x800B3924
 extern short asm_selectB; //0x800B3924

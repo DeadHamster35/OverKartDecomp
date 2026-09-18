@@ -40,7 +40,6 @@ extern long LibraryFontEnd;
 extern long AmpedUpFont;
 extern long AmpedUpFontEnd;
 extern long HudButtonsROM;
-extern long NiceFontROM;
 
 #ifndef AMPEDUP_FONT
 #define AMPEDUP_FONT 0
@@ -53,6 +52,7 @@ extern long TestTexture;
 
 extern long JP_Audio;
 extern long JP_Bank;
+extern long Seg12BIN, Seg12END;
 
 extern long itemChanceHi;
 extern long itemChanceLo;

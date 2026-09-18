@@ -93,6 +93,17 @@ expected/*
 !/assets/OverKartLibrary/**/*.bin
 !/assets/OverKartLibrary/**/*.raw
 !/assets/OverKartLibrary/**/*.RAW
+!/assets/OverKart5/**/*.bin
+!/assets/OverKart5/**/*.raw
+!/assets/OverKart5/**/*.RAW
+!/assets/OverKart5/**/*.MIO0
+!/assets/OverKart5/**/*.mio0
+
+# Private OverKartBuild=1 object (Cheat.o). Source stays out of tree.
+!/lib/private/*.o
+/src/OverKart5/Cheat.c
+/src/OverKart5/Protec.c
+/src/OverKart5/private/*
 
 # Doxygen
 docs/html/*

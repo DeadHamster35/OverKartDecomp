@@ -2304,7 +2304,9 @@ void logo_proc(void) {
     gSPMatrix(gDisplayListHead++, test++, G_MTX_PUSH | G_MTX_MUL | G_MTX_MODELVIEW);
     gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
     gDPSetEnvColor(gDisplayListHead++, 0x00, 0x00, 0x00, 0x00);
-    gSPDisplayList(gDisplayListHead++, D_02007F60);
+    //gSPDisplayList(gDisplayListHead++, D_02007F60);
+    gSPDisplayList(gDisplayListHead++, 0x080052A0);
+    
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
     if (logo_delay_size > 0) {
         var_f26 = logo_yang_speed;
@@ -2417,24 +2419,6 @@ void TexDataChange(void) {
                 break;
             case DATA_MENU:
                 SetObjBlock(MAIN_MENU_BACKGROUND, 0, 0, MENU_ITEM_PRIORITY_2);
-                SetObjBlock(MENU_ITEM_TYPE_08C, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_07C, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_07D, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_07E, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_07F, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_080, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_081, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_082, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_083, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_084, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_085, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_086, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_087, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_088, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_089, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_08A, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_08B, 0, 0, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MENU_ITEM_TYPE_08D, 0, 0, MENU_ITEM_PRIORITY_8);
                 break;
             case COURSE_DATA_MENU:
                 SetObjBlock(MENU_ITEM_DATA_COURSE_IMAGE, 0, 0, MENU_ITEM_PRIORITY_8);
@@ -2460,26 +2444,25 @@ void TexDataChange(void) {
             case START_MENU:
                 SetObjBlock(MENU_ITEM_UI_LOGO_AND_COPYRIGHT, 0, 0, MENU_ITEM_PRIORITY_4);
                 SetObjBlock(MENU_ITEM_UI_START_BACKGROUND, 0, 0, MENU_ITEM_PRIORITY_0);
+#if !OverKartBuild
                 SetObjBlock(START_MENU_FLAG, 0, 0, MENU_ITEM_PRIORITY_0);
+#endif
                 if (gControllerBits & 1) {
                     SetObjBlock(MENU_ITEM_UI_PUSH_START_BUTTON, 0, 0, MENU_ITEM_PRIORITY_2);
                 } else {
                     SetObjBlock(MENU_ITEM_UI_NO_CONTROLLER, 0, 0, MENU_ITEM_PRIORITY_2);
                 }
-                SetObjBlock(MENU_ITEM_UI_START_RECORD_TIME, 0, 0, MENU_ITEM_PRIORITY_6);
                 g_DemoFlag = 0;
                 demo_play_flag = 0;
                 break;
             case MAIN_MENU:
                 SetObjBlock(MAIN_MENU_BACKGROUND, 0, 0, MENU_ITEM_PRIORITY_2);
-                SetObjBlock(MENU_ITEM_UI_GAME_SELECT, 0x0000015E, 0x00000011, MENU_ITEM_PRIORITY_6);
+                SetObjBlock(MENU_ITEM_UI_GAME_SELECT, 0x0000015E, 0x00000011, MENU_ITEM_PRIORITY_1);
                 SetObjBlock(MENU_ITEM_UI_4P_GAME, 0x0000015E, 0x0000003E, MENU_ITEM_PRIORITY_6);
                 SetObjBlock(MENU_ITEM_UI_3P_GAME, 0x0000015E, 0x0000003E, MENU_ITEM_PRIORITY_6);
                 SetObjBlock(MENU_ITEM_UI_2P_GAME, 0x0000015E, 0x0000003E, MENU_ITEM_PRIORITY_6);
                 SetObjBlock(MENU_ITEM_UI_1P_GAME, 0x0000015E, 0x0000003E, MENU_ITEM_PRIORITY_6);
                 SetObjBlock(MENU_ITEM_UI_OK, 0x0000015E, 0x000000C8, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MAIN_MENU_DATA_GFX, 0x0000015E, 0x000000C8, MENU_ITEM_PRIORITY_6);
-                SetObjBlock(MAIN_MENU_OPTION_GFX, 0x0000015E, 0x000000C8, MENU_ITEM_PRIORITY_6);
                 if (Check4GoldCup_150cc() != 0) {
                     SetObjBlock(MAIN_MENU_EXTRA_CC, 0, 0, MENU_ITEM_PRIORITY_6);
                 }
@@ -2492,7 +2475,7 @@ void TexDataChange(void) {
                 break;
             case CHARACTER_SELECT_MENU:
                 SetObjBlock(CHARACTER_SELECT_BACKGROUND, 0, 0, MENU_ITEM_PRIORITY_2);
-                SetObjBlock(CHARACTER_SELECT_MENU_PLAYER_SELECT_BANNER, 0, 0, MENU_ITEM_PRIORITY_6);
+                SetObjBlock(CHARACTER_SELECT_MENU_PLAYER_SELECT_BANNER, 0, 0, MENU_ITEM_PRIORITY_1);
                 SetObjBlock(CHARACTER_SELECT_MENU_OK, 0, 0, MENU_ITEM_PRIORITY_6);
                 SetObjBlock(CHARACTER_SELECT_MENU_MARIO, 0, 0, MENU_ITEM_PRIORITY_8);
                 SetObjBlock(CHARACTER_SELECT_MENU_LUIGI, 0, 0, MENU_ITEM_PRIORITY_8);
@@ -2509,7 +2492,7 @@ void TexDataChange(void) {
                 break;
             case COURSE_SELECT_MENU:
                 SetObjBlock(COURSE_SELECT_BACKGROUND, 0, 0, MENU_ITEM_PRIORITY_2);
-                SetObjBlock(COURSE_SELECT_MAP_SELECT, 0, 0, MENU_ITEM_PRIORITY_6);
+                SetObjBlock(COURSE_SELECT_MAP_SELECT, 0, 0, MENU_ITEM_PRIORITY_1);
                 if (g_gameMode != BATTLE) {
                     SetObjBlock(COURSE_SELECT_MUSHROOM_CUP, 0, 0, MENU_ITEM_PRIORITY_4);
                     SetObjBlock(COURSE_SELECT_FLOWER_CUP, 0, 0, MENU_ITEM_PRIORITY_4);
@@ -2531,12 +2514,12 @@ void TexDataChange(void) {
                 SetObjBlock(COURSE_SELECT_OK, 0, 0, MENU_ITEM_PRIORITY_6);
                 SetObjBlock(MENU_ITEM_TYPE_05E, 0, 0, MENU_ITEM_PRIORITY_8);
                 if (g_gameMode == TIME_TRIALS) {
-                    SetObjBlock(MENU_ITEM_TYPE_065, 0, 0, MENU_ITEM_PRIORITY_8);
-                    SetObjBlock(MENU_ITEM_TYPE_066, 0, 0, MENU_ITEM_PRIORITY_8);
-                    SetObjBlock(MENU_ITEM_TYPE_069, 0, 0, MENU_ITEM_PRIORITY_8);
+                    SetObjBlock(MENU_ITEM_TYPE_065, 0, 0, MENU_ITEM_PRIORITY_1);
+                    SetObjBlock(MENU_ITEM_TYPE_066, 0, 0, MENU_ITEM_PRIORITY_1);
+                    SetObjBlock(MENU_ITEM_TYPE_069, 0, 0, MENU_ITEM_PRIORITY_1);
                 }
                 if (g_gameMode == GRAND_PRIX) {
-                    SetObjBlock(MENU_ITEM_TYPE_068, 0, 0, MENU_ITEM_PRIORITY_8);
+                    SetObjBlock(MENU_ITEM_TYPE_068, 0, 0, MENU_ITEM_PRIORITY_1);
                     SetObjBlock(MENU_ITEM_TYPE_067, 0, 0, MENU_ITEM_PRIORITY_5);
                 }
                 break;
@@ -5513,7 +5496,9 @@ void SetObjBlock(s32 type, s32 column, s32 row, s8 priority) {
             TexBuffLoad(D_0200184C);
             break;
         case MENU_ITEM_UI_START_BACKGROUND:
+#if !OverKartBuild
             TexBuffLoadP(gMenuTexturesBackground[Check4GoldCup_150cc()], LOAD_MENU_IMG_TKMK00_ONCE);
+#endif
             break;
         case MENU_ITEM_UI_LOGO_AND_COPYRIGHT:
             kwmelt_titlelogo();
@@ -5896,8 +5881,10 @@ void DispOBJBlock(ObjBlock* arg0) {
                 DispOB_cp_cursor(arg0, arg0->kind - 0xD8);
                 break;
             case MENU_ITEM_UI_START_BACKGROUND: /* switch 6 */
+#if !OverKartBuild
                 gDisplayListHead = doTexList(
                     gDisplayListHead, gMenuTexturesBackground[Check4GoldCup_150cc()], arg0->disp_x, arg0->disp_y);
+#endif
                 break;
             case MENU_ITEM_UI_LOGO_AND_COPYRIGHT: /* switch 6 */
                 kwdisplay_titlelogo((arg0->disp_x + 0xA0), (arg0->disp_y + 0x47));
@@ -6076,19 +6063,21 @@ void DispOBJBlock(ObjBlock* arg0) {
             case CHARACTER_SELECT_MENU_3P_CURSOR: /* switch 6 */
             case CHARACTER_SELECT_MENU_4P_CURSOR: /* switch 6 */
                 temp_a0 = arg0->kind - CHARACTER_SELECT_MENU_1P_CURSOR;
-                if (g_player1Character[temp_a0]) {
-                    if (gCharacterGridIsSelected[temp_a0] == 0) {
-                        temp_t2 = 255;
-                    } else {
-                        temp_t2 = frame_counter % 16;
-                        if (temp_t2 >= 8) {
-                            temp_t2 = (-temp_t2 * 8) + 0x80;
+                if (ok_PSelSkipCursor[temp_a0] == 0) {
+                    if (g_player1Character[temp_a0]) {
+                        if (gCharacterGridIsSelected[temp_a0] == 0) {
+                            temp_t2 = 255;
                         } else {
-                            temp_t2 *= 8;
+                            temp_t2 = frame_counter % 16;
+                            if (temp_t2 >= 8) {
+                                temp_t2 = (-temp_t2 * 8) + 0x80;
+                            } else {
+                                temp_t2 *= 8;
+                            }
+                            temp_t2 += 191;
                         }
-                        temp_t2 += 191;
+                        DispOB_Sub_psel_cursor(arg0, temp_a0, temp_t2);
                     }
-                    DispOB_Sub_psel_cursor(arg0, temp_a0, temp_t2);
                 }
                 break;
             case CHARACTER_SELECT_MENU_OK: /* switch 6 */
@@ -6104,6 +6093,9 @@ void DispOBJBlock(ObjBlock* arg0) {
             case CHARACTER_SELECT_MENU_DK:     /* switch 6 */
             case CHARACTER_SELECT_MENU_WARIO:  /* switch 6 */
             case CHARACTER_SELECT_MENU_BOWSER: /* switch 6 */
+                if (ok_PSelSkipPortrait[arg0->kind - CHARACTER_SELECT_MENU_MARIO] != 0) {
+                    break;
+                }
                 DispOB_Sub_psel1(arg0, GetTBPointer(SelectNamePlateTable[arg0->kind - 0x2B]));
                 /* fallthrough */
             case MENU_ITEM_TYPE_0A0: /* switch 6 */
@@ -9877,6 +9869,9 @@ void DOBPSelAnimeKuppa(ObjBlock* arg0) {
     if (temp_v0 >= 0) {
         var_a0 = 1;
     } else {
+        var_a0 = 0;
+    }
+    if (ok_PSelSkipAnime != 0) {
         var_a0 = 0;
     }
     switch (arg0->pattern2) {

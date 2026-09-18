@@ -210,6 +210,7 @@ short GetCourseLapIndex(int player)
     }
     return LapIndex;
 }
+
 void CheckSplashRepl(char WaterType)
 {	
 	char playerID;
@@ -314,16 +315,16 @@ void SetWaterType(char WaterType)
 
 	if (WaterType == ZICE && HotSwapID != 0)
 	{
-		LakituIceBehavior = (LakituIceBehavior & 0xFFFF0000) + (0 & 0x0000FFFF);
+		ok_LakituIce = 1;
 	}
 	else
 	{
-		LakituIceBehavior = (LakituIceBehavior & 0xFFFF0000) + (12 & 0x0000FFFF);
+		ok_LakituIce = 0;
 	}
 	
 	if (g_startingIndicator >= 0x01 && g_startingIndicator <= 0x06)
 	{
-		CheckSplashRepl(WaterType);
+		//CheckSplashRepl(WaterType);
 
 		if(WaterType != 0 && HotSwapID != 0)
 		{
@@ -460,9 +461,7 @@ void SetWaterType(char WaterType)
 
 void NopSplashCheckCode(void) //Run at custom code init
 {
-	CheckSplashJAL1 = 0;
-	CheckSplashJAL2 = 0;
-	CheckSplashJAL3 = 0;
+	ok_CheckSplashEnabled = 0;
 }
 
 bool EffectStarBGM[4];
@@ -646,9 +645,7 @@ void CheckJugemuMarker(void)
 				{
 				    int ThisValue;
 				for (ThisValue = 0; ThisValue < GlobalIntA; ThisValue++)
-				{		
-                    *(uint*)(GlobalAddressD) = (uint)&PathValues[ThisValue];
-                    GlobalAddressD += 4;
+				{
 					if (PathValues[ThisValue].Type == PATH_JUMP)
 					{	
 						if ((g_playerPathPointTable[(int)playerID] >= PathValues[ThisValue].PathStart) && (g_playerPathPointTable[(int)playerID] <= PathValues[ThisValue].PathStop))		// Path range check

@@ -333,6 +333,10 @@ short ParticleCreate_Local(short category, int player, bool screen_share, short 
 	MakeAlignVector(vel,angle);
 
 	particleID = AddCustomParticleBuffer(pos,ang,vel,scale,category,filtermode);
+	if (particleID < 0)
+	{
+		return -1;
+	}
 
 	particle=&CustomParticleBuffer[particleID];
 

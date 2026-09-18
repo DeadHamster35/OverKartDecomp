@@ -36,10 +36,16 @@ DEBUG ?= 0
 # LibraryDecomp links OverKartLibrary; matching SHA-1 is not a gate.
 AVOID_UB ?= 1
 
-# Big-text font DMA dest (nicefont). Both blobs are always in the ELF.
-#   0 = LibraryFont (Library big_font.mio0)
-#   1 = AmpedUpFont (OverKart NewFont.MIO0)
+# Big-text font DMA dest (nicefont BSS). Both blobs stay in the ELF.
+#   0 = LibraryFont (assets/OverKartLibrary/NewFont.MIO0)
+#   1 = AmpedUpFont
 AMPEDUP_FONT ?= 0
+
+# OverKart5 product flag. 0 = Tarmac Patch (community), 1 = OverKart (personal).
+OVERKART_BUILD ?= 0
+
+# Closed-source cheat TU lives outside the repo. Never copy Cheat.c in-tree.
+PROTEC_DIR ?= ../Protec
 
 # Compile with GCC
 GCC ?= 0
@@ -73,6 +79,7 @@ ifeq ($(AVOID_UB),1)
 endif
 
 DEFINES += AMPEDUP_FONT=$(AMPEDUP_FONT)
+DEFINES += OverKartBuild=$(OVERKART_BUILD)
 
 TARGET := mk64.$(VERSION)
 
@@ -255,9 +262,14 @@ OVERKART_SRC_DIRS := \
   src/OverKartLibrary/Gametypes/GBI
 # ROM blobs live in assets/OverKartLibrary/; assembled via data/overkart/*.s.
 
-SRC_DIRS       := src src/data src/buffers src/racing src/ending src/audio src/debug src/os src/os/math courses assets/code/ceremony_data assets/code/startup_logo $(SRC_ASSETS_DIR) $(OVERKART_SRC_DIRS)
+# OverKart5 host C. Do not flatten into OverKartLibrary.
+OVERKART5_SRC_DIRS := \
+  src/OverKart5 \
+  src/OverKart5/data/ModelData
+
+SRC_DIRS       := src src/data src/buffers src/racing src/ending src/audio src/debug src/os src/os/math courses assets/code/ceremony_data assets/code/startup_logo $(SRC_ASSETS_DIR) $(OVERKART_SRC_DIRS) $(OVERKART5_SRC_DIRS)
 # OverKartLibrary leftover GCC .s dumps must not be assembled (they clobber IDO .o).
-ASM_DIRS       := asm asm/os asm/unused $(DATA_DIR) $(DATA_DIR)/sound_data $(DATA_DIR)/karts $(DATA_DIR)/overkart
+ASM_DIRS       := asm asm/os asm/unused $(DATA_DIR) $(DATA_DIR)/sound_data $(DATA_DIR)/karts $(DATA_DIR)/overkart $(DATA_DIR)/overkart5
 
 
 # Directories containing course source and data files
@@ -289,6 +301,12 @@ O_FILES := \
   $(foreach file,$(COURSE_FILES),$(BUILD_DIR)/$(file:.c=.o)) \
   $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.o)) \
   $(EUC_JP_FILES:%.c=$(BUILD_DIR)/%.jp.o)
+
+# Personal OverKart only — community link must not pull Cheat.o.
+ifeq ($(OVERKART_BUILD),1)
+  CHEAT_OBJ := $(BUILD_DIR)/src/OverKart5/Cheat.o
+  O_FILES += $(CHEAT_OBJ)
+endif
 
 # Automatic dependency files
 DEP_FILES := $(O_FILES:.o=.d) $(BUILD_DIR)/$(LD_SCRIPT).d
@@ -357,7 +375,7 @@ ifeq ($(TARGET_N64),1)
   CC_CFLAGS := -fno-builtin
 endif
 
-INCLUDE_DIRS := include $(BUILD_DIR) $(BUILD_DIR)/include src src/racing src/ending src/OverKartLibrary .
+INCLUDE_DIRS := include $(BUILD_DIR) $(BUILD_DIR)/include src src/racing src/ending src/OverKartLibrary src/OverKart5 .
 ifeq ($(TARGET_N64),1)
   INCLUDE_DIRS += include/libc
 endif
@@ -668,6 +686,21 @@ $(BUILD_DIR)/%.o: %.c
 	$(V)$(CC_CHECK) $(CC_CHECK_CFLAGS) -MMD -MP -MT $@ -MF $(BUILD_DIR)/$*.d $<
 	$(V)$(CC) -c $(CFLAGS) -o $@ $<
 	$(V)$(PYTHON) $(TOOLS_DIR)/set_o32abi_bit.py $@
+
+# Out-of-tree Cheat.c (or committed IDO object). Path is never src/OverKart5/Cheat.c.
+ifeq ($(OVERKART_BUILD),1)
+ifneq ($(wildcard $(PROTEC_DIR)/Cheat.c),)
+$(CHEAT_OBJ): $(PROTEC_DIR)/Cheat.c
+	$(call print,Compiling:,$<,$@)
+	$(V)$(CC_CHECK) $(CC_CHECK_CFLAGS) -MMD -MP -MT $@ -MF $(BUILD_DIR)/src/OverKart5/Cheat.d $<
+	$(V)$(CC) -c $(CFLAGS) -o $@ $<
+	$(V)$(PYTHON) $(TOOLS_DIR)/set_o32abi_bit.py $@
+else
+$(CHEAT_OBJ): lib/private/Cheat.o
+	$(call print,Copying private object:,$<,$@)
+	$(V)$(PYTHON) -c "import shutil,sys; shutil.copyfile(sys.argv[1], sys.argv[2])" $< $@
+endif
+endif
 
 $(BUILD_DIR)/%.o: $(BUILD_DIR)/%.c
 	$(call print,Compiling:,$<,$@)

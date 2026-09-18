@@ -19,21 +19,17 @@ glabel previewU
 .incbin "assets/OverKartLibrary/preview_u.mio0.bin"
 
     .balign 16
-glabel NiceFontROM
-.incbin "assets/OverKartLibrary/nice_font.mio0.bin"
-
-    .balign 16
 glabel HudButtonsROM
 .incbin "assets/OverKartLibrary/hud_buttons.mio0.bin"
 
     .balign 16
 glabel LibraryFont
-.incbin "assets/OverKartLibrary/big_font.mio0.bin"
+.incbin "assets/OverKartLibrary/NewFont.MIO0"
 glabel LibraryFontEnd
 
     .balign 16
 glabel AmpedUpFont
-.incbin "assets/OverKartLibrary/AmpedUpFont.mio0.bin"
+.incbin "assets/OverKartLibrary/nice_font.mio0.bin"
 glabel AmpedUpFontEnd
 
     .balign 16

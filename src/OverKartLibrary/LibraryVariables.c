@@ -28,6 +28,14 @@ bool CustomWaterHeight[8];
 short g_EchoStart = 0x19B;
 short g_EchoStop = 0x1B9;
 short CloudCourseID, Snow3DCourseID;
+short asm_CupCount = 3;
+s32 ok_CheckSplashEnabled = 1;
+s32 ok_LakituIce = 0;
+s32 ok_ForceRoulette = 0;
+s8 ok_PSelSkipCursor[4] = { 0, 0, 0, 0 };
+s8 ok_PSelSkipPortrait[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+s32 ok_PSelSkipAnime = 0;
+s32 ok_MusicIn3P4P = 0;
 char CloudCourseValue, Snow3DCourseValue, WeatherCourseValue, Toggle3DSnow;
 short BattleGametype;
 
@@ -45,6 +53,7 @@ OKRAMHeader OverKartRAMHeader;
 
 short AnimationTimer = 0;
 short DynFPSModifier = 2;
+char ok_StaticTempoOnly = 1;
 
 Controller *GlobalController[8] = 
 {
@@ -163,6 +172,7 @@ short EnginePowerDownFT[3][15] = {{0,0,0,0,0,0,0,3,3,0,0,3,0,3,3}, {0,0,0,0,0,0,
 
 
 char MenuBackup = 0, MenuChanged = 0, MenuTimer = 0, StatsID = -1;
+bool MapIsCurrentlyLoading = false;
 char MenuFlash[4] = {0,0,0,0};
 char MenuProgress[4] = {0,0,0,0};
 char PlayerCharacterSelect[4] = {0,1,2,3};

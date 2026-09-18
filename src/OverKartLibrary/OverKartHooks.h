@@ -16,10 +16,20 @@
 extern short HotSwapID;
 extern short HotSwapGP;
 extern short gpCourseIndex;
+extern short courseValue;
 extern short asm_CupCount;
+extern short Snow3DCourseID;
+extern s32 ok_CheckSplashEnabled;
+extern s32 ok_LakituIce;
+extern s32 ok_ForceRoulette;
+extern s8 ok_PSelSkipCursor[4];
+extern s8 ok_PSelSkipPortrait[8];
+extern s32 ok_PSelSkipAnime;
+extern s32 ok_MusicIn3P4P;
 extern Gfx* IceKageGfx;
 
 void MapStartupDefault(short InputID);
+void OkDbgLoad(u32 stage, s32 courseId, u32 extra0, u32 extra1, const char *name);
 void InitialMapCode(void);
 void InitialMapObjectCode(void);
 void PlaceIBoxes(long BoxOffset);
@@ -86,6 +96,12 @@ void ProWheelSpinWrap(Player* player, s8 playerId);
 s16 CalcOGAAreaSubBP_Wrapper(f32 posX, f32 posY, f32 posZ, u16 trackSectionId, s32* pathIndex);
 void DisplayFlagGateCheck(Camera* camera);
 void DrawPerScreenDefault(Camera* camera);
+s32 start_race_BGM_custom(void);
+void ApplyRaceTempo(void);
+void DataMenuController(Controller* controller, u16 controllerIdx);
+void TitleMenuSwitch(Controller* controller, u16 controllerIdx);
+void GameSelectSwitch(Controller* controller, u16 controllerIdx);
+void MapSelectSwitch(Controller* controller, u16 controllerIdx);
 
 void PlayStarMusicHook(u8 playerID);
 void StopStarMusicHook(u8 playerID);
@@ -95,6 +111,9 @@ void ExplorerSetJugemu(Player* player);
 void ExplorerCallJugemu(Player* player);
 void ExplorerHangJugemu(Player* player, s8 playerId, s8 arg2);
 void ExplorerKWDisplayJugemu(s32 cameraId);
+
+extern char FlyCamToggle;
+extern short FlyCamSection;
 
 void MiniMapDrawDefault(void);
 void loadBigFont(void);
@@ -120,5 +139,16 @@ void CheckDirectionFunc(int Null, Screen* display);
 u16 custom_check_bump_2(Collision* bump, f32 radius, f32 px, f32 py, f32 pz, f32 lastx, f32 lasty, f32 lastz);
 void custom_SpinKart(Player* Car, Camera* camera, s8 place, s8 kno);
 void CheckMapBG_ZX_Hook(Player* car, Vec3f normal, Vec3f velocity, Vec3f g_vector, f32* dist, f32* new_x, f32* new_y, f32* new_z);
+
+void CameraCheckFunc(Player* player, Camera* camera, s8 index);
+void KartCheckFuncA(void);
+void KartCheckFuncB(void);
+void KartCheckFuncC(void);
+void KartCheckFuncD(void);
+void KartCheckFuncA2(void);
+void KartCheckFuncB2(void);
+void KartCheckFuncC2(void);
+void KartCheckFuncD2(void);
+void ResultsCheck(void);
 
 #endif

@@ -150,7 +150,11 @@ void DisplayGroupmap(uintptr_t addr, Screen* arg1) {
     }
 
     arg1->camera_point = index;
-    index = ((index - 1) * 4) + direction;
+    if (FlyCamToggle > 0) {
+        index = FlyCamSection;
+    } else {
+        index = ((index - 1) * 4) + direction;
+    }
     gSPDisplayList(gDisplayListHead++, gfx[index]);
 }
 

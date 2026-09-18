@@ -256,7 +256,7 @@ extern s8 gControllerPakScrollDirection;
 
 extern const s8 gPlayerModeSelection[];
 extern const s32 gGameModePlayerSelection[][3];
-extern const s16 gCupCourseOrder[NUM_CUPS][NUM_COURSES_PER_CUP];
+extern s16 gCupCourseOrder[NUM_CUPS][NUM_COURSES_PER_CUP];
 
 // end of menus.c variables
 

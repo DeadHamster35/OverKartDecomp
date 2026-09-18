@@ -228,6 +228,10 @@ void ChangeMaxSpeed(char playerID, float SpeedGain)
 
 void SetCamShiftUp(char playerID, float shift)
 {
+	if (!(GlobalPlayer[(int)playerID].flag & IS_PLAYER))
+	{
+		return;
+	}
 	GlobalCamera[(int)playerID]->camera_vector[1] = 9 + shift;
 }
 

@@ -15,6 +15,7 @@
 #include "podium_ceremony_actors.h"
 #include "render_player.h"
 #include "defines.h"
+#include "OverKartHooks.h"
 
 struct UnkStruct80287560 {
     s16 unk0;
@@ -82,11 +83,11 @@ void draw_result_screen(void) {
     LoadIdentAffineMtx(matrix);
     SetMatrix(matrix, 0);
     gSPDisplayList(gDisplayListHead++, VIRTUAL_TO_PHYSICAL2(&D_80284F70));
-    DrawKart();
+    KartCheckFuncA();
     gSPDisplayList(gDisplayListHead++, VIRTUAL_TO_PHYSICAL2(&D_80284EE0));
     update_actors_loop();
     kwdisplay3D(PLAYER_ONE + SCREEN_MODE_1P);
-    DrawKartAfter();
+    KartCheckFuncA2();
     gSPDisplayList(gDisplayListHead++, VIRTUAL_TO_PHYSICAL2(&D_80284EE0));
     kawanoDrawResult();
     ceremony_transition_sliding_borders();

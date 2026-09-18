@@ -25,7 +25,15 @@ extern bool SurfaceExplorerMode;
 extern bool CustomWaterHeight[];
 extern short g_EchoStart;
 extern short g_EchoStop;
-extern short CloudCourseID, Snow3DCourseID; 
+extern short CloudCourseID, Snow3DCourseID;
+extern short asm_CupCount;
+extern s32 ok_CheckSplashEnabled;
+extern s32 ok_LakituIce;
+extern s32 ok_ForceRoulette;
+extern s8 ok_PSelSkipCursor[4];
+extern s8 ok_PSelSkipPortrait[8];
+extern s32 ok_PSelSkipAnime;
+extern s32 ok_MusicIn3P4P;
 extern char CloudCourseValue, Snow3DCourseValue, WeatherCourseValue, Toggle3DSnow;
 extern short BattleGametype;
 
@@ -45,13 +53,12 @@ extern OKRAMHeader OverKartRAMHeader;
 extern short AnimationTimer;
 
 extern short DynFPSModifier;
+extern char ok_StaticTempoOnly;
 
 extern float ZeroVector[3];
 
 extern POSXY PlayerSelectPositions[];
 extern struct PlayerTextureTable SelectNamePlateTable;
-extern struct PlayerTextureTable SelectPortraitTable[9];
-extern struct ObjBlock GlobalMenuHUD[32];
 /* Overlay of kart_attributes tables that begin at stock GlobalStat[]. */
 #define KartStats (*(struct Stats *) GlobalStat)
 extern float GlobalWeight[];
@@ -98,6 +105,7 @@ extern short EnginePowerDownFT[3][15];
 
 
 extern char MenuBackup,MenuChanged,MenuTimer;
+extern bool MapIsCurrentlyLoading;
 extern char MenuFlash[4];
 extern char MenuProgress[4];
 

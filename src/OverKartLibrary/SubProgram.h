@@ -126,8 +126,8 @@
                 (1-1) << G_TEXTURE_IMAGE_FRAC);
 
 
-#define     PhysToK0(x)	((x)|0x80000000)
-#define     K0_TO_PHYS(x) ((x)&0x1FFFFFFF)
+#define     PhysToK0(x)	((unsigned int)(x)|0x80000000)
+#define     K0_TO_PHYS(x) ((unsigned int)(x)&0x1FFFFFFF)
 #define     cup_NTSC ((unsigned int) gCupCourseOrder)
 #define     cup_PAL ((unsigned int) gCupCourseOrder)
 #define     MaxPowerConvert(a)  ((a * a) / 25)

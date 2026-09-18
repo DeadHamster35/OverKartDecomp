@@ -227,7 +227,7 @@ extern void doGameSelect10();
 extern void SetLakitu(void *Car);
 extern void LakituCheck(void *Car,char PlayerID);
 extern void HangLakitu(void *Car,char PlayerID,char place);
-extern long LakituIceBehavior;
+/* LakituIceBehavior: kwturiage_jugemu+0x3c SMC; live C is ok_LakituIce */
 
 extern void OGAContTrgChk(int CameraNumber);
 
@@ -255,9 +255,7 @@ extern Vtx_t Vtx_KTile96x16[];
 extern float CheckWaterLevel(void *Car);
 extern void CheckSplash(void *Car,int PlayerIndex);
 
-extern long CheckSplashJAL1;
-extern long CheckSplashJAL2;
-extern long CheckSplashJAL3;
+/* CheckSplashJAL1/2/3: RunKart / SpinKart / result_runkart JALs; live C is ok_CheckSplashEnabled */
 
 extern void LoadKeyStatus();
 extern long CheckFinalLapFanfareJAL;
@@ -269,10 +267,8 @@ extern long CloudTypeMapCheck1;
 extern long CloudTypeMapCheck2;
 extern long CloudAmountMapCheck1;
 extern long CloudAmountMapCheck2;
-extern long Snow3DAllocMapCheck1;
-extern long Snow3DAllocMapCheck2;
-extern long Snow3DDisplayAfterMapCheck1;
-extern long Snow3DDisplayAfterMapCheck2;
+/* Snow3DAllocMapCheck1/2: kwalloc_effectram_1p g_courseID LUI/ORI; live C is Snow3DCourseID */
+/* Snow3DDisplayAfterMapCheck1/2: render_snowing_effect g_courseID LUI/ORI; live C is Snow3DCourseID */
 extern void KWDisplayJugemu(int Player);
 
 
@@ -362,8 +358,7 @@ extern ushort PathLengthTable[21][8];
 /* KartVtx: render_player.h */
 
 
-extern long antialiasToggle;
-extern long antialiasToggleB;
+/* antialiasToggle / antialiasToggleB → __osViCurr/Next->features (sViContexts[].features) */
 
 
 /* g_CupArray / g_cup*Array* → gCupCourseOrder in StockAliases.h */
@@ -380,37 +375,13 @@ extern short g_map2Y; //0x8018D2D8
 
 extern long g_DEBUG;
 
-extern TexDataTable g_CoursePreviewOffsets[]; // 0x80199540
-extern long r_CoursePreviewOffsets; // 0x12C750
-extern long g_CourseBannerOffsets;
-extern long g_BattleBannerOffsets;
-extern long g_BattlePreviewOffsets; // 0x80199540
-extern long g_cup0preview0; // 0x80199540
-extern long g_cup0preview1; // 0x80199568
-extern long g_cup0preview2; // 0x801994F0
-extern long g_cup0preview3; // 0x801995B8
+/* g_CoursePreviewOffsets → GetTBPointer(seg2_mario_raceway_preview_texture) in CustomLevels.c */
+/* r_CoursePreviewOffsets → _data_segment2SegmentRomStart + SEGMENT_OFFSET(that table) */
+/* g_CourseBannerOffsets / g_BattleBannerOffsets → tex_buff slots via D_800E7DC4[] + sMenuTextureMap */
+/* g_cup*preview* were stock RAM copies of the same MenuTexture[2] rows */
 
-
-extern long g_cup1preview0; // 0x80199590
-extern long g_cup1preview1; // 0x801994C8
-extern long g_cup1preview2; // 0x80199428
-extern long g_cup1preview3; // 0x80199400
-
-
-extern long g_cup2preview0; // 0x80199630
-extern long g_cup2preview1; // 0x801995E0
-extern long g_cup2preview2; // 0x80199518
-extern long g_cup2preview3; // 0x80199450
-
-
-extern long g_cup3preview0; // 0x801996D0
-extern long g_cup3preview1; // 0x801994A0
-extern long g_cup3preview2; // 0x80199478
-extern long g_cup3preview3; // 0x80199608
-
-extern long 	g_NintendoLogoOffset; //0x8019F88C
+/* g_NintendoLogoOffset (sMemoryPool+0x7fbc) / g_NintendoLogoBorder (func_800942D0+0x1dc): batch 6 overlay/SMC */
 extern int	CheckContPackMenu();
-extern long 	g_NintendoLogoBorder;
 
 extern char g_lakituStatus; // 0x80165DCE
 
@@ -474,7 +445,7 @@ extern void GULookAt(Mtx *m, float xEye, float yEye, float zEye,
 extern void GUPerspective(Mtx *m, u16 *perspNorm, float fovy, float aspect, float near, float far, float scale);
 extern float g_farClip;
 
-extern short g_player1ScreenWidth; //0x8015F4AC
+/* g_player1ScreenWidth → GlobalScreen[0]->width in StockAliases.h */
 extern short g_player1ScreenHeight; //0x8015F4AE
 extern short g_player1ScreenX; //0x8015F4B0
 extern short g_player1ScreenY; //0x8015F4B2
@@ -503,24 +474,14 @@ extern short g_player4View; //0x8015F434
 extern short g_player4Section; //0x8015F438
 
 
-extern float g_TrialTime;
-extern float g_lap2Time;
-extern float g_lap3Time;
+/* g_TrialTime / g_lap2Time / g_lap3Time → gTimePlayerLastTouchedFinishLine in StockAliases.h */
 
 
 extern short g_progressValue;
 
 extern long g_CourseObstacle; //0x8016359C
 
-extern long g_PlayerRankTable[8];
-extern long g_playerPosition1;// 801643B8
-extern long g_playerPosition2;//, 801643BC
-extern long g_playerPosition3;//, 801643C0
-extern long g_playerPosition4;//, 801643C4
-extern long g_playerPosition5;//, 801643C8
-extern long g_playerPosition6;//, 801643CC
-extern long g_playerPosition7;//, 801643D0
-extern long g_playerPosition8;//, 801643D4
+/* g_PlayerRankTable / g_playerPosition1–8 → gGPCurrentRaceRankByPlayerId in StockAliases.h */
 
 /* gravity_1: kart_attributes.h (f32[8]) */
 extern float gravity_2;
@@ -604,15 +565,13 @@ extern long g_mracewayTime;// 0x8018DA80
 extern void InitializeEndingSequence();
 extern void EndingSequence();
 extern void CheckFinish();
-extern short asm_CupCount;
+/* asm_CupCount: CheckFinish last-course immediate; live BSS is LibraryVariables.c */
 
 extern void ResultsSequence();
 
-extern short songID; //
-extern long asm_SongA;// 0x8028EC9C
-extern long asm_SongB;// 0x8028F9C4
-
-extern uint CullDL_Parameters;
+/* songID / g_musicIDRaceways: start_race_BGM NaSeqStart immediate; start_race_BGM_custom */
+/* asm_SongA / asm_SongB: start_race_BGM / check_pause 3P4P music guards; ok_MusicIn3P4P */
+/* CullDL_Parameters: packed decoder overlay; live C is decodespculldisplaylist gsSPCullDisplayList(0, 7) */
 extern long g_courseTable;
 extern uint KeystockBuffer;
 extern uint KeystockCounter;
@@ -692,15 +651,10 @@ extern char g_menuUpdateTimer4;
 extern char g_ReplayFlag;
 /* g_screenViewAngle → gCameraZoom in StockAliases.h */
 
-extern char g_sfxPause;
+/* g_sfxPause is SequencePlayer overlay (gSequencePlayers+0x293); batch 6 */
 
-extern long g_RawAudio; //0x803B9260
-
-extern AudioTablePointers g_MUSTablePointer;
-
-extern SequenceTable g_MUSSequenceTable;
-extern InstrumentTable g_MUSInstrumentTable;
-extern RawAudioTable g_MUSRawAudioTable;
+/* g_MUSSequenceTable / g_MUSInstrumentTable / g_MUSRawAudioTable → StockAliases.h heap pointers */
+/* g_MUSTablePointer is ALSeqFile* in audio/load.c, not AudioTablePointers */
 extern BankMapTable g_MUSBankMapTable;
 extern SFXTempPointerStruct g_sfxPointer;
 
@@ -771,10 +725,7 @@ extern long *g_MRCloudTexPtr; // Set of four I4 cloud images; //0x400 length eac
 
 extern float g_skySnowScale;
 extern float g_skySnowVelocity;
-extern long g_skySnowSpawnHeight;
-extern long g_skySnowSpawnRadiusDensity;
-extern long g_skySnowSpawnCenterOffset;
-extern long g_skySnowHitGoal;
+/* g_skySnowSpawnHeight / RadiusDensity / CenterOffset / HitGoal: KWChartSnow path SMC; SetWeather3D no longer pokes */
 
 extern long g_3DSnowSpawnHeight;
 extern long g_3DSnowSpawnDistanceMin;
@@ -859,8 +810,7 @@ extern void NAMusicVolume(unsigned char volume); //0-Mute 75-Half 127 Full
 extern void NAEnmTrgStop(Vector ObjectPosition, int soundID);
 extern void playMusic(int MusicID);
 extern void playMusic2(int musicID);
-extern short BattleSongID;
-
+/* BattleSongID / g_musicIDBattle1: start_race_BGM NaSeqStart immediate; start_race_BGM_custom */
 
 extern short g_musicIDRaceways; // 0x8028ECE6 
 extern short g_musicIDToad; // 0x8028ECF6

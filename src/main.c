@@ -321,9 +321,6 @@ void check_controller(s32 index) {
     controller->AnalogX = gControllerPads[index].stick_x;
     controller->AnalogY = gControllerPads[index].stick_y;
 
-    if ((gControllerPads[index].button & D_CBUTTONS) != 0) {
-        gControllerPads[index].button |= Z_TRIG;
-    }
     controller->ButtonPressed =
         gControllerPads[index].button & (gControllerPads[index].button ^ controller->ButtonHeld);
     controller->ButtonReleased = controller->ButtonHeld & (gControllerPads[index].button ^ controller->ButtonHeld);
@@ -612,6 +609,7 @@ void race_sequence(void) {
     switch (g_ScreenSplitA) {
         case SCREEN_MODE_1P:
             framerate = 2;
+            ApplyRaceTempo();
             key_data_control();
             if (pause_flag == 0) {
                 for (i = 0; i < framerate; i++) {
@@ -621,7 +619,7 @@ void race_sequence(void) {
                     collision_kart_to_kart();
                     collision_object_to_kart();
                     drive_stick_control();
-                    CameraControl(gPlayerOneCopy, camera1, 0);
+                    CameraCheckFunc(gPlayerOneCopy, camera1, 0);
                     kartpos_control_full();
                     enemy_control();
                     KWVideoFramesYori();
@@ -675,6 +673,7 @@ void race_sequence(void) {
             } else {
                 framerate = 2;
             }
+            ApplyRaceTempo();
             if (pause_flag == 0) {
                 for (i = 0; i < framerate; i++) {
                     if (time_flag != 0) {
@@ -683,9 +682,9 @@ void race_sequence(void) {
                     collision_kart_to_kart();
                     collision_object_to_kart();
                     drive_stick_control();
-                    CameraControl(gPlayerOneCopy, camera1, 0);
+                    CameraCheckFunc(gPlayerOneCopy, camera1, 0);
                     kartpos_control_ru();
-                    CameraControl(gPlayerTwoCopy, camera2, 1);
+                    CameraCheckFunc(gPlayerTwoCopy, camera2, 1);
                     kartpos_control_ld();
                     enemy_control();
                     KWVideoFramesYori();
@@ -720,6 +719,7 @@ void race_sequence(void) {
             } else {
                 framerate = 2;
             }
+            ApplyRaceTempo();
 
             if (pause_flag == 0) {
                 for (i = 0; i < framerate; i++) {
@@ -729,9 +729,9 @@ void race_sequence(void) {
                     collision_kart_to_kart();
                     collision_object_to_kart();
                     drive_stick_control();
-                    CameraControl(gPlayerOneCopy, camera1, 0);
+                    CameraCheckFunc(gPlayerOneCopy, camera1, 0);
                     kartpos_control_ru();
-                    CameraControl(gPlayerTwoCopy, camera2, 1);
+                    CameraCheckFunc(gPlayerTwoCopy, camera2, 1);
                     kartpos_control_ld();
                     enemy_control();
                     KWVideoFramesYori();
@@ -789,6 +789,7 @@ void race_sequence(void) {
                         break;
                 }
             }
+            ApplyRaceTempo();
             if (pause_flag == 0) {
                 for (i = 0; i < framerate; i++) {
                     if (time_flag != 0) {
@@ -797,13 +798,13 @@ void race_sequence(void) {
                     collision_kart_to_kart();
                     collision_object_to_kart();
                     drive_stick_control();
-                    CameraControl(gPlayerOneCopy, camera1, 0);
+                    CameraCheckFunc(gPlayerOneCopy, camera1, 0);
                     kartpost_control_1P();
-                    CameraControl(gPlayerTwo, camera2, 1);
+                    CameraCheckFunc(gPlayerTwo, camera2, 1);
                     kartpost_control_2P();
-                    CameraControl(gPlayerThree, camera3, 2);
+                    CameraCheckFunc(gPlayerThree, camera3, 2);
                     kartpos_control_3P();
-                    CameraControl(gPlayerFour, camera4, 3);
+                    CameraCheckFunc(gPlayerFour, camera4, 3);
                     kartpos_control_4P();
                     enemy_control();
                     KWVideoFramesYori();

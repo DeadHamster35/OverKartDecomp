@@ -1,4 +1,5 @@
 #include "MainInclude.h"
+#include <assets/common_data.h>
 
 void DisplayFlagGateCheck(Camera* LocalCamera)
 {
@@ -133,11 +134,11 @@ void runTKM(void)
 
 void loadEEPROM(uint Destination)
 {
-	osEepromLongRead((OSMesgQueue *) 0x8014F0B8, 0, (u8 *) (uintptr_t) Destination, 512);
+	osEepromLongRead(&gSIEventMesgQueue, 0, (u8 *) (uintptr_t) Destination, 512);
 }
 void saveEEPROM(uint Source)
 {
-	osEepromLongWrite((OSMesgQueue *) 0x8014F0B8, 0, (u8 *) (uintptr_t) Source, 512);
+	osEepromLongWrite(&gSIEventMesgQueue, 0, (u8 *) (uintptr_t) Source, 512);
 }
 
 
@@ -179,13 +180,12 @@ void LoadFontF3D(uint Address)
 
 void SetupFontF3D(void)
 {
-	
 	SetFontColorPalette((uint)&RedTextPalette, 31, 11, 11, 14, 5, 5);
 	SetFontColorPalette((uint)&BlueTextPalette, 11, 11, 31, 5, 5, 14);
 	SetFontColorPalette((uint)&GreenTextPalette, 11, 31, 11, 5, 14, 5);
 	SetFontColorPalette((uint)&WhiteTextPalette, 30, 30, 30, 14, 14, 14);
 
-	*sourceAddress = GetRealAddress(0x0D008080);	
+	*sourceAddress = GetRealAddress((int) (uintptr_t) D_0D008080);
 	dataLength = 0xB8;
 
 	*targetAddress = (uint)&RedPaletteF3D;
@@ -196,18 +196,11 @@ void SetupFontF3D(void)
 	runRAM();
 	*targetAddress = (uint)&WhitePaletteF3D;
 	runRAM();
-	
-	GlobalAddressA = (uint)(&RedPaletteF3D) + 0x14;
-	*(uint*)(GlobalAddressA) = (uint)&RedTextPalette;
 
-	GlobalAddressA = (uint)(&BluePaletteF3D) + 0x14;
-	*(uint*)(GlobalAddressA) = (uint)&BlueTextPalette;
-
-	GlobalAddressA = (uint)(&GreenPaletteF3D) + 0x14;
-	*(uint*)(GlobalAddressA) = (uint)&GreenTextPalette;
-
-	GlobalAddressA = (uint)(&WhitePaletteF3D) + 0x14;
-	*(uint*)(GlobalAddressA) = (uint)&WhiteTextPalette;
+	*(uint *)((uint)&RedPaletteF3D + 0x14) = (uint)&RedTextPalette;
+	*(uint *)((uint)&BluePaletteF3D + 0x14) = (uint)&BlueTextPalette;
+	*(uint *)((uint)&GreenPaletteF3D + 0x14) = (uint)&GreenTextPalette;
+	*(uint *)((uint)&WhitePaletteF3D + 0x14) = (uint)&WhiteTextPalette;
 }
 
 
@@ -342,7 +335,7 @@ short CustomLevelID(void)
 
 void loadBigFont(void)
 {
-#if AMPEDUP_FONT
+#if AMPEDUP_FONT == 1
 	*sourceAddress = (int)(&AmpedUpFont);
 	dataLength = (int)(&AmpedUpFontEnd) - (int)(&AmpedUpFont);
 #else
@@ -375,9 +368,7 @@ void ShiftVertColor(uint address,uint counter,uint v_buff,char alpha,char red,ch
 
 int GetRealAddress(int RSPAddress)
 {
-	RSPNumber = SegmentNumber(RSPAddress);
-	RSPOffset = SegmentOffset(RSPAddress);
-	return(PhysToK0(SegmentTable[RSPNumber] + RSPOffset));
+	return (int) SegmentToVirtual((const void *) (uintptr_t) RSPAddress);
 }
 
 

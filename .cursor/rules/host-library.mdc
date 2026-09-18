@@ -7,6 +7,10 @@ alwaysApply: true
 
 Start-here: **`docs/host_overrides.md`**. Defaults live in `src/OverKartLibrary/OverKartDefaults.c`. Vanilla already calls the `*Default` names.
 
+**OverKart5 host integration** (first host link): **`docs/overkart5_host_handoff.md`**, then `docs/overkart5_integration.md`. If the user says continue on OverKart5, that file is the batch list. Host code lives in `src/OverKart5/`; the twelve host-owned `StockAliases.h` `#define`s get deleted and each `*Default` forwards to the host name.
+
+`Code/Protec/Cheat.c` is closed-source and lives outside every repo by design. Never copy it into the tree or commit it — ship only the IDO-built `.o`.
+
 Amped Up **Library completeness** (not host link): **`docs/ampedup_library_handoff.md`**. If the user says continue on that workstream, that file is the batch list.
 
 Work only in **this repo**. Do not edit KimuraDecomp. Sibling `Library/` is historical copy source only.
@@ -20,4 +24,7 @@ Work only in **this repo**. Do not edit KimuraDecomp. Sibling `Library/` is hist
 - `gFaceBuffer` at `0x80625800` growing forward toward Vtx (from `0x80700000` back). Full map: **`docs/host_overrides.md`**.
 - Do not nest leftover stock shape (`USbit`, Shake 0x18, Hud `tx[5]`) unless asked.
 - Do not strip unused Library files. KartCheck / CameraCheck are host-owned.
+- `GameOffsets.asm` is stock NTSC **RAM** labels (`0x80xxxxxx`), not ROM. `COMPARE=0` / `AVOID_UB=1` moved those objects, so never copy a `.definelabel` value into C, never add it to `undefined_syms.txt`, and never write that RAM literal as if it were live.
+- A `GameOffsets.h` name must resolve to a decomp symbol (struct member, array, function, or the C statement at that text offset).
+- If no matching variable is obvious: look up the name in `GameOffsets.asm` for the stock RAM address, then find that address in the labelled matching decomp (KimuraDecomp `symbols/Stock.map`, `proposed_renames_ram.csv`, `conflicts.csv`, or the function+offset in C). Use the decomp name or statement. Mid-function RAM is a code site (SMC), not BSS.
 - Approval/review still apply.

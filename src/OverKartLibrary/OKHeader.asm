@@ -80,3 +80,4 @@
 .definelabel ok_FreeSpace, ok_TKMSpace + 0x2010
 
 .definelabel OKHeaderEND, ok_FreeSpace + 0x20000
+; Host overflow after OKHeaderEND is mk64.ld ok5_MenuStorage (0x3C000). Not ok_Storage.

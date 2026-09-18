@@ -22,11 +22,18 @@ OUTPUT_ARCH (mips)
 #define ok_HeaderSize      0x1400
 #define ok_MenuSize        0x2800
 #define ok_CourseHeaderSize 0xD0
+/* Host menu MIO0 dest (piracy 512x240x2). After OKHeaderEND; not ok_FreeSpace. */
+#define OK5_MENU_STORAGE_SIZE 0x3C000
 
 #define OKLIB_TEXT(path)   BUILD_DIR/src/OverKartLibrary/path.o(.text*);
 #define OKLIB_DATA(path)   BUILD_DIR/src/OverKartLibrary/path.o(.data*);
 #define OKLIB_RODATA(path) BUILD_DIR/src/OverKartLibrary/path.o(.rodata*);
 #define OKLIB_BSS(path)    BUILD_DIR/src/OverKartLibrary/path.o(.bss*);
+
+#define OK5_TEXT(path)     BUILD_DIR/src/OverKart5/path.o(.text*);
+#define OK5_DATA(path)     BUILD_DIR/src/OverKart5/path.o(.data*);
+#define OK5_RODATA(path)   BUILD_DIR/src/OverKart5/path.o(.rodata*);
+#define OK5_BSS(path)      BUILD_DIR/src/OverKart5/path.o(.bss*);
 
 /* CompileLibrary.BAT list. */
 #define OKLIB_EACH(M) \
@@ -54,6 +61,25 @@ OUTPUT_ARCH (mips)
     M(Gametypes/GameTypesGeneric) \
     M(Gametypes/Slayer) \
     M(Gametypes/GBI/SNet)
+
+/* Host objects after Library so Library layout does not shift.
+ * Cheat.o is personal OverKart only — community link must not require it. */
+#if OverKartBuild
+#define OK5_CHEAT(M) M(Cheat)
+#else
+#define OK5_CHEAT(M)
+#endif
+
+#define OK5_EACH(M) \
+    M(OverKartVariables) \
+    M(MarioKartAI) \
+    M(LitroFunc) \
+    M(OverKartObjectHandler) \
+    M(OKMenu) \
+    M(MarioKartPractice) \
+    M(OverKart) \
+    M(data/ModelData/ModelData) \
+    OK5_CHEAT(M)
 
 // End of Jumper pak memory
 #define RDRAM_END         0x807FFFFF
@@ -747,6 +773,9 @@ SECTIONS
       OKLIB_EACH(OKLIB_DATA)
       BUILD_DIR/data/overkart/ok_payload_assets.o(.data*);
       OKLIB_EACH(OKLIB_RODATA)
+      OK5_EACH(OK5_TEXT)
+      OK5_EACH(OK5_DATA)
+      OK5_EACH(OK5_RODATA)
    }
    END_SEG(overkart)
 
@@ -754,6 +783,7 @@ SECTIONS
    BEGIN_SEG(oklib_romassets, __romPos) SUBALIGN(0x10)
    {
       BUILD_DIR/data/overkart/ok_rom_assets.o(.data*);
+      BUILD_DIR/data/overkart5/ok5_rom_assets.o(.data*);
    }
    END_SEG(oklib_romassets)
 
@@ -761,6 +791,7 @@ SECTIONS
    .overkart.noload _overkartSegmentEnd (NOLOAD) :
    {
       OKLIB_EACH(OKLIB_BSS)
+      OK5_EACH(OK5_BSS)
       . = ALIGN(0x10);
    }
    _overkartSegmentNoloadEnd = ADDR(.overkart.noload) + SIZEOF(.overkart.noload);
@@ -866,9 +897,14 @@ SECTIONS
       . += 0x20000;
       OKHeaderEND = .;
       . = ALIGN(0x10);
+      ok5_MenuStorage = .;
+      . += OK5_MENU_STORAGE_SIZE;
+      ok5_MenuStorageEnd = .;
+      . = ALIGN(0x10);
    }
 
    ASSERT((OKHeaderEND <= 0x805DA800), "Error: OKHeader BSS extended into framebuffer 0 (0x805DA800).")
+   ASSERT((ok5_MenuStorageEnd <= 0x805DA800), "Error: ok5_MenuStorage extended into framebuffer 0 (0x805DA800).")
 
    .cfb0 0x805DA800 (NOLOAD) :
    {

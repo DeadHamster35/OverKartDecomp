@@ -144,7 +144,7 @@ const s8 sCharacterGridOrder[] = {
     MARIO, LUIGI, PEACH, TOAD, YOSHI, DK, WARIO, BOWSER,
 };
 
-const s16 gCupCourseOrder[5][4] = {
+s16 gCupCourseOrder[5][4] = {
     // mushroom cup
     { COURSE_LUIGI_RACEWAY, COURSE_MOO_MOO_FARM, COURSE_KOOPA_BEACH, COURSE_KALAMARI_DESERT },
     // flower cup
@@ -204,7 +204,7 @@ void UpdateController(void) {
                     optionController(&gControllers[controllerIdx], controllerIdx);
                     break;
                 case DATA_MENU:
-                    taselController(&gControllers[controllerIdx], controllerIdx);
+                    DataMenuController(&gControllers[controllerIdx], controllerIdx);
                     break;
                 case COURSE_DATA_MENU:
                     dselController(&gControllers[controllerIdx], controllerIdx);
@@ -219,11 +219,11 @@ void UpdateController(void) {
                     break;
                 case START_MENU_FROM_QUIT:
                 case START_MENU:
-                    TitleController(&gControllers[controllerIdx], controllerIdx);
+                    TitleMenuSwitch(&gControllers[controllerIdx], controllerIdx);
                     break;
                 case MAIN_MENU_FROM_QUIT:
                 case MAIN_MENU:
-                    GSelController(&gControllers[controllerIdx], controllerIdx);
+                    GameSelectSwitch(&gControllers[controllerIdx], controllerIdx);
                     break;
                 case PLAYER_SELECT_MENU_FROM_QUIT:
                 case CHARACTER_SELECT_MENU:
@@ -231,7 +231,7 @@ void UpdateController(void) {
                     break;
                 case COURSE_SELECT_MENU_FROM_QUIT:
                 case COURSE_SELECT_MENU:
-                    MSelController(&gControllers[controllerIdx], controllerIdx);
+                    MapSelectSwitch(&gControllers[controllerIdx], controllerIdx);
                     break;
             }
         }
@@ -1319,18 +1319,6 @@ void GSelController(struct Controller* controller, u16 controllerIdx) {
                     menuScreenB = MAIN_MENU_MODE_SELECT;
                     FlashCounterReset();
                     playSound(SOUND_MENU_SELECT);
-                    break;
-                }
-                if (btnAndStick & L_TRIG) {
-                    menuScreenB = MAIN_MENU_OPTION;
-                    SetFadeOut_option();
-                    playSound(SOUND_MENU_OPTION);
-                    break;
-                }
-                if (btnAndStick & R_TRIG) {
-                    menuScreenB = MAIN_MENU_DATA;
-                    SetFadeOutTaData();
-                    playSound(SOUND_MENU_DATA);
                     break;
                 }
                 break;

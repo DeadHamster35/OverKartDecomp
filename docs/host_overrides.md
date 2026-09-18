@@ -4,6 +4,8 @@ This tree is a mk64 decomp with OverKart Library linked natively (one IDO toolch
 
 Start-here for hosts: **this file**. Source of the defaults: `src/OverKartLibrary/OverKartDefaults.c`. Vanilla-safe decls: `src/OverKartLibrary/OverKartHooks.h` (vanilla C must not include `MainInclude.h`).
 
+**OverKart5 is the first host being linked.** Implementation start-here: `docs/overkart5_host_handoff.md`, then `docs/overkart5_integration.md`.
+
 Sibling `Library/` is the historical GCC/Armips copy. `KimuraDecomp` is the frozen matching tree. Do not edit either from here.
 
 NTSC (USA) only for custom courses. Tarmac `ok_HeaderROM` stays `0xBE9178`.
@@ -14,7 +16,7 @@ NTSC (USA) only for custom courses. Tarmac `ok_HeaderROM` stays `0xBE9178`.
 make AVOID_UB=1 COMPARE=0 -j
 ```
 
-Those are the Makefile defaults. Compare ROM is not a goal. `make AMPEDUP_FONT=1` selects the Amped Up big-font blob; default `0` is Library `big_font.mio0.bin`. Need `baserom.us.z64` in the repo root.
+Those are the Makefile defaults. Compare ROM is not a goal. `make AMPEDUP_FONT=1` selects AmpedUpFont; default `0` is `LibraryFont` (`assets/OverKartLibrary/NewFont.MIO0`). Need `baserom.us.z64` in the repo root.
 
 ## How a host overrides
 
@@ -164,6 +166,12 @@ Dead on purpose: `DetectEmulator` (uncalled). Do not revive BootCode / PreCode D
 Unresolved by design. The host project owns them. Do not import OverKart5 `.o` here.
 
 ## Other host projects
+
+**OverKart5 (in progress):** `docs/overkart5_host_handoff.md` is the batch list; `docs/overkart5_integration.md` holds the file inventory, `BUILD.asm` patch table, and RAM hazards. Host code lands in `src/OverKart5/`. `GameOffsets.asm` is stock NTSC RAM (`0x80xxxxxx`), not live addresses: use it only to find the matching decomp symbol or statement, never as the value written in C.
+
+The twelve host-owned `#define`s at `StockAliases.h:90-104` get **deleted** as part of that work. The host then defines the real `gameCode` / `allRun` / `titleMenu` / etc., and each `*Default` body forwards to it. Deletion and the host definitions must land together — `OverKartDefaults.c:40` and `SharedFunctions.h:35-39` depend on those aliases today. `MapStartup`, `KWKumo_Alloc_Hook`, and `KWChart_Kumo_Hook` keep their aliases; OverKart5 does not override them.
+
+OverKart5's `OverKartBuild=1` build pulls a **closed-source** object built from `Code/Protec/Cheat.c`, which lives outside every repo on purpose. Never commit that source; only the compiled `.o`.
 
 Amped Up, OverKart5, and new projects stay **guests**. Do not overlay another project's `Library/` onto `src/OverKartLibrary/`. Put project UI, KartCheck, CameraCheck, EEPROM blobs, and extra sprites in the host. Shared Library keeps the Tarmac course runtime.
 

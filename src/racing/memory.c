@@ -420,38 +420,51 @@ UNUSED u8* decodemapimage(u8* arg0, s32 arg1, s32 arg2) {
     return temp_v0;
 }
 
-u8* DecodeMapImage1(u8 texture[], size_t arg1, size_t arg2) {
+/*
+ * Tarmac writes Segment 9 texture addrs as (trueROM - 0x641F70).
+ * HotSwap course loads add that base back in decodemapimage2 only.
+ * DecodeMapImage1 is stock other_textures (objects/particles); never remap.
+ */
+#define STOCK_OTHER_TEXTURES_ROM 0x641F70
+
+u8* DecodeMapImage1(u8* romaddress, uintptr_t romsize, uintptr_t ramsize) {
     u8* temp_v0;
     void* temp_a0;
 
     temp_v0 = (u8*) FreeMemoryPointer;
-    temp_a0 = temp_v0 + arg2;
-    arg1 = ALIGN16(arg1);
-    arg2 = ALIGN16(arg2);
-    osInvalDCache((void*) temp_a0, arg1);
-    osPiStartDma(&gDmaIoMesg, 0, 0, (uintptr_t) &_other_texturesSegmentRomStart[SEGMENT_OFFSET(texture)],
-                 (void*) temp_a0, arg1, &gDmaMesgQueue);
+    temp_a0 = temp_v0 + ramsize;
+    romsize = ALIGN16(romsize);
+    ramsize = ALIGN16(ramsize);
+    osInvalDCache((void*) temp_a0, romsize);
+    osPiStartDma(&gDmaIoMesg, 0, 0,
+                 (uintptr_t) &_other_texturesSegmentRomStart[SEGMENT_OFFSET(romaddress)],
+                 (void*) temp_a0, romsize, &gDmaMesgQueue);
     osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, (int) 1);
     decodeMIO0((u8*) temp_a0, temp_v0);
-    FreeMemoryPointer += arg2;
+    FreeMemoryPointer += ramsize;
     return temp_v0;
 }
 
-uintptr_t decodemapimage2(u8* arg0, uintptr_t arg1, uintptr_t arg2) {
+uintptr_t decodemapimage2(u8* romaddress, uintptr_t romsize, uintptr_t ramsize) {
     uintptr_t oldHeapEndPtr;
     void* temp_v0;
+    uintptr_t romAddr;
 
-    arg1 = ALIGN16(arg1);
-    arg2 = ALIGN16(arg2);
+    romsize = ALIGN16(romsize);
+    ramsize = ALIGN16(ramsize);
     oldHeapEndPtr = LastMemoryPointer;
     temp_v0 = (void*) FreeMemoryPointer;
 
-    osInvalDCache(temp_v0, arg1);
-    osPiStartDma(&gDmaIoMesg, 0, 0, (uintptr_t) &_other_texturesSegmentRomStart[SEGMENT_OFFSET(arg0)], temp_v0, arg1,
-                 &gDmaMesgQueue);
+    osInvalDCache(temp_v0, romsize);
+    if (HotSwapID > 0) {
+        romAddr = STOCK_OTHER_TEXTURES_ROM + (uintptr_t) romaddress;
+    } else {
+        romAddr = (uintptr_t) &_other_texturesSegmentRomStart[SEGMENT_OFFSET(romaddress)];
+    }
+    osPiStartDma(&gDmaIoMesg, 0, 0, romAddr, temp_v0, romsize, &gDmaMesgQueue);
     osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, 1);
     decodeMIO0((u8*) temp_v0, (u8*) oldHeapEndPtr);
-    LastMemoryPointer += arg2;
+    LastMemoryPointer += ramsize;
     return oldHeapEndPtr;
 }
 
@@ -502,9 +515,12 @@ void decodevertex2(CourseVtx* data, u32 arg1) {
 void decodevertex(CourseVtx* arg0, u32 vertexCount) {
     u32 segment = SEGMENT_NUMBER2(arg0);
     u32 offset = SEGMENT_OFFSET(arg0);
-    u8* vtxCompressed = VIRTUAL_TO_PHYSICAL2(SegmentTable[segment] + offset);
+    u8*     vtxCompressed = VIRTUAL_TO_PHYSICAL2(SegmentTable[segment] + offset);
 
+    OkDbgLoad(10, 0, (u32) vtxCompressed, (u32) arg0, "decodevertex");
+    OkDbgLoad(11, 0, (u32) vtxCompressed, vertexCount, "Mio0Vtx");
     decodeMIO0(vtxCompressed, (u8*) FreeMemoryPointer);
+    OkDbgLoad(12, 0, (u32) FreeMemoryPointer, vertexCount, "Vtx2OK");
     DecodeVertex2_OK((char*) FreeMemoryPointer, vertexCount);
     SetSegment(4, (void*) VertexMemoryPointer);
 }
@@ -1410,6 +1426,8 @@ u8* load_course(s32 courseId) {
     uintptr_t compSize;
     u8* compDest;
 
+    OkDbgLoad(8, courseId, 0, 0, "load_course");
+
     courseDataRomStart = g_courseTable[courseId].dlRomStart;
     courseDataRomEnd = g_courseTable[courseId].dlRomEnd;
     offsetRomStart = g_courseTable[courseId].offsetRomStart;
@@ -1440,11 +1458,14 @@ u8* load_course(s32 courseId) {
 
     geoSize = ALIGN16((uintptr_t) vertexRomEnd - (uintptr_t) vertexRomStart);
     vtxCompressed = (u8*) FreeMemoryPointer;
+    OkDbgLoad(9, courseId, (u32) vertexRomStart, (u32) geoSize, "DmaVert");
     DMA(vtxCompressed, vertexRomStart, geoSize);
     FreeMemoryPointer += geoSize;
     SetSegment(0xF, (void*) vtxCompressed);
 
+    OkDbgLoad(10, courseId, (u32) vtxCompressed, (u32) vertexStart, "decodevertex");
     decodevertex(vertexStart, vertexCount);
+    OkDbgLoad(13, courseId, (u32) packedStart, (u32) finalDisplaylistOffset, "PackDL");
     decodedisplaylist((uintptr_t*) packedStart, (uintptr_t) finalDisplaylistOffset, unknown1);
 
     FreeMemoryPointer = StaticMemoryPointer;
@@ -1452,12 +1473,16 @@ u8* load_course(s32 courseId) {
     if (gGamestate != ENDING) {
         compSize = ALIGN16((uintptr_t) courseDataRomEnd - (uintptr_t) courseDataRomStart);
         compDest = (u8*) (MEMORY_POOL_END - compSize);
+        OkDbgLoad(14, courseId, (u32) courseDataRomStart, (u32) compSize, "DmaCourse");
         DMA(compDest, courseDataRomStart, compSize);
+        OkDbgLoad(15, courseId, (u32) compDest, (u32) compSize, "Mio0Course");
         FreeMemoryPointer = ALIGN16((uintptr_t) decodeMIO0(compDest, (u8*) StaticMemoryPointer));
         SetSegment(6, (void*) StaticMemoryPointer);
     }
 
+    OkDbgLoad(16, courseId, (u32) offsetRomStart, (u32) offsetRomEnd, "LoadOff");
     SetSegment(9, load_data((uintptr_t) offsetRomStart, (uintptr_t) offsetRomEnd));
+    OkDbgLoad(17, courseId, (u32) textures, 0, "MapTex");
     decodemaptexture(textures);
     CheckCourseMemoryHighWater();
     return vtxCompressed;

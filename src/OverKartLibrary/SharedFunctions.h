@@ -32,10 +32,15 @@
 extern void DisplayFlagGateCheck(Camera* LocalCamera);
 
 
+extern void DisplayObject(void* car, Object* inputObject);
 extern void CollideObject(Player* Car, Object* Target);
 extern void ItemboxCollideCheck(Player* Car, Object* Target);
 extern void DrawPerScreen(Camera* LocalCamera);
+extern void titleMenu(void);
+extern void MiniMapDraw(void);
+extern void gameCode(void);
 extern void allRun(void);
+extern void PrintMenuFunction(void);
 extern void ExecuteItemHook(Player* Car);
 
 
@@ -67,7 +72,6 @@ extern void printDecimal(int X, int Y, float Value, int Length);
 extern void printFloat(int X, int Y, float Value);
 extern int GetRealAddress(int RSPAddress);
 
-extern void loadNiceFont(void);
 extern void loadBigFont(void);
 
 extern ushort CalcVerticalDirection(Vector origin,Vector object);

@@ -16,6 +16,7 @@
 #include "cpu_vehicles_camera_path.h"
 #include "main.h"
 #include "spawn_players.h"
+#include "OverKartHooks.h"
 
 #include <course.h>
 
@@ -909,6 +910,9 @@ void battleview(Camera* camera, Player* player, s8 arg2) {
 void CameraControl(Player* player, Camera* camera, s8 index) {
     s32 cameraIndex;
 
+    if (FlyCamToggle > 0) {
+        return;
+    }
     if (camera == camera1) {
         cameraIndex = 0;
     }

@@ -794,7 +794,7 @@ void KWDisplayEvent(s32 cameraId) {
 }
 
 void render_snowing_effect(s32 arg0) {
-    switch (g_courseID) {
+    switch (Snow3DCourseID) {
         case COURSE_FRAPPE_SNOWLAND:
             if (gGamestate != 9) {
                 if ((finish_zoom_flag == 0) && (g_playerCount == 1)) {
