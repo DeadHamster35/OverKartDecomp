@@ -7,263 +7,263 @@
 #include "audio/load.h"
 #include "audio/data.h"
 
-void Nas_ChLookUse(struct SequenceChannel* seqChannel, s32 recalculateVolume) {
+void NasChLookUse(struct SequenceChannel* SEQChannel, s32 RecalculateVolume) {
     f32 channelVolume;
     s32 i;
 
-    if (seqChannel->changes.as_bitfields.volume || recalculateVolume) {
-        channelVolume = seqChannel->volume * seqChannel->volumeScale * seqChannel->seqPlayer->appliedFadeVolume;
-        if (seqChannel->seqPlayer->muted && (seqChannel->muteBehavior & MUTE_BEHAVIOR_SOFTEN) != 0) {
-            channelVolume = seqChannel->seqPlayer->muteVolumeScale * channelVolume;
+    if (SEQChannel->Changes.AsBitfields.Volume || RecalculateVolume) {
+        channelVolume = SEQChannel->Volume * SEQChannel->volumeScale * SEQChannel->seqPlayer->AppliedFadeVolume;
+        if (SEQChannel->seqPlayer->Muted && (SEQChannel->MuteBehavior & MUTE_BEHAVIOR_SOFTEN) != 0) {
+            channelVolume = SEQChannel->seqPlayer->MuteVolumeScale * channelVolume;
         }
-        seqChannel->appliedVolume = channelVolume * channelVolume;
+        SEQChannel->appliedVolume = channelVolume * channelVolume;
     }
 
-    if (seqChannel->changes.as_bitfields.pan) {
-        seqChannel->pan = seqChannel->newPan * seqChannel->panChannelWeight;
+    if (SEQChannel->Changes.AsBitfields.pan) {
+        SEQChannel->pan = SEQChannel->newPan * SEQChannel->panChannelWeight;
     }
 
     for (i = 0; i < 4; ++i) {
-        struct SequenceChannelLayer* layer = seqChannel->layers[i];
-        if (layer != NULL && layer->enabled && layer->note != NULL) {
-            if (layer->notePropertiesNeedInit) {
-                layer->noteFreqScale = layer->freqScale * seqChannel->freqScale;
-                layer->noteVelocity = layer->velocitySquare * seqChannel->appliedVolume;
-                layer->notePan = (seqChannel->pan + layer->pan * (0x80 - seqChannel->panChannelWeight)) >> 7;
-                layer->notePropertiesNeedInit = false;
+        struct SequenceChannelLayer* layer = SEQChannel->layers[i];
+        if (layer != NULL && layer->Enabled && layer->Note != NULL) {
+            if (layer->NotePropertiesNeedInit) {
+                layer->NoteFreqScale = layer->FreqScale * SEQChannel->FreqScale;
+                layer->NoteVelocity = layer->VelocitySquare * SEQChannel->appliedVolume;
+                layer->NotePan = (SEQChannel->pan + layer->pan * (0x80 - SEQChannel->panChannelWeight)) >> 7;
+                layer->NotePropertiesNeedInit = false;
             } else {
-                if (seqChannel->changes.as_bitfields.freqScale) {
-                    layer->noteFreqScale = layer->freqScale * seqChannel->freqScale;
+                if (SEQChannel->Changes.AsBitfields.FreqScale) {
+                    layer->NoteFreqScale = layer->FreqScale * SEQChannel->FreqScale;
                 }
-                if (seqChannel->changes.as_bitfields.volume || recalculateVolume) {
-                    layer->noteVelocity = layer->velocitySquare * seqChannel->appliedVolume;
+                if (SEQChannel->Changes.AsBitfields.Volume || RecalculateVolume) {
+                    layer->NoteVelocity = layer->VelocitySquare * SEQChannel->appliedVolume;
                 }
-                if (seqChannel->changes.as_bitfields.pan) {
-                    layer->notePan = (seqChannel->pan + layer->pan * (0x80 - seqChannel->panChannelWeight)) >> 7;
+                if (SEQChannel->Changes.AsBitfields.pan) {
+                    layer->NotePan = (SEQChannel->pan + layer->pan * (0x80 - SEQChannel->panChannelWeight)) >> 7;
                 }
             }
         }
     }
-    seqChannel->changes.as_u8 = 0;
+    SEQChannel->Changes.AsU8 = 0;
 }
 
-void Nas_AllocationOnRequest(struct SequencePlayer* seqPlayer) {
+void NasAllocationOnRequest(struct SequencePlayer* seqPlayer) {
     s32 i;
 
-    if (seqPlayer->fadeRemainingFrames != 0) {
-        seqPlayer->fadeVolume += seqPlayer->fadeVelocity;
-        seqPlayer->recalculateVolume = true;
+    if (seqPlayer->FadeRemainingFrames != 0) {
+        seqPlayer->FadeVolume += seqPlayer->FadeVelocity;
+        seqPlayer->RecalculateVolume = true;
 
-        if (seqPlayer->fadeVolume > US_FLOAT2(1)) {
-            seqPlayer->fadeVolume = US_FLOAT2(1);
+        if (seqPlayer->FadeVolume > US_FLOAT2(1)) {
+            seqPlayer->FadeVolume = US_FLOAT2(1);
         }
-        if (seqPlayer->fadeVolume < 0) {
-            seqPlayer->fadeVolume = 0;
+        if (seqPlayer->FadeVolume < 0) {
+            seqPlayer->FadeVolume = 0;
         }
 
-        if (--seqPlayer->fadeRemainingFrames == 0) {
-            if (seqPlayer->state == 2) {
-                Nas_GetNewSubTrack(seqPlayer);
+        if (--seqPlayer->FadeRemainingFrames == 0) {
+            if (seqPlayer->State == 2) {
+                NasGetNewSubTrack(seqPlayer);
                 return;
             }
         }
     }
 
-    if (seqPlayer->recalculateVolume) {
-        seqPlayer->appliedFadeVolume = seqPlayer->fadeVolume * seqPlayer->fadeVolumeScale;
+    if (seqPlayer->RecalculateVolume) {
+        seqPlayer->AppliedFadeVolume = seqPlayer->FadeVolume * seqPlayer->FadeVolumeScale;
     }
 
-    // Process channels
+    // Process Channels
     for (i = 0; i < CHANNELS_MAX; i++) {
-        if (IS_SEQUENCE_CHANNEL_VALID(seqPlayer->channels[i]) == true && seqPlayer->channels[i]->enabled == true) {
-            Nas_ChLookUse(seqPlayer->channels[i], seqPlayer->recalculateVolume);
+        if (IS_SEQUENCE_CHANNEL_VALID(seqPlayer->Channels[i]) == true && seqPlayer->Channels[i]->Enabled == true) {
+            NasChLookUse(seqPlayer->Channels[i], seqPlayer->RecalculateVolume);
         }
     }
 
-    seqPlayer->recalculateVolume = false;
+    seqPlayer->RecalculateVolume = false;
 }
 
-f32 Nas_ChannelInit(struct Portamento* p) {
+f32 NasChannelInit(struct Portamento* p) {
     u32 v0;
     f32 result;
 
-    p->cur += p->speed;
+    p->cur += p->Speed;
     v0 = (u32) p->cur;
 
     if (v0 > 127) {
         v0 = 127;
     }
 
-    result = US_FLOAT(1.0) + p->extent * (gPitchBendFrequencyScale[v0 + 128] - US_FLOAT(1.0));
+    result = US_FLOAT(1.0) + p->Extent * (PitchBendFrequencyScale[v0 + 128] - US_FLOAT(1.0));
     return result;
 }
 
-s16 Nas_CallWaveProcess_Sub(struct VibratoState* vib) {
-    s32 index;
-    vib->time += (s32) vib->rate;
-    index = (vib->time >> 10) & 0x3F;
-    return vib->curve[index] >> 8;
+s16 NasCallWaveProcessSub(struct VibratoState* vib) {
+    s32 Index;
+    vib->Time += (s32) vib->Rate;
+    Index = (vib->Time >> 10) & 0x3F;
+    return vib->Curve[Index] >> 8;
 }
 
-f32 Nas_MainCtrl(struct VibratoState* vib) {
+f32 NasMainCtrl(struct VibratoState* vib) {
     s32 pitchChange;
-    f32 extent;
+    f32 Extent;
     f32 result;
 
-    if (vib->delay != 0) {
-        vib->delay--;
+    if (vib->Delay != 0) {
+        vib->Delay--;
         return 1;
     }
 
-    if (vib->extentChangeTimer) {
-        if (vib->extentChangeTimer == 1) {
-            vib->extent = (s32) vib->seqChannel->vibratoExtentTarget;
+    if (vib->ExtentChangeTimer) {
+        if (vib->ExtentChangeTimer == 1) {
+            vib->Extent = (s32) vib->SEQChannel->vibratoExtentTarget;
         } else {
-            vib->extent += ((s32) vib->seqChannel->vibratoExtentTarget - vib->extent) / (s32) vib->extentChangeTimer;
+            vib->Extent += ((s32) vib->SEQChannel->vibratoExtentTarget - vib->Extent) / (s32) vib->ExtentChangeTimer;
         }
 
-        vib->extentChangeTimer--;
-    } else if (vib->seqChannel->vibratoExtentTarget != (s32) vib->extent) {
-        if ((vib->extentChangeTimer = vib->seqChannel->vibratoExtentChangeDelay) == 0) {
-            vib->extent = (s32) vib->seqChannel->vibratoExtentTarget;
+        vib->ExtentChangeTimer--;
+    } else if (vib->SEQChannel->vibratoExtentTarget != (s32) vib->Extent) {
+        if ((vib->ExtentChangeTimer = vib->SEQChannel->vibratoExtentChangeDelay) == 0) {
+            vib->Extent = (s32) vib->SEQChannel->vibratoExtentTarget;
         }
     }
 
-    if (vib->rateChangeTimer) {
-        if (vib->rateChangeTimer == 1) {
-            vib->rate = (s32) vib->seqChannel->vibratoRateTarget;
+    if (vib->RateChangeTimer) {
+        if (vib->RateChangeTimer == 1) {
+            vib->Rate = (s32) vib->SEQChannel->vibratoRateTarget;
         } else {
-            vib->rate += ((s32) vib->seqChannel->vibratoRateTarget - vib->rate) / (s32) vib->rateChangeTimer;
+            vib->Rate += ((s32) vib->SEQChannel->vibratoRateTarget - vib->Rate) / (s32) vib->RateChangeTimer;
         }
 
-        vib->rateChangeTimer--;
-    } else if (vib->seqChannel->vibratoRateTarget != (s32) vib->rate) {
-        if ((vib->rateChangeTimer = vib->seqChannel->vibratoRateChangeDelay) == 0) {
-            vib->rate = (s32) vib->seqChannel->vibratoRateTarget;
+        vib->RateChangeTimer--;
+    } else if (vib->SEQChannel->vibratoRateTarget != (s32) vib->Rate) {
+        if ((vib->RateChangeTimer = vib->SEQChannel->vibratoRateChangeDelay) == 0) {
+            vib->Rate = (s32) vib->SEQChannel->vibratoRateTarget;
         }
     }
 
-    if (vib->extent == 0) {
+    if (vib->Extent == 0) {
         return 1.0f;
     }
 
-    pitchChange = Nas_CallWaveProcess_Sub(vib);
-    extent = (f32) vib->extent / US_FLOAT(4096.0);
+    pitchChange = NasCallWaveProcessSub(vib);
+    Extent = (f32) vib->Extent / US_FLOAT(4096.0);
 
-    result = US_FLOAT(1.0) + extent * (gPitchBendFrequencyScale[pitchChange + 128] - US_FLOAT(1.0));
+    result = US_FLOAT(1.0) + Extent * (PitchBendFrequencyScale[pitchChange + 128] - US_FLOAT(1.0));
     return result;
 }
 
-void Nas_SweepCalculator(struct Note* note) {
-    if (note->portamento.mode != 0) {
-        note->portamentoFreqScale = Nas_ChannelInit(&note->portamento);
+void NasSweepCalculator(struct Note* Note) {
+    if (Note->Portamento.Mode != 0) {
+        Note->PortamentoFreqScale = NasChannelInit(&Note->Portamento);
     }
-    if (note->vibratoState.active && note->parentLayer != NO_LAYER) {
-        note->vibratoFreqScale = Nas_MainCtrl(&note->vibratoState);
+    if (Note->VibratoState.Active && Note->ParentLayer != NO_LAYER) {
+        Note->VibratoFreqScale = NasMainCtrl(&Note->VibratoState);
     }
 }
 
-void Nas_ModTableRead(struct Note* note) {
+void NasModTableRead(struct Note* Note) {
     struct VibratoState* vib;
-    UNUSED struct SequenceChannel* seqChannel;
-    struct NotePlaybackState* seqPlayerState = (struct NotePlaybackState*) &note->priority;
+    UNUSED struct SequenceChannel* SEQChannel;
+    struct NotePlaybackState* seqPlayerState = (struct NotePlaybackState*) &Note->Priority;
 
-    note->vibratoFreqScale = 1.0f;
-    note->portamentoFreqScale = 1.0f;
+    Note->VibratoFreqScale = 1.0f;
+    Note->PortamentoFreqScale = 1.0f;
 
-    vib = &note->vibratoState;
+    vib = &Note->VibratoState;
 
-    vib->active = true;
-    vib->time = 0;
+    vib->Active = true;
+    vib->Time = 0;
 
-    vib->curve = gWaveSamples[2];
-    vib->seqChannel = note->parentLayer->seqChannel;
-    if ((vib->extentChangeTimer = vib->seqChannel->vibratoExtentChangeDelay) == 0) {
-        vib->extent = FLOAT_CAST(vib->seqChannel->vibratoExtentTarget);
+    vib->Curve = WaveSamples[2];
+    vib->SEQChannel = Note->ParentLayer->SEQChannel;
+    if ((vib->ExtentChangeTimer = vib->SEQChannel->vibratoExtentChangeDelay) == 0) {
+        vib->Extent = FLOAT_CAST(vib->SEQChannel->vibratoExtentTarget);
     } else {
-        vib->extent = FLOAT_CAST(vib->seqChannel->vibratoExtentStart);
+        vib->Extent = FLOAT_CAST(vib->SEQChannel->vibratoExtentStart);
     }
 
-    if ((vib->rateChangeTimer = vib->seqChannel->vibratoRateChangeDelay) == 0) {
-        vib->rate = FLOAT_CAST(vib->seqChannel->vibratoRateTarget);
+    if ((vib->RateChangeTimer = vib->SEQChannel->vibratoRateChangeDelay) == 0) {
+        vib->Rate = FLOAT_CAST(vib->SEQChannel->vibratoRateTarget);
     } else {
-        vib->rate = FLOAT_CAST(vib->seqChannel->vibratoRateStart);
+        vib->Rate = FLOAT_CAST(vib->SEQChannel->vibratoRateStart);
     }
-    vib->delay = vib->seqChannel->vibratoDelay;
+    vib->Delay = vib->SEQChannel->vibratoDelay;
 
-    seqPlayerState->portamento = seqPlayerState->parentLayer->portamento;
+    seqPlayerState->Portamento = seqPlayerState->ParentLayer->Portamento;
 }
 
-void Nas_Modulator(struct AdsrState* adsr, struct AdsrEnvelope* envelope, UNUSED s16* volOut) {
-    adsr->action = 0;
-    adsr->state = ADSR_STATE_DISABLED;
-    adsr->delay = 0;
-    adsr->envelope = envelope;
-    adsr->sustain = 0.0f;
-    adsr->current = 0.0f;
+void NasModulator(struct AdsrState* Adsr, struct AdsrEnvelope* Envelope, UNUSED s16* volOut) {
+    Adsr->Action = 0;
+    Adsr->State = ADSR_STATE_DISABLED;
+    Adsr->Delay = 0;
+    Adsr->Envelope = Envelope;
+    Adsr->Sustain = 0.0f;
+    Adsr->Current = 0.0f;
 }
 
-f32 Nas_ChannelModulation(struct AdsrState* adsr) {
-    u8 action = adsr->action;
-    u8 state = adsr->state;
-    switch (state) {
+f32 NasChannelModulation(struct AdsrState* Adsr) {
+    u8 Action = Adsr->Action;
+    u8 State = Adsr->State;
+    switch (State) {
         case ADSR_STATE_DISABLED:
             return 0;
 
         case ADSR_STATE_INITIAL: {
-            if (action & ADSR_ACTION_HANG) {
-                adsr->state = ADSR_STATE_HANG;
+            if (Action & ADSR_ACTION_HANG) {
+                Adsr->State = ADSR_STATE_HANG;
                 break;
             }
             // fallthrough
         }
 
         case ADSR_STATE_START_LOOP:
-            adsr->envIndex = 0;
-            adsr->state = ADSR_STATE_LOOP;
+            Adsr->EnvIndex = 0;
+            Adsr->State = ADSR_STATE_LOOP;
             // fallthrough
 
-        restart:
+        Restart:
         case ADSR_STATE_LOOP:
-            adsr->delay = BSWAP16(adsr->envelope[adsr->envIndex].delay);
-            switch (adsr->delay) {
+            Adsr->Delay = BSWAP16(Adsr->Envelope[Adsr->EnvIndex].Delay);
+            switch (Adsr->Delay) {
                 case ADSR_DISABLE:
-                    adsr->state = ADSR_STATE_DISABLED;
+                    Adsr->State = ADSR_STATE_DISABLED;
                     break;
                 case ADSR_HANG:
-                    adsr->state = ADSR_STATE_HANG;
+                    Adsr->State = ADSR_STATE_HANG;
                     break;
                 case ADSR_GOTO:
-                    adsr->envIndex = BSWAP16(adsr->envelope[adsr->envIndex].arg);
-                    goto restart;
+                    Adsr->EnvIndex = BSWAP16(Adsr->Envelope[Adsr->EnvIndex].arg);
+                    goto Restart;
                 case ADSR_RESTART:
-                    adsr->state = ADSR_STATE_INITIAL;
+                    Adsr->State = ADSR_STATE_INITIAL;
                     break;
 
                 default:
-                    if (adsr->delay >= 4) {
-                        adsr->delay = adsr->delay * gAudioBufferParameters.updatesPerFrame /
-                                      gAudioBufferParameters.presetUnk4 / 4;
+                    if (Adsr->Delay >= 4) {
+                        Adsr->Delay = Adsr->Delay * AudioBufferParameters.UpdatesPerFrame /
+                                      AudioBufferParameters.PresetUnk4 / 4;
                     }
-                    if (adsr->delay == 0) {
-                        adsr->delay = 1;
+                    if (Adsr->Delay == 0) {
+                        Adsr->Delay = 1;
                     }
-                    adsr->target = (f32) BSWAP16(adsr->envelope[adsr->envIndex].arg) / 32767.0f;
-                    adsr->target = adsr->target * adsr->target;
-                    adsr->velocity = (adsr->target - adsr->current) / adsr->delay;
-                    adsr->state = ADSR_STATE_FADE;
-                    adsr->envIndex++;
+                    Adsr->Target = (f32) BSWAP16(Adsr->Envelope[Adsr->EnvIndex].arg) / 32767.0f;
+                    Adsr->Target = Adsr->Target * Adsr->Target;
+                    Adsr->Velocity = (Adsr->Target - Adsr->Current) / Adsr->Delay;
+                    Adsr->State = ADSR_STATE_FADE;
+                    Adsr->EnvIndex++;
                     break;
             }
-            if (adsr->state != ADSR_STATE_FADE) {
+            if (Adsr->State != ADSR_STATE_FADE) {
                 break;
             }
             // fallthrough
 
         case ADSR_STATE_FADE:
-            adsr->current += adsr->velocity;
-            if (--adsr->delay <= 0) {
-                adsr->state = ADSR_STATE_LOOP;
+            Adsr->Current += Adsr->Velocity;
+            if (--Adsr->Delay <= 0) {
+                Adsr->State = ADSR_STATE_LOOP;
             }
             // fallthrough
 
@@ -272,50 +272,50 @@ f32 Nas_ChannelModulation(struct AdsrState* adsr) {
 
         case ADSR_STATE_DECAY:
         case ADSR_STATE_RELEASE: {
-            adsr->current -= adsr->fadeOutVel;
-            if (adsr->sustain != 0.0f && state == ADSR_STATE_DECAY) {
-                if (adsr->current < adsr->sustain) {
-                    adsr->current = adsr->sustain;
-                    adsr->delay = 128;
-                    adsr->state = ADSR_STATE_SUSTAIN;
+            Adsr->Current -= Adsr->FadeOutVel;
+            if (Adsr->Sustain != 0.0f && State == ADSR_STATE_DECAY) {
+                if (Adsr->Current < Adsr->Sustain) {
+                    Adsr->Current = Adsr->Sustain;
+                    Adsr->Delay = 128;
+                    Adsr->State = ADSR_STATE_SUSTAIN;
                 }
                 break;
             }
 
-            if (adsr->current < 0.00001f) {
-                adsr->current = 0.0f;
-                adsr->state = ADSR_STATE_DISABLED;
+            if (Adsr->Current < 0.00001f) {
+                Adsr->Current = 0.0f;
+                Adsr->State = ADSR_STATE_DISABLED;
             }
             break;
         }
 
         case ADSR_STATE_SUSTAIN:
-            adsr->delay -= 1;
-            if (adsr->delay == 0) {
-                adsr->state = ADSR_STATE_RELEASE;
+            Adsr->Delay -= 1;
+            if (Adsr->Delay == 0) {
+                Adsr->State = ADSR_STATE_RELEASE;
             }
             break;
     }
 
-    if ((action & ADSR_ACTION_DECAY)) {
-        adsr->state = ADSR_STATE_DECAY;
-        adsr->action = action & ~ADSR_ACTION_DECAY;
+    if ((Action & ADSR_ACTION_DECAY)) {
+        Adsr->State = ADSR_STATE_DECAY;
+        Adsr->Action = Action & ~ADSR_ACTION_DECAY;
     }
 
-    if ((action & ADSR_ACTION_RELEASE)) {
-        adsr->state = ADSR_STATE_RELEASE;
-        adsr->action = action & ~ADSR_ACTION_RELEASE;
+    if ((Action & ADSR_ACTION_RELEASE)) {
+        Adsr->State = ADSR_STATE_RELEASE;
+        Adsr->Action = Action & ~ADSR_ACTION_RELEASE;
     }
 
-    if (adsr->current < 0.0f) {
+    if (Adsr->Current < 0.0f) {
         // Don't actually know where this goes, but we need that string
         // somewhere in the .data section for this file
         eu_stubbed_printf_0("Env-Clear 0\n");
         return 0.0f;
     }
-    if (adsr->current > 1.0f) {
-        eu_stubbed_printf_1("Audio:Envp: overflow  %f\n", adsr->current);
+    if (Adsr->Current > 1.0f) {
+        eu_stubbed_printf_1("Audio:Envp: overflow  %f\n", Adsr->Current);
         return 1.0f;
     }
-    return adsr->current;
+    return Adsr->Current;
 }

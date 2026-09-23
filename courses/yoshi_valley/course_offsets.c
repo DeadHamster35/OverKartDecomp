@@ -16,7 +16,7 @@ extern u8 gTexture643B3C[];
 extern u8 gTextureSignWoodRedArrow[];
 extern u8 gTexture68DEC0[];
 
-const course_texture yoshi_valley_textures[] = {
+const CourseTexture yoshi_valley_textures[] = {
     { gTexture66EBF0, 0x0146, 0x0800, 0x0 },
     { gTextureWoodBridgeSlats, 0x0DAB, 0x1000, 0x0 },
     { gTexture65E2EC, 0x02B0, 0x0800, 0x0 },

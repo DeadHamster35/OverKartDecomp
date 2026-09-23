@@ -33,8 +33,8 @@ static void Mtx_Identity(AffineMtx* m) {
 
 // Rotate around Z: affects X,Y columns
 static void Mtx_RotateZ(AffineMtx* m, short ang) {
-    float s = sinT(ang);
-    float c = cosT(ang);
+    float s = SinT(ang);
+    float c = CosT(ang);
 
     {
         int row;
@@ -49,8 +49,8 @@ static void Mtx_RotateZ(AffineMtx* m, short ang) {
 
 // Rotate around Y: affects X,Z columns
 static void Mtx_RotateY(AffineMtx* m, short ang) {
-    float s = sinT(ang);
-    float c = cosT(ang);
+    float s = SinT(ang);
+    float c = CosT(ang);
 
     {
         int row;
@@ -65,8 +65,8 @@ static void Mtx_RotateY(AffineMtx* m, short ang) {
 
 // Rotate around X: affects Y,Z columns
 static void Mtx_RotateX(AffineMtx* m, short ang) {
-    float s = sinT(ang);
-    float c = cosT(ang);
+    float s = SinT(ang);
+    float c = CosT(ang);
 
     {
         int row;
@@ -140,7 +140,7 @@ void GetLinear(OKSkeleton *Bone, float Scale, int Frame)
                 NDistance[2] = PositionData[ThisKey].Data[2] - PositionData[ThisKey - 1].Data[2];
 
                 TDistance = (float)(PositionData[ThisKey].Time - PositionData[ThisKey - 1].Time);
-                RelativeT = (float)(Frame - PositionData[ThisKey - 1].Time); // Get time relative to last keyframe;
+                RelativeT = (float)(Frame - PositionData[ThisKey - 1].Time); // Get Time relative to last keyframe;
                 TRatio = (float)((float)RelativeT / (float)TDistance);
                 LinearTranslation[0] = PositionData[ThisKey - 1].Data[0] + (short)(NDistance[0] * (TRatio));
                 LinearTranslation[1] = PositionData[ThisKey - 1].Data[1] + (short)(NDistance[1] * (TRatio));
@@ -185,7 +185,7 @@ void GetLinear(OKSkeleton *Bone, float Scale, int Frame)
                 NDistance[2] = WrapDelta(RotationData[ThisKey].Data[2] - RotationData[ThisKey - 1].Data[2]);
 
                 TDistance = (float)(RotationData[ThisKey].Time - RotationData[ThisKey - 1].Time);
-                RelativeT = (float)(Frame - RotationData[ThisKey - 1].Time); // Get time relative to last keyframe;
+                RelativeT = (float)(Frame - RotationData[ThisKey - 1].Time); // Get Time relative to last keyframe;
                 TRatio = (float)((float)RelativeT / (float)TDistance);
 
                 LinearRotation[0] = (short)(RotationData[ThisKey - 1].Data[0] + NDistance[0] * (TRatio));
@@ -230,7 +230,7 @@ void GetLinear(OKSkeleton *Bone, float Scale, int Frame)
 
 
                     TDistance = AnimeData->ScalingData[ThisKey].Time - AnimeData->ScalingData[ThisKey - 1].Time;
-                    RelativeT = Frame - AnimeData->ScalingData[ThisKey - 1].Time; //Get time relative to last keyframe;
+                    RelativeT = Frame - AnimeData->ScalingData[ThisKey - 1].Time; //Get Time relative to last keyframe;
                     TRatio = ((float)RelativeT / (float)TDistance);
                     LinearScaling[0] = (short)(AnimeData->ScalingData[ThisKey - 1].Data[0] + NDistance[0] * (TRatio));
                     LinearScaling[1] = (short)(AnimeData->ScalingData[ThisKey - 1].Data[1] + NDistance[1] * (TRatio));
@@ -258,23 +258,23 @@ void SkeletalMatrix(OKSkeleton *Bone, float Scale, int Frame)
 {
     GetLinear(Bone, Scale, Frame);
     
-    objectPosition[0] = (float)LinearTranslation[0] * 0.1f;
-    objectPosition[1] = (float)LinearTranslation[1] * 0.1f;
-    objectPosition[2] = (float)LinearTranslation[2] * 0.1f;
+    ObjectPosition[0] = (float)LinearTranslation[0] * 0.1f;
+    ObjectPosition[1] = (float)LinearTranslation[1] * 0.1f;
+    ObjectPosition[2] = (float)LinearTranslation[2] * 0.1f;
 
     
 
-    objectAngle[0] = LinearRotation[0];
-    objectAngle[1] = LinearRotation[1];
-    objectAngle[2] = LinearRotation[2];
+    ObjectAngle[0] = LinearRotation[0];
+    ObjectAngle[1] = LinearRotation[1];
+    ObjectAngle[2] = LinearRotation[2];
     
 
-    CreateAnimeMatrix(&AffineMatrix, objectPosition, objectAngle);
+    CreateAnimeMatrix(&AffineMatrix, ObjectPosition, ObjectAngle);
     //ScaleMatrixXYZFixed(GlobalAffine,LinearScaling);
     
 
-    //AffineToMtx(&gDynamicP->objectmodeling[gMatrixCount],AffineMatrix);
-    //gSPMatrix(GraphPtrOffset++, K0_TO_PHYS((u32) &(gDynamicP->objectmodeling[gMatrixCount++])), G_MTX_MODELVIEW|G_MTX_MUL|G_MTX_PUSH);
+    //AffineToMtx(&DynamicP->objectmodeling[MatrixCount],AffineMatrix);
+    //gSPMatrix(GraphPtrOffset++, K0_TO_PHYS((u32) &(DynamicP->objectmodeling[MatrixCount++])), G_MTX_MODELVIEW|G_MTX_MUL|G_MTX_PUSH);
     
     SetMatrix(AffineMatrix, 3);
 }
@@ -283,8 +283,8 @@ void DrawSkeleton(OKSkeleton *BoneData, int CurrentFrame)
 {
     
     OKNode *NodeArray = (OKNode *)(GetRealAddress(0x0A000000 | BoneData->NodeOffset));
-    uint LastTextureOffset;
-    uint *MeshOffsets;
+    Uint LastTextureOffset;
+    Uint *MeshOffsets;
     OKSkeleton *Skeletor;
     SkeletalMatrix(BoneData, 0.1f, CurrentFrame);
     LastTextureOffset = 0;
@@ -300,18 +300,18 @@ void DrawSkeleton(OKSkeleton *BoneData, int CurrentFrame)
 
         if (LastTextureOffset != NodeArray[CurrentNode].TextureOffset)
         {
-            // skip reloading identical textures
+            // skip reloading identical Textures
 
             LastTextureOffset = NodeArray[CurrentNode].TextureOffset;
             gSPDisplayList(GraphPtrOffset++, NodeArray[CurrentNode].TextureOffset | 0x0A000000);
             
         }
 
-        MeshOffsets = (uint *)(GetRealAddress(NodeArray[CurrentNode].MeshOffset | 0x0A000000));
+        MeshOffsets = (Uint *)(GetRealAddress(NodeArray[CurrentNode].MeshOffset | 0x0A000000));
         
 
         {
-            uint CurrentMesh;
+            Uint CurrentMesh;
         for (CurrentMesh = 0; CurrentMesh < NodeArray[CurrentNode].MeshCount; CurrentMesh++)
         {
             gSPDisplayList(GraphPtrOffset++, (MeshOffsets[CurrentMesh] | 0x0A000000));
@@ -339,8 +339,8 @@ int CheckDraw(int Player, int Object, float RenderRadius)
     OKObject *LocalObject = (OKObject *)&OKObjectArray[Object];
 
     return TestCollideSphere(
-        LocalObject->ObjectData.position, RenderRadius,
-        GlobalPlayer[Player].position, GlobalPlayer[Player].radius);
+        LocalObject->ObjectData.Position, RenderRadius,
+        GlobalPlayer[Player].Position, GlobalPlayer[Player].Radius);
 }
 
 void DrawAnimeObject(int ObjectTypeIndex, int PlayerIndex, int ForceRender)
@@ -367,7 +367,7 @@ void DrawAnimeObject(int ObjectTypeIndex, int PlayerIndex, int ForceRender)
 
             GlobalIntA = GetRealAddress(0x0A000000 | LocalType->ObjectAnimations);
 
-            GlobalAddressA = GetRealAddress(*(uint *)GlobalIntA | 0x0A000000);
+            GlobalAddressA = GetRealAddress(*(Uint *)GlobalIntA | 0x0A000000);
             GlobalAddressA += 4;
 
             Skeletor = (OKSkeleton *)(GlobalAddressA);

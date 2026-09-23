@@ -2,27 +2,27 @@
 #include "save.h"
 #include "replays.h"
 
-void enemy_tekagen_sub(s32 playerId, Player* player);
-void RubberBandMan(s32 playerId, Player* player);
+void EnemyTekagenSub(s32 PlayerId, Player* Player);
+void RubberBandMan(s32 PlayerId, Player* Player);
 
 /*
  * Hook points for projects that include OverKart Library.
  * Keep stock fall-through here until a host project supplies its own.
  */
 
-void gameCodeDefault(void)
+void GameCodeDefault(void)
 {
-	gameCode();
+	GameCode();
 }
 
-void titleMenuDefault(void)
+void TitleMenuDefault(void)
 {
-	titleMenu();
+	TitleMenu();
 }
 
-void allRunDefault(void)
+void AllRunDefault(void)
 {
-	allRun();
+	AllRun();
 }
 
 void PrintMenuFunctionDefault(void)
@@ -55,9 +55,9 @@ void MiniMapDrawDefault(void)
 	MiniMapDraw();
 }
 
-void BalloonCheckDefault(Player* player, f32 arg1, f32 arg2, s8 playerIndex, s8 balloonIndex, s16 rotation)
+void BalloonCheckDefault(Player* Player, f32 arg1, f32 Arg2, s8 playerIndex, s8 balloonIndex, s16 Rotation)
 {
-	BalloonDisp(player, arg1, arg2, playerIndex, balloonIndex, rotation);
+	BalloonDisp(Player, arg1, Arg2, playerIndex, balloonIndex, Rotation);
 }
 
 void ItemboxCollideCheckDefault(Player* Car, Object* Target)
@@ -65,40 +65,40 @@ void ItemboxCollideCheckDefault(Player* Car, Object* Target)
 	ItemboxCollideCheck(Car, Target);
 }
 
-void KWKumo_Alloc_Hook_Default(void)
+void KWKumoAllocHookDefault(void)
 {
 	if (HotSwapID > 0)
 	{
-		LoadCustomHeader(courseValue + gpCourseIndex);
+		LoadCustomHeader(CourseValue + GPCourseIndex);
 
 		SetCloudType((char) OverKartHeader.SkyType);
 		SetWeatherType((char) OverKartHeader.WeatherType);
-		GlobalShortA = g_courseID;
-		g_courseID = CloudCourseID;
-		KWKumo_Alloc();
-		g_courseID = GlobalShortA;
+		GlobalShortA = CourseID;
+		CourseID = CloudCourseID;
+		KWKumoAlloc();
+		CourseID = GlobalShortA;
 	}
 	else
 	{
-		KWKumo_Alloc();
+		KWKumoAlloc();
 	}
 }
 
-void KWChart_Kumo_Hook_Default(int screen_num)
+void KWChartKumoHookDefault(int screen_num)
 {
 	AnmObject* cloud;
 	int cloudcount;
 
 	if (HotSwapID > 0)
 	{
-		GlobalShortA = g_courseID;
-		g_courseID = CloudCourseID;
-		KWChart_Kumo(screen_num);
-		g_courseID = GlobalShortA;
+		GlobalShortA = CourseID;
+		CourseID = CloudCourseID;
+		KWChartKumo(screen_num);
+		CourseID = GlobalShortA;
 	}
 	else
 	{
-		KWChart_Kumo(screen_num);
+		KWChartKumo(screen_num);
 	}
 
 	if ((char) OverKartHeader.WeatherType == 0)
@@ -107,7 +107,7 @@ void KWChart_Kumo_Hook_Default(int screen_num)
 	}
 
 	cloudcount = CloudCount1P;
-	if (g_playerCount == 2)
+	if (PlayerCount == 2)
 	{
 		cloudcount = CloudCount2P;
 	}
@@ -116,13 +116,13 @@ void KWChart_Kumo_Hook_Default(int screen_num)
 		int i;
 		for (i = 0; i < cloudcount; i++)
 		{
-			if (g_CloudAllocate[i] == 0)
+			if (CloudAllocate[i] == 0)
 			{
 				return;
 			}
-			cloud = (AnmObject*) &g_DynamicObjects[g_CloudAllocate[i]];
-			cloud->velocity[1] = -5.0f;
-			cloud->scale = 0.4;
+			cloud = (AnmObject*) &DynamicObjects[CloudAllocate[i]];
+			cloud->Velocity[1] = -5.0f;
+			cloud->Scale = 0.4;
 		}
 	}
 }
@@ -134,33 +134,33 @@ void MapStartupDefault(short InputID)
 	VertexMemoryPointer = VERTEX_MEMORY_TOP;
 	LastMemoryPointer = LAST_MEMORY_TOP;
 	ObjectMemoryPointer = (uintptr_t) ok_ObjectPoolStart;
-	g_courseFaceMaxIndex = 0;
+	CourseFaceMaxIndex = 0;
 	if (HotSwapID > 0)
 	{
-		if (g_gameMode != GAMEMODE_BATTLE)
+		if (GameMode != GAMEMODE_BATTLE)
 		{
-			g_courseID = 0;
+			CourseID = 0;
 		}
 		else
 		{
-			g_courseID = 15;
+			CourseID = 15;
 		}
-		InputID = g_courseID;
-		g_loadedcourseFlag = g_courseID;
+		InputID = CourseID;
+		LoadedcourseFlag = CourseID;
 	}
-	LoadCustomHeader(courseValue + gpCourseIndex);
+	LoadCustomHeader(CourseValue + GPCourseIndex);
 	SetCustomData();
-	setSky();
-	setWater();
+	SetSky();
+	SetWater();
 	LoadMapData(InputID);
 	LoadIceKage();
 	CheckCourseMemoryHighWater();
 
 	if (HotSwapID > 0)
 	{
-		loadTextureScrollTranslucent();
-		runKillDisplayObjects();
-		loadMinimap();
+		LoadTextureScrollTranslucent();
+		RunKillDisplayObjects();
+		LoadMinimap();
 	}
 }
 
@@ -185,7 +185,7 @@ void DrawMapSelectDefault(void)
 
 void MapSelectMenuDefault(void)
 {
-	if (g_gameMode == GAMEMODE_BATTLE)
+	if (GameMode == GAMEMODE_BATTLE)
 	{
 		GlobalShortA = 4;
 	}
@@ -193,17 +193,17 @@ void MapSelectMenuDefault(void)
 	{
 		GlobalShortA = 1;
 	}
-	if (menuScreenA == GlobalShortA)
+	if (MenuScreenA == GlobalShortA)
 	{
 		if ((GlobalController[4]->ButtonPressed & BTN_CLEFT) == BTN_CLEFT)
 		{
-			swapHS(0);
+			SwapHS(0);
 		}
 		else if ((GlobalController[4]->ButtonPressed & BTN_CRIGHT) == BTN_CRIGHT)
 		{
-			swapHS(1);
+			SwapHS(1);
 		}
-		LoadCustomHeader(courseValue);
+		LoadCustomHeader(CourseValue);
 
 		if ((GlobalController[4]->ButtonPressed & BTN_R) == BTN_R)
 		{
@@ -214,20 +214,20 @@ void MapSelectMenuDefault(void)
 	*(int*) (&PlayerOK) = 0;
 	if (HotSwapID > 0)
 	{
-		courseValue = -1;
-		gpCourseIndex = 0;
-		switch (g_gameMode)
+		CourseValue = -1;
+		GPCourseIndex = 0;
+		switch (GameMode)
 		{
 			case 0:
 			{
-				courseValue = (g_cupSelect * 4);
+				CourseValue = (CupSelect * 4);
 				break;
 			}
 			case 1:
 			case 2:
 			case 3:
 			{
-				courseValue = (g_cupSelect * 4) + g_courseSelect;
+				CourseValue = (CupSelect * 4) + CourseSelect;
 				break;
 			}
 		}
@@ -238,15 +238,15 @@ void MapSelectMenuDefault(void)
 	}
 }
 
-void check_romghostDefault(void)
+void CheckRomghostDefault(void)
 {
 	if (HotSwapID == 0)
 	{
-		check_romghost();
+		CheckRomghost();
 		return;
 	}
 
-	romghost_status = 1;
+	RomghostStatus = 1;
 }
 
 void DMAROMGhostDefault(void)
@@ -282,7 +282,7 @@ void SaveFunc800B5948Default(void)
 	SaveFunc800B5948();
 }
 
-void RubberBandManDefault(s32 playerId, Player* player)
+void RubberBandManDefault(s32 PlayerId, Player* Player)
 {
-	RubberBandMan(playerId, player);
+	RubberBandMan(PlayerId, Player);
 }

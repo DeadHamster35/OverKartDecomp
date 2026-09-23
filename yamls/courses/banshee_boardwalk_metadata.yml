@@ -10,7 +10,7 @@ course:
   cpu_behaviour_ptr: D_0D009058
   cpu_maximum_separation: 40.0f
   cpu_minimum_separation: 0.4f
-  distance_limmit_ptr: dist_limmit_pat_NORMAL
+  distance_limmit_ptr: DistLimmitPatNORMAL
   cpu_steering_sensitivity: 53
   bomb_kart_spawns: # 7 bomb kart spawn locations
     - [0x006e, 0x0003, 0.8333333, 0.0, 0.0, 0.0, 0.0]
@@ -32,18 +32,18 @@ course:
   path_table:
     [
       d_course_banshee_boardwalk_track_path,
-      "&nullPath",
-      "&nullPath",
-      "&nullPath",
+      "&NullPath",
+      "&NullPath",
+      "&NullPath",
     ]
 
   # Unused except in podium ceremony
   path_table_unknown:
     [
       d_course_banshee_boardwalk_unknown_path,
-      "&nullPath",
-      "&nullPath",
-      "&nullPath",
+      "&NullPath",
+      "&NullPath",
+      "&NullPath",
     ]
 
   sky_colors: [0, 0, 0, 0, 0, 0]

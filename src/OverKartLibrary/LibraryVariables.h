@@ -2,10 +2,10 @@
 #define LibraryVariablesH
 #include "MainInclude.h"
 
-extern uint GlobalAddressA, GlobalAddressB, GlobalAddressC, GlobalAddressD;
+extern Uint GlobalAddressA, GlobalAddressB, GlobalAddressC, GlobalAddressD;
 extern int GlobalIntA, GlobalIntB, GlobalIntC, GlobalIntD;
-extern int64     GlobalInt64;
-extern uint64    GlobalUInt64;
+extern Int64     GlobalInt64;
+extern Uint64    GlobalUInt64;
 extern unsigned int GlobalUIntA, GlobalUIntB;
 extern float GlobalFloatA, GlobalFloatB, GlobalFloatC, GlobalFloatD;
 extern char GlobalCharA,GlobalCharB,GlobalCharC,GlobalCharD,GlobalCharE,GlobalFrameChar;
@@ -14,38 +14,38 @@ extern short GlobalShortA, GlobalShortB, GlobalShortC, GlobalShortD;
 extern unsigned short GlobalUShortA, GlobalUShortB;
 extern bool GlobalBoolA, GlobalBoolB, GlobalBoolC, GlobalBoolD;
 extern int LoopValue;
-extern uint GlobalFrameCount;
-extern uint ClockCycle[2], OldCycle[2];
-extern uint CycleCount[2];
+extern Uint GlobalFrameCount;
+extern Uint ClockCycle[2], OldCycle[2];
+extern Uint CycleCount[2];
 
 extern bool TempoBool, StopSwop;
 extern char ConsolePlatform, EmulatorPlatform;
-extern uint CartridgeStatus;
+extern Uint CartridgeStatus;
 extern bool SurfaceExplorerMode;
 extern bool CustomWaterHeight[];
-extern short g_EchoStart;
-extern short g_EchoStop;
+extern short EchoStart;
+extern short EchoStop;
 extern short CloudCourseID, Snow3DCourseID;
-extern short asm_CupCount;
-extern s32 ok_CheckSplashEnabled;
-extern s32 ok_LakituIce;
-extern s32 ok_ForceRoulette;
-extern s8 ok_PSelSkipCursor[4];
-extern s8 ok_PSelSkipPortrait[8];
-extern s32 ok_PSelSkipAnime;
-extern s32 ok_MusicIn3P4P;
+extern short AsmCupCount;
+extern s32 OKCheckSplashEnabled;
+extern s32 OKLakituIce;
+extern s32 OKForceRoulette;
+extern s8 OKPSelSkipCursor[4];
+extern s8 OKPSelSkipPortrait[8];
+extern s32 OKPSelSkipAnime;
+extern s32 OKMusicIn3P4P;
 extern char CloudCourseValue, Snow3DCourseValue, WeatherCourseValue, Toggle3DSnow;
 extern short BattleGametype;
 
 extern short MenuPosition[2];
-extern ushort PerspectiveValue;
+extern Ushort PerspectiveValue;
 
 
-extern int wholeNumber;
-extern int decimalNumber;
-extern int printOffsetA, printOffsetB, printOffsetC, printOffsetD;
-extern int minutes;
-extern int seconds;
+extern int WholeNumber;
+extern int DecimalNumber;
+extern int PrintOffsetA, PrintOffsetB, PrintOffsetC, PrintOffsetD;
+extern int Minutes;
+extern int Seconds;
 extern Object *GlobalObjectA, *GlobalObjectB;
 extern OKRAMHeader OverKartRAMHeader;
 
@@ -53,7 +53,7 @@ extern OKRAMHeader OverKartRAMHeader;
 extern short AnimationTimer;
 
 extern short DynFPSModifier;
-extern char ok_StaticTempoOnly;
+extern char OKStaticTempoOnly;
 
 extern float ZeroVector[3];
 
@@ -73,8 +73,8 @@ extern FaceStruct *CourseFaceStruct;
 extern struct PlayerState *GlobalPlayerState[];  
 extern Hud *GlobalHud[];
 extern char *GlobalLightning[];
-extern struct Skycolor *GlobalSkyColorTop[20];
-extern struct Skycolor *GlobalSkyColorBot[20];
+extern SkyColor *GlobalSkyColorTop[20];
+extern SkyColor *GlobalSkyColorBot[20];
 extern struct Playercolor *GlobalPlayercolor[];
 
 
@@ -86,11 +86,11 @@ extern short CoinCount[8];
 extern short IFrames[8];
 extern float AffineMatrix[4][4];
 extern float AffineMatrix2[4][4];
-extern float objectPosition[3];
-extern Vector objectVector[];
-extern float objectVelocity[3];
-extern short objectAngle[3];
-extern short objectIndex;
+extern float ObjectPosition[3];
+extern Vector ObjectVector[];
+extern float ObjectVelocity[3];
+extern short ObjectAngle[3];
+extern short ObjectIndex;
 //
 //
 extern struct OKEngine EngineClass[3][3];
@@ -127,20 +127,20 @@ extern char StatsID;
 
 
 //SharedFunctions
-extern long dataLength; //
-extern int *targetAddress;
-extern int *sourceAddress;
-extern int *tempPointer;
-extern long *graphPointer;
-extern int *tkmPoint;
+extern long DataLength; //
+extern int *TargetAddress;
+extern int *SourceAddress;
+extern int *TempPointer;
+extern long *GraphPointer;
+extern int *TkmPoint;
 extern int RSPNumber;
 extern int RSPOffset;
-extern char *hex;
+extern char *Hex;
 
-extern ushort RedTextPalette[];
-extern ushort BlueTextPalette[];
-extern ushort GreenTextPalette[];
-extern ushort WhiteTextPalette[];
+extern Ushort RedTextPalette[];
+extern Ushort BlueTextPalette[];
+extern Ushort GreenTextPalette[];
+extern Ushort WhiteTextPalette[];
 
 extern char RedPaletteF3D[];
 extern char BluePaletteF3D[];
@@ -149,11 +149,11 @@ extern char WhitePaletteF3D[];
 //
 
 //Stock Names
-extern char *stockCourseNames[];
-extern char *stockCharacterNames[];
+extern char *StockCourseNames[];
+extern char *StockCharacterNames[];
 
-extern BalloonColor stockBalloonColors[];
-extern BalloonColor stockAdjustColors[];
+extern BalloonColor StockBalloonColors[];
+extern BalloonColor StockAdjustColors[];
 
 //Custom Levels
 
@@ -162,22 +162,22 @@ extern BalloonColor stockAdjustColors[];
 
 extern struct OKObject OKObjectArray[];
 extern OKAIPath CPUPaths[];
-extern short hsLabel, raceStatus, startupSwitch, courseSwapped;
-extern bool scrollLock;
-extern int currentHeaderAddress;
+extern short HsLabel, RaceStatus, StartupSwitch, CourseSwapped;
+extern bool ScrollLock;
+extern int CurrentHeaderAddress;
 extern short CoinPositions[8][3]; //8 Coins XYZ
 
 extern short FireParticlePositions[8][3];
 
-extern ushort MenuBlink, AudioLanguage;
-extern short gpCourseIndex, HotSwapID, HotSwapGP, gpTimeCheck, courseValue;
+extern Ushort MenuBlink, AudioLanguage;
+extern short GPCourseIndex, HotSwapID, HotSwapGP, GPTimeCheck, CourseValue;
 extern short MenuAngle[4];
 
 extern char ButtonHolding[4];
 extern char ButtonTimer[4];
-extern ushort MenuButtonHeld[4];
+extern Ushort MenuButtonHeld[4];
 extern bool MenuToggle;
-extern float gpTotalTime;
+extern float GPTotalTime[2];
 
 
 extern int VersionNumber;
@@ -192,10 +192,10 @@ extern int ScrollValues[32][2];
 
 
 
-extern char *cupNames[];
-extern int cupChar[];
-extern char *courseNames[];
-extern int courseChar[];
+extern char *CupNames[];
+extern int CupChar[];
+extern char *CourseNames[];
+extern int CourseChar[];
 
 
 extern Vector Origin;

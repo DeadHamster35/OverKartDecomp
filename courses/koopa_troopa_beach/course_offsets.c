@@ -18,7 +18,7 @@ extern u8 gTexture669570[];
 extern u8 gTextureWaves1[];
 extern u8 gTextureWaves2[];
 
-const course_texture koopa_troopa_beach_textures[] = {
+const CourseTexture koopa_troopa_beach_textures[] = {
     { gTexture643B3C, 0x0798, 0x0800, 0x0 },
     { gTexture66A3DC, 0x07C5, 0x0800, 0x0 },
     { gTextureSignWoodRedArrow, 0x04E1, 0x1000, 0x0 },

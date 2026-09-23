@@ -3,11 +3,11 @@ typedef struct BKPathfinder{
      short	TargetPath, LastPath; //Current and last path indicies
 	float	Distance; //Distance from end/beginning of path
      float     MaxSpeed;
-	Vector	Target; //Array of floats giving x,y,z position of target (e.g. a rival or flag)
+	Vector	Target; //Array of floats giving x,y,z Position of Target (e.g. a rival or Flag)
      short     Progression, NearestMarker; //Step along the path
-     float	NearestMarkerHeight; //Height of nearest marker (used for finding falls)
+     float	NearestMarkerHeight; //Height of nearest marker (Used for finding falls)
      short     ProgressTimer, ShootingTimer;
-     char      Direction, PathType; //Direction along the path, +1 or -1, if the start of the path is IDed, will be +1, if the end of the path is IDed, will be -1     
+     char      Direction, PathType; //Direction along the path, +1 or -1, if the Start of the path is IDed, will be +1, if the end of the path is IDed, will be -1     
      char     Status, RivalPlayer;
      bool		SlowDown; //Boolean denoting if bot should slow down near end of path or not
 
@@ -20,13 +20,13 @@ typedef struct BKPathfinder{
 
 typedef struct OKAIHeader
 {
-     uint CoursePaths; //uint array of segmented addresses 0x4
-     uint CourseRamps;
-     uint CourseDrops;
-     uint PathLengths; //short array of path lengths 0x2
-     uint RampLengths;
-     uint DropLengths;
-     ushort TotalPaths, TotalRamps, TotalDrops;
+     Uint CoursePaths; //Uint array of segmented addresses 0x4
+     Uint CourseRamps;
+     Uint CourseDrops;
+     Uint PathLengths; //short array of path lengths 0x2
+     Uint RampLengths;
+     Uint DropLengths;
+     Ushort TotalPaths, TotalRamps, TotalDrops;
 } OKAIHeader;
 
 
@@ -51,14 +51,14 @@ extern void FindFurthestNode(float CurrentPosition[],  float FoundNodePosition[]
 extern void UpdateRacePath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker *PathArray[], short* MarkerCounts, short PathCount, short PlayerID);
 extern void UpdateBKPath(BKPathfinder *Pathfinder, short FirstMarkerDistance, Marker *PathArray[], short* MarkerCounts, short PathCount, short PlayerID, char TypeOfPath, float HeightCheckSquared);
 
-extern void ResetLaneDefaultOffset(int playerID);
+extern void ResetLaneDefaultOffset(int PlayerID);
 
-extern void ChooseAlternativePathRandm(int playerID, short pointCheckMin, short pointCheckMax, ushort maxPathIDs);
+extern void ChooseAlternativePathRandm(int PlayerID, short pointCheckMin, short pointCheckMax, Ushort maxPathIDs);
 
-extern void ChangePathAndPoint(int playerID, short pointCheckMin, short pointCheckMax, ushort currentpathID, ushort newpathID);
+extern void ChangePathAndPoint(int PlayerID, short pointCheckMin, short pointCheckMax, Ushort currentpathID, Ushort newpathID);
 
 
-extern void MakeAlternativePath(Marker *altPath, short length, char pathID);
+extern void MakeAlternativePath(Marker *altPath, short Length, char pathID);
 
 
 

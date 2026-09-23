@@ -1,22 +1,22 @@
 .definelabel SYSTEM_Region, 0x80000300
 
-.definelabel decodeMIO0, 0x800400B0 ;MIO0 File A0 = input, A1 = output
+.definelabel decodeMIO0, 0x800400B0 ;MIO0 File A0 = Input, A1 = Output
 .definelabel DMA, 0x80001138
 .definelabel decodeTKMK, 0x800405B0
 .definelabel LoadMap, 0x802AA9B8
 .definelabel ramCopy, 0x800D8000
 
-.definelabel sinT, 0x802B80B8
-.definelabel cosT, 0x802B80D8
+.definelabel SinT, 0x802B80B8
+.definelabel CosT, 0x802B80D8
 .definelabel sinF, 0x80
 
-.definelabel printNumber, 0x80057504
-.definelabel printString, 0x80057784
-.definelabel printStringNumber, 0x800577B0
+.definelabel PrintNumber, 0x80057504
+.definelabel PrintString, 0x80057784
+.definelabel PrintStringNumber, 0x800577B0
 .definelabel FillRect1ColorF, 0x80098DF8
 .definelabel GraphPtr, 0x801502F8
 
-.definelabel initializePlayer, 0x800393A0
+.definelabel InitializePlayer, 0x800393A0
 
 
 .definelabel asm_itemJump1A, 0x8007B064  //3C058016
@@ -25,10 +25,10 @@
 .definelabel asm_itemJump2A, 0x8007AFA0  //3C058016
 .definelabel asm_itemJump2B, 0x8007AFB4  //84A5441A
 
-.definelabel playSound, 0x800C8E38
+.definelabel PlaySound, 0x800C8E38
 
 .definelabel colorFont, 0x800930D8
-.definelabel loadFont, 0x800576F0
+.definelabel LoadFont, 0x800576F0
 
 .definelabel g_SegmentA, 0x80117974
 ;;
@@ -36,19 +36,19 @@
 
 .definelabel nopASM, 0x800026F4
 .definelabel asm_tempo1A, 0x800015A4  ;;3C0F8015
-.definelabel asm_tempo1ASpeed, 0x800015A7  ;;speed value
+.definelabel asm_tempo1ASpeed, 0x800015A7  ;;Speed Value
 .definelabel asm_tempo1B, 0x800015A8  ;;8DEF0174
-.definelabel asm_tempo1BSpeed, 0x800015AB  ;; speed value
+.definelabel asm_tempo1BSpeed, 0x800015AB  ;; Speed Value
 
 .definelabel asm_tempo2A, 0x80001A18  ;;3C098015
-.definelabel asm_tempo2ASpeed, 0x80001A1B  ;;speed value
+.definelabel asm_tempo2ASpeed, 0x80001A1B  ;;Speed Value
 .definelabel asm_tempo2B, 0x80001A1C  ;;8D290174
-.definelabel asm_tempo2BSpeed, 0x80001A1F  ;; speed value
+.definelabel asm_tempo2BSpeed, 0x80001A1F  ;; Speed Value
 
 .definelabel asm_tempo3A, 0x80001C70  ;;3C0A8015
-.definelabel asm_tempo3ASpeed, 0x80001C73  ;;speed value
+.definelabel asm_tempo3ASpeed, 0x80001C73  ;;Speed Value
 .definelabel asm_tempo3B, 0x80001C74  ;;8D4A0174
-.definelabel asm_tempo3BSpeed, 0x80001C77  ;; speed value
+.definelabel asm_tempo3BSpeed, 0x80001C77  ;; Speed Value
 
 .definelabel asm_selectA, 0x800B3924
 .definelabel asm_selectB, 0x800B3936
@@ -58,19 +58,19 @@
 .definelabel asm_selectF, 0x800B3A4E
 
 .definelabel g_resetToggle, 0x800DC52C
-.definelabel g_startingIndicator,  0x800DC530
-.definelabel g_ScreenSplitA, 0x800DC54C
-.definelabel g_ScreenSplitB, 0x800DC550
-.definelabel g_playerCount, 0x800DC558
-.definelabel g_raceClass, 0x800DC568
-.definelabel g_gameTimer, 0x800DC5B8
-.definelabel g_courseID,  0x800DC5C0
-.definelabel g_loadedcourseFlag, 0x800DC5C4
-.definelabel g_gameMode, 0x800DC55C
-.definelabel g_ScreenFlip, 0x800DC624
+.definelabel StartingIndicator,  0x800DC530
+.definelabel ScreenSplitA, 0x800DC54C
+.definelabel ScreenSplitB, 0x800DC550
+.definelabel PlayerCount, 0x800DC558
+.definelabel RaceClass, 0x800DC568
+.definelabel GameTimer, 0x800DC5B8
+.definelabel CourseID,  0x800DC5C0
+.definelabel LoadedcourseFlag, 0x800DC5C4
+.definelabel GameMode, 0x800DC55C
+.definelabel ScreenFlip, 0x800DC624
 
 
-.definelabel gravity_1, 0x800E2670
+.definelabel Gravity1, 0x800E2670
 .definelabel gravity_2, 0x800E2674
 .definelabel gravity_3, 0x800E2678
 .definelabel gravity_4, 0x800E267C
@@ -129,7 +129,7 @@
 .definelabel g_cup3preview3, 0x80199668
 
 .definelabel g_lakituStatus, 0x80165E2E
-.definelabel g_lakituSurface, 0x80163378
+.definelabel LakituSurface, 0x80163378
 
 .definelabel p_Input, 0x800F6975
 .definelabel d_Input, 0x800F6974
@@ -184,8 +184,8 @@
 .definelabel g_player6State, 0x800FBD00
 .definelabel g_player7State, 0x800FCAD8
 
-.definelabel g_aspectRatio, 0x801501A8
-.definelabel g_farClip, 0x801501AC
+.definelabel AspectRatio, 0x801501A8
+.definelabel FarClip, 0x801501AC
 
 .definelabel g_player1View 0x8015F514
 .definelabel g_player1Section 0x8015F518
@@ -225,7 +225,7 @@
 .definelabel g_lapCheckA, 0X8018CB41
 .definelabel g_lapCheckB, 0x8018CB42
 
-.definelabel asm_DisableEngineSound, 0x800E9F94
+.definelabel AsmDisableEngineSound, 0x800E9F94
 .definelabel asm_DisableHUD, 0x80059CE8
 .definelabel g_GhostHUDID, 0x8018DB0A
 
@@ -237,16 +237,16 @@
 
 
 .definelabel KBGNumberNext, 0x8018EE43
-.definelabel menuScreenC, 0x8018EE4E
-.definelabel menuScreenA, 0x8018EE4C
-.definelabel menuScreenB, 0x8018EE4D
+.definelabel MenuScreenC, 0x8018EE4E
+.definelabel MenuScreenA, 0x8018EE4C
+.definelabel MenuScreenB, 0x8018EE4D
 
-.definelabel titleDemo, 0x8018EE60
-.definelabel g_cupSelect, 0x8018EE69
-.definelabel g_courseSelect, 0x8018EE6B
-.definelabel g_InGame, 0x8018EE5B
+.definelabel TitleDemo, 0x8018EE60
+.definelabel CupSelect, 0x8018EE69
+.definelabel CourseSelect, 0x8018EE6B
+.definelabel InGame, 0x8018EE5B
 
-.definelabel asm_CupCount, 0x8028E3C6
+.definelabel AsmCupCount, 0x8028E3C6
 .definelabel songID, 0x8028ECE7
 .definelabel asm_SongA, 0x8028EC9C
 .definelabel asm_SongB, 0x8028F9C4
@@ -257,7 +257,7 @@
 .definelabel player3OK, 0x8018EE4A
 .definelabel player4OK, 0x8018EE4B
 
-.definelabel g_RNG, 0x802BA290
+.definelabel RNG, 0x802BA290
 
 
 

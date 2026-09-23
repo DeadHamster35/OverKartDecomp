@@ -2004,7 +2004,7 @@ unsigned short TreePalette[]={
 0x8b8f,0x8fc1,0x8fc5,0x9451,0x9703,0x97c1,0x9f83,
 0x9fc1,0x9fdb,0xafdd,0xb7c1,0xb7c9,0xb7e9,0xbfc1,
 0xcfc1,0xd7c5,0xd7db,0xe7c9,0xffd3,0xffd9,0x0000};
-unsigned short gshellcolor[]={
+unsigned short GShellColor[]={
 0x0000,0x0307,0x0347,0x0881,0x0ac7,0x0b07,0x0b49,
 0x0b87,0x0b89,0x0bc9,0x0c09,0x0c0b,0x0c47,0x0c49,
 0x0c89,0x0cc7,0x0cc9,0x0d09,0x0d49,0x1389,0x13cb,
@@ -2042,7 +2042,7 @@ unsigned short gshellcolor[]={
 0xefbb,0xf7bb,0xf7bd,0xfffd,0xffff,0x0000,0x0000,
 0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
 0x0000,0x0000,0x0000,0x0000};
-unsigned short tshellcolor[]={
+unsigned short TShellColor[]={
 0x0000,0x0193,0x01d7,0x0219,0x021b,0x025b,0x025d,
 0x029d,0x029f,0x02a1,0x02e1,0x0881,0x0a5b,0x0a9d,
 0x0a9f,0x0adf,0x0ae1,0x114b,0x1215,0x125b,0x129d,
@@ -2084,7 +2084,7 @@ unsigned short tshellcolor[]={
 
 
 #define bananasize   6
-Vtx shell_v[] ={ 
+Vtx ShellV[] ={ 
 	
  	{{ 	{3,6,	0},  0,  {((32-1)<<6), 0}, 					{0xFF, 0xFF, 0xFF,0xff} } },
     {{	{-3,6,  0},  0,  {0, 0}, 							{0xFF,  0xFF, 0xFF,0xff} } },
@@ -2097,14 +2097,14 @@ Vtx shell_v[] ={
 	{{ 	{3,0,	0},  0,  {0, ((32-1)<<6)-64}, 				{0xFF,  0xFF, 0xFF, 0xFF} }}
 };
 
-Vtx tree1_v[4]={
+Vtx Tree1V[4]={
 	{{ {40,10,0},	0, {1536, 1706},  	{255, 254, 254, 255} } },
 	{{ {0,100,0},	0, {512, -341},  	{255, 254, 254, 255} } },
 	{{ {-40,10,0},	0, {-512, 1706},  	{255, 254, 254, 255} } },
 	{{ {0,-10,0},	0, {512, 2161},  	{255, 254, 254, 255} } }
 };
 
-Vtx pakkun_v[]={
+Vtx PakkunV[]={
 	{{ {-15,30,0}, 0, 	{   0, 	   0},  {255, 255, 254, 255} }},
 	{{ {-15, 0,0}, 0, 	{   0, 	2048},  {255, 255, 254, 255} }},
 	{{ { 15, 0,0}, 0, 	{2048, 	2048},  {255, 255, 254, 255} }},
@@ -2185,16 +2185,16 @@ void ScaleMatrixXYZ(AffineMtx Matrix, Vector Scale)
 
 typedef struct {
 	short		ob[3];	/// x, y, z 
-	unsigned short	flag;
-	short		tc[2];	/// texture coord 
-	unsigned char	cn[4];	/// color & alpha
+	unsigned short	Flag;
+	short		tc[2];	/// Texture coord 
+	unsigned char	cn[4];	/// color & Alpha
 } Vtx_t;
 
 */
 
 
 /*
-((sin(x+y+time))/(intensity))+((sin(-x+y+time))/(intensity))
+((sin(x+y+Time))/(intensity))+((sin(-x+y+Time))/(intensity))
 */
 short WaveTime, WaveDirection = 1;
 
@@ -2205,7 +2205,7 @@ void WaveRace(Vtx_t *VertexBuffer, int Count, float Intensity)
 	    int ThisVert;
 	for (ThisVert = 0; ThisVert < Count; ThisVert++)
 	{
-		GlobalFloatA = SinTable[(ushort)( (uint)( 10000.0 * (VertexBuffer[ThisVert].ob[0] + VertexBuffer[ThisVert].ob[2]) + (WaveTime * 500) ) % 0xFFFF) >> 4];
+		GlobalFloatA = SinTable[(Ushort)( (Uint)( 10000.0 * (VertexBuffer[ThisVert].ob[0] + VertexBuffer[ThisVert].ob[2]) + (WaveTime * 500) ) % 0xFFFF) >> 4];
 		
 		VertexBuffer[ThisVert].ob[1] = GlobalFloatA * Intensity ;
 		
@@ -2218,146 +2218,146 @@ void WaveRace(Vtx_t *VertexBuffer, int Count, float Intensity)
 
 void DrawStereoscopic3D(short FocusValue)
 {
-	g_aspectRatio = (float)(240 / 160);
+	AspectRatio = (float)(240 / 160);
 	asm_BorderDraw = 0;
 	
-	GlobalScreen[0]->width = 160;
-	GlobalScreen[0]->height = 240;
-	GlobalScreen[0]->posx = 80;
-	GlobalScreen[0]->posy = 120;
+	GlobalScreen[0]->Width = 160;
+	GlobalScreen[0]->Height = 240;
+	GlobalScreen[0]->Posx = 80;
+	GlobalScreen[0]->Posy = 120;
 	KWLap[0].cx = 80;
 	KWLap[0].cx2 = 80;
 	KWLap[0].cx3 = 80;
 	KWLap[0].timerX = 80;
-	KWLap[0].lap1CompletionTimeX = 80;
-	KWLap[0].lap2CompletionTimeX = 80;
-	KWLap[0].lap3CompletionTimeX = 80;
+	KWLap[0].Lap1CompletionTimeX = 80;
+	KWLap[0].Lap2CompletionTimeX = 80;
+	KWLap[0].Lap3CompletionTimeX = 80;
 	KWLap[0].totalTimeX = 80;
 	KWLap[0].ty = 20;
 	KWLap[0].cy = 40;
-	KWLap[0].ix = 40 - KWLap[0].addix;
+	KWLap[0].ix = 40 - KWLap[0].Addix;
 	KWLap[0].iy = 55;
 	KWLap[0].rgx = 0;
 	KWLap[0].rx = 40;
 	KWLap[0].ry = 0;
 	KWLap[0].rgy = 200;
-	KWLap[0].ranksw = 1;
+	KWLap[0].Ranksw = 1;
 
 	KWRank[1] = KWRank[0];
 	
 
-	GlobalScreen[1]->width = 160;
-	GlobalScreen[1]->height = 240;
-	GlobalScreen[1]->posx = 240;
-	GlobalScreen[1]->posy = 120;
+	GlobalScreen[1]->Width = 160;
+	GlobalScreen[1]->Height = 240;
+	GlobalScreen[1]->Posx = 240;
+	GlobalScreen[1]->Posy = 120;
 	KWLap[1].cx = 240;
 	KWLap[1].cx2 = 240;
 	KWLap[1].cx3 = 240;
 	KWLap[1].timerX = 240;
-	KWLap[1].lap1CompletionTimeX = 240;
-	KWLap[1].lap2CompletionTimeX = 240;
-	KWLap[1].lap3CompletionTimeX = 240;
+	KWLap[1].Lap1CompletionTimeX = 240;
+	KWLap[1].Lap2CompletionTimeX = 240;
+	KWLap[1].Lap3CompletionTimeX = 240;
 	KWLap[1].totalTimeX = 240;
 	KWLap[1].ty = 20;
 	KWLap[1].cy = 40;
-	KWLap[1].ix = 200 - KWLap[1].addix;
+	KWLap[1].ix = 200 - KWLap[1].Addix;
 	KWLap[1].iy = 55;
 	KWLap[1].rgx = 0;
 	KWLap[1].rx = 200;
 	KWLap[1].ry = 0;
 	KWLap[1].rgy = 200;
-	KWLap[1].ranksw = 1;
+	KWLap[1].Ranksw = 1;
 	
 	
 
-	GlobalPlayer[1].position[0] = GlobalPlayer[0].position[0];
-	GlobalPlayer[1].position[1] = GlobalPlayer[0].position[1] + 20;
-	GlobalPlayer[1].position[2] = GlobalPlayer[0].position[2];
+	GlobalPlayer[1].Position[0] = GlobalPlayer[0].Position[0];
+	GlobalPlayer[1].Position[1] = GlobalPlayer[0].Position[1] + 20;
+	GlobalPlayer[1].Position[2] = GlobalPlayer[0].Position[2];
 	
-	GlobalPlayer[1].direction[1] = GlobalPlayer[0].direction[1];
-	GlobalPlayer[1].radius = 0.0001;
-	GlobalPlayer[1].offsetsize = 0.0001;
+	GlobalPlayer[1].Direction[1] = GlobalPlayer[0].Direction[1];
+	GlobalPlayer[1].Radius = 0.0001;
+	GlobalPlayer[1].Offsetsize = 0.0001;
 	/*
-	GlobalPlayer[1].bump.bump_xy[0] = GlobalPlayer[0].bump.bump_xy[0];
-	GlobalPlayer[1].bump.bump_xy[1] = GlobalPlayer[0].bump.bump_xy[1];
-	GlobalPlayer[1].bump.bump_xy[2] = GlobalPlayer[0].bump.bump_xy[2];
-	GlobalPlayer[1].bump.bump_yz[0] = GlobalPlayer[0].bump.bump_yz[0];
-	GlobalPlayer[1].bump.bump_yz[1] = GlobalPlayer[0].bump.bump_yz[1];
-	GlobalPlayer[1].bump.bump_yz[2] = GlobalPlayer[0].bump.bump_yz[2];
-	GlobalPlayer[1].bump.bump_zx[0] = GlobalPlayer[0].bump.bump_zx[0];
-	GlobalPlayer[1].bump.bump_zx[1] = GlobalPlayer[0].bump.bump_zx[1];
-	GlobalPlayer[1].bump.bump_zx[2] = GlobalPlayer[0].bump.bump_zx[2];
+	GlobalPlayer[1].Bump.BumpXY[0] = GlobalPlayer[0].Bump.BumpXY[0];
+	GlobalPlayer[1].Bump.BumpXY[1] = GlobalPlayer[0].Bump.BumpXY[1];
+	GlobalPlayer[1].Bump.BumpXY[2] = GlobalPlayer[0].Bump.BumpXY[2];
+	GlobalPlayer[1].Bump.BumpYZ[0] = GlobalPlayer[0].Bump.BumpYZ[0];
+	GlobalPlayer[1].Bump.BumpYZ[1] = GlobalPlayer[0].Bump.BumpYZ[1];
+	GlobalPlayer[1].Bump.BumpYZ[2] = GlobalPlayer[0].Bump.BumpYZ[2];
+	GlobalPlayer[1].Bump.BumpZX[0] = GlobalPlayer[0].Bump.BumpZX[0];
+	GlobalPlayer[1].Bump.BumpZX[1] = GlobalPlayer[0].Bump.BumpZX[1];
+	GlobalPlayer[1].Bump.BumpZX[2] = GlobalPlayer[0].Bump.BumpZX[2];
 	
-	GlobalPlayer[1].bump.last_xy = GlobalPlayer[0].bump.last_xy;
-	GlobalPlayer[1].bump.last_yz = GlobalPlayer[0].bump.last_yz;
-	GlobalPlayer[1].bump.last_zx = GlobalPlayer[0].bump.last_zx;
-	GlobalPlayer[1].bump.flag_xy = GlobalPlayer[0].bump.flag_xy;
-	GlobalPlayer[1].bump.flag_yz = GlobalPlayer[0].bump.flag_yz;
+	GlobalPlayer[1].Bump.LastXY = GlobalPlayer[0].Bump.LastXY;
+	GlobalPlayer[1].Bump.LastYZ = GlobalPlayer[0].Bump.LastYZ;
+	GlobalPlayer[1].Bump.LastZX = GlobalPlayer[0].Bump.LastZX;
+	GlobalPlayer[1].Bump.FlagXY = GlobalPlayer[0].Bump.FlagXY;
+	GlobalPlayer[1].Bump.FlagYZ = GlobalPlayer[0].Bump.FlagYZ;
 	
-	GlobalPlayer[1].bump.flag_zx = GlobalPlayer[0].bump.flag_zx;
+	GlobalPlayer[1].Bump.FlagZX = GlobalPlayer[0].Bump.FlagZX;
 	*/
 	g_zoomFOVPlayer2 = g_zoomFOVPlayer1;
 	g_zoomLevelPlayer2 = g_zoomLevelPlayer1;
 
-	objectVelocity[0] = (float)(FocusValue * -0.1);
-	objectVelocity[1] = 0;
-	objectVelocity[2] = -5;
-	MakeAlignVector(objectVelocity,GlobalPlayer[0].direction[1]);
+	ObjectVelocity[0] = (float)(FocusValue * -0.1);
+	ObjectVelocity[1] = 0;
+	ObjectVelocity[2] = -5;
+	MakeAlignVector(ObjectVelocity,GlobalPlayer[0].Direction[1]);
 
-	GlobalCamera[0]->camera_pos[0] +=objectVelocity[0];
-	GlobalCamera[0]->camera_pos[1] +=objectVelocity[1];
-	GlobalCamera[0]->camera_pos[2] +=objectVelocity[2];
+	GlobalCamera[0]->CameraPos[0] +=ObjectVelocity[0];
+	GlobalCamera[0]->CameraPos[1] +=ObjectVelocity[1];
+	GlobalCamera[0]->CameraPos[2] +=ObjectVelocity[2];
 
 	
-	objectVelocity[0] = (float)(FocusValue * 0.2);	
-	objectVelocity[1] = 0;
-	objectVelocity[2] = 0;
-	MakeAlignVector(objectVelocity,GlobalPlayer[0].direction[1]);
+	ObjectVelocity[0] = (float)(FocusValue * 0.2);	
+	ObjectVelocity[1] = 0;
+	ObjectVelocity[2] = 0;
+	MakeAlignVector(ObjectVelocity,GlobalPlayer[0].Direction[1]);
 
-	GlobalCamera[1]->camera_pos[0] = GlobalCamera[0]->camera_pos[0] + (objectVelocity[0]);
-	GlobalCamera[1]->camera_pos[1] = GlobalCamera[0]->camera_pos[1] + (objectVelocity[1]);
-	GlobalCamera[1]->camera_pos[2] = GlobalCamera[0]->camera_pos[2] + (objectVelocity[2]);
+	GlobalCamera[1]->CameraPos[0] = GlobalCamera[0]->CameraPos[0] + (ObjectVelocity[0]);
+	GlobalCamera[1]->CameraPos[1] = GlobalCamera[0]->CameraPos[1] + (ObjectVelocity[1]);
+	GlobalCamera[1]->CameraPos[2] = GlobalCamera[0]->CameraPos[2] + (ObjectVelocity[2]);
 
-	GlobalCamera[1]->camera_direction[0] = GlobalCamera[0]->camera_direction[0];
-	GlobalCamera[1]->camera_direction[1] = GlobalCamera[0]->camera_direction[1];
-	GlobalCamera[1]->camera_direction[2] = GlobalCamera[0]->camera_direction[2];
+	GlobalCamera[1]->CameraDirection[0] = GlobalCamera[0]->CameraDirection[0];
+	GlobalCamera[1]->CameraDirection[1] = GlobalCamera[0]->CameraDirection[1];
+	GlobalCamera[1]->CameraDirection[2] = GlobalCamera[0]->CameraDirection[2];
 
-	GlobalCamera[1]->camera_vector[0] = GlobalCamera[0]->camera_vector[0];
-	GlobalCamera[1]->camera_vector[1] = GlobalCamera[0]->camera_vector[1];
-	GlobalCamera[1]->camera_vector[2] = GlobalCamera[0]->camera_vector[2];
+	GlobalCamera[1]->CameraVector[0] = GlobalCamera[0]->CameraVector[0];
+	GlobalCamera[1]->CameraVector[1] = GlobalCamera[0]->CameraVector[1];
+	GlobalCamera[1]->CameraVector[2] = GlobalCamera[0]->CameraVector[2];
 
-	objectVelocity[0] = (float)(FocusValue * 0.1);
-	objectVelocity[1] = 0;
-	objectVelocity[2] = 50;
-	MakeAlignVector(objectVelocity,GlobalPlayer[0].direction[1]);
+	ObjectVelocity[0] = (float)(FocusValue * 0.1);
+	ObjectVelocity[1] = 0;
+	ObjectVelocity[2] = 50;
+	MakeAlignVector(ObjectVelocity,GlobalPlayer[0].Direction[1]);
 
-	GlobalCamera[1]->lookat_pos[0] = GlobalPlayer[0].position[0] + objectVelocity[0];
-	GlobalCamera[1]->lookat_pos[1] = GlobalPlayer[0].position[1] + objectVelocity[1];
-	GlobalCamera[1]->lookat_pos[2] = GlobalPlayer[0].position[2] + objectVelocity[2];
+	GlobalCamera[1]->LookatPos[0] = GlobalPlayer[0].Position[0] + ObjectVelocity[0];
+	GlobalCamera[1]->LookatPos[1] = GlobalPlayer[0].Position[1] + ObjectVelocity[1];
+	GlobalCamera[1]->LookatPos[2] = GlobalPlayer[0].Position[2] + ObjectVelocity[2];
 
-	objectVelocity[0] = (float)(FocusValue * -0.1);
-	objectVelocity[1] = 0;
-	objectVelocity[2] = 50;
-	MakeAlignVector(objectVelocity,GlobalPlayer[0].direction[1]);
+	ObjectVelocity[0] = (float)(FocusValue * -0.1);
+	ObjectVelocity[1] = 0;
+	ObjectVelocity[2] = 50;
+	MakeAlignVector(ObjectVelocity,GlobalPlayer[0].Direction[1]);
 
-	GlobalCamera[0]->lookat_pos[0] = GlobalPlayer[0].position[0] + objectVelocity[0];
-	GlobalCamera[0]->lookat_pos[1] = GlobalPlayer[0].position[1] + objectVelocity[1];
-	GlobalCamera[0]->lookat_pos[2] = GlobalPlayer[0].position[2] + objectVelocity[2];
+	GlobalCamera[0]->LookatPos[0] = GlobalPlayer[0].Position[0] + ObjectVelocity[0];
+	GlobalCamera[0]->LookatPos[1] = GlobalPlayer[0].Position[1] + ObjectVelocity[1];
+	GlobalCamera[0]->LookatPos[2] = GlobalPlayer[0].Position[2] + ObjectVelocity[2];
 
-	GlobalCamera[1]->lookat_vector[0] = GlobalCamera[0]->lookat_vector[0];
-	GlobalCamera[1]->lookat_vector[1] = GlobalCamera[0]->lookat_vector[1];
-	GlobalCamera[1]->lookat_vector[2] = GlobalCamera[0]->lookat_vector[2];
+	GlobalCamera[1]->LookatVector[0] = GlobalCamera[0]->LookatVector[0];
+	GlobalCamera[1]->LookatVector[1] = GlobalCamera[0]->LookatVector[1];
+	GlobalCamera[1]->LookatVector[2] = GlobalCamera[0]->LookatVector[2];
 
-	GlobalCamera[1]->chase_direction = GlobalCamera[0]->chase_direction;
-	GlobalCamera[1]->old_chase_direction = GlobalCamera[0]->old_chase_direction;
-	GlobalCamera[1]->screen_view_angle = GlobalCamera[0]->screen_view_angle;
-	GlobalCamera[1]->flag = GlobalCamera[0]->flag;
+	GlobalCamera[1]->ChaseDirection = GlobalCamera[0]->ChaseDirection;
+	GlobalCamera[1]->OldChaseDirection = GlobalCamera[0]->OldChaseDirection;
+	GlobalCamera[1]->ScreenViewAngle = GlobalCamera[0]->ScreenViewAngle;
+	GlobalCamera[1]->Flag = GlobalCamera[0]->Flag;
 
-	GlobalCamera[1]->watch = GlobalCamera[0]->watch;
+	GlobalCamera[1]->Watch = GlobalCamera[0]->Watch;
 	
 	
-	//g_DynamicObjects[ItemBoxAllocPtr[1]].texaddr = g_DynamicObjects[ItemBoxAllocPtr[0]].texaddr;
-	//g_DynamicObjects[ItemBoxAllocPtr[1]].indexaddr = g_DynamicObjects[ItemBoxAllocPtr[0]].indexaddr;
+	//DynamicObjects[ItemBoxAllocPtr[1]].Texaddr = DynamicObjects[ItemBoxAllocPtr[0]].Texaddr;
+	//DynamicObjects[ItemBoxAllocPtr[1]].Indexaddr = DynamicObjects[ItemBoxAllocPtr[0]].Indexaddr;
 	ItemBoxAllocPtr[1] = ItemBoxAllocPtr[0];
 	
 	KWDisplay2D(1);
@@ -2369,7 +2369,7 @@ void DrawStereoscopic3D(short FocusValue)
 	KWDisplayRank(0);
 	KWDisplayRank(1);
 	
-	two_d_flag = 0;
+	TwoDFlag = 0;
 }
 
 void DrawGeometryScale(float localPosition[], short localAngle[], int localAddress, float localScale)
@@ -2424,10 +2424,10 @@ void DrawRedCoin(float localPosition[], short localAngle[], int localAddress, fl
 
 void DrawGeometrySVectorScale(SVector localPosition, short localAngle[], int localAddress, float localScale)
 {
-	objectPosition[0] = localPosition[0];
-	objectPosition[1] = localPosition[1];
-	objectPosition[2] = localPosition[2];
-	CreateModelingMatrix(AffineMatrix,objectPosition,localAngle);
+	ObjectPosition[0] = localPosition[0];
+	ObjectPosition[1] = localPosition[1];
+	ObjectPosition[2] = localPosition[2];
+	CreateModelingMatrix(AffineMatrix,ObjectPosition,localAngle);
 	ScalingMatrix(AffineMatrix,localScale);	
 	if(SetMatrix(AffineMatrix,0) == 0)
 	{
@@ -2438,9 +2438,9 @@ void DrawGeometrySVectorScale(SVector localPosition, short localAngle[], int loc
 	
 }
 
-void DrawGeometry(float objectPosition[], short objectAngle[], int F3DEXAddress)
+void DrawGeometry(float ObjectPosition[], short ObjectAngle[], int F3DEXAddress)
 {
-	DrawGeometryScale(objectPosition,objectAngle,F3DEXAddress, 1.0);
+	DrawGeometryScale(ObjectPosition,ObjectAngle,F3DEXAddress, 1.0);
 }
 
 void DrawPaths(long RSPInput)
@@ -2450,20 +2450,20 @@ void DrawPaths(long RSPInput)
 
 	do
 	{
-		objectAngle[0] = *(short*)(GlobalAddressA);
-		objectAngle[1] = *(short*)(GlobalAddressA + 2);
-		objectAngle[2] = *(short*)(GlobalAddressA + 4);
+		ObjectAngle[0] = *(short*)(GlobalAddressA);
+		ObjectAngle[1] = *(short*)(GlobalAddressA + 2);
+		ObjectAngle[2] = *(short*)(GlobalAddressA + 4);
 
-		if (objectPosition[0] == 0xFFFF8000)
+		if (ObjectPosition[0] == 0xFFFF8000)
 		{
 			break;
 		}
 		else
 		{
-			objectPosition[0] = (float)objectAngle[0];
-			objectPosition[1] = (float)objectAngle[1];
-			objectPosition[2] = (float)objectAngle[2];
-			DrawGeometry(objectPosition,objectAngle,GlobalAddressB);
+			ObjectPosition[0] = (float)ObjectAngle[0];
+			ObjectPosition[1] = (float)ObjectAngle[1];
+			ObjectPosition[2] = (float)ObjectAngle[2];
+			DrawGeometry(ObjectPosition,ObjectAngle,GlobalAddressB);
 		}
 		GlobalAddressA = GlobalAddressA + 8;
 	} while (true);
@@ -2519,7 +2519,7 @@ void GFXPiranha(int PakkunAddress, float Distance)
 
 
 
-	gSPVertex(GraphPtrOffset++, &pakkun_v[0], 4, 0);
+	gSPVertex(GraphPtrOffset++, &PakkunV[0], 4, 0);
 	gSP2Triangles(GraphPtrOffset++, 0, 1, 2, 0 ,0, 2, 3, 0);
 	gDPSetTextureLUT(GraphPtrOffset++, G_TT_NONE);
 
@@ -2569,7 +2569,7 @@ void GFXTree1(float Distance)
 	//
 	//
 	
-	gSPVertex(GraphPtrOffset++, &tree1_v[0], 4, 0);
+	gSPVertex(GraphPtrOffset++, &Tree1V[0], 4, 0);
 	
 	gSP2Triangles(GraphPtrOffset++, 0, 1, 2, 0,		0, 2, 3, 0);
 	
@@ -2580,16 +2580,16 @@ void GFXTree1(float Distance)
 void DisplayPiranhaBypass(Camera* PlayerCamera, AffineMtx Affine, Object* PiranhaObject)
 {
 	
-	int LocalPlayer = (int)( ( (uint)(PlayerCamera) - (uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
+	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
 
 	// Calc Distance
 	float LocalDistance = 
 	CheckDisplayRange(
-		PlayerCamera->camera_pos,
-		PiranhaObject->position,
-		PlayerCamera->camera_direction[1],
+		PlayerCamera->CameraPos,
+		PiranhaObject->Position,
+		PlayerCamera->CameraDirection[1],
 		0,
-		ScreenViewAngle[LocalPlayer],
+		CameraZoom[LocalPlayer],
 		16000000
 	);
 	//
@@ -2600,21 +2600,21 @@ void DisplayPiranhaBypass(Camera* PlayerCamera, AffineMtx Affine, Object* Piranh
 	}
 	
 
-	Affine[3][0] =  PiranhaObject->position[0];
-	Affine[3][1] =  PiranhaObject->position[1];
-	Affine[3][2] =  PiranhaObject->position[2];
+	Affine[3][0] =  PiranhaObject->Position[0];
+	Affine[3][1] =  PiranhaObject->Position[1];
+	Affine[3][2] =  PiranhaObject->Position[2];
 	
 	if(SetMatrix(Affine,0))  
 	{
 		
 		PakkunObject *Pakkun = (PakkunObject*)(PiranhaObject);
-		int LocalCounter = (Pakkun->timers[0] / 6);
+		int LocalCounter = (Pakkun->Timers[0] / 6);
 		int PakkunAddress;
 		if (LocalCounter > 8)
 		{
 			LocalCounter = 8;
 		}
-		if ((HotSwapID > 0) || (g_courseID == 0))
+		if ((HotSwapID > 0) || (CourseID == 0))
 		{
 			//Custom Levels, Mario Raceway
 			PakkunAddress = (LocalCounter * 2048) + GetRealAddress(0x03009800);
@@ -2631,17 +2631,17 @@ void DisplayPiranhaBypass(Camera* PlayerCamera, AffineMtx Affine, Object* Piranh
 }
 void DisplayTree1Bypass(Camera* PlayerCamera, AffineMtx Affine, Object* TreeObj)
 {
-	int LocalPlayer = (int)( ( (uint)(PlayerCamera) - (uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
+	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
 
 	// Calc Distance
 	//
 	float LocalDistance = 
 	CheckDisplayRange(
-		PlayerCamera->camera_pos,
-		TreeObj->position,
-		PlayerCamera->camera_direction[1],
+		PlayerCamera->CameraPos,
+		TreeObj->Position,
+		PlayerCamera->CameraDirection[1],
 		0,
-		ScreenViewAngle[LocalPlayer],
+		CameraZoom[LocalPlayer],
 		16000000
 	);
 	//
@@ -2652,14 +2652,14 @@ void DisplayTree1Bypass(Camera* PlayerCamera, AffineMtx Affine, Object* TreeObj)
 		return;
 	}
 	
-	if( !(TreeObj->flag & FLYINGOBJ) && (LocalDistance < 250000) )
+	if( !(TreeObj->Flag & FLYINGOBJ) && (LocalDistance < 250000) )
 	{
-		DisplayShadow(TreeObj->position,TreeObj->angle,3.0f);	
+		DisplayShadow(TreeObj->Position,TreeObj->Angle,3.0f);	
 	}
 
-	Affine[3][0] =  TreeObj->position[0];
-	Affine[3][1] =  TreeObj->position[1];
-	Affine[3][2] =  TreeObj->position[2];
+	Affine[3][0] =  TreeObj->Position[0];
+	Affine[3][1] =  TreeObj->Position[1];
+	Affine[3][2] =  TreeObj->Position[2];
 	
 	if(SetMatrix(Affine,0))  
 	{
@@ -2675,7 +2675,7 @@ void DisplayTree1Loop(Screen *PlayerScreen, AffineMtx Affine)
 	    int ThisObject;
 	for (ThisObject = 0; ThisObject < MAX_OBJECT; ThisObject++)
 	{
-		if (g_SimpleObjectArray[ThisObject].category == TREE1)
+		if (SimpleObjectArray[ThisObject].Category == TREE1)
 		{
 			if (!TreeLoaded)
 			{
@@ -2696,10 +2696,10 @@ void DisplayTree1Loop(Screen *PlayerScreen, AffineMtx Affine)
 
 void DisplayObjectLoop(Screen *PlayerScreen)
 {
-	Camera *PlayerCamera = PlayerScreen->camera;
+	Camera *PlayerCamera = PlayerScreen->Camera;
 
-	float sinB = sinT(PlayerCamera->camera_direction[1]-(DEG1 * 180));
-  	float cosB = cosT(PlayerCamera->camera_direction[1]-(DEG1 * 180));
+	float sinB = SinT(PlayerCamera->CameraDirection[1]-(DEG1 * 180));
+  	float cosB = CosT(PlayerCamera->CameraDirection[1]-(DEG1 * 180));
 
 	AffineMatrix[0][0] =  cosB;
 	AffineMatrix[1][0] =  0.0f;
@@ -2715,7 +2715,7 @@ void DisplayObjectLoop(Screen *PlayerScreen)
 	AffineMatrix[2][3] =  0.0f;
 	AffineMatrix[3][3] =  1.0f;
 
-	if (g_gameMode != GAMEMODE_BATTLE)
+	if (GameMode != GAMEMODE_BATTLE)
 	{
 		DisplayFlagGate(PlayerCamera);
 	}

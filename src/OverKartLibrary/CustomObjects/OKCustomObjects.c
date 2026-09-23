@@ -15,27 +15,27 @@
 
 void DisplayCoinSprite(void)
 {
-	//Draw the coin sprite based on the number of coins held. 
-	//For Red Coin mode specific
+	//Draw the coin sprite based on the Number of coins held. 
+	//For Red Coin Mode specific
 
 	{
 	    int currentSprite;
 	for (currentSprite = 1; (currentSprite <= CoinCount[0]) & (currentSprite <= 8); currentSprite++)
 	{
-		KWSprite((currentSprite* 4) + 30,220,16,16,(ushort*)&ok_RedCoinSprite);
+		KWSprite((currentSprite* 4) + 30,220,16,16,(Ushort*)&ok_RedCoinSprite);
 	}
 	}
 
 	if ((CoinCount[0] != 0) && (CoinCount[0] < 8))
 	{
-		KWSprite(21,219,16,16,(ushort*)&lit_numberSpriteX);
-		KWSprite(11,219,16,16,(ushort*)&lit_numberSprite+(CoinCount[0]*0x100));
+		KWSprite(21,219,16,16,(Ushort*)&lit_numberSpriteX);
+		KWSprite(11,219,16,16,(Ushort*)&lit_numberSprite+(CoinCount[0]*0x100));
 		return;
 	}
 	if (CoinCount[0] >= 8)
 	{
-		KWSprite(21,219,16,16,(ushort*)&lit_numberSpriteX);
-		KWSprite(11,219,16,16,(ushort*)&lit_numberSprite8);
+		KWSprite(21,219,16,16,(Ushort*)&lit_numberSpriteX);
+		KWSprite(11,219,16,16,(Ushort*)&lit_numberSprite8);
 	}
 	
 }
@@ -45,7 +45,7 @@ void DisplayCoinSprite(void)
 
 short FindOKObject(void)
 {
-	//This parses the object list and returns the first unused object.
+	//This parses the object list and returns the first Unused object.
 
 	{
 	    int CurrentObject;
@@ -86,21 +86,21 @@ void ClearOKObject(short ObjectID)
 	
 
 	OKObjectArray[ObjectID].SubBehaviorClass = SUBBEHAVIOR_DEAD;
-	OKObjectArray[ObjectID].ObjectData.position[0] = 0;
-	OKObjectArray[ObjectID].ObjectData.position[1] = 0;
-	OKObjectArray[ObjectID].ObjectData.position[2] = 0;	
-	OKObjectArray[ObjectID].ObjectData.angle[0] = 0;
-	OKObjectArray[ObjectID].ObjectData.angle[1] = 0;
-	OKObjectArray[ObjectID].ObjectData.angle[2] = 0;
-	OKObjectArray[ObjectID].ObjectData.velocity[0] = 0;
-	OKObjectArray[ObjectID].ObjectData.velocity[1] = 0;
-	OKObjectArray[ObjectID].ObjectData.velocity[2] = 0;
-	OKObjectArray[ObjectID].ObjectData.radius = 0;
-	OKObjectArray[ObjectID].ObjectData.sparam = 0;
-	OKObjectArray[ObjectID].ObjectData.fparam = 0;
-	OKObjectArray[ObjectID].ObjectData.flag = 0;
-	OKObjectArray[ObjectID].ObjectData.counter = 0;
-	OKObjectArray[ObjectID].ObjectData.category = 0;
+	OKObjectArray[ObjectID].ObjectData.Position[0] = 0;
+	OKObjectArray[ObjectID].ObjectData.Position[1] = 0;
+	OKObjectArray[ObjectID].ObjectData.Position[2] = 0;	
+	OKObjectArray[ObjectID].ObjectData.Angle[0] = 0;
+	OKObjectArray[ObjectID].ObjectData.Angle[1] = 0;
+	OKObjectArray[ObjectID].ObjectData.Angle[2] = 0;
+	OKObjectArray[ObjectID].ObjectData.Velocity[0] = 0;
+	OKObjectArray[ObjectID].ObjectData.Velocity[1] = 0;
+	OKObjectArray[ObjectID].ObjectData.Velocity[2] = 0;
+	OKObjectArray[ObjectID].ObjectData.Radius = 0;
+	OKObjectArray[ObjectID].ObjectData.Sparam = 0;
+	OKObjectArray[ObjectID].ObjectData.Fparam = 0;
+	OKObjectArray[ObjectID].ObjectData.Flag = 0;
+	OKObjectArray[ObjectID].ObjectData.Counter = 0;
+	OKObjectArray[ObjectID].ObjectData.Category = 0;
 }
 
 bool TestCollideSVectorSphere(float SourcePosition[], float SourceRadius, SVector TargetPosition, float TargetRadius)
@@ -139,7 +139,7 @@ bool TestCollideSphere(float SourcePosition[], float SourceRadius, float TargetP
 
 bool TestCollideCylinder(float SourcePosition[], float SourceRadius[], float TargetPosition[], float TargetRadius)
 {
-	//Does a collision test using pythagorean maths with a height exlusive priority check. 
+	//Does a collision test using pythagorean maths with a Height exlusive Priority check. 
 	if (TargetPosition[1] + TargetRadius < SourcePosition[1])
 	{
 		//Target Hitsphere is too low.
@@ -167,7 +167,7 @@ bool TestCollideCylinder(float SourcePosition[], float SourceRadius[], float Tar
 
 bool TestCollideBox(float BoxPosition[], float BoxSize[], short BoxAngle[], float TargetPosition[], float TargetRadius)
 {
-	//Does a test on a collision with a box of arbitrary length width and height angled on the Y-axis
+	//Does a test on a collision with a box of arbitrary Length Width and Height angled on the Y-axis
 
 
 	float TempPosition[3];
@@ -175,20 +175,20 @@ bool TestCollideBox(float BoxPosition[], float BoxSize[], short BoxAngle[], floa
 	    int CurrentVector;
 	for (CurrentVector = 0; CurrentVector < 3; CurrentVector++)
 	{
-		//Create a vector based on the position of the target and the position of the hitbox.
-		//to get the Hitbox's absolute position, add the relative/rotated position to the object's origin.
+		//Create a vector based on the Position of the Target and the Position of the hitbox.
+		//to get the Hitbox's absolute Position, add the relative/rotated Position to the object's origin.
 		TempPosition[CurrentVector] = TargetPosition[CurrentVector] - BoxPosition[CurrentVector];
 
 	}
 	}	
-	// Rotate the Vector by the angle of the box.
+	// Rotate the Vector by the Angle of the box.
 	MakeAlignVector(TempPosition,(short)(-1 * BoxAngle[1]));
 	{
 	    int CurrentVector;
 	for (CurrentVector = 0; CurrentVector < 3; CurrentVector++)
 	{
 		//Take both sides of the box from the center
-		//If the position is greater than or less than the sides, return false.
+		//If the Position is greater than or less than the sides, return false.
 		GlobalFloatA = (BoxSize[CurrentVector] / 2.0f) + TargetRadius;
 		if ((TempPosition[CurrentVector] * TempPosition[CurrentVector]) > (GlobalFloatA * GlobalFloatA))
 		{
@@ -219,13 +219,13 @@ void OKObjectReaction(OKObject* InputObject, short ResultType, int Player)
 			//but good enough for objects colliding.
 			
 			
-			if (InputObject->ObjectData.velocity[0] > InputObject->ObjectData.velocity[2])
+			if (InputObject->ObjectData.Velocity[0] > InputObject->ObjectData.Velocity[2])
 			{
-				InputObject->ObjectData.velocity[0] *= -1;
+				InputObject->ObjectData.Velocity[0] *= -1;
 			}
 			else
 			{
-				InputObject->ObjectData.velocity[2] *= -1;
+				InputObject->ObjectData.Velocity[2] *= -1;
 			}
 			break;
 		}
@@ -233,31 +233,31 @@ void OKObjectReaction(OKObject* InputObject, short ResultType, int Player)
 		{
 			if (Player != -1)
 			{
-				InputObject->ObjectData.velocity[0] = 0;
-				InputObject->ObjectData.velocity[1] = 5;
-				//InputObject->ObjectData.velocity[2] = ObjectType->Hitbox + GlobalPlayer[Player].radius;
+				InputObject->ObjectData.Velocity[0] = 0;
+				InputObject->ObjectData.Velocity[1] = 5;
+				//InputObject->ObjectData.Velocity[2] = ObjectType->Hitbox + GlobalPlayer[Player].Radius;
 				
-				MakeAlignVector(InputObject->ObjectData.velocity, GlobalPlayer[Player].direction[1] + GlobalPlayer[Player].slipang);
+				MakeAlignVector(InputObject->ObjectData.Velocity, GlobalPlayer[Player].Direction[1] + GlobalPlayer[Player].Slipang);
 
-				objectVelocity[0] = 0;
-				objectVelocity[1] = 0;
-				objectVelocity[2] = 5;
-				MakeAlignVector(objectVelocity, GlobalPlayer[Player].direction[1] + GlobalPlayer[Player].slipang);
-				InputObject->AngularVelocity[0] = objectVelocity[0];
-				InputObject->AngularVelocity[1] = objectVelocity[1];
-				InputObject->AngularVelocity[2] = objectVelocity[2];
+				ObjectVelocity[0] = 0;
+				ObjectVelocity[1] = 0;
+				ObjectVelocity[2] = 5;
+				MakeAlignVector(ObjectVelocity, GlobalPlayer[Player].Direction[1] + GlobalPlayer[Player].Slipang);
+				InputObject->AngularVelocity[0] = ObjectVelocity[0];
+				InputObject->AngularVelocity[1] = ObjectVelocity[1];
+				InputObject->AngularVelocity[2] = ObjectVelocity[2];
 			}
 			else
 			{
 				//Cheap reversal bounce; inaccurate for geometry
 				//but good enough for objects colliding.
-				if (InputObject->ObjectData.velocity[0] > InputObject->ObjectData.velocity[2])
+				if (InputObject->ObjectData.Velocity[0] > InputObject->ObjectData.Velocity[2])
 				{
-					InputObject->ObjectData.velocity[0] *= -1;
+					InputObject->ObjectData.Velocity[0] *= -1;
 				}
 				else
 				{
-					InputObject->ObjectData.velocity[2] *= -1;
+					InputObject->ObjectData.Velocity[2] *= -1;
 				}
 			}
 		}
@@ -300,12 +300,12 @@ void SetSimpleBump(int PlayerID, Vector SourcePosition, Vector SourceRadius, sho
 	    int CurrentVector;
 	for (CurrentVector = 0; CurrentVector < 3; CurrentVector++)
 	{
-		TempPosition[CurrentVector] = SourcePosition[CurrentVector] - GlobalPlayer[PlayerID].position[CurrentVector];
+		TempPosition[CurrentVector] = SourcePosition[CurrentVector] - GlobalPlayer[PlayerID].Position[CurrentVector];
 	}
 	}	
 	if (Angle != 0)
 	{
-		// Rotate the Vector by the angle of the box.
+		// Rotate the Vector by the Angle of the box.
 		MakeAlignVector(TempPosition,(short)(-1 * Angle));
 	}
 
@@ -318,23 +318,23 @@ void SetSimpleBump(int PlayerID, Vector SourcePosition, Vector SourceRadius, sho
 	}	
 	
 
-	GlobalPlayer[PlayerID].velocity[0] = 0;
-	GlobalPlayer[PlayerID].velocity[1] = 0;
-	GlobalPlayer[PlayerID].velocity[2] = 0;
+	GlobalPlayer[PlayerID].Velocity[0] = 0;
+	GlobalPlayer[PlayerID].Velocity[1] = 0;
+	GlobalPlayer[PlayerID].Velocity[2] = 0;
 
-	objectPosition[0] = SourceRadius[0] * DScale[0] * 1.1f;
-	objectPosition[1] = SourceRadius[1] * DScale[1] * 1.1f;
-	objectPosition[2] = SourceRadius[2] * DScale[2] * 1.1f;
+	ObjectPosition[0] = SourceRadius[0] * DScale[0] * 1.1f;
+	ObjectPosition[1] = SourceRadius[1] * DScale[1] * 1.1f;
+	ObjectPosition[2] = SourceRadius[2] * DScale[2] * 1.1f;
 
 	if (Angle != 0)
 	{
-		MakeAlignVector(objectPosition,(short)(Angle));
+		MakeAlignVector(ObjectPosition,(short)(Angle));
 	}
 	{
 	    int CurrentVector;
 	for (CurrentVector = 0; CurrentVector < 3; CurrentVector++)
 	{
-		GlobalPlayer[PlayerID].position[CurrentVector] = SourcePosition[CurrentVector] - objectPosition[CurrentVector];
+		GlobalPlayer[PlayerID].Position[CurrentVector] = SourcePosition[CurrentVector] - ObjectPosition[CurrentVector];
 	}
 	}
 }
@@ -353,13 +353,13 @@ void OKObjectCollision(OKObject *InputObject)
 	short BoxAngles[3] = {0,0,0};
 
 	//PlayerCount
-	if (g_gameMode == GAMEMODE_GP)
+	if (GameMode == GAMEMODE_GP)
 	{
 		GlobalShortA = 8;  
 	}
 	else
 	{
-		GlobalShortA = g_playerCount;
+		GlobalShortA = PlayerCount;
 	}
 	
 
@@ -370,36 +370,36 @@ void OKObjectCollision(OKObject *InputObject)
 
 		//INITIALIZE BOX
 			
-			GlobalFloatA = (float)(HitBox[ThisBox].Scale / 100.0f) * ObjectScale;  //Get scale
+			GlobalFloatA = (float)(HitBox[ThisBox].Scale / 100.0f) * ObjectScale;  //Get Scale
 
 			TempPosition[0] = ((float)HitBox[ThisBox].Position[0] * GlobalFloatA);
 			TempPosition[1] = ((float)HitBox[ThisBox].Position[1] * GlobalFloatA);
 			TempPosition[2] = ((float)HitBox[ThisBox].Position[2] * GlobalFloatA);
 
-			MakeAlignVector(TempPosition, InputObject->ObjectData.angle[1]);
+			MakeAlignVector(TempPosition, InputObject->ObjectData.Angle[1]);
         
-        //Rotate the offset position of the hitbox by the object angle. 
+        //Rotate the Offset Position of the hitbox by the object Angle. 
 
 			TempBoxSize[0] = ((float)HitBox[ThisBox].Size[0] * GlobalFloatA);
 			TempBoxSize[1] = ((float)HitBox[ThisBox].Size[1] * GlobalFloatA);
 			TempBoxSize[2] = ((float)HitBox[ThisBox].Size[2] * GlobalFloatA);
 
-			BoxAngles[0] = (HitBox[ThisBox].Angle[0] + InputObject->ObjectData.angle[0]);
-			BoxAngles[1] = (HitBox[ThisBox].Angle[1] + InputObject->ObjectData.angle[1]);
-			BoxAngles[2] = (HitBox[ThisBox].Angle[2] + InputObject->ObjectData.angle[2]);
+			BoxAngles[0] = (HitBox[ThisBox].Angle[0] + InputObject->ObjectData.Angle[0]);
+			BoxAngles[1] = (HitBox[ThisBox].Angle[1] + InputObject->ObjectData.Angle[1]);
+			BoxAngles[2] = (HitBox[ThisBox].Angle[2] + InputObject->ObjectData.Angle[2]);
 
             if (HitBox[ThisBox].OffsetFlag == 1)
             {
                 
-                MakeAlignVector(TempPosition, InputObject->ObjectData.angle[1]);
-                //Rotate the offset position of the hitbox by the object angle. 
+                MakeAlignVector(TempPosition, InputObject->ObjectData.Angle[1]);
+                //Rotate the Offset Position of the hitbox by the object Angle. 
 
             }
 
-        //Add the corrected vector to the base position of the object
-            TempPosition[0] += InputObject->ObjectData.position[0];
-			TempPosition[1] += InputObject->ObjectData.position[1];
-			TempPosition[2] += InputObject->ObjectData.position[2];
+        //Add the corrected vector to the base Position of the object
+            TempPosition[0] += InputObject->ObjectData.Position[0];
+			TempPosition[1] += InputObject->ObjectData.Position[1];
+			TempPosition[2] += InputObject->ObjectData.Position[2];
 
 		//END BOX INITIALIZATION
 
@@ -409,14 +409,14 @@ void OKObjectCollision(OKObject *InputObject)
 		for (CurrentPlayer = 0; CurrentPlayer < GlobalShortA; CurrentPlayer++)
 		{	
 		
-			// run collision check for player
+			// run collision check for Player
 			
-			if ( (GlobalPlayer[CurrentPlayer].slip_flag & IS_STAR) != 0)
+			if ( (GlobalPlayer[CurrentPlayer].SlipFlag & IS_STAR) != 0)
 			{
 				continue;
 			}
 
-			if ( (GlobalPlayer[CurrentPlayer].slip_flag & IS_GHOST) != 0)
+			if ( (GlobalPlayer[CurrentPlayer].SlipFlag & IS_GHOST) != 0)
 			{
 				continue;
 			}
@@ -429,13 +429,13 @@ void OKObjectCollision(OKObject *InputObject)
 					TempPosition,
 					TempBoxSize,
 					BoxAngles,
-					GlobalPlayer[CurrentPlayer].position, 
-					GlobalPlayer[CurrentPlayer].radius
+					GlobalPlayer[CurrentPlayer].Position, 
+					GlobalPlayer[CurrentPlayer].Radius
 				)
 			) //Complex Boolean
 			{
 				
-				if(GlobalPlayer[CurrentPlayer].slip_flag & STAR)
+				if(GlobalPlayer[CurrentPlayer].SlipFlag & STAR)
 				{
 					OKObjectReaction(InputObject, (short) HitBox[ThisBox].DamagedResult, CurrentPlayer);
 				}
@@ -478,10 +478,10 @@ void OKObjectCollision(OKObject *InputObject)
 
 		{
 		    int ThisObject;
-		for (ThisObject = g_StaticObjectCount; ThisObject < 100; ThisObject++)
+		for (ThisObject = StaticObjectCount; ThisObject < 100; ThisObject++)
 		{	
 			//run collision check for each static object.
-			if ( (g_SimpleObjectArray[ThisObject].flag&EXISTOBJ) && (g_SimpleObjectArray[ThisObject].flag&HITOBJ) )
+			if ( (SimpleObjectArray[ThisObject].Flag&EXISTOBJ) && (SimpleObjectArray[ThisObject].Flag&HITOBJ) )
 			{	
 
 				if //Complex Boolean
@@ -492,14 +492,14 @@ void OKObjectCollision(OKObject *InputObject)
 						TempPosition,
 						TempBoxSize,
 						BoxAngles,
-						g_SimpleObjectArray[ThisObject].position, 
-						g_SimpleObjectArray[ThisObject].radius
+						SimpleObjectArray[ThisObject].Position, 
+						SimpleObjectArray[ThisObject].Radius
 					)
 				) //Complex Boolean
 				{
-					if (g_SimpleObjectArray[ThisObject].category != TSHELL)
+					if (SimpleObjectArray[ThisObject].Category != TSHELL)
 					{
-						KillObject((Object*)&g_SimpleObjectArray[ThisObject]);
+						KillObject((Object*)&SimpleObjectArray[ThisObject]);
 					}
 
 					OKObjectReaction(InputObject, (short) HitBox[ThisBox].DamagedResult, -1);
@@ -521,23 +521,23 @@ void OKObjectCollision(OKObject *InputObject)
 
 void SetLocalMatrix(int CurrentObject, int Type, int Player)
 {
-    objectPosition[0] = (float)OKObjectArray[CurrentObject].ObjectData.position[0];
-    objectPosition[1] = (float)OKObjectArray[CurrentObject].ObjectData.position[1] - 3.5f;
-    objectPosition[2] = (float)OKObjectArray[CurrentObject].ObjectData.position[2];
+    ObjectPosition[0] = (float)OKObjectArray[CurrentObject].ObjectData.Position[0];
+    ObjectPosition[1] = (float)OKObjectArray[CurrentObject].ObjectData.Position[1] - 3.5f;
+    ObjectPosition[2] = (float)OKObjectArray[CurrentObject].ObjectData.Position[2];
     
     if (OverKartRAMHeader.ObjectTypeList[Type].CameraAlignToggle == 1)
     {		
-        //If the CameraAlignToggle flag is enabled, then we align the object to the camera directly.
+        //If the CameraAlignToggle Flag is Enabled, then we align the object to the Camera directly.
 
         float sinB;
         float cosB;
 
-        objectAngle[0] = 0;
-        objectAngle[1] = 0;
-        objectAngle[2] = 0;
+        ObjectAngle[0] = 0;
+        ObjectAngle[1] = 0;
+        ObjectAngle[2] = 0;
 
-        sinB = sinT(GlobalCamera[Player]->camera_direction[1]-(DEG1 * 180));
-        cosB = cosT(GlobalCamera[Player]->camera_direction[1]-(DEG1 * 180));
+        sinB = SinT(GlobalCamera[Player]->CameraDirection[1]-(DEG1 * 180));
+        cosB = CosT(GlobalCamera[Player]->CameraDirection[1]-(DEG1 * 180));
 
         AffineMatrix[0][0] =  cosB;
         AffineMatrix[1][0] =  0.0f;
@@ -553,21 +553,21 @@ void SetLocalMatrix(int CurrentObject, int Type, int Player)
         AffineMatrix[2][3] =  0.0f;
         AffineMatrix[3][3] =  1.0f; 
 
-        AffineMatrix[3][0] = (float)objectPosition[0];
-        AffineMatrix[3][1] = (float)objectPosition[1];
-        AffineMatrix[3][2] = (float)objectPosition[2];
+        AffineMatrix[3][0] = (float)ObjectPosition[0];
+        AffineMatrix[3][1] = (float)ObjectPosition[1];
+        AffineMatrix[3][2] = (float)ObjectPosition[2];
     }
     else
     {
 
-        //Otherwise we use the object's angle to get a perspective normalized view.
+        //Otherwise we use the object's Angle to get a perspective normalized view.
 
-        objectAngle[0] = (short)OKObjectArray[CurrentObject].ObjectData.angle[0];
-        objectAngle[1] = (short)(OKObjectArray[CurrentObject].ObjectData.angle[1] * -1);
-        objectAngle[2] = (short)OKObjectArray[CurrentObject].ObjectData.angle[2];	
+        ObjectAngle[0] = (short)OKObjectArray[CurrentObject].ObjectData.Angle[0];
+        ObjectAngle[1] = (short)(OKObjectArray[CurrentObject].ObjectData.Angle[1] * -1);
+        ObjectAngle[2] = (short)OKObjectArray[CurrentObject].ObjectData.Angle[2];	
 
 
-        CreateModelingMatrix(AffineMatrix,objectPosition,objectAngle);
+        CreateModelingMatrix(AffineMatrix,ObjectPosition,ObjectAngle);
         
     }
 }
@@ -576,11 +576,11 @@ void SetLocalMatrix(int CurrentObject, int Type, int Player)
 
 void DrawOKObjectLoop(OKModel* ThisModel, int Player, int Type, int ForceRender)
 {
-	// Add the Texture Draw F3D code
+	// Add the Texture Draw F3D Code
     
     gSPDisplayList(GraphPtrOffset++,(ObjectSegment | ThisModel->TextureAddress) )
 	
-	//Now we have to parse for each individual object, and normalize the model to the location and angle.
+	//Now we have to parse for each individual object, and normalize the Model to the location and Angle.
 
 	{
 	    int CurrentObject;
@@ -590,11 +590,11 @@ void DrawOKObjectLoop(OKModel* ThisModel, int Player, int Type, int ForceRender)
 		{
 			if(OKObjectArray[CurrentObject].SubBehaviorClass != SUBBEHAVIOR_DEAD)
 			{
-				//We use the sphere collision test to see if the character is within render radius.
+				//We use the sphere collision test to see if the character is within render Radius.
 
-				if( (ForceRender != 0) || (TestCollideSphere(OKObjectArray[CurrentObject].ObjectData.position, (float)(OverKartRAMHeader.ObjectTypeList[Type].RenderRadius) ,GlobalPlayer[Player].position, GlobalPlayer[Player].radius)) )
+				if( (ForceRender != 0) || (TestCollideSphere(OKObjectArray[CurrentObject].ObjectData.Position, (float)(OverKartRAMHeader.ObjectTypeList[Type].RenderRadius) ,GlobalPlayer[Player].Position, GlobalPlayer[Player].Radius)) )
 				{
-					uint* MeshAddress = (uint*)GetRealAddress(ObjectSegment |ThisModel->MeshAddress);
+					Uint* MeshAddress = (Uint*)GetRealAddress(ObjectSegment |ThisModel->MeshAddress);
 
 					
 					SetLocalMatrix(CurrentObject, Type, Player);
@@ -622,25 +622,25 @@ void DrawOKObjectLoop(OKModel* ThisModel, int Player, int Type, int ForceRender)
 void DrawOKObjects(Camera* LocalCamera, int ForceRender)
 {
 	GlobalUIntB = 0;
-	if (scrollLock)
+	if (ScrollLock)
 	{
 		int CurrentPlayer = (*(long*)&LocalCamera - (long)&g_Camera1) / 0xB8;
         gSPSetGeometryMode(GraphPtrOffset++,G_CULL_BACK | G_ZBUFFER | G_SHADING_SMOOTH | G_SHADE);
 
-		//For efficiency, we sort the objects by textures when possible.
-		//This means running through each object TYPE, and drawing each piece of the model.
+		//For efficiency, we sort the objects by Textures when possible.
+		//This means running through each object TYPE, and drawing each piece of the Model.
         
 		{
 		    int CurrentType;
 		for (CurrentType = 0; CurrentType < OverKartRAMHeader.ObjectTypeCount; CurrentType++)
 		{
-			//For each object type, we first check if the object uses animations or not
+			//For each object Type, we first check if the object uses animations or not
 
 			if (OverKartRAMHeader.ObjectTypeList[CurrentType].ObjectAnimations == 0xFFFFFFFF)			
 			{
-				//When not using animations, we loop through the model count and draw each Opaque geometry.
-				//We will draw transparent geometry if the ZSortToggle flag is not active. Otherwise we'll draw it later.
-				//Each piece is then normalized to the object's location and angle by the DrawOKObjectLoop function.
+				//When not using animations, we Loop through the Model Count and draw each Opaque geometry.
+				//We will draw transparent geometry if the ZSortToggle Flag is not Active. Otherwise we'll draw it later.
+				//Each piece is then normalized to the object's location and Angle by the DrawOKObjectLoop function.
 
 				OKModel* ModelData = (OKModel*)GetRealAddress(ObjectSegment | (int)OverKartRAMHeader.ObjectTypeList[CurrentType].ObjectModel);
 				{
@@ -685,13 +685,13 @@ void DrawOKObjects(Camera* LocalCamera, int ForceRender)
 		    int ThisObject;
 		for (ThisObject = 0; ThisObject < OverKartRAMHeader.ObjectCount; ThisObject++)
 		{
-			//The following code parses the list of objects and checks for a Z-sort toggle flag.
-			//If the flag is on it calculates the distance to the player and stores this in the Z-Buffer value.
-			//If the flag is off, the value is set to -1.
+			//The following Code parses the list of objects and checks for a Z-sort toggle Flag.
+			//If the Flag is on it calculates the Distance to the Player and stores this in the Z-Buffer Value.
+			//If the Flag is off, the Value is set to -1.
 
 			if (OverKartRAMHeader.ObjectTypeList[OKObjectArray[ThisObject].TypeIndex].ZSortToggle != 0)
 			{			
-				OKObjectArray[ThisObject].ZBuffer = CalcDistance(GlobalPlayer[CurrentPlayer].position, OKObjectArray[ThisObject].ObjectData.position);
+				OKObjectArray[ThisObject].ZBuffer = CalcDistance(GlobalPlayer[CurrentPlayer].Position, OKObjectArray[ThisObject].ObjectData.Position);
 			}
 			else
 			{
@@ -704,9 +704,9 @@ void DrawOKObjects(Camera* LocalCamera, int ForceRender)
 		    int ThisPass;
 		for (ThisPass = 0; ThisPass < OverKartRAMHeader.ObjectCount; ThisPass++)
 		{
-			//Now, a second pass is made through the objects, and each pass does a loop through the objects again.
-			//It checks the distance of each objects, and finds the largest value. This is the object in the "back" of the Zbuffer.
-			//Since these objects should be rendered first, as we move towards the front, we render it now and then set the distance to -1.
+			//Now, a second pass is made through the objects, and each pass does a Loop through the objects again.
+			//It checks the Distance of each objects, and finds the largest Value. This is the object in the "back" of the Zbuffer.
+			//Since these objects should be rendered first, as we move towards the front, we render it now and then set the Distance to -1.
 			//No check will return an object with -1 as the largest, so each pass will ignore these objects.
 
 			GlobalIntA = 0;
@@ -727,7 +727,7 @@ void DrawOKObjects(Camera* LocalCamera, int ForceRender)
 				
 
 
-				//Since we've already gotten the distance to the player, we can use that for the render-radius check.
+				//Since we've already gotten the Distance to the Player, we can use that for the render-Radius check.
 				if ((float)(OverKartRAMHeader.ObjectTypeList[OKObjectArray[GlobalShortA].TypeIndex].RenderRadius) > OKObjectArray[GlobalShortA].ZBuffer)
 				{
 					if(OKObjectArray[GlobalShortA].SubBehaviorClass != SUBBEHAVIOR_DEAD)
@@ -755,15 +755,15 @@ void CheckSoundObject(OKObject* InputObject)
 {
     OKObjectType* TypeData = (OKObjectType*)&OverKartRAMHeader.ObjectTypeList[InputObject->TypeIndex];
     //Check Sound Effect
-    if ((uint)TypeData->SoundID != 0xFFFFFFFFu)
+    if ((Uint)TypeData->SoundID != 0xFFFFFFFFu)
     {
             
         GlobalBoolA = false;
         {
             int ThisPlayer;
-        for (ThisPlayer = 0; ThisPlayer < g_playerCount; ThisPlayer++)
+        for (ThisPlayer = 0; ThisPlayer < PlayerCount; ThisPlayer++)
         {
-            if (CalcDistance(GlobalPlayer[ThisPlayer].position, InputObject->ObjectData.position) < TypeData->SoundRadius)
+            if (CalcDistance(GlobalPlayer[ThisPlayer].Position, InputObject->ObjectData.Position) < TypeData->SoundRadius)
             {
                 GlobalBoolA = true;
             }
@@ -773,13 +773,13 @@ void CheckSoundObject(OKObject* InputObject)
         if ((InputObject->SoundPlaying == 0) && (GlobalBoolA))
         {
             InputObject->SoundPlaying = 1;
-            if(OverKartRAMHeader.ObjectTypeList[InputObject->TypeIndex].SoundType == 0 || g_playerCount == 1)
+            if(OverKartRAMHeader.ObjectTypeList[InputObject->TypeIndex].SoundType == 0 || PlayerCount == 1)
             {
                 NaPlyLevelStart(0,TypeData->SoundID); //Play globally
             }
             else
             {
-                NaSceneLevelStart(objectPosition,ZeroVector,TypeData->SoundID); //Play directionally
+                NaSceneLevelStart(ObjectPosition,ZeroVector,TypeData->SoundID); //Play directionally
             }
         }
         else
@@ -787,13 +787,13 @@ void CheckSoundObject(OKObject* InputObject)
             if ((InputObject->SoundPlaying == 1) && (!GlobalBoolA))
             {
                 InputObject->SoundPlaying = 0;
-                if(OverKartRAMHeader.ObjectTypeList[InputObject->TypeIndex].SoundType == 0 || g_playerCount == 1)
+                if(OverKartRAMHeader.ObjectTypeList[InputObject->TypeIndex].SoundType == 0 || PlayerCount == 1)
                 {
                     NaPlyLevelStop(0,TypeData->SoundID); //Play globally
                 }
                 else
                 {
-                    NaSceneLevelStop(objectPosition,TypeData->SoundID); //Play directionally
+                    NaSceneLevelStop(ObjectPosition,TypeData->SoundID); //Play directionally
                 }
             }
         }
@@ -803,8 +803,8 @@ void CheckSoundObject(OKObject* InputObject)
 
 void CheckOKObjects(void)
 {	
-	//Parse the object list and run the behavior and collision code. 	
-	if (scrollLock)
+	//Parse the object list and run the behavior and collision Code. 	
+	if (ScrollLock)
 	{
 		
 		

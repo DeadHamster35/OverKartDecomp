@@ -61,35 +61,35 @@ f32* D_800E2568[5] = {
 };
 
 //  Mario  Luigi  Yoshi  Toad   D.K.   Wario  Peach  Bowser
-f32 gTopSpeed50cc[] = {
+f32 TopSpeed50CC[] = {
     // 50CC
     290.0, 290.0, 294.0, 294.0, 290.0, 290.0, 294.0, 290.0,
 };
-f32 gTopSpeed100cc[] = {
+f32 TopSpeed100CC[] = {
     // 100CC
     310.0, 310.0, 314.0, 314.0, 310.0, 310.0, 314.0, 310.0,
 };
-f32 gTopSpeed150cc[] = {
+f32 TopSpeed150CC[] = {
     // 150CC
     320.0, 320.0, 324.0, 324.0, 320.0, 320.0, 324.0, 320.0,
 };
-f32 gTopSpeedExtra[] = {
+f32 TopSpeedExtra[] = {
     // Extra
     310.0, 310.0, 314.0, 314.0, 310.0, 310.0, 314.0, 310.0,
 };
-f32 gTopSpeedBattle[] = {
-    // Battle mode
+f32 TopSpeedBattle[] = {
+    // Battle Mode
     245.0, 245.0, 245.0, 245.0, 245.0, 245.0, 245.0, 245.0,
 };
-f32* gTopSpeedTable[5] = {
-    gTopSpeed50cc, gTopSpeed100cc, gTopSpeed150cc, gTopSpeedExtra, gTopSpeedBattle,
+f32* TopSpeedTable[5] = {
+    TopSpeed50CC, TopSpeed100CC, TopSpeed150CC, TopSpeedExtra, TopSpeedBattle,
 };
 
 //  Mario      Luigi       Yoshi      Toad       D.K.      Wario      Peach      Bowser
 f32 gKartFrictionTable[] = {
     5800.0, 5800.0, 5800.0, 5800.0, 5800.0, 5800.0, 5800.0, 5800.0,
 };
-f32 gravity_1[] = {
+f32 Gravity1[] = {
     2600.0, 2600.0, 2600.0, 2600.0, 2600.0, 2600.0, 2600.0, 2600.0,
 };
 f32 D_800E2670[] = {
@@ -98,7 +98,7 @@ f32 D_800E2670[] = {
 f32 gKartTopSpeedTable[] = {
     9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0, 9.0,
 };
-f32 g_charRadiusTbl[] = {
+f32 CharRadiusTbl[] = {
     5.5, 5.5, 5.5, 5.5, 5.5, 6.0, 5.5, 6.0,
 };
 

@@ -3,11 +3,11 @@
 
 /**
  * @brief Updates the paddle boat actor.
- * Actor used in DK's Jungle Parkway.
- * Rotate only the paddle wheel, for position and rotation of the boat it's in vehicle.
+ * Actor Used in DK's Jungle Parkway.
+ * Rotate only the paddle wheel, for Position and Rotation of the boat it's in vehicle.
  *
- * @param boat
+ * @Param boat
  */
-void ship_strategy(struct PaddleWheelBoat* boat) {
-    boat->wheelRot += DEGREES(5);
+void ShipStrategy(struct PaddleWheelBoat* boat) {
+    boat->WheelRot += DEGREES(5);
 }

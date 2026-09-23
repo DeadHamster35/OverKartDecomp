@@ -28,7 +28,7 @@ extern u8 gTextureSignShellShot1[];
 extern u8 gTextureSignKoopaAir0[];
 extern u8 gTextureSignKoopaAir1[];
 
-const course_texture kalimari_desert_textures[] = {
+const CourseTexture kalimari_desert_textures[] = {
     { gTexture6684F8, 0x010D, 0x0800, 0x0 },           { gTextureSignLuigis0, 0x0287, 0x1000, 0x0 },
     { gTextureSignLuigis1, 0x02AF, 0x1000, 0x0 },      { gTextureSignMarioStar0, 0x02D2, 0x1000, 0x0 },
     { gTextureSignMarioStar1, 0x02B1, 0x1000, 0x0 },   { gTextureSignNintendoRed0, 0x02A6, 0x1000, 0x0 },

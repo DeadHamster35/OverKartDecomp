@@ -23,7 +23,7 @@ extern u8 gTexture67DC20[];
 extern u8 gTextureSignYoshi[];
 extern u8 gTextureCheckerboardBlueGray[];
 
-const course_texture choco_mountain_textures[] = {
+const CourseTexture choco_mountain_textures[] = {
     { gTexture64619C, 0x0124, 0x0800, 0x0 },
     { gTexture64647C, 0x0829, 0x1000, 0x0 },
     { gTexture647F4C, 0x05BC, 0x1000, 0x0 },

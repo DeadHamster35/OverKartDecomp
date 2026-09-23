@@ -46,7 +46,7 @@ extern u8 gTexture648508[];
 extern u8 gTexture6449D4[];
 extern u8 gTexture67FE0C[];
 
-const course_texture royal_raceway_textures[] = {
+const CourseTexture royal_raceway_textures[] = {
     { gTexture64619C, 0x0124, 0x0800, 0x0 },
     { gTexture645134, 0x052C, 0x0800, 0x0 },
     { gTextureWoodDoor1, 0x0903, 0x1000, 0x0 },

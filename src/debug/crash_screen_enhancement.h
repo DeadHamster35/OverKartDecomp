@@ -4,37 +4,37 @@
 #include <ultra64.h>
 #include <macros.h>
 
-void crash_screen_draw(OSThread* thread);
+void CrashScreenDraw(OSThread* thread);
 
-// Add this to the top of main.c or crash_screen.c
+// Add this to the top of Main.c or crash_screen.c
 // #define CRASH_SCREEN_ENHANCEMENT
 
 /**
- * Example of how to force crash screen to run.
- * Make sure to include the header crash_screen_enhancement.h in main.h
+ * Example of how to Force crash screen to run.
+ * Make sure to include the header crash_screen_enhancement.h in Main.h
  */
 
-// void flush_displaylist(void) {
+// void FlushDisplaylist(void) {
 //     SetGraphCPUTime(BEFORE_DISPLAY_LISTS);
-//     osRecvMesg(&gGfxVblankQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
-//     start_graphic_task(&gDynamicP->spTask);
+//     osRecvMesg(&GfxVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+//     StartGraphicTask(&DynamicP->SPTask);
 //     SetGraphCPUTime(AFTER_DISPLAY_LISTS);
-//     osRecvMesg(&gGameVblankQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
-//     osViSwapBuffer((void *) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[g_DispFrame]));
+//     osRecvMesg(&GameVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+//     osViSwapBuffer((void *) PHYSICAL_TO_VIRTUAL(CfbPtrs[DispFrame]));
 //     SetGraphCPUTime(THREAD5_END);
-//     osRecvMesg(&gGameVblankQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
-//     SetFaultFrameBuffer((uintptr_t *) g_CfbPtrs[g_DispFrame]);
+//     osRecvMesg(&GameVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+//     SetFaultFrameBuffer((uintptr_t *) CfbPtrs[DispFrame]);
 
-//     crash_screen_draw((u16 *) g_CfbPtrs[g_DispFrame], &gGameLoopThread);
+//     CrashScreenDraw((u16 *) CfbPtrs[DispFrame], &GameLoopThread);
 //     Add this line ^
 
-//     if (++g_DispFrame == 3) {
-//         g_DispFrame = 0;
+//     if (++DispFrame == 3) {
+//         DispFrame = 0;
 //     }
-//     if (++draw_frame == 3) {
-//         draw_frame = 0;
+//     if (++DrawFrame == 3) {
+//         DrawFrame = 0;
 //     }
-//     frame_counter++;
+//     FrameCounter++;
 // }
 
 #endif // CRASH_SCREEN_ENHANCEMENT_H

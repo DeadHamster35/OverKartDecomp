@@ -1432,7 +1432,7 @@ CenterPathStruct d_course_rainbow_road_track_path[] = {
     { 5, 1509, 23, 1 },        { 5, 1509, 3, 1 },         { -32768, -32768, -32768, 0 },
 };
 
-// some textures 0x5400
+// some Textures 0x5400
 u8 d_course_rainbow_road_neon_mushroom_tlut_list[][512] = {
     {
 #include "assets/courses/rainbow_road/gTLUTRainbowRoadNeonMushroom1.inc.c"
@@ -1491,32 +1491,32 @@ u16 d_course_rainbow_road_static_tluts[] = {
 #include "assets/code/rainbow_road_tluts/gTLUTRainbowRoadNeonPeach.rgba16.inc.c"
 };
 
-/* @warning array oob kwanm_neon_fix_init */
+/* @warning array oob KwanmNeonFixInit */
 u16 d_tlut_rainbow_road_neon_luigi[] = {
 #include "assets/code/rainbow_road_tluts/gTLUTRainbowRoadNeonLuigi.rgba16.inc.c"
 };
 
-/* @warning array oob kwanm_neon_fix_init */
+/* @warning array oob KwanmNeonFixInit */
 u16 d_tlut_rainbow_road_neon_dk[] = {
 #include "assets/code/rainbow_road_tluts/gTLUTRainbowRoadNeonDonkeyKong.rgba16.inc.c"
 };
 
-/* @warning array oob kwanm_neon_fix_init */
+/* @warning array oob KwanmNeonFixInit */
 u16 d_tlut_rainbow_road_neon_yoshi[] = {
 #include "assets/code/rainbow_road_tluts/gTLUTRainbowRoadNeonYoshi.rgba16.inc.c"
 };
 
-/* @warning array oob kwanm_neon_fix_init */
+/* @warning array oob KwanmNeonFixInit */
 u16 d_tlut_rainbow_road_neon_bowser[] = {
 #include "assets/code/rainbow_road_tluts/gTLUTRainbowRoadNeonBowser.rgba16.inc.c"
 };
 
-/* @warning array oob kwanm_neon_fix_init */
+/* @warning array oob KwanmNeonFixInit */
 u16 d_tlut_rainbow_road_neon_wario[] = {
 #include "assets/code/rainbow_road_tluts/gTLUTRainbowRoadNeonWario.rgba16.inc.c"
 };
 
-/* @warning array oob kwanm_neon_fix_init */
+/* @warning array oob KwanmNeonFixInit */
 u16 d_tlut_rainbow_road_neon_toad[] = {
 #include "assets/code/rainbow_road_tluts/gTLUTRainbowRoadNeonToad.rgba16.inc.c"
 };

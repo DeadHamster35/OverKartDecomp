@@ -1,110 +1,110 @@
-void init_act_dat_table(void) {
+void InitActDatTable(void) {
     s32 i;
     for (i = 0; i < NUM_COURSES - 1; i++) {
-        gCoursesCPUBehaviour[i] = GET_COURSE_AIBehaviour;
+        CoursesCPUBehaviour[i] = GET_COURSE_AIBehaviour;
     }
 }
 
-void action_flg_sleep(s32 playerIndex) {
-    next_action_num[playerIndex] = 0;
-    old_action_num[playerIndex] = 0;
-    g_actionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_NONE;
+void ActionFlgSleep(s32 playerIndex) {
+    NextActionNum[playerIndex] = 0;
+    OldActionNum[playerIndex] = 0;
+    ActionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_NONE;
 }
 
-void action_flg_wakeup(s32 playerIndex) {
-    next_action_num[playerIndex] = 0;
-    old_action_num[playerIndex] = 0;
-    g_actionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_START;
+void ActionFlgWakeup(s32 playerIndex) {
+    NextActionNum[playerIndex] = 0;
+    OldActionNum[playerIndex] = 0;
+    ActionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_START;
 }
 
-void ActionStartCheck(s32 playerId, Player* player) {
+void ActionStartCheck(s32 PlayerId, Player* Player) {
     u16 playerPathPoint;
     s16 pathPointStart;
     s16 pathPointEnd;
     s32 behaviourType;
     UNUSED s32 test;
 
-    ActPointPtr = &gCoursesCPUBehaviour[g_courseID][next_action_num[playerId]];
+    ActPointPtr = &CoursesCPUBehaviour[CourseID][NextActionNum[PlayerId]];
 
-    playerPathPoint = gNearestPathPointByPlayerId[playerId];
+    playerPathPoint = NearestPathPointByPlayerId[PlayerId];
 
-    pathPointStart = ActPointPtr->start;
+    pathPointStart = ActPointPtr->Start;
     pathPointEnd = ActPointPtr->end;
-    behaviourType = ActPointPtr->action;
+    behaviourType = ActPointPtr->Action;
 
     if ((pathPointStart == -1) && (pathPointEnd == -1)) {
-        ActPointPtr = &gCoursesCPUBehaviour[g_courseID][0];
-        action_flg_sleep(playerId);
+        ActPointPtr = &CoursesCPUBehaviour[CourseID][0];
+        ActionFlgSleep(PlayerId);
         return;
     }
     if ((u32) playerPathPoint == (u32) pathPointStart) {
-        g_actionFlg[playerId] = CPU_BEHAVIOUR_STATE_RUNNING;
-        old_action_num[playerId] = next_action_num[playerId];
-        next_action_num[playerId]++;
+        ActionFlg[PlayerId] = CPU_BEHAVIOUR_STATE_RUNNING;
+        OldActionNum[PlayerId] = NextActionNum[PlayerId];
+        NextActionNum[PlayerId]++;
         switch (behaviourType) {
             case BEHAVIOUR_1:
-                act_drift_start(playerId, player, player->nowsterr >> 16, playerPathPoint);
+                ActDriftStart(PlayerId, Player, Player->Nowsterr >> 16, playerPathPoint);
                 break;
             case BEHAVIOUR_HOP:
-                jump_set(player);
-                player->slip_flag &= ~DRIFT;
-                g_driftFlg[playerId] = 0;
+                JumpSet(Player);
+                Player->SlipFlag &= ~DRIFT;
+                DriftFlg[PlayerId] = 0;
                 break;
             case BEHAVIOUR_DRIVE_CENTER:
-                LaneData[playerId].lane_target = 0.0f;
+                LaneData[PlayerId].LaneTarget = 0.0f;
                 break;
             case BEHAVIOUR_DRIVE_LEFT:
-                LaneData[playerId].lane_target = -0.6f;
+                LaneData[PlayerId].LaneTarget = -0.6f;
                 break;
             case BEHAVIOUR_DRIVE_OUTER:
-                LaneData[playerId].lane_target = 0.6f;
+                LaneData[PlayerId].LaneTarget = 0.6f;
                 break;
             case BEHAVIOUR_NORMAL_SPEED:
-                enemy_accel_mode[playerId] = SPEED_CPU_BEHAVIOUR_NORMAL;
+                EnemyAccelMode[PlayerId] = SPEED_CPU_BEHAVIOUR_NORMAL;
                 break;
             case BEHAVIOUR_FAST_SPEED:
-                enemy_accel_mode[playerId] = SPEED_CPU_BEHAVIOUR_FAST;
+                EnemyAccelMode[PlayerId] = SPEED_CPU_BEHAVIOUR_FAST;
                 break;
             case BEHAVIOUR_SLOW_SPEED:
-                enemy_accel_mode[playerId] = SPEED_CPU_BEHAVIOUR_SLOW;
+                EnemyAccelMode[PlayerId] = SPEED_CPU_BEHAVIOUR_SLOW;
                 break;
             case BEHAVIOUR_MAX_SPEED:
-                enemy_accel_mode[playerId] = SPEED_CPU_BEHAVIOUR_MAX;
+                EnemyAccelMode[PlayerId] = SPEED_CPU_BEHAVIOUR_MAX;
                 break;
             case BEHAVIOUR_9:
-                g_noSimpleKartFlag[playerId] = 1;
-                tenuki_flg[playerId] = false;
-                gPlayers[playerId].slip_flag &= ~CENTER_LINE;
+                NoSimpleKartFlag[PlayerId] = 1;
+                TenukiFlg[PlayerId] = false;
+                GamePlayers[PlayerId].SlipFlag &= ~CENTER_LINE;
                 break;
             case BEHAVIOUR_10:
-                g_noSimpleKartFlag[playerId] = 0;
+                NoSimpleKartFlag[PlayerId] = 0;
                 break;
         }
     }
 }
 
-void action_end_check(s32 playerIndex, Player* player) {
+void ActionEndCheck(s32 playerIndex, Player* Player) {
     u16 nearestPathPoint;
     u32 pathPointEnd;
     s32 behaviourType;
 
-    ActPointPtr = &gCoursesCPUBehaviour[g_courseID][old_action_num[playerIndex]];
-    nearestPathPoint = gNearestPathPointByPlayerId[playerIndex];
-    behaviourType = ActPointPtr->action;
+    ActPointPtr = &CoursesCPUBehaviour[CourseID][OldActionNum[playerIndex]];
+    nearestPathPoint = NearestPathPointByPlayerId[playerIndex];
+    behaviourType = ActPointPtr->Action;
     pathPointEnd = ActPointPtr->end;
     if (nearestPathPoint >= pathPointEnd) {
         switch (behaviourType) {
             case BEHAVIOUR_1:
-                player->slip_flag &= ~DRIFT;
-                g_driftFlg[playerIndex] = 0;
-                g_actionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_START;
+                Player->SlipFlag &= ~DRIFT;
+                DriftFlg[playerIndex] = 0;
+                ActionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_START;
                 break;
             case BEHAVIOUR_DRIVE_CENTER:
             case BEHAVIOUR_DRIVE_LEFT:
             case BEHAVIOUR_DRIVE_OUTER:
-                LaneData[playerIndex].lane_target =
-                    LaneData[playerIndex].lane_free_drive;
-                g_actionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_START;
+                LaneData[playerIndex].LaneTarget =
+                    LaneData[playerIndex].LaneFreeDrive;
+                ActionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_START;
                 break;
             case BEHAVIOUR_HOP:
             case BEHAVIOUR_NORMAL_SPEED:
@@ -113,7 +113,7 @@ void action_end_check(s32 playerIndex, Player* player) {
             case BEHAVIOUR_9:
             case BEHAVIOUR_10:
             case BEHAVIOUR_MAX_SPEED:
-                g_actionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_START;
+                ActionFlg[playerIndex] = CPU_BEHAVIOUR_STATE_START;
                 break;
             default:
                 break;
@@ -121,50 +121,50 @@ void action_end_check(s32 playerIndex, Player* player) {
     }
 }
 
-void action_start_end_chk(s32 playerIndex) {
-    Player* player = gPlayerOne + playerIndex;
+void ActionStartEndChk(s32 playerIndex) {
+    Player* Player = PlayerOne + playerIndex;
 
-    switch (g_actionFlg[playerIndex]) {
+    switch (ActionFlg[playerIndex]) {
         case CPU_BEHAVIOUR_STATE_NONE:
             break;
         case CPU_BEHAVIOUR_STATE_START:
-            ActionStartCheck(playerIndex, player);
+            ActionStartCheck(playerIndex, Player);
             break;
         case CPU_BEHAVIOUR_STATE_RUNNING:
-            action_end_check(playerIndex, player);
+            ActionEndCheck(playerIndex, Player);
             break;
     }
 }
 
-void act_drift_start(s32 playerIndex, Player* player, s32 arg2, UNUSED u16 arg3) {
-    if ((((player->speed / 18.0f) * 216.0f) >= 45.0f) && (g_driftFlg[playerIndex] == 0)) {
-        switch (curve_data[OGAArea]) {
+void ActDriftStart(s32 playerIndex, Player* Player, s32 Arg2, UNUSED u16 Arg3) {
+    if ((((Player->Speed / 18.0f) * 216.0f) >= 45.0f) && (DriftFlg[playerIndex] == 0)) {
+        switch (CurveData[OGAArea]) {
             case RIGHT_LEANING_CURVE:
             case RIGHT_CURVE:
-                if ((arg2 >= -9) && (avoid_mode[playerIndex] == 0)) {
-                    if ((zure_data[playerIndex] > -0.8) && (zure_data[playerIndex] < 0.5)) {
-                        jump_set(player);
-                        player->slip_flag |= DRIFT;
-                        g_driftFlg[playerIndex] = 1;
+                if ((Arg2 >= -9) && (AvoidMode[playerIndex] == 0)) {
+                    if ((ZureData[playerIndex] > -0.8) && (ZureData[playerIndex] < 0.5)) {
+                        JumpSet(Player);
+                        Player->SlipFlag |= DRIFT;
+                        DriftFlg[playerIndex] = 1;
                         break;
                     }
                 }
-                g_driftFlg[playerIndex] = 2;
+                DriftFlg[playerIndex] = 2;
                 break;
             case LEFT_LEANING_CURVE:
             case LEFT_CURVE:
-                if ((arg2 < 0xA) && (avoid_mode[playerIndex] == 0)) {
-                    if ((zure_data[playerIndex] > -0.5) && (zure_data[playerIndex] < 0.8)) {
-                        jump_set(player);
-                        player->slip_flag |= DRIFT;
-                        g_driftFlg[playerIndex] = -1;
+                if ((Arg2 < 0xA) && (AvoidMode[playerIndex] == 0)) {
+                    if ((ZureData[playerIndex] > -0.5) && (ZureData[playerIndex] < 0.8)) {
+                        JumpSet(Player);
+                        Player->SlipFlag |= DRIFT;
+                        DriftFlg[playerIndex] = -1;
                         break;
                     }
                 }
-                g_driftFlg[playerIndex] = -2;
+                DriftFlg[playerIndex] = -2;
                 break;
         }
     } else {
-        g_driftFlg[playerIndex] = 3;
+        DriftFlg[playerIndex] = 3;
     }
 }

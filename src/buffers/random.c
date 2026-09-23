@@ -1,9 +1,9 @@
 #include <segments.h>
 
-u16 g_RNG;
+u16 RNG;
 
 #ifdef VERSION_EU
-u8 randomSeedPadding[16];
+u8 RandomSeedPadding[16];
 #else
-u8 randomSeedPadding[216];
+u8 RandomSeedPadding[216];
 #endif

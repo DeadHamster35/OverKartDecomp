@@ -11,21 +11,21 @@
  */
 
 typedef struct {
-    Gfx* address;
-    u8 status;
-    u8 area;
-    u16 flag;
+    Gfx* Address;
+    u8 Status;
+    u8 Area;
+    u16 Flag;
 } SEARCHLIST;
 typedef SEARCHLIST TrackSections;
 
 struct _struct_gCoursePathSizes_0x10 {
-    /* 0x00 */ u16 firstPath;
-    /* 0x02 */ u16 secondPath;
-    /* 0x04 */ u16 thirdPath;
-    /* 0x06 */ u16 fourthPath;
-    /* 0x08 */ u16 unk8;
-    /* 0x0A */ char padA[6];
-}; // size 0x10
+    /* 0x00 */ u16 FirstPath;
+    /* 0x02 */ u16 SecondPath;
+    /* 0x04 */ u16 ThirdPath;
+    /* 0x06 */ u16 FourthPath;
+    /* 0x08 */ u16 Unk8;
+    /* 0x0A */ char PadA[6];
+}; // Size 0x10
 
 #if !ENABLE_CUSTOM_COURSE_ENGINE
 typedef enum {
@@ -81,42 +81,42 @@ typedef enum {
 #endif
 
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-extern s16 g_courseID;
-extern s16* distance_limmit_ptr[];
-#define GET_COURSE_800DCBB4(n) distance_limmit_ptr[g_courseID][n]
-extern f32 g_RoadWidth[];
-#define GET_COURSE_AIMaximumSeparation g_RoadWidth[g_courseID]
+extern s16 CourseID;
+extern s16* DistanceLimmitPtr[];
+#define GET_COURSE_800DCBB4(n) DistanceLimmitPtr[CourseID][n]
+extern f32 RoadWidth[];
+#define GET_COURSE_AIMaximumSeparation RoadWidth[CourseID]
 extern struct _struct_gCoursePathSizes_0x10 PathLengthTable[];
-#define GET_COURSE_PathSizes PathLengthTable[g_courseID]
-extern s16 handle_max_tab[];
-#define GET_COURSE_AISteeringSensitivity handle_max_tab[g_courseID]
-extern f32 soukou_zure_max[];
-#define GET_COURSE_AIMinimumSeparation soukou_zure_max[g_courseID]
+#define GET_COURSE_PathSizes PathLengthTable[CourseID]
+extern s16 HandleMaxTab[];
+#define GET_COURSE_AISteeringSensitivity HandleMaxTab[CourseID]
+extern f32 SoukouZureMax[];
+#define GET_COURSE_AIMinimumSeparation SoukouZureMax[CourseID]
 extern CenterPathStruct* PathTableB[][4];
-#define GET_COURSE_PathTable(p) GetVAddress(PathTableB[g_courseID][p])
+#define GET_COURSE_PathTable(p) GetVAddress(PathTableB[CourseID][p])
 extern CenterPathStruct* PathTable[][4];
-#define GET_COURSE_PathTable2(p) GetVAddress(PathTable[g_courseID][p])
-extern ActionData* cpu_BehaviourLUT[];
-#define GET_COURSE_AIBehaviour GetVAddress(cpu_BehaviourLUT[i])
-extern char* g_StringTableCourseGP[];
-#define GET_COURSE_Name g_StringTableCourseGP[g_courseID]
-extern char* g_StringTableCourse[];
-#define GET_COURSE_NameDup g_StringTableCourse[gCupCourseOrder[g_cupSelect][g_courseSelect]]
-extern char* circuit_name_short[];
-#define GET_COURSE_debugName circuit_name_short[g_courseID]
-extern f32 g_farClip;
-#define g_farClip g_farClip
-extern f32 screen_near_point;
-#define screen_near_point screen_near_point
-#define GET_COURSE_D_0D0096B8(cc) *(f32*) GetVAddress(&D_0D0096B8[g_courseID][cc])
+#define GET_COURSE_PathTable2(p) GetVAddress(PathTable[CourseID][p])
+extern ActionData* CPUBehaviourLUT[];
+#define GET_COURSE_AIBehaviour GetVAddress(CPUBehaviourLUT[i])
+extern char* StringTableCourseGP[];
+#define GET_COURSE_Name StringTableCourseGP[CourseID]
+extern char* StringTableCourse[];
+#define GET_COURSE_NameDup StringTableCourse[CupCourseOrder[CupSelect][CourseSelect]]
+extern char* CircuitNameShort[];
+#define GET_COURSE_debugName CircuitNameShort[CourseID]
+extern f32 FarClip;
+#define FarClip FarClip
+extern f32 ScreenNearPoint;
+#define ScreenNearPoint ScreenNearPoint
+#define GET_COURSE_D_0D0096B8(cc) *(f32*) GetVAddress(&D_0D0096B8[CourseID][cc])
 #define GET_COURSE_cpu_OffTrackTargetSpeed(cc) \
-    *(f32*) GetVAddress(&cpu_OffTrackTargetSpeed[g_courseID][cc])
+    *(f32*) GetVAddress(&cpu_OffTrackTargetSpeed[CourseID][cc])
 #define GET_COURSE_cpu_CurveTargetSpeed(cc) \
-    *(f32*) GetVAddress(&cpu_CurveTargetSpeed[g_courseID][cc])
+    *(f32*) GetVAddress(&cpu_CurveTargetSpeed[CourseID][cc])
 #define GET_COURSE_cpu_NormalTargetSpeed(cc) \
-    *(f32*) GetVAddress(&cpu_NormalTargetSpeed[g_courseID][cc])
+    *(f32*) GetVAddress(&cpu_NormalTargetSpeed[CourseID][cc])
 #else
-#define g_courseID
+#define CourseID
 #define GET_COURSE_800DCBB4(n)
 #define GET_COURSE_AIMaximumSeparation
 #define GET_COURSE_PathSizes
@@ -128,8 +128,8 @@ extern f32 screen_near_point;
 #define GET_COURSE_Name
 #define GET_COURSE_NameDup
 #define GET_COURSE_debugName
-#define g_farClip
-#define screen_near_point
+#define FarClip
+#define ScreenNearPoint
 #define GET_COURSE_D_0D0096B8(cc)
 #define GET_COURSE_cpu_OffTrackTargetSpeed(cc)
 #define GET_COURSE_cpu_CurveTargetSpeed(cc)

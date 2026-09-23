@@ -16,9 +16,9 @@
 #define GLUE(a, b) a##b
 #define GLUE2(a, b) GLUE(a, b)
 
-// Avoid compiler warnings for unused variables
+// Avoid compiler warnings for Unused variables
 #ifdef __GNUC__
-#define UNUSED __attribute__((unused))
+#define UNUSED __attribute__((Unused))
 #else
 #define UNUSED
 #endif
@@ -58,17 +58,17 @@
 #define ALIGNED16
 #endif
 
-// Fixed point macros
+// Fixed Point macros
 #define FTOFIX(f) ((s32) ((f) * 65536.0))
 #define ITOFIX(i) ((s32) ((i) << 16))
 #define FIXTOF(x) ((double) ((x) / 65536.0))
 #define FIXTOI(x) ((s32) ((x) >> 16))
 
-// Split fixed-point values into its integer or fractional parts.
+// Split fixed-Point values into its integer or fractional parts.
 #define toFixedInt(f) (FTOFIX(f) >> 16)
 #define toFrac(f) (FTOFIX(f) & 0xFFFF)
 
-// Setup a fixed-point matrix using floats or doubles. Recommend using doubles for more precision.
+// Setup a fixed-Point Matrix using floats or doubles. Recommend using doubles for more precision.
 #define toFixedPointMatrix(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16)                    \
     {                                                                                                                \
         { ((toFixedInt(x1)) << 16) | toFixedInt(x2), ((toFixedInt(x3)) << 16) | toFixedInt(x4),                      \
@@ -83,23 +83,23 @@
         }                                                                                                            \
     }
 
-// convert a virtual address to physical.
-#define VIRTUAL_TO_PHYSICAL(addr) ((uintptr_t) (addr) & 0x1FFFFFFF)
+// convert a virtual Address to physical.
+#define VIRTUAL_TO_PHYSICAL(Addr) ((uintptr_t) (Addr) & 0x1FFFFFFF)
 
-// convert a physical address to virtual.
-#define PHYSICAL_TO_VIRTUAL(addr) ((uintptr_t) (addr) | 0x80000000)
+// convert a physical Address to virtual.
+#define PHYSICAL_TO_VIRTUAL(Addr) ((uintptr_t) (Addr) | 0x80000000)
 
 // another way of converting virtual to physical
-#define VIRTUAL_TO_PHYSICAL2(addr) ((u8*) (addr) - 0x80000000U)
+#define VIRTUAL_TO_PHYSICAL2(Addr) ((u8*) (Addr) - 0x80000000U)
 
-// aligns an address to the next 16 bytes
+// aligns an Address to the Next 16 bytes
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
 /**
  * (u8*) dl : Cast array down to u8's
  * + sizeof(dl) : go to the end of the array
  * - sizeof(dl[0]) : walk back 1 Gfx macro
- * - 0x07000000 : get just the offset
+ * - 0x07000000 : get just the Offset
  **/
 #define GET_PACKED_END(dl) (((u8*) dl) + sizeof(dl) - sizeof(dl[0]) - 0x07000000)
 

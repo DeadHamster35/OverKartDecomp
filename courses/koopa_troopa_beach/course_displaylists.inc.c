@@ -6320,7 +6320,7 @@ Gfx d_course_koopa_troopa_beach_packed_dl_9CD0[] = {
     gsSPEndDisplayList(),
 };
 
-// Waterfall pool?
+// Waterfall Pool?
 Gfx d_course_koopa_troopa_beach_packed_dl_9D58[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
     gsDPTileSync(),

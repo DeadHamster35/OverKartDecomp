@@ -10,27 +10,27 @@
 // #pragma GCC diagnostic ignored "-Wmissing-member-name-in-structure-/-union"
 
 /**
- * g_SimpleObjectArray should be understood to be populated by generic Actor structs.
+ * SimpleObjectArray should be understood to be populated by generic Actor structs.
  * However, for human readability, many functions interacting with actor list elements expect one of the many
  * specialized types found in this file.
  *
- * Note that specialized types must be the same size as a plain Actor. Don't be mislead into thinking that
- * because its a separate type that it can modified separately from plain Actor. If you modify/add an actor type
- * and its size is different from plain Actor's, you WILL run into buggy (potentially crash inducing) behaviour.
+ * Note that specialized types must be the same Size as a plain Actor. Don't be mislead into thinking that
+ * because its a separate Type that it can modified separately from plain Actor. If you modify/add an actor Type
+ * and its Size is different from plain Actor's, you WILL run into buggy (potentially crash inducing) behaviour.
  *
  * Specialized structs are customizable so long as the following member specifications are met:
  *
  * In general:
- *     0x00 -> s16 type
+ *     0x00 -> s16 Type
  *     0x02 -> s16 flags
  *     0x30 -> Collision unk30
  *
- * If player can collide with the actor:
+ * If Player can collide with the actor:
  *     0x0C -> f32 boundingBoxSize
  *
- * If the actor makes sound (necessary for doppler/volume stuff):
+ * If the actor makes Sound (necessary for doppler/Volume stuff):
  *     0x18 -> Vec3f pos
- *     0x24 -> Vec3f velocity
+ *     0x24 -> Vec3f Velocity
  *
  * Other members are more flexible, and even the non-general specifications can be ignored IF AND ONLY IF you know
  * exactly what you're doing.
@@ -99,321 +99,321 @@ enum ActorType {
 #define ONSCREEN2 0x2
 #define ONSCREEN3 0x4
 #define ONSCREEN4 0x8
-#define ACTOR_IS_NOT_EXPIRED 0xF // The actor possesses some kind of collision and can be removed
+#define ACTOR_IS_NOT_EXPIRED 0xF // The actor possesses some Kind of collision and can be removed
 
-// Actor shell->state (green, red and blue)
+// Actor shell->State (Green, red and Blue)
 enum ShellState {
     HELD_SHELL,                  // Single shell that has not been dropped. (probably holding Z).
     RELEASED_SHELL,              // This is the short window where single shells aren't being held or launched.
-    MOVING_SHELL,                // Moving towards its target after being shot.
+    MOVING_SHELL,                // Moving towards its Target after being shot.
     RED_SHELL_LOCK_ON,           // Red shell is targeting.
-    TRIPLE_GREEN_SHELL,          // Loses triple shell state when shot.
-    GREEN_SHELL_HIT_A_RACER,     // A racer has been hit by a green shell.
-    TRIPLE_RED_SHELL,            // Loses triple shell state when shot.
+    TRIPLE_GREEN_SHELL,          // Loses triple shell State when shot.
+    GREEN_SHELL_HIT_A_RACER,     // A racer has been hit by a Green shell.
+    TRIPLE_RED_SHELL,            // Loses triple shell State when shot.
     DESTROYED_SHELL,             // Collision with the shell.
-    BLUE_SHELL_LOCK_ON,          // A blue shell has found a target and is hastily approaching it.
+    BLUE_SHELL_LOCK_ON,          // A Blue shell has found a Target and is hastily approaching it.
     BLUE_SHELL_TARGET_ELIMINATED // Mission completed, well done boss.
 };
 
-// Actor banana->state
+// Actor banana->State
 enum BananaState {
     HELD_BANANA,               // Single banana that has not been dropped.
-    DROPPED_BANANA,            // A banana in the state of being dropped on the ground (it only last for a few frames).
+    DROPPED_BANANA,            // A banana in the State of being dropped on the Ground (it only last for a few frames).
     FIRST_BANANA_BUNCH_BANANA, // The first banana of the banana bunch
     BANANA_BUNCH_BANANA,       // Every banana of the banana bunch except the first one.
-    BANANA_ON_GROUND,          // A banana sitting on the ground.
+    BANANA_ON_GROUND,          // A banana sitting on the Ground.
     DESTROYED_BANANA           // Collision with the banana.
 };
 
-// Actor fakeItemBox->state
+// Actor fakeItemBox->State
 #define HELD_FAKE_ITEM_BOX 0      // Item box is being held be Z.
-#define FAKE_ITEM_BOX_ON_GROUND 1 // Item box is on the ground.
-#define DESTROYED_FAKE_ITEM_BOX 2 // Collision with fake item box.
+#define FAKE_ITEM_BOX_ON_GROUND 1 // Item box is on the Ground.
+#define DESTROYED_FAKE_ITEM_BOX 2 // Collision with fake Item box.
 
 typedef struct Object {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 counter;
-    /* 0x06 */ s16 sparam;
-    /* 0x08 */ f32 fparam;
-    /* 0x0C */ f32 radius;
-    /* 0x10 */ Vec3s angle;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity;
-    /* 0x30 */ Bump bump;
-} Object; // size = 0x70
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 Counter;
+    /* 0x06 */ s16 Sparam;
+    /* 0x08 */ f32 Fparam;
+    /* 0x0C */ f32 Radius;
+    /* 0x10 */ Vec3s Angle;
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity;
+    /* 0x30 */ Bump Bump;
+} Object; // Size = 0x70
 typedef Object Actor;
 
 // Duplicate declare for simplicity when externing actors & packed files.
-extern Object g_SimpleObjectArray[ACTOR_LIST_SIZE]; // D_8015F9B8
+extern Object SimpleObjectArray[ACTOR_LIST_SIZE]; // D_8015F9B8
 
 /*
 Specialized actor types
 */
 
 /*
-Used by the locomotive, tender, and passenger car
+Used by the Locomotive, Tender, and passenger car
 */
 struct TrainCar {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 counter;
-    /* 0x06 */ s16 wheelRot;
-    /* 0x08 */ f32 fparam;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 Counter;
+    /* 0x06 */ s16 WheelRot;
+    /* 0x08 */ f32 Fparam;
     /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ Vec3s angle;
-    /* 0x10 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x10 */ Vec3s Angle;
+    /* 0x10 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct RailroadCrossing {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 someTimer;
-    /* 0x06 */ s16 crossingId;
-    /* 0x08 */ f32 fparam;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 SomeTimer;
+    /* 0x06 */ s16 CrossingId;
+    /* 0x08 */ f32 Fparam;
     /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ Vec3s angle;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x10 */ Vec3s Angle;
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct FallingRock {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 respawnTimer;
-    /* 0x06 */ s16 unk_06;
-    /* 0x08 */ f32 fparam;
-    /* 0x0C */ f32 radius;
-    /* 0x10 */ Vec3s angle;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 RespawnTimer;
+    /* 0x06 */ s16 Unk06;
+    /* 0x08 */ f32 Fparam;
+    /* 0x0C */ f32 Radius;
+    /* 0x10 */ Vec3s Angle;
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct ActorSpawnData {
     /* 0x00 */ Vec3s pos;
     union {
-        /* 0x06 */ u16 someId; // Usually populated, but not necessarily used by all actors types
-        /* 0x06 */ s16 signedSomeId;
+        /* 0x06 */ u16 SomeId; // Usually populated, but not necessarily Used by all actors types
+        /* 0x06 */ s16 SignedSomeId;
     };
 };
 
-// Required for check_col_jungle_tree due to diff size.
+// Required for CheckColJungleTree due to diff Size.
 // members unverified. data located at d_course_dks_jungle_parkway_tree_spawn
 /**
  * There are nearly 100 trees in DK Jungle Parkway. If they were put into the actor list proper
- * they would fill it up, leaving no space for stuff like item boxes, shells, bananas, kiwano fruits,
+ * they would Fill it up, leaving no space for stuff like Item boxes, shells, bananas, kiwano fruits,
  * etc.
- * So, this struct type acts as both spawn data AND a stripped down Actor for those trees.
- * Give the tree a position, a byte for flags stuffed into an s16 used to indicate tree sub-type,
- * and an s16 containing as the tree's original Y position.
+ * So, this struct Type acts as both spawn data AND a stripped down Actor for those trees.
+ * Give the tree a Position, a byte for flags stuffed into an s16 Used to indicate tree sub-Type,
+ * and an s16 containing as the tree's original Y Position.
  **/
 struct UnkActorSpawnData {
     /* 0x00 */ Vec3s pos;
-    // Techinically only the bottom byte of someId is the "id". The top byte is used for flags.
-    /* 0x06 */ s16 someId;
-    // Stores the tree's original Y position.
-    /* 0x08 */ s16 unk8;
+    // Techinically only the bottom byte of SomeId is the "id". The top byte is Used for flags.
+    /* 0x06 */ s16 SomeId;
+    // Stores the tree's original Y Position.
+    /* 0x08 */ s16 Unk8;
 };
 
 struct YoshiValleyEgg {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 counter;
-    /* 0x06 */ s16 unk_06;
-    /* 0x08 */ f32 pathRadius;
-    /* 0x0C */ f32 radius;
-    /* 0x10 */ s16 pathRot;
-    /* 0x12 */ s16 eggRot;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 Counter;
+    /* 0x06 */ s16 Unk06;
+    /* 0x08 */ f32 PathRadius;
+    /* 0x0C */ f32 Radius;
+    /* 0x10 */ s16 PathRot;
+    /* 0x12 */ s16 EggRot;
     /* 0x14 */ s16 unk_14;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    // Note, pathCenter[1] should be understood to be the Y velocity of the egg
-    // pathCenter[0] and pathCenter[2] are the X,Z coordinates of the center of the path
-    /* 0x24 */ Vec3f pathCenter;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    // Note, PathCenter[1] should be understood to be the Y Velocity of the egg
+    // PathCenter[0] and PathCenter[2] are the X,Z coordinates of the center of the path
+    /* 0x24 */ Vec3f PathCenter;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct KiwanoFruit {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
     /* 0x04 */ s16
-        targetPlayer; // Id of the player this actor tracks. Each player has their own kiwano actor just for them
-    /* 0x06 */ s16 sparam;
-    /* 0x08 */ f32 bonkTimer; // bonkState? Not sure what this is tracking, but its some form of count down that starts
+        TargetPlayer; // Id of the Player this actor tracks. Each Player has their own kiwano actor just for them
+    /* 0x06 */ s16 Sparam;
+    /* 0x08 */ f32 BonkTimer; // bonkState? Not sure what this is tracking, but its some form of Count down that starts
                               // after the fruit hits you
-    /* 0x0C */ f32 radius;
-    /* 0x10 */ s16 animState;
-    /* 0x12 */ s16 animTimer;
+    /* 0x0C */ f32 Radius;
+    /* 0x10 */ s16 AnimState;
+    /* 0x12 */ s16 AnimTimer;
     /* 0x14 */ s16 unk_14;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct PaddleWheelBoat {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 counter;
-    /* 0x06 */ s16 wheelRot;
-    /* 0x08 */ f32 fparam;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 Counter;
+    /* 0x06 */ s16 WheelRot;
+    /* 0x08 */ f32 Fparam;
     /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ Vec3s boatRot;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x10 */ Vec3s BoatRot;
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct PakkunObject {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ Vec4s visibilityStates; // A per-camera visibilty state tracker
-    /* 0x0C */ f32 radius;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ Vec4s VisibilityStates; // A per-Camera visibilty State tracker
+    /* 0x0C */ f32 Radius;
     /* 0x10 */ Vec4s unk10;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec4s timers; // A per-camera timer. Might be more appropriate to call this state
-    /* 0x2C */ f32 unk_02C;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec4s Timers; // A per-Camera Timer. Might be more appropriate to call this State
+    /* 0x2C */ f32 Unk02C;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 typedef struct PakkunObject PakkunObject;
 typedef PakkunObject PiranhaPlant;
 
 struct PalmTree {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 variant; // four different types of palm trees
-    /* 0x06 */ s16 sparam;
-    /* 0x08 */ f32 fparam;
-    /* 0x0C */ f32 radius;
-    /* 0x10 */ Vec3s angle;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 Variant; // four different types of palm trees
+    /* 0x06 */ s16 Sparam;
+    /* 0x08 */ f32 Fparam;
+    /* 0x0C */ f32 Radius;
+    /* 0x10 */ Vec3s Angle;
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 typedef struct {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 shellsAvailable;
-    /* 0x06 */ s16 sparam;
-    /* 0x08 */ f32 fparam;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 ShellsAvailable;
+    /* 0x06 */ s16 Sparam;
+    /* 0x08 */ f32 Fparam;
     /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ s16 rotVelocity;
-    /* 0x12 */ s16 rotAngle;
-    /* 0x14 */ s16 playerId; // Id of the player that "owns" the shells
-    /* 0x16 */ s16 unk_16;
+    /* 0x10 */ s16 RotVelocity;
+    /* 0x12 */ s16 RotAngle;
+    /* 0x14 */ s16 PlayerId; // Id of the Player that "owns" the shells
+    /* 0x16 */ s16 Unk16;
     /* 0x18 */ Vec3f unk_18;
-    /* 0x24 */ Vec3f shellIndices; // Indices in g_SimpleObjectArray for the shells "owned" by this parent
-    /* 0x30 */ Bump bump;
-} TripleShellParent; // size = 0x70
+    /* 0x24 */ Vec3f ShellIndices; // Indices in SimpleObjectArray for the shells "owned" by this parent
+    /* 0x30 */ Bump Bump;
+} TripleShellParent; // Size = 0x70
 
 struct ShellActor {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    // Index in g_SimpleObjectArray for the parent actor of this shell
-    // Seems to pull double duty as a timer
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    // Index in SimpleObjectArray for the parent actor of this shell
+    // Seems to pull double duty as a Timer
     union {
-        /* 0x04 */ s16 parentIndex;
-        /* 0x04 */ s16 someTimer;
-        // Red Shells only (maybe blue shells?)
-        /* 0x04 */ s16 targetPlayer; // Player the shell is after
+        /* 0x04 */ s16 ParentIndex;
+        /* 0x04 */ s16 SomeTimer;
+        // Red Shells only (maybe Blue shells?)
+        /* 0x04 */ s16 TargetPlayer; // Player the shell is after
     };
-    /* 0x06 */ s16 sparam;
+    /* 0x06 */ s16 Sparam;
     /* 0x08 */ f32 shellId; // 0, 1, or 2. Indicates which shell in the triplet this one is
-    /* 0x0C */ f32 radius;
-    /* 0x10 */ s16 rotVelocity; // Change in rotAngle on a per-update basis
+    /* 0x0C */ f32 Radius;
+    /* 0x10 */ s16 RotVelocity; // Change in RotAngle on a per-update basis
     union {
-        /* 0x12 */ s16 rotAngle;  // Angle of rotation around player (or parent?), not the rotation of the shell itself
-        /* 0x12 */ u16 pathIndex; // Index in the set of points that make up the "path" the red/blue shell follows (may
-                                  // be GP mode exclusive)
+        /* 0x12 */ s16 RotAngle;  // Angle of Rotation around Player (or parent?), not the Rotation of the shell itself
+        /* 0x12 */ u16 PathIndex; // Index in the set of points that make up the "path" the red/Blue shell follows (may
+                                  // be GP Mode exclusive)
     };
-    /* 0x14 */ s16 playerId; // Id of the player that "owns" the shell
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity; // All 0 until the shell is fired
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x14 */ s16 PlayerId; // Id of the Player that "owns" the shell
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity; // All 0 until the shell is fired
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct ItemBox {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 someTimer;
-    /* 0x06 */ s16 sparam;
-    /* 0x08 */ f32 resetDistance; // Value added to the Y position when box is touched. Expected to be negative
-                                  // Distance at which a player can activate the item box
-                                  // Named "bounding box" to match the name used for the "size" of a kart
-    /* 0x0C */ f32 radius;
-    /* 0x10 */ Vec3s angle;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ f32 origY; // Original Y position. Basically the Y position the box will reset to after being touched
-    /* 0x28 */ f32 unk_028;
-    /* 0x2C */ f32 unk_02C;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 SomeTimer;
+    /* 0x06 */ s16 Sparam;
+    /* 0x08 */ f32 ResetDistance; // Value added to the Y Position when box is touched. Expected to be negative
+                                  // Distance at which a Player can activate the Item box
+                                  // Named "bounding box" to match the name Used for the "Size" of a Kart
+    /* 0x0C */ f32 Radius;
+    /* 0x10 */ Vec3s Angle;
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ f32 OrigY; // Original Y Position. Basically the Y Position the box will reset to after being touched
+    /* 0x28 */ f32 Unk028;
+    /* 0x2C */ f32 Unk02C;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct FakeItemBox {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 someTimer;
-    /* 0x06 */ s16 sparam;
-    /* 0x08 */ f32 sizeScaling; // Controls the size of the box
-    /* 0x0C */ f32 radius;
-    /* 0x10 */ Vec3s angle;
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ f32 playerId;
-    /* 0x28 */ f32 targetY;
-    /* 0x2C */ f32 unk_02C;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 SomeTimer;
+    /* 0x06 */ s16 Sparam;
+    /* 0x08 */ f32 SizeScaling; // Controls the Size of the box
+    /* 0x0C */ f32 Radius;
+    /* 0x10 */ Vec3s Angle;
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ f32 PlayerId;
+    /* 0x28 */ f32 TargetY;
+    /* 0x2C */ f32 Unk02C;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct BananaBunchParent {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 counter;
-    /* 0x06 */ s16 sparam;
-    /* 0x08 */ f32 fparam;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 Counter;
+    /* 0x06 */ s16 Sparam;
+    /* 0x08 */ f32 Fparam;
     /* 0x0C */ f32 unk_0C;
-    /* 0x10 */ s16 playerId;         // Player that own the bananas
-    /* 0x12 */ s16 bananaIndices[5]; // Indices in g_SimpleObjectArray for the bananas owned by this parent
-    /* 0x1C */ s16 bananasAvailable;
+    /* 0x10 */ s16 PlayerId;         // Player that own the bananas
+    /* 0x12 */ s16 BananaIndices[5]; // Indices in SimpleObjectArray for the bananas owned by this parent
+    /* 0x1C */ s16 BananasAvailable;
     /* 0x1E */ s16 unk_1E;
     /* 0x20 */ f32 unk_20[4];
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 struct BananaActor {
-    /* 0x00 */ s16 category;
-    /* 0x02 */ s16 flag;
-    /* 0x04 */ s16 counter;
-    /* 0x06 */ s16 sparam;
-    /* 0x08 */ s16 parentIndex;
+    /* 0x00 */ s16 Category;
+    /* 0x02 */ s16 Flag;
+    /* 0x04 */ s16 Counter;
+    /* 0x06 */ s16 Sparam;
+    /* 0x08 */ s16 ParentIndex;
     /* 0x0A */ s16 bananaId; // ? Appears to indiciate which banana of the bunch this one is
-    /* 0x0C */ f32 radius;
+    /* 0x0C */ f32 Radius;
     union {
-        /* 0x10 */ Vec3s angle;
+        /* 0x10 */ Vec3s Angle;
         struct {
-            /* 0x10 */ s16 playerId;     // Id of the player that owns this banana
-            /* 0x12 */ s16 elderIndex;   // Index in g_SimpleObjectArray of the next-oldest banana in the bunch
-            /* 0x14 */ s16 youngerIndex; // Index in g_SimpleObjectArray of the next-youngest banana in the bunch
+            /* 0x10 */ s16 PlayerId;     // Id of the Player that owns this banana
+            /* 0x12 */ s16 ElderIndex;   // Index in SimpleObjectArray of the Next-oldest banana in the bunch
+            /* 0x14 */ s16 YoungerIndex; // Index in SimpleObjectArray of the Next-youngest banana in the bunch
         };
     };
-    /* 0x16 */ s16 unk_16;
-    /* 0x18 */ Vec3f position;
-    /* 0x24 */ Vec3f velocity;
-    /* 0x30 */ Bump bump;
-}; // size = 0x70
+    /* 0x16 */ s16 Unk16;
+    /* 0x18 */ Vec3f Position;
+    /* 0x24 */ Vec3f Velocity;
+    /* 0x30 */ Bump Bump;
+}; // Size = 0x70
 
 // #pragma GCC diagnostic pop
 

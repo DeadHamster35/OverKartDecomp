@@ -1,6 +1,6 @@
 
 ; the following all deal with ASM instructions in the game.
-; we edit them in the customASM and stockASM routines.
+; we edit them in the customASM and StockASM routines.
 
 
 .definelabel nopASM, 0x80002714
@@ -35,20 +35,20 @@
 
 .definelabel asm_PlayerSelectController, 0x800B04F0
 .definelabel asm_tempo1A, 0x800015C4  ;;3C0F8015
-.definelabel asm_tempo1ASpeed, 0x800015C6  ;;speed value
+.definelabel asm_tempo1ASpeed, 0x800015C6  ;;Speed Value
 .definelabel asm_tempo1B, 0x800015C8  ;;8DEF0114
-.definelabel asm_tempo1BSpeed, 0x800015CA  ;; speed value
+.definelabel asm_tempo1BSpeed, 0x800015CA  ;; Speed Value
 .definelabel asmTempoFullScreen, 0x800014CC
 
 .definelabel asm_tempo2A, 0x80001A38  ;;3C098015
-.definelabel asm_tempo2ASpeed, 0x80001A3A  ;;speed value
+.definelabel asm_tempo2ASpeed, 0x80001A3A  ;;Speed Value
 .definelabel asm_tempo2B, 0x80001A3C  ;;8D290114
-.definelabel asm_tempo2BSpeed, 0x80001A3E  ;; speed value
+.definelabel asm_tempo2BSpeed, 0x80001A3E  ;; Speed Value
 
 .definelabel asm_tempo3A, 0x80001C90  ;;3C0A8015
-.definelabel asm_tempo3ASpeed, 0x80001C92  ;;speed value
+.definelabel asm_tempo3ASpeed, 0x80001C92  ;;Speed Value
 .definelabel asm_tempo3B, 0x80001C94  ;;8D4A0114
-.definelabel asm_tempo3BSpeed, 0x80001C96  ;; speed value
+.definelabel asm_tempo3BSpeed, 0x80001C96  ;; Speed Value
 
 .definelabel asm_BorderDraw, 0x80001E64
 
@@ -62,8 +62,8 @@
 .definelabel previewReload, 0x80094BF0
 //0C0266BB
 
-.definelabel g_EchoStart, 0x80027F52  ;;short value
-.definelabel g_EchoStop, 0x80027F5A  ;;short value
+.definelabel EchoStart, 0x80027F52  ;;short Value
+.definelabel EchoStop, 0x80027F5A  ;;short Value
 
 
 .definelabel highpolypipeA, 0x802911E8   ;;3C190700

@@ -2,20 +2,20 @@
 #include <segments.h>
 #include "textures.h"
 
-extern u16 *tex_buff;
-extern s32 all_tex_block_num;
+extern u16 *TexBuff;
+extern s32 AllTexBlockNum;
 extern MenuTexture *D_800E7D74[];
 extern MenuTexture *D_800E7DC4[];
-extern void *GetTBPointer(const void *addr);
+extern void *GetTBPointer(const void *Addr);
 extern u8 _textures_0aSegmentRomStart[];
 extern u8 _textures_0bSegmentRomStart[];
 
 typedef struct {
-	u64 *textureData;
-	s32 offset;
+	u64 *TextureData;
+	s32 Offset;
 } OKTexMap;
 
-extern OKTexMap sMenuTextureMap[];
+extern OKTexMap SMenuTextureMap[];
 
 static int sStockAudioSaved = 0;
 static int sCourseTableSaved = 0;
@@ -30,39 +30,39 @@ float LevelScales[7] =
 };
 short ZFLIP, YFLIP;
 
-void FPS_Check(void)
+void FPSCheck(void)
 {
-	static uint ClockCycle, OldCycle;
+	static Uint ClockCycle, OldCycle;
 	static float CycleCount;
 	static float FPS;
-	short FPS_Check;
+	short FPSCheck;
 
 	ClockCycle = osGetCount();
 	CycleCount = (ClockCycle - OldCycle);
 	/* CPU2SEC */
 	FPS = (1 * 0x2CB5E16) / CycleCount;
 
-	FPS_Check = (short)FPS;
+	FPSCheck = (short)FPS;
 	OldCycle = ClockCycle;
 
 	/* Modifiers for FPS drops */
 	/* Those values work well already, but can be tweaked further */
-	if (FPS_Check >= 22)
+	if (FPSCheck >= 22)
 	{
 		DynFPSModifier = 2;
 	}
 
-	else if (FPS_Check >= 15)
+	else if (FPSCheck >= 15)
 	{
 		DynFPSModifier = 3;
 	}
 
-	else if (FPS_Check >= 11)
+	else if (FPSCheck >= 11)
 	{
 		DynFPSModifier = 4;
 	}
 
-	else if (FPS_Check >= 8)
+	else if (FPSCheck >= 8)
 	{
 		DynFPSModifier = 5;
 	}
@@ -75,7 +75,7 @@ void FPS_Check(void)
 
 void DynamicTempo(void)
 {
-	FPS_Check();
+	FPSCheck();
 }
 
 void StaticTempo(int Tempo)
@@ -85,21 +85,21 @@ void StaticTempo(int Tempo)
 
 void ApplyRaceTempo(void)
 {
-	if (ok_StaticTempoOnly != 0) {
+	if (OKStaticTempoOnly != 0) {
 		DynFPSModifier = 2;
 	}
-	framerate = DynFPSModifier;
+	Framerate = DynFPSModifier;
 }
 
-void previewRefresh(void)
+void PreviewRefresh(void)
 {
 	if (MapIsCurrentlyLoading)
 	{
 		return;
 	}
-	// This value will cause the game to try to reload preview images
+	// This Value will cause the game to try to reload preview images
 	// Used on the Map Select screen when we swap to a new set of custom levels.
-	if (g_gameMode != GAMEMODE_BATTLE)
+	if (GameMode != GAMEMODE_BATTLE)
 	{
 		g_menuPreviewValue1 = 9;
 		g_menuPreviewValue2 = 9;
@@ -115,34 +115,34 @@ void previewRefresh(void)
 	}
 }
 
-void copyCourseTable(int copyMode)
+void CopyCourseTable(int copyMode)
 {
 	// 0 to restore stock cups, 1 to save. First restore snapshots
-	// the live table so map-select enter never copies empty BSS.
-	dataLength = 0x28;
+	// the live Table so Map-Select enter never copies empty BSS.
+	DataLength = 0x28;
 	if (copyMode == 0)
 	{
 		if (sCourseTableSaved == 0)
 		{
-			*sourceAddress = (long)(&g_CupArray[0]);
-			*targetAddress = (long)&ok_CourseTable;
-			runRAM();
+			*SourceAddress = (long)(&g_CupArray[0]);
+			*TargetAddress = (long)&ok_CourseTable;
+			RunRAM();
 			sCourseTableSaved = 1;
 			return;
 		}
-		*sourceAddress = (long)&ok_CourseTable;
-		*targetAddress = (long)(&g_CupArray[0]);
+		*SourceAddress = (long)&ok_CourseTable;
+		*TargetAddress = (long)(&g_CupArray[0]);
 	}
 	else
 	{
-		*sourceAddress = (long)(&g_CupArray[0]);
-		*targetAddress = (long)&ok_CourseTable;
+		*SourceAddress = (long)(&g_CupArray[0]);
+		*TargetAddress = (long)&ok_CourseTable;
 		sCourseTableSaved = 1;
 	}
-	runRAM();
+	RunRAM();
 }
 
-void hsTableSet(void)
+void HsTableSet(void)
 {
 	int Index;
 
@@ -174,11 +174,11 @@ void stockTableSet(void)
 }
 */
 
-void stockASM(void)
+void StockASM(void)
 {
 	// these functions will swap the ASM routines that load Mario's Raceway.
-	// they will point to the custom setup we've implemented for HotSwap courses.
-	// this does not swap in the course header table, only the ASM instructions.
+	// they will Point to the custom setup we've implemented for HotSwap courses.
+	// this does not swap in the course header Table, only the ASM instructions.
 
 	highpolypipeA = 0x3C190700; // 3C190700
 	highpolypipeB = 0x373908E8; // 373908E8
@@ -265,13 +265,13 @@ void stockASM(void)
 	g_mapStartToggle = 0x0C0132B4;
 	asm_GPLevelSelect = 0xA42DC5A0;
 
-	copyCourseTable(0);
+	CopyCourseTable(0);
 }
-void overkartASM(void)
+void OverkartASM(void)
 {
 	// these functions will swap the ASM routines that load Mario's Raceway.
-	// they will point to the custom setup we've implemented for custom courses.
-	// this does not swap in the course header table, only the ASM instructions.
+	// they will Point to the custom setup we've implemented for custom courses.
+	// this does not swap in the course header Table, only the ASM instructions.
 
 	highpolypipeA = 0x3C190600; // 3C190700
 	highpolypipeB = 0x37390000; // 373908E8
@@ -325,7 +325,7 @@ void overkartASM(void)
 
 	g_mapStartToggle = 0x00000000;
 
-	copyCourseTable(1);
+	CopyCourseTable(1);
 	g_cup0Array0 = 0;
 	g_cup0Array1 = 1;
 	g_cup0Array2 = 2;
@@ -353,10 +353,10 @@ void overkartASM(void)
 
 typedef struct OK64AudioTable
 {
-	uint SeqPointer;
-	uint SeqSize;
-	uint InsPointer;
-	uint InsSize;
+	Uint SeqPointer;
+	Uint SeqSize;
+	Uint InsPointer;
+	Uint InsSize;
 } OK64AudioTable;
 
 void BackupStockAudioTables(void)
@@ -365,30 +365,30 @@ void BackupStockAudioTables(void)
 	{
 		return;
 	}
-	if ((g_MUSTablePointer == NULL) || (gAlCtlHeader == NULL) || (gAlTbl == NULL))
+	if ((MUSTablePointer == NULL) || (AlCtlHeader == NULL) || (AlTbl == NULL))
 	{
 		return;
 	}
 
-	dataLength = 8;
-	*sourceAddress = (int)&g_MUSSequenceTable.pointer[3].address;
-	*targetAddress = (int)&ok_Sequence;
-	runRAM();
+	DataLength = 8;
+	*SourceAddress = (int)&g_MUSSequenceTable.Pointer[3].Address;
+	*TargetAddress = (int)&ok_Sequence;
+	RunRAM();
 
-	*sourceAddress = (int)&g_MUSInstrumentTable.pointer[3];
-	*targetAddress = (int)&ok_Instrument;
-	runRAM();
+	*SourceAddress = (int)&g_MUSInstrumentTable.Pointer[3];
+	*TargetAddress = (int)&ok_Instrument;
+	RunRAM();
 
-	*(long *)(&ok_USAudio) = g_MUSRawAudioTable.pointer[0].address;
-	*(long *)(&ok_USAudio + 1) = g_MUSInstrumentTable.pointer[0].address;
-	*(long *)(&ok_MRSong) = g_MUSSequenceTable.pointer[3].address;
-	*(long *)(&ok_MRSong + 1) = g_MUSSequenceTable.pointer[3].length;
+	*(long *)(&ok_USAudio) = g_MUSRawAudioTable.Pointer[0].Address;
+	*(long *)(&ok_USAudio + 1) = g_MUSInstrumentTable.Pointer[0].Address;
+	*(long *)(&ok_MRSong) = g_MUSSequenceTable.Pointer[3].Address;
+	*(long *)(&ok_MRSong + 1) = g_MUSSequenceTable.Pointer[3].Length;
 	sStockAudioSaved = 1;
 }
 
-s32 start_race_BGM_custom(void)
+s32 StartRaceBGMCustom(void)
 {
-	if ((HotSwapID > 0) && ((uint)OverKartHeader.Version != 0xFFFFFFFFu) && (OverKartHeader.MusicID < 50))
+	if ((HotSwapID > 0) && ((Uint)OverKartHeader.Version != 0xFFFFFFFFu) && (OverKartHeader.MusicID < 50))
 	{
 		NaSeqStart((u16) OverKartHeader.MusicID);
 		return 1;
@@ -396,78 +396,78 @@ s32 start_race_BGM_custom(void)
 	return 0;
 }
 
-void setSong(void)
+void SetSong(void)
 {
 	OK64AudioTable *SongData;
 
 	BackupStockAudioTables();
-	if ((g_MUSTablePointer == NULL) || (gAlCtlHeader == NULL))
+	if ((MUSTablePointer == NULL) || (AlCtlHeader == NULL))
 	{
 		return;
 	}
 
-	/* MusicID < 50 is a SeqId; start_race_BGM_custom plays it. MusicID >= 50 is a ROM pointer. */
-	if ((HotSwapID > 0) && ((uint)OverKartHeader.Version != 0xFFFFFFFFu))
+	/* MusicID < 50 is a SeqId; StartRaceBGMCustom plays it. MusicID >= 50 is a ROM Pointer. */
+	if ((HotSwapID > 0) && ((Uint)OverKartHeader.Version != 0xFFFFFFFFu))
 	{
 
 		if (OverKartHeader.MusicID < 50)
 		{
-			dataLength = 8;
-			*sourceAddress = (int)&ok_Sequence;
-			*targetAddress = (int)&g_MUSSequenceTable.pointer[3].address;
-			runRAM();
-			*sourceAddress = (int)&ok_Instrument;
-			*targetAddress = (int)&g_MUSInstrumentTable.pointer[3].address;
-			runRAM();
+			DataLength = 8;
+			*SourceAddress = (int)&ok_Sequence;
+			*TargetAddress = (int)&g_MUSSequenceTable.Pointer[3].Address;
+			RunRAM();
+			*SourceAddress = (int)&ok_Instrument;
+			*TargetAddress = (int)&g_MUSInstrumentTable.Pointer[3].Address;
+			RunRAM();
 		}
 		else
 		{
-			*targetAddress = (int)&ok_FreeSpace;
-			*sourceAddress = OverKartHeader.MusicID;
-			dataLength = 64;
-			runDMA();
+			*TargetAddress = (int)&ok_FreeSpace;
+			*SourceAddress = OverKartHeader.MusicID;
+			DataLength = 64;
+			RunDMA();
 
 			SongData = (OK64AudioTable*)(long)&ok_FreeSpace;
 
-			g_MUSSequenceTable.pointer[3].address = SongData->SeqPointer;
-			g_MUSSequenceTable.pointer[3].length = SongData->SeqSize;
+			g_MUSSequenceTable.Pointer[3].Address = SongData->SeqPointer;
+			g_MUSSequenceTable.Pointer[3].Length = SongData->SeqSize;
 
-			g_MUSInstrumentTable.pointer[3].address = SongData->InsPointer;
-			g_MUSInstrumentTable.pointer[3].length = SongData->InsSize;
+			g_MUSInstrumentTable.Pointer[3].Address = SongData->InsPointer;
+			g_MUSInstrumentTable.Pointer[3].Length = SongData->InsSize;
 		}
 	}
 	else
 	{
-		dataLength = 8;
-		*sourceAddress = (int)&ok_Sequence;
-		*targetAddress = (int)&g_MUSSequenceTable.pointer[3].address;
-		runRAM();
-		*sourceAddress = (int)&ok_Instrument;
-		*targetAddress = (int)&g_MUSInstrumentTable.pointer[3].address;
-		runRAM();
+		DataLength = 8;
+		*SourceAddress = (int)&ok_Sequence;
+		*TargetAddress = (int)&g_MUSSequenceTable.Pointer[3].Address;
+		RunRAM();
+		*SourceAddress = (int)&ok_Instrument;
+		*TargetAddress = (int)&g_MUSInstrumentTable.Pointer[3].Address;
+		RunRAM();
 	}
 }
 
 void SetGhostData(void)
 {
-	if ((HotSwapID > 0) && ((uint)OverKartHeader.Version != 0xFFFFFFFFu))
+	if ((HotSwapID > 0) && ((Uint)OverKartHeader.Version != 0xFFFFFFFFu))
 	{
-		if (g_gameMode == GAMEMODE_TT)
+		if (GameMode == GAMEMODE_TT)
 		{
 			if (OverKartHeader.Ghost != 0)
 			{
-				*sourceAddress = OverKartHeader.Ghost;
-				*targetAddress = (uint)(&ok_FreeSpace);
-				dataLength = 0x3C00;
-				runDMA();
-				*sourceAddress = (uint)(&ok_FreeSpace);
-				*targetAddress = (uint)(&KeystockBuffer);
-				runMIO();
+				*SourceAddress = OverKartHeader.Ghost;
+				*TargetAddress = (Uint)(&ok_FreeSpace);
+				DataLength = 0x3C00;
+				RunDMA();
+				*SourceAddress = (Uint)(&ok_FreeSpace);
+				*TargetAddress = (Uint)(&KeystockBuffer);
+				RunMIO();
 				KeystockCounter = KeystockBuffer & 0x00FF0000;
 			}
 			else
 			{
-				uint *KeystockData = (uint *)(&KeystockBuffer);
+				Uint *KeystockData = (Uint *)(&KeystockBuffer);
 				{
 				    int ThisPass;
 				for (ThisPass = 0; ThisPass < 64; ThisPass++)
@@ -476,20 +476,20 @@ void SetGhostData(void)
 				}
 				}
 
-				// Should be 9 minutes of idle.
+				// Should be 9 Minutes of idle.
 			}
 		}
 	}
 }
-void setPath(void)
+void SetPath(void)
 {
 	short *PathLengths = (short *)(&g_pathLength);
 
-	if (g_courseID == 0x14)
+	if (CourseID == 0x14)
 	{
 		return;
 	}
-	if ((HotSwapID > 0) && ((uint)OverKartHeader.Version != 0xFFFFFFFFu))
+	if ((HotSwapID > 0) && ((Uint)OverKartHeader.Version != 0xFFFFFFFFu))
 	{
 
 		PathLengths[0] = (short)(OverKartHeader.PathLength[0]);
@@ -501,18 +501,18 @@ void setPath(void)
 
 		PathLengths[0] = (short)(OverKartHeader.PathLength[0]);
 
-		*sourceAddress = OverKartHeader.PathOffset;
-		dataLength = 16;
-		if (g_gameMode != GAMEMODE_BATTLE)
+		*SourceAddress = OverKartHeader.PathOffset;
+		DataLength = 16;
+		if (GameMode != GAMEMODE_BATTLE)
 		{
-			*targetAddress = (uint)(&pathOffset);
-			runDMA();
+			*TargetAddress = (Uint)(&pathOffset);
+			RunDMA();
 			pathOffsetB = pathOffset + ((OverKartHeader.PathLength[0] + 1) * 8);
 		}
 		else
 		{
-			*targetAddress = (uint)(&pathOffsetBlock);
-			runDMA();
+			*TargetAddress = (Uint)(&pathOffsetBlock);
+			RunDMA();
 		}
 	}
 
@@ -529,8 +529,8 @@ void setPath(void)
 	for (ThisPath = 0; ThisPath < 4; ThisPath++)
 	{
 		
-		Marker *PathArray = (Marker *)GetRealAddress(PathTable[g_courseID][ThisPath]);
-		Marker *PathArrayB = (Marker *)GetRealAddress(PathTableB[g_courseID][ThisPath]);
+		Marker *PathArray = (Marker *)GetRealAddress(PathTable[CourseID][ThisPath]);
+		Marker *PathArrayB = (Marker *)GetRealAddress(PathTableB[CourseID][ThisPath]);
 		if (ZFLIP)
 		{
 
@@ -556,9 +556,9 @@ void setPath(void)
 			    int ThisMark, HighMark;
 			for (ThisMark = 0, HighMark = GlobalIntA ; ThisMark < HighMark; ThisMark++, HighMark--)
 			{
-				objectPosition[0] = GlobalShortA * (short)((float)PathArray[ThisMark].Position[0] * LevelScales[(int)ScaleXMode]);				
-				objectPosition[1] = GlobalShortB * (short)((float)PathArray[ThisMark].Position[1] * LevelScales[(int)ScaleYMode]);				
-				objectPosition[2] = -1 * (short)((float)PathArray[ThisMark].Position[2] * LevelScales[(int)ScaleZMode]);
+				ObjectPosition[0] = GlobalShortA * (short)((float)PathArray[ThisMark].Position[0] * LevelScales[(int)ScaleXMode]);				
+				ObjectPosition[1] = GlobalShortB * (short)((float)PathArray[ThisMark].Position[1] * LevelScales[(int)ScaleYMode]);				
+				ObjectPosition[2] = -1 * (short)((float)PathArray[ThisMark].Position[2] * LevelScales[(int)ScaleZMode]);
 
 
 				PathArray[ThisMark].Position[0] = GlobalShortA * (short)((float)PathArray[HighMark].Position[0] * LevelScales[(int)ScaleXMode]);
@@ -569,9 +569,9 @@ void setPath(void)
 				PathArray[ThisMark].Group = PathArray[HighMark].Group;
 
 
-				PathArray[HighMark].Position[0] = objectPosition[0];
-				PathArray[HighMark].Position[1] = objectPosition[1];
-				PathArray[HighMark].Position[2] = objectPosition[2];
+				PathArray[HighMark].Position[0] = ObjectPosition[0];
+				PathArray[HighMark].Position[1] = ObjectPosition[1];
+				PathArray[HighMark].Position[2] = ObjectPosition[2];
 				PathArray[HighMark].Group = GlobalShortC;
 
 			}
@@ -603,9 +603,9 @@ void setPath(void)
 			    int ThisMark, HighMark;
 			for (ThisMark = 0, HighMark = GlobalIntA ; ThisMark < HighMark; ThisMark++, HighMark--)
 			{
-				objectPosition[0] = GlobalShortA * (short)((float)PathArrayB[ThisMark].Position[0] * LevelScales[(int)ScaleXMode]);
-				objectPosition[1] = GlobalShortB * (short)((float)PathArrayB[ThisMark].Position[1] * LevelScales[(int)ScaleYMode]);
-				objectPosition[2] = -1 * (short)((float)PathArrayB[ThisMark].Position[2] * LevelScales[(int)ScaleZMode]);
+				ObjectPosition[0] = GlobalShortA * (short)((float)PathArrayB[ThisMark].Position[0] * LevelScales[(int)ScaleXMode]);
+				ObjectPosition[1] = GlobalShortB * (short)((float)PathArrayB[ThisMark].Position[1] * LevelScales[(int)ScaleYMode]);
+				ObjectPosition[2] = -1 * (short)((float)PathArrayB[ThisMark].Position[2] * LevelScales[(int)ScaleZMode]);
 
 
 				PathArrayB[ThisMark].Position[0] = GlobalShortA * (short)((float)PathArrayB[HighMark].Position[0] * LevelScales[(int)ScaleXMode]);
@@ -615,9 +615,9 @@ void setPath(void)
 				GlobalShortC = PathArray[ThisMark].Group;
 				PathArray[ThisMark].Group = PathArray[HighMark].Group;
 
-				PathArrayB[HighMark].Position[0] = objectPosition[0];
-				PathArrayB[HighMark].Position[1] = objectPosition[1];
-				PathArrayB[HighMark].Position[2] = objectPosition[2];				
+				PathArrayB[HighMark].Position[0] = ObjectPosition[0];
+				PathArrayB[HighMark].Position[1] = ObjectPosition[1];
+				PathArrayB[HighMark].Position[2] = ObjectPosition[2];				
 				PathArray[HighMark].Group = GlobalShortC;
 
 			}
@@ -722,7 +722,7 @@ void PlaceIBoxes(long BoxOffset)
 {
 	Marker *BoxArray;
 
-	if ((g_ItemSetFlag == 0) || (g_gameMode == GAMEMODE_TT))
+	if ((ItemSetFlag == 0) || (GameMode == GAMEMODE_TT))
 	{
 		return;
 	}
@@ -733,7 +733,7 @@ void PlaceIBoxes(long BoxOffset)
 	    int vecAxis;
 	for (vecAxis = 0; vecAxis < 3; vecAxis++)
 	{
-		objectVelocity[vecAxis] = 0;
+		ObjectVelocity[vecAxis] = 0;
 	}
 	}
 	{
@@ -748,39 +748,39 @@ void PlaceIBoxes(long BoxOffset)
 		    int vecAxis;
 		for (vecAxis = 0; vecAxis < 3; vecAxis++)
 		{
-			objectPosition[vecAxis] = (float)BoxArray[ThisBox].Position[vecAxis];
-			objectAngle[vecAxis] = MakeRandom();
+			ObjectPosition[vecAxis] = (float)BoxArray[ThisBox].Position[vecAxis];
+			ObjectAngle[vecAxis] = MakeRandom();
 		}
 		}
-		objectPosition[0] *= g_mirrorValue;
+		ObjectPosition[0] *= MirrorValue;
 
-        objectPosition[0] *= LevelScales[(int)(ScaleXMode)];
-        objectPosition[1] *= LevelScales[(int)(ScaleYMode)];
-        objectPosition[2] *= LevelScales[(int)(ScaleZMode)];
+        ObjectPosition[0] *= LevelScales[(int)(ScaleXMode)];
+        ObjectPosition[1] *= LevelScales[(int)(ScaleYMode)];
+        ObjectPosition[2] *= LevelScales[(int)(ScaleZMode)];
 
         if (ZFLIP)
         {
-            objectPosition[2] *= -1.0f;
+            ObjectPosition[2] *= -1.0f;
         }
         if (YFLIP)
         {
-            objectPosition[1] *= -1.0f;
+            ObjectPosition[1] *= -1.0f;
         }
 
-		GlobalIntA = addObjectBuffer(objectPosition, objectAngle, objectVelocity, IBOX);
-		g_SimpleObjectArray[GlobalIntA].fparam = CheckHight(objectPosition[0], objectPosition[1] + 10, objectPosition[2]);
-		g_SimpleObjectArray[GlobalIntA].velocity[0] = objectPosition[1];
-		g_SimpleObjectArray[GlobalIntA].position[1] = g_SimpleObjectArray[GlobalIntA].fparam - 20;
-		g_SimpleObjectArray[GlobalIntA].bump.dummy = BoxArray[ThisBox].Group; // used for forced custom items
+		GlobalIntA = AddObjectBuffer(ObjectPosition, ObjectAngle, ObjectVelocity, IBOX);
+		SimpleObjectArray[GlobalIntA].Fparam = CheckHight(ObjectPosition[0], ObjectPosition[1] + 10, ObjectPosition[2]);
+		SimpleObjectArray[GlobalIntA].Velocity[0] = ObjectPosition[1];
+		SimpleObjectArray[GlobalIntA].Position[1] = SimpleObjectArray[GlobalIntA].Fparam - 20;
+		SimpleObjectArray[GlobalIntA].Bump.Dummy = BoxArray[ThisBox].Group; // Used for forced custom items
 	}
 	}
 }
 
-void setWater(void)
+void SetWater(void)
 {
 	if (HotSwapID > 0)
 	{
-		g_waterHeight = OverKartHeader.WaterLevel;
+		WaterHeight = OverKartHeader.WaterLevel;
 	}
 }
 
@@ -788,25 +788,25 @@ void CheckEcho(void)
 {
 }
 
-void setEcho(void)
+void SetEcho(void)
 {
-	if ((HotSwapID > 0) && ((uint)OverKartHeader.Version != 0xFFFFFFFFu))
+	if ((HotSwapID > 0) && ((Uint)OverKartHeader.Version != 0xFFFFFFFFu))
 	{
 		OverKartRAMHeader.EchoOffset = 0;
 		GlobalUIntA = OverKartHeader.EchoEnd - OverKartHeader.EchoStart;
 		OverKartRAMHeader.EchoOffset = LoadOKData(OverKartHeader.EchoStart, GlobalUIntA);
-		g_EchoStart = 0;
-		g_EchoStop = 0;
+		EchoStart = 0;
+		EchoStop = 0;
 	}
 	else
 	{
 		OverKartRAMHeader.EchoOffset = 0;
-		g_EchoStart = 0x19B;
-		g_EchoStop = 0x1B9;
+		EchoStart = 0x19B;
+		EchoStop = 0x1B9;
 	}
 }
 // Rain
-uint A4Rain[36] = {
+Uint A4Rain[36] = {
 	0x00000000,0x00000000,
 	0x00000000,0x00000000,
 	0x00000000,0x00000000,
@@ -827,7 +827,7 @@ uint A4Rain[36] = {
 	0x00000000,0x00000000,
 };
 // Snow
-uint A4Snow[36] = {
+Uint A4Snow[36] = {
 	0x00000000,0x00000000,
 	0x00000000,0x00000000,
 	0x00000111,0x11100000,
@@ -849,7 +849,7 @@ uint A4Snow[36] = {
 };
 
 // Rain
-uint A4Dummy[36] = {
+Uint A4Dummy[36] = {
 	0x00000001,0x10000000,
 	0x00000001,0x10000000,
 	0x00000001,0x10000000,
@@ -880,7 +880,7 @@ void SetWeatherType(char WeatherType) // 0 = Snow // 1 = Rain
 			    int texarr;
 			for (texarr = 0; texarr < 36; texarr++)
 			{
-				*(uint*)&g_SnowParticleTex[texarr] = A4Dummy[texarr];
+				*(Uint*)&g_SnowParticleTex[texarr] = A4Dummy[texarr];
 			}
 			}
 			g_skySnowVelocity = 1.75;
@@ -948,7 +948,7 @@ void SetWeatherType(char WeatherType) // 0 = Snow // 1 = Rain
 void SetCloudType(char CloudType) // 0 = None // 1 = MR Clouds // 2 = Stars // 3 = Snow/Rain
 {
 
-	if (g_InGame)
+	if (InGame)
 	{
 		
 		switch (CloudType)
@@ -979,7 +979,7 @@ void SetCloudType(char CloudType) // 0 = None // 1 = MR Clouds // 2 = Stars // 3
 
 	if (HotSwapID == 0)
 	{
-		CloudCourseID = g_courseID;
+		CloudCourseID = CourseID;
 	}
 }
 
@@ -990,7 +990,7 @@ void SetWeather3D(bool Weather3DEnable) // Enables 3D weather effects (snow/rain
 	
 	if (Weather3DEnable && HotSwapID > 0)
 	{
-		if (g_startingIndicator >= 0 && g_startingIndicator < 5 && g_gamePausedFlag == 0x00 && g_playerCount == 1)
+		if (StartingIndicator >= 0 && StartingIndicator < 5 && GamePausedFlag == 0x00 && PlayerCount == 1)
 		{
 			KWChartSnow();
 			
@@ -999,47 +999,47 @@ void SetWeather3D(bool Weather3DEnable) // Enables 3D weather effects (snow/rain
 	}
 	else
 	{
-		Snow3DCourseID = g_courseID;
+		Snow3DCourseID = CourseID;
 	}
 }
 
 void SnowCustomCheck(int SnowIndex)
 {
-	if (g_DynamicObjects[SnowIndex].pos[1] <= GlobalPlayer[0].position[1] - 5.0 || g_DynamicObjects[SnowIndex].pos[1] >= GlobalPlayer[0].position[1] + 60.0)
+	if (DynamicObjects[SnowIndex].pos[1] <= GlobalPlayer[0].Position[1] - 5.0 || DynamicObjects[SnowIndex].pos[1] >= GlobalPlayer[0].Position[1] + 60.0)
 	{
-		g_DynamicObjects[SnowIndex].anmptr = 1;
+		DynamicObjects[SnowIndex].Anmptr = 1;
 	}
 }
 
-void EventDisplay(int player)
+void EventDisplay(int Player)
 {
 	if (HotSwapID == 0)
 	{
-		KWDisplayEvent(player);
+		KWDisplayEvent(Player);
 	}
 	else
 	{
-		KWDisplayIceBlockShadow(player);
-		KWDisplayBombKartBT(player);
-		KWDisplayEvent(player);
+		KWDisplayIceBlockShadow(Player);
+		KWDisplayBombKartBT(Player);
+		KWDisplayEvent(Player);
 	}
 }
 
-void EventDisplay_After(int player)
+void EventDisplayAfter(int Player)
 {
 	if (HotSwapID == 0)
 	{
-		KWDisplayEvent_After(player);
+		KWDisplayEvent_After(Player);
 	}
 	else
 	{
-		KWDisplayIceBlock(player);
-		KWDisplayEvent_After(player);
+		KWDisplayIceBlock(Player);
+		KWDisplayEvent_After(Player);
 	}
 
 	if (HotSwapID > 0)
 	{
-		DrawCustomParticle(player);
+		DrawCustomParticle(Player);
 	}
 }
 
@@ -1064,13 +1064,13 @@ void CommonGameEventChart(void)
 	}
 }
 
-void KumoColorMode(uint r, uint g, uint b)
+void KumoColorMode(Uint r, Uint g, Uint b)
 {
     short OKR;
     short OKG;
     short OKB;
 
-    // Get the colors from the OK Header
+    // Get the Colors from the OK Header
     if (HotSwapID == 0)
     {
         SparkMode(255,255,255);
@@ -1084,63 +1084,63 @@ void KumoColorMode(uint r, uint g, uint b)
 	
 }
 
-void setSky(void)
+void SetSky(void)
 {
 
 	if (HotSwapID > 0)
 	{
-		*targetAddress = (long)&g_skyColorTopTable;
-		if (g_gameMode == GAMEMODE_BATTLE)
+		*TargetAddress = (long)&SkyColorTopTable;
+		if (GameMode == GAMEMODE_BATTLE)
 		{
-			*targetAddress += 0xB4;
+			*TargetAddress += 0xB4;
 		}
-		*sourceAddress = OverKartHeader.Sky;
-		dataLength = 0x10;
-		runDMA();
-		*targetAddress = (long)&g_skyColorBotTable;
-		if (g_gameMode == GAMEMODE_BATTLE)
+		*SourceAddress = OverKartHeader.Sky;
+		DataLength = 0x10;
+		RunDMA();
+		*TargetAddress = (long)&SkyColorBotTable;
+		if (GameMode == GAMEMODE_BATTLE)
 		{
-			*targetAddress += 0xB4;
+			*TargetAddress += 0xB4;
 		}
-		*sourceAddress = *sourceAddress + 0x10;
-		runDMA();
+		*SourceAddress = *SourceAddress + 0x10;
+		RunDMA();
 	}
 	else
 	{
-		*targetAddress = (long)&g_skyColorTopTable;
-		*sourceAddress = (long)(SEG_RACING_ROM_START + ((uintptr_t)&g_skyColorTopTable - SEG_RACING));
-		if (g_gameMode == GAMEMODE_BATTLE)
+		*TargetAddress = (long)&SkyColorTopTable;
+		*SourceAddress = (long)(SEG_RACING_ROM_START + ((uintptr_t)&SkyColorTopTable - SEG_RACING));
+		if (GameMode == GAMEMODE_BATTLE)
 		{
-			*targetAddress += 0xB4;
-			*sourceAddress += 0xB4;
+			*TargetAddress += 0xB4;
+			*SourceAddress += 0xB4;
 		}		
 		
-		dataLength = 0x10;
-		runDMA();
-		*targetAddress = (long)&g_skyColorBotTable;
-		*sourceAddress = (long)(SEG_RACING_ROM_START + ((uintptr_t)&g_skyColorBotTable - SEG_RACING));
-		if (g_gameMode == GAMEMODE_BATTLE)
+		DataLength = 0x10;
+		RunDMA();
+		*TargetAddress = (long)&SkyColorBotTable;
+		*SourceAddress = (long)(SEG_RACING_ROM_START + ((uintptr_t)&SkyColorBotTable - SEG_RACING));
+		if (GameMode == GAMEMODE_BATTLE)
 		{
-			*targetAddress += 0xB4;
-			*sourceAddress += 0xB4;
+			*TargetAddress += 0xB4;
+			*SourceAddress += 0xB4;
 		}		
 		
-		runDMA();
+		RunDMA();
 	}
 }
 
-void loadTextureScrollTranslucent(void)
+void LoadTextureScrollTranslucent(void)
 {
 	*(long *)(&ok_scrolltranslucent) = 0xFFFFFFFF;
 	if (HotSwapID > 0)
 	{
-		*sourceAddress = OverKartHeader.ScrollROM;
-		if (*sourceAddress != 0)
+		*SourceAddress = OverKartHeader.ScrollROM;
+		if (*SourceAddress != 0)
 		{
-			*targetAddress = (long)&ok_scrolltranslucent;
-			dataLength = OverKartHeader.ScrollSize;
-			dataLength += 4;
-			runDMA();
+			*TargetAddress = (long)&ok_scrolltranslucent;
+			DataLength = OverKartHeader.ScrollSize;
+			DataLength += 4;
+			RunDMA();
 		}
 	}
 	{
@@ -1153,11 +1153,11 @@ void loadTextureScrollTranslucent(void)
 	}
 }
 
-void runTextureScroll(void)
+void RunTextureScroll(void)
 {
 	GlobalAddressA = (long)(&ok_scrolltranslucent);
 	LoopValue = *(long *)(&ok_scrolltranslucent);
-	if ((uint)LoopValue == 0xFFFFFFFFu)
+	if ((Uint)LoopValue == 0xFFFFFFFFu)
 	{
 		return;
 	}
@@ -1166,10 +1166,10 @@ void runTextureScroll(void)
 	    int CurrentScroll;
 	for (CurrentScroll = 0; CurrentScroll < LoopValue; CurrentScroll++)
 	{
-		GlobalAddressB = *(long *)(GlobalAddressA + (CurrentScroll * 8) + 4); // address of the texture command to scroll.
+		GlobalAddressB = *(long *)(GlobalAddressA + (CurrentScroll * 8) + 4); // Address of the Texture command to scroll.
 		GlobalIntA = *(long *)(GlobalAddressA + (CurrentScroll * 8) + 8);
-		GlobalShortA = (GlobalIntA >> 16) & (0xFFFF); // S value
-		GlobalShortB = GlobalIntA & 0xFFFF;			  // T value
+		GlobalShortA = (GlobalIntA >> 16) & (0xFFFF); // S Value
+		GlobalShortB = GlobalIntA & 0xFFFF;			  // T Value
 
 		if (GlobalShortA > 0)
         {
@@ -1214,13 +1214,13 @@ void runTextureScroll(void)
 }
 
 /*
-void runWaterVertex(void)
+void RunWaterVertex(void)
 {
-	//This handles translucency by setting vertex alpha.
-	//Outdated; vertex alpha can be loaded directly now.
+	//This handles translucency by setting vertex Alpha.
+	//Outdated; vertex Alpha can be Loaded directly now.
 	GlobalAddressA = (long)(&ok_scrolltranslucent) + OverKartHeader.WVOffset;
 	LoopValue = *(long*)GlobalAddressA;
-	if ((uint)LoopValue == 0xFFFFFFFFu)
+	if ((Uint)LoopValue == 0xFFFFFFFFu)
 	{
 		return;
 	}
@@ -1238,16 +1238,16 @@ void runWaterVertex(void)
 
 typedef struct WaveStruct
 {
-	uint Count;
-	uint Address;
+	Uint Count;
+	Uint Address;
 } WaveStruct;
 
-void runWaterVertex(void)
+void RunWaterVertex(void)
 {
 
 	GlobalAddressA = (long)(&ok_scrolltranslucent) + OverKartHeader.WVOffset;
 	LoopValue = *(long *)GlobalAddressA;
-	if ((uint)LoopValue == 0xFFFFFFFFu)
+	if ((Uint)LoopValue == 0xFFFFFFFFu)
 	{
 		return;
 	}
@@ -1287,16 +1287,16 @@ typedef struct ROMVertex
 
 
 
-void DecodeSP1Triangle_OK(Gfx *gfx,unsigned char *pp,char code )
+void DecodeSP1TriangleOK(Gfx *gfx,unsigned char *pp,char Code )
 {
 	unsigned int data,v0,v1,v2;
-	data=(uint)pp[g_PKCounter++];
+	data=(Uint)pp[PKCounter++];
 
-	if(g_ScreenFlip != ZFLIP)
+	if(ScreenFlip != ZFLIP)
 	{
 	v2=data&0x1f;
 	v1=(data>>5)&0x07;
-	data=(uint)pp[g_PKCounter++];
+	data=(Uint)pp[PKCounter++];
 	v1|=(data&0x03)<<3;
 	v0=(data>>2)&0x1f;
 	}
@@ -1304,23 +1304,23 @@ void DecodeSP1Triangle_OK(Gfx *gfx,unsigned char *pp,char code )
 	{
 	v0=data&0x1f;
 	v1=(data>>5)&0x07;
-	data=(uint)pp[g_PKCounter++];
+	data=(Uint)pp[PKCounter++];
 	v1|=(data&0x03)<<3;
 	v2=(data>>2)&0x1f;
 	}
-	gfx[g_GFXCounter].words.w0=(G_TRI1<<24);
-	gfx[g_GFXCounter++].words.w1=(((v0*2)<<16)|((v1*2)<<8)|(v2*2));
+	gfx[GFXCounter].words.w0=(G_TRI1<<24);
+	gfx[GFXCounter++].words.w1=(((v0*2)<<16)|((v1*2)<<8)|(v2*2));
 }
-void DecodeSP2Triangle_OK(Gfx *gfx,unsigned char *pp,char code )
+void DecodeSP2TriangleOK(Gfx *gfx,unsigned char *pp,char Code )
 {
 	unsigned int data,v0,v1,v2,v3,v4,v5;
-	data=(uint)pp[g_PKCounter++];
+	data=(Uint)pp[PKCounter++];
 
-	if(g_ScreenFlip != ZFLIP)
+	if(ScreenFlip != ZFLIP)
 	{
 		v2=data&0x1f;
 		v1=(data>>5)&0x07;
-		data=(uint)pp[g_PKCounter++];
+		data=(Uint)pp[PKCounter++];
 		v1|=(data&0x03)<<3;
 		v0=(data>>2)&0x1f;
 	}
@@ -1328,18 +1328,18 @@ void DecodeSP2Triangle_OK(Gfx *gfx,unsigned char *pp,char code )
 	{
 		v0=data&0x1f;
 		v1=(data>>5)&0x07;
-		data=(uint)pp[g_PKCounter++];	
+		data=(Uint)pp[PKCounter++];	
 		v1|=(data&0x03)<<3;
 		v2=(data>>2)&0x1f;
 	}
 
-	data=(uint)pp[g_PKCounter++];
+	data=(Uint)pp[PKCounter++];
 
-	if(g_ScreenFlip != ZFLIP)
+	if(ScreenFlip != ZFLIP)
 	{
 		v5=data&0x1f;
 		v4=(data>>5)&0x07;
-		data=(uint)pp[g_PKCounter++];
+		data=(Uint)pp[PKCounter++];
 		v4|=(data&0x03)<<3;
 		v3=(data>>2)&0x1f;
 	}
@@ -1347,60 +1347,60 @@ void DecodeSP2Triangle_OK(Gfx *gfx,unsigned char *pp,char code )
 	{
 		v3=data&0x1f;
 		v4=(data>>5)&0x07;
-		data=(uint)pp[g_PKCounter++];
+		data=(Uint)pp[PKCounter++];
 		v4|=(data&0x03)<<3;
 		v5=(data>>2)&0x1f;
 	}
-	gfx[g_GFXCounter].words.w0=((G_TRI2<<24)|((v0*2)<<16)|((v1*2)<<8)|(v2*2));
-	gfx[g_GFXCounter++].words.w1=(((v3*2)<<16)|((v4*2)<<8)|(v5*2));
+	gfx[GFXCounter].words.w0=((G_TRI2<<24)|((v0*2)<<16)|((v1*2)<<8)|(v2*2));
+	gfx[GFXCounter++].words.w1=(((v3*2)<<16)|((v4*2)<<8)|(v5*2));
 }
-void DecodeSP1Quadrangle_OK(Gfx *gfx,unsigned char *pp,char code )
+void DecodeSP1QuadrangleOK(Gfx *gfx,unsigned char *pp,char Code )
 {
 	unsigned int data,v0,v1,v2,v3;
-	data=(uint)pp[g_PKCounter++];
+	data=(Uint)pp[PKCounter++];
 
-	if(g_ScreenFlip != ZFLIP)
+	if(ScreenFlip != ZFLIP)
 	{
 		v3=data&0x1f;
 		v2=(data>>5)&0x07;
-		data=(uint)pp[g_PKCounter++];
+		data=(Uint)pp[PKCounter++];
 		v2|=(data&0x03)<<3;
 		v1=(data>>2)&0x1f;
 		v0=(data>>7)&0x1;
-		data=(uint)pp[g_PKCounter++];
+		data=(Uint)pp[PKCounter++];
 		v0|=(data&0x0f)<<1;
 	}
 	else
 	{
 		v0=data&0x1f;
 		v1=(data>>5)&0x07;
-		data=(uint)pp[g_PKCounter++];
+		data=(Uint)pp[PKCounter++];
 		v1|=(data&0x03)<<3;
 		v2=(data>>2)&0x1f;
 		v3=(data>>7)&0x1;
-		data=(uint)pp[g_PKCounter++];
+		data=(Uint)pp[PKCounter++];
 		v3|=(data&0x0f)<<1;
 
 	}
   
-	gfx[g_GFXCounter].words.w0=(G_LINE3D<<24);
-	gfx[g_GFXCounter++].words.w1=((v3*2)<<24)|((v0*2)<<16)|((v1*2)<<8)|(v2*2);
+	gfx[GFXCounter].words.w0=(G_LINE3D<<24);
+	gfx[GFXCounter++].words.w1=((v3*2)<<24)|((v0*2)<<16)|((v1*2)<<8)|(v2*2);
 }
 
 
-void DecodeVertex2_OK(char *ramaddress, uint number)
+void DecodeVertex2OK(char *ramaddress, Uint Number)
 {
-	char flag, n0, n1;
-	uint i;
+	char Flag, n0, n1;
+	Uint i;
 	Vtx *VtxRAMBuffer;
 	ROMVertex *VtxROMData = (ROMVertex*) FreeMemoryPointer;
-	int size = (number * sizeof(Vtx));
+	int Size = (Number * sizeof(Vtx));
 
-	VertexMemoryPointer -= size;
+	VertexMemoryPointer -= Size;
 	VtxRAMBuffer = (Vtx *)(VertexMemoryPointer);
-	for (i = 0; i < number; i++)
+	for (i = 0; i < Number; i++)
 	{
-		if (g_ScreenFlip)
+		if (ScreenFlip)
 		{
 			VtxRAMBuffer->n.ob[0] = -1 * (short)((float)VtxROMData->ob[0] * LevelScales[(int)ScaleXMode]);
 		}			
@@ -1412,11 +1412,11 @@ void DecodeVertex2_OK(char *ramaddress, uint number)
 			
 		if (YFLIP)
 		{
-			VtxRAMBuffer->n.ob[1] = -1 * (short)((float)VtxROMData->ob[1] * g_ScreenStretch * LevelScales[(int)ScaleYMode]);	
+			VtxRAMBuffer->n.ob[1] = -1 * (short)((float)VtxROMData->ob[1] * ScreenStretch * LevelScales[(int)ScaleYMode]);	
 		}
 		else
 		{
-			VtxRAMBuffer->n.ob[1] = (short)((float)VtxROMData->ob[1] * g_ScreenStretch * LevelScales[(int)ScaleYMode]);
+			VtxRAMBuffer->n.ob[1] = (short)((float)VtxROMData->ob[1] * ScreenStretch * LevelScales[(int)ScaleYMode]);
 		}
 		
 		
@@ -1433,15 +1433,15 @@ void DecodeVertex2_OK(char *ramaddress, uint number)
 		n0 = VtxROMData->n[0];
 		n1 = VtxROMData->n[1];
 
-		flag = n0 & 0x3;
-		flag |= (n1 << 2) & 0xc;
+		Flag = n0 & 0x3;
+		Flag |= (n1 << 2) & 0xc;
 		
 		VtxRAMBuffer->n.tc[0] = VtxROMData->tc[0];
 		VtxRAMBuffer->n.tc[1] = VtxROMData->tc[1];
 		VtxRAMBuffer->n.n[0] = n0 & 0xfc;
 		VtxRAMBuffer->n.n[1] = n1 & 0xfc;
 		VtxRAMBuffer->n.n[2] = VtxROMData->n[2];
-		VtxRAMBuffer->n.flag = (unsigned short)flag;
+		VtxRAMBuffer->n.flag = (unsigned short)Flag;
 
 		if (HotSwapID == 0)
 		{
@@ -1456,10 +1456,10 @@ void DecodeVertex2_OK(char *ramaddress, uint number)
 	}
 }
 
-void runDisplayScreen(void)
+void RunDisplayScreen(void)
 {
-	// Handles the display of the buffer copy to texture.
-	// Allows for rendering the screen to a set of 6 textures.
+	// Handles the display of the Buffer copy to Texture.
+	// Allows for rendering the screen to a set of 6 Textures.
 	GlobalAddressA = (long)(&ok_scrolltranslucent) + OverKartHeader.ScreenOffset; ////Parse WaterVertex List
 	LoopValue = *(long *)GlobalAddressA;
 	if (LoopValue != 6)
@@ -1475,7 +1475,7 @@ void runDisplayScreen(void)
 		GlobalIntA = 88;
 		GlobalIntB = 72;
 
-		GlobalShortA = (short)(g_DispFrame)-1;
+		GlobalShortA = (short)(DispFrame)-1;
 		if (GlobalShortA < 0)
 			GlobalShortA = 2;
 		else if (GlobalShortA > 2)
@@ -1484,32 +1484,32 @@ void runDisplayScreen(void)
 		{
 		case 0:
 		{
-			GetFramebuffer(GlobalIntA, GlobalIntB, 64, 32, (unsigned short *)PhysToK0((int)g_CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
+			GetFramebuffer(GlobalIntA, GlobalIntB, 64, 32, (unsigned short *)PhysToK0((int)CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
 			break;
 		}
 		case 1:
 		{
-			GetFramebuffer(GlobalIntA + 64, GlobalIntB, 64, 32, (unsigned short *)PhysToK0((int)g_CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
+			GetFramebuffer(GlobalIntA + 64, GlobalIntB, 64, 32, (unsigned short *)PhysToK0((int)CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
 			break;
 		}
 		case 2:
 		{
-			GetFramebuffer(GlobalIntA, GlobalIntB + 32, 64, 32, (unsigned short *)PhysToK0((int)g_CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
+			GetFramebuffer(GlobalIntA, GlobalIntB + 32, 64, 32, (unsigned short *)PhysToK0((int)CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
 			break;
 		}
 		case 3:
 		{
-			GetFramebuffer(GlobalIntA + 64, GlobalIntB + 32, 64, 32, (unsigned short *)PhysToK0((int)g_CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
+			GetFramebuffer(GlobalIntA + 64, GlobalIntB + 32, 64, 32, (unsigned short *)PhysToK0((int)CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
 			break;
 		}
 		case 4:
 		{
-			GetFramebuffer(GlobalIntA, GlobalIntB + 64, 64, 32, (unsigned short *)PhysToK0((int)g_CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
+			GetFramebuffer(GlobalIntA, GlobalIntB + 64, 64, 32, (unsigned short *)PhysToK0((int)CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
 			break;
 		}
 		case 5:
 		{
-			GetFramebuffer(GlobalIntA + 64, GlobalIntB + 64, 64, 32, (unsigned short *)PhysToK0((int)g_CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
+			GetFramebuffer(GlobalIntA + 64, GlobalIntB + 64, 64, 32, (unsigned short *)PhysToK0((int)CfbPtrs[GlobalShortA]), (unsigned short *)(GetRealAddress(GlobalAddressC)));
 			break;
 		}
 		default:
@@ -1521,11 +1521,11 @@ void runDisplayScreen(void)
 	}
 }
 
-void runKillDisplayObjects(void)
+void RunKillDisplayObjects(void)
 {
-	// disables specific track sections based on game-mode and CC speed. 
+	// disables specific track sections based on game-Mode and CC Speed. 
 
-	GlobalAddressA = ((uint)(&ok_scrolltranslucent)) + OverKartHeader.KDOffset;
+	GlobalAddressA = ((Uint)(&ok_scrolltranslucent)) + OverKartHeader.KDOffset;
 	LoopValue = *(int *)GlobalAddressA;
 	GlobalAddressA += 4; // Pass Loop Count
 
@@ -1535,8 +1535,8 @@ void runKillDisplayObjects(void)
 	{
 		KDKill *DisplayKill = (KDKill *)(GlobalAddressA);
 
-		uint *MeshList = (uint *)(GlobalAddressA + 12);
-		switch (g_gameMode)
+		Uint *MeshList = (Uint *)(GlobalAddressA + 12);
+		switch (GameMode)
 		{
             case GAMEMODE_GP:
             {
@@ -1544,7 +1544,7 @@ void runKillDisplayObjects(void)
                 if (DisplayKill->GP == 0)
                 {
                     {
-                        uint ThisMesh;
+                        Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
                         KillDisplayList(0x07000000 | MeshList[ThisMesh]);
@@ -1559,7 +1559,7 @@ void runKillDisplayObjects(void)
                 if (DisplayKill->TT == 0)
                 {
                     {
-                        uint ThisMesh;
+                        Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
                         KillDisplayList(0x07000000 | MeshList[ThisMesh]);
@@ -1574,7 +1574,7 @@ void runKillDisplayObjects(void)
                 if (DisplayKill->VS == 0)
                 {
                     {
-                        uint ThisMesh;
+                        Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
                         KillDisplayList(0x07000000 | MeshList[ThisMesh]);
@@ -1589,7 +1589,7 @@ void runKillDisplayObjects(void)
                 if (DisplayKill->Battle == 0)
                 {
                     {
-                        uint ThisMesh;
+                        Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
                         KillDisplayList(0x07000000 | MeshList[ThisMesh]);
@@ -1600,7 +1600,7 @@ void runKillDisplayObjects(void)
             }
 		}
 
-		switch (g_raceClass)
+		switch (RaceClass)
 		{
             case 0:
             {
@@ -1608,7 +1608,7 @@ void runKillDisplayObjects(void)
                 if (DisplayKill->Fifty == 0)
                 {
                     {
-                        uint ThisMesh;
+                        Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
                         KillDisplayList(0x07000000 | MeshList[ThisMesh]);
@@ -1623,7 +1623,7 @@ void runKillDisplayObjects(void)
                 if (DisplayKill->Hundred == 0)
                 {
                     {
-                        uint ThisMesh;
+                        Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
                         KillDisplayList(0x07000000 | MeshList[ThisMesh]);
@@ -1638,7 +1638,7 @@ void runKillDisplayObjects(void)
                 if (DisplayKill->HundredFifty == 0)
                 {
                     {
-                        uint ThisMesh;
+                        Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
                         KillDisplayList(0x07000000 | MeshList[ThisMesh]);
@@ -1653,7 +1653,7 @@ void runKillDisplayObjects(void)
                 if (DisplayKill->Extra == 0)
                 {
                     {
-                        uint ThisMesh;
+                        Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
                         KillDisplayList(0x07000000 | MeshList[ThisMesh]);
@@ -1664,45 +1664,45 @@ void runKillDisplayObjects(void)
             }
 		}
 
-		// Setup next Loop
+		// Setup Next Loop
 		GlobalAddressA = GlobalAddressA + 12 + (DisplayKill->MeshCount * 4);
 	}
 	}
 }
 
-void setText(void)
+void SetText(void)
 {
 
-	*sourceAddress = OverKartHeader.Credits;
-	*targetAddress = (long)&ok_Credits;
-	dataLength = 0x20;
-	if ((HotSwapID > 0) && (*sourceAddress != 0x00000000))
+	*SourceAddress = OverKartHeader.Credits;
+	*TargetAddress = (long)&ok_Credits;
+	DataLength = 0x20;
+	if ((HotSwapID > 0) && (*SourceAddress != 0x00000000))
 	{
-		runDMA();
+		RunDMA();
 	}
 	else
 	{
 		*(long *)(&ok_Credits) = 0;
 	}
 
-	*sourceAddress = OverKartHeader.CourseName;
-	*targetAddress = (long)&ok_CourseName;
-	dataLength = 0x40;
-	if ((HotSwapID > 0) && (*sourceAddress != 0x00000000))
+	*SourceAddress = OverKartHeader.CourseName;
+	*TargetAddress = (long)&ok_CourseName;
+	DataLength = 0x40;
+	if ((HotSwapID > 0) && (*SourceAddress != 0x00000000))
 	{
-		runDMA();
+		RunDMA();
 	}
 	else
 	{
 		*(long *)(&ok_CourseName) = 0;
 	}
 
-	*sourceAddress = OverKartHeader.SerialKey;
-	*targetAddress = (long)&ok_SerialKey;
-	dataLength = 0x40;
-	if ((HotSwapID > 0) && (*sourceAddress != 0x00000000))
+	*SourceAddress = OverKartHeader.SerialKey;
+	*TargetAddress = (long)&ok_SerialKey;
+	DataLength = 0x40;
+	if ((HotSwapID > 0) && (*SourceAddress != 0x00000000))
 	{
-		runDMA();
+		RunDMA();
 	}
 	else
 	{
@@ -1713,25 +1713,25 @@ void SetCourseNames(bool custom)
 {
 	int strtbl;
 
-	if ((custom == true) && (*sourceAddress != 0x00000000))
+	if ((custom == true) && (*SourceAddress != 0x00000000))
 	{
 		for (strtbl = 0; strtbl < 20; strtbl++)
 		{
-			g_StringTableCourse[strtbl] = (long)&ok_CourseName + 0x4;
-			g_StringTableCourseGP[strtbl] = (long)&ok_CourseName + 0x4;
+			StringTableCourse[strtbl] = (long)&ok_CourseName + 0x4;
+			StringTableCourseGP[strtbl] = (long)&ok_CourseName + 0x4;
 		}
 	}
 	else
 	{
 		for (strtbl = 0; strtbl < 20; strtbl++)
 		{
-			g_StringTableCourse[strtbl] = (long)stockCourseNames[strtbl];
-			g_StringTableCourseGP[strtbl] = (long)stockCourseNames[strtbl];
+			StringTableCourse[strtbl] = (long)StockCourseNames[strtbl];
+			StringTableCourseGP[strtbl] = (long)StockCourseNames[strtbl];
 		}
 	}
 }
 
-void setOKObjects(void)
+void SetOKObjects(void)
 {
 	// This loads the Custom OK Objects from the header.
 
@@ -1740,7 +1740,7 @@ void setOKObjects(void)
 	GlobalAddressC = OverKartRAMHeader.ObjectDataStart + 4;
 	OverKartRAMHeader.ObjectTypeList = (OKObjectType *)(GlobalAddressC);
 
-	GlobalAddressB = OverKartRAMHeader.ObjectDataStart + 4 + (OverKartRAMHeader.ObjectTypeCount * sizeof(OKObjectType)); // 32 bytes size of ObjectType
+	GlobalAddressB = OverKartRAMHeader.ObjectDataStart + 4 + (OverKartRAMHeader.ObjectTypeCount * sizeof(OKObjectType)); // 32 bytes Size of ObjectType
 	OverKartRAMHeader.ObjectCount = *(int *)(GlobalAddressB);
 	GlobalAddressD = GlobalAddressB + 4;
 	OverKartRAMHeader.ObjectList = (OKObjectList *)(GlobalAddressD);
@@ -1752,7 +1752,7 @@ void setOKObjects(void)
 	{
 		OKObjectType ThisType;
 
-		// Loop through the object count and set each individual object in the array.
+		// Loop through the object Count and set each individual object in the array.
 
 		OKObjectArray[This].ListIndex = This;
 		OKObjectArray[This].TypeIndex = OverKartRAMHeader.ObjectList[This].TypeIndex;
@@ -1763,11 +1763,11 @@ void setOKObjects(void)
 
 		ThisType = OverKartRAMHeader.ObjectTypeList[OKObjectArray[This].TypeIndex];
 
-		OKObjectArray[This].ObjectData.flag = 0xC000;
-		OKObjectArray[This].ObjectData.radius = (ThisType.BumpRadius / 100.0f); // used for level calcs BUMP
+		OKObjectArray[This].ObjectData.Flag = 0xC000;
+		OKObjectArray[This].ObjectData.Radius = (ThisType.BumpRadius / 100.0f); // Used for level calcs BUMP
 		
 
-		if (g_ScreenFlip)
+		if (ScreenFlip)
 		{
 			OverKartRAMHeader.ObjectList[This].OriginPosition[0] *= (-1 * LevelScales[(int)ScaleXMode]);			
 		}
@@ -1787,7 +1787,7 @@ void setOKObjects(void)
 
 		if (OverKartRAMHeader.ObjectTypeList[OKObjectArray[This].TypeIndex].GravityToggle)
 		{
-			OverKartRAMHeader.ObjectList[This].OriginPosition[1] += OKObjectArray[This].ObjectData.radius;
+			OverKartRAMHeader.ObjectList[This].OriginPosition[1] += OKObjectArray[This].ObjectData.Radius;
 		}
 
 
@@ -1802,17 +1802,17 @@ void setOKObjects(void)
 
         OKObjectArray[This].PathTarget = -1;
 
-		OKObjectArray[This].ObjectData.position[0] = OverKartRAMHeader.ObjectList[This].OriginPosition[0];
-		OKObjectArray[This].ObjectData.position[1] = OverKartRAMHeader.ObjectList[This].OriginPosition[1];
-		OKObjectArray[This].ObjectData.position[2] = OverKartRAMHeader.ObjectList[This].OriginPosition[2];
+		OKObjectArray[This].ObjectData.Position[0] = OverKartRAMHeader.ObjectList[This].OriginPosition[0];
+		OKObjectArray[This].ObjectData.Position[1] = OverKartRAMHeader.ObjectList[This].OriginPosition[1];
+		OKObjectArray[This].ObjectData.Position[2] = OverKartRAMHeader.ObjectList[This].OriginPosition[2];
 
-		OKObjectArray[This].ObjectData.angle[0] = OverKartRAMHeader.ObjectList[This].OriginAngle[0] * DEG1;
-		OKObjectArray[This].ObjectData.angle[1] = -1 * OverKartRAMHeader.ObjectList[This].OriginAngle[1] * DEG1;
-		OKObjectArray[This].ObjectData.angle[2] = OverKartRAMHeader.ObjectList[This].OriginAngle[2] * DEG1;
+		OKObjectArray[This].ObjectData.Angle[0] = OverKartRAMHeader.ObjectList[This].OriginAngle[0] * DEG1;
+		OKObjectArray[This].ObjectData.Angle[1] = -1 * OverKartRAMHeader.ObjectList[This].OriginAngle[1] * DEG1;
+		OKObjectArray[This].ObjectData.Angle[2] = OverKartRAMHeader.ObjectList[This].OriginAngle[2] * DEG1;
 
-		OKObjectArray[This].ObjectData.velocity[0] = (float)(OverKartRAMHeader.ObjectList[This].OriginVelocity[0] * 100);
-		OKObjectArray[This].ObjectData.velocity[1] = (float)(OverKartRAMHeader.ObjectList[This].OriginVelocity[1] * 100);
-		OKObjectArray[This].ObjectData.velocity[2] = (float)(OverKartRAMHeader.ObjectList[This].OriginVelocity[2] * 100);
+		OKObjectArray[This].ObjectData.Velocity[0] = (float)(OverKartRAMHeader.ObjectList[This].OriginVelocity[0] * 100);
+		OKObjectArray[This].ObjectData.Velocity[1] = (float)(OverKartRAMHeader.ObjectList[This].OriginVelocity[1] * 100);
+		OKObjectArray[This].ObjectData.Velocity[2] = (float)(OverKartRAMHeader.ObjectList[This].OriginVelocity[2] * 100);
 
         
 		OKObjectArray[This].AngularVelocity[0] = OverKartRAMHeader.ObjectList[This].OriginAngularVelocity[0] * DEG1;
@@ -1822,10 +1822,10 @@ void setOKObjects(void)
 		
 		if (ThisType.ObjectAnimations != 0xFFFFFFFF)
 		{
-			uint *AnimationOffsets = (uint *)(GetRealAddress(ObjectSegment | ThisType.ObjectAnimations));
+			Uint *AnimationOffsets = (Uint *)(GetRealAddress(ObjectSegment | ThisType.ObjectAnimations));
 			GlobalAddressA = GetRealAddress(ObjectSegment | AnimationOffsets[0]);
-			OKObjectArray[This].AnimationMax = (uchar) * (int *)(GlobalAddressA);
-			// OKObjectArray[This].AnimationFrame = MakeRandomLimmit((ushort)(OKObjectArray[This].AnimationMax));
+			OKObjectArray[This].AnimationMax = (Uchar) * (int *)(GlobalAddressA);
+			// OKObjectArray[This].AnimationFrame = MakeRandomLimmit((Ushort)(OKObjectArray[This].AnimationMax));
 		}
 	}
 	}
@@ -1835,13 +1835,13 @@ Gfx* IceKageGfx;
 
 void LoadIceKage(void)
 {
-	*sourceAddress = (long)&IceKageROM;
-	*targetAddress = FreeMemoryPointer;
-	dataLength = (long)&IceKageEnd - (long)&IceKageROM;
-	runDMA();
+	*SourceAddress = (long)&IceKageROM;
+	*TargetAddress = FreeMemoryPointer;
+	DataLength = (long)&IceKageEnd - (long)&IceKageROM;
+	RunDMA();
 	IceKageGfx = (Gfx *) FreeMemoryPointer;
 	SetSegment(8, (void *) FreeMemoryPointer);
-	FreeMemoryPointer += dataLength;
+	FreeMemoryPointer += DataLength;
 	CheckCourseMemoryHighWater();
 }
 
@@ -1861,8 +1861,8 @@ void InitialMapObjectCode(void)
 	}
 	else
 	{
-		g_StaticObjectCount = 0;
-		g_simpleObjectCount = 0;
+		StaticObjectCount = 0;
+		SimpleObjectCount = 0;
 		if (OverKartHeader.Version <= 6)
 		{
 			PlaceIBoxes(0x06001910);
@@ -1875,35 +1875,35 @@ void InitialMapObjectCode(void)
 			SetTreeObject(0x06000210);
 			SetPakkunObject(0x06000418);
 		}
-		g_StaticObjectCount = g_simpleObjectCount;
+		StaticObjectCount = SimpleObjectCount;
 	}
 	{
 	    int ThisObject;
-	for (ThisObject = 0; ThisObject < g_StaticObjectCount; ThisObject++)
+	for (ThisObject = 0; ThisObject < StaticObjectCount; ThisObject++)
 	{
 
-        if (g_SimpleObjectArray[ThisObject].category == IBOX)
+        if (SimpleObjectArray[ThisObject].Category == IBOX)
         {
             continue;
         }
 
 
-        g_SimpleObjectArray[ThisObject].position[0] = ((float)g_SimpleObjectArray[ThisObject].position[0] * LevelScales[(int)ScaleXMode]);
+        SimpleObjectArray[ThisObject].Position[0] = ((float)SimpleObjectArray[ThisObject].Position[0] * LevelScales[(int)ScaleXMode]);
         if (YFLIP)
         {
-            g_SimpleObjectArray[ThisObject].position[1] = -1 * ((float)g_SimpleObjectArray[ThisObject].position[1] * LevelScales[(int)ScaleYMode]);
+            SimpleObjectArray[ThisObject].Position[1] = -1 * ((float)SimpleObjectArray[ThisObject].Position[1] * LevelScales[(int)ScaleYMode]);
         }
         else
         {
-            g_SimpleObjectArray[ThisObject].position[1] = ((float)g_SimpleObjectArray[ThisObject].position[1] * LevelScales[(int)ScaleYMode]);
+            SimpleObjectArray[ThisObject].Position[1] = ((float)SimpleObjectArray[ThisObject].Position[1] * LevelScales[(int)ScaleYMode]);
         }
         if (ZFLIP)
         {
-            g_SimpleObjectArray[ThisObject].position[2] = -1 * ((float)g_SimpleObjectArray[ThisObject].position[2] * LevelScales[(int)ScaleZMode]);
+            SimpleObjectArray[ThisObject].Position[2] = -1 * ((float)SimpleObjectArray[ThisObject].Position[2] * LevelScales[(int)ScaleZMode]);
         }
         else
         {
-            g_SimpleObjectArray[ThisObject].position[2] = ((float)g_SimpleObjectArray[ThisObject].position[2] * LevelScales[(int)ScaleZMode]);
+            SimpleObjectArray[ThisObject].Position[2] = ((float)SimpleObjectArray[ThisObject].Position[2] * LevelScales[(int)ScaleZMode]);
         }
         
         
@@ -1917,10 +1917,10 @@ void InitialMapObjectCode(void)
 void InitialMapCode(void)
 {
 	InitialMap();	
-	setPath();
+	SetPath();
 }
 
-void loadOKObjects(void)
+void LoadOKObjects(void)
 {
 	// Load all the OKObject data from the Course Header.
 	GlobalUIntA = OverKartHeader.ObjectDataEnd - OverKartHeader.ObjectModelStart;
@@ -1930,28 +1930,28 @@ void loadOKObjects(void)
 	OverKartRAMHeader.ObjectDataStart = GlobalAddressA;
 }
 
-void loadHeaderOffsets(void)
+void LoadHeaderOffsets(void)
 {
 	// Load the offsets to the custom course headers.
-	*targetAddress = (long)&ok_HeaderOffsets;
-	*sourceAddress = (long)&ok_HeaderROM;
-	dataLength = 0x3C00;
-	runDMA();
+	*TargetAddress = (long)&ok_HeaderOffsets;
+	*SourceAddress = (long)&ok_HeaderROM;
+	DataLength = 0x3C00;
+	RunDMA();
 }
 
 void LoadBomb(void)
 {
 	if (HotSwapID > 0)
 	{
-		*sourceAddress = OverKartHeader.BombOffset;
+		*SourceAddress = OverKartHeader.BombOffset;
 	}
 	else
 	{
-		*sourceAddress = (long)&ok_Bomb;
+		*SourceAddress = (long)&ok_Bomb;
 	}
-	*targetAddress = (int)&g_BombTable;
-	dataLength = 0xA8;
-	runDMA();
+	*TargetAddress = (int)&BombTable;
+	DataLength = 0xA8;
+	RunDMA();
 }
 
 #define COURSE_TABLE_ROW_SIZE 0x30
@@ -1962,38 +1962,38 @@ void LoadBomb(void)
 typedef struct OKHeaderOld {
 	int Version;
 	CourseHeader MapHeader;
-	uint SectionViewPosition;
-	uint XLUSectionViewPosition;
-	uint SurfaceMapPosition;
-	uint Sky;
+	Uint SectionViewPosition;
+	Uint XLUSectionViewPosition;
+	Uint SurfaceMapPosition;
+	Uint Sky;
 	char SkyType, WeatherType, PathSplit, PathCount;
-	uint Credits;
-	uint CourseName;
-	uint SerialKey;
-	uint Ghost;
-	uint Maps;
-	uint ObjectDataStart;
-	uint ObjectModelStart;
-	uint ObjectAnimationStart;
-	uint ObjectDataEnd;
-	uint BombOffset;
-	uint EchoStart;
-	uint EchoEnd;
+	Uint Credits;
+	Uint CourseName;
+	Uint SerialKey;
+	Uint Ghost;
+	Uint Maps;
+	Uint ObjectDataStart;
+	Uint ObjectModelStart;
+	Uint ObjectAnimationStart;
+	Uint ObjectDataEnd;
+	Uint BombOffset;
+	Uint EchoStart;
+	Uint EchoEnd;
 	char GoalBannerToggle;
 	char BackgroundToggle;
 	char ManualTempo;
 	char Padding;
 	char PathTrigger[4];
-	uint MusicID;
+	Uint MusicID;
 	short PathLength[4];
 	char GhostCharacter, WaterType;
 	short WaterLevel;
-	uint ScrollROM;
+	Uint ScrollROM;
 	short WVOffset, ScreenOffset, KDOffset, ScrollSize;
-	uint PathOffset;
+	Uint PathOffset;
 	short FogStart, FogStop;
-	uchar FogRGBA[4];
-	uchar Tail[0x18];
+	Uchar FogRGBA[4];
+	Uchar Tail[0x18];
 } OKHeaderOld;
 
 static void CopyOKHeaderOld(OKHeaderOld *oldHeader)
@@ -2094,43 +2094,43 @@ void LoadCustomHeader(int inputID)
 		long headerROM;
 
 		headerROM = *(long *)(&ok_HeaderOffsets + ((inputID)*1) + ((HotSwapID - 1) * 0x14));
-		if ((uint)headerROM != 0xFFFFFFFFu)
+		if ((Uint)headerROM != 0xFFFFFFFFu)
 		{
-			*sourceAddress = headerROM;
-			*targetAddress = (long)&version;
-			dataLength = 4;
-			runDMA();
+			*SourceAddress = headerROM;
+			*TargetAddress = (long)&version;
+			DataLength = 4;
+			RunDMA();
 
 			if (version <= 5)
 			{
 				OKHeaderOld oldHeader;
 
-				*sourceAddress = headerROM;
-				*targetAddress = (long)&oldHeader;
-				dataLength = OK_HEADER_OLD_SIZE;
-				runDMA();
+				*SourceAddress = headerROM;
+				*TargetAddress = (long)&oldHeader;
+				DataLength = OK_HEADER_OLD_SIZE;
+				RunDMA();
 				CopyOKHeaderOld(&oldHeader);
 			}
 			else
 			{
-				*sourceAddress = headerROM;
-				*targetAddress = (long)&ok_CourseHeader;
-				dataLength = sizeof(OKHeader);
-				runDMA();
+				*SourceAddress = headerROM;
+				*TargetAddress = (long)&ok_CourseHeader;
+				DataLength = sizeof(OKHeader);
+				RunDMA();
 			}
 
 			VersionNumber = OverKartHeader.Version;
 
-			*targetAddress = (long)&g_courseTable;
+			*TargetAddress = (long)&g_courseTable;
 
-			if (g_gameMode == GAMEMODE_BATTLE)
+			if (GameMode == GAMEMODE_BATTLE)
 			{
-				*targetAddress += COURSE_TABLE_BATTLE_OFFSET;
+				*TargetAddress += COURSE_TABLE_BATTLE_OFFSET;
 			}
 
-			*sourceAddress = (long)(&OverKartHeader.MapHeader);
-			dataLength = COURSE_TABLE_ROW_SIZE;
-			runRAM();
+			*SourceAddress = (long)(&OverKartHeader.MapHeader);
+			DataLength = COURSE_TABLE_ROW_SIZE;
+			RunRAM();
 		}
 		else
 		{
@@ -2140,28 +2140,28 @@ void LoadCustomHeader(int inputID)
 	else
 	{
 		ClearStockCourseHeader();
-		*sourceAddress = (long)(SEG_RACING_ROM_START + ((uintptr_t)&g_courseTable - SEG_RACING));
-		*targetAddress = (long)&g_courseTable;
-		dataLength = COURSE_TABLE_ROW_SIZE;
+		*SourceAddress = (long)(SEG_RACING_ROM_START + ((uintptr_t)&g_courseTable - SEG_RACING));
+		*TargetAddress = (long)&g_courseTable;
+		DataLength = COURSE_TABLE_ROW_SIZE;
 
-		if (g_gameMode == GAMEMODE_BATTLE)
+		if (GameMode == GAMEMODE_BATTLE)
 		{
-			*targetAddress += COURSE_TABLE_BATTLE_OFFSET;
-			*sourceAddress += COURSE_TABLE_BATTLE_OFFSET;
+			*TargetAddress += COURSE_TABLE_BATTLE_OFFSET;
+			*SourceAddress += COURSE_TABLE_BATTLE_OFFSET;
 		}
 
-		runDMA();
+		RunDMA();
 	}
 }
 
 void SetCustomData(void)
 {
-	setText();
-	setEcho();
-	setSong();
+	SetText();
+	SetEcho();
+	SetSong();
 	LoadBomb();
 
-	if (((uint)OverKartHeader.Version != 0xFFFFFFFFu) && (HotSwapID > 0))
+	if (((Uint)OverKartHeader.Version != 0xFFFFFFFFu) && (HotSwapID > 0))
 	{
 		SetCourseNames(true);
 	}
@@ -2174,25 +2174,25 @@ void SetCustomData(void)
 /* Original: dest = g_CourseBannerOffsets + slot * 5056 (140x18 + pad). */
 #define BANNER_STRIDE 5056
 
-static u16 *BannerPixels(int courseIndex)
+static u16 *BannerPixels(int CourseIndex)
 {
 	MenuTexture *ram;
 	int i;
 
-	if ((tex_buff == NULL) || (courseIndex < 0) || (courseIndex >= 20))
+	if ((TexBuff == NULL) || (CourseIndex < 0) || (CourseIndex >= 20))
 	{
 		return NULL;
 	}
-	ram = (MenuTexture *) GetTBPointer(D_800E7DC4[courseIndex]);
-	if ((ram == NULL) || (ram->textureData == NULL))
+	ram = (MenuTexture *) GetTBPointer(D_800E7DC4[CourseIndex]);
+	if ((ram == NULL) || (ram->TextureData == NULL))
 	{
 		return NULL;
 	}
-	for (i = 0; i < all_tex_block_num; i++)
+	for (i = 0; i < AllTexBlockNum; i++)
 	{
-		if (sMenuTextureMap[i].textureData == ram->textureData)
+		if (SMenuTextureMap[i].TextureData == ram->TextureData)
 		{
-			return &tex_buff[sMenuTextureMap[i].offset];
+			return &TexBuff[SMenuTextureMap[i].Offset];
 		}
 	}
 	return NULL;
@@ -2203,7 +2203,7 @@ static u16 *BannerBank(int slot)
 {
 	u16 *base;
 
-	if (g_gameMode == GAMEMODE_BATTLE)
+	if (GameMode == GAMEMODE_BATTLE)
 	{
 		base = BannerPixels(16);
 	}
@@ -2221,7 +2221,7 @@ static u16 *BannerBank(int slot)
 static void LoadCustomBanner(int slot)
 {
 	u16 *dest;
-	long length;
+	long Length;
 	int customIndex;
 
 	dest = BannerBank(slot);
@@ -2230,7 +2230,7 @@ static void LoadCustomBanner(int slot)
 		return;
 	}
 
-	if (g_gameMode == GAMEMODE_BATTLE)
+	if (GameMode == GAMEMODE_BATTLE)
 	{
 		customIndex = 16 + slot;
 	}
@@ -2240,73 +2240,73 @@ static void LoadCustomBanner(int slot)
 	}
 
 	GlobalAddressA = ((long)(&ok_MenuOffsets) + (customIndex * 8) + ((HotSwapID - 1) * 160));
-	*sourceAddress = *(long *)(GlobalAddressA);
-	if ((*sourceAddress != 0x00000000) && ((uint)*sourceAddress != 0xFFFFFFFFu))
+	*SourceAddress = *(long *)(GlobalAddressA);
+	if ((*SourceAddress != 0x00000000) && ((Uint)*SourceAddress != 0xFFFFFFFFu))
 	{
 		GlobalAddressB = (GlobalAddressA + 4);
-		length = (*(long *)(GlobalAddressB) - *sourceAddress) + 16;
-		if ((length < 16) || (length > 0x8000))
+		Length = (*(long *)(GlobalAddressB) - *SourceAddress) + 16;
+		if ((Length < 16) || (Length > 0x8000))
 		{
-			*sourceAddress = (long)&bannerU;
+			*SourceAddress = (long)&bannerU;
 		}
 		else
 		{
-			*targetAddress = (long)&ok_FreeSpace;
-			dataLength = length;
-			runDMA();
-			*sourceAddress = (long)&ok_FreeSpace;
+			*TargetAddress = (long)&ok_FreeSpace;
+			DataLength = Length;
+			RunDMA();
+			*SourceAddress = (long)&ok_FreeSpace;
 		}
 	}
-	if (*sourceAddress == 0x00000000)
+	if (*SourceAddress == 0x00000000)
 	{
-		*sourceAddress = (long)&bannerU;
+		*SourceAddress = (long)&bannerU;
 	}
-	if ((uint)*sourceAddress == 0xFFFFFFFFu)
+	if ((Uint)*SourceAddress == 0xFFFFFFFFu)
 	{
-		*sourceAddress = (long)&bannerN;
+		*SourceAddress = (long)&bannerN;
 	}
-	*targetAddress = (long) dest;
-	runMIO();
+	*TargetAddress = (long) dest;
+	RunMIO();
 }
 
 static void RestoreStockBanner(int slot)
 {
 	MenuTexture *ram;
 	u16 *dest;
-	int courseIndex;
+	int CourseIndex;
 
 	dest = BannerBank(slot);
 	if (dest == NULL)
 	{
 		return;
 	}
-	if (g_gameMode == GAMEMODE_BATTLE)
+	if (GameMode == GAMEMODE_BATTLE)
 	{
-		courseIndex = g_CupArray[16 + slot];
+		CourseIndex = g_CupArray[16 + slot];
 	}
 	else
 	{
-		courseIndex = g_CupArray[slot];
+		CourseIndex = g_CupArray[slot];
 	}
-	if ((courseIndex < 0) || (courseIndex >= 20))
+	if ((CourseIndex < 0) || (CourseIndex >= 20))
 	{
 		return;
 	}
-	ram = (MenuTexture *) GetTBPointer(D_800E7DC4[courseIndex]);
-	if ((ram == NULL) || (ram->textureData == NULL))
+	ram = (MenuTexture *) GetTBPointer(D_800E7DC4[CourseIndex]);
+	if ((ram == NULL) || (ram->TextureData == NULL))
 	{
 		return;
 	}
-	dataLength = 0x1000;
-	*sourceAddress = (long)(_textures_0bSegmentRomStart + SEGMENT_OFFSET(ram->textureData));
-	*targetAddress = (long)&ok_FreeSpace;
-	runDMA();
-	*sourceAddress = (long)&ok_FreeSpace;
-	*targetAddress = (long) dest;
-	runTKM();
+	DataLength = 0x1000;
+	*SourceAddress = (long)(_textures_0bSegmentRomStart + SEGMENT_OFFSET(ram->TextureData));
+	*TargetAddress = (long)&ok_FreeSpace;
+	RunDMA();
+	*SourceAddress = (long)&ok_FreeSpace;
+	*TargetAddress = (long) dest;
+	RunTKM();
 }
 
-void setBanners(void)
+void SetBanners(void)
 {
 	int slot;
 	int slotCount;
@@ -2316,7 +2316,7 @@ void setBanners(void)
 		return;
 	}
 
-	if (g_gameMode == GAMEMODE_BATTLE)
+	if (GameMode == GAMEMODE_BATTLE)
 	{
 		slotCount = 4;
 	}
@@ -2348,7 +2348,7 @@ void setBanners(void)
 	}
 }
 
-void setPreviews(void)
+void SetPreviews(void)
 {
 	MenuTexture *ram;
 	int currentCourse;
@@ -2364,24 +2364,24 @@ void setPreviews(void)
 		for (currentCourse = 0; currentCourse < 20; currentCourse++)
 		{
 			GlobalAddressA = (long)(&ok_MenuOffsets) + 4 + (currentCourse * 8) + ((HotSwapID - 1) * 160);
-			*sourceAddress = *(long *)(GlobalAddressA);
-			if (*sourceAddress == 0x00000000)
+			*SourceAddress = *(long *)(GlobalAddressA);
+			if (*SourceAddress == 0x00000000)
 			{
-				*sourceAddress = (long)&previewU;
+				*SourceAddress = (long)&previewU;
 			}
-			if ((uint)*sourceAddress == 0xFFFFFFFFu)
+			if ((Uint)*SourceAddress == 0xFFFFFFFFu)
 			{
-				*sourceAddress = (long)&previewN;
+				*SourceAddress = (long)&previewN;
 			}
-			rom = *sourceAddress - (long)_textures_0aSegmentRomStart;
+			rom = *SourceAddress - (long)_textures_0aSegmentRomStart;
 			rom |= 0x0A000000;
 			ram = (MenuTexture *) GetTBPointer(D_800E7D74[currentCourse]);
 			if (ram == NULL)
 			{
 				continue;
 			}
-			ram->textureData = (u64 *) rom;
-			ram->size = 0x4000;
+			ram->TextureData = (u64 *) rom;
+			ram->Size = 0x4000;
 		}
 		sCustomMenuLive = 1;
 	}
@@ -2391,34 +2391,34 @@ void setPreviews(void)
 		{
 			return;
 		}
-		/* r_CoursePreviewOffsets → cart copy of the packed MenuTexture[2] table. */
-		*sourceAddress = (long)(_data_segment2SegmentRomStart +
-				SEGMENT_OFFSET(seg2_mario_raceway_preview_texture));
-		*targetAddress = (long) GetTBPointer(seg2_mario_raceway_preview_texture);
-		dataLength = 0x320;
-		runDMA();
+		/* r_CoursePreviewOffsets → cart copy of the packed MenuTexture[2] Table. */
+		*SourceAddress = (long)(_data_segment2SegmentRomStart +
+				SEGMENT_OFFSET(Seg2MarioRacewayPreviewTexture));
+		*TargetAddress = (long) GetTBPointer(Seg2MarioRacewayPreviewTexture);
+		DataLength = 0x320;
+		RunDMA();
 	}
 }
 
-void swapHS(int direction)
+void SwapHS(int Direction)
 {
 	if (MapIsCurrentlyLoading)
 	{
 		return;
 	}
 	// This function will swap to a new set of custom levels.
-	if (direction == 0)
+	if (Direction == 0)
 	{
 		if (HotSwapID > 0)
 		{
 			if (HotSwapID == 1)
 			{
-				// stockASM();
-				copyCourseTable(0);
+				// StockASM();
+				CopyCourseTable(0);
 			}
 			HotSwapID--;
 
-			playSound(0x4900801A);
+			PlaySound(0x4900801A);
 		}
 	}
 	else
@@ -2427,8 +2427,8 @@ void swapHS(int direction)
 		{
 			if (HotSwapID == 0)
 			{
-				// overkartASM();
-				copyCourseTable(1);
+				// OverkartASM();
+				CopyCourseTable(1);
 				{
 				    int Index;
 				for (Index = 0; Index < 20; Index++)
@@ -2439,14 +2439,14 @@ void swapHS(int direction)
 			}
 			HotSwapID++;
 
-			playSound(0x4900801A);
+			PlaySound(0x4900801A);
 		}
 	}
 
-	setPreviews();
-	previewRefresh();
-	setBanners();
-	courseValue = -1;
+	SetPreviews();
+	PreviewRefresh();
+	SetBanners();
+	CourseValue = -1;
 }
 
 
@@ -2460,7 +2460,7 @@ typedef struct MiniMapStruct{
 	float	Scale;
 	
 } MiniMapStruct;
-void loadMinimap(void)
+void LoadMinimap(void)
 {
 	MiniMapStruct *MiniMapData;
 
@@ -2469,51 +2469,51 @@ void loadMinimap(void)
 		return;
 	}
 
-	*sourceAddress = OverKartHeader.Maps;
+	*SourceAddress = OverKartHeader.Maps;
 
-	if (*sourceAddress != 0x00000000)
+	if (*SourceAddress != 0x00000000)
 	{
-		*targetAddress = (long)&ok_FreeSpace;
-		dataLength = 0x1000;
-		runDMA();
+		*TargetAddress = (long)&ok_FreeSpace;
+		DataLength = 0x1000;
+		RunDMA();
 		MiniMapData = (MiniMapStruct*)(long)&ok_FreeSpace;
 
-		if (g_playerCount == 1)
+		if (PlayerCount == 1)
 		{	
-			g_mapX[0] = MiniMapData->MapX;
-			g_mapY[0] = MiniMapData->MapY;
+			MapX[0] = MiniMapData->MapX;
+			MapY[0] = MiniMapData->MapY;
 		}
-		if (g_ScreenFlip == 1)
+		if (ScreenFlip == 1)
 		{
-			g_startX = g_mapWidth - g_startX;
+			StartX = MapWidth - StartX;
 		}
 		RadarLineX = MiniMapData->LineX;
 		RadarLineY = MiniMapData->LineY;
-		g_startX = MiniMapData->StartX;
-		g_startY = MiniMapData->StartY;				
-		g_mapHeight = MiniMapData->Height;
-		g_mapWidth = MiniMapData->Width;
-		g_mapR = MiniMapData->R;
-		g_mapG = MiniMapData->G;
-		g_mapB = MiniMapData->B;
-		g_mapScale = MiniMapData->Scale * 0.01;
-		*sourceAddress = (long)(&ok_FreeSpace) + sizeof(MiniMapStruct);
-		*targetAddress = (long)&ok_MapTextureData;
-		runMIO();
-		g_mapTexture = (long)&ok_MapTextureData;
+		StartX = MiniMapData->StartX;
+		StartY = MiniMapData->StartY;				
+		MapHeight = MiniMapData->Height;
+		MapWidth = MiniMapData->Width;
+		MapR = MiniMapData->R;
+		MapG = MiniMapData->G;
+		MapB = MiniMapData->B;
+		MapScale = MiniMapData->Scale * 0.01;
+		*SourceAddress = (long)(&ok_FreeSpace) + sizeof(MiniMapStruct);
+		*TargetAddress = (long)&ok_MapTextureData;
+		RunMIO();
+		MapTexture = (long)&ok_MapTextureData;
 	}
 }
 
-int tempFireParticleMax = 8;
+int TempFireParticleMax = 8;
 
-void initFireParticles(long PathOffset)
+void InitFireParticles(long PathOffset)
 {
-	*tempPointer = PathOffset;
-	*sourceAddress = (long)&FireParticlePositions;
-	*targetAddress = (long)&objectPosition;
+	*TempPointer = PathOffset;
+	*SourceAddress = (long)&FireParticlePositions;
+	*TargetAddress = (long)&ObjectPosition;
 	{
 	    int currentFire;
-	for (currentFire = 0; currentFire < tempFireParticleMax; currentFire++)
+	for (currentFire = 0; currentFire < TempFireParticleMax; currentFire++)
 	{
 
 		FireParticlePositions[currentFire][0] = *(short *)(PathOffset);
@@ -2522,7 +2522,7 @@ void initFireParticles(long PathOffset)
 
 		if (FireParticlePositions[currentFire][0] == (short)-32768)
 		{
-			if (currentFire < tempFireParticleMax - 1)
+			if (currentFire < TempFireParticleMax - 1)
 			{
 				return;
 			}
@@ -2536,23 +2536,23 @@ void initFireParticles(long PathOffset)
 	}
 	{
 	    int currentFire;
-	for (currentFire = 0; currentFire < tempFireParticleMax; currentFire++)
+	for (currentFire = 0; currentFire < TempFireParticleMax; currentFire++)
 	{
 		KWGetCaveFire(currentFire);
 
-		g_DynamicObjects[FireParticleAllocArray[currentFire]].pos_start[0] = (float)FireParticlePositions[currentFire][0];
-		g_DynamicObjects[FireParticleAllocArray[currentFire]].pos_start[1] = (float)FireParticlePositions[currentFire][1] + 10;
-		g_DynamicObjects[FireParticleAllocArray[currentFire]].pos_start[2] = (float)FireParticlePositions[currentFire][2];
+		DynamicObjects[FireParticleAllocArray[currentFire]].PosStart[0] = (float)FireParticlePositions[currentFire][0];
+		DynamicObjects[FireParticleAllocArray[currentFire]].PosStart[1] = (float)FireParticlePositions[currentFire][1] + 10;
+		DynamicObjects[FireParticleAllocArray[currentFire]].PosStart[2] = (float)FireParticlePositions[currentFire][2];
 
-		g_DynamicObjects[FireParticleAllocArray[currentFire]].scale = 0.8;
+		DynamicObjects[FireParticleAllocArray[currentFire]].Scale = 0.8;
 	}
 	}
 }
 
 char FireRGBA[8][4] = {{150, 0, 25, 255}, {150, 20, 55, 255}, {50, 50, 255, 255}, {50, 255, 50, 255}, {150, 90, 255, 255}, {250, 55, 55, 155}, {100, 255, 25, 255}, {250, 105, 55, 255}};
-// 8 = tempFireParticleMax
+// 8 = TempFireParticleMax
 
-void DisplayFireParticleSub(int num, uchar color, void *Camera)
+void DisplayFireParticleSub(int num, Uchar color, void *Camera)
 {
 	int realindex = num - FireParticleAllocArray[0];
 
@@ -2576,15 +2576,15 @@ void DisplayFireParticleSub(int num, uchar color, void *Camera)
 
 void EmptyActionData(void)
 {
-	GlobalAddressA = (uint)ActionData_Pointer[19];
+	GlobalAddressA = (Uint)ActionData_Pointer[19];
 	ActionData_Pointer[0] = ActionData_Pointer[19];
 
-	*(ushort *)(GlobalAddressA) = 1;
-	*(ushort *)(GlobalAddressA + (0x2)) = (ushort)MaxPathPoints[0];
-	*(ushort *)(GlobalAddressA + (0x6)) = 6;
+	*(Ushort *)(GlobalAddressA) = 1;
+	*(Ushort *)(GlobalAddressA + (0x2)) = (Ushort)MaxPathPoints[0];
+	*(Ushort *)(GlobalAddressA + (0x6)) = 6;
 }
 
-void SearchListHook(uint Addr)
+void SearchListHook(Uint Addr)
 {
 	if (HotSwapID > 0)
 	{
@@ -2594,7 +2594,7 @@ void SearchListHook(uint Addr)
 	SearchList(Addr);
 }
 
-void SearchListFileHook(uint addr)
+void SearchListFileHook(Uint Addr)
 {
 
     if (HotSwapID > 0)
@@ -2602,19 +2602,19 @@ void SearchListFileHook(uint addr)
         SearchListFile(0x06000000 | OverKartHeader.SurfaceMapPosition);
         return;
     }
-	SearchListFile(addr);   
+	SearchListFile(Addr);   
 		
     
 }
 
-void SearchList2Hook(uint addr, char Surface)
+void SearchList2Hook(Uint Addr, char Surface)
 {
 	if (HotSwapID > 0)
     {
         SearchListFile(0x06000000 | OverKartHeader.SurfaceMapPosition);
         return;
     }
-	SearchList2(addr, Surface);
+	SearchList2(Addr, Surface);
 }
 
 void DisplayKT1Hook(Screen *Display)
@@ -2627,10 +2627,10 @@ void DisplayKT1Hook(Screen *Display)
 		if (OverKartHeader.FogStart > 0)
 		{
 			g_fogToggleBanshee = 1;
-			g_fogR = (uint)OverKartHeader.FogRGBA[0];
-			g_fogG = (uint)OverKartHeader.FogRGBA[1];
-			g_fogB = (uint)OverKartHeader.FogRGBA[2];
-			gDPSetFogColor(GraphPtrOffset++, (uint)OverKartHeader.FogRGBA[0], (uint)OverKartHeader.FogRGBA[1], (uint)OverKartHeader.FogRGBA[2], 255);
+			g_fogR = (Uint)OverKartHeader.FogRGBA[0];
+			g_fogG = (Uint)OverKartHeader.FogRGBA[1];
+			g_fogB = (Uint)OverKartHeader.FogRGBA[2];
+			gDPSetFogColor(GraphPtrOffset++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], 255);
 			gSPFogPosition(GraphPtrOffset++, OverKartHeader.FogStart, OverKartHeader.FogStop);
 		}
 		if (OverKartHeader.Version <= 6)
@@ -2665,15 +2665,15 @@ void XLUDisplay(Screen *Display)
 		{
 			return;
 		}
-		if (g_gameMode != GAMEMODE_BATTLE)
+		if (GameMode != GAMEMODE_BATTLE)
 		{
 			if (OverKartHeader.FogStart > 0)
 			{
 				g_fogToggleBanshee = 1;
-				g_fogR = (uint)OverKartHeader.FogRGBA[0];
-				g_fogG = (uint)OverKartHeader.FogRGBA[1];
-				g_fogB = (uint)OverKartHeader.FogRGBA[2];
-				gDPSetFogColor(GraphPtrOffset++, (uint)OverKartHeader.FogRGBA[0], (uint)OverKartHeader.FogRGBA[1], (uint)OverKartHeader.FogRGBA[2], 255);
+				g_fogR = (Uint)OverKartHeader.FogRGBA[0];
+				g_fogG = (Uint)OverKartHeader.FogRGBA[1];
+				g_fogB = (Uint)OverKartHeader.FogRGBA[2];
+				gDPSetFogColor(GraphPtrOffset++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], 255);
 			    gSPFogPosition(GraphPtrOffset++, OverKartHeader.FogStart, OverKartHeader.FogStop);
 				gDPPipeSync(GraphPtrOffset++);
 			}
@@ -2714,9 +2714,9 @@ void DisplayKT16Hook(Screen *Display)
 
 
 short RadarLineX, RadarLineY;
-void RadarFinishLine(uint ulx,uint uly,ushort *addr)
+void RadarFinishLine(Uint ulx,Uint uly,Ushort *Addr)
 {
-	KWSprite8x8(ulx + RadarLineX, uly + RadarLineY, addr);	
+	KWSprite8x8(ulx + RadarLineX, uly + RadarLineY, Addr);	
 }
 
 float HijackScaleMinimapX(float x)

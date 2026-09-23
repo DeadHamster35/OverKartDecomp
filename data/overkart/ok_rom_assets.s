@@ -1,4 +1,4 @@
-# OverKart Library ROM DMA sources (VMA = cart offset; not copied by init_overkart).
+# OverKart Library ROM DMA sources (VMA = cart Offset; not copied by InitOverkart).
 # IceKage / fonts / previews / Crash. Dest BSS stays in .okheader.
 
 .include "macros.inc"

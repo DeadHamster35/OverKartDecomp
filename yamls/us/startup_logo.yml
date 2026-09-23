@@ -90,7 +90,7 @@ dl20:
   offset: 0x87A0
 reflection_map_gold:
   symbol: reflection_map_gold
-  type: texture
+  type: Texture
   ctype: u16
   offset: 0x8A48
   size: 2048

@@ -6,7 +6,7 @@
 #include "kart_dma.h"
 #include "defines.h"
 
-// Seemingly the largest compressed size for a frame for a given character
+// Seemingly the largest compressed Size for a frame for a given character
 // They seem slightly oversized too, either an alignemnt or safety thing
 u16 D_800DDEB0[] = {
     0x06c0, 0x06e0, 0x06e0, 0x0680, 0x07c0, 0x0700, 0x0680, 0x0910,
@@ -200,168 +200,168 @@ u8* gKartPalettes[] = {
 };
 
 /**
- * @brief Place DMA mio0 compressed character textures in a buffer.
+ * @brief Place DMA mio0 compressed character Textures in a Buffer.
  * Later, this data becomes decompressed.
  *
- * The player struct tracks the texture indices to load.
+ * The Player struct tracks the Texture indices to load.
  *
- * @param player
- * @param playerId Player ID.
- * @param screenId Rom buffer index appears to always be 0-3. Sometimes subtracted by 2.
- * @param screenId2 Second buffer index appears to always be 0-3.
- * @param index First buffer index always zero.
+ * @Param Player
+ * @Param PlayerId Player ID.
+ * @Param screenId Rom Buffer Index appears to always be 0-3. Sometimes subtracted by 2.
+ * @Param screenId2 Second Buffer Index appears to always be 0-3.
+ * @Param Index First Buffer Index always zero.
  **/
-void Sikartdma(Player* player, s8 playerId, s8 screenId, s8 screenId2, s8 index) {
-    s32 temp = player->slip_flag;
+void Sikartdma(Player* Player, s8 PlayerId, s8 screenId, s8 screenId2, s8 Index) {
+    s32 temp = Player->SlipFlag;
     if (((temp & SPIN_L) == SPIN_L) ||
         ((temp & SPIN_R) == SPIN_R) ||
         ((temp & WING) == WING) ||
         ((temp & STORM) == STORM) ||
-        ((temp & THUNDER_SPIN) == THUNDER_SPIN) || ((player->handling_flag & TROPHYJUMP_END) != 0)) {
-        if (player->dir[screenId] != 0) {
-            osInvalDCache(&gEncodedKartTexture[index][screenId2][playerId], D_800DDEB0[player->kart]);
+        ((temp & THUNDER_SPIN) == THUNDER_SPIN) || ((Player->HandlingFlag & TROPHYJUMP_END) != 0)) {
+        if (Player->dir[screenId] != 0) {
+            osInvalDCache(&EncodedKartTexture[Index][screenId2][PlayerId], D_800DDEB0[Player->Kart]);
 
-            osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+            osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
                          (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(
-                             gKartTextureTable1[player->kart][player->deg[screenId]]
-                                               [player->dir[screenId]])],
-                         &gEncodedKartTexture[index][screenId2][playerId], D_800DDEB0[player->kart],
-                         &gDmaMesgQueue);
+                             gKartTextureTable1[Player->Kart][Player->deg[screenId]]
+                                               [Player->dir[screenId]])],
+                         &EncodedKartTexture[Index][screenId2][PlayerId], D_800DDEB0[Player->Kart],
+                         &DmaMesgQueue);
 
-            osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+            osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
         } else {
-            osInvalDCache(&gEncodedKartTexture[index][screenId2][playerId], D_800DDEB0[player->kart]);
+            osInvalDCache(&EncodedKartTexture[Index][screenId2][PlayerId], D_800DDEB0[Player->Kart]);
 
-            osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+            osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
                          (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(
-                             gKartTextureTable0[player->kart][player->deg[screenId]]
-                                               [player->dir[screenId]])],
-                         &gEncodedKartTexture[index][screenId2][playerId], D_800DDEB0[player->kart],
-                         &gDmaMesgQueue);
+                             gKartTextureTable0[Player->Kart][Player->deg[screenId]]
+                                               [Player->dir[screenId]])],
+                         &EncodedKartTexture[Index][screenId2][PlayerId], D_800DDEB0[Player->Kart],
+                         &DmaMesgQueue);
 
-            osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+            osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
         }
     } else if (((temp & ROLLOVER) == ROLLOVER) ||
                ((temp & EXPLODE) == EXPLODE) ||
                ((temp & THROW_EXPLODE) == THROW_EXPLODE) ||
                ((temp & ROLLOVER_FALL) == ROLLOVER_FALL)) {
-        osInvalDCache(&gEncodedKartTexture[index][screenId2][playerId], 0x780U);
-        // player->slipcount >> 8 converts an 8.8 fixed-point animation frame to a whole number.
-        osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+        osInvalDCache(&EncodedKartTexture[Index][screenId2][PlayerId], 0x780U);
+        // Player->Slipcount >> 8 converts an 8.8 fixed-Point animation frame to a whole Number.
+        osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
                      (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(
-                         gKartTextureTumbles[player->kart][player->slipcount >> 8])],
-                     &gEncodedKartTexture[index][screenId2][playerId], 0x900, &gDmaMesgQueue);
+                         gKartTextureTumbles[Player->Kart][Player->Slipcount >> 8])],
+                     &EncodedKartTexture[Index][screenId2][PlayerId], 0x900, &DmaMesgQueue);
 
-        osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+        osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
     } else {
-        osInvalDCache(&gEncodedKartTexture[index][screenId2][playerId], D_800DDEB0[player->kart]);
+        osInvalDCache(&EncodedKartTexture[Index][screenId2][PlayerId], D_800DDEB0[Player->Kart]);
 
-        osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+        osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
                      (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(
-                         gKartTextureTable0[player->kart][player->deg[screenId]]
-                                           [player->dir[screenId]])],
-                     &gEncodedKartTexture[index][screenId2][playerId], D_800DDEB0[player->kart], &gDmaMesgQueue);
+                         gKartTextureTable0[Player->Kart][Player->deg[screenId]]
+                                           [Player->dir[screenId]])],
+                     &EncodedKartTexture[Index][screenId2][PlayerId], D_800DDEB0[Player->Kart], &DmaMesgQueue);
 
-        osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+        osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
     }
 }
 
-void Pakartdma(Player* player, s8 arg1, s8 arg2, s8 arg3, s8 arg4) {
-    s32 temp = player->slip_flag;
+void Pakartdma(Player* Player, s8 arg1, s8 Arg2, s8 Arg3, s8 arg4) {
+    s32 temp = Player->SlipFlag;
 
     if (((temp & SPIN_L) == SPIN_L) ||
         ((temp & SPIN_R) == SPIN_R) ||
         ((temp & WING) == WING) ||
         ((temp & STORM) == STORM) ||
-        ((temp & THUNDER_SPIN) == THUNDER_SPIN) || ((player->handling_flag & TROPHYJUMP_END) != 0)) {
-        if (player->dir[arg2] != 0) {
-            osInvalDCache(&gEncodedKartTexture[arg4][arg3][arg1], D_800DDEB0[player->kart]);
+        ((temp & THUNDER_SPIN) == THUNDER_SPIN) || ((Player->HandlingFlag & TROPHYJUMP_END) != 0)) {
+        if (Player->dir[Arg2] != 0) {
+            osInvalDCache(&EncodedKartTexture[arg4][Arg3][arg1], D_800DDEB0[Player->Kart]);
 
-            osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+            osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
                          (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(
-                             gKartTextureTable1[player->kart][player->deg[arg2]]
-                                               [player->dir[arg2]])],
-                         &gEncodedKartTexture[arg4][arg3][arg1], D_800DDEB0[player->kart], &gDmaMesgQueue);
+                             gKartTextureTable1[Player->Kart][Player->deg[Arg2]]
+                                               [Player->dir[Arg2]])],
+                         &EncodedKartTexture[arg4][Arg3][arg1], D_800DDEB0[Player->Kart], &DmaMesgQueue);
         } else {
-            osInvalDCache(&gEncodedKartTexture[arg4][arg3][arg1], D_800DDEB0[player->kart]);
+            osInvalDCache(&EncodedKartTexture[arg4][Arg3][arg1], D_800DDEB0[Player->Kart]);
 
-            osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+            osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
                          (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(
-                             gKartTextureTable0[player->kart][player->deg[arg2]]
-                                               [player->dir[arg2]])],
-                         &gEncodedKartTexture[arg4][arg3][arg1], D_800DDEB0[player->kart], &gDmaMesgQueue);
+                             gKartTextureTable0[Player->Kart][Player->deg[Arg2]]
+                                               [Player->dir[Arg2]])],
+                         &EncodedKartTexture[arg4][Arg3][arg1], D_800DDEB0[Player->Kart], &DmaMesgQueue);
         }
     } else if (((temp & ROLLOVER) == ROLLOVER) ||
                ((temp & EXPLODE) == EXPLODE) ||
                ((temp & THROW_EXPLODE) == THROW_EXPLODE) ||
                ((temp & ROLLOVER_FALL) == ROLLOVER_FALL)) {
-        osInvalDCache(&gEncodedKartTexture[arg4][arg3][arg1], 0x780);
-        // player->slipcount >> 8 converts an 8.8 fixed-point animation frame to a whole number.
-        osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+        osInvalDCache(&EncodedKartTexture[arg4][Arg3][arg1], 0x780);
+        // Player->Slipcount >> 8 converts an 8.8 fixed-Point animation frame to a whole Number.
+        osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
                      (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(
-                         gKartTextureTumbles[player->kart][player->slipcount >> 8])],
-                     &gEncodedKartTexture[arg4][arg3][arg1], 0x900, &gDmaMesgQueue);
+                         gKartTextureTumbles[Player->Kart][Player->Slipcount >> 8])],
+                     &EncodedKartTexture[arg4][Arg3][arg1], 0x900, &DmaMesgQueue);
     } else {
-        osInvalDCache(&gEncodedKartTexture[arg4][arg3][arg1], D_800DDEB0[player->kart]);
+        osInvalDCache(&EncodedKartTexture[arg4][Arg3][arg1], D_800DDEB0[Player->Kart]);
 
-        osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+        osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
                      (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(
-                         gKartTextureTable0[player->kart][player->deg[arg2]]
-                                           [player->dir[arg2]])],
-                     &gEncodedKartTexture[arg4][arg3][arg1], D_800DDEB0[player->kart], &gDmaMesgQueue);
+                         gKartTextureTable0[Player->Kart][Player->deg[Arg2]]
+                                           [Player->dir[Arg2]])],
+                     &EncodedKartTexture[arg4][Arg3][arg1], D_800DDEB0[Player->Kart], &DmaMesgQueue);
     }
 }
 
-void Iinitcol_dma(Player* player, s8 playerId, s8 screenId, s8 index) {
+void IinitcolDMA(Player* Player, s8 PlayerId, s8 screenId, s8 Index) {
 #ifdef AVOID_UB
-    struct_D_802F1F80* temp_s0 = &gPlayerPalettesList[index][screenId][playerId];
+    struct_D_802F1F80* temp_s0 = &PlayerPalettesList[Index][screenId][PlayerId];
 #else
-    struct_D_802F1F80* temp_s0 = (struct_D_802F1F80*) &gPlayerPalettesList[index][screenId][playerId * 0x100];
+    struct_D_802F1F80* temp_s0 = (struct_D_802F1F80*) &PlayerPalettesList[Index][screenId][PlayerId * 0x100];
 #endif
-    switch (g_ScreenSplitA) {
+    switch (ScreenSplitA) {
         case SCREEN_MODE_1P:
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
             osInvalDCache(temp_s0, sizeof(struct_D_802F1F80));
 
-            osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
-                         (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(gKartPalettes[player->kart])],
-                         temp_s0, sizeof(struct_D_802F1F80), &gDmaMesgQueue);
+            osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+                         (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(gKartPalettes[Player->Kart])],
+                         temp_s0, sizeof(struct_D_802F1F80), &DmaMesgQueue);
 
-            osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+            osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
             break;
         case SCREEN_MODE_3P_4P_SPLITSCREEN: // Code identical to above
             osInvalDCache(temp_s0, sizeof(struct_D_802F1F80));
 
-            osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
-                         (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(gKartPalettes[player->kart])],
-                         temp_s0, sizeof(struct_D_802F1F80), &gDmaMesgQueue);
+            osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+                         (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(gKartPalettes[Player->Kart])],
+                         temp_s0, sizeof(struct_D_802F1F80), &DmaMesgQueue);
 
-            osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+            osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
             break;
     }
 }
 
-void tirecol_dma_Si(UNUSED Player* player, s32 arg1, void* vAddr, u16 size) {
-    osInvalDCache(vAddr, size);
+void TirecolDMASi(UNUSED Player* Player, s32 arg1, void* vAddr, u16 Size) {
+    osInvalDCache(vAddr, Size);
 
-    osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
-                 (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(arg1)], vAddr, size, &gDmaMesgQueue);
+    osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+                 (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(arg1)], vAddr, Size, &DmaMesgQueue);
 
-    osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+    osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
 }
 
 /**
- * @brief read data from ROM and write it to the given virtual address
+ * @brief read data from ROM and write it to the given virtual Address
  *
- * @param player Player struct
- * @param arg1 ROM offset
- * @param vAddr Virtual address
- * @param size Size of data to read
+ * @Param Player Player struct
+ * @Param arg1 ROM Offset
+ * @Param vAddr Virtual Address
+ * @Param Size Size of data to read
  */
-void tirecol_dma_Pa(UNUSED Player* player, s32 arg1, void* vAddr, u16 size) {
-    osInvalDCache(vAddr, size);
+void TirecolDMAPa(UNUSED Player* Player, s32 arg1, void* vAddr, u16 Size) {
+    osInvalDCache(vAddr, Size);
 
-    osPiStartDma(&gDmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
-                 (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(arg1)], vAddr, size, &gDmaMesgQueue);
+    osPiStartDma(&DmaIoMesg, OS_MESG_PRI_NORMAL, OS_READ,
+                 (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(arg1)], vAddr, Size, &DmaMesgQueue);
 }

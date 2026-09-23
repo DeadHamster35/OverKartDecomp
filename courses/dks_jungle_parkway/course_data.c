@@ -5816,7 +5816,7 @@ u8 d_course_dks_jungle_parkway_kiwano_tlut[] = {
 #include "assets/courses/dks_jungle_parkway/gTLUTDksJungleParkwayKiwanoFruit.inc.c"
 };
 
-// 0x13B78 The actor that collides with the player when they go off course.
+// 0x13B78 The actor that collides with the Player when they go off course.
 Vtx d_course_dks_jungle_parkway_kiwano_model[] = {
     { { { 2, 2, 0 }, 0, { 992, 0 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },
     { { { -2, 2, 0 }, 0, { 0, 0 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },

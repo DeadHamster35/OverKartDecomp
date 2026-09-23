@@ -7,39 +7,39 @@
 
 u8 sDisplayListState = OK;
 
-static u32 variable_to_u64(variableWatchAttributes*);
+static u32 variable_to_u64(VariableWatchAttributes*);
 static void round_up_float(u32*, u8);
-static void u64_to_string(variableWatchAttributes*, u32, u8);
+static void u64_to_string(VariableWatchAttributes*, u32, u8);
 static u32 _strlen(const char*);
 static void _memcpy(char*, const char*, u32);
 
 void display_dvdl(void) {
     u32 variable;
     u32 i, vNameLen;
-    u32 arraySize = sizeof(gMainVariableWatchList) / sizeof(variableWatchAttributes);
+    u32 arraySize = sizeof(gMainVariableWatchList) / sizeof(VariableWatchAttributes);
     s32 text_y_possition = TEXT_Y_POSSITION;
     u8 base;
     char *vName, *cBuffer;
 
-    loadFont();
+    LoadFont();
     for (i = 0; i < arraySize; i++) {
-        variableWatchAttributes* currentAttribute = &gMainVariableWatchList[i];
-        currentAttribute->characterBuffer = currentAttribute->buffer;
-        cBuffer = currentAttribute->characterBuffer;
-        vName = currentAttribute->variableName;
+        VariableWatchAttributes* currentAttribute = &gMainVariableWatchList[i];
+        currentAttribute->CharacterBuffer = currentAttribute->Buffer;
+        cBuffer = currentAttribute->CharacterBuffer;
+        vName = currentAttribute->VariableName;
 
         variable = variable_to_u64(currentAttribute);
         base = 0;
 
-        if (currentAttribute->variableFlag & (DISPLAY_FLOAT_AS_TYPE | DISPLAY_FLOAT_WITH_ROUNDING)) {
-            if (currentAttribute->variableFlag & DISPLAY_FLOAT_NUMBER) {
+        if (currentAttribute->VariableFlag & (DISPLAY_FLOAT_AS_TYPE | DISPLAY_FLOAT_WITH_ROUNDING)) {
+            if (currentAttribute->VariableFlag & DISPLAY_FLOAT_NUMBER) {
                 sDisplayListState = BAD;
-            } else if (currentAttribute->variableFlag & DISPLAY_FLOAT_WITH_ROUNDING) {
-                round_up_float(&variable, currentAttribute->variableSize);
+            } else if (currentAttribute->VariableFlag & DISPLAY_FLOAT_WITH_ROUNDING) {
+                round_up_float(&variable, currentAttribute->VariableSize);
             }
         }
 
-        switch (currentAttribute->variableFlag & 0x8F) {
+        switch (currentAttribute->VariableFlag & 0x8F) {
             case DISPLAY_FLOAT_NUMBER:
                 sprintf(cBuffer, "%.3f", *(f32*) &variable);
                 break;
@@ -69,28 +69,28 @@ void display_dvdl(void) {
 
         vNameLen = _strlen(vName);
 
-        printString(TEXT_X_POSSITION, text_y_possition, vName);
-        printString(TEXT_X_POSSITION + (vNameLen * 0x8), text_y_possition, cBuffer);
+        PrintString(TEXT_X_POSSITION, text_y_possition, vName);
+        PrintString(TEXT_X_POSSITION + (vNameLen * 0x8), text_y_possition, cBuffer);
         text_y_possition += 0x8;
     }
-    gSPDisplayList(gDisplayListHead++, D_0D007EB8);
-    gSPDisplayList(gDisplayListHead++, D_020076E0);
-    kawanoDrawFinal_(1);
+    gSPDisplayList(DisplayListHead++, D_0D007EB8);
+    gSPDisplayList(DisplayListHead++, D_020076E0);
+    KawanoDrawFinalEx(1);
 }
 
-static u32 variable_to_u64(variableWatchAttributes* attribute) {
+static u32 variable_to_u64(VariableWatchAttributes* attribute) {
     u32 variable;
 
-    switch (attribute->variableSize) {
+    switch (attribute->VariableSize) {
         case sizeof(u8):
-            variable = *((u8*) attribute->variablePointer);
+            variable = *((u8*) attribute->VariablePointer);
             break;
         case sizeof(u16):
-            variable = *((u16*) attribute->variablePointer);
+            variable = *((u16*) attribute->VariablePointer);
             break;
         case sizeof(u32):
         case sizeof(u64):
-            variable = *((u32*) attribute->variablePointer); // no floating point rounding
+            variable = *((u32*) attribute->VariablePointer); // no floating Point rounding
             break;
         default:
             sDisplayListState = BAD;
@@ -99,8 +99,8 @@ static u32 variable_to_u64(variableWatchAttributes* attribute) {
     return variable;
 }
 
-static void round_up_float(u32* variable, u8 variableSize) {
-    switch (variableSize) {
+static void round_up_float(u32* variable, u8 VariableSize) {
+    switch (VariableSize) {
         case sizeof(u64):
         case sizeof(u32):
             *variable = (u32) (*(f32*) &*variable);
@@ -110,12 +110,12 @@ static void round_up_float(u32* variable, u8 variableSize) {
     }
 }
 
-static void u64_to_string(variableWatchAttributes* attribute, u32 variable, u8 base) {
+static void u64_to_string(VariableWatchAttributes* attribute, u32 variable, u8 base) {
     s32 signedVariable;
     u32 stringDifference, indexesToFillAVariable, stringLengthWithZero;
     u32 indexesToFillAByte, upperIndex, remainder;
     u32 stringLength, lowerIndex, i;
-    u8 variableSize;
+    u8 VariableSize;
     char* bufferedString;
     char swapRegister;
 
@@ -123,12 +123,12 @@ static void u64_to_string(variableWatchAttributes* attribute, u32 variable, u8 b
         return;
     }
 
-    bufferedString = attribute->characterBuffer;
-    variableSize = attribute->variableSize;
+    bufferedString = attribute->CharacterBuffer;
+    VariableSize = attribute->VariableSize;
 
-    // converts a minus number into it's unsigned equivalent for proper string conversion
-    if (attribute->variableFlag & DISPLAY_SIGNED_NUMBER) {
-        switch (variableSize) {
+    // converts a minus Number into it's unsigned equivalent for proper string conversion
+    if (attribute->VariableFlag & DISPLAY_SIGNED_NUMBER) {
+        switch (VariableSize) {
             case sizeof(u8):
                 signedVariable = (s8) variable;
                 if (signedVariable < 0) {
@@ -213,7 +213,7 @@ static void u64_to_string(variableWatchAttributes* attribute, u32 variable, u8 b
     }
 
     stringLengthWithZero = stringLength - 1;
-    indexesToFillAVariable = indexesToFillAByte * variableSize;
+    indexesToFillAVariable = indexesToFillAByte * VariableSize;
     stringDifference = indexesToFillAVariable - stringLengthWithZero;
 
     // makes space and fills in extra space. u32 FE -> 000000FE
@@ -237,7 +237,7 @@ static u32 _strlen(const char* str) {
     return len;
 }
 
-// unused but may be useful
+// Unused but may be useful
 static void _memcpy(char* destStr, const char* copyStr, u32 copySize) {
     u32 i;
 

@@ -4,13 +4,13 @@ course:
   id: 20
   name: # unknown (does not exist)
   debug_name: # unk (does not exist)
-  cup: null
+  cup: Null
   cup_index: -1
-  course_length: null
+  course_length: Null
   cpu_behaviour_ptr: D_0D008F18
   cpu_maximum_separation: 40.0f # entry
   cpu_minimum_separation: 0.5f # entry
-  distance_limmit_ptr: dist_limmit_pat_NORMAL
+  distance_limmit_ptr: DistLimmitPatNORMAL
   cpu_steering_sensitivity: 53 # entry
   bomb_kart_spawns: # 7 bomb kart spawn locations
     - [0x0003, 0x0005, 1.25, 0.0, 0.0, 0.0, 0.0]
@@ -29,7 +29,7 @@ course:
   cpu_OffTrackTargetSpeed: [0.0f, 0.0f, 0.0f, 0.0f]
 
   # Course path
-  path_table: ["&nullPath", "&nullPath", "&nullPath", "&nullPath"]
+  path_table: ["&NullPath", "&NullPath", "&NullPath", "&NullPath"]
 
   # Unused except in podium ceremony
   path_table_unknown:

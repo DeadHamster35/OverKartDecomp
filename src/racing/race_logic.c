@@ -32,65 +32,65 @@ extern SaveData SaveGame;
 #pragma intrinsic(sqrtf)
 
 extern s16 BalloonCount[];
-extern s16 g_rankUpdateFinishFlag;
+extern s16 RankUpdateFinishFlag;
 
-extern s32 gLapCountByPlayerId[];
-extern u16 check_2p_GP;
+extern s32 LapCountByPlayerId[];
+extern u16 Check2PGP;
 
 extern s32 D_8018D2AC;
 extern s32 D_802B91E0;
 
-u16 kawanowait;
-u16 soundset_flag;
+u16 Kawanowait;
+u16 SoundsetFlag;
 
-float screenzoom;
+float Screenzoom;
 
-s32 finish_count;
+s32 FinishCount;
 UNUSED s32 D_802BA03C;
 
-s16 savestatus[4];
-u16 check_2p_GP;
+s16 Savestatus[4];
+u16 Check2PGP;
 
-void save_key_status(void) {
-    struct Controller* controllers = &gControllers[0];
+void SaveKeyStatus(void) {
+    struct Controller* controllers = &Controllers[0];
     s32 i;
     for (i = 0; i < 4; i++) {
-        savestatus[i] = controllers->ButtonHeld;
+        Savestatus[i] = controllers->ButtonHeld;
         controllers++;
     }
 }
 
 void LoadKeyStatus(void) {
-    struct Controller* controllers = &gControllers[0];
+    struct Controller* controllers = &Controllers[0];
     s32 i;
     for (i = 0; i < 4; i++) {
-        controllers->ButtonPressed = (controllers->ButtonHeld & (savestatus[i] ^ controllers->ButtonHeld));
-        controllers->ButtonReleased = (savestatus[i] & (savestatus[i] ^ controllers->ButtonHeld));
-        controllers->ButtonHeld = savestatus[i];
+        controllers->ButtonPressed = (controllers->ButtonHeld & (Savestatus[i] ^ controllers->ButtonHeld));
+        controllers->ButtonReleased = (Savestatus[i] & (Savestatus[i] ^ controllers->ButtonHeld));
+        controllers->ButtonHeld = Savestatus[i];
         controllers++;
     }
 }
 
-void battle_end(void) {
+void BattleEnd(void) {
 
-    switch (g_playerCount) {
+    switch (PlayerCount) {
         case 2:
-            *(battlewincount2p + win_kart) += 1;
+            *(Battlewincount2P + WinKart) += 1;
             break;
         case 3:
-            *(battlewincount3p + win_kart) += 1;
+            *(Battlewincount3P + WinKart) += 1;
             break;
         case 4:
-            *(battlewincount4p + win_kart) += 1;
+            *(Battlewincount4P + WinKart) += 1;
             break;
     }
-    Na_SeMute_Goal((u8) win_kart);
-    g_startingIndicator = RACE_DONE;
-    finish_count = 10;
+    NaSeMuteGoal((u8) WinKart);
+    StartingIndicator = RACE_DONE;
+    FinishCount = 10;
 }
 
-void check_battle_status(void) {
-    Player* player;
+void CheckBattleStatus(void) {
+    Player* Player;
     s32 playerIndex;
     s16 playersAlive[4];
     s16 playersDead[4];
@@ -98,138 +98,138 @@ void check_battle_status(void) {
     s16 deadCounter = 0;
 
     for (playerIndex = 0; playerIndex < 4; playerIndex++) {
-        player = &gPlayers[playerIndex];
-        if (!(player->flag & EXISTS)) {
+        Player = &GamePlayers[playerIndex];
+        if (!(Player->Flag & EXISTS)) {
             continue;
         }
-        if (player->flag & IS_RACE_FINISH) {
+        if (Player->Flag & IS_RACE_FINISH) {
             continue;
         }
-        // If player has no balloons left
+        // If Player has no balloons Left
         if (BalloonCount[playerIndex] < 0) {
-            player->flag |= IS_RACE_FINISH;
-            playersDead[deadCounter] = (s16) (player - gPlayerOne);
+            Player->Flag |= IS_RACE_FINISH;
+            playersDead[deadCounter] = (s16) (Player - PlayerOne);
             deadCounter++;
-            Na_SeMute_Goal((u8) playerIndex); // play sad character sound?
+            NaSeMuteGoal((u8) playerIndex); // play sad character Sound?
         } else {
-            playersAlive[aliveCounter] = (s16) (player - gPlayerOne);
+            playersAlive[aliveCounter] = (s16) (Player - PlayerOne);
             aliveCounter++;
         }
     }
     if (aliveCounter == 1) {
-        win_kart = (s32) playersAlive[0];
-        battle_end();
+        WinKart = (s32) playersAlive[0];
+        BattleEnd();
     } else if (aliveCounter == 0) {
-        win_kart = (s32) playersDead[0];
-        battle_end();
+        WinKart = (s32) playersDead[0];
+        BattleEnd();
     }
 }
 
-void check_goalin_time(void) {
+void CheckGoalinTime(void) {
     f32 temp_v0;
     s32 i;
     u16 temp_a2;
 
     for (i = 0; i < NUM_PLAYERS; i++) {
 
-        if ((gPlayers[i].flag & IS_RACE_FINISH)) {
+        if ((GamePlayers[i].Flag & IS_RACE_FINISH)) {
             continue;
         }
         temp_a2 = CurrentPathID[i];
 
-        temp_v0 = ((2 - gPlayers[i].rap) * g_courseTotalPathPoints[temp_a2]);
-        temp_v0 += g_courseTotalPathPoints[temp_a2] * (1.0f - rate_count_F[i]);
+        temp_v0 = ((2 - GamePlayers[i].rap) * CourseTotalPathPoints[temp_a2]);
+        temp_v0 += CourseTotalPathPoints[temp_a2] * (1.0f - RateCountF[i]);
         temp_v0 /= 15.0f;
 
-        gTimePlayerLastTouchedFinishLine[i] = g_gameTimer + temp_v0;
+        TimePlayerLastTouchedFinishLine[i] = GameTimer + temp_v0;
     }
-    g_rankUpdateFinishFlag = 1;
-    sort_goal_rank();
+    RankUpdateFinishFlag = 1;
+    SortGoalRank();
 }
 
 void CheckFinish(void) {
 
-    if (race_clear_flag) {
+    if (RaceClearFlag) {
 
-        if (g_courseSelect == asm_CupCount) {
-            next_sequence_mode = ENDING;
+        if (CourseSelect == AsmCupCount) {
+            NextSequenceMode = ENDING;
         } else {
-            cup_number++;
-            g_courseSelect++;
-            next_sequence_mode = RACING;
+            CupNumber++;
+            CourseSelect++;
+            NextSequenceMode = RACING;
         }
     } else {
-        cup_number++;
-        g_courseSelect++;
-        next_sequence_mode = RACING;
+        CupNumber++;
+        CourseSelect++;
+        NextSequenceMode = RACING;
     }
 }
 
-void finish_vs_zoom(void) {
-    Screen* temp_v0 = &D_8015F480[win_kart];
+void FinishVSZoom(void) {
+    Screen* temp_v0 = &D_8015F480[WinKart];
     s32 phi_v1_4;
 
-    g_ClearCFBFlag = 1;
+    ClearCFBFlag = 1;
 
-    switch (finish_zoom_flag) {
+    switch (FinishZoomFlag) {
         case 0:
-            two_d_flag = 0;
-            finish_zoom_flag = 1;
-            if (g_playerCount == 3) {
-                EraseInfo_3P();
+            TwoDFlag = 0;
+            FinishZoomFlag = 1;
+            if (PlayerCount == 3) {
+                EraseInfo3P();
             }
             break;
         case 1:
-            if (temp_v0->width < SCREEN_WIDTH) {
-                temp_v0->width += 2;
+            if (temp_v0->Width < SCREEN_WIDTH) {
+                temp_v0->Width += 2;
             }
-            if (temp_v0->height < SCREEN_HEIGHT) {
-                temp_v0->height += 2;
+            if (temp_v0->Height < SCREEN_HEIGHT) {
+                temp_v0->Height += 2;
             }
-            if (temp_v0->posx < 160) {
-                temp_v0->posx += 1;
+            if (temp_v0->Posx < 160) {
+                temp_v0->Posx += 1;
 
-            } else if (temp_v0->posx > 160) {
-                temp_v0->posx -= 1;
+            } else if (temp_v0->Posx > 160) {
+                temp_v0->Posx -= 1;
             }
-            if (temp_v0->posy < 120) {
-                temp_v0->posy += 1;
-            } else if (temp_v0->posy > 120) {
-                temp_v0->posy -= 1;
+            if (temp_v0->Posy < 120) {
+                temp_v0->Posy += 1;
+            } else if (temp_v0->Posy > 120) {
+                temp_v0->Posy -= 1;
             }
             phi_v1_4 = 0;
 
-            if (temp_v0->height >= SCREEN_HEIGHT) {
+            if (temp_v0->Height >= SCREEN_HEIGHT) {
                 phi_v1_4++;
-                temp_v0->height = SCREEN_HEIGHT;
+                temp_v0->Height = SCREEN_HEIGHT;
             }
-            if (temp_v0->width >= SCREEN_WIDTH) {
-                temp_v0->width = SCREEN_WIDTH;
+            if (temp_v0->Width >= SCREEN_WIDTH) {
+                temp_v0->Width = SCREEN_WIDTH;
                 phi_v1_4++;
             }
 
-            if (temp_v0->posy == 120) {
+            if (temp_v0->Posy == 120) {
                 phi_v1_4++;
             }
-            if (temp_v0->posx == 160) {
+            if (temp_v0->Posx == 160) {
                 phi_v1_4++;
             }
-            g_aspectRatio = (f32) ((f32) temp_v0->width / (f32) temp_v0->height);
+            AspectRatio = (f32) ((f32) temp_v0->Width / (f32) temp_v0->Height);
             if (phi_v1_4 == 4) {
-                finish_zoom_flag = 2;
-                g_ScreenSplitA = SCREEN_MODE_1P;
-                D_800DC5EC->width = temp_v0->width;
-                D_800DC5EC->height = temp_v0->height;
-                D_800DC5EC->posx = temp_v0->posx;
-                D_800DC5EC->posy = temp_v0->posy;
-                if (g_gameMode == BATTLE) {
+                FinishZoomFlag = 2;
+                ScreenSplitA = SCREEN_MODE_1P;
+                D_800DC5EC->Width = temp_v0->Width;
+                D_800DC5EC->Height = temp_v0->Height;
+                D_800DC5EC->Posx = temp_v0->Posx;
+                D_800DC5EC->Posy = temp_v0->Posy;
+                if (GameMode == BATTLE) {
                     DispVSResult();
-                } else if (g_gameMode == VERSUS) {
+                } else if (GameMode == VERSUS) {
                     DispVSResult();
-                    oga_vs_winner_camera_init();
+                    OgaVSWinnerCameraInit();
                 } else {
                     DispGPLose();
-                    g_startingIndicator = RACE_QUADRANT_RESULTS;
+                    StartingIndicator = RACE_QUADRANT_RESULTS;
                 }
             }
             break;
@@ -238,197 +238,197 @@ void finish_vs_zoom(void) {
     }
 }
 
-void finish_zoom(void) {
+void FinishZoom(void) {
     s32 phi_a0_10 = 0;
 
-    g_ClearCFBFlag = 1;
+    ClearCFBFlag = 1;
 
-    switch (finish_zoom_flag) {
+    switch (FinishZoomFlag) {
         case 0:
             // Unused switch?
-            switch (g_gameMode) {
+            switch (GameMode) {
                 case GRAND_PRIX:
                 case VERSUS:
                     break;
                 case TIME_TRIALS:
                     break;
             }
-            two_d_flag = 0;
-            switch (g_ScreenSplitB) {
+            TwoDFlag = 0;
+            switch (ScreenSplitB) {
                 case SCREEN_MODE_1P:
-                    finish_zoom_flag = 1;
+                    FinishZoomFlag = 1;
                     break;
                 case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
-                    finish_zoom_flag = 5;
+                    FinishZoomFlag = 5;
                     break;
                 case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-                    finish_zoom_flag = 6;
+                    FinishZoomFlag = 6;
                     break;
             }
             break;
         case 5:
-            D_800DC5EC->width -= 4;
+            D_800DC5EC->Width -= 4;
 
-            D_800DC5F0->width -= 4;
+            D_800DC5F0->Width -= 4;
 
-            D_800DC5EC->posx -= 2;
+            D_800DC5EC->Posx -= 2;
 
-            D_800DC5F0->posx += 2;
+            D_800DC5F0->Posx += 2;
 
-            if (D_800DC5EC->width < 160) {
-                D_800DC5EC->width = 160;
+            if (D_800DC5EC->Width < 160) {
+                D_800DC5EC->Width = 160;
                 phi_a0_10++;
             }
 
-            if (D_800DC5F0->width < 160) {
-                D_800DC5F0->width = 160;
+            if (D_800DC5F0->Width < 160) {
+                D_800DC5F0->Width = 160;
                 phi_a0_10++;
             }
 
-            if (D_800DC5EC->posx < 80) {
-                D_800DC5EC->posx = 80;
+            if (D_800DC5EC->Posx < 80) {
+                D_800DC5EC->Posx = 80;
                 phi_a0_10++;
             }
 
-            if (D_800DC5F0->posx > SCREEN_HEIGHT) {
-                D_800DC5F0->posx = SCREEN_HEIGHT;
+            if (D_800DC5F0->Posx > SCREEN_HEIGHT) {
+                D_800DC5F0->Posx = SCREEN_HEIGHT;
                 phi_a0_10++;
             }
 
-            g_aspectRatio = (f32) ((f32) D_800DC5EC->width / (f32) D_800DC5EC->height);
+            AspectRatio = (f32) ((f32) D_800DC5EC->Width / (f32) D_800DC5EC->Height);
             if (phi_a0_10 == 4) {
-                finish_zoom_flag = 3;
+                FinishZoomFlag = 3;
                 DispResultTime();
-                oga_drivers_point_camera_init();
-                kwswitch_demo2pgp();
+                OgaDriversPointCameraInit();
+                KwswitchDemo2Pgp();
             }
             break;
         case 6:
-            D_800DC5EC->height -= 4;
-            D_800DC5F0->height -= 4;
-            D_800DC5EC->posy -= 2;
-            D_800DC5F0->posy += 2;
+            D_800DC5EC->Height -= 4;
+            D_800DC5F0->Height -= 4;
+            D_800DC5EC->Posy -= 2;
+            D_800DC5F0->Posy += 2;
 
-            if (D_800DC5EC->height < 120) {
-                D_800DC5EC->height = 120;
+            if (D_800DC5EC->Height < 120) {
+                D_800DC5EC->Height = 120;
                 phi_a0_10++;
             }
 
-            if (D_800DC5F0->height < 120) {
-                D_800DC5F0->height = 120;
+            if (D_800DC5F0->Height < 120) {
+                D_800DC5F0->Height = 120;
                 phi_a0_10++;
             }
 
-            if (D_800DC5EC->posy < 60) {
-                D_800DC5EC->posy = 60;
+            if (D_800DC5EC->Posy < 60) {
+                D_800DC5EC->Posy = 60;
                 phi_a0_10++;
             }
 
-            if (D_800DC5F0->posy > 180) {
-                D_800DC5F0->posy = 180;
+            if (D_800DC5F0->Posy > 180) {
+                D_800DC5F0->Posy = 180;
                 phi_a0_10++;
             }
 
-            g_aspectRatio = (f32) ((f32) D_800DC5EC->width / (f32) D_800DC5EC->height);
+            AspectRatio = (f32) ((f32) D_800DC5EC->Width / (f32) D_800DC5EC->Height);
             if (phi_a0_10 == 4) {
-                finish_zoom_flag = 3;
+                FinishZoomFlag = 3;
                 DispResultTime();
-                oga_drivers_point_camera_init();
+                OgaDriversPointCameraInit();
             }
             break;
         case 1:
-            D_800DC5EC->height -= 2;
-            D_800DC5EC->width = (D_800DC5EC->height * SCREEN_WIDTH) / SCREEN_HEIGHT;
+            D_800DC5EC->Height -= 2;
+            D_800DC5EC->Width = (D_800DC5EC->Height * SCREEN_WIDTH) / SCREEN_HEIGHT;
 
-            if (D_800DC5EC->height < 120) {
+            if (D_800DC5EC->Height < 120) {
 
-                D_800DC5EC->height = 120;
-                D_800DC5EC->width = (D_800DC5EC->height * SCREEN_WIDTH) / SCREEN_HEIGHT;
-                finish_zoom_flag = 2;
+                D_800DC5EC->Height = 120;
+                D_800DC5EC->Width = (D_800DC5EC->Height * SCREEN_WIDTH) / SCREEN_HEIGHT;
+                FinishZoomFlag = 2;
 
-                D_800DC5F0->width = D_800DC5EC->width;
-                D_800DC5F0->height = D_800DC5EC->height;
-                D_800DC5F0->posx = D_800DC5EC->posx;
-                D_800DC5F0->posy = D_800DC5EC->posy;
+                D_800DC5F0->Width = D_800DC5EC->Width;
+                D_800DC5F0->Height = D_800DC5EC->Height;
+                D_800DC5F0->Posx = D_800DC5EC->Posx;
+                D_800DC5F0->Posy = D_800DC5EC->Posy;
 
-                g_ScreenSplitA = SCREEN_MODE_2P_SPLITSCREEN_VERTICAL;
-                g_aspectRatio = 1.33333337;
-                g_playerCount = 2;
-                init_result_kart();
-                kw_resultscreen_start();
+                ScreenSplitA = SCREEN_MODE_2P_SPLITSCREEN_VERTICAL;
+                AspectRatio = 1.33333337;
+                PlayerCount = 2;
+                InitResultKart();
+                KWResultscreenStart();
             }
             break;
         case 2:
-            D_800DC5EC->posx -= 4;
+            D_800DC5EC->Posx -= 4;
 
-            D_800DC5EC->posy -= 2;
+            D_800DC5EC->Posy -= 2;
 
-            if (D_800DC5EC->posx < 80) {
-                D_800DC5EC->posx = 80;
+            if (D_800DC5EC->Posx < 80) {
+                D_800DC5EC->Posx = 80;
                 phi_a0_10++;
             }
 
-            if (D_800DC5EC->posy < 60) {
-                D_800DC5EC->posy = 60;
+            if (D_800DC5EC->Posy < 60) {
+                D_800DC5EC->Posy = 60;
                 phi_a0_10++;
             }
-            D_800DC5F0->posx += 4;
-            D_800DC5F0->posy += 2;
+            D_800DC5F0->Posx += 4;
+            D_800DC5F0->Posy += 2;
 
-            if (D_800DC5F0->posx > SCREEN_HEIGHT) {
-                D_800DC5F0->posx = SCREEN_HEIGHT;
+            if (D_800DC5F0->Posx > SCREEN_HEIGHT) {
+                D_800DC5F0->Posx = SCREEN_HEIGHT;
                 phi_a0_10++;
             }
-            if (D_800DC5F0->posy > 180) {
-                D_800DC5F0->posy = 180;
+            if (D_800DC5F0->Posy > 180) {
+                D_800DC5F0->Posy = 180;
                 phi_a0_10++;
             }
             if (phi_a0_10 == 4) {
-                finish_zoom_flag = 7;
-                kawanowait = 3;
+                FinishZoomFlag = 7;
+                Kawanowait = 3;
             }
             break;
         case 7:
-            kawanowait--;
-            if (kawanowait == 0) {
-                finish_zoom_flag = 3;
+            Kawanowait--;
+            if (Kawanowait == 0) {
+                FinishZoomFlag = 3;
                 DispResultTime();
-                if (g_gameMode == GRAND_PRIX) {
-                    oga_drivers_point_camera_init();
+                if (GameMode == GRAND_PRIX) {
+                    OgaDriversPointCameraInit();
                 } else {
-                    oga_timeattack_camera_init();
+                    OgaTimeattackCameraInit();
                 }
             }
             break;
         case 4:
-            g_fadeOutFlag = 1;
-            g_fadeOutCounter = 5;
-            g_startingIndicator = RACE_QUADRANT_RESULTS;
+            FadeOutFlag = 1;
+            FadeOutCounter = 5;
+            StartingIndicator = RACE_QUADRANT_RESULTS;
             CheckFinish();
             break;
     }
 }
 
-UNUSED void call_next_sequence(s32 arg0) {
-    next_sequence_mode = arg0;
-    g_startingIndicator = RACE_QUITTING;
+UNUSED void CallNextSequence(s32 arg0) {
+    NextSequenceMode = arg0;
+    StartingIndicator = RACE_QUITTING;
     NaSeqFadeout(25);
-    Na_SE_Fadeout(25);
-    gBackgroundFlag = 1;
-    g_ClearCFBFlag = 1;
-    two_d_flag = 0;
-    finish_count = 5;
+    NaSEFadeout(25);
+    BackgroundFlag = 1;
+    ClearCFBFlag = 1;
+    TwoDFlag = 0;
+    FinishCount = 5;
 }
 
-void start_race_BGM(s32 track) {
+void StartRaceBGM(s32 track) {
 
-    if ((ok_MusicIn3P4P == 0) && (g_ScreenSplitB == SCREEN_MODE_3P_4P_SPLITSCREEN)) {
-        return; // If 3P/4P splitscreen mode is currently on, don't play the music for the current track.
+    if ((OKMusicIn3P4P == 0) && (ScreenSplitB == SCREEN_MODE_3P_4P_SPLITSCREEN)) {
+        return; // If 3P/4P splitscreen Mode is currently on, don't play the music for the Current track.
     }
 
-    set_music_volume();
+    SetMusicVolume();
 
-    if (start_race_BGM_custom() != 0) {
+    if (StartRaceBGMCustom() != 0) {
         return;
     }
 
@@ -497,171 +497,171 @@ void start_race_BGM(s32 track) {
     }
 }
 
-void start_racing(void) {
+void StartRacing(void) {
     s32 i;
 
-    time_flag = -1;
-    if (!g_DemoFlag) { // If we're not in the title screen demo, play the music for the current track.
-        start_race_BGM(g_courseID);
+    TimeFlag = -1;
+    if (!DemoFlag) { // If we're not in the title screen demo, play the music for the Current track.
+        StartRaceBGM(CourseID);
     }
 
-    if (g_startingIndicator == RACE_STAGING) {
-        g_startingIndicator = RACE_IN_PROGRESS;
+    if (StartingIndicator == RACE_STAGING) {
+        StartingIndicator = RACE_IN_PROGRESS;
     }
 
     for (i = 0; i < NUM_PLAYERS; i++) {
 
-        if ((gPlayers[i].flag & EXISTS) == 0) {
+        if ((GamePlayers[i].Flag & EXISTS) == 0) {
             continue;
         }
 
-        // Sets player to human.
-        if (gPlayers[i].flag & NO_CONTROLS) {
-            gPlayers[i].flag ^= NO_CONTROLS;
+        // Sets Player to human.
+        if (GamePlayers[i].Flag & NO_CONTROLS) {
+            GamePlayers[i].Flag ^= NO_CONTROLS;
         }
     }
 }
 
-f32 get_laptime(s32 arg0) {
-    f32 temp_v0 = gPlayers[arg0].position[2];
-    f32 temp_v1 = gPlayers[arg0].old_position[2];
-    f32 temp_f14 = g_goalBannerPos[2] - temp_v0;
-    f32 temp_f16 = temp_v1 - g_goalBannerPos[2];
-    return g_gameTimer - ((COURSE_TIMER_ITER_f * temp_f14) / (temp_f14 + temp_f16));
+f32 GetLaptime(s32 arg0) {
+    f32 temp_v0 = GamePlayers[arg0].Position[2];
+    f32 temp_v1 = GamePlayers[arg0].OldPosition[2];
+    f32 temp_f14 = GoalBannerPos[2] - temp_v0;
+    f32 temp_f16 = temp_v1 - GoalBannerPos[2];
+    return GameTimer - ((COURSE_TIMER_ITER_f * temp_f14) / (temp_f14 + temp_f16));
 }
 
-void goalin_subroutin(s32 i) {
-    gPlayers[i].flag |= IS_RACE_FINISH;
+void GoalinSubroutin(s32 i) {
+    GamePlayers[i].Flag |= IS_RACE_FINISH;
 }
 
-void check_kart_rap(void) {
+void CheckKartRap(void) {
     s16 currentPosition;
-    s32 playerId;
+    s32 PlayerId;
 
-    for (playerId = 0; playerId < NUM_PLAYERS; playerId++) {
-        Player* player = &gPlayers[playerId];
+    for (PlayerId = 0; PlayerId < NUM_PLAYERS; PlayerId++) {
+        Player* Player = &GamePlayers[PlayerId];
 
-        if ((player->flag & EXISTS) == 0) {
+        if ((Player->Flag & EXISTS) == 0) {
             continue;
         }
 
-        if (gLapCountByPlayerId[playerId] < player->rap) {
-            player->rap--;
-        } else if (gLapCountByPlayerId[playerId] > player->rap) {
-            player->rap++;
-            if ((player->flag & IS_PLAYER) != 0) {
-                // When player finishes the race
-                if (player->rap == 3) {
-                    goalin_subroutin(playerId);
+        if (LapCountByPlayerId[PlayerId] < Player->rap) {
+            Player->rap--;
+        } else if (LapCountByPlayerId[PlayerId] > Player->rap) {
+            Player->rap++;
+            if ((Player->Flag & IS_PLAYER) != 0) {
+                // When Player finishes the race
+                if (Player->rap == 3) {
+                    GoalinSubroutin(PlayerId);
 
-                    currentPosition = player->rank;
-                    player->flag |= IS_CPU_PLAYER;
+                    currentPosition = Player->Rank;
+                    Player->Flag |= IS_CPU_PLAYER;
 
                     if ((currentPosition < 4) || (SaveGame.GameSettings.GPMode == 1)) {
-                        race_clear_flag = 1;
+                        RaceClearFlag = 1;
                     }
 
-                    Na_SeMute_Goal((u8) playerId);
-                    if ((soundset_flag & EXISTS) == 0) {
-                        soundset_flag |= EXISTS;
+                    NaSeMuteGoal((u8) PlayerId);
+                    if ((SoundsetFlag & EXISTS) == 0) {
+                        SoundsetFlag |= EXISTS;
                     }
 
-                    if (g_gameMode == GRAND_PRIX && g_playerCount == 2 && check_2p_GP == 0) {
-                        check_2p_GP = 1;
+                    if (GameMode == GRAND_PRIX && PlayerCount == 2 && Check2PGP == 0) {
+                        Check2PGP = 1;
                     }
-                    if ((player->flag & IS_GHOST) == 0) {
-                        g_startingIndicator = RACE_HUMAN_FINISHED;
+                    if ((Player->Flag & IS_GHOST) == 0) {
+                        StartingIndicator = RACE_HUMAN_FINISHED;
                     }
-                    if (g_gameMode == TIME_TRIALS) {
-                        kill_ghost(player);
+                    if (GameMode == TIME_TRIALS) {
+                        KillGhost(Player);
                     }
 
-                    if (g_gameMode == VERSUS) {
-                        finish_count = 180;
+                    if (GameMode == VERSUS) {
+                        FinishCount = 180;
                         if (currentPosition == 0) {
-                            win_kart = playerId;
+                            WinKart = PlayerId;
                         }
-                        switch (g_playerCount) {
+                        switch (PlayerCount) {
                             case 2:
                                 if (currentPosition == 0) {
-                                    *(wincount2p + playerId) += 1;
+                                    *(Wincount2P + PlayerId) += 1;
                                 }
-                                if (*(wincount2p + playerId) > 99) {
-                                    *(wincount2p + playerId) = 99;
+                                if (*(Wincount2P + PlayerId) > 99) {
+                                    *(Wincount2P + PlayerId) = 99;
                                 }
-                                g_startingIndicator = RACE_DONE;
-                                playerId = rank_buffer[1];
-                                gPlayers[playerId].weapon |= HIT_CRITTER;
-                                gPlayers[playerId].flag |= IS_CPU_PLAYER;
-                                Na_SeMute_Goal((u8) playerId);
+                                StartingIndicator = RACE_DONE;
+                                PlayerId = RankBuffer[1];
+                                GamePlayers[PlayerId].Weapon |= HIT_CRITTER;
+                                GamePlayers[PlayerId].Flag |= IS_CPU_PLAYER;
+                                NaSeMuteGoal((u8) PlayerId);
                                 break;
                             case 3:
                                 if (currentPosition < 3) {
-                                    *(wincount3p + playerId * 3 + currentPosition) += 1;
+                                    *(Wincount3P + PlayerId * 3 + currentPosition) += 1;
                                 }
-                                if (*(wincount3p + playerId * 3 + currentPosition) > 99) {
-                                    *(wincount3p + playerId * 3 + currentPosition) = 99;
+                                if (*(Wincount3P + PlayerId * 3 + currentPosition) > 99) {
+                                    *(Wincount3P + PlayerId * 3 + currentPosition) = 99;
                                 }
-                                /* Because the last player may not finish, their score must be updated when the 2nd
+                                /* Because the last Player may not finish, their score must be updated when the 2nd
                                    to last racer finishes. */
                                 if (currentPosition == 1) {
-                                    g_startingIndicator = RACE_DONE; // triggers results screen
+                                    StartingIndicator = RACE_DONE; // triggers results screen
 
-                                 /* This messes with the loop index by setting it to the index of the last player. 
-                                    But, because versus always gives the player with the lower slot/port number
-                                    the advantage if 2 players finish at the same time,  it can only skip finished
-                                    players who do not need more processing. It can run the same index twice, but
-                                    any player who finished this frame already had their lap count updated, so 
+                                 /* This messes with the Loop Index by setting it to the Index of the last Player. 
+                                    But, because versus always gives the Player with the lower slot/port Number
+                                    the advantage if 2 players finish at the same Time,  it can only skip Finished
+                                    players who do not need more processing. It can run the same Index twice, but
+                                    any Player who Finished this frame already had their lap Count updated, so 
                                     nothing will happen */
-                                    playerId = rank_buffer[2];
-                                    *(wincount3p + playerId * 3 + 2) += 1;
-                                    if (*(wincount3p + playerId * 3 + 2) > 99) {
-                                        *(wincount3p + playerId * 3 + 2) = 99;
+                                    PlayerId = RankBuffer[2];
+                                    *(Wincount3P + PlayerId * 3 + 2) += 1;
+                                    if (*(Wincount3P + PlayerId * 3 + 2) > 99) {
+                                        *(Wincount3P + PlayerId * 3 + 2) = 99;
                                     }
-                                    gPlayers[playerId].weapon |= HIT_CRITTER;
-                                    gPlayers[playerId].flag |= IS_CPU_PLAYER;
-                                    Na_SeMute_Goal((u8) playerId);
+                                    GamePlayers[PlayerId].Weapon |= HIT_CRITTER;
+                                    GamePlayers[PlayerId].Flag |= IS_CPU_PLAYER;
+                                    NaSeMuteGoal((u8) PlayerId);
                                 }
                                 break;
                             case 4:
                                 if (currentPosition < 3) {
-                                    *(wincount4p + playerId * 3 + currentPosition) += 1;
+                                    *(Wincount4P + PlayerId * 3 + currentPosition) += 1;
                                 }
-                                if (*(wincount4p + playerId * 3 + currentPosition) > 99) {
-                                    *(wincount4p + playerId * 3 + currentPosition) = 99;
+                                if (*(Wincount4P + PlayerId * 3 + currentPosition) > 99) {
+                                    *(Wincount4P + PlayerId * 3 + currentPosition) = 99;
                                 }
                                 // if second to last, race is over
                                 if (currentPosition == 2) {
-                                    g_startingIndicator = RACE_DONE;
-                                    playerId = rank_buffer[3];
-                                    gPlayers[playerId].weapon |= HIT_CRITTER;
-                                    gPlayers[playerId].flag |= IS_CPU_PLAYER;
-                                    Na_SeMute_Goal((u8) playerId);
+                                    StartingIndicator = RACE_DONE;
+                                    PlayerId = RankBuffer[3];
+                                    GamePlayers[PlayerId].Weapon |= HIT_CRITTER;
+                                    GamePlayers[PlayerId].Flag |= IS_CPU_PLAYER;
+                                    NaSeMuteGoal((u8) PlayerId);
                                 }
                                 break;
                         }
                     }
 
-                } else if (player->rap == 2) {
-                    if ((player->flag & 0x100) != 0) {
+                } else if (Player->rap == 2) {
+                    if ((Player->Flag & 0x100) != 0) {
                         return;
                     }
-                    if ((soundset_flag & 0x4000) == 0) {
-                        soundset_flag |= 0x4000;
-                        PlayFinalLapMusicHook((u8) playerId);
+                    if ((SoundsetFlag & 0x4000) == 0) {
+                        SoundsetFlag |= 0x4000;
+                        PlayFinalLapMusicHook((u8) PlayerId);
                     }
                 }
-            } else if (player->rap == 3) {
-                goalin_subroutin(playerId);
-                if (g_gameMode == TIME_TRIALS) {
-                    kill_ghost(player);
+            } else if (Player->rap == 3) {
+                GoalinSubroutin(PlayerId);
+                if (GameMode == TIME_TRIALS) {
+                    KillGhost(Player);
                 }
             }
         }
     }
-    if ((check_2p_GP != 0) && (check_2p_GP != 100)) {
-        check_2p_GP = 100;
-        sort_goal_rank_2PGP();
+    if ((Check2PGP != 0) && (Check2PGP != 100)) {
+        Check2PGP = 100;
+        SortGoalRank2PGP();
     }
 }
 
@@ -669,30 +669,30 @@ void func_8028F3E8(void) {
 }
 
 // func_8028F3F0
-void check_kart_rank(void) {
-    s16 playerId;
-    s16 position;
+void CheckKartRank(void) {
+    s16 PlayerId;
+    s16 Position;
 
-    for (playerId = 0; playerId < NUM_PLAYERS; playerId++) {
-        if (((gPlayers[playerId].flag & EXISTS) != 0) && ((gPlayers[playerId].flag & IS_RACE_FINISH) == 0) &&
-            ((gPlayers[playerId].flag & IS_GHOST) == 0)) {
-            position = gGPCurrentRaceRankByPlayerId[playerId];
-            gPlayers[playerId].rank = position;
-            rank_buffer[position] = playerId;
+    for (PlayerId = 0; PlayerId < NUM_PLAYERS; PlayerId++) {
+        if (((GamePlayers[PlayerId].Flag & EXISTS) != 0) && ((GamePlayers[PlayerId].Flag & IS_RACE_FINISH) == 0) &&
+            ((GamePlayers[PlayerId].Flag & IS_GHOST) == 0)) {
+            Position = GPCurrentRaceRankByPlayerId[PlayerId];
+            GamePlayers[PlayerId].Rank = Position;
+            RankBuffer[Position] = PlayerId;
         }
     }
 }
 
-void enemy_control(void) {
+void EnemyControl(void) {
     s32 i;
 
-    switch (g_startingIndicator) {
+    switch (StartingIndicator) {
         case RACE_IN_PROGRESS:
         case RACE_HUMAN_FINISHED:
         case RACE_DONE:
         case RACE_QUADRANT_RESULTS:
             for (i = 0; i < NUM_PLAYERS; i++) {
-                drive_enemy_kart(i);
+                DriveEnemyKart(i);
             }
         case RACE_PREP:
         case RACE_STAGING:
@@ -701,204 +701,204 @@ void enemy_control(void) {
     }
 }
 
-void race_reset_check(void) {
-    if (g_DebugMode) {
-        if (((gControllerFive->ButtonHeld & R_TRIG) != 0) && ((gControllerFive->ButtonHeld & L_TRIG) != 0) &&
-            ((gControllerFive->ButtonHeld & A_BUTTON) != 0) && ((gControllerFive->ButtonHeld & B_BUTTON) != 0)) {
+void RaceResetCheck(void) {
+    if (DebugMode) {
+        if (((ControllerFive->ButtonHeld & R_TRIG) != 0) && ((ControllerFive->ButtonHeld & L_TRIG) != 0) &&
+            ((ControllerFive->ButtonHeld & A_BUTTON) != 0) && ((ControllerFive->ButtonHeld & B_BUTTON) != 0)) {
 
             NaSeqFadeout(0x19);
-            Na_SE_Fadeout(0x19);
-            next_sequence_mode = START_MENU_FROM_QUIT;
-            g_startingIndicator = RACE_QUITTING;
-            gBackgroundFlag = 1;
-            g_ClearCFBFlag = 1;
-            two_d_flag = 0;
-            finish_count = 5;
+            NaSEFadeout(0x19);
+            NextSequenceMode = START_MENU_FROM_QUIT;
+            StartingIndicator = RACE_QUITTING;
+            BackgroundFlag = 1;
+            ClearCFBFlag = 1;
+            TwoDFlag = 0;
+            FinishCount = 5;
         }
     }
 }
 
-void set_vp_scale(void) {
+void SetVpScale(void) {
     s16 screenWidth;
 
-    switch (g_ScreenSplitA) { /* irregular */
+    switch (ScreenSplitA) { /* irregular */
         case SCREEN_MODE_1P:
-            screenWidth = (s16) (s32) (320.0f * screenzoom);
+            screenWidth = (s16) (s32) (320.0f * Screenzoom);
             if (screenWidth < 0) {
                 screenWidth = 1;
             }
-            D_800DC5EC->width = screenWidth;
-            screenWidth = (s16) (s32) (240.0f * screenzoom);
+            D_800DC5EC->Width = screenWidth;
+            screenWidth = (s16) (s32) (240.0f * Screenzoom);
             if (screenWidth < 0) {
                 screenWidth = 1;
             }
-            D_800DC5EC->height = screenWidth;
+            D_800DC5EC->Height = screenWidth;
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            screenWidth = (s16) (s32) (160.0f * screenzoom);
+            screenWidth = (s16) (s32) (160.0f * Screenzoom);
             if (screenWidth <= 0) {
                 screenWidth = 1;
             } else if (screenWidth >= 0x140) {
                 screenWidth = 0x013C;
             }
-            D_800DC5EC->width = screenWidth;
-            D_800DC5F0->width = screenWidth;
-            screenWidth = (s16) (s32) (240.0f * screenzoom);
+            D_800DC5EC->Width = screenWidth;
+            D_800DC5F0->Width = screenWidth;
+            screenWidth = (s16) (s32) (240.0f * Screenzoom);
             if (screenWidth <= 0) {
                 screenWidth = 1;
             } else if (screenWidth >= 0x1E0) {
                 screenWidth = 0x01DC;
             }
-            D_800DC5EC->height = screenWidth;
-            D_800DC5F0->height = screenWidth;
+            D_800DC5EC->Height = screenWidth;
+            D_800DC5F0->Height = screenWidth;
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
-            screenWidth = (s16) (s32) (320.0f * screenzoom);
+            screenWidth = (s16) (s32) (320.0f * Screenzoom);
             if (screenWidth <= 0) {
                 screenWidth = 1;
             } else if (screenWidth >= 0x280) {
                 screenWidth = 0x027C;
             }
-            D_800DC5EC->width = screenWidth;
-            D_800DC5F0->width = screenWidth;
-            screenWidth = (s16) (s32) (120.0f * screenzoom);
+            D_800DC5EC->Width = screenWidth;
+            D_800DC5F0->Width = screenWidth;
+            screenWidth = (s16) (s32) (120.0f * Screenzoom);
             if (screenWidth <= 0) {
                 screenWidth = 1;
             } else if (screenWidth >= 0xF0) {
                 screenWidth = 0x00EC;
             }
-            D_800DC5EC->height = screenWidth;
-            D_800DC5F0->height = screenWidth;
+            D_800DC5EC->Height = screenWidth;
+            D_800DC5F0->Height = screenWidth;
             break;
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            screenWidth = (s16) (s32) (160.0f * screenzoom);
+            screenWidth = (s16) (s32) (160.0f * Screenzoom);
             if (screenWidth <= 0) {
                 screenWidth = 1;
             } else if (screenWidth >= 0x140) {
                 screenWidth = 0x013C;
             }
-            D_800DC5EC->width = screenWidth;
-            D_800DC5F0->width = screenWidth;
-            D_800DC5F4->width = screenWidth;
-            D_800DC5F8->width = screenWidth;
-            screenWidth = (s16) (s32) (120.0f * screenzoom);
+            D_800DC5EC->Width = screenWidth;
+            D_800DC5F0->Width = screenWidth;
+            D_800DC5F4->Width = screenWidth;
+            D_800DC5F8->Width = screenWidth;
+            screenWidth = (s16) (s32) (120.0f * Screenzoom);
             if (screenWidth <= 0) {
                 screenWidth = 1;
             } else if (screenWidth >= 0xF0) {
                 screenWidth = 0x00EC;
             }
-            D_800DC5EC->height = screenWidth;
-            D_800DC5F0->height = screenWidth;
-            D_800DC5F4->height = screenWidth;
-            D_800DC5F8->height = screenWidth;
+            D_800DC5EC->Height = screenWidth;
+            D_800DC5F0->Height = screenWidth;
+            D_800DC5F4->Height = screenWidth;
+            D_800DC5F8->Height = screenWidth;
             break;
     }
 }
 
-void zoom_out_screen(void) {
-    screenzoom = (f32) (screenzoom - 0.017f);
-    if (screenzoom < 0.0f) {
-        screenzoom = 0.0f;
+void ZoomOutScreen(void) {
+    Screenzoom = (f32) (Screenzoom - 0.017f);
+    if (Screenzoom < 0.0f) {
+        Screenzoom = 0.0f;
     }
-    set_vp_scale();
+    SetVpScale();
 }
 
-void zoom_in_screen(void) {
-    screenzoom = (f32) (screenzoom + 0.028f);
-    if (screenzoom > 1.0f) {
-        screenzoom = 1.0f;
+void ZoomInScreen(void) {
+    Screenzoom = (f32) (Screenzoom + 0.028f);
+    if (Screenzoom > 1.0f) {
+        Screenzoom = 1.0f;
     }
-    set_vp_scale();
+    SetVpScale();
 }
 
-void check_pause(void) {
+void CheckPause(void) {
     s32 i;
 
-    if (replay_flag) {
+    if (ReplayFlag) {
         return;
     }
 
-    //! @todo increasing players past four would require increase this loop iterator.
+    //! @todo increasing players past four would require increase this Loop iterator.
     for (i = 0; i < 4; i++) {
 
-        Player* player = &gPlayers[i];
-        struct Controller* controller = &gControllers[i];
+        Player* Player = &GamePlayers[i];
+        struct Controller* controller = &Controllers[i];
 
-        if (!(player->flag & IS_PLAYER)) {
+        if (!(Player->Flag & IS_PLAYER)) {
             continue;
         }
-        if (player->flag & IS_CPU_PLAYER) {
+        if (Player->Flag & IS_CPU_PLAYER) {
             continue;
         }
 
-        if ((ok_MusicIn3P4P != 0) || (g_ScreenSplitA != SCREEN_MODE_3P_4P_SPLITSCREEN)) {
+        if ((OKMusicIn3P4P != 0) || (ScreenSplitA != SCREEN_MODE_3P_4P_SPLITSCREEN)) {
             if ((controller->ButtonPressed & L_TRIG) && !(controller->ButtonHeld & R_TRIG)) {
                 controller->ButtonPressed &= ~L_TRIG;
 
-                g_musicUserVolumeFlag++;
-                if (g_musicUserVolumeFlag >= 3) {
-                    g_musicUserVolumeFlag = 0;
+                MusicUserVolumeFlag++;
+                if (MusicUserVolumeFlag >= 3) {
+                    MusicUserVolumeFlag = 0;
                 }
-                playSound(SOUND_ACTION_PING);
-                set_music_volume();
+                PlaySound(SOUND_ACTION_PING);
+                SetMusicVolume();
             }
         }
         if ((controller->ButtonPressed & START_BUTTON) && (!(controller->ButtonHeld & R_TRIG)) &&
             (!(controller->ButtonHeld & L_TRIG))) {
-            save_key_status();
-            pause_flag = (controller - gControllerOne) + 1;
+            SaveKeyStatus();
+            PauseFlag = (controller - ControllerOne) + 1;
             controller->ButtonPressed = 0;
-            Na_PauseSet(1);
-            ghost_write = 1;
-            if (g_gameMode == TIME_TRIALS) {
-                if (gPlayerOne->flag & (EXISTS | IS_GHOST)) {
-                    kill_ghost(gPlayerOne);
+            NaPauseSet(1);
+            GhostWrite = 1;
+            if (GameMode == TIME_TRIALS) {
+                if (PlayerOne->Flag & (EXISTS | IS_GHOST)) {
+                    KillGhost(PlayerOne);
                 }
-                if (gPlayerTwo->flag & (EXISTS | IS_GHOST)) {
-                    kill_ghost(gPlayerTwo);
+                if (PlayerTwo->Flag & (EXISTS | IS_GHOST)) {
+                    KillGhost(PlayerTwo);
                 }
-                if (gPlayerThree->flag & (EXISTS | IS_GHOST)) {
-                    kill_ghost(gPlayerThree);
+                if (PlayerThree->Flag & (EXISTS | IS_GHOST)) {
+                    KillGhost(PlayerThree);
                 }
             }
             return;
         }
     }
 
-    if (g_DebugMode) {
-        if (g_gameMode == BATTLE) {
+    if (DebugMode) {
+        if (GameMode == BATTLE) {
             // do stuff?
         } else {
-            if (gControllerOne->ButtonPressed & U_JPAD) {
-                gLapCountByPlayerId[0] = 2;
+            if (ControllerOne->ButtonPressed & U_JPAD) {
+                LapCountByPlayerId[0] = 2;
             }
-            if (gControllerOne->ButtonPressed & R_JPAD) {
-                gLapCountByPlayerId[0] = 2;
-                gLapCountByPlayerId[1] = 2;
+            if (ControllerOne->ButtonPressed & R_JPAD) {
+                LapCountByPlayerId[0] = 2;
+                LapCountByPlayerId[1] = 2;
             }
-            if (gControllerOne->ButtonPressed & D_JPAD) {
-                gLapCountByPlayerId[0] = 2;
-                gLapCountByPlayerId[1] = 2;
-                gLapCountByPlayerId[2] = 2;
-                gLapCountByPlayerId[3] = 2;
-                gLapCountByPlayerId[4] = 2;
-                gLapCountByPlayerId[5] = 2;
-                gLapCountByPlayerId[6] = 2;
-                gLapCountByPlayerId[7] = 2;
+            if (ControllerOne->ButtonPressed & D_JPAD) {
+                LapCountByPlayerId[0] = 2;
+                LapCountByPlayerId[1] = 2;
+                LapCountByPlayerId[2] = 2;
+                LapCountByPlayerId[3] = 2;
+                LapCountByPlayerId[4] = 2;
+                LapCountByPlayerId[5] = 2;
+                LapCountByPlayerId[6] = 2;
+                LapCountByPlayerId[7] = 2;
             }
         }
     }
 }
 
-void start_fadeout(void) {
-    next_sequence_mode = START_MENU_FROM_QUIT;
-    g_startingIndicator = RACE_QUITTING;
+void StartFadeout(void) {
+    NextSequenceMode = START_MENU_FROM_QUIT;
+    StartingIndicator = RACE_QUITTING;
     NaSeqFadeout(25);
-    Na_SE_Fadeout(25);
-    gBackgroundFlag = 1;
-    g_ClearCFBFlag = 1;
-    two_d_flag = 0;
-    finish_count = 5;
+    NaSEFadeout(25);
+    BackgroundFlag = 1;
+    ClearCFBFlag = 1;
+    TwoDFlag = 0;
+    FinishCount = 5;
 }
 
 #ifdef VERSION_EU
@@ -907,195 +907,195 @@ void start_fadeout(void) {
 #define gDemoTimer_SIZE 1920
 #endif
 
-void check_title_demo(void) {
-    if (finish_count < 0) {
-        finish_count = gDemoTimer_SIZE;
+void CheckTitleDemo(void) {
+    if (FinishCount < 0) {
+        FinishCount = gDemoTimer_SIZE;
         return;
     }
-    finish_count--;
-    if (gControllerFive->ButtonPressed != 0) {
-        start_fadeout();
+    FinishCount--;
+    if (ControllerFive->ButtonPressed != 0) {
+        StartFadeout();
         KBGNumber = START_MENU;
         return;
     }
-    if (finish_count == 0) {
-        start_fadeout();
+    if (FinishCount == 0) {
+        StartFadeout();
         KBGNumber = LOGO_INTRO_MENU;
     }
 }
 
-void race_control(void) {
-    Player* ply = &gPlayers[0];
+void RaceControl(void) {
+    Player* ply = &GamePlayers[0];
     s32 i;
     u32 phi_v0_4;
 
-    if (demo_play_flag) {
-        check_title_demo();
+    if (DemoPlayFlag) {
+        CheckTitleDemo();
     }
-    switch (g_startingIndicator) {
+    switch (StartingIndicator) {
         case RACE_NONE:
-            if (!g_DemoFlag) { // If we're not in the demo mode, play the starting fanfare for the current mode (Grand Prix / Time Trials / VS / Battle)
-                if (g_gameMode == GRAND_PRIX) {
+            if (!DemoFlag) { // If we're not in the demo Mode, play the starting fanfare for the Current Mode (Grand Prix / Time Trials / VS / Battle)
+                if (GameMode == GRAND_PRIX) {
                     NaFanStart(SEQ_EVENT_RACE_STARTING);
-                    playSound(SOUND_ACTION_REV_ENGINE);
-                    playSound(SOUND_ACTION_REV_ENGINE_2);
+                    PlaySound(SOUND_ACTION_REV_ENGINE);
+                    PlaySound(SOUND_ACTION_REV_ENGINE_2);
                 } else {
                     NaFanStart(SEQ_EVENT_RACE_STARTING_VS);
                 }
             }
             DelayInitialMap();
-            g_startingIndicator = RACE_PREP;
+            StartingIndicator = RACE_PREP;
             D_80150118 = 3.0f;
-            g_DisplayFlag = 0;
-            soundset_flag = 0;
-            time_flag = 0;
-            g_gameTimer = 0.0f;
-            timer = 0.0f;
-            g_ClearCFBFlag = 1;
-            gBackgroundFlag = 1;
-            screenzoom = 0.008f;
-            finish_zoom_flag = 0;
-            if (g_ScreenSplitB != SCREEN_MODE_1P) {
-                kwdisplayon(&D_8018D2AC);
+            DisplayFlag = 0;
+            SoundsetFlag = 0;
+            TimeFlag = 0;
+            GameTimer = 0.0f;
+            Timer = 0.0f;
+            ClearCFBFlag = 1;
+            BackgroundFlag = 1;
+            Screenzoom = 0.008f;
+            FinishZoomFlag = 0;
+            if (ScreenSplitB != SCREEN_MODE_1P) {
+                Kwdisplayon(&D_8018D2AC);
             }
             for (i = 0; i < NUM_PLAYERS; i++) {
-                if ((ply->flag & EXISTS) == 0) {
+                if ((ply->Flag & EXISTS) == 0) {
                     continue;
                 }
-                ply->flag |= NO_CONTROLS;
+                ply->Flag |= NO_CONTROLS;
                 ply++;
             }
-            two_d_flag = 1;
+            TwoDFlag = 1;
             break;
         case RACE_PREP:
-            zoom_in_screen();
-            if (screenzoom == 1.0f) {
-                if (g_ScreenSplitA != SCREEN_MODE_1P) {
-                    if (g_courseID == COURSE_LUIGI_RACEWAY) {
-                        take_snapshot9();
-                    } else if (g_courseID == COURSE_WARIO_STADIUM) {
-                        take_snapshot15();
+            ZoomInScreen();
+            if (Screenzoom == 1.0f) {
+                if (ScreenSplitA != SCREEN_MODE_1P) {
+                    if (CourseID == COURSE_LUIGI_RACEWAY) {
+                        TakeSnapshot9();
+                    } else if (CourseID == COURSE_WARIO_STADIUM) {
+                        TakeSnapshot15();
                     }
                 }
-                g_startingIndicator = RACE_STAGING;
-                g_ClearCFBFlag = 0;
-                two_d_flag = 1;
-                kwjugemustart();
-                if ((g_gameMode == TIME_TRIALS) && (romghost_status == 0)) {
+                StartingIndicator = RACE_STAGING;
+                ClearCFBFlag = 0;
+                TwoDFlag = 1;
+                Kwjugemustart();
+                if ((GameMode == TIME_TRIALS) && (RomghostStatus == 0)) {
                     phi_v0_4 = 0x1;
-                    for (i = 0; i < g_courseID; i++) {
+                    for (i = 0; i < CourseID; i++) {
                         phi_v0_4 <<= 1;
                     }
-                    if ((replay_flag == 0) && (!(D_800DC5AC & phi_v0_4))) {
+                    if ((ReplayFlag == 0) && (!(D_800DC5AC & phi_v0_4))) {
                         DispMessageRomGhost();
                         D_800DC5AC |= phi_v0_4;
                     }
                 }
-                if (g_playerCount == 3) {
-                    DispInfo_3P();
+                if (PlayerCount == 3) {
+                    DispInfo3P();
                 }
             }
-            race_reset_check();
+            RaceResetCheck();
             break;
         case RACE_STAGING:
-            if (g_DemoFlag) {
-                start_racing();
+            if (DemoFlag) {
+                StartRacing();
             }
-            if ((g_DebugMode) && (gControllerFive->ButtonPressed & Z_TRIG)) {
-                start_racing();
+            if ((DebugMode) && (ControllerFive->ButtonPressed & Z_TRIG)) {
+                StartRacing();
             }
-            race_reset_check();
+            RaceResetCheck();
             break;
         case RACE_IN_PROGRESS:
-            if (g_gameMode == BATTLE) {
-                check_battle_status();
+            if (GameMode == BATTLE) {
+                CheckBattleStatus();
             } else {
-                check_kart_rank();
-                check_kart_rap();
+                CheckKartRank();
+                CheckKartRap();
             }
-            race_reset_check();
-            check_pause();
+            RaceResetCheck();
+            CheckPause();
             break;
         case RACE_HUMAN_FINISHED:
 
-            switch (g_gameMode) {
+            switch (GameMode) {
                 case GRAND_PRIX:
-                    race_reset_check();
-                    check_kart_rank();
-                    check_kart_rap();
-                    check_pause();
+                    RaceResetCheck();
+                    CheckKartRank();
+                    CheckKartRap();
+                    CheckPause();
 
-                    switch (g_ScreenSplitB) {
+                    switch (ScreenSplitB) {
                         case SCREEN_MODE_1P:
-                            finish_count = 690;
-                            g_startingIndicator = RACE_DONE;
-                            check_goalin_time();
+                            FinishCount = 690;
+                            StartingIndicator = RACE_DONE;
+                            CheckGoalinTime();
                             break;
                         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
                         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-                            if (((gPlayerOne->flag & IS_RACE_FINISH) != 0) &&
-                                ((gPlayerTwo->flag & IS_RACE_FINISH) != 0)) {
+                            if (((PlayerOne->Flag & IS_RACE_FINISH) != 0) &&
+                                ((PlayerTwo->Flag & IS_RACE_FINISH) != 0)) {
 
-                                if (gPlayerOne->rank < gPlayerTwo->rank) {
-                                    win_kart = 1;
+                                if (PlayerOne->Rank < PlayerTwo->Rank) {
+                                    WinKart = 1;
                                 } else {
-                                    win_kart = 0;
+                                    WinKart = 0;
                                 }
 
-                                check_goalin_time();
-                                finish_count = 600;
-                                g_startingIndicator = RACE_DONE;
+                                CheckGoalinTime();
+                                FinishCount = 600;
+                                StartingIndicator = RACE_DONE;
                             }
                             break;
                     }
                     break;
                 case VERSUS:
-                    race_reset_check();
-                    check_kart_rank();
-                    check_kart_rap();
-                    check_pause();
+                    RaceResetCheck();
+                    CheckKartRank();
+                    CheckKartRap();
+                    CheckPause();
                     break;
                 case TIME_TRIALS:
-                    finish_count = 360;
-                    if (replay_flag != 0) {
-                        g_startingIndicator = RACE_QUADRANT_RESULTS;
+                    FinishCount = 360;
+                    if (ReplayFlag != 0) {
+                        StartingIndicator = RACE_QUADRANT_RESULTS;
                     } else {
-                        g_startingIndicator = RACE_DONE;
+                        StartingIndicator = RACE_DONE;
                     }
                     break;
             }
             break;
         case RACE_DONE:
-            if (finish_count != 0) {
-                finish_count--;
+            if (FinishCount != 0) {
+                FinishCount--;
             } else {
-                switch (g_gameMode) {
+                switch (GameMode) {
                     case GRAND_PRIX:
-                        if (race_clear_flag != 0) {
-                            finish_zoom();
-                        } else if (g_ScreenSplitB == SCREEN_MODE_1P) {
+                        if (RaceClearFlag != 0) {
+                            FinishZoom();
+                        } else if (ScreenSplitB == SCREEN_MODE_1P) {
                             DispGPLose();
-                            g_startingIndicator = RACE_QUADRANT_RESULTS;
+                            StartingIndicator = RACE_QUADRANT_RESULTS;
                         } else {
-                            finish_vs_zoom();
+                            FinishVSZoom();
                         }
                         break;
                     case TIME_TRIALS:
-                        finish_zoom();
+                        FinishZoom();
                         break;
                     case VERSUS:
                     case BATTLE:
-                        finish_vs_zoom();
+                        FinishVSZoom();
                         break;
                 }
             }
-            race_reset_check();
+            RaceResetCheck();
             break;
         case RACE_QUITTING:
-            zoom_out_screen();
-            if (screenzoom <= 0) {
-                g_fadeOutFlag = 1;
-                g_fadeOutCounter = 5;
+            ZoomOutScreen();
+            if (Screenzoom <= 0) {
+                FadeOutFlag = 1;
+                FadeOutCounter = 5;
             }
             break;
         case RACE_QUADRANT_RESULTS:
@@ -1103,38 +1103,38 @@ void race_control(void) {
     }
 }
 
-UNUSED void goto_title(void) {
-    g_fadeOutFlag = 1;
-    g_fadeOutCounter = 5;
-    next_sequence_mode = START_MENU_FROM_QUIT;
+UNUSED void GotoTitle(void) {
+    FadeOutFlag = 1;
+    FadeOutCounter = 5;
+    NextSequenceMode = START_MENU_FROM_QUIT;
 }
 
-void goto_gameselect(void) {
-    g_fadeOutFlag = 1;
-    g_fadeOutCounter = 5;
-    next_sequence_mode = MAIN_MENU_FROM_QUIT;
+void GotoGameselect(void) {
+    FadeOutFlag = 1;
+    FadeOutCounter = 5;
+    NextSequenceMode = MAIN_MENU_FROM_QUIT;
 }
 
 void GoToGameSelect(void) {
-    g_fadeOutFlag = 1;
-    g_fadeOutCounter = 5;
-    next_sequence_mode = PLAYER_SELECT_MENU_FROM_QUIT;
+    FadeOutFlag = 1;
+    FadeOutCounter = 5;
+    NextSequenceMode = PLAYER_SELECT_MENU_FROM_QUIT;
 }
 
-void goto_mapselect(void) {
-    g_fadeOutFlag = 1;
-    g_fadeOutCounter = 5;
-    next_sequence_mode = COURSE_SELECT_MENU_FROM_QUIT;
+void GotoMapselect(void) {
+    FadeOutFlag = 1;
+    FadeOutCounter = 5;
+    NextSequenceMode = COURSE_SELECT_MENU_FROM_QUIT;
 }
 
-void goto_racing(void) {
-    g_fadeOutFlag = 1;
-    g_fadeOutCounter = 5;
-    next_sequence_mode = RACING;
+void GotoRacing(void) {
+    FadeOutFlag = 1;
+    FadeOutCounter = 5;
+    NextSequenceMode = RACING;
 }
 
-void check_col(Player* playerOne, Player* playerTwo) {
-    f32 sp70 = (playerOne->radius + playerTwo->radius) - 5.0f;
+void CheckCol(Player* playerOne, Player* playerTwo) {
+    f32 sp70 = (playerOne->Radius + playerTwo->Radius) - 5.0f;
     f32 temp_f0;
     f32 sp74;
     Vec3f sp60;
@@ -1145,16 +1145,16 @@ void check_col(Player* playerOne, Player* playerTwo) {
 
     f32 gFloatArray802B8790[] = { 1.2, 1.0, 0.9, 0.7, 2.0, 1.8, 0.9, 2.3 };
 
-    f32 sp24 = gFloatArray802B8790[playerOne->kart];
-    f32 sp20 = gFloatArray802B8790[playerTwo->kart];
+    f32 sp24 = gFloatArray802B8790[playerOne->Kart];
+    f32 sp20 = gFloatArray802B8790[playerTwo->Kart];
 
-    sp60[0] = playerOne->position[0] - playerTwo->position[0];
-    sp60[1] = (playerOne->position[1] - playerOne->radius) - (playerTwo->position[1] - playerTwo->radius);
-    sp60[2] = playerOne->position[2] - playerTwo->position[2];
+    sp60[0] = playerOne->Position[0] - playerTwo->Position[0];
+    sp60[1] = (playerOne->Position[1] - playerOne->Radius) - (playerTwo->Position[1] - playerTwo->Radius);
+    sp60[2] = playerOne->Position[2] - playerTwo->Position[2];
 
-    sp54[0] = playerTwo->velocity[0] - playerOne->velocity[0];
-    sp54[1] = playerTwo->velocity[1] - playerOne->velocity[1];
-    sp54[2] = playerTwo->velocity[2] - playerOne->velocity[2];
+    sp54[0] = playerTwo->Velocity[0] - playerOne->Velocity[0];
+    sp54[1] = playerTwo->Velocity[1] - playerOne->Velocity[1];
+    sp54[2] = playerTwo->Velocity[2] - playerOne->Velocity[2];
 
     temp_f0 = sqrtf((sp60[0] * sp60[0]) + (sp60[1] * sp60[1]) + (sp60[2] * sp60[2]));
 
@@ -1167,120 +1167,120 @@ void check_col(Player* playerOne, Player* playerTwo) {
         return;
     }
 
-    if (playerOne->flag & IS_BOMB) {
-        if (playerTwo->flag & IS_BOMB) {
-            kill_bomb_kart(playerOne);
-            kill_bomb_kart(playerTwo);
-            NAPlyTrgStart((playerTwo - gPlayerOne), 0x19008001U);
+    if (playerOne->Flag & IS_BOMB) {
+        if (playerTwo->Flag & IS_BOMB) {
+            KillBombKart(playerOne);
+            KillBombKart(playerTwo);
+            NAPlyTrgStart((playerTwo - PlayerOne), 0x19008001U);
             return;
         } else {
-            playerTwo->weapon |= HIT_BOMB;
-            kill_bomb_kart(playerOne);
-            NAPlyTrgStart((playerTwo - gPlayerOne), 0x19008001U);
+            playerTwo->Weapon |= HIT_BOMB;
+            KillBombKart(playerOne);
+            NAPlyTrgStart((playerTwo - PlayerOne), 0x19008001U);
         }
-    } else if (playerTwo->flag & IS_BOMB) {
-        playerOne->weapon |= HIT_BOMB;
-        kill_bomb_kart(playerTwo);
-        NAPlyTrgStart(playerOne - gPlayerOne, 0x19008001U);
+    } else if (playerTwo->Flag & IS_BOMB) {
+        playerOne->Weapon |= HIT_BOMB;
+        KillBombKart(playerTwo);
+        NAPlyTrgStart(playerOne - PlayerOne, 0x19008001U);
         return;
     }
-    if (playerOne->slip_flag & STAR) {
-        if (!(playerTwo->slip_flag & STAR)) {
-            playerTwo->weapon |= HIT_BOMB_THROW;
+    if (playerOne->SlipFlag & STAR) {
+        if (!(playerTwo->SlipFlag & STAR)) {
+            playerTwo->Weapon |= HIT_BOMB_THROW;
         }
-    } else if (playerTwo->slip_flag & STAR) {
-        playerOne->weapon |= HIT_BOMB_THROW;
+    } else if (playerTwo->SlipFlag & STAR) {
+        playerOne->Weapon |= HIT_BOMB_THROW;
     } else {
-        playerOne->slip_flag |= CARHIT;
-        playerTwo->slip_flag |= CARHIT;
+        playerOne->SlipFlag |= CARHIT;
+        playerTwo->SlipFlag |= CARHIT;
     }
     temp_f0_2 = sqrtf((sp54[0] * sp54[0]) + (sp54[1] * sp54[1]) + (sp54[2] * sp54[2]));
     sp60[0] /= temp_f0;
     sp60[1] /= temp_f0;
     sp60[2] /= temp_f0;
     if (temp_f0_2 < 0.2f) {
-        temp_f0 = (playerOne->radius + playerTwo->radius) * 0.55f;
-        playerOne->position[0] = playerTwo->position[0] + (sp60[0] * temp_f0);
-        playerOne->position[1] = playerTwo->position[1] + (sp60[1] * temp_f0);
-        playerOne->position[2] = playerTwo->position[2] + (sp60[2] * temp_f0);
-        playerTwo->position[0] -= temp_f0 * sp60[0];
-        playerTwo->position[1] -= temp_f0 * sp60[1];
-        playerTwo->position[2] -= temp_f0 * sp60[2];
+        temp_f0 = (playerOne->Radius + playerTwo->Radius) * 0.55f;
+        playerOne->Position[0] = playerTwo->Position[0] + (sp60[0] * temp_f0);
+        playerOne->Position[1] = playerTwo->Position[1] + (sp60[1] * temp_f0);
+        playerOne->Position[2] = playerTwo->Position[2] + (sp60[2] * temp_f0);
+        playerTwo->Position[0] -= temp_f0 * sp60[0];
+        playerTwo->Position[1] -= temp_f0 * sp60[1];
+        playerTwo->Position[2] -= temp_f0 * sp60[2];
         return;
     } else {
         temp_f16 = ((sp60[0] * sp54[0]) + (sp60[1] * sp54[1]) + (sp60[2] * sp54[2])) / temp_f0_2;
     }
     temp_f0_2 = temp_f0_2 * temp_f16 * 0.85;
-    if ((playerOne->slip_flag & STAR) != STAR) {
+    if ((playerOne->SlipFlag & STAR) != STAR) {
         temp_f2 = (temp_f0_2 * sp20) / sp24;
-        playerOne->velocity[0] += sp60[0] * temp_f2;
-        playerOne->velocity[1] += sp60[1] * temp_f2;
-        playerOne->velocity[2] += sp60[2] * temp_f2;
-        playerOne->position[0] -= sp60[0] * sp74 * 0.5f;
-        playerOne->position[1] -= sp60[1] * sp74 * 0.5f;
-        playerOne->position[2] -= sp60[2] * sp74 * 0.5f;
+        playerOne->Velocity[0] += sp60[0] * temp_f2;
+        playerOne->Velocity[1] += sp60[1] * temp_f2;
+        playerOne->Velocity[2] += sp60[2] * temp_f2;
+        playerOne->Position[0] -= sp60[0] * sp74 * 0.5f;
+        playerOne->Position[1] -= sp60[1] * sp74 * 0.5f;
+        playerOne->Position[2] -= sp60[2] * sp74 * 0.5f;
     }
-    if ((playerTwo->slip_flag & STAR) != STAR) {
+    if ((playerTwo->SlipFlag & STAR) != STAR) {
         temp_f2 = (temp_f0_2 * sp24) / sp20;
-        playerTwo->velocity[0] -= sp60[0] * temp_f2;
-        playerTwo->velocity[1] -= sp60[1] * temp_f2;
-        playerTwo->velocity[2] -= sp60[2] * temp_f2;
-        playerTwo->position[0] += sp60[0] * sp74 * 0.5f;
-        playerTwo->position[1] += sp60[1] * sp74 * 0.5f;
-        playerTwo->position[2] += sp60[2] * sp74 * 0.5f;
+        playerTwo->Velocity[0] -= sp60[0] * temp_f2;
+        playerTwo->Velocity[1] -= sp60[1] * temp_f2;
+        playerTwo->Velocity[2] -= sp60[2] * temp_f2;
+        playerTwo->Position[0] += sp60[0] * sp74 * 0.5f;
+        playerTwo->Position[1] += sp60[1] * sp74 * 0.5f;
+        playerTwo->Position[2] += sp60[2] * sp74 * 0.5f;
     }
-    if (playerOne->flag & IS_PLAYER) {
-        NAPlyTrgStart((playerOne - gPlayerOne), 0x19008001U);
+    if (playerOne->Flag & IS_PLAYER) {
+        NAPlyTrgStart((playerOne - PlayerOne), 0x19008001U);
         return;
     }
-    if (playerTwo->flag & IS_PLAYER) {
-        NAPlyTrgStart((playerTwo - gPlayerOne), 0x19008001U);
+    if (playerTwo->Flag & IS_PLAYER) {
+        NAPlyTrgStart((playerTwo - PlayerOne), 0x19008001U);
     }
 }
 
-void collision_kart_to_kart(void) {
+void CollisionKartToKart(void) {
     Player* ply;
     Player* ply2;
     s32 i;
     s32 k;
 
     for (i = 0; i < 7; i++) {
-        ply = &gPlayers[i];
+        ply = &GamePlayers[i];
 
-        if ((ply->flag & EXISTS) && (!(ply->slip_flag & TERESA)) &&
-            (!(ply->flag & IS_GHOST)) && (!(ply->slip_flag & BROKEN))) {
+        if ((ply->Flag & EXISTS) && (!(ply->SlipFlag & TERESA)) &&
+            (!(ply->Flag & IS_GHOST)) && (!(ply->SlipFlag & BROKEN))) {
 
             for (k = i + 1; k < NUM_PLAYERS; k++) {
-                ply2 = &gPlayers[k];
+                ply2 = &GamePlayers[k];
 
-                if ((ply2->flag & EXISTS) && (!(ply2->slip_flag & TERESA)) &&
-                    (!(ply2->flag & IS_GHOST)) && (!(ply2->slip_flag & BROKEN))) {
+                if ((ply2->Flag & EXISTS) && (!(ply2->SlipFlag & TERESA)) &&
+                    (!(ply2->Flag & IS_GHOST)) && (!(ply2->SlipFlag & BROKEN))) {
 
-                    check_col(ply, ply2);
+                    CheckCol(ply, ply2);
                 }
             }
         }
     }
 }
 
-void pause_sequence(void) {
+void PauseSequence(void) {
 
-    kwpausesyori();
+    Kwpausesyori();
 
-    switch (g_ScreenSplitA) {
+    switch (ScreenSplitA) {
         case SCREEN_MODE_1P:
-            CameraCheckFunc(gPlayerOneCopy, camera1, 0);
+            CameraCheckFunc(PlayerOneCopy, Camera1, 0);
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            CameraCheckFunc(gPlayerOneCopy, camera1, 0);
-            CameraCheckFunc(gPlayerTwoCopy, camera2, 1);
+            CameraCheckFunc(PlayerOneCopy, Camera1, 0);
+            CameraCheckFunc(PlayerTwoCopy, Camera2, 1);
             break;
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            CameraCheckFunc(gPlayerOneCopy, camera1, 0);
-            CameraCheckFunc(gPlayerTwo, camera2, 1);
-            CameraCheckFunc(gPlayerThree, camera3, 2);
-            CameraCheckFunc(gPlayerFour, camera4, 3);
+            CameraCheckFunc(PlayerOneCopy, Camera1, 0);
+            CameraCheckFunc(PlayerTwo, Camera2, 1);
+            CameraCheckFunc(PlayerThree, Camera3, 2);
+            CameraCheckFunc(PlayerFour, Camera4, 3);
             break;
     }
 }

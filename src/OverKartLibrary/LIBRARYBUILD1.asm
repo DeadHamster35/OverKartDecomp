@@ -1,6 +1,6 @@
 /*
-This overwrites existing functions in the US ROM with new code hooks.
-it needs to be placed in static ROM with no offset to the address
+This overwrites existing functions in the US ROM with new Code hooks.
+it needs to be placed in static ROM with no Offset to the Address
 */
 
 
@@ -9,7 +9,7 @@ it needs to be placed in static ROM with no offset to the address
 NOP
 
 
-//change kwtexture2d_RGBA32PT to XLU mode not opaque
+//change kwtexture2d_RGBA32PT to XLU Mode not opaque
 .org 0x047350
 .word 0x27397968
 
@@ -34,7 +34,7 @@ NOP
 
 
 
-// fix for MKInit duplicate calls which are overwritten by our boot code.
+// fix for MKInit duplicate calls which are overwritten by our boot Code.
 // gamecode never needs to be reloaded.
 .org 0x3314
 NOP
@@ -114,12 +114,12 @@ JAL AddGravityEdit
 
 
 //Sprint course finish line check
-//Only call site of CheckLapCount. The delay slot loads playerID into a0.
+//Only call site of CheckLapCount. The Delay slot loads PlayerID into a0.
 .org 0x00AA24
 JAL SprintLapCheck
 
-//Skip start/finish path wrap on sprint courses.
-//Only call site of WrapPathIndexAtFinish. Delay slot stores pathIndex.
+//Skip Start/finish path wrap on sprint courses.
+//Only call site of WrapPathIndexAtFinish. Delay slot stores PathIndex.
 .org 0x00DCD8
 JAL WrapPathIndexAtFinishCheck
 
@@ -254,8 +254,8 @@ NOP
 
 
 
-//Replace Jugemu Check for exploration mode.
-//Replace Jugemu Check for exploration mode.
+//Replace Jugemu Check for exploration Mode.
+//Replace Jugemu Check for exploration Mode.
 //
 .org 0x02D988
 JAL ExplorerHangJugemu
@@ -291,8 +291,8 @@ JAL ExplorerKWDisplayJugemu
 
 
 //
-//Replace Jugemu Check for exploration mode.
-//Replace Jugemu Check for exploration mode.
+//Replace Jugemu Check for exploration Mode.
+//Replace Jugemu Check for exploration Mode.
 
 
 
@@ -316,7 +316,7 @@ LH $a3, 0x36($a1)
 
 
 
-//Hook display after map.
+//Hook display after Map.
 .org 0x0FBA68
 J DisplayMap2Hook
 NOP
@@ -328,15 +328,15 @@ move v0, $t8
 
 
 
-//CheckMapBG_ZX Hooks
+//CheckMapBGZX Hooks
 .org 0x2EBE0
-JAL CheckMapBG_ZX_Hook
+JAL CheckMapBGZXHook
 .org 0x2FB10
-JAL CheckMapBG_ZX_Hook
+JAL CheckMapBGZXHook
 .org 0x30614
-JAL CheckMapBG_ZX_Hook
+JAL CheckMapBGZXHook
 .org 0x39CC0
-JAL CheckMapBG_ZX_Hook
+JAL CheckMapBGZXHook
 
 .org 0x2A74
 JAL MiniMapDraw
@@ -346,7 +346,7 @@ NOP
 
 
 
-//change IceKage offset to custommodel
+//change IceKage Offset to custommodel
 .org 0x0534BE
 .halfword 0x0800
 .org 0x0534CE
@@ -369,16 +369,16 @@ NOP
 
 // fixes Alpha loading for level data vert color
 .org 0x111E2C
-JAL DecodeVertex2_OK
+JAL DecodeVertex2OK
 
 .org 0x113CA4
-JAL DecodeSP1Triangle_OK
+JAL DecodeSP1TriangleOK
 
 .org 0x113CC8
-JAL DecodeSP2Triangle_OK
+JAL DecodeSP2TriangleOK
 
 .org 0x113CEC
-JAL DecodeSP1Quadrangle_OK
+JAL DecodeSP1QuadrangleOK
 
 //Staff Ghost routine
 .org 0x5BA4
@@ -459,7 +459,7 @@ JAL BalloonCheck
 
 
 //original hook placement
-.org 0x34BC //RAM address 0x800028BC
+.org 0x34BC //RAM Address 0x800028BC
 J GlobalCustomCode
 NOP
 
@@ -506,15 +506,15 @@ JAL EventDisplay
 JAL EventDisplay
 .org 0x059120
 JAL EventDisplay
-//EventDisplay_After Hooks
+//EventDisplayAfter Hooks
 .org 0x0592E4
-JAL EventDisplay_After
+JAL EventDisplayAfter
 .org 0x05938C
-JAL EventDisplay_After
+JAL EventDisplayAfter
 .org 0x059434
-JAL EventDisplay_After
+JAL EventDisplayAfter
 .org 0x0594DC
-JAL EventDisplay_After
+JAL EventDisplayAfter
 
 //CommonGameEvent Hooks
 .org 0x05AA18
@@ -558,7 +558,7 @@ NOP
 
 
 //title screen hook
-.org 0x957D0 //RAM address 0x80094BD0
+.org 0x957D0 //RAM Address 0x80094BD0
 J CustomCodeTitleScreen
 NOP
 
@@ -580,7 +580,7 @@ NOP
 
 
 
-// Crash dump is decomp FaultProcess -> crash_screen_draw (src/debug/crash_screen_enhancement.c).
+// Crash dump is decomp FaultProcess -> CrashScreenDraw (src/debug/crash_screen_enhancement.c).
 //.org 0x0051E8
 //JAL DisplayCrashScreen
 .org 0x5200
@@ -588,13 +588,13 @@ NOP
 .org 0x5240
 NOP
 
-//Auto draw without button imprompt
+//Auto draw without Button imprompt
 .org 0xDD2FC
 .halfword 0xFFFF
 //
 
 
-//Fix for incorrect distance tables - mario raceway and custom courses.
+//Fix for incorrect Distance tables - mario raceway and custom courses.
 .org 0xDD7B4
 .word 0x800DCAF4
 
@@ -630,7 +630,7 @@ NOP
 JAL DisplayFlagGateCheck
 
 
-//Disable BackgroundFlag to control ourselves via gameCode
+//Disable BackgroundFlag to control ourselves via GameCode
 //Stops the sky from being drawn. 
 .org 0x0F93D8
 NOP
@@ -647,7 +647,7 @@ NOP
 
 
 
-//Custom triangle collision check
+//Custom Triangle collision check
 .org 0x11746C
 JAL custom_check_triangle_zx
 .org 0x1176BC
@@ -689,13 +689,13 @@ JAL custom_check_bump
 JAL custom_check_bump
 
 .org 0x030584
-JAL custom_check_bump_2
+JAL CustomCheckBump2
 .org 0x039BE0
-JAL custom_check_bump_2
+JAL CustomCheckBump2
 .org 0x02F77C
-JAL custom_check_bump_2
+JAL CustomCheckBump2
 .org 0x02E818
-JAL custom_check_bump_2
+JAL CustomCheckBump2
 
 .org 0x117014
 JAL custom_check_triangle_zx_v
@@ -726,11 +726,11 @@ JAL custom_check_triangle_yz_v
 
 //Custom Spin Kart
 .org 0x029788
-JAL custom_SpinKart
+JAL CustomSpinKart
 .org 0x0298FC
-JAL custom_SpinKart
+JAL CustomSpinKart
 .org 0x029A38
-JAL custom_SpinKart
+JAL CustomSpinKart
 
 //Custom Run Kart
 .org 0x029798
@@ -753,13 +753,13 @@ JAL RadarFinishLine
 //LapCounters
 //calc_oga_area_sub_BP
 .org 0x9AE4
-JAL CalcOGAAreaSubBP_Wrapper
+JAL CalcOGAAreaSubBPWrapper
 .org 0xD8F8
-JAL CalcOGAAreaSubBP_Wrapper
+JAL CalcOGAAreaSubBPWrapper
 .org 0xDB40
-JAL CalcOGAAreaSubBP_Wrapper
+JAL CalcOGAAreaSubBPWrapper
 .org 0xDE9C
-JAL CalcOGAAreaSubBP_Wrapper
+JAL CalcOGAAreaSubBPWrapper
 
 
 
@@ -768,24 +768,24 @@ JAL CalcOGAAreaSubBP_Wrapper
 
 
 .org 0x059A3C
-JAL KWDisplay2P_1LR
+JAL KWDisplay2P1LR
 .org 0x059A5C
-JAL KWDisplay2P_2LR
+JAL KWDisplay2P2LR
 
 
 .org 0x059A7C
-JAL KWDisplay2P_1UD
+JAL KWDisplay2P1UD
 .org 0x059A9C
-JAL KWDisplay2P_2UD
+JAL KWDisplay2P2UD
 
 .org 0x059ABC
-JAL KWDisplay4P_1
+JAL KWDisplay4P1
 .org 0x059ADC
-JAL KWDisplay4P_2
+JAL KWDisplay4P2
 .org 0x059AFC
-JAL KWDisplay4P_3
+JAL KWDisplay4P3
 .org 0x059B30
-JAL KWDisplay4P_4
+JAL KWDisplay4P4
 
 
 .org 0x059BEC
@@ -799,7 +799,7 @@ JAL Zanzou2
 
 
 
-//Assembly hack to scale minimap positions with map scaling
+//Assembly hack to Scale minimap positions with Map scaling
 .org 0x04FDDC
 JAL HijackScaleMinimapX
 NOP

@@ -6,7 +6,7 @@
 
 extern int ObjectiveMapID;
 extern void DisplayGameScore(void);
-extern void BalloonCheck(Player* player, f32 arg1, f32 arg2, s8 playerIndex, s8 balloonIndex, s16 rotation);
+extern void BalloonCheck(Player* Player, f32 arg1, f32 Arg2, s8 playerIndex, s8 balloonIndex, s16 Rotation);
 extern void ResetFlag(int ThisFlag);
 extern void DrawGameFlags(Camera* LocalCamera);
 extern void DrawGameBase(Camera* LocalCamera);

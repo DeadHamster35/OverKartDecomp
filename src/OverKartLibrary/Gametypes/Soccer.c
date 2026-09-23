@@ -79,7 +79,7 @@ const CTFSpawn *SoccerGameSpawns[4] = {&SoccerBigDonutSpawns, &SoccerBlockFortSp
  
 
 
-void PlaceBalls(uint BattleFlagF3D, uint BattleBaseF3D, uint PlayerBaseF3D[], uint Difficulty)
+void PlaceBalls(Uint BattleFlagF3D, Uint BattleBaseF3D, Uint PlayerBaseF3D[], Uint Difficulty)
 {    
     if (HotSwapID > 0)
     {
@@ -95,7 +95,7 @@ void PlaceBalls(uint BattleFlagF3D, uint BattleBaseF3D, uint PlayerBaseF3D[], ui
             }
             else
             {    
-                if (CustomObjectivePoints[ThisObj].GameMode == CTF_GAMETYPE)
+                if (CustomObjectivePoints[ThisObj].GameType == CTF_GAMETYPE)
                 {
                         switch (CustomObjectivePoints[ThisObj].Type)
                         {
@@ -136,7 +136,7 @@ void PlaceBalls(uint BattleFlagF3D, uint BattleBaseF3D, uint PlayerBaseF3D[], ui
 
         {
             int ThisFlag;
-        for (ThisFlag = 0; ThisFlag < g_playerCount; ThisFlag++)
+        for (ThisFlag = 0; ThisFlag < PlayerCount; ThisFlag++)
         {    
             Objectives[ThisFlag].FlagHeld = -1;
             Objectives[ThisFlag].FlagTimer = 0;
@@ -155,7 +155,7 @@ void PlaceBalls(uint BattleFlagF3D, uint BattleBaseF3D, uint PlayerBaseF3D[], ui
         0x12	DK's Jungle Parkway
         0x13	Big Donut
         */
-        switch (g_courseID)
+        switch (CourseID)
         {
             case 15:
             {
@@ -190,7 +190,7 @@ void PlaceBalls(uint BattleFlagF3D, uint BattleBaseF3D, uint PlayerBaseF3D[], ui
             
             {
                 int ThisFlag;
-            for (ThisFlag = 0; ThisFlag < g_playerCount; ThisFlag++)
+            for (ThisFlag = 0; ThisFlag < PlayerCount; ThisFlag++)
             {
                 Objectives[ThisFlag].FlagHeld = -1;
                 Objectives[ThisFlag].FlagTimer = 0;
@@ -226,7 +226,7 @@ void PlaceBalls(uint BattleFlagF3D, uint BattleBaseF3D, uint PlayerBaseF3D[], ui
     }
     {
         int ThisFlag;
-    for (ThisFlag = 0; ThisFlag < g_playerCount; ThisFlag++)
+    for (ThisFlag = 0; ThisFlag < PlayerCount; ThisFlag++)
     {
         
         
@@ -250,7 +250,7 @@ void PlaceBalls(uint BattleFlagF3D, uint BattleBaseF3D, uint PlayerBaseF3D[], ui
     }
     {
         int ThisFlag;
-    for (ThisFlag = g_playerCount; ThisFlag < 4; ThisFlag++)
+    for (ThisFlag = PlayerCount; ThisFlag < 4; ThisFlag++)
     {
         
 
@@ -264,7 +264,7 @@ void PlaceBalls(uint BattleFlagF3D, uint BattleBaseF3D, uint PlayerBaseF3D[], ui
 
     }
     }
-    FlagCount = g_playerCount;
+    FlagCount = PlayerCount;
 }
 
 void CaptureBalls(void)
@@ -288,7 +288,7 @@ void CaptureBalls(void)
     //Check for Picking up Flags
     {
         int ThisPlayer;
-    for (ThisPlayer = 0; ThisPlayer < g_playerCount; ThisPlayer++)
+    for (ThisPlayer = 0; ThisPlayer < PlayerCount; ThisPlayer++)
     {
         if (Objectives[ThisPlayer].FlagHeld == -1)
         {
@@ -304,7 +304,7 @@ void CaptureBalls(void)
                             {
                                 if (GameFlag[ThisFlag].IFrames == 0)
                                 {
-                                    if (TestCollideSphere(GlobalPlayer[ThisPlayer].position, GlobalPlayer[ThisPlayer].radius, GameFlag[ThisFlag].Position, 5.0))
+                                    if (TestCollideSphere(GlobalPlayer[ThisPlayer].Position, GlobalPlayer[ThisPlayer].Radius, GameFlag[ThisFlag].Position, 5.0))
                                     {
                                             Objectives[ThisPlayer].FlagHeld = ThisFlag;
                                             GameFlag[ThisFlag].PlayerHolding = ThisPlayer;
@@ -323,7 +323,7 @@ void CaptureBalls(void)
     
     {
         int ThisPlayer;
-    for (ThisPlayer = 0; ThisPlayer < g_playerCount; ThisPlayer++)
+    for (ThisPlayer = 0; ThisPlayer < PlayerCount; ThisPlayer++)
     {
         if (Objectives[ThisPlayer].FlagHeld != 0)
         {
@@ -331,7 +331,7 @@ void CaptureBalls(void)
                 int ThisBase;
             for (ThisBase = 0; ThisBase < FlagCount; ThisBase++)
             {
-                if (TestCollideSphere(GlobalPlayer[ThisPlayer].position, GlobalPlayer[ThisPlayer].radius, GameBase[ThisBase].Position, 8.0))
+                if (TestCollideSphere(GlobalPlayer[ThisPlayer].Position, GlobalPlayer[ThisPlayer].Radius, GameBase[ThisBase].Position, 8.0))
                 {
                         if (TeamMode == 1)
                         {
@@ -375,18 +375,18 @@ void ShootBall(int PlayerIndex)
     if (Objectives[PlayerIndex].FlagHeld != -1)
     {
         GlobalIntA = (int)Objectives[PlayerIndex].FlagHeld;
-        GameFlag[GlobalIntA].Position[0] = GlobalPlayer[PlayerIndex].position[0];
-        GameFlag[GlobalIntA].Position[1] = GlobalPlayer[PlayerIndex].position[1] + 5;
-        GameFlag[GlobalIntA].Position[2] = GlobalPlayer[PlayerIndex].position[2];
+        GameFlag[GlobalIntA].Position[0] = GlobalPlayer[PlayerIndex].Position[0];
+        GameFlag[GlobalIntA].Position[1] = GlobalPlayer[PlayerIndex].Position[1] + 5;
+        GameFlag[GlobalIntA].Position[2] = GlobalPlayer[PlayerIndex].Position[2];
 
         
         GameFlag[GlobalIntA].Velocity[0] = 0;
         GameFlag[GlobalIntA].Velocity[1] = 5;
         GameFlag[GlobalIntA].Velocity[2] = 4;
 
-        GameFlag[GlobalIntA].Angle[1] = GlobalPlayer[PlayerIndex].direction[1];
+        GameFlag[GlobalIntA].Angle[1] = GlobalPlayer[PlayerIndex].Direction[1];
 
-        MakeAlignVector(GameFlag[GlobalIntA].Velocity,(GlobalPlayer[PlayerIndex].direction[1]));
+        MakeAlignVector(GameFlag[GlobalIntA].Velocity,(GlobalPlayer[PlayerIndex].Direction[1]));
         
         ChangeMaxSpeed((char)PlayerIndex, 60);
 

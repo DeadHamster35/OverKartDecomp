@@ -2,15 +2,15 @@
 #define OKAssemblyH
 #include "../../MainInclude.h"
 // the following all deal with ASM instructions in the game.
-// we edit them in the customASM and stockASM routines.
+// we edit them in the customASM and StockASM routines.
 
 
 extern long nopASM; //0x80002714
 
 extern long asm_BlinkCheck;
-extern uint asm_DispOBSubPSelCursor1[];// 0x800F1AB8
+extern Uint asm_DispOBSubPSelCursor1[];// 0x800F1AB8
 
-extern uint jtbl_DispObjPsel[];
+extern Uint jtbl_DispObjPsel[];
 
 extern long asm_DOBPSelTurnIn; //0x800A7EE8
 extern long asm_DOBPSelTurnOut; //0x800A7EF8
@@ -37,7 +37,7 @@ extern long asm_PlayerSelectDoObjectSelect3; //0x800952F8
 extern long asm_PlayerSelectDoObjectSelect4; //0x8009530C
 
 extern long asm_PlayerSelectController;
-/* asm_tempo* / asmTempoFullScreen: race_sequence framerate immediates; ApplyRaceTempo */
+/* asm_tempo* / asmTempoFullScreen: RaceSequence Framerate immediates; ApplyRaceTempo */
 
 extern short asm_selectA; //0x800B3924
 extern short asm_selectB; //0x800B3924
@@ -51,9 +51,9 @@ extern short asm_BorderDraw;
 
 extern long previewReload;
 
-/* BSS in LibraryVariables.c. Do not map onto kart_engine_echo immediates. */
-extern short g_EchoStart;
-extern short g_EchoStop;
+/* BSS in LibraryVariables.c. Do not Map onto KartEngineEcho immediates. */
+extern short EchoStart;
+extern short EchoStop;
 
 extern long highpolypipeA; //0x802911E8   ;;3C190700
 extern long highpolypipeB; //0x802911EC   ;;373908E8

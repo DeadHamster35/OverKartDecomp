@@ -8632,8 +8632,8 @@ u8 d_course_moo_moo_farm_mole_dirt[] = {
 /**
 The Cow palette is really really strange. There's only 12x17 (204) entires as opposed to the usual 16x16 (256) that
 TLUTs have. So we do something a little strange. We extract 2 versions of the TLUT. One that is 16x16, meaning that is
-has some vertex data filling out the backend. This is the one used to extract the rest of the cow pictures One that is
-12x17. Only used to be included here.
+has some vertex data filling out the backend. This is the one Used to extract the rest of the cow pictures One that is
+12x17. Only Used to be included here.
 **/
 u8 d_course_moo_moo_farm_cow_tlut[] = {
 #include "assets/courses/moo_moo_farm/gTLUTCowImport.inc.c"

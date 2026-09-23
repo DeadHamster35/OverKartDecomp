@@ -2,7 +2,7 @@
 #define MAININCLUDE_H
 
 /*
- * Vanilla types come from decomp headers (Library names, stock IDO shape).
+ * Vanilla types come from decomp headers (Library Names, stock IDO Shape).
  * F3DEX_GBI / F3D_OLD are set by the Makefile. Do not pull host stdbool/math.
  */
 #include <ultra64.h>
@@ -19,8 +19,8 @@
 #include <string.h>
 #include <defines.h>
 
-typedef s64 int64;
-typedef u64 uint64;
+typedef s64 Int64;
+typedef u64 Uint64;
 typedef Vec3f FVector;
 typedef struct GfxPool Dynamic;
 

@@ -3,18 +3,18 @@
 #include "MainInclude.h"
 //These are new custom RAM values
 //0x80400000 then OKHeader BSS (RAM_END). May overflow into 0x80500000; must not reach FB0 at 0x805DA800.
-//0x80300000: gZBuffer. Gfx/audio follow. ok_ObjectPoolStart..0x80400000 is LoadOKData.
+//0x80300000: ZBuffer. Gfx/audio follow. ok_ObjectPoolStart..0x80400000 is LoadOKData.
 //FB0 0x805DA800 (flush against FB1), FB1 0x80600000, FB2 0x80700000.
-//gFaceBuffer 0x80625800 forward toward Vtx. VertexMemoryPointer from 0x80700000. LastMemoryPointer from 0x80800000.
+//FaceBuffer 0x80625800 forward toward Vtx. VertexMemoryPointer from 0x80700000. LastMemoryPointer from 0x80800000.
 //FreeMemory 768 KB at 0x801978D0-0x802578D0 (StaticMemoryPointer after seg 2 / 0xD).
 // Most of these labels are DMA dest / scratch. Remaining: ok_FreeSpace staging
-// and dummy dest BSS. LoadOKData uses ok_ObjectPool (ObjectMemoryPointer).
+// and Dummy dest BSS. LoadOKData uses ok_ObjectPool (ObjectMemoryPointer).
 
 
-//804396C4 targetAddress;?
+//804396C4 TargetAddress;?
 
 extern int ok_HeaderROM; //0xBE9178
-extern uint OKHeaderEND;
+extern Uint OKHeaderEND;
 #define ok_SaveSize 0x28980
 #define ok_HeaderSize 0x1400
 #define ok_MenuSize 0x2800
@@ -30,7 +30,7 @@ extern int ok_CourseTable; //ok_CourseHeader + ok_CourseHeaderSize  //0x28 bytes
 extern int ok_Target; //ok_CourseTable + 0x30
 extern int ok_Source; //ok_Target + 0x4
 extern int ok_Pointer; //ok_Source + 0x4
-extern int ok_FreePointer; //ok_Pointer + 0x4  //set value after loading data.
+extern int ok_FreePointer; //ok_Pointer + 0x4  //set Value after loading data.
 extern int ok_Credits; 
 extern int ok_CourseName; //ok_Credits + 0x20
 extern int ok_SerialKey; //ok_CourseName + 0x40
@@ -91,8 +91,8 @@ extern int lit_red_selecter; //lit_arrowsprite_r +  0x200
 extern int ok_RedCoinSprite; //lit_red_selecter +  0x200 
 extern int ok_RedCoinSprite; //lit_red_selecter +  0x200 
 extern int ok_menucoinsprite; //ok_RedCoinSprite +  0x200
-extern ushort nicefont[]; //ok_menucoinsprite +  0x200
-extern ushort hud_buttons[]; //nicefont +  0x4400
+extern Ushort nicefont[]; //ok_menucoinsprite +  0x200
+extern Ushort hud_buttons[]; //nicefont +  0x4400
 
 extern u8 ok_ObjectPoolStart[]; // after gfx/audio, before 0x80400000
 extern u8 ok_ObjectPoolEnd[];   // 0x80400000

@@ -81,11 +81,11 @@ s32 D_80165678;
 UNUSED s32 D_80165680[12];
 u16 D_801656B0;
 UNUSED s32 D_801656B8[2];
-u16 kwflash_r;
+u16 KwflashR;
 UNUSED s32 D_801656C8[2];
-u16 kwflash_g;
+u16 KwflashG;
 UNUSED s32 D_801656D8[2];
-u16 kwflash_b;
+u16 KwflashB;
 UNUSED s32 D_801656E8[2];
 s16 D_801656F0;
 UNUSED s32 D_801656F8[4];
@@ -101,7 +101,7 @@ s16 D_80165728;
 UNUSED s32 D_8016572C;
 s16 D_80165730;
 UNUSED s32 D_80165734;
-//! Tracking a count of some object type, don't know what object type yet
+//! Tracking a Count of some object Type, don't know what object Type yet
 s16 D_80165738;
 UNUSED s32 D_8016573C;
 s16 D_80165740;
@@ -109,9 +109,9 @@ UNUSED s32 D_80165744;
 s16 D_80165748;
 UNUSED s32 D_8016574C;
 
-s16 gNumActiveThwomps;
+s16 NumActiveThwomps;
 s32 D_80165754;
-ThwompSpawn* gThowmpSpawnList;
+ThwompSpawn* ThowmpSpawnList;
 
 Vec4s D_80165760;
 UNUSED s16 D_80165768;
@@ -129,42 +129,42 @@ UNUSED s32 D_80165798;
 s8 D_8016579C;
 u16 D_8016579E;
 UNUSED s16 D_801657A0;
-//! Something related to the rotation(?) of ice in Sherbet Land
+//! Something related to the Rotation(?) of ice in Sherbet Land
 u16 D_801657A2;
 UNUSED s32 D_801657A4;
 UNUSED s16 D_801657A8[3];
 s8 D_801657AE;
 UNUSED s8 D_801657AF;
 //! HUD related
-s8 g_KWDBDispSW;
+s8 KWDBDispSW;
 UNUSED s8 D_801657B1;
 s8 D_801657B2;
 UNUSED s8 D_801657B3;
 s8 D_801657B4;
 s8 D_801657B8[16];
-s8 g_cloudsToggle;
+s8 CloudsToggle;
 s8 D_801657D0[8];
-s8 g_KWDemoSW;
+s8 KWDemoSW;
 UNUSED s16 D_801657DA[2];
 UNUSED s8 D_801657E0;
 s8 D_801657E1;
-s8 kwgoalpanelsw;
+s8 Kwgoalpanelsw;
 s8 D_801657E3;
-s8 g_hudLapToggle;
+s8 HUDLapToggle;
 s8 D_801657E5;
-bool8 g_hudSpeedToggle2;
+bool8 HUDSpeedToggle2;
 u8 D_801657E7;
-bool8 g_hudMapToggle2;
+bool8 HUDMapToggle2;
 UNUSED s32 D_801657EC;
-bool8 g_blueLineRankToggle;
+bool8 BlueLineRankToggle;
 UNUSED s32 D_801657F4;
-bool8 g_KWLapSW;
+bool8 KWLapSW;
 s32 D_801657FC;
 s8 D_80165800[2];
 s32 D_80165804;
-s8 g_hudToggleFlag;
+s8 HUDToggleFlag;
 s32 D_8016580C;
-bool8 g_hudSpeedToggle;
+bool8 HUDSpeedToggle;
 s32 D_80165814;
 bool8 D_80165818;
 s32 D_8016581C;
@@ -172,7 +172,7 @@ s8 D_80165820;
 UNUSED s32 D_80165824;
 s8 D_80165828;
 Vec3su D_8016582C;
-s8 g_hudToggleFlagP2[2];
+s8 HUDToggleFlagP2[2];
 Vec3su D_80165834;
 UNUSED s32 D_8016583A;
 s8 D_80165840[3];
@@ -190,7 +190,7 @@ s8 D_80165888;
 UNUSED s32 D_8016588C;
 s8 D_80165890;
 UNUSED s32 D_80165894;
-s8 balloonsw;
+s8 Balloonsw;
 s32 D_8016589C;
 UNUSED s32 D_801658A0[2];
 s8 D_801658A8;
@@ -215,9 +215,9 @@ UNUSED s32 D_801658F0;
 s8 D_801658F4;
 UNUSED s32 D_801658F8;
 UNUSED s8 D_801658FC;
-u8 sRandomItemIndex;
+u8 SRandomItemIndex;
 s8 D_801658FE;
-u8 gControllerRandom;
+u8 ControllerRandom;
 s16 D_80165900;
 UNUSED s32 D_80165904;
 s8 D_80165908;
@@ -225,36 +225,36 @@ UNUSED s32 D_80165910[96];
 s8 D_80165A90;
 UNUSED s32 D_80165AA0[95];
 UNUSED s32 D_80165C14;
-AnmObject g_DynamicObjects[OBJECT_LIST_SIZE];
+AnmObject DynamicObjects[OBJECT_LIST_SIZE];
 UNUSED s32 D_80183D58;
-s32 objectListSize;
+s32 ObjectListSize;
 Mtx D_80183D60;
 /**
- * Use unknown. An object is reserved and its index is saved to
+ * Use Unknown. An object is reserved and its Index is saved to
  * this variable, but it appears to go unreferenced
  **/
 s32 D_80183DA0;
 f32 D_80183DA8[4];
 //! Lakitu?
-s32 jugemuallocptr[4];
+s32 Jugemuallocptr[4];
 f32 D_80183DC8[4];
 //! Indexes for the objects associated with the Bomb Karts
-s32 bomballocptr[NUM_BOMB_KARTS_MAX];
+s32 Bomballocptr[NUM_BOMB_KARTS_MAX];
 UNUSED s32 D_80183DF8[16];
-//! Next free spot in EffectAllocArray1? Wraps back around to 0 if it gets bigger than gObjectParticle1_SIZE
-s32 gNextFreeObjectParticle1;
+//! Next Free spot in EffectAllocArray1? Wraps back around to 0 if it gets bigger than gObjectParticle1_SIZE
+s32 NextFreeObjectParticle1;
 Vec3f D_80183E40;
-//! Next free spot in EffectAllocArray2? Wraps back around to 0 if it gets bigger than gObjectParticle2_SIZE
-s32 gNextFreeObjectParticle2;
+//! Next Free spot in EffectAllocArray2? Wraps back around to 0 if it gets bigger than gObjectParticle2_SIZE
+s32 NextFreeObjectParticle2;
 Vec3f D_80183E50;
-//! Next free spot in EffectAllocArray3?
-s32 gNextFreeObjectParticle3;
+//! Next Free spot in EffectAllocArray3?
+s32 NextFreeObjectParticle3;
 UNUSED s32 D_80183E60[3];
-//! Next free spot in FireParticleAllocArray? Wraps back around to 0 if it gets bigger than gObjectParticle4_SIZE
+//! Next Free spot in FireParticleAllocArray? Wraps back around to 0 if it gets bigger than gObjectParticle4_SIZE
 s32 FireParticleCounter;
 Vec3f D_80183E70;
-//! Next free spot in leafallocptr? Wraps back around to 0 if it gets bigger than gLeafParticle_SIZE
-s32 gNextFreeLeafParticle;
+//! Next Free spot in Leafallocptr? Wraps back around to 0 if it gets bigger than gLeafParticle_SIZE
+s32 NextFreeLeafParticle;
 Vec3su D_80183E80;
 //! Appears to be a list of object list indices for the Item Window part of the HUD
 s32 ItemBoxAllocPtr[4];
@@ -268,7 +268,7 @@ Vec3su D_80183E98;
  * Penguins in Sherbet Land?
  * Flag Poles in Yoshi Valley?
  */
-s32 objallocptr[32];
+s32 Objallocptr[32];
 UNUSED s32 D_80183F20[2];
 /**
  * Snowmen heads in Frappe Snowland
@@ -278,11 +278,11 @@ UNUSED s32 D_80183F20[2];
  * Hedgehogs in Yoshi Valley?
  * Spawn for big fire breath in Bowser's Castle
  */
-s32 objallocptr2[32];
+s32 Objallocptr2[32];
 /**
- * Seemingly a list of textures for Lakitu
+ * Seemingly a list of Textures for Lakitu
  * Never explicitly given data, data appears to be placed here
- * via some type of DMA.
+ * via some Type of DMA.
  * I'm also not certain about its dimensions
  * I think the entires in this array are way over-sized
  */
@@ -291,17 +291,17 @@ u8 D_80183FA8[4][0x2000];
  * Boos in Banshee Boardwalk
  * Spawners for the 4 small fire breaths inside Bowser's Castle
  */
-s32 objallocptr3[32];
-//! Seemingly a pointer to Lakitu texture(s)
-u8* gLakituTexturePtr;
+s32 Objallocptr3[32];
+//! Seemingly a Pointer to Lakitu Texture(s)
+u8* LakituTexturePtr;
 /**
  * Unused list of object indices
  */
-s32 objallocptr4[32];
+s32 Objallocptr4[32];
 //! Array of (4) Collisions?
 Collision D_8018C0B0[4];
 /**
- * List of object list indices used for:
+ * List of object list indices Used for:
  *   Moles in Moo Moo Farm
  *   Snow flakes in Frappe Snowland
  *   Segments of the fire breath from the statues in Bowser's Castle
@@ -310,40 +310,40 @@ Collision D_8018C0B0[4];
 s32 EffectAllocArray1[gObjectParticle2_SIZE];
 Collision D_8018C3B0;
 /**
- * List of object list indices used for:
- * - Bats in Banshee's Boardwalk (but only 1 player mode?)
- * - Train index 0 smoke in Kalimari Desert
- * - Ferry index 0 smoke in DK Jungle
+ * List of object list indices Used for:
+ * - Bats in Banshee's Boardwalk (but only 1 Player Mode?)
+ * - Train Index 0 smoke in Kalimari Desert
+ * - Ferry Index 0 smoke in DK Jungle
  */
 s32 EffectAllocArray2[gObjectParticle2_SIZE];
-// Maybe some unused Collision?
+// Maybe some Unused Collision?
 UNUSED Collision D_8018C5F0;
 /**
- * List of object list indices used for:
- * - Train index 1 smoke in Kalimari Desert
- * - Ferry index 1 smoke in DK Jungle
+ * List of object list indices Used for:
+ * - Train Index 1 smoke in Kalimari Desert
+ * - Ferry Index 1 smoke in DK Jungle
  */
 s32 EffectAllocArray3[gObjectParticle3_SIZE];
 Collision D_8018C830;
 /**
  * List of object list indices. Used both for the fires in the DK Jungle cave
  * and, seemingly for the trail that shells leave behind them.
- * I think they're using the same texture, which would explain the dual use
+ * I think they're using the same Texture, which would explain the dual use
  */
 s32 FireParticleAllocArray[gObjectParticle4_SIZE];
 /**
- * Seemingly a list of object list indices used for the leaves that sometimes fall
+ * Seemingly a list of object list indices Used for the leaves that sometimes fall
  * trees when you bonk into them
  */
-s32 leafallocptr[gLeafParticle_SIZE];
-Hud playerHUD[4];
+s32 Leafallocptr[gLeafParticle_SIZE];
+Hud PlayerHUD[4];
 /**
- * List of object list indices used by the clouds and stars in some stages
- * Also used for snowflakes like EffectAllocArray1? Not sure what's up with that
+ * List of object list indices Used by the clouds and stars in some stages
+ * Also Used for snowflakes like EffectAllocArray1? Not sure what's up with that
  */
-s32 g_CloudAllocate[D_8018CC80_SIZE];
+s32 CloudAllocate[D_8018CC80_SIZE];
 struct_D_8018CE10 D_8018CE10[8];
-//! Unknown object index, only set for Kalimari Desert, never read
+//! Unknown object Index, only set for Kalimari Desert, never read
 s32 D_8018CF10;
 Camera* D_8018CF14;
 s16 D_8018CF18;
@@ -354,14 +354,14 @@ Player* D_8018CF28[8];
 s16 D_8018CF48;
 s16 D_8018CF50[8];
 s16 D_8018CF60;
-//! This may be a list of tilemap flags on a per-camera basis
+//! This may be a list of tilemap flags on a per-Camera basis
 s16 D_8018CF68[8];
 s16 D_8018CF78;
 /**
  * List of half-word character IDs indicating each character's
- * place in the current Grand Prix race's standings
+ * place in the Current Grand Prix race's standings
  */
-s16 gGPCurrentRaceCharacterIdByRank[8];
+s16 GPCurrentRaceCharacterIdByRank[8];
 s16 D_8018CF90;
 s16 KWRank[8];
 s16 D_8018CFA8;
@@ -381,18 +381,18 @@ s16 D_8018CFD8;
 s16 D_800E4730[] = { 0x00ff, 0x0000, 0x0000, 0x00ff, 0x00ff, 0x0000, 0x0000, 0x00ff, 0x0000, 0x0032, 0x00ff, 0x00ff,
                      0x0000, 0x0000, 0x00ff, 0x00ff, 0x0032, 0x00ff, 0x00ff, 0x0028, 0x0028, 0x0032, 0x00ff, 0x0064,
                      0x0082, 0x000f, 0x00ff, 0x0000, 0x0000, 0x0000,
-                     // I'm not convinced these aren't just padding, but stuff doesn't match
+                     // I'm not convinced these aren't just Padding, but stuff doesn't match
                      // without them :/
                      0x0000 };
 
 u8** D_800E4770[] = {
-    &drift_smoke_V, &drift_smoke_E, &D_8018D428, &D_8018D428, &D_8018D42C, &D_8018D42C,
+    &DriftSmokeV, &DriftSmokeE, &D_8018D428, &D_8018D428, &D_8018D42C, &D_8018D42C,
     &D_8018D430, &D_8018D430, &D_8018D434, &D_8018D434, &D_8018D434, &D_8018D434,
 };
 
 u8** D_800E47A0[] = {
-    &dobon1, &dobon2, &dobon3, &dobon4, &dobon5, &dobon6, &dobon7, &dobon8,
-    &dobon9, &dobon10, &dobon11, &dobon12, &dobon13, &dobon14, &dobon15,
+    &Dobon1, &Dobon2, &Dobon3, &Dobon4, &Dobon5, &Dobon6, &Dobon7, &Dobon8,
+    &Dobon9, &Dobon10, &Dobon11, &Dobon12, &Dobon13, &Dobon14, &Dobon15,
 };
 
 s32 NORM_SMOKE_IN[] = {
@@ -409,9 +409,9 @@ s32 NORM_SMOKE_OUT[] = {
 
 // UI Code?
 void KWSetViewportFull(void) {
-    gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(D_802B8880));
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_80183D60), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
+    gSPViewport(DisplayListHead++, VIRTUAL_TO_PHYSICAL(D_802B8880));
+    gDPSetScissor(DisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_80183D60), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 }
 
 void KWReturnViewport(void) {
@@ -446,7 +446,7 @@ void KWReturnViewport(void) {
     }
 }
 
-void kwdraw_safetyframe(void) {
+void KwdrawSafetyframe(void) {
     if (D_801657B2 != 0) {
         DrawLineHorizontal(0xF, 0xB, 0x122, 0, 0xFF, 0, 0xFF);
         DrawLineVertical(0x131, 0xB, 0xDA, 0, 0xFF, 0, 0xFF);
@@ -463,46 +463,46 @@ void kwdraw_safetyframe(void) {
     }
 }
 
-void kwdisplay_kumo(u32 arg0) {
+void KwdisplayKumo(u32 arg0) {
     UNUSED Gfx* temp_v1;
 
-    if ((g_KWDBDispSW != 0)) {
+    if ((KWDBDispSW != 0)) {
         return;
     }
-    gSPDisplayList(gDisplayListHead++, &D_0D0076F8);
+    gSPDisplayList(DisplayListHead++, &D_0D0076F8);
     KW2DMatrixInit();
 
-    if ((g_cloudsToggle != 0)) {
+    if ((CloudsToggle != 0)) {
         return;
     }
 
     switch (arg0) {
         case 0:
-            kwdisplay_kumo_1p();
+            KwdisplayKumo1P();
             break;
         case 1:
-            kwdisplay_kumo_2pl();
+            KwdisplayKumo2Pl();
             break;
         case 2:
-            kwdisplay_kumo_2pr();
+            KwdisplayKumo2Pr();
             break;
         case 3:
-            kwdisplay_kumo_2pu();
+            KwdisplayKumo2Pu();
             break;
         case 4:
-            kwdisplay_kumo_2pd();
+            KwdisplayKumo2Pd();
             break;
     }
 }
 
-void kwdisplay3D(u32 arg0) {
+void Kwdisplay3D(u32 arg0) {
     UNUSED Gfx* temp_v1;
 
-    if (g_KWDBDispSW != 0) {
+    if (KWDBDispSW != 0) {
         return;
     }
 
-    gSPDisplayList(gDisplayListHead++, &D_0D0076F8);
+    gSPDisplayList(DisplayListHead++, &D_0D0076F8);
 
     if (D_8018D22C != 0) {
         return;
@@ -510,258 +510,258 @@ void kwdisplay3D(u32 arg0) {
 
     switch (arg0) {
         case RENDER_SCREEN_MODE_1P_PLAYER_ONE:
-            kwdisplay3D_1p();
+            Kwdisplay3D1P();
             break;
         case RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE:
-            kwdisplay3D_1p();
+            Kwdisplay3D1P();
             break;
         case RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO:
-            kwdisplay3D_2p();
+            Kwdisplay3D2P();
             break;
         case RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE:
-            kwdisplay3D_1p();
+            Kwdisplay3D1P();
             break;
         case RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO:
-            kwdisplay3D_2p();
+            Kwdisplay3D2P();
             break;
         case 5:
-            kwdisplay3D_1p();
+            Kwdisplay3D1P();
             break;
         case 6:
-            kwdisplay3D_2p();
+            Kwdisplay3D2P();
             break;
         case 7:
-            kwdisplay3D_3p();
+            Kwdisplay3D3P();
             break;
         case RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE:
-            kwdisplay3D_1p();
+            Kwdisplay3D1P();
             break;
         case RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO:
-            kwdisplay3D_2p();
+            Kwdisplay3D2P();
             break;
         case RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE:
-            kwdisplay3D_3p();
+            Kwdisplay3D3P();
             break;
         case RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR:
-            kwdisplay3D_4p();
+            Kwdisplay3D4P();
             break;
     }
 }
 
-void kwdisplay3D_1p(void) {
+void Kwdisplay3D1P(void) {
 
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[0]),
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[0]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
 
-    ogawa_draw(PLAYER_ONE);
-    if (gGamestate == ENDING) {
-        kwdisplay_dai(PLAYER_ONE);
-        kwdisplay_cup(PLAYER_ONE);
-        kwdisplay_pukupuku(PLAYER_ONE);
+    OgawaDraw(PLAYER_ONE);
+    if (GameState == ENDING) {
+        KwdisplayDai(PLAYER_ONE);
+        KwdisplayCup(PLAYER_ONE);
+        KwdisplayPukupuku(PLAYER_ONE);
         KWDisplayStar(PLAYER_ONE);
         return;
     }
-    if (!g_DemoFlag) {
+    if (!DemoFlag) {
         ExplorerKWDisplayJugemu(PLAYER_ONE);
     }
     EventDisplay(PLAYER_ONE);
 }
 
-void kwdisplay3D_2p(void) {
+void Kwdisplay3D2P(void) {
 
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[1]),
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[1]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    ogawa_draw(PLAYER_TWO);
-    if (!g_DemoFlag) {
+    OgawaDraw(PLAYER_TWO);
+    if (!DemoFlag) {
         ExplorerKWDisplayJugemu(PLAYER_TWO);
     }
     EventDisplay(PLAYER_TWO);
 }
 
-void kwdisplay3D_3p(void) {
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[2]),
+void Kwdisplay3D3P(void) {
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[2]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[2]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[2]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    ogawa_draw(PLAYER_THREE);
-    if (!g_DemoFlag) {
+    OgawaDraw(PLAYER_THREE);
+    if (!DemoFlag) {
         ExplorerKWDisplayJugemu(PLAYER_THREE);
     }
     EventDisplay(PLAYER_THREE);
 }
 
-void kwdisplay3D_4p(void) {
+void Kwdisplay3D4P(void) {
 
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[3]),
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[3]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[3]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[3]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    ogawa_draw(PLAYER_FOUR);
-    if ((!g_DemoFlag) && (g_playerCount == 4)) {
+    OgawaDraw(PLAYER_FOUR);
+    if ((!DemoFlag) && (PlayerCount == 4)) {
         ExplorerKWDisplayJugemu(PLAYER_FOUR);
     }
     EventDisplay(PLAYER_FOUR);
 }
 
-void kwdisplay3D_after(u32 arg0) {
+void Kwdisplay3DAfter(u32 arg0) {
     UNUSED Gfx* temp_v1;
 
-    if (g_KWDBDispSW != 0) {
+    if (KWDBDispSW != 0) {
         return;
     }
 
-    gSPDisplayList(gDisplayListHead++, &D_0D0076F8);
+    gSPDisplayList(DisplayListHead++, &D_0D0076F8);
 
     if (D_8018D22C != 0) {
         return;
     }
     switch (arg0) {
         case RENDER_SCREEN_MODE_1P_PLAYER_ONE:
-            kwdisplay3D_after_1p();
+            Kwdisplay3DAfter1P();
             break;
         case RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE:
-            kwdisplay3D_after_1p();
+            Kwdisplay3DAfter1P();
             break;
         case RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO:
-            kwdisplay3D_after_2p();
+            Kwdisplay3DAfter2P();
             break;
         case RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE:
-            kwdisplay3D_after_1p();
+            Kwdisplay3DAfter1P();
             break;
         case RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO:
-            kwdisplay3D_after_2p();
+            Kwdisplay3DAfter2P();
             break;
         case RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE:
-            kwdisplay3D_after_1p();
+            Kwdisplay3DAfter1P();
             break;
         case RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO:
-            kwdisplay3D_after_2p();
+            Kwdisplay3DAfter2P();
             break;
         case RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE:
-            kwdisplay3D_after_3p();
+            Kwdisplay3DAfter3P();
             break;
         case RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR:
-            kwdisplay3D_after_4p();
+            Kwdisplay3DAfter4P();
             break;
     }
 }
 
-void kwdisplay3D_after_1p(void) {
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[0]),
+void Kwdisplay3DAfter1P(void) {
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[0]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    if (gGamestate != ENDING) {
-        EventDisplay_After(PLAYER_ONE);
+    if (GameState != ENDING) {
+        EventDisplayAfter(PLAYER_ONE);
     }
 }
 
-void kwdisplay3D_after_2p(void) {
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[1]),
+void Kwdisplay3DAfter2P(void) {
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[1]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    EventDisplay_After(PLAYER_TWO);
+    EventDisplayAfter(PLAYER_TWO);
 }
 
-void kwdisplay3D_after_3p(void) {
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[2]),
+void Kwdisplay3DAfter3P(void) {
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[2]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[2]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[2]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    EventDisplay_After(PLAYER_THREE);
+    EventDisplayAfter(PLAYER_THREE);
 }
 
-void kwdisplay3D_after_4p(void) {
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[3]),
+void Kwdisplay3DAfter4P(void) {
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[3]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[3]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[3]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    EventDisplay_After(PLAYER_FOUR);
+    EventDisplayAfter(PLAYER_FOUR);
 }
 
-void KWDisplayEvent(s32 cameraId) {
+void KWDisplayEvent(s32 CameraId) {
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-    switch (g_courseID) {
+    switch (CourseID) {
         case COURSE_MARIO_RACEWAY:
             break;
         case COURSE_CHOCO_MOUNTAIN:
             break;
         case COURSE_BOWSER_CASTLE:
-            kwdisplay_doshin(cameraId);
-            kwdisplay_fire(cameraId);
+            KwdisplayDoshin(CameraId);
+            KwdisplayFire(CameraId);
             break;
         case COURSE_BANSHEE_BOARDWALK:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwdisplay_kanoke(cameraId);
-                kwdisplay_bat(cameraId);
-                kwdisplay_pukupuku(cameraId);
-                kwdisplay_tellesa(cameraId);
+            if (GameState != CREDITS_SEQUENCE) {
+                KwdisplayKanoke(CameraId);
+                KwdisplayBat(CameraId);
+                KwdisplayPukupuku(CameraId);
+                KwdisplayTellesa(CameraId);
             }
             break;
         case COURSE_YOSHI_VALLEY:
-            kwdisplay_goalflag(cameraId);
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwdisplay_harinezumi(cameraId);
+            KwdisplayGoalflag(CameraId);
+            if (GameState != CREDITS_SEQUENCE) {
+                KwdisplayHarinezumi(CameraId);
             }
             break;
         case COURSE_FRAPPE_SNOWLAND:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwdisplay_snowman(cameraId);
+            if (GameState != CREDITS_SEQUENCE) {
+                KwdisplaySnowman(CameraId);
             }
             break;
         case COURSE_KOOPA_BEACH:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwdisplay_kani(cameraId);
+            if (GameState != CREDITS_SEQUENCE) {
+                KwdisplayKani(CameraId);
             }
-            if (gGamestate != CREDITS_SEQUENCE) {
+            if (GameState != CREDITS_SEQUENCE) {
 
-                if ((g_menuMultiplayerSelection == 1) || (g_menuMultiplayerSelection == 2)) {
-                    kwdisplay_kamome(cameraId);
+                if ((MenuMultiplayerSelection == 1) || (MenuMultiplayerSelection == 2)) {
+                    KwdisplayKamome(CameraId);
                 }
             } else {
-                kwdisplay_kamome(cameraId);
+                KwdisplayKamome(CameraId);
             }
             break;
         case COURSE_ROYAL_RACEWAY:
             break;
         case COURSE_LUIGI_RACEWAY:
-            if (balloonsw != 0) {
-                kwdisplay_balloon(cameraId);
+            if (Balloonsw != 0) {
+                KwdisplayBalloon(CameraId);
             }
             break;
         case COURSE_MOO_MOO_FARM:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwdisplay_choropu(cameraId);
+            if (GameState != CREDITS_SEQUENCE) {
+                KwdisplayChoropu(CameraId);
             }
             break;
         case COURSE_TOADS_TURNPIKE:
             break;
         case COURSE_KALAMARI_DESERT:
-            kwdisplay_train_smoke(cameraId);
+            KwdisplayTrainSmoke(CameraId);
             break;
         case COURSE_SHERBET_LAND:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                KWDisplayIceBlockShadow(cameraId);
+            if (GameState != CREDITS_SEQUENCE) {
+                KWDisplayIceBlockShadow(CameraId);
             }
-            kwdisplay_ping(cameraId);
+            KwdisplayPing(CameraId);
             break;
         case COURSE_RAINBOW_ROAD:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwdisplay_neon(cameraId);
-                kwdisplay_wanwan(cameraId);
+            if (GameState != CREDITS_SEQUENCE) {
+                KwdisplayNeon(CameraId);
+                KwdisplayWanwan(CameraId);
             }
             break;
         case COURSE_WARIO_STADIUM:
@@ -773,8 +773,8 @@ void KWDisplayEvent(s32 cameraId) {
         case COURSE_DOUBLE_DECK:
             break;
         case COURSE_DK_JUNGLE:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwdisplay_ship_smoke(cameraId);
+            if (GameState != CREDITS_SEQUENCE) {
+                KwdisplayShipSmoke(CameraId);
             }
             break;
     }
@@ -782,26 +782,26 @@ void KWDisplayEvent(s32 cameraId) {
 
 #endif
 
-    kwdisplay_kame_fire(cameraId);
-    kwdisplay_leaf(cameraId);
+    KwdisplayKameFire(CameraId);
+    KwdisplayLeaf(CameraId);
 
     if (D_80165730 != 0) {
-        kwdisplay_fuusen(cameraId);
+        KwdisplayFuusen(CameraId);
     }
-    if (g_gameMode == BATTLE) {
-        KWDisplayBombKartBT(cameraId);
+    if (GameMode == BATTLE) {
+        KWDisplayBombKartBT(CameraId);
     }
 }
 
-void render_snowing_effect(s32 arg0) {
+void RenderSnowingEffect(s32 arg0) {
     switch (Snow3DCourseID) {
         case COURSE_FRAPPE_SNOWLAND:
-            if (gGamestate != 9) {
-                if ((finish_zoom_flag == 0) && (g_playerCount == 1)) {
-                    kwdisplay_snow();
+            if (GameState != 9) {
+                if ((FinishZoomFlag == 0) && (PlayerCount == 1)) {
+                    KwdisplaySnow();
                 }
             } else {
-                kwdisplay_snow();
+                KwdisplaySnow();
             }
             break;
         case COURSE_SHERBET_LAND:
@@ -810,72 +810,72 @@ void render_snowing_effect(s32 arg0) {
     }
 }
 
-void kwdisplay2D_init(void) {
-    gSPDisplayList(gDisplayListHead++, &D_0D0076F8);
+void Kwdisplay2DInit(void) {
+    gSPDisplayList(DisplayListHead++, &D_0D0076F8);
 }
 
 void KWDisplay2D(u32 arg0) {
 
     D_8018D21C = arg0;
-    gSPDisplayList(gDisplayListHead++, &D_0D0076F8);
+    gSPDisplayList(DisplayListHead++, &D_0D0076F8);
 
     if (D_8018D22C == 0) {
         switch (arg0) {
             case RENDER_SCREEN_MODE_1P_PLAYER_ONE:
-                kwdisplay2D_1p();
+                Kwdisplay2D1P();
                 break;
             case RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_2p_left();
+                if (!DemoFlag) {
+                    Kwdisplay2D2PLeft();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_2p_right();
+                if (!DemoFlag) {
+                    Kwdisplay2D2PRight();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_2p_up();
+                if (!DemoFlag) {
+                    Kwdisplay2D2PUp();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_2p_down();
+                if (!DemoFlag) {
+                    Kwdisplay2D2PDown();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_4p_upleft();
+                if (!DemoFlag) {
+                    Kwdisplay2D4PUpleft();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_4p_upright();
+                if (!DemoFlag) {
+                    Kwdisplay2D4PUpright();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_4p_downleft();
+                if (!DemoFlag) {
+                    Kwdisplay2D4PDownleft();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR:
-                if ((!g_DemoFlag) && (g_playerCount == 4)) {
-                    kwdisplay2D_4p_downright();
+                if ((!DemoFlag) && (PlayerCount == 4)) {
+                    Kwdisplay2D4PDownright();
                 }
                 break;
         }
@@ -885,99 +885,99 @@ void KWDisplay2D(u32 arg0) {
 void KWDisplay2DAfter(u32 arg0) {
 
     D_8018D21C = arg0;
-    gSPDisplayList(gDisplayListHead++, &D_0D0076F8);
+    gSPDisplayList(DisplayListHead++, &D_0D0076F8);
     if (D_8018D22C == 0) {
         switch (arg0) {
             case RENDER_SCREEN_MODE_1P_PLAYER_ONE:
-                kwdisplay2D_1p_after();
+                Kwdisplay2D1PAfter();
                 break;
             case RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE:
-                if (!g_DemoFlag) {
+                if (!DemoFlag) {
                     KWDisplay2D2PLeftAfter();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_2p_right_after();
+                if (!DemoFlag) {
+                    Kwdisplay2D2PRightAfter();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_2p_up_after();
+                if (!DemoFlag) {
+                    Kwdisplay2D2PUpAfter();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_2p_down_after();
+                if (!DemoFlag) {
+                    Kwdisplay2D2PDownAfter();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_4p_upleft_after();
+                if (!DemoFlag) {
+                    Kwdisplay2D4PUpleftAfter();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_4p_upright_after();
+                if (!DemoFlag) {
+                    Kwdisplay2D4PUprightAfter();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE:
-                if (!g_DemoFlag) {
-                    kwdisplay2D_4p_downleft_after();
+                if (!DemoFlag) {
+                    Kwdisplay2D4PDownleftAfter();
                     break;
                 }
 
                 break;
             case RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR:
-                if ((!g_DemoFlag) && (g_playerCount == 4)) {
-                    kwdisplay2D_4p_downright_after();
+                if ((!DemoFlag) && (PlayerCount == 4)) {
+                    Kwdisplay2D4PDownrightAfter();
                 }
                 break;
         }
     }
 }
 
-void kwdisplay2D_1p(void) {
-    if (g_KWDBDispSW == 0) {
+void Kwdisplay2D1P(void) {
+    if (KWDBDispSW == 0) {
         KW2DMatrixInit();
     }
 }
 
-void kwdisplay2D_1p_after(void) {
-    if (g_KWDBDispSW == 0) {
+void Kwdisplay2D1PAfter(void) {
+    if (KWDBDispSW == 0) {
         KW2DMatrixInit();
-        if ((!g_DemoFlag) && (g_KWScreenEnable != 0) && (g_KWDemoSW == 0)) {
+        if ((!DemoFlag) && (KWScreenEnable != 0) && (KWDemoSW == 0)) {
             KWDisplayItembox(PLAYER_ONE);
-            if (g_hudLapToggle != 2) {
+            if (HUDLapToggle != 2) {
                 KWDisplayTotalTime(PLAYER_ONE);
                 Zanzou2(PLAYER_ONE);
-                if (g_hudSpeedToggle2 != false) {
-                    kwdisplay_speedmeter(0);
+                if (HUDSpeedToggle2 != false) {
+                    KwdisplaySpeedmeter(0);
                 }
             }
         }
     }
 }
 
-void kwdisplay1p_wipe(void) {
+void Kwdisplay1PWipe(void) {
 }
 
-void kwdisplay_orders(void) {
+void KwdisplayOrders(void) {
 
     if (D_8018D2AC != 0) {
-        switch (g_playerCount) {
+        switch (PlayerCount) {
             case 2:
                 func_8004EB30(PLAYER_ONE);
                 func_8004EB30(PLAYER_TWO);
@@ -997,12 +997,12 @@ void kwdisplay_orders(void) {
     }
 }
 
-void kwdisplay_ranks(void) {
+void KwdisplayRanks(void) {
     if (D_8018D2A4 != 0) {
-        if (g_gameMode != BATTLE) {
-            switch (g_playerCount) {
+        if (GameMode != BATTLE) {
+            switch (PlayerCount) {
                 case 1:
-                    if (g_gameMode != TIME_TRIALS) {
+                    if (GameMode != TIME_TRIALS) {
                         KWDisplayRank(PLAYER_ONE);
                         break;
                     }
@@ -1012,616 +1012,616 @@ void kwdisplay_ranks(void) {
                     KWDisplayRank(PLAYER_TWO);
                     break;
                 case 3:
-                    kwdisplay_srank(PLAYER_ONE);
-                    kwdisplay_srank(PLAYER_TWO);
-                    kwdisplay_srank(PLAYER_THREE);
+                    KwdisplaySrank(PLAYER_ONE);
+                    KwdisplaySrank(PLAYER_TWO);
+                    KwdisplaySrank(PLAYER_THREE);
                     break;
                 case 4:
-                    kwdisplay_srank(PLAYER_ONE);
-                    kwdisplay_srank(PLAYER_TWO);
-                    kwdisplay_srank(PLAYER_THREE);
-                    kwdisplay_srank(PLAYER_FOUR);
+                    KwdisplaySrank(PLAYER_ONE);
+                    KwdisplaySrank(PLAYER_TWO);
+                    KwdisplaySrank(PLAYER_THREE);
+                    KwdisplaySrank(PLAYER_FOUR);
                     break;
             }
         }
     }
 }
 
-void kwdisplay_toppri(void) {
+void KwdisplayToppri(void) {
 
-    if ((g_KWDBDispSW == 0) && (two_d_flag != 0)) {
+    if ((KWDBDispSW == 0) && (TwoDFlag != 0)) {
         KWSetViewportFull();
-        gSPDisplayList(gDisplayListHead++, &D_0D0076F8);
+        gSPDisplayList(DisplayListHead++, &D_0D0076F8);
 
-        if (g_KWScreenEnable != 0) {
-            if (g_KWDemoSW == 0) {
-                if (g_blueLineRankToggle != false) {
-                    kwdisplay_enemycar();
+        if (KWScreenEnable != 0) {
+            if (KWDemoSW == 0) {
+                if (BlueLineRankToggle != false) {
+                    KwdisplayEnemycar();
                 }
-                if ((!g_DemoFlag) && (g_hudMapToggle2 != false)) {
+                if ((!DemoFlag) && (HUDMapToggle2 != false)) {
                     if (D_80165800[0] != 0) {
-                        kwdisplay_radarmap(0);
-                        if (g_gameMode != BATTLE) {
-                            kwdisplay_radarsline(0);
+                        KwdisplayRadarmap(0);
+                        if (GameMode != BATTLE) {
+                            KwdisplayRadarsline(0);
                         }
-                        kwdisplay_radarplayer(0);
+                        KwdisplayRadarplayer(0);
                     }
-                    if ((g_ScreenSplitB == SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL) && (D_80165800[1] != 0)) {
-                        kwdisplay_radarmap(1);
-                        if (g_gameMode != BATTLE) {
-                            kwdisplay_radarsline(1);
+                    if ((ScreenSplitB == SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL) && (D_80165800[1] != 0)) {
+                        KwdisplayRadarmap(1);
+                        if (GameMode != BATTLE) {
+                            KwdisplayRadarsline(1);
                         }
-                        kwdisplay_radarplayer(1);
+                        KwdisplayRadarplayer(1);
                     }
                 }
             }
-            if ((g_hudLapToggle != 2) && (g_gameMode == GRAND_PRIX) && (D_8018D2BC != 0)) {
-                kwdisplay_kaopanel();
+            if ((HUDLapToggle != 2) && (GameMode == GRAND_PRIX) && (D_8018D2BC != 0)) {
+                KwdisplayKaopanel();
             }
-            kwdisplay_ranks();
+            KwdisplayRanks();
         }
-        kwdisplay_orders();
-        kwdraw_safetyframe();
+        KwdisplayOrders();
+        KwdrawSafetyframe();
     }
 }
 
-void kwdisplay2D_2p_left(void) {
+void Kwdisplay2D2PLeft(void) {
 }
 
 void KWDisplay2D2PLeftAfter(void) {
-    if (g_KWDBDispSW == 0) {
-        KWDisplay2P_1LR();
+    if (KWDBDispSW == 0) {
+        KWDisplay2P1LR();
     }
 }
 
-void kwdisplay2D_2p_right(void) {
+void Kwdisplay2D2PRight(void) {
 }
 
-void kwdisplay2D_2p_right_after(void) {
-    if (g_KWDBDispSW == 0) {
-        KWDisplay2P_2LR();
+void Kwdisplay2D2PRightAfter(void) {
+    if (KWDBDispSW == 0) {
+        KWDisplay2P2LR();
     }
 }
 
-void kwdisplay2D_2p_sub(s32 playerId) {
-    if ((g_gameMode != BATTLE) && (D_80165800[playerId] == 0) && (g_KWScreenEnable != 0)) {
-        KWDisplayTotalTime(playerId);
-        kwdisplay_syuukai(playerId);
+void Kwdisplay2D2PSub(s32 PlayerId) {
+    if ((GameMode != BATTLE) && (D_80165800[PlayerId] == 0) && (KWScreenEnable != 0)) {
+        KWDisplayTotalTime(PlayerId);
+        KwdisplaySyuukai(PlayerId);
     }
-    KWDisplayItembox(playerId);
+    KWDisplayItembox(PlayerId);
 }
 
-void kwdisplay2D_2p_up(void) {
+void Kwdisplay2D2PUp(void) {
 }
 
-void kwdisplay2D_2p_up_after(void) {
-    if (g_KWDBDispSW == 0) {
-        KWDisplay2P_1UD();
-    }
-}
-
-void kwdisplay2D_2p_down(void) {
-}
-
-void kwdisplay2D_2p_down_after(void) {
-    if (g_KWDBDispSW == 0) {
-        KWDisplay2P_2UD();
+void Kwdisplay2D2PUpAfter(void) {
+    if (KWDBDispSW == 0) {
+        KWDisplay2P1UD();
     }
 }
 
-void KWDisplayAfter4PSub(s32 playerId) {
-    if (g_gameMode != BATTLE) {
-        if (g_KWLapSW && g_KWScreenEnable) {
-            kwsprite32x8(playerHUD[playerId].cx, playerHUD[playerId].cy, common_texture_hud_lap);
-            kwdisplay_lap88(playerHUD[playerId].cx - 12, playerHUD[playerId].cy + 4,
-                           playerHUD[playerId].lapcnt);
+void Kwdisplay2D2PDown(void) {
+}
+
+void Kwdisplay2D2PDownAfter(void) {
+    if (KWDBDispSW == 0) {
+        KWDisplay2P2UD();
+    }
+}
+
+void KWDisplayAfter4PSub(s32 PlayerId) {
+    if (GameMode != BATTLE) {
+        if (KWLapSW && KWScreenEnable) {
+            Kwsprite32X8(PlayerHUD[PlayerId].cx, PlayerHUD[PlayerId].cy, common_texture_hud_lap);
+            KwdisplayLap88(PlayerHUD[PlayerId].cx - 12, PlayerHUD[PlayerId].cy + 4,
+                           PlayerHUD[PlayerId].Lapcnt);
         }
-        if (g_hudLapToggle == 2) {
-            if (playerHUD[playerId].bomb && KWFlash8) {
-                KWTexture2DCI8BL(playerHUD[playerId].bombx, playerHUD[playerId].bomby, 0, 1.0f,
+        if (HUDLapToggle == 2) {
+            if (PlayerHUD[PlayerId].Bomb && KWFlash8) {
+                KWTexture2DCI8BL(PlayerHUD[PlayerId].Bombx, PlayerHUD[PlayerId].Bomby, 0, 1.0f,
                               (u8*) common_tlut_portrait_bomb_kart_and_question_mark, common_texture_portrait_bomb_kart,
-                              D_0D005AE0, 0x20, 0x20, 0x20, 0x20);
+                              Vtx_KTile32x32, 0x20, 0x20, 0x20, 0x20);
             }
         }
     }
-    KWDisplayItemboxs(playerId);
+    KWDisplayItemboxs(PlayerId);
 }
 
-void kwdisplay2D_4p_upleft(void) {
-    if (g_KWDBDispSW == 0) {
+void Kwdisplay2D4PUpleft(void) {
+    if (KWDBDispSW == 0) {
         KW2DMatrixInit();
     }
 }
 
-void kwdisplay2D_4p_upleft_after(void) {
-    if (g_KWDBDispSW == 0) {
+void Kwdisplay2D4PUpleftAfter(void) {
+    if (KWDBDispSW == 0) {
         KW2DMatrixInit();
-        KWDisplay4P_1();
+        KWDisplay4P1();
     }
 }
 
-void kwdisplay2D_4p_upright(void) {
+void Kwdisplay2D4PUpright(void) {
 }
 
-void kwdisplay2D_4p_upright_after(void) {
-    if (g_KWDBDispSW == 0) {
-        KWDisplay4P_2();
+void Kwdisplay2D4PUprightAfter(void) {
+    if (KWDBDispSW == 0) {
+        KWDisplay4P2();
     }
 }
 
-void kwdisplay2D_4p_downleft(void) {
-    if (g_KWDBDispSW == 0) {
-        KW2DMatrixInit();
-    }
-}
-
-void kwdisplay2D_4p_downleft_after(void) {
-    if (g_KWDBDispSW == 0) {
-        KW2DMatrixInit();
-        KWDisplay4P_3();
-    }
-}
-
-void kwdisplay2D_4p_downright(void) {
-    if (g_KWDBDispSW == 0) {
+void Kwdisplay2D4PDownleft(void) {
+    if (KWDBDispSW == 0) {
         KW2DMatrixInit();
     }
 }
 
-void kwdisplay2D_4p_downright_after(void) {
-    if (g_KWDBDispSW == 0) {
+void Kwdisplay2D4PDownleftAfter(void) {
+    if (KWDBDispSW == 0) {
         KW2DMatrixInit();
-        KWDisplay4P_4();
+        KWDisplay4P3();
     }
 }
 
-void kwplayerparams(s32 playerId) {
+void Kwdisplay2D4PDownright(void) {
+    if (KWDBDispSW == 0) {
+        KW2DMatrixInit();
+    }
+}
+
+void Kwdisplay2D4PDownrightAfter(void) {
+    if (KWDBDispSW == 0) {
+        KW2DMatrixInit();
+        KWDisplay4P4();
+    }
+}
+
+void Kwplayerparams(s32 PlayerId) {
     Hud* temp_v0;
 
-    D_8018CF1C = &gPlayerOne[playerId];
-    D_8018CF14 = &camera1[playerId];
-    temp_v0 = &playerHUD[playerId];
-    temp_v0->plx = (s32) D_8018CF1C->position[0];
-    temp_v0->ply = (s32) D_8018CF1C->position[1];
-    temp_v0->plz = (s32) D_8018CF1C->position[2];
+    D_8018CF1C = &PlayerOne[PlayerId];
+    D_8018CF14 = &Camera1[PlayerId];
+    temp_v0 = &PlayerHUD[PlayerId];
+    temp_v0->plx = (s32) D_8018CF1C->Position[0];
+    temp_v0->ply = (s32) D_8018CF1C->Position[1];
+    temp_v0->plz = (s32) D_8018CF1C->Position[2];
 }
 
-void kwcheck_randomcnt(s32 arg0) {
-    struct Controller* controller = &gControllerOne[arg0];
+void KwcheckRandomcnt(s32 arg0) {
+    struct Controller* controller = &ControllerOne[arg0];
 
     if ((controller->ButtonHeld & A_BUTTON) != 0) {
-        gControllerRandom++;
+        ControllerRandom++;
     }
     if ((controller->ButtonHeld & B_BUTTON) != 0) {
-        gControllerRandom++;
+        ControllerRandom++;
     }
     if ((controller->ButtonHeld & R_TRIG) != 0) {
-        gControllerRandom++;
+        ControllerRandom++;
     }
 }
 
-void kw_resultscreen_start(void) {
+void KWResultscreenStart(void) {
     D_8018D214 = true;
 }
 
-void kwcheck_ghostkart_item(void) {
+void KwcheckGhostkartItem(void) {
     s32 i;
-    Player* player = gPlayerOne;
+    Player* Player = PlayerOne;
     for (i = 0; i < 4; i++) {
-        if ((D_80165890 != 0) && (player->flag & IS_GHOST)) {
-            player->item = ITEM_MUSHROOM;
+        if ((D_80165890 != 0) && (Player->Flag & IS_GHOST)) {
+            Player->Item = ITEM_MUSHROOM;
 
-            playerHUD[i].ghostcnt = 2;
+            PlayerHUD[i].Ghostcnt = 2;
         }
-        if ((player->flag & IS_GHOST) && (player->item == ITEM_NONE)) {
-            if (playerHUD[i].ghostcnt) {
-                player->item = ITEM_MUSHROOM;
-                --playerHUD[i].ghostcnt;
+        if ((Player->Flag & IS_GHOST) && (Player->Item == ITEM_NONE)) {
+            if (PlayerHUD[i].Ghostcnt) {
+                Player->Item = ITEM_MUSHROOM;
+                --PlayerHUD[i].Ghostcnt;
             }
         }
-        ++player;
+        ++Player;
     }
     D_80165890 = 0;
 }
 
-void kwsyori_sub(s32 playerId) {
-    kwplayerparams(playerId);
-    if (!g_DemoFlag) {
-        kwchart_jugemu_vf(playerId);
-        kwchart_itemboxanm(playerId);
+void KwsyoriSub(s32 PlayerId) {
+    Kwplayerparams(PlayerId);
+    if (!DemoFlag) {
+        KwchartJugemuVf(PlayerId);
+        KwchartItemboxanm(PlayerId);
     }
 }
 
 void KWVideoFramesYori(void) {
     s32 i;
 
-    if (pause_flag == false) {
-        kwStartTime(&D_80165678);
-        kwvideoframetimer++;
+    if (PauseFlag == false) {
+        KWStartTime(&D_80165678);
+        Kwvideoframetimer++;
         for (i = 0; i < NUM_PLAYERS; i++) {
-            D_8018CF68[i] = kwcheck_maparea_camera(&camera1[i]);
-            kwchase_boundvel_zero(i);
+            D_8018CF68[i] = KwcheckMapareaCamera(&Camera1[i]);
+            KwchaseBoundvelZero(i);
         }
-        switch (g_ScreenSplitB) {
+        switch (ScreenSplitB) {
             case SCREEN_MODE_1P:
-                if (gGamestate != 9) {
-                    kwsyori_sub(PLAYER_ONE);
-                    if (g_gameMode == TIME_TRIALS) {
-                        kwcheck_ghostkart_item();
+                if (GameState != 9) {
+                    KwsyoriSub(PLAYER_ONE);
+                    if (GameMode == TIME_TRIALS) {
+                        KwcheckGhostkartItem();
                     }
                 } else {
-                    kwplayerparams(PLAYER_ONE);
+                    Kwplayerparams(PLAYER_ONE);
                 }
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-                kwsyori_sub(PLAYER_ONE);
-                kwsyori_sub(PLAYER_TWO);
+                KwsyoriSub(PLAYER_ONE);
+                KwsyoriSub(PLAYER_TWO);
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
-                kwsyori_sub(PLAYER_ONE);
-                kwsyori_sub(PLAYER_TWO);
+                KwsyoriSub(PLAYER_ONE);
+                KwsyoriSub(PLAYER_TWO);
                 break;
             case SCREEN_MODE_3P_4P_SPLITSCREEN:
-                kwsyori_sub(PLAYER_ONE);
-                kwsyori_sub(PLAYER_TWO);
-                kwsyori_sub(PLAYER_THREE);
-                kwsyori_sub(PLAYER_FOUR);
+                KwsyoriSub(PLAYER_ONE);
+                KwsyoriSub(PLAYER_TWO);
+                KwsyoriSub(PLAYER_THREE);
+                KwsyoriSub(PLAYER_FOUR);
                 break;
         }
-        KWGameEventCommon_VF();
+        KWGameEventCommonVF();
     }
 }
 
-void kwpausesyori(void) {
+void Kwpausesyori(void) {
     s32 someIndex;
-    s32 playerId;
+    s32 PlayerId;
 
-    kwcheck_command();
+    KwcheckCommand();
     for (someIndex = 0; someIndex < NUM_PLAYERS; someIndex++) {
-        playerId = rank_to_num[someIndex];
-        // I hate this dumb pointer access here
-        gGPCurrentRaceCharacterIdByRank[someIndex] = (gPlayerOne + playerId)->kart;
+        PlayerId = RankToNum[someIndex];
+        // I hate this dumb Pointer access here
+        GPCurrentRaceCharacterIdByRank[someIndex] = (PlayerOne + PlayerId)->Kart;
     }
     for (someIndex = 0; someIndex < NUM_PLAYERS; someIndex++) {
-        KWRank[someIndex] = gGPCurrentRaceRankByPlayerId[someIndex];
+        KWRank[someIndex] = GPCurrentRaceRankByPlayerId[someIndex];
     }
 }
 
-void kwgameframesyori_sub(void) {
+void KwgameframesyoriSub(void) {
 
-    kwcheck_opening_start();
-    kwcheck_command();
-    kwset_kaopanel();
+    KwcheckOpeningStart();
+    KwcheckCommand();
+    KwsetKaopanel();
 
     if (D_801657AE == 0) {
-        switch (g_ScreenSplitB) {
+        switch (ScreenSplitB) {
             case SCREEN_MODE_1P:
-                kwcheck_randomcnt(PLAYER_ONE);
+                KwcheckRandomcnt(PLAYER_ONE);
                 if (D_8018D214 == false) {
-                    kwplayerparams(PLAYER_ONE);
-                    kwchart_opening();
-                    if (!g_DemoFlag) {
-                        kwchart_jugemu(0);
+                    Kwplayerparams(PLAYER_ONE);
+                    KwchartOpening();
+                    if (!DemoFlag) {
+                        KwchartJugemu(0);
                     }
-                    KWChart_Kumo_Hook_Default(0);
-                    if (playerHUD[PLAYER_ONE].goalsw == 0) {
-                        convkartspeedtoangle((gPlayerOneCopy->speed / 18.0f) * 216.0f);
+                    KWChartKumoHookDefault(0);
+                    if (PlayerHUD[PLAYER_ONE].Goalsw == 0) {
+                        Convkartspeedtoangle((PlayerOneCopy->Speed / 18.0f) * 216.0f);
                     }
-                    kwlapcnt(PLAYER_ONE);
+                    Kwlapcnt(PLAYER_ONE);
                 } else {
-                    kwplayerparams(PLAYER_ONE);
-                    KWChart_Kumo_Hook_Default(1);
-                    kwplayerparams(PLAYER_TWO);
-                    KWChart_Kumo_Hook_Default(2);
+                    Kwplayerparams(PLAYER_ONE);
+                    KWChartKumoHookDefault(1);
+                    Kwplayerparams(PLAYER_TWO);
+                    KWChartKumoHookDefault(2);
                 }
                 CommonGameEventChart();
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-                kwcheck_randomcnt(PLAYER_ONE);
-                kwcheck_randomcnt(PLAYER_TWO);
-                kwplayerparams(PLAYER_ONE);
-                kwlapcnt(PLAYER_ONE);
-                if (!g_DemoFlag) {
-                    kwchart_jugemu(0);
+                KwcheckRandomcnt(PLAYER_ONE);
+                KwcheckRandomcnt(PLAYER_TWO);
+                Kwplayerparams(PLAYER_ONE);
+                Kwlapcnt(PLAYER_ONE);
+                if (!DemoFlag) {
+                    KwchartJugemu(0);
                 }
-                KWChart_Kumo_Hook_Default(1);
-                kwcheck_nearbomb(0);
-                kwplayerparams(PLAYER_TWO);
-                kwlapcnt(PLAYER_TWO);
-                if (!g_DemoFlag) {
-                    kwchart_jugemu(1);
+                KWChartKumoHookDefault(1);
+                KwcheckNearbomb(0);
+                Kwplayerparams(PLAYER_TWO);
+                Kwlapcnt(PLAYER_TWO);
+                if (!DemoFlag) {
+                    KwchartJugemu(1);
                 }
-                KWChart_Kumo_Hook_Default(2);
-                kwcheck_nearbomb(1);
+                KWChartKumoHookDefault(2);
+                KwcheckNearbomb(1);
                 CommonGameEventChart();
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
-                kwcheck_randomcnt(PLAYER_ONE);
-                kwcheck_randomcnt(PLAYER_TWO);
-                kwplayerparams(PLAYER_ONE);
-                kwlapcnt(PLAYER_ONE);
-                if (!g_DemoFlag) {
-                    kwchart_jugemu(0);
+                KwcheckRandomcnt(PLAYER_ONE);
+                KwcheckRandomcnt(PLAYER_TWO);
+                Kwplayerparams(PLAYER_ONE);
+                Kwlapcnt(PLAYER_ONE);
+                if (!DemoFlag) {
+                    KwchartJugemu(0);
                 }
-                KWChart_Kumo_Hook_Default(3);
-                kwcheck_nearbomb(0);
-                kwplayerparams(PLAYER_TWO);
-                kwlapcnt(PLAYER_TWO);
-                if (!g_DemoFlag) {
-                    kwchart_jugemu(1);
+                KWChartKumoHookDefault(3);
+                KwcheckNearbomb(0);
+                Kwplayerparams(PLAYER_TWO);
+                Kwlapcnt(PLAYER_TWO);
+                if (!DemoFlag) {
+                    KwchartJugemu(1);
                 }
-                KWChart_Kumo_Hook_Default(4);
-                kwcheck_nearbomb(1);
+                KWChartKumoHookDefault(4);
+                KwcheckNearbomb(1);
                 CommonGameEventChart();
                 break;
             case SCREEN_MODE_3P_4P_SPLITSCREEN:
-                kwcheck_randomcnt(PLAYER_ONE);
-                kwcheck_randomcnt(PLAYER_TWO);
-                kwcheck_randomcnt(PLAYER_THREE);
-                kwcheck_randomcnt(PLAYER_FOUR);
-                kwplayerparams(PLAYER_ONE);
-                kwlapcnt(PLAYER_ONE);
-                if (!g_DemoFlag) {
-                    kwchart_jugemu(0);
+                KwcheckRandomcnt(PLAYER_ONE);
+                KwcheckRandomcnt(PLAYER_TWO);
+                KwcheckRandomcnt(PLAYER_THREE);
+                KwcheckRandomcnt(PLAYER_FOUR);
+                Kwplayerparams(PLAYER_ONE);
+                Kwlapcnt(PLAYER_ONE);
+                if (!DemoFlag) {
+                    KwchartJugemu(0);
                 }
-                kwcheck_nearbomb(0);
-                kwplayerparams(PLAYER_TWO);
-                kwlapcnt(PLAYER_TWO);
-                if (!g_DemoFlag) {
-                    kwchart_jugemu(1);
+                KwcheckNearbomb(0);
+                Kwplayerparams(PLAYER_TWO);
+                Kwlapcnt(PLAYER_TWO);
+                if (!DemoFlag) {
+                    KwchartJugemu(1);
                 }
-                kwcheck_nearbomb(1);
-                kwplayerparams(PLAYER_THREE);
-                kwlapcnt(PLAYER_THREE);
-                if (!g_DemoFlag) {
-                    kwchart_jugemu(2);
+                KwcheckNearbomb(1);
+                Kwplayerparams(PLAYER_THREE);
+                Kwlapcnt(PLAYER_THREE);
+                if (!DemoFlag) {
+                    KwchartJugemu(2);
                 }
-                kwcheck_nearbomb(2);
-                if (g_playerCount == 4) {
-                    kwplayerparams(PLAYER_FOUR);
-                    kwlapcnt(PLAYER_FOUR);
-                    if ((!g_DemoFlag) && (g_playerCount == 4)) {
-                        kwchart_jugemu(3);
+                KwcheckNearbomb(2);
+                if (PlayerCount == 4) {
+                    Kwplayerparams(PLAYER_FOUR);
+                    Kwlapcnt(PLAYER_FOUR);
+                    if ((!DemoFlag) && (PlayerCount == 4)) {
+                        KwchartJugemu(3);
                     }
-                    kwcheck_nearbomb(3);
+                    KwcheckNearbomb(3);
                 }
                 CommonGameEventChart();
                 break;
         }
-        kwdma_texture();
+        KwdmaTexture();
     }
 }
 
-void kwgameframesyori(void) {
-    kwStartTime(&D_80165678);
-    modelingnum = 0;
+void Kwgameframesyori(void) {
+    KWStartTime(&D_80165678);
+    Modelingnum = 0;
     D_801655C0 = 0;
-    kwset_projection2D_matrix();
-    if (pause_flag == false) {
-        check_gftimer();
-        if (gGamestate == ENDING) {
-            kwchart_dai();
-            kwchart_cup();
-            kwchart_pukupuku(1);
+    KwsetProjection2DMatrix();
+    if (PauseFlag == false) {
+        CheckGftimer();
+        if (GameState == ENDING) {
+            KwchartDai();
+            KwchartCup();
+            KwchartPukupuku(1);
             KWChartStar();
-        } else if (gGamestate == CREDITS_SEQUENCE) {
-            kwplayerparams(PLAYER_ONE);
-            KWChart_Kumo_Hook_Default(0);
+        } else if (GameState == CREDITS_SEQUENCE) {
+            Kwplayerparams(PLAYER_ONE);
+            KWChartKumoHookDefault(0);
             CommonGameEventChart();
         } else {
-            kwgameframesyori_sub();
+            KwgameframesyoriSub();
         }
     }
-    kwdebug();
-    kwGetTime(&D_80165678, (s32) &D_801655F0);
+    Kwdebug();
+    KWGetTime(&D_80165678, (s32) &D_801655F0);
 }
 
-void kwcheck_kaopanel(s32 playerId) {
-    s32 objectIndex;
+void KwcheckKaopanel(s32 PlayerId) {
+    s32 ObjectIndex;
     s32 lapCount;
-    Player* player;
+    Player* Player;
     UNUSED s32 stackPadding;
 
-    player = &gPlayerOne[playerId];
-    objectIndex = D_8018CE10[playerId].objectIndex;
-    lapCount = gLapCountByPlayerId[playerId];
-    if (player->flag & EXISTS) {
-        if (player->slip_flag &
+    Player = &PlayerOne[PlayerId];
+    ObjectIndex = D_8018CE10[PlayerId].ObjectIndex;
+    lapCount = LapCountByPlayerId[PlayerId];
+    if (Player->Flag & EXISTS) {
+        if (Player->SlipFlag &
             (THUNDER_SPIN | ROLLOVER | SPIN_L | SPIN_R)) {
-            g_DynamicObjects[objectIndex].ang[2] += 0x1000;
+            DynamicObjects[ObjectIndex].ang[2] += 0x1000;
         } else {
-            if (g_DynamicObjects[objectIndex].ang[2] != 0) {
-                g_DynamicObjects[objectIndex].ang[2] += 0x1000;
+            if (DynamicObjects[ObjectIndex].ang[2] != 0) {
+                DynamicObjects[ObjectIndex].ang[2] += 0x1000;
             }
         }
-        if (player->slip_flag & THUNDER) {
-            KWChaseFVal(&g_DynamicObjects[objectIndex].scale, 0.3f, 0.02f);
+        if (Player->SlipFlag & THUNDER) {
+            KWChaseFVal(&DynamicObjects[ObjectIndex].Scale, 0.3f, 0.02f);
         } else {
-            KWChaseFVal(&g_DynamicObjects[objectIndex].scale, 0.6f, 0.02f);
+            KWChaseFVal(&DynamicObjects[ObjectIndex].Scale, 0.6f, 0.02f);
         }
-        if (player->slip_flag & BROKEN) {
-            kwadd_usval(&g_DynamicObjects[objectIndex].ang[0], 0x0C00U, 0x0100U);
+        if (Player->SlipFlag & BROKEN) {
+            KwaddUsval(&DynamicObjects[ObjectIndex].ang[0], 0x0C00U, 0x0100U);
         } else {
-            kwsub_usval(&g_DynamicObjects[objectIndex].ang[0], 0, 0x00000100);
+            KwsubUsval(&DynamicObjects[ObjectIndex].ang[0], 0, 0x00000100);
         }
-        if (player->slip_flag & (THROW_EXPLODE | EXPLODE)) {
-            kwmv_nageage_ground(objectIndex, 6.0f, 1.5f, 0.0f);
+        if (Player->SlipFlag & (THROW_EXPLODE | EXPLODE)) {
+            KwmvNageageGround(ObjectIndex, 6.0f, 1.5f, 0.0f);
         } else {
-            KWChaseFVal(&g_DynamicObjects[objectIndex].pos_spline[1], 0.0f, 1.0f);
+            KWChaseFVal(&DynamicObjects[ObjectIndex].PosSpline[1], 0.0f, 1.0f);
         }
-        if ((player->flag & IS_GHOST) || (player->slip_flag & TERESA)) {
-            g_DynamicObjects[objectIndex].alpha = 0x0050;
+        if ((Player->Flag & IS_GHOST) || (Player->SlipFlag & TERESA)) {
+            DynamicObjects[ObjectIndex].Alpha = 0x0050;
         } else {
-            g_DynamicObjects[objectIndex].alpha = 0x00FF;
+            DynamicObjects[ObjectIndex].Alpha = 0x00FF;
         }
         if (lapCount >= 3) {
-            g_DynamicObjects[objectIndex].ang[2] = 0;
-            g_DynamicObjects[objectIndex].ang[1] = 0;
-            g_DynamicObjects[objectIndex].ang[0] = 0;
-            g_DynamicObjects[objectIndex].pos_spline[2] = 0.0f;
-            g_DynamicObjects[objectIndex].pos_spline[1] = 0.0f;
-            g_DynamicObjects[objectIndex].pos_spline[0] = 0.0f;
-            g_DynamicObjects[objectIndex].scale = 0.6f;
-            g_DynamicObjects[objectIndex].alpha = 0x00FF;
+            DynamicObjects[ObjectIndex].ang[2] = 0;
+            DynamicObjects[ObjectIndex].ang[1] = 0;
+            DynamicObjects[ObjectIndex].ang[0] = 0;
+            DynamicObjects[ObjectIndex].PosSpline[2] = 0.0f;
+            DynamicObjects[ObjectIndex].PosSpline[1] = 0.0f;
+            DynamicObjects[ObjectIndex].PosSpline[0] = 0.0f;
+            DynamicObjects[ObjectIndex].Scale = 0.6f;
+            DynamicObjects[ObjectIndex].Alpha = 0x00FF;
         }
     }
 }
 
-void kwset_kaopanel(void) {
+void KwsetKaopanel(void) {
     s32 temp_s0;
     for (temp_s0 = 0; temp_s0 < NUM_PLAYERS; ++temp_s0) {
-        kwcheck_kaopanel(temp_s0);
+        KwcheckKaopanel(temp_s0);
     }
 }
 
-void kwcheck_command(void) {
+void KwcheckCommand(void) {
     bool b = false;
-    if ((gGamestate != ENDING) && (gGamestate != CREDITS_SEQUENCE) && !D_8018D204) {
-        switch (g_playerCount) {
+    if ((GameState != ENDING) && (GameState != CREDITS_SEQUENCE) && !D_8018D204) {
+        switch (PlayerCount) {
             case 1:
-                if (gControllerOne->ButtonPressed & R_CBUTTONS) {
-                    if (++g_hudLapToggle >= 3) {
-                        g_hudLapToggle = 0;
+                if (ControllerOne->ButtonPressed & R_CBUTTONS) {
+                    if (++HUDLapToggle >= 3) {
+                        HUDLapToggle = 0;
                     }
-                    if (g_hudLapToggle == 2) {
-                        g_hudMapToggle2 = false;
-                        g_hudSpeedToggle2 = false;
-                        g_blueLineRankToggle = true;
-                    } else if (g_hudLapToggle == 1) {
-                        g_hudMapToggle2 = false;
-                        g_hudSpeedToggle2 = true;
-                        g_blueLineRankToggle = false;
+                    if (HUDLapToggle == 2) {
+                        HUDMapToggle2 = false;
+                        HUDSpeedToggle2 = false;
+                        BlueLineRankToggle = true;
+                    } else if (HUDLapToggle == 1) {
+                        HUDMapToggle2 = false;
+                        HUDSpeedToggle2 = true;
+                        BlueLineRankToggle = false;
                     } else {
-                        g_hudMapToggle2 = true;
-                        g_hudSpeedToggle2 = false;
-                        g_blueLineRankToggle = false;
+                        HUDMapToggle2 = true;
+                        HUDSpeedToggle2 = false;
+                        BlueLineRankToggle = false;
                     }
                     b = true;
                 }
                 break;
             case 2:
-                if (g_gameMode != BATTLE) {
-                    if (gControllerOne->ButtonPressed & R_CBUTTONS) {
+                if (GameMode != BATTLE) {
+                    if (ControllerOne->ButtonPressed & R_CBUTTONS) {
                         D_80165800[0] = (D_80165800[0] + 1) & 1;
                         b = true;
                     }
-                    if (gControllerTwo->ButtonPressed & R_CBUTTONS) {
+                    if (ControllerTwo->ButtonPressed & R_CBUTTONS) {
                         D_80165800[1] = (D_80165800[1] + 1) & 1;
                         b = true;
                     }
                     if (D_80165800[0] && D_80165800[1]) {
-                        g_blueLineRankToggle = false;
+                        BlueLineRankToggle = false;
                     } else {
-                        g_blueLineRankToggle = true;
+                        BlueLineRankToggle = true;
                     }
-                    if (g_DemoFlag) {
-                        g_blueLineRankToggle = false;
+                    if (DemoFlag) {
+                        BlueLineRankToggle = false;
                     }
                 }
                 break;
             case 3:
-                if ((gControllerOne->ButtonPressed & R_CBUTTONS) || (gControllerTwo->ButtonPressed & R_CBUTTONS) ||
-                    (gControllerThree->ButtonPressed & R_CBUTTONS)) {
-                    if (g_gameMode != BATTLE) {
-                        g_blueLineRankToggle = (g_blueLineRankToggle + 1) & 1;
+                if ((ControllerOne->ButtonPressed & R_CBUTTONS) || (ControllerTwo->ButtonPressed & R_CBUTTONS) ||
+                    (ControllerThree->ButtonPressed & R_CBUTTONS)) {
+                    if (GameMode != BATTLE) {
+                        BlueLineRankToggle = (BlueLineRankToggle + 1) & 1;
                     }
-                    g_hudLapToggle = (g_hudLapToggle + 1) & 1;
+                    HUDLapToggle = (HUDLapToggle + 1) & 1;
                     b = true;
                 }
                 break;
             case 4:
-                if ((gControllerOne->ButtonPressed & R_CBUTTONS) || (gControllerTwo->ButtonPressed & R_CBUTTONS) ||
-                    (gControllerThree->ButtonPressed & R_CBUTTONS) || (gControllerFour->ButtonPressed & R_CBUTTONS)) {
-                    g_hudLapToggle = (g_hudLapToggle + 1) & 1;
-                    g_KWLapSW = (g_KWLapSW + 1) & 1;
+                if ((ControllerOne->ButtonPressed & R_CBUTTONS) || (ControllerTwo->ButtonPressed & R_CBUTTONS) ||
+                    (ControllerThree->ButtonPressed & R_CBUTTONS) || (ControllerFour->ButtonPressed & R_CBUTTONS)) {
+                    HUDLapToggle = (HUDLapToggle + 1) & 1;
+                    KWLapSW = (KWLapSW + 1) & 1;
                     D_80165800[0] = (D_80165800[0] + 1) & 1;
-                    if (g_gameMode != BATTLE) {
-                        g_blueLineRankToggle = (g_blueLineRankToggle + 1) & 1;
+                    if (GameMode != BATTLE) {
+                        BlueLineRankToggle = (BlueLineRankToggle + 1) & 1;
                     }
                     b = true;
                 }
                 break;
         }
         if (b) {
-            kwbackup_gamestatus(1);
+            KwbackupGamestatus(1);
         }
     }
 }
 
-void KWGameEventCommon_VF(void) {
-    if (g_courseID == COURSE_BOWSER_CASTLE) {
-        kwchart_doshin_vf();
+void KWGameEventCommonVF(void) {
+    if (CourseID == COURSE_BOWSER_CASTLE) {
+        KwchartDoshinVf();
     }
 }
 
 void KWGameEventCommon(void) {
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-    switch (g_courseID) {
+    switch (CourseID) {
         case COURSE_MARIO_RACEWAY:
         case COURSE_CHOCO_MOUNTAIN:
             break;
         case COURSE_BOWSER_CASTLE:
-            kwchart_doshin();
-            kwchart_fire();
+            KwchartDoshin();
+            KwchartFire();
             break;
         case COURSE_BANSHEE_BOARDWALK:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwchart_kanoke();
-                kwchart_danro();
-                if (g_gameMode != TIME_TRIALS) {
-                    kwchart_bat();
+            if (GameState != CREDITS_SEQUENCE) {
+                KwchartKanoke();
+                KwchartDanro();
+                if (GameMode != TIME_TRIALS) {
+                    KwchartBat();
                 }
-                kwchart_tellesa();
-                kwchart_pukupuku(0);
+                KwchartTellesa();
+                KwchartPukupuku(0);
             }
             break;
         case COURSE_YOSHI_VALLEY:
-            kwchart_goalflag();
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwchart_harinezumi();
+            KwchartGoalflag();
+            if (GameState != CREDITS_SEQUENCE) {
+                KwchartHarinezumi();
             }
             break;
         case COURSE_FRAPPE_SNOWLAND:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwchart_snowman();
+            if (GameState != CREDITS_SEQUENCE) {
+                KwchartSnowman();
             }
             KWChartSnow();
             break;
         case COURSE_KOOPA_BEACH:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwchart_kani();
+            if (GameState != CREDITS_SEQUENCE) {
+                KwchartKani();
             }
-            if ((g_menuMultiplayerSelection == 1) || (g_menuMultiplayerSelection == 2) || (gGamestate == CREDITS_SEQUENCE)) {
-                kwchart_kamome();
+            if ((MenuMultiplayerSelection == 1) || (MenuMultiplayerSelection == 2) || (GameState == CREDITS_SEQUENCE)) {
+                KwchartKamome();
             }
             break;
         case COURSE_LUIGI_RACEWAY:
-            if (balloonsw != 0) {
-                kwchart_balloon();
+            if (Balloonsw != 0) {
+                KwchartBalloon();
             }
             break;
         case COURSE_MOO_MOO_FARM:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwchart_choropu();
+            if (GameState != CREDITS_SEQUENCE) {
+                KwchartChoropu();
             }
             break;
         case COURSE_KALAMARI_DESERT:
-            kwchart_train_smoke();
+            KwchartTrainSmoke();
             break;
         case COURSE_SHERBET_LAND:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwchart_iceblock();
+            if (GameState != CREDITS_SEQUENCE) {
+                KwchartIceblock();
             }
-            kwchart_ping();
+            KwchartPing();
             break;
         case COURSE_RAINBOW_ROAD:
-            if (gGamestate != CREDITS_SEQUENCE) {
-                kwchart_neon();
-                kwchart_wanwan();
+            if (GameState != CREDITS_SEQUENCE) {
+                KwchartNeon();
+                KwchartWanwan();
             }
             break;
         case COURSE_DK_JUNGLE:
-            kwchart_ship_smoke();
+            KwchartShipSmoke();
             break;
     }
 #else
@@ -1629,24 +1629,24 @@ void KWGameEventCommon(void) {
 #endif
 
     if (D_80165730 != 0) {
-        kwchart_fuusen();
+        KwchartFuusen();
     }
-    kwchart_kame_fire();
-    if ((s16) g_courseID != COURSE_FRAPPE_SNOWLAND) {
-        kwchart_leaf();
+    KwchartKameFire();
+    if ((s16) CourseID != COURSE_FRAPPE_SNOWLAND) {
+        KwchartLeaf();
     }
 }
 
-void kwcheck_opening_start(void) {
+void KwcheckOpeningStart(void) {
     if (D_8018D170 == 0) {
         if (D_8018D178 == 0) {
-            if (g_playerCount == 1) {
-                kwchart_opening_start();
+            if (PlayerCount == 1) {
+                KwchartOpeningStart();
             }
-            if (g_playerCount == 3) {
-                g_hudMapToggle2 = true;
+            if (PlayerCount == 3) {
+                HUDMapToggle2 = true;
             }
-            g_KWScreenEnable = (s32) 1;
+            KWScreenEnable = (s32) 1;
             D_8018D170 = (s32) 1;
             D_8018D190 = (s32) 1;
             D_8018D204 = 0;
@@ -1656,27 +1656,27 @@ void kwcheck_opening_start(void) {
     }
 }
 
-void kwchart_opening_start(void) {
+void KwchartOpeningStart(void) {
     D_8018D1CC = 1;
     D_8018D1A0 = 0;
 }
 
-void kwchart_opening_next(void) {
+void KwchartOpeningNext(void) {
     ++D_8018D1CC;
     D_8018D1A0 = 0;
 }
 
-void kwchart_opening_jump(s32 arg0) {
+void KwchartOpeningJump(s32 arg0) {
     D_8018D1CC = arg0;
     D_8018D1A0 = 0;
 }
 
-void kwchart_opening_finish(void) {
+void KwchartOpeningFinish(void) {
     D_8018D1CC = 0;
     D_8018D1A0 = 0;
 }
 
-void kwchart_opening_wait(s32 arg0) {
+void KwchartOpeningWait(s32 arg0) {
     if (D_8018D1A0 == 0) {
         D_8018D1D4 = arg0;
         D_8018D1A0 = 1;
@@ -1685,381 +1685,381 @@ void kwchart_opening_wait(s32 arg0) {
     --D_8018D1D4;
     if (D_8018D1D4 < 0) {
         D_8018D1A0 = 0;
-        kwchart_opening_next();
+        KwchartOpeningNext();
     }
 }
 
-void kwchart_opening_init(void) {
+void KwchartOpeningInit(void) {
     D_8018D1B4 = 1;
     D_8018D1A0 = 0;
-    kwchart_opening_next();
+    KwchartOpeningNext();
 }
 
-void kwchart_opening_panel_start(void) {
-    if ((g_gameMode == GRAND_PRIX) && (g_playerCount == 1)) {
-        kwchart_opening_jump(0x14);
+void KwchartOpeningPanelStart(void) {
+    if ((GameMode == GRAND_PRIX) && (PlayerCount == 1)) {
+        KwchartOpeningJump(0x14);
     }
 }
 
-void kwchart_opening_anime(void) {
-    switch (playerHUD[PLAYER_ONE].mptr) {
+void KwchartOpeningAnime(void) {
+    switch (PlayerHUD[PLAYER_ONE].Mptr) {
         case 0:
             break;
         case 1:
-            KWChaseSVal(&playerHUD[PLAYER_ONE].mx, 0x106, 0x10);
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].my, 182, 0x10) != 0) {
-                playerHUD[PLAYER_ONE].mptr++;
-                playerHUD[PLAYER_ONE].hptr = 1;
+            KWChaseSVal(&PlayerHUD[PLAYER_ONE].mx, 0x106, 0x10);
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].my, 182, 0x10) != 0) {
+                PlayerHUD[PLAYER_ONE].Mptr++;
+                PlayerHUD[PLAYER_ONE].Hptr = 1;
             }
             break;
         case 2:
-            KWChaseSVal(&playerHUD[PLAYER_ONE].mx, 0x116, 4);
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].my, 0xC6, 4) != 0) {
-                playerHUD[PLAYER_ONE].mptr++;
+            KWChaseSVal(&PlayerHUD[PLAYER_ONE].mx, 0x116, 4);
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].my, 0xC6, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Mptr++;
             }
             break;
         case 3:
-            KWChaseSVal(&playerHUD[PLAYER_ONE].mx, 0x106, 4);
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].my, 182, 4) != 0) {
-                playerHUD[PLAYER_ONE].mptr++;
+            KWChaseSVal(&PlayerHUD[PLAYER_ONE].mx, 0x106, 4);
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].my, 182, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Mptr++;
             }
             break;
         case 4:
-            KWChaseSVal(&playerHUD[PLAYER_ONE].mx, 0x10E, 4);
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].my, 0xBE, 4) != 0) {
-                playerHUD[PLAYER_ONE].mptr++;
+            KWChaseSVal(&PlayerHUD[PLAYER_ONE].mx, 0x10E, 4);
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].my, 0xBE, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Mptr++;
             }
             break;
         case 5:
-            KWChaseSVal(&playerHUD[PLAYER_ONE].mx, 0x106, 4);
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].my, 182, 4) != 0) {
-                playerHUD[PLAYER_ONE].mptr++;
+            KWChaseSVal(&PlayerHUD[PLAYER_ONE].mx, 0x106, 4);
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].my, 182, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Mptr++;
             }
             break;
         case 6:
-            KWChaseSVal(&playerHUD[PLAYER_ONE].mx, 0x10A, 2);
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].my, 0xBA, 2) != 0) {
-                playerHUD[PLAYER_ONE].mptr++;
+            KWChaseSVal(&PlayerHUD[PLAYER_ONE].mx, 0x10A, 2);
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].my, 0xBA, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Mptr++;
             }
             break;
         case 7:
-            KWChaseSVal(&playerHUD[PLAYER_ONE].mx, 0x106, 2);
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].my, 182, 2) != 0) {
-                playerHUD[PLAYER_ONE].mptr++;
+            KWChaseSVal(&PlayerHUD[PLAYER_ONE].mx, 0x106, 2);
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].my, 182, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Mptr++;
             }
             break;
         case 8:
-            playerHUD[PLAYER_ONE].mptr = 0;
+            PlayerHUD[PLAYER_ONE].Mptr = 0;
             break;
     }
-    if ((playerHUD[PLAYER_ONE].hptr != 0) && (playerHUD[PLAYER_ONE].hptr == 1)) {
+    if ((PlayerHUD[PLAYER_ONE].Hptr != 0) && (PlayerHUD[PLAYER_ONE].Hptr == 1)) {
         if (++D_801657E7 >= 0x10) {
             D_801657E7 = 0;
             D_8016579E = 0xDD00;
-            playerHUD[PLAYER_ONE].hptr = 0U;
+            PlayerHUD[PLAYER_ONE].Hptr = 0U;
         } else {
             D_8016579E = D_800E55B0[D_801657E7] + 0xDD00;
         }
     }
-    switch (playerHUD[PLAYER_ONE].iptr) {
+    switch (PlayerHUD[PLAYER_ONE].Iptr) {
         case 0:
             break;
         case 1:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].addiy, 0x40, 8) != 0) {
-                playerHUD[PLAYER_ONE].iptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Addiy, 0x40, 8) != 0) {
+                PlayerHUD[PLAYER_ONE].Iptr++;
             }
             break;
         case 2:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].addiy, 0x38, 8) != 0) {
-                playerHUD[PLAYER_ONE].iptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Addiy, 0x38, 8) != 0) {
+                PlayerHUD[PLAYER_ONE].Iptr++;
             }
             break;
         case 3:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].addiy, 0x40, 8) != 0) {
-                playerHUD[PLAYER_ONE].iptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Addiy, 0x40, 8) != 0) {
+                PlayerHUD[PLAYER_ONE].Iptr++;
             }
             break;
         case 4:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].addiy, 0x38, 8) != 0) {
-                playerHUD[PLAYER_ONE].iptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Addiy, 0x38, 8) != 0) {
+                PlayerHUD[PLAYER_ONE].Iptr++;
             }
             break;
         case 5:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].addiy, 0x40, 8) != 0) {
-                playerHUD[PLAYER_ONE].iptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Addiy, 0x40, 8) != 0) {
+                PlayerHUD[PLAYER_ONE].Iptr++;
             }
             break;
         case 6:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].addiy, 0x38, 4) != 0) {
-                playerHUD[PLAYER_ONE].iptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Addiy, 0x38, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Iptr++;
             }
             break;
         case 7:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].addiy, 0x40, 4) != 0) {
-                playerHUD[PLAYER_ONE].iptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Addiy, 0x40, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Iptr++;
             }
             break;
         case 8:
-            playerHUD[PLAYER_ONE].iptr = 0;
+            PlayerHUD[PLAYER_ONE].Iptr = 0;
             break;
     }
-    switch (playerHUD[PLAYER_ONE].tptr) {
+    switch (PlayerHUD[PLAYER_ONE].Tptr) {
         case 0:
             break;
         case 1:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].timerX, 0xE4, 0x10) != 0) {
-                playerHUD[PLAYER_ONE].tptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].timerX, 0xE4, 0x10) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr++;
             }
             break;
         case 2:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].timerX, 0xF4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].timerX, 0xF4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr++;
             }
             break;
         case 3:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].timerX, 0xE4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].timerX, 0xE4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr++;
             }
             break;
         case 4:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].timerX, 0xEC, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].timerX, 0xEC, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr++;
             }
             break;
         case 5:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].timerX, 0xE4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].timerX, 0xE4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr++;
             }
             break;
         case 6:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].timerX, 0xE8, 2) != 0) {
-                playerHUD[PLAYER_ONE].tptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].timerX, 0xE8, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr++;
             }
             break;
         case 7:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].timerX, 0xE4, 2) != 0) {
-                playerHUD[PLAYER_ONE].tptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].timerX, 0xE4, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr++;
             }
             break;
         case 8:
-            playerHUD[PLAYER_ONE].tptr = 0;
+            PlayerHUD[PLAYER_ONE].Tptr = 0;
             break;
     }
-    switch (playerHUD[PLAYER_ONE].cptr) {
+    switch (PlayerHUD[PLAYER_ONE].Cptr) {
         case 0:
             break;
         case 1:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx, 0x53, 0x10) != 0) {
-                playerHUD[PLAYER_ONE].cptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx, 0x53, 0x10) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr++;
             }
             break;
         case 2:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx, 0x43, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx, 0x43, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr++;
             }
             break;
         case 3:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx, 0x53, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx, 0x53, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr++;
             }
             break;
         case 4:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx, 0x4B, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx, 0x4B, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr++;
             }
             break;
         case 5:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx, 0x53, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx, 0x53, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr++;
             }
             break;
         case 6:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx, 0x4F, 2) != 0) {
-                playerHUD[PLAYER_ONE].cptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx, 0x4F, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr++;
             }
             break;
         case 7:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx, 0x53, 2) != 0) {
-                playerHUD[PLAYER_ONE].cptr++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx, 0x53, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr++;
             }
             break;
         case 8:
-            playerHUD[PLAYER_ONE].cptr = 0;
+            PlayerHUD[PLAYER_ONE].Cptr = 0;
             break;
     }
-    D_8018CFEC = (f32) (playerHUD[PLAYER_ONE].mx + 0x18);
-    D_8018CFF4 = (f32) (playerHUD[PLAYER_ONE].my + 6);
-    switch (playerHUD[PLAYER_ONE].tptr2) {
+    D_8018CFEC = (f32) (PlayerHUD[PLAYER_ONE].mx + 0x18);
+    D_8018CFF4 = (f32) (PlayerHUD[PLAYER_ONE].my + 6);
+    switch (PlayerHUD[PLAYER_ONE].Tptr2) {
         case 0:
             break;
         case 1:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap1CompletionTimeX, 0xE4, 0x10) != 0) {
-                playerHUD[PLAYER_ONE].tptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap1CompletionTimeX, 0xE4, 0x10) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr2++;
             }
             break;
         case 2:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap1CompletionTimeX, 0xF4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap1CompletionTimeX, 0xF4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr2++;
             }
             break;
         case 3:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap1CompletionTimeX, 0xE4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap1CompletionTimeX, 0xE4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr2++;
             }
             break;
         case 4:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap1CompletionTimeX, 0xEC, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap1CompletionTimeX, 0xEC, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr2++;
             }
             break;
         case 5:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap1CompletionTimeX, 0xE4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap1CompletionTimeX, 0xE4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr2++;
             }
             break;
         case 6:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap1CompletionTimeX, 0xE8, 2) != 0) {
-                playerHUD[PLAYER_ONE].tptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap1CompletionTimeX, 0xE8, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr2++;
             }
             break;
         case 7:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap1CompletionTimeX, 0xE4, 2) != 0) {
-                playerHUD[PLAYER_ONE].tptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap1CompletionTimeX, 0xE4, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr2++;
             }
             break;
         case 8:
-            playerHUD[PLAYER_ONE].tptr2 = 0;
+            PlayerHUD[PLAYER_ONE].Tptr2 = 0;
             break;
     }
-    switch (playerHUD[PLAYER_ONE].cptr2) {
+    switch (PlayerHUD[PLAYER_ONE].Cptr2) {
         case 0:
             break;
         case 1:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx2, 0x53, 0x10) != 0) {
-                playerHUD[PLAYER_ONE].cptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx2, 0x53, 0x10) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr2++;
             }
             break;
         case 2:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx2, 0x43, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx2, 0x43, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr2++;
             }
             break;
         case 3:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx2, 0x53, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx2, 0x53, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr2++;
             }
             break;
         case 4:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx2, 0x4B, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx2, 0x4B, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr2++;
             }
             break;
         case 5:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx2, 0x53, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx2, 0x53, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr2++;
             }
             break;
         case 6:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx2, 0x4F, 2) != 0) {
-                playerHUD[PLAYER_ONE].cptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx2, 0x4F, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr2++;
             }
             break;
         case 7:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx2, 0x53, 2) != 0) {
-                playerHUD[PLAYER_ONE].cptr2++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx2, 0x53, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr2++;
             }
             break;
         case 8:
-            playerHUD[PLAYER_ONE].cptr2 = 0;
+            PlayerHUD[PLAYER_ONE].Cptr2 = 0;
             break;
     }
-    switch (playerHUD[PLAYER_ONE].tptr3) {
+    switch (PlayerHUD[PLAYER_ONE].Tptr3) {
         case 0:
             break;
         case 1:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap2CompletionTimeX, 0xE4, 0x10) != 0) {
-                playerHUD[PLAYER_ONE].tptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap2CompletionTimeX, 0xE4, 0x10) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr3++;
             }
             break;
         case 2:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap2CompletionTimeX, 0xF4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap2CompletionTimeX, 0xF4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr3++;
             }
             break;
         case 3:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap2CompletionTimeX, 0xE4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap2CompletionTimeX, 0xE4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr3++;
             }
             break;
         case 4:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap2CompletionTimeX, 0xEC, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap2CompletionTimeX, 0xEC, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr3++;
             }
             break;
         case 5:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap2CompletionTimeX, 0xE4, 4) != 0) {
-                playerHUD[PLAYER_ONE].tptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap2CompletionTimeX, 0xE4, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr3++;
             }
             break;
         case 6:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap2CompletionTimeX, 0xE8, 2) != 0) {
-                playerHUD[PLAYER_ONE].tptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap2CompletionTimeX, 0xE8, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr3++;
             }
             break;
         case 7:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].lap2CompletionTimeX, 0xE4, 2) != 0) {
-                playerHUD[PLAYER_ONE].tptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap2CompletionTimeX, 0xE4, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Tptr3++;
             }
             break;
         case 8:
-            playerHUD[PLAYER_ONE].tptr3 = 0;
+            PlayerHUD[PLAYER_ONE].Tptr3 = 0;
             break;
     }
-    switch (playerHUD[PLAYER_ONE].cptr3) {
+    switch (PlayerHUD[PLAYER_ONE].Cptr3) {
         case 0:
             break;
         case 1:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx3, 0x53, 0x10) != 0) {
-                playerHUD[PLAYER_ONE].cptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx3, 0x53, 0x10) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr3++;
             }
             break;
         case 2:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx3, 0x43, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx3, 0x43, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr3++;
             }
             break;
         case 3:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx3, 0x53, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx3, 0x53, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr3++;
             }
             break;
         case 4:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx3, 0x4B, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx3, 0x4B, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr3++;
             }
             break;
         case 5:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx3, 0x53, 4) != 0) {
-                playerHUD[PLAYER_ONE].cptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx3, 0x53, 4) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr3++;
             }
             break;
         case 6:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx3, 0x4F, 2) != 0) {
-                playerHUD[PLAYER_ONE].cptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx3, 0x4F, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr3++;
             }
             break;
         case 7:
-            if (KWChaseSVal(&playerHUD[PLAYER_ONE].cx3, 0x53, 2) != 0) {
-                playerHUD[PLAYER_ONE].cptr3++;
+            if (KWChaseSVal(&PlayerHUD[PLAYER_ONE].cx3, 0x53, 2) != 0) {
+                PlayerHUD[PLAYER_ONE].Cptr3++;
             }
             break;
         case 8:
-            playerHUD[PLAYER_ONE].cptr3 = 0;
+            PlayerHUD[PLAYER_ONE].Cptr3 = 0;
             break;
     }
 }
 
-void kwchart_goal_anime(void) {
+void KwchartGoalAnime(void) {
     f32 temp_f0;
     f32* temp_s2;
     f32* temp_s3;
@@ -2067,28 +2067,28 @@ void kwchart_goal_anime(void) {
     UNUSED f32* var_s1;
     s32 var_s0;
 
-    KWChaseSVal(&playerHUD[PLAYER_ONE].lap1CompletionTimeX, 0xE4, 0x10);
-    KWChaseSVal(&playerHUD[PLAYER_ONE].lap2CompletionTimeX, 0xE4, 0x10);
-    KWChaseSVal(&playerHUD[PLAYER_ONE].lap3CompletionTimeX, 0xE4, 0x10);
-    KWChaseSVal(&playerHUD[PLAYER_ONE].totalTimeX, 0xE4, 0x10);
+    KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap1CompletionTimeX, 0xE4, 0x10);
+    KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap2CompletionTimeX, 0xE4, 0x10);
+    KWChaseSVal(&PlayerHUD[PLAYER_ONE].Lap3CompletionTimeX, 0xE4, 0x10);
+    KWChaseSVal(&PlayerHUD[PLAYER_ONE].totalTimeX, 0xE4, 0x10);
     for (var_s0 = 0; var_s0 < NUM_PLAYERS; var_s0++) {
-        temp_s2 = &panelx[var_s0];
+        temp_s2 = &Panelx[var_s0];
         temp_s3 = &D_8018D0C8[var_s0];
         temp_s4 = &D_8018D078[var_s0];
-        if (g_hudCharpicRankY1[var_s0] >= 0.0f) {
+        if (HUDCharpicRankY1[var_s0] >= 0.0f) {
             KWChaseFVal(temp_s2, *temp_s3, *temp_s4);
             temp_f0 = *temp_s2;
             if (temp_f0 == *temp_s3) {
                 *temp_s4 = 0.0f;
             }
             if ((f64) temp_f0 <= -32.0) {
-                g_hudCharpicRankY1[var_s0] = -32.0f;
+                HUDCharpicRankY1[var_s0] = -32.0f;
             }
         }
     }
 }
 
-void kwchart_opening(void) {
+void KwchartOpening(void) {
     s32 i;
     UNUSED s32 unk;
 
@@ -2096,294 +2096,294 @@ void kwchart_opening(void) {
         case 0:
             break;
         case 0x1:
-            kwchart_opening_init();
+            KwchartOpeningInit();
             break;
         case 0x2:
-            if (g_gameMode == TIME_TRIALS) {
-                playerHUD[PLAYER_ONE].iptr = 1;
+            if (GameMode == TIME_TRIALS) {
+                PlayerHUD[PLAYER_ONE].Iptr = 1;
             }
-            playerHUD[PLAYER_ONE].mptr = 1;
-            playerHUD[PLAYER_ONE].tptr = 1;
-            playerHUD[PLAYER_ONE].cptr = 1;
-            kwchart_opening_next();
+            PlayerHUD[PLAYER_ONE].Mptr = 1;
+            PlayerHUD[PLAYER_ONE].Tptr = 1;
+            PlayerHUD[PLAYER_ONE].Cptr = 1;
+            KwchartOpeningNext();
             break;
         case 0x3:
-            kwchart_opening_wait(0);
+            KwchartOpeningWait(0);
             break;
         case 0x4:
-            playerHUD[PLAYER_ONE].tptr2 = 1;
-            playerHUD[PLAYER_ONE].cptr2 = 1;
-            kwchart_opening_next();
+            PlayerHUD[PLAYER_ONE].Tptr2 = 1;
+            PlayerHUD[PLAYER_ONE].Cptr2 = 1;
+            KwchartOpeningNext();
             break;
         case 0x5:
-            kwchart_opening_wait(0);
+            KwchartOpeningWait(0);
             break;
         case 0x6:
-            playerHUD[PLAYER_ONE].tptr3 = 1;
-            playerHUD[PLAYER_ONE].cptr3 = 1;
-            kwchart_opening_next();
-            kwchart_opening_finish();
+            PlayerHUD[PLAYER_ONE].Tptr3 = 1;
+            PlayerHUD[PLAYER_ONE].Cptr3 = 1;
+            KwchartOpeningNext();
+            KwchartOpeningFinish();
             break;
         case 0x14:
             D_8018D078[0] = 16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x15:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x16:
             D_8018D078[1] = 16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x17:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x18:
             D_8018D078[2] = 16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x19:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x1A:
             D_8018D078[3] = 16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x1B:
-            kwchart_opening_wait(0xA);
+            KwchartOpeningWait(0xA);
             break;
         case 0x1C:
-            kwchart_opening_finish();
+            KwchartOpeningFinish();
             break;
         case 0x64:
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x65:
-            kwchart_opening_wait(0x3A);
+            KwchartOpeningWait(0x3A);
             break;
         case 0x66:
             D_8018D078[0] = -8.0f;
             D_8018D0C8[0] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x67:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x68:
             D_8018D078[1] = -8.0f;
             D_8018D0C8[1] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x69:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x6A:
             D_8018D078[2] = -8.0f;
             D_8018D0C8[2] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x6B:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x6C:
             D_8018D078[3] = -8.0f;
             D_8018D0C8[3] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x6D:
-            kwchart_opening_wait(0xA);
+            KwchartOpeningWait(0xA);
             break;
         case 0x6E:
             for (i = 0; i < NUM_PLAYERS; i += 4) {
-                g_hudCharpicRankY1[i] = -32.0f;
-                g_hudCharpicRankY1[i + 1] = -32.0f;
-                g_hudCharpicRankY1[i + 2] = -32.0f;
-                g_hudCharpicRankY1[i + 3] = -32.0f;
+                HUDCharpicRankY1[i] = -32.0f;
+                HUDCharpicRankY1[i + 1] = -32.0f;
+                HUDCharpicRankY1[i + 2] = -32.0f;
+                HUDCharpicRankY1[i + 3] = -32.0f;
             }
-            panelx[0] = 360.0f;
-            g_hudCharpicRankY1[0] = 110.0f;
+            Panelx[0] = 360.0f;
+            HUDCharpicRankY1[0] = 110.0f;
             D_8018D0C8[0] = 44.0f;
             D_8018D078[0] = -16.0f;
-            kwgoalpanelsw = 1;
-            kwchart_opening_next();
+            Kwgoalpanelsw = 1;
+            KwchartOpeningNext();
             break;
         case 0x6F:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x70:
-            panelx[1] = 360.0f;
-            g_hudCharpicRankY1[1] = 110.0f;
+            Panelx[1] = 360.0f;
+            HUDCharpicRankY1[1] = 110.0f;
             D_8018D0C8[1] = 76.0f;
             D_8018D078[1] = -16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x71:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x72:
-            panelx[2] = 360.0f;
-            g_hudCharpicRankY1[2] = 110.0f;
+            Panelx[2] = 360.0f;
+            HUDCharpicRankY1[2] = 110.0f;
             D_8018D0C8[2] = 108.0f;
             D_8018D078[2] = -16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x73:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x74:
-            panelx[3] = 360.0f;
-            g_hudCharpicRankY1[3] = 110.0f;
+            Panelx[3] = 360.0f;
+            HUDCharpicRankY1[3] = 110.0f;
             D_8018D0C8[3] = 140.0f;
             D_8018D078[3] = -16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x75:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x76:
-            panelx[4] = 360.0f;
-            g_hudCharpicRankY1[4] = 110.0f;
+            Panelx[4] = 360.0f;
+            HUDCharpicRankY1[4] = 110.0f;
             D_8018D0C8[4] = 180.0f;
             D_8018D078[4] = -16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x77:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x78:
-            panelx[5] = 360.0f;
-            g_hudCharpicRankY1[5] = 110.0f;
+            Panelx[5] = 360.0f;
+            HUDCharpicRankY1[5] = 110.0f;
             D_8018D0C8[5] = 212.0f;
             D_8018D078[5] = -16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x79:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x7A:
-            panelx[6] = 360.0f;
-            g_hudCharpicRankY1[6] = 110.0f;
+            Panelx[6] = 360.0f;
+            HUDCharpicRankY1[6] = 110.0f;
             D_8018D0C8[6] = 244.0f;
             D_8018D078[6] = -16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x7B:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x7C:
-            panelx[7] = 360.0f;
-            g_hudCharpicRankY1[7] = 110.0f;
+            Panelx[7] = 360.0f;
+            HUDCharpicRankY1[7] = 110.0f;
             D_8018D0C8[7] = 276.0f;
             D_8018D078[7] = -16.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x7D:
-            kwchart_opening_wait(0xA);
+            KwchartOpeningWait(0xA);
             break;
         case 0x7E:
             for (i = 0; i < NUM_PLAYERS; i++) {
                 D_8018D078[i] = 0.0f;
             }
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x7F:
-            kwchart_opening_wait(0x82);
+            KwchartOpeningWait(0x82);
             break;
         case 0x80:
-            if (gGPCurrentRaceRankByPlayerId[0] < 4) {
-                kwchart_opening_jump(0x8C);
+            if (GPCurrentRaceRankByPlayerId[0] < 4) {
+                KwchartOpeningJump(0x8C);
             } else {
-                kwchart_opening_jump(0x82);
+                KwchartOpeningJump(0x82);
             }
             break;
         case 0x82:
-            kwchart_opening_finish();
+            KwchartOpeningFinish();
             break;
         case 0x8C:
             D_8018D078[0] = -16.0f;
             D_8018D0C8[0] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x8D:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x8E:
             D_8018D078[1] = -16.0f;
             D_8018D0C8[1] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x8F:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x90:
             D_8018D078[2] = -16.0f;
             D_8018D0C8[2] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x91:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x92:
             D_8018D078[3] = -16.0f;
             D_8018D0C8[3] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x93:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x94:
             D_8018D078[4] = -16.0f;
             D_8018D0C8[4] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x95:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x96:
             D_8018D078[5] = -16.0f;
             D_8018D0C8[5] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x97:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x98:
             D_8018D078[6] = -16.0f;
             D_8018D0C8[6] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x99:
-            kwchart_opening_wait(4);
+            KwchartOpeningWait(4);
             break;
         case 0x9A:
             D_8018D078[7] = -16.0f;
             D_8018D0C8[7] = -32.0f;
-            kwchart_opening_next();
+            KwchartOpeningNext();
             break;
         case 0x9B:
-            kwchart_opening_wait(0x14);
+            KwchartOpeningWait(0x14);
             break;
         case 0x9C:
-            kwchart_opening_finish();
+            KwchartOpeningFinish();
             break;
     }
     if (D_8018D1CC < 0x64) {
-        kwchart_opening_anime();
+        KwchartOpeningAnime();
     } else if (D_8018D1CC < 0xC8) {
-        kwchart_goal_anime();
+        KwchartGoalAnime();
     }
     if ((D_8018D1CC != 0) && (D_8018D1CC >= 0x14) && (D_8018D1CC < 0x1E)) {
         for (i = 0; i < 4; i++) {
-            KWChaseFVal(&panelx[i], D_8018D0C8[i], D_8018D078[i]);
-            if (panelx[i] == D_8018D0C8[i]) {
+            KWChaseFVal(&Panelx[i], D_8018D0C8[i], D_8018D078[i]);
+            if (Panelx[i] == D_8018D0C8[i]) {
                 D_8018D078[i] = 0.0f;
             }
         }
     }
 }
 
-void convkartspeedtoangle(f32 arg0) {
-    if (!playerHUD[PLAYER_ONE].hptr) {
+void Convkartspeedtoangle(f32 arg0) {
+    if (!PlayerHUD[PLAYER_ONE].Hptr) {
         u16 v;
         if (arg0 < 10.0) {
             v = (u16) (128.0f * arg0) + 0xDD00;
@@ -2406,51 +2406,51 @@ void convkartspeedtoangle(f32 arg0) {
     }
 }
 
-void kwdisplayon(UNUSED s32* arg0) {
+void Kwdisplayon(UNUSED s32* arg0) {
 }
 
-void kwdisplayoff(s32* arg0) {
+void Kwdisplayoff(s32* arg0) {
     *arg0 = 0;
 }
 
-void displayfinish(s32 arg0) {
+void Displayfinish(s32 arg0) {
     D_8018D2C8[arg0] = 1;
 }
 
-void flashcolor_table(s8 index, s16* x, s16* y, s16* z) {
-    s16* src = &D_800E4730[index * 3];
+void FlashcolorTable(s8 Index, s16* x, s16* y, s16* z) {
+    s16* src = &D_800E4730[Index * 3];
     *x = *src++;
     *y = *src++;
     *z = *src++;
 }
 
-void kwget_color(s8 arg0, s16* arg1, s16* arg2, s16* arg3) {
+void KwgetColor(s8 arg0, s16* arg1, s16* Arg2, s16* Arg3) {
     switch (arg0) {
         case 0:
             *arg1 = 0xFF;
-            *arg2 = 0x40;
-            *arg3 = 0x40;
+            *Arg2 = 0x40;
+            *Arg3 = 0x40;
             break;
         case 1:
             *arg1 = 0xFF;
-            *arg2 = 0xFF;
-            *arg3 = 0x40;
+            *Arg2 = 0xFF;
+            *Arg3 = 0x40;
             break;
         case 2:
             *arg1 = 0x40;
-            *arg2 = 0x40;
-            *arg3 = 0xFF;
+            *Arg2 = 0x40;
+            *Arg3 = 0xFF;
             break;
     }
 }
 
-void check_gftimer(void) {
+void CheckGftimer(void) {
     s16 x;
     s16 y;
     s16 z;
     s32 temp_t7;
 
-    temp_t7 = ++kwgameframetimer;
+    temp_t7 = ++Kwgameframetimer;
     D_8018D40C = temp_t7 & 0x3F; // temp_t7 % 64
     D_8018D410 = temp_t7 & 0x1F; // temp_t7 % 32
     KW16GFTimer = temp_t7 & 0xF;  // temp_t7 % 16
@@ -2488,91 +2488,91 @@ void check_gftimer(void) {
     if (D_801658A8 >= 7) {
         D_801658A8 = 0;
     }
-    flashcolor_table(D_801658A8, &x, &y, &z);
-    kwflash_r = x / 2;
-    kwflash_g = y / 2;
-    kwflash_b = z / 2;
-    kwcheck_rank();
+    FlashcolorTable(D_801658A8, &x, &y, &z);
+    KwflashR = x / 2;
+    KwflashG = y / 2;
+    KwflashB = z / 2;
+    KwcheckRank();
 }
 
-void kwcheck_rank(void) {
+void KwcheckRank(void) {
     s32 var_v0;
     s32 sp0;
     s32 temp_v1;
     for (var_v0 = 0; var_v0 < NUM_PLAYERS; var_v0++) {
-        temp_v1 = gGPCurrentRaceRankByPlayerId[var_v0];
+        temp_v1 = GPCurrentRaceRankByPlayerId[var_v0];
         if (KW16GFTimer == 0) {
             KWRank[var_v0] = temp_v1;
         }
-        D_8018CF28[temp_v1] = &gPlayerOne[sp0];
+        D_8018CF28[temp_v1] = &PlayerOne[sp0];
         if (sp0 == 0) {
             D_80165794 = temp_v1;
         }
     }
 
     for (var_v0 = 0; var_v0 < NUM_PLAYERS; var_v0++) {
-        sp0 = rank_to_num[var_v0];
+        sp0 = RankToNum[var_v0];
         D_8018CF50[var_v0] = sp0;
         if (KW16GFTimer == 0) {
-            gGPCurrentRaceCharacterIdByRank[var_v0] = (gPlayerOne + sp0)->kart;
+            GPCurrentRaceCharacterIdByRank[var_v0] = (PlayerOne + sp0)->Kart;
         }
     }
 
     if (--D_8018D314 <= 0) {
-        D_8018D314 = wakuanmtmmax;
-        wakur = D_800E55D0[wakuanmptr][0];
-        wakug = D_800E55D0[wakuanmptr][1];
-        wakub = D_800E55D0[wakuanmptr][2];
-        if (++wakuanmptr == 6) {
-            wakuanmptr = 0;
+        D_8018D314 = Wakuanmtmmax;
+        Wakur = D_800E55D0[Wakuanmptr][0];
+        Wakug = D_800E55D0[Wakuanmptr][1];
+        Wakub = D_800E55D0[Wakuanmptr][2];
+        if (++Wakuanmptr == 6) {
+            Wakuanmptr = 0;
         }
     }
 }
 
-void kwlapcntsub(s32 playerId, s32 lapCount) {
+void Kwlapcntsub(s32 PlayerId, s32 lapCount) {
     s32 temp_a0_2;
     UNUSED s32 stackPadding;
     s8* huh;
     s8* huhthedeuce;
-    Player* player;
+    Player* Player;
 
-    player = &gPlayerOne[playerId];
-    huh = &playerHUD[playerId].lapcnt;
-    huhthedeuce = &playerHUD[playerId].goal;
-    if (playerHUD[playerId].goal < kwgoalcnt) {
-        playerHUD[playerId].totaltime = (u32) (s32) (g_gameTimer * 100.0f);
+    Player = &PlayerOne[PlayerId];
+    huh = &PlayerHUD[PlayerId].Lapcnt;
+    huhthedeuce = &PlayerHUD[PlayerId].Goal;
+    if (PlayerHUD[PlayerId].Goal < Kwgoalcnt) {
+        PlayerHUD[PlayerId].Totaltime = (u32) (s32) (GameTimer * 100.0f);
         if (*huh < lapCount) {
-            temp_a0_2 = gTimePlayerLastTouchedFinishLine[playerId] * 100.0f;
-            playerHUD[playerId].gettime = temp_a0_2;
-            playerHUD[playerId].timebuf[*huh] = temp_a0_2;
+            temp_a0_2 = TimePlayerLastTouchedFinishLine[PlayerId] * 100.0f;
+            PlayerHUD[PlayerId].Gettime = temp_a0_2;
+            PlayerHUD[PlayerId].Timebuf[*huh] = temp_a0_2;
             if (*huh == 0) {
-                playerHUD[playerId].laptimebuf[*huh] = playerHUD[playerId].gettime;
+                PlayerHUD[PlayerId].Laptimebuf[*huh] = PlayerHUD[PlayerId].Gettime;
             } else {
-                playerHUD[playerId].laptimebuf[*huh] =
-                    playerHUD[playerId].timebuf[*huh] - playerHUD[playerId].timebuf[*huh - 1];
+                PlayerHUD[PlayerId].Laptimebuf[*huh] =
+                    PlayerHUD[PlayerId].Timebuf[*huh] - PlayerHUD[PlayerId].Timebuf[*huh - 1];
             }
-            playerHUD[playerId].laptime = playerHUD[playerId].laptimebuf[*huh];
-            playerHUD[playerId].flashtm = 0x003C;
+            PlayerHUD[PlayerId].Laptime = PlayerHUD[PlayerId].Laptimebuf[*huh];
+            PlayerHUD[PlayerId].Flashtm = 0x003C;
             if (lapCount == 3) {
-                playerHUD[playerId].totaltime = playerHUD[playerId].timebuf[*huh];
+                PlayerHUD[PlayerId].Totaltime = PlayerHUD[PlayerId].Timebuf[*huh];
             }
-            if (g_gameMode == (s32) 1) {
-                if (D_80165638 >= playerHUD[playerId].laptime) {
-                    if (D_80165638 != playerHUD[playerId].laptime) {
+            if (GameMode == (s32) 1) {
+                if (D_80165638 >= PlayerHUD[PlayerId].Laptime) {
+                    if (D_80165638 != PlayerHUD[PlayerId].Laptime) {
                         D_80165658[0] = D_80165658[1] = 0;
                     }
-                    NAPlyVoiceStart(0U, (player->kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x0D));
-                    D_80165638 = playerHUD[playerId].laptime;
+                    NAPlyVoiceStart(0U, (Player->Kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x0D));
+                    D_80165638 = PlayerHUD[PlayerId].Laptime;
                     D_80165658[lapCount - 1] = 1;
                     D_801657E3 = 1;
                 }
-                if ((lapCount == 3) && ((u32) playerHUD[playerId].totaltime < (u32) D_80165648)) {
+                if ((lapCount == 3) && ((u32) PlayerHUD[PlayerId].Totaltime < (u32) D_80165648)) {
                     D_801657E5 = 1;
                 }
             }
             *huh += 1;
-            if (kwgoalcnt == *huh) {
-                *huh = kwgoalcnt - 1;
+            if (Kwgoalcnt == *huh) {
+                *huh = Kwgoalcnt - 1;
             }
             *huhthedeuce += 1;
             if (1) {}
@@ -2580,42 +2580,42 @@ void kwlapcntsub(s32 playerId, s32 lapCount) {
                 case 0:             /* switch 1 */
                     break;
                 case 1: /* switch 1 */
-                    kwlap2_jugemu(playerId);
-                    NAPlyTrgStart(playerId, SOUND_ARG_LOAD(0x19, 0x00, 0xF0, 0x15));
-                    if ((g_courseID == COURSE_LUIGI_RACEWAY) && (balloonsw == 0) &&
-                        (g_gameMode != (s32) 1)) {
-                        balloonsw = 1;
+                    Kwlap2Jugemu(PlayerId);
+                    NAPlyTrgStart(PlayerId, SOUND_ARG_LOAD(0x19, 0x00, 0xF0, 0x15));
+                    if ((CourseID == COURSE_LUIGI_RACEWAY) && (Balloonsw == 0) &&
+                        (GameMode != (s32) 1)) {
+                        Balloonsw = 1;
                     }
                     break;
                 case 2: /* switch 1 */
-                    kwfinal_jugemu(playerId);
+                    KwfinalJugemu(PlayerId);
                     break;
                 case 3: /* switch 1 */
                     if ((D_8018D114 == 0) || (D_8018D114 == 1)) {
-                        g_hudLapToggle = 0;
-                        g_hudSpeedToggle2 = 0;
-                        g_blueLineRankToggle = 0;
-                        g_hudMapToggle2 = 1;
+                        HUDLapToggle = 0;
+                        HUDSpeedToggle2 = 0;
+                        BlueLineRankToggle = 0;
+                        HUDMapToggle2 = 1;
                         D_80165800[0] = 1;
                         D_80165800[1] = 1;
                         D_8018D204 = (s32) 1;
                     }
-                    playerHUD[playerId].goalsw = 1;
+                    PlayerHUD[PlayerId].Goalsw = 1;
                     if (D_8018D114 == 2) {
-                        D_80165800[playerId] = 0;
+                        D_80165800[PlayerId] = 0;
                     }
-                    if (g_courseID == COURSE_YOSHI_VALLEY) {
-                        playerHUD[playerId].ranksw = 1;
+                    if (CourseID == COURSE_YOSHI_VALLEY) {
+                        PlayerHUD[PlayerId].Ranksw = 1;
                     }
-                    playerHUD[playerId].lap1CompletionTimeX = 0x0140;
-                    playerHUD[playerId].lap2CompletionTimeX = 0x01E0;
-                    playerHUD[playerId].lap3CompletionTimeX = 0x0280;
-                    playerHUD[playerId].totalTimeX = 0x0320;
+                    PlayerHUD[PlayerId].Lap1CompletionTimeX = 0x0140;
+                    PlayerHUD[PlayerId].Lap2CompletionTimeX = 0x01E0;
+                    PlayerHUD[PlayerId].Lap3CompletionTimeX = 0x0280;
+                    PlayerHUD[PlayerId].totalTimeX = 0x0320;
                     D_8016587C = (s32) 1;
                     if (D_8018D20C == 0) {
-                        kwgoal_jugemu(playerId);
+                        KwgoalJugemu(PlayerId);
                         D_8018D20C = 1;
-                        if (g_menuMultiplayerSelection == (s8) 1) {
+                        if (MenuMultiplayerSelection == (s8) 1) {
                             D_8018D1CC = 0x00000064;
                         }
                     }
@@ -2623,78 +2623,78 @@ void kwlapcntsub(s32 playerId, s32 lapCount) {
             }
         }
     } else {
-        KWChaseFVal(&playerHUD[playerId].rs, 1.0f, 0.125f);
-        switch (g_ScreenSplitB) { /* irregular */
+        KWChaseFVal(&PlayerHUD[PlayerId].rs, 1.0f, 0.125f);
+        switch (ScreenSplitB) { /* irregular */
             case 0:
-                KWChaseSVal(&playerHUD[playerId].rgx, 0x001C, 7);
+                KWChaseSVal(&PlayerHUD[PlayerId].rgx, 0x001C, 7);
                 if (D_8018D1FC != 0) {
-                    KWChaseSVal(&playerHUD[playerId].rgy, -0x0028, 1);
+                    KWChaseSVal(&PlayerHUD[PlayerId].rgy, -0x0028, 1);
                 } else {
-                    KWChaseSVal(&playerHUD[playerId].rgy, -0x0010, 4);
+                    KWChaseSVal(&PlayerHUD[PlayerId].rgy, -0x0010, 4);
                 }
                 break;
             case 2:
-                KWChaseSVal(&playerHUD[playerId].rgx, 0x001C, 7);
-                KWChaseSVal(&playerHUD[playerId].rgy, -0x0010, 4);
+                KWChaseSVal(&PlayerHUD[PlayerId].rgx, 0x001C, 7);
+                KWChaseSVal(&PlayerHUD[PlayerId].rgy, -0x0010, 4);
                 break;
             case 1:
-                KWChaseSVal(&playerHUD[playerId].rgx, 0x001C, 7);
-                KWChaseSVal(&playerHUD[playerId].rgy, -0x0010, 4);
-                KWChaseSVal(&playerHUD[playerId].lap1CompletionTimeX, 0x00E4, 0x0010);
-                KWChaseSVal(&playerHUD[playerId].lap2CompletionTimeX, 0x00E4, 0x0010);
-                KWChaseSVal(&playerHUD[playerId].lap3CompletionTimeX, 0x00E4, 0x0010);
-                KWChaseSVal(&playerHUD[playerId].totalTimeX, 0x00E4, 0x0010);
+                KWChaseSVal(&PlayerHUD[PlayerId].rgx, 0x001C, 7);
+                KWChaseSVal(&PlayerHUD[PlayerId].rgy, -0x0010, 4);
+                KWChaseSVal(&PlayerHUD[PlayerId].Lap1CompletionTimeX, 0x00E4, 0x0010);
+                KWChaseSVal(&PlayerHUD[PlayerId].Lap2CompletionTimeX, 0x00E4, 0x0010);
+                KWChaseSVal(&PlayerHUD[PlayerId].Lap3CompletionTimeX, 0x00E4, 0x0010);
+                KWChaseSVal(&PlayerHUD[PlayerId].totalTimeX, 0x00E4, 0x0010);
                 break;
             case 3:
-                if ((playerId & 1) == 1) {
-                    KWChaseSVal(&playerHUD[playerId].rgx, -8, 2);
+                if ((PlayerId & 1) == 1) {
+                    KWChaseSVal(&PlayerHUD[PlayerId].rgx, -8, 2);
                 } else {
-                    KWChaseSVal(&playerHUD[playerId].rgx, 8, 2);
+                    KWChaseSVal(&PlayerHUD[PlayerId].rgx, 8, 2);
                 }
-                KWChaseSVal(&playerHUD[playerId].rgy, -0x0010, 4);
+                KWChaseSVal(&PlayerHUD[PlayerId].rgy, -0x0010, 4);
                 break;
         }
     }
-    if (playerHUD[playerId].flashtm == 0) {
-        playerHUD[playerId].laptime = playerHUD[playerId].totaltime;
+    if (PlayerHUD[PlayerId].Flashtm == 0) {
+        PlayerHUD[PlayerId].Laptime = PlayerHUD[PlayerId].Totaltime;
         D_801657E3 = 0;
         return;
     }
     if (KW8GFTimer == 0) {
-        playerHUD[playerId].dispsw += 1;
-        playerHUD[playerId].dispsw &= 1;
+        PlayerHUD[PlayerId].Dispsw += 1;
+        PlayerHUD[PlayerId].Dispsw &= 1;
     }
-    playerHUD[playerId].flashtm -= 1;
-    if (playerHUD[playerId].flashtm == 0) {
-        playerHUD[playerId].dispsw = 0;
+    PlayerHUD[PlayerId].Flashtm -= 1;
+    if (PlayerHUD[PlayerId].Flashtm == 0) {
+        PlayerHUD[PlayerId].Dispsw = 0;
     }
 }
 
-void kwlapcnt(s32 playerId) {
-    if (g_gameMode != BATTLE) {
-        switch (playerId) { /* irregular */
+void Kwlapcnt(s32 PlayerId) {
+    if (GameMode != BATTLE) {
+        switch (PlayerId) { /* irregular */
             case PLAYER_ONE:
-                kwlapcntsub(playerId, gLapCountByPlayerId[PLAYER_ONE]);
+                Kwlapcntsub(PlayerId, LapCountByPlayerId[PLAYER_ONE]);
                 break;
             case PLAYER_TWO:
-                kwlapcntsub(playerId, gLapCountByPlayerId[PLAYER_TWO]);
+                Kwlapcntsub(PlayerId, LapCountByPlayerId[PLAYER_TWO]);
                 break;
             case PLAYER_THREE:
-                kwlapcntsub(playerId, gLapCountByPlayerId[PLAYER_THREE]);
+                Kwlapcntsub(PlayerId, LapCountByPlayerId[PLAYER_THREE]);
                 break;
             case PLAYER_FOUR:
-                kwlapcntsub(playerId, gLapCountByPlayerId[PLAYER_FOUR]);
+                Kwlapcntsub(PlayerId, LapCountByPlayerId[PLAYER_FOUR]);
                 break;
         }
     }
 }
 
-void kwgoal_rank_scroll(void) {
-    if ((g_gameMode == GRAND_PRIX) && (g_playerCount == TIME_TRIALS)) {
-        g_KWDemoSW = 1;
+void KwgoalRankScroll(void) {
+    if ((GameMode == GRAND_PRIX) && (PlayerCount == TIME_TRIALS)) {
+        KWDemoSW = 1;
         D_8018D2BC = 0;
         D_8018D2A4 = 0;
-        if (gGPCurrentRaceRankByPlayerId[0] >= 4) {
+        if (GPCurrentRaceRankByPlayerId[0] >= 4) {
             D_8018D1FC = 1;
             D_8018D2A4 = 1;
             D_8018D2BC = 1;
@@ -2702,190 +2702,190 @@ void kwgoal_rank_scroll(void) {
     }
 }
 
-void kwcheck_nearbomb(s32 arg0) {
+void KwcheckNearbomb(s32 arg0) {
     s32 playerPathPoint;
     s32 bombPathPoint;
     s32 var_a2;
     s32 pathPointDiff;
 
-    if (g_gameMode == 2) {
-        playerPathPoint = gNearestPathPointByPlayerId[arg0];
-        playerHUD[arg0].bomb = 0;
+    if (GameMode == 2) {
+        playerPathPoint = NearestPathPointByPlayerId[arg0];
+        PlayerHUD[arg0].Bomb = 0;
         for (var_a2 = 0; var_a2 < NUM_BOMB_KARTS_VERSUS; var_a2++) {
-            if ((bom[var_a2].state == BOMB_STATE_EXPLODED) ||
-                (bom[var_a2].state == BOMB_STATE_INACTIVE)) {
+            if ((Bom[var_a2].State == BOMB_STATE_EXPLODED) ||
+                (Bom[var_a2].State == BOMB_STATE_INACTIVE)) {
                 continue;
             }
-            bombPathPoint = bom[var_a2].pathPointIndex;
+            bombPathPoint = Bom[var_a2].PathPointIndex;
             pathPointDiff = bombPathPoint - playerPathPoint;
             if ((pathPointDiff < -5) || (pathPointDiff > 0x1E)) {
                 continue;
             }
-            playerHUD[arg0].bomb = 1;
+            PlayerHUD[arg0].Bomb = 1;
             break;
         }
     }
 }
 
-// Appears to load GP Mode race staging balloons and kart shadows.
-void imageinit(void) {
-    hoshi = DecodeMapImage1(gTexture69C80C, 0x400, 0x400);
-    kage_bitmap = DecodeMapImage1(gTextureKartShadow, 0x1000, 0x1000);
-    drift_smoke_V = DecodeMapImage1(gTexture69B03C, 0x100, 0x100);
-    drift_smoke_E = DecodeMapImage1(gTexture69B140, 0x400, 0x400);
+// Appears to load GP Mode race staging balloons and Kart shadows.
+void Imageinit(void) {
+    Hoshi = DecodeMapImage1(gTexture69C80C, 0x400, 0x400);
+    KageBitmap = DecodeMapImage1(gTextureKartShadow, 0x1000, 0x1000);
+    DriftSmokeV = DecodeMapImage1(gTexture69B03C, 0x100, 0x100);
+    DriftSmokeE = DecodeMapImage1(gTexture69B140, 0x400, 0x400);
     D_8018D478 = DecodeMapImage1(gTexture69C1E8, 0x200, 0x200);
-    fukidashi2 = DecodeMapImage1(gTextureSpeechBubble, 0x400, 0x400);
-    onpu = DecodeMapImage1(gTextureMusicNote, 0x400, 0x400);
+    Fukidashi2 = DecodeMapImage1(gTextureSpeechBubble, 0x400, 0x400);
+    Onpu = DecodeMapImage1(gTextureMusicNote, 0x400, 0x400);
     D_8018D48C = DecodeMapImage1(gTextureSmokePuff, 0x400, 0x400);
     smoke = DecodeMapImage1(gGroundDust, 0x400, 0x400);
     D_8018D490 = D_8018D48C;
-    grs = DecodeMapImage1(gGrassParticle, 0x1000, 0x1000);
-    balloon1 = DecodeMapImage1(gTextureBalloon1, 0x800, 0x800);
-    balloon2 = DecodeMapImage1(gTextureBalloon2, 0x800, 0x800);
-    bubble = DecodeMapImage1(gTexture69C9C4, 0x200, 0x200);
-    boing = DecodeMapImage1(gTextureBoingExclamation, 0x800, 0x800);
-    poomp1 = DecodeMapImage1(gTextureOnomatopoeiaPoomp1, 0x800, 0x800);
-    poomp2 = DecodeMapImage1(gTextureOnomatopoeiaPoomp2, 0x800, 0x800);
-    whir1 = DecodeMapImage1(gTextureOnomatopoeiaWhrrrr1, 0x800, 0x800);
-    whir2 = DecodeMapImage1(gTextureOnomatopoeiaWhrrrr2, 0x800, 0x800);
-    crash1 = DecodeMapImage1(gTextureOnomatopoeiaCrash1, 0x800, 0x800);
-    crash2 = DecodeMapImage1(gTextureOnomatopoeiaCrash2, 0x800, 0x800);
-    dobon1 = DecodeMapImage1(gTexture69CB84, 0x800, 0x800);
-    dobon2 = DecodeMapImage1(gTexture69CCEC, 0x800, 0x800);
-    dobon3 = DecodeMapImage1(gTexture69CEB8, 0x800, 0x800);
-    dobon4 = DecodeMapImage1(gTexture69D148, 0x800, 0x800);
-    dobon5 = DecodeMapImage1(gTexture69D4E0, 0x800, 0x800);
-    dobon6 = DecodeMapImage1(gTexture69D8FC, 0x800, 0x800);
-    dobon7 = DecodeMapImage1(gTexture69DCB4, 0x800, 0x800);
-    dobon8 = DecodeMapImage1(gTexture69DFA0, 0x800, 0x800);
-    dobon9 = DecodeMapImage1(gTexture69E25C, 0x800, 0x800);
-    dobon10 = DecodeMapImage1(gTexture69E518, 0x800, 0x800);
-    dobon11 = DecodeMapImage1(gTexture69E7A8, 0x800, 0x800);
-    dobon12 = DecodeMapImage1(gTexture69EA18, 0x800, 0x800);
-    dobon13 = DecodeMapImage1(gTexture69EC54, 0x800, 0x800);
-    dobon14 = DecodeMapImage1(gTexture69EE38, 0x800, 0x800);
-    dobon15 = DecodeMapImage1(gTexture69EFE0, 0x800, 0x800);
-    thunderA = DecodeMapImage1(gTextureLightningBolt0, 0x800, 0x800);
-    thunderB = DecodeMapImage1(gTextureLightningBolt1, 0x800, 0x800);
+    Grs = DecodeMapImage1(gGrassParticle, 0x1000, 0x1000);
+    Balloon1 = DecodeMapImage1(gTextureBalloon1, 0x800, 0x800);
+    Balloon2 = DecodeMapImage1(gTextureBalloon2, 0x800, 0x800);
+    Bubble = DecodeMapImage1(gTexture69C9C4, 0x200, 0x200);
+    Boing = DecodeMapImage1(gTextureBoingExclamation, 0x800, 0x800);
+    Poomp1 = DecodeMapImage1(gTextureOnomatopoeiaPoomp1, 0x800, 0x800);
+    Poomp2 = DecodeMapImage1(gTextureOnomatopoeiaPoomp2, 0x800, 0x800);
+    Whir1 = DecodeMapImage1(gTextureOnomatopoeiaWhrrrr1, 0x800, 0x800);
+    Whir2 = DecodeMapImage1(gTextureOnomatopoeiaWhrrrr2, 0x800, 0x800);
+    Crash1 = DecodeMapImage1(gTextureOnomatopoeiaCrash1, 0x800, 0x800);
+    Crash2 = DecodeMapImage1(gTextureOnomatopoeiaCrash2, 0x800, 0x800);
+    Dobon1 = DecodeMapImage1(gTexture69CB84, 0x800, 0x800);
+    Dobon2 = DecodeMapImage1(gTexture69CCEC, 0x800, 0x800);
+    Dobon3 = DecodeMapImage1(gTexture69CEB8, 0x800, 0x800);
+    Dobon4 = DecodeMapImage1(gTexture69D148, 0x800, 0x800);
+    Dobon5 = DecodeMapImage1(gTexture69D4E0, 0x800, 0x800);
+    Dobon6 = DecodeMapImage1(gTexture69D8FC, 0x800, 0x800);
+    Dobon7 = DecodeMapImage1(gTexture69DCB4, 0x800, 0x800);
+    Dobon8 = DecodeMapImage1(gTexture69DFA0, 0x800, 0x800);
+    Dobon9 = DecodeMapImage1(gTexture69E25C, 0x800, 0x800);
+    Dobon10 = DecodeMapImage1(gTexture69E518, 0x800, 0x800);
+    Dobon11 = DecodeMapImage1(gTexture69E7A8, 0x800, 0x800);
+    Dobon12 = DecodeMapImage1(gTexture69EA18, 0x800, 0x800);
+    Dobon13 = DecodeMapImage1(gTexture69EC54, 0x800, 0x800);
+    Dobon14 = DecodeMapImage1(gTexture69EE38, 0x800, 0x800);
+    Dobon15 = DecodeMapImage1(gTexture69EFE0, 0x800, 0x800);
+    ThunderA = DecodeMapImage1(gTextureLightningBolt0, 0x800, 0x800);
+    ThunderB = DecodeMapImage1(gTextureLightningBolt1, 0x800, 0x800);
 }
 
-void effectinit(Player* player) {
+void Effectinit(Player* Player) {
     s32 temp_v0;
 
     for (temp_v0 = 0; temp_v0 < 10; ++temp_v0) {
-        player->gass[temp_v0].flag = 0;
-        player->gass[temp_v0].timer = 0;
-        player->gass[temp_v0].number = NO_PARTICLE;
+        Player->Gass[temp_v0].Flag = 0;
+        Player->Gass[temp_v0].Timer = 0;
+        Player->Gass[temp_v0].Number = NO_PARTICLE;
     }
 
     for (temp_v0 = 0; temp_v0 < 10; ++temp_v0) {
-        player->spark[temp_v0].flag = 0;
-        player->spark[temp_v0].timer = 0;
-        player->spark[temp_v0].number = NO_PARTICLE;
+        Player->Spark[temp_v0].Flag = 0;
+        Player->Spark[temp_v0].Timer = 0;
+        Player->Spark[temp_v0].Number = NO_PARTICLE;
     }
 
     for (temp_v0 = 0; temp_v0 < 10; ++temp_v0) {
-        player->smoke[temp_v0].flag = 0;
-        player->smoke[temp_v0].timer = 0;
-        player->smoke[temp_v0].number = NO_PARTICLE;
+        Player->smoke[temp_v0].Flag = 0;
+        Player->smoke[temp_v0].Timer = 0;
+        Player->smoke[temp_v0].Number = NO_PARTICLE;
     }
 
     for (temp_v0 = 0; temp_v0 < 10; ++temp_v0) {
-        player->letter[temp_v0].flag = 0;
-        player->letter[temp_v0].timer = 0;
-        player->letter[temp_v0].number = NO_PARTICLE;
+        Player->Letter[temp_v0].Flag = 0;
+        Player->Letter[temp_v0].Timer = 0;
+        Player->Letter[temp_v0].Number = NO_PARTICLE;
     }
 }
 
-void MakePos(Player* player, Particle* arg1, f32 x, f32 y, f32 z, s8 surfaceType, s8 arg6) {
+void MakePos(Player* Player, Particle* arg1, f32 x, f32 y, f32 z, s8 surfaceType, s8 arg6) {
     arg1->trz = z;
     arg1->trx = x;
     arg1->try = y;
-    arg1->ang = -player->direction[1];
-    arg1->type = surfaceType;
-    arg1->lrflag = arg6;
+    arg1->ang = -Player->Direction[1];
+    arg1->Type = surfaceType;
+    arg1->Lrflag = arg6;
 }
 
-s32 MakeStartup(Particle* arg0, s8 type, f32 arg2) {
-    arg0->flag = true;
-    arg0->number = type;
-    arg0->timer = 0;
-    arg0->scale = arg2;
+s32 MakeStartup(Particle* arg0, s8 Type, f32 Arg2) {
+    arg0->Flag = true;
+    arg0->Number = Type;
+    arg0->Timer = 0;
+    arg0->Scale = Arg2;
 }
 
-s32 MakeRDP(Particle* arg0, s32 color, s16 alpha) {
-    arg0->swork1 = (u8) (color >> 16);
-    arg0->swork2 = (u8) (color >> 8);
-    arg0->swork3 = (u8) color;
-    arg0->swork4 = alpha;
+s32 MakeRDP(Particle* arg0, s32 color, s16 Alpha) {
+    arg0->Swork1 = (u8) (color >> 16);
+    arg0->Swork2 = (u8) (color >> 8);
+    arg0->Swork3 = (u8) color;
+    arg0->Swork4 = Alpha;
 }
 
-s32 MakeRandomRDP(Particle* arg0, s32 arg1, s16 alpha) {
+s32 MakeRandomRDP(Particle* arg0, s32 arg1, s16 Alpha) {
     s32 temp_v0;
     temp_v0 = MakeRandomLimmit(48);
 
-    arg0->swork1 = (u8) ((u8) (arg1 >> 16) - temp_v0);
-    arg0->swork2 = (u8) ((u8) (arg1 >> 8) - temp_v0);
-    arg0->swork3 = (u8) ((u8) arg1 - temp_v0);
-    arg0->swork4 = alpha;
+    arg0->Swork1 = (u8) ((u8) (arg1 >> 16) - temp_v0);
+    arg0->Swork2 = (u8) ((u8) (arg1 >> 8) - temp_v0);
+    arg0->Swork3 = (u8) ((u8) arg1 - temp_v0);
+    arg0->Swork4 = Alpha;
 }
 
-void initdrift_smoke_set(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitdriftSmokeSet(Player* Player, s16 arg1, UNUSED s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 temp_lo;
 
-    if (player->slipang >= 0) {
-        MakePos(player, &player->smoke[arg1], player->tire_RL.Position[0],
-                      player->tire_RL.Height + 2.0f, player->tire_RL.Position[2],
-                      player->tire_RL.Status, 1);
+    if (Player->Slipang >= 0) {
+        MakePos(Player, &Player->smoke[arg1], Player->TireRL.Position[0],
+                      Player->TireRL.Height + 2.0f, Player->TireRL.Position[2],
+                      Player->TireRL.Status, 1);
     } else {
-        MakePos(player, &player->smoke[arg1], player->tire_RR.Position[0],
-                      player->tire_RR.Height + 2.0f, player->tire_RR.Position[2],
-                      player->tire_RR.Status, 0);
+        MakePos(Player, &Player->smoke[arg1], Player->TireRR.Position[0],
+                      Player->TireRR.Height + 2.0f, Player->TireRR.Position[2],
+                      Player->TireRR.Status, 0);
     }
 
-    temp_lo = player->slipang / DEGREES(1);
+    temp_lo = Player->Slipang / DEGREES(1);
     if ((temp_lo >= 7) || (temp_lo < -6)) {
-        MakeStartup(&player->smoke[arg1], DRIFT_PARTICLE, 0.35f);
-        if (player->powerstack_count == 0) {
-            MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x70);
+        MakeStartup(&Player->smoke[arg1], DRIFT_PARTICLE, 0.35f);
+        if (Player->PowerstackCount == 0) {
+            MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x70);
         }
 
-        if (player->powerstack_count == 1) {
-            MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0x00), 0x70);
+        if (Player->PowerstackCount == 1) {
+            MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0x00), 0x70);
         }
 
-        if (player->powerstack_count >= 2) {
-            MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0x96, 0x00), 0x70);
+        if (Player->PowerstackCount >= 2) {
+            MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0x96, 0x00), 0x70);
         }
 
-        if (player->powerstack_count >= 2) {
+        if (Player->PowerstackCount >= 2) {
             // Why not put this in previous if statement?
-            player->smoke[arg1].swork5 = 2;
+            Player->smoke[arg1].Swork5 = 2;
             return;
         }
 
-        player->smoke[arg1].swork5 = player->powerstack_count;
+        Player->smoke[arg1].Swork5 = Player->PowerstackCount;
     }
 }
 
-void initdrift_smoke(Player* player, s16 arg1, s32 arg2, s8 arg3, s8 arg4) {
-    if ((arg1 == 0) && ((player->smoke[arg2].timer >= 3) || (player->smoke[arg2].flag == 0))) {
-        initdrift_smoke_set(player, arg1, arg2, arg3, arg4);
-    } else if (player->smoke[arg2].timer >= 3) {
-        initdrift_smoke_set(player, arg1, arg2, arg3, arg4);
+void InitdriftSmoke(Player* Player, s16 arg1, s32 Arg2, s8 Arg3, s8 arg4) {
+    if ((arg1 == 0) && ((Player->smoke[Arg2].Timer >= 3) || (Player->smoke[Arg2].Flag == 0))) {
+        InitdriftSmokeSet(Player, arg1, Arg2, Arg3, arg4);
+    } else if (Player->smoke[Arg2].Timer >= 3) {
+        InitdriftSmokeSet(Player, arg1, Arg2, Arg3, arg4);
     }
 }
 
-UNUSED void set_init_smoke(void) {
+UNUSED void SetInitSmoke(void) {
 }
 
-void set_up_smoke(Particle* particle, s16 arg1, s16 arg2, s16 arg3) {
-    particle->swork1 = arg1;
-    particle->swork4 = arg3;
-    particle->swork5 = arg2;
+void SetUpSmoke(Particle* particle, s16 arg1, s16 Arg2, s16 Arg3) {
+    particle->Swork1 = arg1;
+    particle->Swork4 = Arg3;
+    particle->Swork5 = Arg2;
 }
 
-void InitRndSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitRndSmoke(Player* Player, s16 arg1, s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     UNUSED s32 stackPadding;
     s32 surfaceType;
     s32 var_t3;
@@ -2898,194 +2898,194 @@ void InitRndSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 
     surfaceType = 0x000000FF;
     randval = MakeRandomLimmit(test);
     if ((randval == 0) || (randval == 4)) {
-        tire_x = player->tire_RL.Position[0];
-        tire_y = player->tire_RL.Height + 2.0f;
-        tire_z = player->tire_RL.Position[2];
+        tire_x = Player->TireRL.Position[0];
+        tire_y = Player->TireRL.Height + 2.0f;
+        tire_z = Player->TireRL.Position[2];
         var_t3 = 1;
-        surfaceType = player->tire_RL.Status;
+        surfaceType = Player->TireRL.Status;
     }
     if ((randval == 2) || (randval == 6)) {
-        tire_x = player->tire_RR.Position[0];
-        tire_y = player->tire_RR.Height + 2.0f;
-        tire_z = player->tire_RR.Position[2];
+        tire_x = Player->TireRR.Position[0];
+        tire_y = Player->TireRR.Height + 2.0f;
+        tire_z = Player->TireRR.Position[2];
         var_t3 = 0;
-        surfaceType = player->tire_RR.Status;
+        surfaceType = Player->TireRR.Status;
     }
     switch (surfaceType) {
         case DIRT:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                if (((player->speed / 18.0f) * 216.0f) >= 10.0f) {
-                    MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                    MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                    if ((g_courseID == COURSE_CHOCO_MOUNTAIN) || (g_courseID == COURSE_ROYAL_RACEWAY)) {
-                        set_up_smoke(&player->smoke[arg1], 1, 0, 0x0080);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                if (((Player->Speed / 18.0f) * 216.0f) >= 10.0f) {
+                    MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                    MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                    if ((CourseID == COURSE_CHOCO_MOUNTAIN) || (CourseID == COURSE_ROYAL_RACEWAY)) {
+                        SetUpSmoke(&Player->smoke[arg1], 1, 0, 0x0080);
                     }
-                    if (g_courseID == COURSE_KALAMARI_DESERT) {
-                        set_up_smoke(&player->smoke[arg1], 7, 0, 0x0080);
+                    if (CourseID == COURSE_KALAMARI_DESERT) {
+                        SetUpSmoke(&Player->smoke[arg1], 7, 0, 0x0080);
                     }
-                    if (g_courseID == COURSE_MOO_MOO_FARM) {
-                        set_up_smoke(&player->smoke[arg1], 8, 0, 0x0080);
+                    if (CourseID == COURSE_MOO_MOO_FARM) {
+                        SetUpSmoke(&Player->smoke[arg1], 8, 0, 0x0080);
                     }
-                    if (g_courseID == COURSE_WARIO_STADIUM) {
-                        set_up_smoke(&player->smoke[arg1], 9, 0, 0x0080);
+                    if (CourseID == COURSE_WARIO_STADIUM) {
+                        SetUpSmoke(&Player->smoke[arg1], 9, 0, 0x0080);
                     }
-                    if (g_courseID == COURSE_YOSHI_VALLEY) {
-                        set_up_smoke(&player->smoke[arg1], 10, 0, 0x0080);
+                    if (CourseID == COURSE_YOSHI_VALLEY) {
+                        SetUpSmoke(&Player->smoke[arg1], 10, 0, 0x0080);
                     }
-                    if (g_courseID == COURSE_DK_JUNGLE) {
-                        set_up_smoke(&player->smoke[arg1], 11, 0, 0x0080);
+                    if (CourseID == COURSE_DK_JUNGLE) {
+                        SetUpSmoke(&Player->smoke[arg1], 11, 0, 0x0080);
                     }
-                    player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                    Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
                 }
-            } else if ((player->smoke[arg2].timer > 0) && (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-                MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                if ((g_courseID == COURSE_CHOCO_MOUNTAIN) || (g_courseID == COURSE_ROYAL_RACEWAY)) {
-                    set_up_smoke(&player->smoke[arg1], 1, 0, 0x0080);
+            } else if ((Player->smoke[Arg2].Timer > 0) && (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+                MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                if ((CourseID == COURSE_CHOCO_MOUNTAIN) || (CourseID == COURSE_ROYAL_RACEWAY)) {
+                    SetUpSmoke(&Player->smoke[arg1], 1, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_KALAMARI_DESERT) {
-                    set_up_smoke(&player->smoke[arg1], 7, 0, 0x0080);
+                if (CourseID == COURSE_KALAMARI_DESERT) {
+                    SetUpSmoke(&Player->smoke[arg1], 7, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_MOO_MOO_FARM) {
-                    set_up_smoke(&player->smoke[arg1], 8, 0, 0x0080);
+                if (CourseID == COURSE_MOO_MOO_FARM) {
+                    SetUpSmoke(&Player->smoke[arg1], 8, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_WARIO_STADIUM) {
-                    set_up_smoke(&player->smoke[arg1], 9, 0, 0x0080);
+                if (CourseID == COURSE_WARIO_STADIUM) {
+                    SetUpSmoke(&Player->smoke[arg1], 9, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_YOSHI_VALLEY) {
-                    set_up_smoke(&player->smoke[arg1], 10, 0, 0x0080);
+                if (CourseID == COURSE_YOSHI_VALLEY) {
+                    SetUpSmoke(&Player->smoke[arg1], 10, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_DK_JUNGLE) {
-                    set_up_smoke(&player->smoke[arg1], 11, 0, 0x0080);
+                if (CourseID == COURSE_DK_JUNGLE) {
+                    SetUpSmoke(&Player->smoke[arg1], 11, 0, 0x0080);
                 }
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case GRASS:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                if (((player->speed / 18.0f) * 216.0f) >= 10.0f) {
-                    MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                    MakeStartup(&player->smoke[arg1], GRASS_PARTICLE, 1.0f);
-                    MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-                    player->smoke[arg1].swork1 -= arg1 * 8;
-                    player->smoke[arg1].swork2 -= arg1 * 8;
-                    player->smoke[arg1].swork3 -= arg1 * 8;
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                if (((Player->Speed / 18.0f) * 216.0f) >= 10.0f) {
+                    MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                    MakeStartup(&Player->smoke[arg1], GRASS_PARTICLE, 1.0f);
+                    MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+                    Player->smoke[arg1].Swork1 -= arg1 * 8;
+                    Player->smoke[arg1].Swork2 -= arg1 * 8;
+                    Player->smoke[arg1].Swork3 -= arg1 * 8;
                 }
-            } else if ((player->smoke[arg2].timer > 0) && (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-                MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], GRASS_PARTICLE, 1.0f);
-                MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-                player->smoke[arg1].swork1 -= arg1 * 8;
-                player->smoke[arg1].swork2 -= arg1 * 8;
-                player->smoke[arg1].swork3 -= arg1 * 8;
+            } else if ((Player->smoke[Arg2].Timer > 0) && (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+                MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], GRASS_PARTICLE, 1.0f);
+                MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+                Player->smoke[arg1].Swork1 -= arg1 * 8;
+                Player->smoke[arg1].Swork2 -= arg1 * 8;
+                Player->smoke[arg1].Swork3 -= arg1 * 8;
             }
-            player->smoke[arg1].try -= 1.5;
+            Player->smoke[arg1].try -= 1.5;
             break;
         case SAND_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                if (((player->speed / 18.0f) * 216.0f) >= 10.0f) {
-                    MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                    MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                    set_up_smoke(&player->smoke[arg1], 2, 1, 0x00A8);
-                    player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                if (((Player->Speed / 18.0f) * 216.0f) >= 10.0f) {
+                    MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                    MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                    SetUpSmoke(&Player->smoke[arg1], 2, 1, 0x00A8);
+                    Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
                 }
-            } else if ((player->smoke[arg2].timer > 0) && (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-                MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 2, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+            } else if ((Player->smoke[Arg2].Timer > 0) && (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+                MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 2, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case SAND:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                if (((player->speed / 18.0f) * 216.0f) >= 10.0f) {
-                    MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                    MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                    set_up_smoke(&player->smoke[arg1], 3, 1, 0x00A8);
-                    player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                if (((Player->Speed / 18.0f) * 216.0f) >= 10.0f) {
+                    MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                    MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                    SetUpSmoke(&Player->smoke[arg1], 3, 1, 0x00A8);
+                    Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
                 }
-            } else if ((player->smoke[arg2].timer > 0) && (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-                MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 3, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+            } else if ((Player->smoke[Arg2].Timer > 0) && (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+                MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 3, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case WET_SAND:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                if (((player->speed / 18.0f) * 216.0f) >= 10.0f) {
-                    MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                    MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                    set_up_smoke(&player->smoke[arg1], 4, 1, 0x00A8);
-                    player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                if (((Player->Speed / 18.0f) * 216.0f) >= 10.0f) {
+                    MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                    MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                    SetUpSmoke(&Player->smoke[arg1], 4, 1, 0x00A8);
+                    Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
                 }
-            } else if ((player->smoke[arg2].timer > 0) && (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-                MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 4, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+            } else if ((Player->smoke[Arg2].Timer > 0) && (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+                MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 4, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case DIRT_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                if (((player->speed / 18.0f) * 216.0f) >= 10.0f) {
-                    MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                    MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                    set_up_smoke(&player->smoke[arg1], 5, 1, 0x00A8);
-                    player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                if (((Player->Speed / 18.0f) * 216.0f) >= 10.0f) {
+                    MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                    MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                    SetUpSmoke(&Player->smoke[arg1], 5, 1, 0x00A8);
+                    Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
                 }
-            } else if ((player->smoke[arg2].timer > 0) && (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-                MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                MakeRandomRDP(&player->smoke[arg1], 0x00FFA54F, 0x00AF);
-                set_up_smoke(&player->smoke[arg1], 5, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+            } else if ((Player->smoke[Arg2].Timer > 0) && (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+                MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                MakeRandomRDP(&Player->smoke[arg1], 0x00FFA54F, 0x00AF);
+                SetUpSmoke(&Player->smoke[arg1], 5, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case SNOW:
         case SNOW_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                if (((player->speed / 18.0f) * 216.0f) >= 10.0f) {
-                    MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                    MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                    set_up_smoke(&player->smoke[arg1], 6, 1, 0x00A8);
-                    player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                if (((Player->Speed / 18.0f) * 216.0f) >= 10.0f) {
+                    MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                    MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                    SetUpSmoke(&Player->smoke[arg1], 6, 1, 0x00A8);
+                    Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
                 }
-            } else if ((player->smoke[arg2].timer > 0) && (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-                MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 6, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+            } else if ((Player->smoke[Arg2].Timer > 0) && (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+                MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 6, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case ASPHALT:
         case STONE:
         case BRIDGE:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                if (((((player->speed / 18.0f) * 216.0f) >= 30.0f) &&
-                     ((((player->slipang / DEGREES(1)) > 0x14) || ((player->slipang / DEGREES(1)) < (-0x14))))) ||
-                    ((player->old_speed - player->speed) >= 0.04)) {
-                    MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                    MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                    set_up_smoke(&player->smoke[arg1], 0, 0, 0x0080);
-                    player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                if (((((Player->Speed / 18.0f) * 216.0f) >= 30.0f) &&
+                     ((((Player->Slipang / DEGREES(1)) > 0x14) || ((Player->Slipang / DEGREES(1)) < (-0x14))))) ||
+                    ((Player->OldSpeed - Player->Speed) >= 0.04)) {
+                    MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                    MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                    SetUpSmoke(&Player->smoke[arg1], 0, 0, 0x0080);
+                    Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
                 }
-            } else if ((player->smoke[arg2].timer > 0) &&
-                       (((((player->speed / 18.0f) * 216.0f) >= 30.0f) &&
-                         (((player->slipang / DEGREES(1)) >= 0x15) || ((player->slipang / DEGREES(1)) < -0x14))) ||
-                        ((player->old_speed - player->speed) >= 0.04))) {
-                MakePos(player, &player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], GROUND_PARTICLE, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 0, 0, 0x0080);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+            } else if ((Player->smoke[Arg2].Timer > 0) &&
+                       (((((Player->Speed / 18.0f) * 216.0f) >= 30.0f) &&
+                         (((Player->Slipang / DEGREES(1)) >= 0x15) || ((Player->Slipang / DEGREES(1)) < -0x14))) ||
+                        ((Player->OldSpeed - Player->Speed) >= 0.04))) {
+                MakePos(Player, &Player->smoke[arg1], tire_x, tire_y, tire_z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], GROUND_PARTICLE, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 0, 0, 0x0080);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         default:
@@ -3093,7 +3093,7 @@ void InitRndSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 
     }
 }
 
-void initrnd_spl(Player* player, s16 arg1, s32 arg2, s8 arg3, UNUSED s8 arg4) {
+void InitrndSpl(Player* Player, s16 arg1, s32 Arg2, s8 Arg3, UNUSED s8 arg4) {
     s32 temp_v0;
     s32 surfaceType;
     s32 var_t1;
@@ -3105,40 +3105,40 @@ void initrnd_spl(Player* player, s16 arg1, s32 arg2, s8 arg3, UNUSED s8 arg4) {
     surfaceType = 0x000000FF;
     temp_v0 = MakeRandomLimmit(test);
     if ((temp_v0 == 0) || (temp_v0 == 8)) {
-        if ((g_waterlevelPlayer[arg3] - player->tire_RL.Height) >= 3.5) {
-            x = player->tire_RL.Position[0];
-            y = player->tire_RL.Height + 2.0f;
-            z = player->tire_RL.Position[2];
+        if ((WaterlevelPlayer[Arg3] - Player->TireRL.Height) >= 3.5) {
+            x = Player->TireRL.Position[0];
+            y = Player->TireRL.Height + 2.0f;
+            z = Player->TireRL.Position[2];
             var_t1 = 1;
             surfaceType = 0;
         }
     }
     if ((temp_v0 == 2) || (temp_v0 == 6)) {
-        if ((g_waterlevelPlayer[arg3] - player->tire_RR.Height) >= 3.5) {
-            x = player->tire_RR.Position[0];
-            y = player->tire_RR.Height + 2.0f;
-            z = player->tire_RR.Position[2];
+        if ((WaterlevelPlayer[Arg3] - Player->TireRR.Height) >= 3.5) {
+            x = Player->TireRR.Position[0];
+            y = Player->TireRR.Height + 2.0f;
+            z = Player->TireRR.Position[2];
             var_t1 = 0;
             surfaceType = 0;
         }
     }
     if (1) {}
     if (surfaceType == 0) {
-        if ((arg1 == 0) && ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-            if (((player->speed / 18.0f) * 216.0f) >= 10.0f) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 9, 0.8f);
-                MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00AF);
+        if ((arg1 == 0) && ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+            if (((Player->Speed / 18.0f) * 216.0f) >= 10.0f) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 9, 0.8f);
+                MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00AF);
             }
-        } else if ((player->smoke[arg2].timer > 0) && (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-            MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-            MakeStartup(&player->smoke[arg1], 9, 0.8f);
-            MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00AF);
+        } else if ((Player->smoke[Arg2].Timer > 0) && (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+            MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+            MakeStartup(&Player->smoke[arg1], 9, 0.8f);
+            MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00AF);
         }
     }
 }
 
-void InitRapidSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitRapidSmoke(Player* Player, s16 arg1, s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 temp_v0;
     s32 surfaceType;
     s32 var_t3;
@@ -3150,173 +3150,173 @@ void InitRapidSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s
     surfaceType = 0x000000FF;
     temp_v0 = MakeRandomLimmit(test);
     if ((temp_v0 == 2) || (temp_v0 == 4)) {
-        x = player->tire_RL.Position[0];
-        y = player->tire_RL.Height + 2.0f;
-        z = player->tire_RL.Position[2];
+        x = Player->TireRL.Position[0];
+        y = Player->TireRL.Height + 2.0f;
+        z = Player->TireRL.Position[2];
         var_t3 = 1;
-        surfaceType = player->tire_RL.Status;
+        surfaceType = Player->TireRL.Status;
     }
     if ((temp_v0 == 0) || (temp_v0 == 6)) {
-        x = player->tire_RR.Position[0];
-        y = player->tire_RR.Height + 2.0f;
-        z = player->tire_RR.Position[2];
+        x = Player->TireRR.Position[0];
+        y = Player->TireRR.Height + 2.0f;
+        z = Player->TireRR.Position[2];
         var_t3 = 0;
-        surfaceType = player->tire_RR.Status;
+        surfaceType = Player->TireRR.Status;
     }
 
     switch (surfaceType) {
         case DIRT:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                if ((g_courseID == COURSE_CHOCO_MOUNTAIN) || (g_courseID == COURSE_ROYAL_RACEWAY)) {
-                    set_up_smoke(&player->smoke[arg1], 1, 0, 0x0080);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                if ((CourseID == COURSE_CHOCO_MOUNTAIN) || (CourseID == COURSE_ROYAL_RACEWAY)) {
+                    SetUpSmoke(&Player->smoke[arg1], 1, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_KALAMARI_DESERT) {
-                    set_up_smoke(&player->smoke[arg1], 7, 0, 0x0080);
+                if (CourseID == COURSE_KALAMARI_DESERT) {
+                    SetUpSmoke(&Player->smoke[arg1], 7, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_MOO_MOO_FARM) {
-                    set_up_smoke(&player->smoke[arg1], 8, 0, 0x0080);
+                if (CourseID == COURSE_MOO_MOO_FARM) {
+                    SetUpSmoke(&Player->smoke[arg1], 8, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_WARIO_STADIUM) {
-                    set_up_smoke(&player->smoke[arg1], 9, 0, 0x0080);
+                if (CourseID == COURSE_WARIO_STADIUM) {
+                    SetUpSmoke(&Player->smoke[arg1], 9, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_YOSHI_VALLEY) {
-                    set_up_smoke(&player->smoke[arg1], 10, 0, 0x0080);
+                if (CourseID == COURSE_YOSHI_VALLEY) {
+                    SetUpSmoke(&Player->smoke[arg1], 10, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_DK_JUNGLE) {
-                    set_up_smoke(&player->smoke[arg1], 11, 0, 0x0080);
+                if (CourseID == COURSE_DK_JUNGLE) {
+                    SetUpSmoke(&Player->smoke[arg1], 11, 0, 0x0080);
                 }
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                if ((g_courseID == COURSE_CHOCO_MOUNTAIN) || (g_courseID == COURSE_ROYAL_RACEWAY)) {
-                    set_up_smoke(&player->smoke[arg1], 1, 0, 0x0080);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                if ((CourseID == COURSE_CHOCO_MOUNTAIN) || (CourseID == COURSE_ROYAL_RACEWAY)) {
+                    SetUpSmoke(&Player->smoke[arg1], 1, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_KALAMARI_DESERT) {
-                    set_up_smoke(&player->smoke[arg1], 7, 0, 0x0080);
+                if (CourseID == COURSE_KALAMARI_DESERT) {
+                    SetUpSmoke(&Player->smoke[arg1], 7, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_MOO_MOO_FARM) {
-                    set_up_smoke(&player->smoke[arg1], 8, 0, 0x0080);
+                if (CourseID == COURSE_MOO_MOO_FARM) {
+                    SetUpSmoke(&Player->smoke[arg1], 8, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_WARIO_STADIUM) {
-                    set_up_smoke(&player->smoke[arg1], 9, 0, 0x0080);
+                if (CourseID == COURSE_WARIO_STADIUM) {
+                    SetUpSmoke(&Player->smoke[arg1], 9, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_YOSHI_VALLEY) {
-                    set_up_smoke(&player->smoke[arg1], 0x000A, 0, 0x0080);
+                if (CourseID == COURSE_YOSHI_VALLEY) {
+                    SetUpSmoke(&Player->smoke[arg1], 0x000A, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_DK_JUNGLE) {
-                    set_up_smoke(&player->smoke[arg1], 0x000B, 0, 0x0080);
+                if (CourseID == COURSE_DK_JUNGLE) {
+                    SetUpSmoke(&Player->smoke[arg1], 0x000B, 0, 0x0080);
                 }
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case GRASS:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.1f);
-                MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-                player->smoke[arg1].swork1 -= arg1 * 8;
-                player->smoke[arg1].swork2 -= arg1 * 8;
-                player->smoke[arg1].swork3 -= arg1 * 8;
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.1f);
-                MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-                player->smoke[arg1].swork1 -= arg1 * 8;
-                player->smoke[arg1].swork2 -= arg1 * 8;
-                player->smoke[arg1].swork3 -= arg1 * 8;
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.1f);
+                MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+                Player->smoke[arg1].Swork1 -= arg1 * 8;
+                Player->smoke[arg1].Swork2 -= arg1 * 8;
+                Player->smoke[arg1].Swork3 -= arg1 * 8;
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.1f);
+                MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+                Player->smoke[arg1].Swork1 -= arg1 * 8;
+                Player->smoke[arg1].Swork2 -= arg1 * 8;
+                Player->smoke[arg1].Swork3 -= arg1 * 8;
             }
-            player->smoke[arg1].try -= 1.5;
+            Player->smoke[arg1].try -= 1.5;
             break;
         case SAND_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 2, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 2, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 2, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 2, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case SAND:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 3, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 3, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 3, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 3, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case WET_SAND:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 4, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 4, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 4, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 4, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case DIRT_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 5, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 5, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 5, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 5, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case SNOW:
         case SNOW_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 6, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 6, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 6, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 6, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case ASPHALT:
         case STONE:
         case BRIDGE:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 0, 0, 0x0080);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
-                MakeStartup(&player->smoke[arg1], 5, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 0, 0, 0x0080);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 0, 0, 0x0080);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, (s8) surfaceType, (s8) var_t3);
+                MakeStartup(&Player->smoke[arg1], 5, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 0, 0, 0x0080);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         default:
@@ -3324,7 +3324,7 @@ void InitRapidSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s
     }
 }
 
-void InitSpinSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitSpinSmoke(Player* Player, s16 arg1, s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 var_t1;
     u8 surfaceType;
     f32 x;
@@ -3332,171 +3332,171 @@ void InitSpinSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8
     f32 z;
 
     var_t1 = 0;
-    if ((player->slip_flag & SPIN_L) == SPIN_L) {
-        x = player->position[0];
-        y = player->position[1] - player->radius;
-        z = player->position[2];
+    if ((Player->SlipFlag & SPIN_L) == SPIN_L) {
+        x = Player->Position[0];
+        y = Player->Position[1] - Player->Radius;
+        z = Player->Position[2];
         var_t1 = 1;
-        surfaceType = player->tire_RL.Status & 0xFF;
+        surfaceType = Player->TireRL.Status & 0xFF;
     } else {
-        x = player->position[0];
-        y = player->position[1] - player->radius;
-        z = player->position[2];
-        surfaceType = player->tire_RR.Status & 0xFF;
+        x = Player->Position[0];
+        y = Player->Position[1] - Player->Radius;
+        z = Player->Position[2];
+        surfaceType = Player->TireRR.Status & 0xFF;
     }
     switch (surfaceType) {
         case DIRT:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                if ((g_courseID == COURSE_CHOCO_MOUNTAIN) || (g_courseID == COURSE_ROYAL_RACEWAY)) {
-                    set_up_smoke(&player->smoke[arg1], 1, 0, 0x0080);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                if ((CourseID == COURSE_CHOCO_MOUNTAIN) || (CourseID == COURSE_ROYAL_RACEWAY)) {
+                    SetUpSmoke(&Player->smoke[arg1], 1, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_KALAMARI_DESERT) {
-                    set_up_smoke(&player->smoke[arg1], 7, 0, 0x0080);
+                if (CourseID == COURSE_KALAMARI_DESERT) {
+                    SetUpSmoke(&Player->smoke[arg1], 7, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_MOO_MOO_FARM) {
-                    set_up_smoke(&player->smoke[arg1], 8, 0, 0x0080);
+                if (CourseID == COURSE_MOO_MOO_FARM) {
+                    SetUpSmoke(&Player->smoke[arg1], 8, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_WARIO_STADIUM) {
-                    set_up_smoke(&player->smoke[arg1], 9, 0, 0x0080);
+                if (CourseID == COURSE_WARIO_STADIUM) {
+                    SetUpSmoke(&Player->smoke[arg1], 9, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_YOSHI_VALLEY) {
-                    set_up_smoke(&player->smoke[arg1], 0x000A, 0, 0x0080);
+                if (CourseID == COURSE_YOSHI_VALLEY) {
+                    SetUpSmoke(&Player->smoke[arg1], 0x000A, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_DK_JUNGLE) {
-                    set_up_smoke(&player->smoke[arg1], 0x000B, 0, 0x0080);
+                if (CourseID == COURSE_DK_JUNGLE) {
+                    SetUpSmoke(&Player->smoke[arg1], 0x000B, 0, 0x0080);
                 }
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                if ((g_courseID == COURSE_CHOCO_MOUNTAIN) || (g_courseID == COURSE_ROYAL_RACEWAY)) {
-                    set_up_smoke(&player->smoke[arg1], 1, 0, 0x0080);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                if ((CourseID == COURSE_CHOCO_MOUNTAIN) || (CourseID == COURSE_ROYAL_RACEWAY)) {
+                    SetUpSmoke(&Player->smoke[arg1], 1, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_KALAMARI_DESERT) {
-                    set_up_smoke(&player->smoke[arg1], 7, 0, 0x0080);
+                if (CourseID == COURSE_KALAMARI_DESERT) {
+                    SetUpSmoke(&Player->smoke[arg1], 7, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_MOO_MOO_FARM) {
-                    set_up_smoke(&player->smoke[arg1], 8, 0, 0x0080);
+                if (CourseID == COURSE_MOO_MOO_FARM) {
+                    SetUpSmoke(&Player->smoke[arg1], 8, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_WARIO_STADIUM) {
-                    set_up_smoke(&player->smoke[arg1], 9, 0, 0x0080);
+                if (CourseID == COURSE_WARIO_STADIUM) {
+                    SetUpSmoke(&Player->smoke[arg1], 9, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_YOSHI_VALLEY) {
-                    set_up_smoke(&player->smoke[arg1], 0x000A, 0, 0x0080);
+                if (CourseID == COURSE_YOSHI_VALLEY) {
+                    SetUpSmoke(&Player->smoke[arg1], 0x000A, 0, 0x0080);
                 }
-                if (g_courseID == COURSE_DK_JUNGLE) {
-                    set_up_smoke(&player->smoke[arg1], 0x000B, 0, 0x0080);
+                if (CourseID == COURSE_DK_JUNGLE) {
+                    SetUpSmoke(&Player->smoke[arg1], 0x000B, 0, 0x0080);
                 }
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case GRASS:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.1f);
-                MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-                player->smoke[arg1].swork1 -= arg1 * 8;
-                player->smoke[arg1].swork2 -= arg1 * 8;
-                player->smoke[arg1].swork3 -= arg1 * 8;
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.1f);
-                MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-                player->smoke[arg1].swork1 -= arg1 * 8;
-                player->smoke[arg1].swork2 -= arg1 * 8;
-                player->smoke[arg1].swork3 -= arg1 * 8;
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.1f);
+                MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+                Player->smoke[arg1].Swork1 -= arg1 * 8;
+                Player->smoke[arg1].Swork2 -= arg1 * 8;
+                Player->smoke[arg1].Swork3 -= arg1 * 8;
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.1f);
+                MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+                Player->smoke[arg1].Swork1 -= arg1 * 8;
+                Player->smoke[arg1].Swork2 -= arg1 * 8;
+                Player->smoke[arg1].Swork3 -= arg1 * 8;
             }
-            player->smoke[arg1].try -= 1.5;
+            Player->smoke[arg1].try -= 1.5;
             break;
         case SAND_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 2, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 2, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 2, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 2, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case SAND:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 3, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 3, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 3, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 3, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case WET_SAND:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 4, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 4, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 4, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 4, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case DIRT_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 5, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 5, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 5, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 5, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case SNOW:
         case SNOW_OFFROAD:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 6, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 6, 1, 0x00A8);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 6, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 6, 1, 0x00A8);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         case ASPHALT:
         case STONE:
         case BRIDGE:
             if ((arg1 == 0) &&
-                ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 0, 0, 0x0080);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
-            } else if (player->smoke[arg2].timer > 0) {
-                MakePos(player, &player->smoke[arg1], x, y, z, surfaceType, var_t1);
-                MakeStartup(&player->smoke[arg1], 4, 0.46f);
-                set_up_smoke(&player->smoke[arg1], 0, 0, 0x0080);
-                player->smoke[arg1].swork2 = MakeRandomLimmit(0x0010U);
+                ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 0, 0, 0x0080);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
+            } else if (Player->smoke[Arg2].Timer > 0) {
+                MakePos(Player, &Player->smoke[arg1], x, y, z, surfaceType, var_t1);
+                MakeStartup(&Player->smoke[arg1], 4, 0.46f);
+                SetUpSmoke(&Player->smoke[arg1], 0, 0, 0x0080);
+                Player->smoke[arg1].Swork2 = MakeRandomLimmit(0x0010U);
             }
             break;
         default:
@@ -3504,8 +3504,8 @@ void InitSpinSmoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8
     }
 }
 
-void initengine_smoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
-    UNUSED s32 thing1;
+void InitengineSmoke(Player* Player, s16 arg1, s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
+    UNUSED s32 Thing1;
     s16 thing2;
     UNUSED s32 thing3;
     f32 x;
@@ -3516,232 +3516,232 @@ void initengine_smoke(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED
     s32 temp_v0;
     UNUSED s32 test;
 
-    if ((player->handling_flag & ACCELERATE) == ACCELERATE) {
+    if ((Player->HandlingFlag & ACCELERATE) == ACCELERATE) {
         var_v0 = 5;
     } else {
         var_v0 = 0xE;
     }
     temp_v0 = MakeRandomLimmit(var_v0);
     if ((temp_v0 == 1) || (temp_v0 == 2) || (temp_v0 == 3)) {
-        if ((arg1 == 0) && ((player->gass[arg2].timer > 0) || (player->gass[arg2].flag == 0))) {
-            y = player->position[1] - 2.5;
-            z = player->position[2];
-            x = player->position[0];
-            MakePos(player, &player->gass[arg1], x, y, z, 0, 0);
-            MakeStartup(&player->gass[arg1], 1, 0.5f);
-        } else if (player->gass[arg2].timer > 0) {
-            y = player->position[1] - 2.5;
-            z = player->position[2];
-            x = player->position[0];
-            MakePos(player, &player->gass[arg1], x, y, z, 0, 0);
-            MakeStartup(&player->gass[arg1], 1, 0.5f);
+        if ((arg1 == 0) && ((Player->Gass[Arg2].Timer > 0) || (Player->Gass[Arg2].Flag == 0))) {
+            y = Player->Position[1] - 2.5;
+            z = Player->Position[2];
+            x = Player->Position[0];
+            MakePos(Player, &Player->Gass[arg1], x, y, z, 0, 0);
+            MakeStartup(&Player->Gass[arg1], 1, 0.5f);
+        } else if (Player->Gass[Arg2].Timer > 0) {
+            y = Player->Position[1] - 2.5;
+            z = Player->Position[2];
+            x = Player->Position[0];
+            MakePos(Player, &Player->Gass[arg1], x, y, z, 0, 0);
+            MakeStartup(&Player->Gass[arg1], 1, 0.5f);
         }
     }
-    player->gass[arg1].fwork1 = 0.0f;
-    if ((player->handling_flag & ACCELERATE) == ACCELERATE) {
-        player->gass[arg1].swork5 = 0;
-        if ((player->slip_flag & TURBO) == TURBO) {
-            MakeRDP(&player->gass[arg1], RGB32(0xFF, 0xFF, 0x00), 0x0080);
-            player->gass[arg1].swork1 = 1;
+    Player->Gass[arg1].Fwork1 = 0.0f;
+    if ((Player->HandlingFlag & ACCELERATE) == ACCELERATE) {
+        Player->Gass[arg1].Swork5 = 0;
+        if ((Player->SlipFlag & TURBO) == TURBO) {
+            MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0xFF, 0x00), 0x0080);
+            Player->Gass[arg1].Swork1 = 1;
         } else {
-            MakeRDP(&player->gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x0070);
-            player->gass[arg1].swork1 = 0;
+            MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x0070);
+            Player->Gass[arg1].Swork1 = 0;
         }
     } else {
-        player->gass[arg1].swork5 = 1;
-        if ((player->slip_flag & TURBO) == TURBO) {
-            MakeRDP(&player->gass[arg1], RGB32(0xFF, 0xFF, 0x00), 0x0080);
-            player->gass[arg1].swork1 = 1;
+        Player->Gass[arg1].Swork5 = 1;
+        if ((Player->SlipFlag & TURBO) == TURBO) {
+            MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0xFF, 0x00), 0x0080);
+            Player->Gass[arg1].Swork1 = 1;
         } else {
-            MakeRDP(&player->gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x0070);
-            player->gass[arg1].swork1 = 0;
+            MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x0070);
+            Player->Gass[arg1].Swork1 = 0;
         }
     }
-    thing2 = (player->gass[arg1].ang - (player->slipang / 2));
-    if (player->gass[arg1].swork5 == 0) {
-        var_f0 = -((player->taco / 3000.0f) + 0.1);
+    thing2 = (Player->Gass[arg1].ang - (Player->Slipang / 2));
+    if (Player->Gass[arg1].Swork5 == 0) {
+        var_f0 = -((Player->Taco / 3000.0f) + 0.1);
     } else {
-        var_f0 = -((player->taco / 5000.0f) + 0.1);
+        var_f0 = -((Player->Taco / 5000.0f) + 0.1);
     }
-    make_smokepos(&x, &y, &z, 0.0f, 4.5f, (player->gass[arg1].timer * var_f0) + -5.5, -thing2,
-                  -player->kartroll * 2);
-    player->gass[arg1].trx = player->position[0] + x;
-    y = y + (player->position[1] - player->radius);
-    player->gass[arg1].trz = player->position[2] + z;
-    player->gass[arg1].try = player->gass[arg1].fwork1 + y;
-    player->gass[arg1].lrflag = 0;
+    MakeSmokepos(&x, &y, &z, 0.0f, 4.5f, (Player->Gass[arg1].Timer * var_f0) + -5.5, -thing2,
+                  -Player->Kartroll * 2);
+    Player->Gass[arg1].trx = Player->Position[0] + x;
+    y = y + (Player->Position[1] - Player->Radius);
+    Player->Gass[arg1].trz = Player->Position[2] + z;
+    Player->Gass[arg1].try = Player->Gass[arg1].Fwork1 + y;
+    Player->Gass[arg1].Lrflag = 0;
 }
 
-void init_ring_set(Player* player, s16 arg1, UNUSED s32 arg2, s8 arg3, UNUSED s8 arg4) {
+void InitRingSet(Player* Player, s16 arg1, UNUSED s32 Arg2, s8 Arg3, UNUSED s8 arg4) {
     f32 var_f0;
     f32 sp50;
     f32 sp4C;
     f32 sp48;
 
-    var_f0 = 8.0f - (g_waterlevelPlayer[arg3] - player->position[1]);
+    var_f0 = 8.0f - (WaterlevelPlayer[Arg3] - Player->Position[1]);
     if ((f64) var_f0 <= 0.0) {
         var_f0 = 0.0f;
     }
-    sp4C = (g_waterlevelPlayer[arg3] - player->position[1]) - 3.0f;
-    if ((player->water_flag & SUBMERGED) && (g_courseID != COURSE_KOOPA_BEACH)) {
+    sp4C = (WaterlevelPlayer[Arg3] - Player->Position[1]) - 3.0f;
+    if ((Player->WaterFlag & SUBMERGED) && (CourseID != COURSE_KOOPA_BEACH)) {
         var_f0 = 2.5f;
-        sp4C = (f32) ((f64) (g_waterlevelPlayer[arg3] - player->position[1]) + 0.1);
+        sp4C = (f32) ((f64) (WaterlevelPlayer[Arg3] - Player->Position[1]) + 0.1);
     }
-    MakePos(player, &player->gass[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
-    MakeStartup(&player->gass[arg1], 3, var_f0);
-    if ((g_courseID == COURSE_BOWSER_CASTLE) || (g_courseID == COURSE_BIG_DONUT)) {
-        MakeRDP(&player->gass[arg1], RGB32(0x0, 0x0, 0x0), 0x00AF);
+    MakePos(Player, &Player->Gass[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
+    MakeStartup(&Player->Gass[arg1], 3, var_f0);
+    if ((CourseID == COURSE_BOWSER_CASTLE) || (CourseID == COURSE_BIG_DONUT)) {
+        MakeRDP(&Player->Gass[arg1], RGB32(0x0, 0x0, 0x0), 0x00AF);
     } else {
-        MakeRDP(&player->gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00CF);
+        MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00CF);
     }
-    make_smokepos(&sp50, &sp4C, &sp48, 0.0f, sp4C,
-                  ((-player->gass[arg1].timer * (player->speed / 18.0f) * 216.0f) / 10.0f) + -4.0f,
-                  -player->gass[arg1].ang, -player->kartroll * 2);
-    player->gass[arg1].trx = player->position[0] + sp50;
-    player->gass[arg1].trz = player->position[2] + sp48;
-    player->gass[arg1].try = player->position[1] + sp4C;
+    MakeSmokepos(&sp50, &sp4C, &sp48, 0.0f, sp4C,
+                  ((-Player->Gass[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 10.0f) + -4.0f,
+                  -Player->Gass[arg1].ang, -Player->Kartroll * 2);
+    Player->Gass[arg1].trx = Player->Position[0] + sp50;
+    Player->Gass[arg1].trz = Player->Position[2] + sp48;
+    Player->Gass[arg1].try = Player->Position[1] + sp4C;
 }
 
-void init_ring(Player* player, s16 arg1, s32 arg2, s8 arg3, s8 arg4) {
-    if ((g_courseID != COURSE_SKYSCRAPER) && (g_courseID != COURSE_RAINBOW_ROAD)) {
-        if ((arg1 == 0) && ((player->gass[arg2].timer > 0) || (player->gass[arg2].flag == 0))) {
-            init_ring_set(player, arg1, arg2, arg3, arg4);
-        } else if (player->gass[arg2].timer > 0) {
-            init_ring_set(player, arg1, arg2, arg3, arg4);
+void InitRing(Player* Player, s16 arg1, s32 Arg2, s8 Arg3, s8 arg4) {
+    if ((CourseID != COURSE_SKYSCRAPER) && (CourseID != COURSE_RAINBOW_ROAD)) {
+        if ((arg1 == 0) && ((Player->Gass[Arg2].Timer > 0) || (Player->Gass[Arg2].Flag == 0))) {
+            InitRingSet(Player, arg1, Arg2, Arg3, arg4);
+        } else if (Player->Gass[Arg2].Timer > 0) {
+            InitRingSet(Player, arg1, Arg2, Arg3, arg4);
         }
     }
 }
 
-void init_bubble(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitBubble(Player* Player, s16 arg1, s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 sp54;
     UNUSED s32 pad;
     s32 sp4C;
     f32 sp48;
     f32 sp44;
 
-    if (g_courseID == COURSE_SKYSCRAPER) {
+    if (CourseID == COURSE_SKYSCRAPER) {
         return;
     }
-    if (g_courseID == COURSE_RAINBOW_ROAD) {
+    if (CourseID == COURSE_RAINBOW_ROAD) {
         return;
     }
     sp54 = MakeRandomLimmit(0x0168U) - 0xB4;
     sp4C = MakeRandomLimmit(6U);
     sp44 = MakeRandomLimmit(6U);
     sp48 = MakeRandomLimmit(3U);
-    if (player != gPlayerOne) {
+    if (Player != PlayerOne) {
         return;
     }
-    if ((arg1 == 0) && ((player->smoke[arg2].timer > 0) || (player->smoke[arg2].flag == 0))) {
-        MakePos(player, &player->smoke[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
-        MakeStartup(&player->smoke[arg1], 0x0B, 0.4f);
-        MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-        player->smoke[arg1].trz = player->position[2] + (cosT(sp54 * DEGREES(1)) * -1.8);
-        player->smoke[arg1].trx = player->position[0] + (sinT(sp54 * DEGREES(1)) * -1.8);
-        player->smoke[arg1].try = (player->position[1] - player->radius) + sp4C + 2.0f;
-        player->smoke[arg1].dev = sp44 + 1.0f;
-        player->smoke[arg1].scale = (sp48 + 2.0f) / 10.0f;
-    } else if (player->smoke[arg2].timer > 0) {
-        MakePos(player, &player->smoke[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
-        MakeStartup(&player->smoke[arg1], 0x0B, 0.4f);
-        MakeRDP(&player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-        player->smoke[arg1].trz = player->position[2] + (cosT(sp54 * DEGREES(1)) * -1.8);
-        player->smoke[arg1].trx = player->position[0] + (sinT(sp54 * DEGREES(1)) * -1.8);
-        player->smoke[arg1].try = (player->position[1] - player->radius) + sp4C + 2.0f;
-        player->smoke[arg1].dev = sp44 + 1.0f;
-        player->smoke[arg1].scale = (sp48 + 2.0f) / 10.0f;
+    if ((arg1 == 0) && ((Player->smoke[Arg2].Timer > 0) || (Player->smoke[Arg2].Flag == 0))) {
+        MakePos(Player, &Player->smoke[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
+        MakeStartup(&Player->smoke[arg1], 0x0B, 0.4f);
+        MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+        Player->smoke[arg1].trz = Player->Position[2] + (CosT(sp54 * DEGREES(1)) * -1.8);
+        Player->smoke[arg1].trx = Player->Position[0] + (SinT(sp54 * DEGREES(1)) * -1.8);
+        Player->smoke[arg1].try = (Player->Position[1] - Player->Radius) + sp4C + 2.0f;
+        Player->smoke[arg1].dev = sp44 + 1.0f;
+        Player->smoke[arg1].Scale = (sp48 + 2.0f) / 10.0f;
+    } else if (Player->smoke[Arg2].Timer > 0) {
+        MakePos(Player, &Player->smoke[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
+        MakeStartup(&Player->smoke[arg1], 0x0B, 0.4f);
+        MakeRDP(&Player->smoke[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+        Player->smoke[arg1].trz = Player->Position[2] + (CosT(sp54 * DEGREES(1)) * -1.8);
+        Player->smoke[arg1].trx = Player->Position[0] + (SinT(sp54 * DEGREES(1)) * -1.8);
+        Player->smoke[arg1].try = (Player->Position[1] - Player->Radius) + sp4C + 2.0f;
+        Player->smoke[arg1].dev = sp44 + 1.0f;
+        Player->smoke[arg1].Scale = (sp48 + 2.0f) / 10.0f;
     }
 }
 
-void init_dobon(Player* player, s16 arg1, UNUSED s32 arg2, s8 arg3, UNUSED s8 arg4) {
-    MakePos(player, &player->gass[arg1], 0.0f, 0.0f, 0.0f, 0, 0);
-    MakeStartup(&player->gass[arg1], 5, 4.0f);
+void InitDobon(Player* Player, s16 arg1, UNUSED s32 Arg2, s8 Arg3, UNUSED s8 arg4) {
+    MakePos(Player, &Player->Gass[arg1], 0.0f, 0.0f, 0.0f, 0, 0);
+    MakeStartup(&Player->Gass[arg1], 5, 4.0f);
 
-    if ((g_courseID == COURSE_BOWSER_CASTLE) || (g_courseID == COURSE_BIG_DONUT)) {
-        MakeRDP(&player->gass[arg1], RGB32(0xFF, 0x00, 0x00), 0xFF);
+    if ((CourseID == COURSE_BOWSER_CASTLE) || (CourseID == COURSE_BIG_DONUT)) {
+        MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0x00, 0x00), 0xFF);
     } else {
-        MakeRDP(&player->gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0xFF);
+        MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0xFF);
     }
 
-    player->gass[arg1].trz = player->position[2] + (cosT(player->gass[arg1].ang) * -5.8);
-    player->gass[arg1].trx = player->position[0] + (sinT(player->gass[arg1].ang) * -5.8);
-    player->gass[arg1].try = g_waterlevelPlayer[arg3];
-    player->water_flag &= ~SPLASH_DIVE;
+    Player->Gass[arg1].trz = Player->Position[2] + (CosT(Player->Gass[arg1].ang) * -5.8);
+    Player->Gass[arg1].trx = Player->Position[0] + (SinT(Player->Gass[arg1].ang) * -5.8);
+    Player->Gass[arg1].try = WaterlevelPlayer[Arg3];
+    Player->WaterFlag &= ~SPLASH_DIVE;
 }
 
-void init_thunder(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitThunder(Player* Player, s16 arg1, UNUSED s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     if (arg1 == 0) {
-        MakePos(player, &player->gass[arg1], 0.0f, 0.0f, 0.0f, 0, 0);
-        MakeStartup(&player->gass[arg1], 6, 3.8f);
-        MakeRDP(&player->gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0xFF);
-        player->gass[arg1].swork1 = 0;
-        player->gass[arg1].swork2 = 0;
-        player->gass[arg1].swork3 = 0;
+        MakePos(Player, &Player->Gass[arg1], 0.0f, 0.0f, 0.0f, 0, 0);
+        MakeStartup(&Player->Gass[arg1], 6, 3.8f);
+        MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0xFF);
+        Player->Gass[arg1].Swork1 = 0;
+        Player->Gass[arg1].Swork2 = 0;
+        Player->Gass[arg1].Swork3 = 0;
     }
 }
 
-void init_teresa_set(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
-    MakePos(player, &player->gass[arg1], 0.0f, 0.0f, 0.0f, 0, 0);
-    MakeStartup(&player->gass[arg1], 7, 0.6f);
-    MakeRDP(&player->gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0xD0);
+void InitTeresaSet(Player* Player, s16 arg1, UNUSED s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
+    MakePos(Player, &Player->Gass[arg1], 0.0f, 0.0f, 0.0f, 0, 0);
+    MakeStartup(&Player->Gass[arg1], 7, 0.6f);
+    MakeRDP(&Player->Gass[arg1], RGB32(0xFF, 0xFF, 0xFF), 0xD0);
 
-    player->gass[arg1].trz = player->position[2] + (cosT(player->gass[arg1].ang) * 6.0f);
-    player->gass[arg1].trx = player->position[0] + (sinT(player->gass[arg1].ang) * 6.0f);
-    player->gass[arg1].try = player->position[1] - 5.0f;
-    player->gass[arg1].swork5 = 0;
-    player->gass[arg1].fwork1 = 0.0f;
+    Player->Gass[arg1].trz = Player->Position[2] + (CosT(Player->Gass[arg1].ang) * 6.0f);
+    Player->Gass[arg1].trx = Player->Position[0] + (SinT(Player->Gass[arg1].ang) * 6.0f);
+    Player->Gass[arg1].try = Player->Position[1] - 5.0f;
+    Player->Gass[arg1].Swork5 = 0;
+    Player->Gass[arg1].Fwork1 = 0.0f;
 }
 
-void init_teresa(Player* player, s16 arg1, s32 arg2, s8 arg3, s8 arg4) {
-    if ((arg1 == 0) && ((player->gass[arg2].timer > 0) || (player->gass[arg1].flag == 0))) {
-        init_teresa_set(player, arg1, arg2, arg3, arg4);
-    } else if (player->gass[arg2].timer >= 2) {
-        init_teresa_set(player, arg1, arg2, arg3, arg4);
+void InitTeresa(Player* Player, s16 arg1, s32 Arg2, s8 Arg3, s8 arg4) {
+    if ((arg1 == 0) && ((Player->Gass[Arg2].Timer > 0) || (Player->Gass[arg1].Flag == 0))) {
+        InitTeresaSet(Player, arg1, Arg2, Arg3, arg4);
+    } else if (Player->Gass[Arg2].Timer >= 2) {
+        InitTeresaSet(Player, arg1, Arg2, Arg3, arg4);
         if (arg1 == 9) {
-            player->handling_flag &= ~BOO_SMOKE_EFFECT;
+            Player->HandlingFlag &= ~BOO_SMOKE_EFFECT;
         }
     }
 }
 
-void initstar_dust(Player* player, UNUSED s32 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitstarDust(Player* Player, UNUSED s32 arg1, UNUSED s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 var_s2;
 
     for (var_s2 = 0; var_s2 < 10; var_s2++) {
-        player->spark[var_s2].flag = 1;
-        player->spark[var_s2].fwork2 = player->position[1] + 5.0f;
-        player->spark[var_s2].ang = (40 * DEGREES(1) * var_s2) - player->direction[1];
-        player->spark[var_s2].fwork1 = (MakeRandomLimmit(0x0064U) / 100.0f) + 1.5;
-        player->spark[var_s2].swork2 = 0;
-        player->spark[var_s2].number = 1;
-        player->spark[var_s2].timer = 0;
-        player->spark[var_s2].swork4 = 0x00FF;
-        player->spark[var_s2].trz = player->position[2];
-        player->spark[var_s2].trx = player->position[0];
+        Player->Spark[var_s2].Flag = 1;
+        Player->Spark[var_s2].Fwork2 = Player->Position[1] + 5.0f;
+        Player->Spark[var_s2].ang = (40 * DEGREES(1) * var_s2) - Player->Direction[1];
+        Player->Spark[var_s2].Fwork1 = (MakeRandomLimmit(0x0064U) / 100.0f) + 1.5;
+        Player->Spark[var_s2].Swork2 = 0;
+        Player->Spark[var_s2].Number = 1;
+        Player->Spark[var_s2].Timer = 0;
+        Player->Spark[var_s2].Swork4 = 0x00FF;
+        Player->Spark[var_s2].trz = Player->Position[2];
+        Player->Spark[var_s2].trx = Player->Position[0];
     }
-    player->hit_flag &= ~0x0008;
+    Player->HitFlag &= ~0x0008;
 }
 
-void initresult_star(Player* player, UNUSED s32 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitresultStar(Player* Player, UNUSED s32 arg1, UNUSED s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 var_s2;
 
     for (var_s2 = 0; var_s2 < 7; var_s2++) {
-        player->spark[var_s2].flag = 1;
-        player->spark[var_s2].fwork2 = player->position[1] - 4.0f;
-        player->spark[var_s2].ang = (40 * DEGREES(1) * var_s2) - player->direction[1];
+        Player->Spark[var_s2].Flag = 1;
+        Player->Spark[var_s2].Fwork2 = Player->Position[1] - 4.0f;
+        Player->Spark[var_s2].ang = (40 * DEGREES(1) * var_s2) - Player->Direction[1];
         // ???
-        player->spark[var_s2].fwork1 = (MakeRandomLimmit(0x0064U) / 100.0f) + 1.9;
-        player->spark[var_s2].fwork1 = (MakeRandomLimmit(0x0064U) / 100.0f) + 1.5;
-        player->spark[var_s2].swork2 = 0;
-        player->spark[var_s2].number = 9;
-        player->spark[var_s2].timer = 0;
-        player->spark[var_s2].swork4 = 0x00FF;
-        player->spark[var_s2].trz = player->position[2];
-        player->spark[var_s2].trx = player->position[0];
+        Player->Spark[var_s2].Fwork1 = (MakeRandomLimmit(0x0064U) / 100.0f) + 1.9;
+        Player->Spark[var_s2].Fwork1 = (MakeRandomLimmit(0x0064U) / 100.0f) + 1.5;
+        Player->Spark[var_s2].Swork2 = 0;
+        Player->Spark[var_s2].Number = 9;
+        Player->Spark[var_s2].Timer = 0;
+        Player->Spark[var_s2].Swork4 = 0x00FF;
+        Player->Spark[var_s2].trz = Player->Position[2];
+        Player->Spark[var_s2].trx = Player->Position[0];
     }
-    player->handling_flag &= ~TROPHYJUMP_STARS;
+    Player->HandlingFlag &= ~TROPHYJUMP_STARS;
 }
 
-void initpowder_dust(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitpowderDust(Player* Player, s16 arg1, UNUSED s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 test = 2;
     UNUSED s32 stackPadding0;
     UNUSED s32 stackPadding1;
@@ -3749,24 +3749,24 @@ void initpowder_dust(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s8 arg3, 
     f32 sp28[10] = { (f32) -DEGREES(1), (f32) DEGREES(1), (f32) DEGREES(2), (f32) -DEGREES(2), DEGREES(3), -DEGREES(3), DEGREES(4), -DEGREES(4), DEGREES(5), -DEGREES(5) };
 
     if (MakeRandomLimmit(3U) == 2.0f) {
-        player->spark[arg1].flag = 1;
-        player->spark[arg1].trx = player->position[0];
-        player->spark[arg1].trz = player->position[2];
-        player->spark[arg1].ang = -player->direction[1] + sp28[arg1];
-        player->spark[arg1].dev = MakeRandomLimmit(1U) + 2.0f;
+        Player->Spark[arg1].Flag = 1;
+        Player->Spark[arg1].trx = Player->Position[0];
+        Player->Spark[arg1].trz = Player->Position[2];
+        Player->Spark[arg1].ang = -Player->Direction[1] + sp28[arg1];
+        Player->Spark[arg1].dev = MakeRandomLimmit(1U) + 2.0f;
         temp_f0 = MakeRandomLimmit(4U);
         temp_f0 -= test;
-        player->spark[arg1].type = temp_f0;
-        player->spark[arg1].try = player->position[1] + temp_f0;
-        player->spark[arg1].scale = 0.15f;
-        player->spark[arg1].number = 5;
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].swork4 = 0x00FF;
-        player->spark[arg1].swork1 = 0;
+        Player->Spark[arg1].Type = temp_f0;
+        Player->Spark[arg1].try = Player->Position[1] + temp_f0;
+        Player->Spark[arg1].Scale = 0.15f;
+        Player->Spark[arg1].Number = 5;
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Swork4 = 0x00FF;
+        Player->Spark[arg1].Swork1 = 0;
     }
 }
 
-void initburn_dust_set(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s32 arg3, UNUSED s32 arg4) {
+void InitburnDustSet(Player* Player, s16 arg1, UNUSED s32 Arg2, UNUSED s32 Arg3, UNUSED s32 arg4) {
     s32 sp54;
     s16 temp_s1;
     s32 sp4C;
@@ -3778,36 +3778,36 @@ void initburn_dust_set(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s32 arg
     temp_s1 = MakeRandomLimmit(0x0060U);
     sp44 = MakeRandomLimmit(6U);
     sp48 = MakeRandomLimmit(2U);
-    MakePos(player, &player->spark[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
-    MakeStartup(&player->spark[arg1], 6, 1.0f);
-    if ((player->slip_flag & THROW_EXPLODE) || ((player->slip_flag) & EXPLODE) ||
-        ((player->slip_flag) & ROLLOVER) || ((player->slip_flag) & TERESA)) {
-        MakeRDP(&player->spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00A0);
-        player->spark[arg1].swork1 -= temp_s1;
-        player->spark[arg1].swork2 -= temp_s1;
-        player->spark[arg1].swork3 -= temp_s1;
+    MakePos(Player, &Player->Spark[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
+    MakeStartup(&Player->Spark[arg1], 6, 1.0f);
+    if ((Player->SlipFlag & THROW_EXPLODE) || ((Player->SlipFlag) & EXPLODE) ||
+        ((Player->SlipFlag) & ROLLOVER) || ((Player->SlipFlag) & TERESA)) {
+        MakeRDP(&Player->Spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00A0);
+        Player->Spark[arg1].Swork1 -= temp_s1;
+        Player->Spark[arg1].Swork2 -= temp_s1;
+        Player->Spark[arg1].Swork3 -= temp_s1;
     } else {
-        MakeRDP(&player->spark[arg1], RGB32(0x0, 0x0, 0x0), 0x00A0);
-        player->spark[arg1].swork1 += temp_s1;
-        player->spark[arg1].swork2 += temp_s1;
-        player->spark[arg1].swork3 += temp_s1;
+        MakeRDP(&Player->Spark[arg1], RGB32(0x0, 0x0, 0x0), 0x00A0);
+        Player->Spark[arg1].Swork1 += temp_s1;
+        Player->Spark[arg1].Swork2 += temp_s1;
+        Player->Spark[arg1].Swork3 += temp_s1;
     }
-    player->spark[arg1].trz = player->position[2] + (cosT(sp54 * DEGREES(1)) * -5.0f);
-    player->spark[arg1].trx = player->position[0] + (sinT(sp54 * DEGREES(1)) * -5.0f);
-    player->spark[arg1].try = (player->position[1] - player->radius) + sp4C + 2.0f;
-    player->spark[arg1].dev = sp44 + 1.0f;
-    player->spark[arg1].scale = sp48 + 1.0f;
+    Player->Spark[arg1].trz = Player->Position[2] + (CosT(sp54 * DEGREES(1)) * -5.0f);
+    Player->Spark[arg1].trx = Player->Position[0] + (SinT(sp54 * DEGREES(1)) * -5.0f);
+    Player->Spark[arg1].try = (Player->Position[1] - Player->Radius) + sp4C + 2.0f;
+    Player->Spark[arg1].dev = sp44 + 1.0f;
+    Player->Spark[arg1].Scale = sp48 + 1.0f;
 }
 
-void initburn_dust(Player* player, s16 arg1, s32 arg2, s8 arg3, s8 arg4) {
-    if ((arg1 == 0) && ((player->spark[arg2].timer > 0) || (player->spark[arg2].flag == 0))) {
-        initburn_dust_set(player, arg1, arg2, (s32) arg3, arg4);
-    } else if (player->spark[arg2].timer > 0) {
-        initburn_dust_set(player, arg1, arg2, (s32) arg3, arg4);
+void InitburnDust(Player* Player, s16 arg1, s32 Arg2, s8 Arg3, s8 arg4) {
+    if ((arg1 == 0) && ((Player->Spark[Arg2].Timer > 0) || (Player->Spark[Arg2].Flag == 0))) {
+        InitburnDustSet(Player, arg1, Arg2, (s32) Arg3, arg4);
+    } else if (Player->Spark[Arg2].Timer > 0) {
+        InitburnDustSet(Player, arg1, Arg2, (s32) Arg3, arg4);
     }
 }
 
-void initwater_dust(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitwaterDust(Player* Player, s16 arg1, s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 sp54;
     UNUSED s32 stackPadding0;
     s32 sp4C;
@@ -3818,26 +3818,26 @@ void initwater_dust(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s
     sp4C = MakeRandomLimmit(6U);
     MakeRandomLimmit(6U);
     sp48 = (f32) MakeRandomLimmit(3U);
-    if ((arg1 == 0) && ((player->spark[arg2].timer > 0) || (player->spark[arg2].flag == 0))) {
-        MakePos(player, &player->spark[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
-        MakeStartup(&player->spark[arg1], 7, 1.0f);
-        MakeRDP(&player->spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-        player->spark[arg1].trz = player->position[2] + (cosT(sp54 * DEGREES(1)) * -2.0);
-        player->spark[arg1].trx = player->position[0] + (sinT(sp54 * DEGREES(1)) * -2.0);
-        player->spark[arg1].try = (player->position[1] - player->radius) + sp4C + 2.0f;
-        player->spark[arg1].scale = (sp48 + 2.0f) / 10.0f;
-    } else if (player->spark[arg2].timer > 0) {
-        MakePos(player, &player->spark[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
-        MakeStartup(&player->spark[arg1], 7, 1.0f);
-        MakeRDP(&player->spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
-        player->spark[arg1].trz = player->position[2] + (cosT(sp54 * DEGREES(1)) * -2.0);
-        player->spark[arg1].trx = player->position[0] + (sinT(sp54 * DEGREES(1)) * -2.0);
-        player->spark[arg1].try = (player->position[1] - player->radius) + (f32) sp4C + 2.0f;
-        player->spark[arg1].scale = (sp48 + 2.0f) / 10.0f;
+    if ((arg1 == 0) && ((Player->Spark[Arg2].Timer > 0) || (Player->Spark[Arg2].Flag == 0))) {
+        MakePos(Player, &Player->Spark[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
+        MakeStartup(&Player->Spark[arg1], 7, 1.0f);
+        MakeRDP(&Player->Spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+        Player->Spark[arg1].trz = Player->Position[2] + (CosT(sp54 * DEGREES(1)) * -2.0);
+        Player->Spark[arg1].trx = Player->Position[0] + (SinT(sp54 * DEGREES(1)) * -2.0);
+        Player->Spark[arg1].try = (Player->Position[1] - Player->Radius) + sp4C + 2.0f;
+        Player->Spark[arg1].Scale = (sp48 + 2.0f) / 10.0f;
+    } else if (Player->Spark[Arg2].Timer > 0) {
+        MakePos(Player, &Player->Spark[arg1], 0.0f, 0.0f, 0.0f, (s8) 0, (s8) 0);
+        MakeStartup(&Player->Spark[arg1], 7, 1.0f);
+        MakeRDP(&Player->Spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x00FF);
+        Player->Spark[arg1].trz = Player->Position[2] + (CosT(sp54 * DEGREES(1)) * -2.0);
+        Player->Spark[arg1].trx = Player->Position[0] + (SinT(sp54 * DEGREES(1)) * -2.0);
+        Player->Spark[arg1].try = (Player->Position[1] - Player->Radius) + (f32) sp4C + 2.0f;
+        Player->Spark[arg1].Scale = (sp48 + 2.0f) / 10.0f;
     }
 }
 
-void inittail_dust(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InittailDust(Player* Player, s16 arg1, UNUSED s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 test = 2;
     UNUSED s32 stackPadding0;
     UNUSED s32 stackPadding1;
@@ -3845,22 +3845,22 @@ void inittail_dust(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UN
     f32 sp20[10] = { (f32) -DEGREES(1), (f32) DEGREES(1), (f32) DEGREES(2), (f32) -DEGREES(2), DEGREES(3), -DEGREES(3), DEGREES(4), -DEGREES(4), DEGREES(5), -DEGREES(5) };
 
     if (MakeRandomLimmit(3U) == 2.0f) {
-        player->spark[arg1].flag = 1;
-        player->spark[arg1].trx = player->position[0];
-        player->spark[arg1].try = player->position[1] + 2.0f;
-        player->spark[arg1].trz = player->position[2];
-        player->spark[arg1].ang = -player->direction[1] + sp20[arg1];
-        player->spark[arg1].dev = MakeRandomLimmit(3U) + 2.0f;
-        player->spark[arg1].type = MakeRandomLimmit(4U);
-        player->spark[arg1].type -= test;
-        player->spark[arg1].scale = 0.4f;
-        player->spark[arg1].number = 2;
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].swork4 = 0x00FF;
+        Player->Spark[arg1].Flag = 1;
+        Player->Spark[arg1].trx = Player->Position[0];
+        Player->Spark[arg1].try = Player->Position[1] + 2.0f;
+        Player->Spark[arg1].trz = Player->Position[2];
+        Player->Spark[arg1].ang = -Player->Direction[1] + sp20[arg1];
+        Player->Spark[arg1].dev = MakeRandomLimmit(3U) + 2.0f;
+        Player->Spark[arg1].Type = MakeRandomLimmit(4U);
+        Player->Spark[arg1].Type -= test;
+        Player->Spark[arg1].Scale = 0.4f;
+        Player->Spark[arg1].Number = 2;
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Swork4 = 0x00FF;
     }
 }
 
-void init_slipstream(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitSlipstream(Player* Player, s16 arg1, s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     UNUSED s32 stackPadding0;
     s32 var_t0 = 0x000000FF;
     s32 var_t1;
@@ -3873,52 +3873,52 @@ void init_slipstream(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED 
     if (temp_v1 == 1) {
         var_t1 = 1;
         var_t0 = 0;
-        y = player->position[1];
+        y = Player->Position[1];
     }
     if (temp_v1 == 0) {
         var_t1 = 0;
         var_t0 = 0;
-        y = player->position[1];
+        y = Player->Position[1];
     }
     if (var_t0 == 0) {
         if ((arg1 == 0) &&
-            ((player->spark[arg2].timer > 0) || (player->spark[arg2].flag == 0))) {
-            MakePos(player, &player->spark[arg1], 0.0f, y, 0.0f, (s8) var_t0, (s8) var_t1);
-            MakeStartup(&player->spark[arg1], 3, 0.5f);
-            MakeRDP(&player->spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x0060);
-            player->spark[arg1].ang = 0;
-            if (player->spark[arg1].lrflag == 1) {
-                player->spark[arg1].ang += DEGREES(12);
+            ((Player->Spark[Arg2].Timer > 0) || (Player->Spark[Arg2].Flag == 0))) {
+            MakePos(Player, &Player->Spark[arg1], 0.0f, y, 0.0f, (s8) var_t0, (s8) var_t1);
+            MakeStartup(&Player->Spark[arg1], 3, 0.5f);
+            MakeRDP(&Player->Spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x0060);
+            Player->Spark[arg1].ang = 0;
+            if (Player->Spark[arg1].Lrflag == 1) {
+                Player->Spark[arg1].ang += DEGREES(12);
             } else {
-                player->spark[arg1].ang -= DEGREES(12);
+                Player->Spark[arg1].ang -= DEGREES(12);
             }
-            player->spark[arg1].trz =
-                player->position[2] +
-                (cosT(player->spark[arg1].ang - player->direction[1] - player->slipang) * 5.0f);
-            player->spark[arg1].trx =
-                player->position[0] +
-                (sinT(player->spark[arg1].ang - player->direction[1] - player->slipang) * 5.0f);
-        } else if (player->spark[arg2].timer > 0) {
-            MakePos(player, &player->spark[arg1], 0.0f, y, 0.0f, (s8) var_t0, (s8) var_t1);
-            MakeStartup(&player->spark[arg1], 3, 0.5f);
-            MakeRDP(&player->spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x0060);
-            player->spark[arg1].ang = 0;
-            if (player->spark[arg1].lrflag == 1) {
-                player->spark[arg1].ang += DEGREES(12);
+            Player->Spark[arg1].trz =
+                Player->Position[2] +
+                (CosT(Player->Spark[arg1].ang - Player->Direction[1] - Player->Slipang) * 5.0f);
+            Player->Spark[arg1].trx =
+                Player->Position[0] +
+                (SinT(Player->Spark[arg1].ang - Player->Direction[1] - Player->Slipang) * 5.0f);
+        } else if (Player->Spark[Arg2].Timer > 0) {
+            MakePos(Player, &Player->Spark[arg1], 0.0f, y, 0.0f, (s8) var_t0, (s8) var_t1);
+            MakeStartup(&Player->Spark[arg1], 3, 0.5f);
+            MakeRDP(&Player->Spark[arg1], RGB32(0xFF, 0xFF, 0xFF), 0x0060);
+            Player->Spark[arg1].ang = 0;
+            if (Player->Spark[arg1].Lrflag == 1) {
+                Player->Spark[arg1].ang += DEGREES(12);
             } else {
-                player->spark[arg1].ang -= DEGREES(12);
+                Player->Spark[arg1].ang -= DEGREES(12);
             }
-            player->spark[arg1].trz =
-                player->position[2] +
-                (cosT(player->spark[arg1].ang - player->direction[1] - player->slipang) * 5.0f);
-            player->spark[arg1].trx =
-                player->position[0] +
-                (sinT(player->spark[arg1].ang - player->direction[1] - player->slipang) * 5.0f);
+            Player->Spark[arg1].trz =
+                Player->Position[2] +
+                (CosT(Player->Spark[arg1].ang - Player->Direction[1] - Player->Slipang) * 5.0f);
+            Player->Spark[arg1].trx =
+                Player->Position[0] +
+                (SinT(Player->Spark[arg1].ang - Player->Direction[1] - Player->Slipang) * 5.0f);
         }
     }
 }
 
-void init_turbostream(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitTurbostream(Player* player, s16 arg1, s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 temp_v1;
     s32 phi_t0;
     s32 phi_t1;
@@ -3931,7 +3931,7 @@ void init_turbostream(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED
     if (temp_v1 == 1) {
         phi_t1 = 1;
         phi_t0 = 0;
-        y = player->position[1];
+        y = player->Position[1];
     }
 
     if (temp_v1 == 0) {
@@ -3939,244 +3939,244 @@ void init_turbostream(Player* player, s16 arg1, s32 arg2, UNUSED s8 arg3, UNUSED
         if (1) {
             phi_t0 = 0;
         }
-        y = player->position[1];
+        y = player->Position[1];
     }
 
     if (phi_t0 == 0) {
-        if ((arg1 == 0) && ((player->spark[arg2].timer > 0) || (player->spark[arg2].flag == 0))) {
-            MakePos(player, &player->spark[arg1], 0.0f, y, 0.0f, phi_t0, phi_t1);
-            MakeStartup(&player->spark[arg1], 8, 1.0f);
-            MakeRDP(&player->spark[arg1], RGB32(0xFF, 0xFF, 0x20), 0xFF);
+        if ((arg1 == 0) && ((player->Spark[Arg2].Timer > 0) || (player->Spark[Arg2].Flag == 0))) {
+            MakePos(player, &player->Spark[arg1], 0.0f, y, 0.0f, phi_t0, phi_t1);
+            MakeStartup(&player->Spark[arg1], 8, 1.0f);
+            MakeRDP(&player->Spark[arg1], RGB32(0xFF, 0xFF, 0x20), 0xFF);
 
-            player->spark[arg1].ang = 0;
-            if (player->spark[arg1].lrflag == 1) {
-                player->spark[arg1].ang += DEGREES(12);
+            player->Spark[arg1].ang = 0;
+            if (player->Spark[arg1].Lrflag == 1) {
+                player->Spark[arg1].ang += DEGREES(12);
             } else {
-                player->spark[arg1].ang -= DEGREES(12);
+                player->Spark[arg1].ang -= DEGREES(12);
             }
 
-            player->spark[arg1].trz =
-                player->position[2] +
-                (cosT((player->spark[arg1].ang - player->direction[1]) - player->slipang) * 5.0f);
-            player->spark[arg1].trx =
-                player->position[0] +
-                (sinT((player->spark[arg1].ang - player->direction[1]) - player->slipang) * 5.0f);
+            player->Spark[arg1].trz =
+                player->Position[2] +
+                (CosT((player->Spark[arg1].ang - player->Direction[1]) - player->Slipang) * 5.0f);
+            player->Spark[arg1].trx =
+                player->Position[0] +
+                (SinT((player->Spark[arg1].ang - player->Direction[1]) - player->Slipang) * 5.0f);
             return;
         }
 
         new_var2 = player;
-        if (new_var2->spark[arg2].timer > 0) {
-            MakePos(new_var2, &new_var2->spark[arg1], 0.0f, y, 0.0f, phi_t0, phi_t1);
-            MakeStartup(&new_var2->spark[arg1], 8, 1.0f);
-            MakeRDP(&new_var2->spark[arg1], RGB32(0xFF, 0xFF, 0x20), 0xFF);
-            new_var2->spark[arg1].ang = 0;
-            if (new_var2->spark[arg1].lrflag == 1) {
-                new_var2->spark[arg1].ang += DEGREES(12);
+        if (new_var2->Spark[Arg2].Timer > 0) {
+            MakePos(new_var2, &new_var2->Spark[arg1], 0.0f, y, 0.0f, phi_t0, phi_t1);
+            MakeStartup(&new_var2->Spark[arg1], 8, 1.0f);
+            MakeRDP(&new_var2->Spark[arg1], RGB32(0xFF, 0xFF, 0x20), 0xFF);
+            new_var2->Spark[arg1].ang = 0;
+            if (new_var2->Spark[arg1].Lrflag == 1) {
+                new_var2->Spark[arg1].ang += DEGREES(12);
             } else {
-                new_var2->spark[arg1].ang -= DEGREES(12);
+                new_var2->Spark[arg1].ang -= DEGREES(12);
             }
 
             new_var = new_var2;
-            new_var->spark[arg1].trz =
-                new_var->position[2] +
-                (cosT((new_var->spark[arg1].ang - new_var->direction[1]) - new_var->slipang) * 5.0f);
-            new_var->spark[arg1].trx =
-                new_var->position[0] +
-                (sinT((new_var->spark[arg1].ang - new_var->direction[1]) - new_var->slipang) * 5.0f);
+            new_var->Spark[arg1].trz =
+                new_var->Position[2] +
+                (CosT((new_var->Spark[arg1].ang - new_var->Direction[1]) - new_var->Slipang) * 5.0f);
+            new_var->Spark[arg1].trx =
+                new_var->Position[0] +
+                (SinT((new_var->Spark[arg1].ang - new_var->Direction[1]) - new_var->Slipang) * 5.0f);
         }
     }
 }
 
-void make_land(Player* player, Particle* arg1, s32 arg2) {
-    arg1->flag = 1;
-    arg1->try = player->ground + 1.0f;
-    arg1->trz = player->position[2];
-    arg1->trx = player->position[0];
-    arg1->ang = (arg2 * (36 * DEGREES(1))) - player->direction[1];
-    arg1->number = 4;
-    arg1->timer = 0;
+void MakeLand(Player* Player, Particle* arg1, s32 Arg2) {
+    arg1->Flag = 1;
+    arg1->try = Player->Ground + 1.0f;
+    arg1->trz = Player->Position[2];
+    arg1->trx = Player->Position[0];
+    arg1->ang = (Arg2 * (36 * DEGREES(1))) - Player->Direction[1];
+    arg1->Number = 4;
+    arg1->Timer = 0;
 }
 
-void init_land(Player* player, UNUSED s32 arg1, UNUSED s32 arg2, UNUSED s8 arg3, UNUSED s8 arg4) {
+void InitLand(Player* Player, UNUSED s32 arg1, UNUSED s32 Arg2, UNUSED s8 Arg3, UNUSED s8 arg4) {
     s32 var_s1;
 
-    switch (player->bump_status) {
+    switch (Player->BumpStatus) {
         case DIRT:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                if ((g_courseID == COURSE_CHOCO_MOUNTAIN) || (g_courseID == COURSE_ROYAL_RACEWAY)) {
-                    set_up_smoke(&player->spark[var_s1], 1, 0, 0x00A8);
+                if ((CourseID == COURSE_CHOCO_MOUNTAIN) || (CourseID == COURSE_ROYAL_RACEWAY)) {
+                    SetUpSmoke(&Player->Spark[var_s1], 1, 0, 0x00A8);
                 }
-                if (g_courseID == COURSE_KALAMARI_DESERT) {
-                    set_up_smoke(&player->spark[var_s1], 7, 0, 0x00A8);
+                if (CourseID == COURSE_KALAMARI_DESERT) {
+                    SetUpSmoke(&Player->Spark[var_s1], 7, 0, 0x00A8);
                 }
-                if (g_courseID == COURSE_MOO_MOO_FARM) {
-                    set_up_smoke(&player->spark[var_s1], 8, 0, 0x00A8);
+                if (CourseID == COURSE_MOO_MOO_FARM) {
+                    SetUpSmoke(&Player->Spark[var_s1], 8, 0, 0x00A8);
                 }
-                if (g_courseID == COURSE_WARIO_STADIUM) {
-                    set_up_smoke(&player->spark[var_s1], 9, 0, 0x00A8);
+                if (CourseID == COURSE_WARIO_STADIUM) {
+                    SetUpSmoke(&Player->Spark[var_s1], 9, 0, 0x00A8);
                 }
-                if (g_courseID == COURSE_YOSHI_VALLEY) {
-                    set_up_smoke(&player->spark[var_s1], 0x000A, 0, 0x00A8);
+                if (CourseID == COURSE_YOSHI_VALLEY) {
+                    SetUpSmoke(&Player->Spark[var_s1], 0x000A, 0, 0x00A8);
                 }
-                if (g_courseID == COURSE_DK_JUNGLE) {
-                    set_up_smoke(&player->spark[var_s1], 0x000B, 0, 0x00A8);
+                if (CourseID == COURSE_DK_JUNGLE) {
+                    SetUpSmoke(&Player->Spark[var_s1], 0x000B, 0, 0x00A8);
                 }
-                make_land(player, &player->spark[var_s1], var_s1);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
         case GRASS:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                set_up_smoke(&player->spark[var_s1], 2, 1, 0x00A8);
-                make_land(player, &player->spark[var_s1], var_s1);
+                SetUpSmoke(&Player->Spark[var_s1], 2, 1, 0x00A8);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
         case SAND_OFFROAD:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                set_up_smoke(&player->spark[var_s1], 2, 1, 0x00A8);
-                make_land(player, &player->spark[var_s1], var_s1);
+                SetUpSmoke(&Player->Spark[var_s1], 2, 1, 0x00A8);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
         case SAND:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                set_up_smoke(&player->spark[var_s1], 3, 1, 0x00A8);
-                make_land(player, &player->spark[var_s1], var_s1);
+                SetUpSmoke(&Player->Spark[var_s1], 3, 1, 0x00A8);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
         case WET_SAND:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                set_up_smoke(&player->spark[var_s1], 4, 1, 0x00A8);
-                make_land(player, &player->spark[var_s1], var_s1);
+                SetUpSmoke(&Player->Spark[var_s1], 4, 1, 0x00A8);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
         case DIRT_OFFROAD:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                set_up_smoke(&player->spark[var_s1], 5, 1, 0x00A8);
-                make_land(player, &player->spark[var_s1], var_s1);
+                SetUpSmoke(&Player->Spark[var_s1], 5, 1, 0x00A8);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
         case SNOW:
         case SNOW_OFFROAD:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                set_up_smoke(&player->spark[var_s1], 6, 1, 0x00A8);
-                make_land(player, &player->spark[var_s1], var_s1);
+                SetUpSmoke(&Player->Spark[var_s1], 6, 1, 0x00A8);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
         case ASPHALT:
         case STONE:
         case BRIDGE:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                set_up_smoke(&player->spark[var_s1], 0, 0, 0x00A8);
-                make_land(player, &player->spark[var_s1], var_s1);
+                SetUpSmoke(&Player->Spark[var_s1], 0, 0, 0x00A8);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
         default:
             for (var_s1 = 0; var_s1 < 10; var_s1++) {
-                set_up_smoke(&player->spark[var_s1], 0, 0, 0x00A8);
-                make_land(player, &player->spark[var_s1], var_s1);
+                SetUpSmoke(&Player->Spark[var_s1], 0, 0, 0x00A8);
+                MakeLand(Player, &Player->Spark[var_s1], var_s1);
             }
-            player->handling_flag &= ~LANDING_DUST;
+            Player->HandlingFlag &= ~LANDING_DUST;
             break;
     }
 }
 
-void initcrash_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    player->letter[index].flag = 1;
-    player->letter[index].ang = -player->direction[1];
-    player->letter[index].number = 2;
-    player->letter[index].timer = 0;
-    player->letter[index].scale = 0.2f;
+void InitcrashLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    Player->Letter[Index].Flag = 1;
+    Player->Letter[Index].ang = -Player->Direction[1];
+    Player->Letter[Index].Number = 2;
+    Player->Letter[Index].Timer = 0;
+    Player->Letter[Index].Scale = 0.2f;
 }
 
-void inithit_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    player->letter[index].flag = 1;
-    player->letter[index].ang = -player->direction[1];
-    player->letter[index].number = 4;
-    player->letter[index].timer = 0;
-    player->letter[index].scale = 1.0f;
+void InithitLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    Player->Letter[Index].Flag = 1;
+    Player->Letter[Index].ang = -Player->Direction[1];
+    Player->Letter[Index].Number = 4;
+    Player->Letter[Index].Timer = 0;
+    Player->Letter[Index].Scale = 1.0f;
 }
 
-void initboing_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    player->letter[index].flag = 1;
-    player->letter[index].ang = -player->direction[1];
-    player->letter[index].number = 5;
-    player->letter[index].timer = 0;
-    player->letter[index].scale = 0.2f;
+void InitboingLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    Player->Letter[Index].Flag = 1;
+    Player->Letter[Index].ang = -Player->Direction[1];
+    Player->Letter[Index].Number = 5;
+    Player->Letter[Index].Timer = 0;
+    Player->Letter[Index].Scale = 0.2f;
 }
 
-void initpoomp_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    player->letter[index].flag = 1;
-    player->letter[index].ang = -player->direction[1];
-    player->letter[index].number = 6;
-    player->letter[index].timer = 0;
-    player->letter[index].scale = 0.2f;
-    player->letter[index].try = 0.0f;
+void InitpoompLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    Player->Letter[Index].Flag = 1;
+    Player->Letter[Index].ang = -Player->Direction[1];
+    Player->Letter[Index].Number = 6;
+    Player->Letter[Index].Timer = 0;
+    Player->Letter[Index].Scale = 0.2f;
+    Player->Letter[Index].try = 0.0f;
 }
 
-void initspin_letter(Player* player, s8 arg1, UNUSED s8 arg2, s8 index) {
-    player->letter[index].flag = 1;
-    player->letter[index].number = 3;
-    player->letter[arg1 /* arg1 instead of index */].scale = 0.2f;
-    player->letter[index].timer = 1;
-    player->letter[index].ang = 0;
-    player->talk &= ~WHIRRR;
-    player->letter[index].trz = player->position[2];
-    player->letter[index].trx = player->position[0];
-    player->letter[index].try = (player->position[1] + 4.0f);
+void InitspinLetter(Player* Player, s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    Player->Letter[Index].Flag = 1;
+    Player->Letter[Index].Number = 3;
+    Player->Letter[arg1 /* arg1 instead of Index */].Scale = 0.2f;
+    Player->Letter[Index].Timer = 1;
+    Player->Letter[Index].ang = 0;
+    Player->Talk &= ~WHIRRR;
+    Player->Letter[Index].trz = Player->Position[2];
+    Player->Letter[Index].trx = Player->Position[0];
+    Player->Letter[Index].try = (Player->Position[1] + 4.0f);
 }
 
-void initonpu_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    player->letter[index].flag = 1;
-    player->letter[index].number = 5;
-    player->letter[index].scale = 0.1f;
-    player->letter[index].timer = 0;
-    player->letter[index].try = (player->position[1] + player->radius) - 2.5;
+void InitonpuLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    Player->Letter[Index].Flag = 1;
+    Player->Letter[Index].Number = 5;
+    Player->Letter[Index].Scale = 0.1f;
+    Player->Letter[Index].Timer = 0;
+    Player->Letter[Index].try = (Player->Position[1] + Player->Radius) - 2.5;
 }
 
-void make_smokepos(f32* arg0, f32* arg1, f32* arg2, f32 arg3, f32 arg4, f32 arg5, u16 arg6, u16 arg7) {
+void MakeSmokepos(f32* arg0, f32* arg1, f32* Arg2, f32 Arg3, f32 arg4, f32 arg5, u16 arg6, u16 arg7) {
     UNUSED f32 pad;
     f32 sp30;
     f32 sp2C;
     f32 sp28;
     f32 temp_f20;
 
-    //  Apply the matrix multiplication:
+    //  Apply the Matrix multiplication:
     //  Matrix is the Jacobian for cartesian to spherical coordinates?
     //  Get the change in r, theta, and phi for a change in x, y, z?
     //
-    // | arg0 |     | cos(arg6)*cos(arg7)  cos(arg6)*sin(arg7)   -sin(arg6) |     | arg3 |
+    // | arg0 |     | cos(arg6)*cos(arg7)  cos(arg6)*sin(arg7)   -sin(arg6) |     | Arg3 |
     // |      |     |                                                       |     |      |
     // | arg1 |  =  | -sin(arg7)           cos(arg7)                 0      |  X  | arg4 |
     // |      |     |                                                       |     |      |
-    // | arg2 |     | sin(arg6)*cos(arg7)  sin(arg6)*sin(arg7)    cos(arg6) |     | arg5 |
+    // | Arg2 |     | sin(arg6)*cos(arg7)  sin(arg6)*sin(arg7)    cos(arg6) |     | arg5 |
     //
-    sp28 = sinT(arg7);
-    sp2C = cosT(arg6);
-    sp30 = cosT(arg7);
-    temp_f20 = cosT(arg6);
-    //    = arg3 * cos(arg6) * cos(arg7) + arg4 * cos(arg6) * sin(arg7) - arg5 * sin(arg6)
-    *arg0 = (((arg3 * temp_f20) * sp30) + (arg4 * sp2C) * sp28) - (sinT(arg6) * arg5);
+    sp28 = SinT(arg7);
+    sp2C = CosT(arg6);
+    sp30 = CosT(arg7);
+    temp_f20 = CosT(arg6);
+    //    = Arg3 * cos(arg6) * cos(arg7) + arg4 * cos(arg6) * sin(arg7) - arg5 * sin(arg6)
+    *arg0 = (((Arg3 * temp_f20) * sp30) + (arg4 * sp2C) * sp28) - (SinT(arg6) * arg5);
 
-    temp_f20 = sinT(arg7);
-    //    = -arg3 * sin(arg7) + arg4 * cos(arg7)
-    *arg1 = (cosT(arg7) * arg4) - (arg3 * temp_f20);
+    temp_f20 = SinT(arg7);
+    //    = -Arg3 * sin(arg7) + arg4 * cos(arg7)
+    *arg1 = (CosT(arg7) * arg4) - (Arg3 * temp_f20);
 
-    sp28 = sinT(arg7);
-    sp2C = sinT(arg6);
-    sp30 = cosT(arg7);
-    temp_f20 = sinT(arg6);
-    //    = arg3 * sin(arg6) * cos(arg7) + arg4 * sin(arg6) * sin(arg7) + arg5 * cos(arg6)
-    *arg2 = (cosT(arg6) * arg5) + (((arg3 * temp_f20) * sp30) + ((arg4 * sp2C) * sp28));
+    sp28 = SinT(arg7);
+    sp2C = SinT(arg6);
+    sp30 = CosT(arg7);
+    temp_f20 = SinT(arg6);
+    //    = Arg3 * sin(arg6) * cos(arg7) + arg4 * sin(arg6) * sin(arg7) + arg5 * cos(arg6)
+    *Arg2 = (CosT(arg6) * arg5) + (((Arg3 * temp_f20) * sp30) + ((arg4 * sp2C) * sp28));
 }
 
-void engine_smoke(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s32 arg3) {
+void EngineSmoke(Player* Player, s16 arg1, UNUSED s32 Arg2, UNUSED s32 Arg3) {
     f32 sp48[8] = { 4.5f, 4.5f, 4.5f, 4.5f, 4.5f, 5.5f, 4.5f, 6.5f };
     f32 var_f6;
     f32 sp40;
@@ -4184,751 +4184,751 @@ void engine_smoke(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s32 arg3) {
     f32 sp38;
     s16 thing;
 
-    player->gass[arg1].timer++;
-    if (player->gass[arg1].timer == 0x000C) {
-        player->gass[arg1].flag = 0;
-        player->gass[arg1].timer = 0;
-        player->gass[arg1].number = NO_PARTICLE;
+    Player->Gass[arg1].Timer++;
+    if (Player->Gass[arg1].Timer == 0x000C) {
+        Player->Gass[arg1].Flag = 0;
+        Player->Gass[arg1].Timer = 0;
+        Player->Gass[arg1].Number = NO_PARTICLE;
     }
-    player->gass[arg1].dev = 2.0f;
-    if (player->gass[arg1].swork5 == 0) {
-        player->gass[arg1].scale = player->gass[arg1].scale + 0.07;
-        player->gass[arg1].fwork1 = player->gass[arg1].fwork1 + 0.3;
-        if (player->gass[arg1].timer >= 3) {
-            player->gass[arg1].swork4 -= 3;
+    Player->Gass[arg1].dev = 2.0f;
+    if (Player->Gass[arg1].Swork5 == 0) {
+        Player->Gass[arg1].Scale = Player->Gass[arg1].Scale + 0.07;
+        Player->Gass[arg1].Fwork1 = Player->Gass[arg1].Fwork1 + 0.3;
+        if (Player->Gass[arg1].Timer >= 3) {
+            Player->Gass[arg1].Swork4 -= 3;
         }
-        if (player->gass[arg1].swork4 <= 0) {
-            player->gass[arg1].swork4 = 0;
+        if (Player->Gass[arg1].Swork4 <= 0) {
+            Player->Gass[arg1].Swork4 = 0;
         }
     } else {
-        player->gass[arg1].scale = player->gass[arg1].scale + 0.1;
-        player->gass[arg1].fwork1 = player->gass[arg1].fwork1 + 0.3;
-        if (player->gass[arg1].timer >= 3) {
-            player->gass[arg1].swork4 -= 2;
+        Player->Gass[arg1].Scale = Player->Gass[arg1].Scale + 0.1;
+        Player->Gass[arg1].Fwork1 = Player->Gass[arg1].Fwork1 + 0.3;
+        if (Player->Gass[arg1].Timer >= 3) {
+            Player->Gass[arg1].Swork4 -= 2;
         }
-        if (player->gass[arg1].swork4 <= 0) {
-            player->gass[arg1].swork4 = 0;
+        if (Player->Gass[arg1].Swork4 <= 0) {
+            Player->Gass[arg1].Swork4 = 0;
         }
     }
-    thing = player->gass[arg1].ang - (player->slipang / 2);
-    if (player->gass[arg1].swork5 == 0) {
-        var_f6 = -((player->taco / 5000.0f) + 0.1);
+    thing = Player->Gass[arg1].ang - (Player->Slipang / 2);
+    if (Player->Gass[arg1].Swork5 == 0) {
+        var_f6 = -((Player->Taco / 5000.0f) + 0.1);
     } else {
-        var_f6 = -((player->taco / 6000.0f) + 0.1);
+        var_f6 = -((Player->Taco / 6000.0f) + 0.1);
     }
-    if (((player->slip_flag & TURBO) == TURBO) && (player->gass[arg1].timer >= 6)) {
-        player->gass[arg1].scale = player->gass[arg1].scale + 0.06;
+    if (((Player->SlipFlag & TURBO) == TURBO) && (Player->Gass[arg1].Timer >= 6)) {
+        Player->Gass[arg1].Scale = Player->Gass[arg1].Scale + 0.06;
     }
-    player->gass[arg1].lrflag++;
-    if (player->gass[arg1].lrflag >= 3) {
-        player->gass[arg1].lrflag = 0;
+    Player->Gass[arg1].Lrflag++;
+    if (Player->Gass[arg1].Lrflag >= 3) {
+        Player->Gass[arg1].Lrflag = 0;
     }
-    make_smokepos(&sp40, &sp38, &sp3C, 0.0f, sp48[player->kart],
-                  (player->gass[arg1].timer * var_f6) + -5.5, -thing, -player->kartroll * 2);
-    player->gass[arg1].trx = player->position[0] + sp40;
-    sp38 = (player->position[1] - player->radius) + sp38;
-    player->gass[arg1].trz = player->position[2] + sp3C;
-    player->gass[arg1].try = player->gass[arg1].fwork1 + sp38;
+    MakeSmokepos(&sp40, &sp38, &sp3C, 0.0f, sp48[Player->Kart],
+                  (Player->Gass[arg1].Timer * var_f6) + -5.5, -thing, -Player->Kartroll * 2);
+    Player->Gass[arg1].trx = Player->Position[0] + sp40;
+    sp38 = (Player->Position[1] - Player->Radius) + sp38;
+    Player->Gass[arg1].trz = Player->Position[2] + sp3C;
+    Player->Gass[arg1].try = Player->Gass[arg1].Fwork1 + sp38;
 }
 
-void random_bubble(Player* player, s16 arg1, s8 arg2, UNUSED s8 arg3) {
+void RandomBubble(Player* Player, s16 arg1, s8 Arg2, UNUSED s8 Arg3) {
     f32 temp_f0;
 
-    temp_f0 = player->smoke[arg1].dev / 10.0f;
-    ++player->smoke[arg1].timer;
-    player->smoke[arg1].try += temp_f0;
-    if ((player->jugemu_flag & IS_IN_WATER) == IS_IN_WATER) {
-        player->smoke[arg1].try += (temp_f0 + 0.3);
-        if ((player->smoke[arg1].timer == 0x10) ||
-            ((g_waterlevelPlayer[arg2] - player->smoke[arg1].try) < 3.0f)) {
-            player->smoke[arg1].flag = 0;
-            player->smoke[arg1].timer = 0;
-            player->smoke[arg1].number = NO_PARTICLE;
+    temp_f0 = Player->smoke[arg1].dev / 10.0f;
+    ++Player->smoke[arg1].Timer;
+    Player->smoke[arg1].try += temp_f0;
+    if ((Player->JugemuFlag & IS_IN_WATER) == IS_IN_WATER) {
+        Player->smoke[arg1].try += (temp_f0 + 0.3);
+        if ((Player->smoke[arg1].Timer == 0x10) ||
+            ((WaterlevelPlayer[Arg2] - Player->smoke[arg1].try) < 3.0f)) {
+            Player->smoke[arg1].Flag = 0;
+            Player->smoke[arg1].Timer = 0;
+            Player->smoke[arg1].Number = NO_PARTICLE;
         }
-    } else if ((player->smoke[arg1].timer == 0xA) ||
-               ((g_waterlevelPlayer[arg2] - player->smoke[arg1].try) < 3.0f)) {
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].timer = 0;
-        player->smoke[arg1].number = NO_PARTICLE;
+    } else if ((Player->smoke[arg1].Timer == 0xA) ||
+               ((WaterlevelPlayer[Arg2] - Player->smoke[arg1].try) < 3.0f)) {
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Timer = 0;
+        Player->smoke[arg1].Number = NO_PARTICLE;
     }
 }
 
-void dobon_splash(Player* player, s16 arg1, s8 arg2, UNUSED s8 arg3) {
-    ++player->gass[arg1].timer;
-    player->gass[arg1].trz = player->position[2] + cosT(player->gass[arg1].ang) * -5.8;
-    player->gass[arg1].trx = player->position[0] + sinT(player->gass[arg1].ang) * -5.8;
-    player->gass[arg1].try = g_waterlevelPlayer[arg2];
-    if (player->gass[arg1].timer == 15) {
-        player->gass[arg1].flag = 0;
-        player->gass[arg1].timer = 0;
-        player->gass[arg1].number = NO_PARTICLE;
+void DobonSplash(Player* Player, s16 arg1, s8 Arg2, UNUSED s8 Arg3) {
+    ++Player->Gass[arg1].Timer;
+    Player->Gass[arg1].trz = Player->Position[2] + CosT(Player->Gass[arg1].ang) * -5.8;
+    Player->Gass[arg1].trx = Player->Position[0] + SinT(Player->Gass[arg1].ang) * -5.8;
+    Player->Gass[arg1].try = WaterlevelPlayer[Arg2];
+    if (Player->Gass[arg1].Timer == 15) {
+        Player->Gass[arg1].Flag = 0;
+        Player->Gass[arg1].Timer = 0;
+        Player->Gass[arg1].Number = NO_PARTICLE;
     }
 }
 
-void thunder_effect(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    ++player->gass[arg1].timer;
-    if ((s32) player->gass[arg1].timer < 9) {
-        if ((player->gass[arg1].timer & 1) != 0) {
-            player->gass[arg1].swork1 = 8;
+void ThunderEffect(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    ++Player->Gass[arg1].Timer;
+    if ((s32) Player->Gass[arg1].Timer < 9) {
+        if ((Player->Gass[arg1].Timer & 1) != 0) {
+            Player->Gass[arg1].Swork1 = 8;
         } else {
-            player->gass[arg1].swork1 = 0;
+            Player->Gass[arg1].Swork1 = 0;
         }
-    } else if (((player->gass[arg1].timer & 1) != 0) ||
-               ((player->gass[arg1].timer >= 9) && (player->gass[arg1].timer < 12))) {
-        player->gass[arg1].swork1 = 0xFF;
-    } else if ((player->gass[arg1].timer & 2) != 0) {
-        player->gass[arg1].swork1 = 8;
+    } else if (((Player->Gass[arg1].Timer & 1) != 0) ||
+               ((Player->Gass[arg1].Timer >= 9) && (Player->Gass[arg1].Timer < 12))) {
+        Player->Gass[arg1].Swork1 = 0xFF;
+    } else if ((Player->Gass[arg1].Timer & 2) != 0) {
+        Player->Gass[arg1].Swork1 = 8;
     } else {
-        player->gass[arg1].swork1 = 0;
+        Player->Gass[arg1].Swork1 = 0;
     }
-    player->gass[arg1].swork2 = 0;
-    player->gass[arg1].swork3 = 0;
-    if ((s32) player->gass[arg1].timer >= 0x19) {
-        player->gass[arg1].flag = 0;
-        player->gass[arg1].timer = 0;
-        player->gass[arg1].number = NO_PARTICLE;
+    Player->Gass[arg1].Swork2 = 0;
+    Player->Gass[arg1].Swork3 = 0;
+    if ((s32) Player->Gass[arg1].Timer >= 0x19) {
+        Player->Gass[arg1].Flag = 0;
+        Player->Gass[arg1].Timer = 0;
+        Player->Gass[arg1].Number = NO_PARTICLE;
     }
 }
 
-void teresa_effect(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    if (player->gass[arg1].timer >= 0x1E) {
-        player->gass[arg1].swork5 += 0x1FFE;
+void TeresaEffect(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    if (Player->Gass[arg1].Timer >= 0x1E) {
+        Player->Gass[arg1].Swork5 += 0x1FFE;
     } else {
-        player->gass[arg1].swork5 += 0x1554;
+        Player->Gass[arg1].Swork5 += 0x1554;
     }
 
-    player->gass[arg1].fwork1 += 0.25;
-    player->gass[arg1].trz =
-        player->position[2] + (cosT((player->gass[arg1].ang + player->gass[arg1].swork5)) * 5.5);
-    player->gass[arg1].trx =
-        player->position[0] + (sinT((player->gass[arg1].ang + player->gass[arg1].swork5)) * 5.5);
-    player->gass[arg1].try = ((player->position[1] - 5.0f) + player->gass[arg1].fwork1);
-    ++player->gass[arg1].timer;
-    player->gass[arg1].scale += 0.05;
-    player->gass[arg1].swork4 -= 5;
+    Player->Gass[arg1].Fwork1 += 0.25;
+    Player->Gass[arg1].trz =
+        Player->Position[2] + (CosT((Player->Gass[arg1].ang + Player->Gass[arg1].Swork5)) * 5.5);
+    Player->Gass[arg1].trx =
+        Player->Position[0] + (SinT((Player->Gass[arg1].ang + Player->Gass[arg1].Swork5)) * 5.5);
+    Player->Gass[arg1].try = ((Player->Position[1] - 5.0f) + Player->Gass[arg1].Fwork1);
+    ++Player->Gass[arg1].Timer;
+    Player->Gass[arg1].Scale += 0.05;
+    Player->Gass[arg1].Swork4 -= 5;
 
-    if ((s32) player->gass[arg1].swork4 <= 0) {
-        player->gass[arg1].swork4 = 0;
+    if ((s32) Player->Gass[arg1].Swork4 <= 0) {
+        Player->Gass[arg1].Swork4 = 0;
     }
 
-    if ((s32) player->gass[arg1].timer >= 0x28) {
-        player->gass[arg1].flag = 0;
-        player->gass[arg1].timer = 0;
-        player->gass[arg1].number = NO_PARTICLE;
+    if ((s32) Player->Gass[arg1].Timer >= 0x28) {
+        Player->Gass[arg1].Flag = 0;
+        Player->Gass[arg1].Timer = 0;
+        Player->Gass[arg1].Number = NO_PARTICLE;
     }
 }
 
-void drift_smoke(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    if (player->smoke[arg1].lrflag == 1) {
-        player->smoke[arg1].trz =
-            player->tire_RL.Position[2] +
-            (player->smoke[arg1].timer * -7) * cosT(player->smoke[arg1].ang);
-        player->smoke[arg1].trx =
-            player->tire_RL.Position[0] +
-            (player->smoke[arg1].timer * -7) * sinT(player->smoke[arg1].ang);
+void DriftSmoke(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    if (Player->smoke[arg1].Lrflag == 1) {
+        Player->smoke[arg1].trz =
+            Player->TireRL.Position[2] +
+            (Player->smoke[arg1].Timer * -7) * CosT(Player->smoke[arg1].ang);
+        Player->smoke[arg1].trx =
+            Player->TireRL.Position[0] +
+            (Player->smoke[arg1].Timer * -7) * SinT(Player->smoke[arg1].ang);
     } else {
-        player->smoke[arg1].trz =
-            player->tire_RR.Position[2] +
-            (player->smoke[arg1].timer * -7) * cosT(player->smoke[arg1].ang);
-        player->smoke[arg1].trx =
-            player->tire_RR.Position[0] +
-            (player->smoke[arg1].timer * -7) * sinT(player->smoke[arg1].ang);
+        Player->smoke[arg1].trz =
+            Player->TireRR.Position[2] +
+            (Player->smoke[arg1].Timer * -7) * CosT(Player->smoke[arg1].ang);
+        Player->smoke[arg1].trx =
+            Player->TireRR.Position[0] +
+            (Player->smoke[arg1].Timer * -7) * SinT(Player->smoke[arg1].ang);
     }
 
-    ++player->smoke[arg1].timer;
-    player->smoke[arg1].try += 1.0f;
+    ++Player->smoke[arg1].Timer;
+    Player->smoke[arg1].try += 1.0f;
 
-    if (((player->slip_flag & SPIN_L) != 0) || ((player->slip_flag & SPIN_R) != 0)) {
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].timer = 0;
+    if (((Player->SlipFlag & SPIN_L) != 0) || ((Player->SlipFlag & SPIN_R) != 0)) {
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Timer = 0;
     }
 
-    if (player->smoke[arg1].timer == 8) {
-        player->smoke[arg1].timer = 0;
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].number = NO_PARTICLE;
+    if (Player->smoke[arg1].Timer == 8) {
+        Player->smoke[arg1].Timer = 0;
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Number = NO_PARTICLE;
     }
 
-    player->smoke[arg1].scale += 0.08;
-    if (player->smoke[arg1].timer >= 4) {
-        player->smoke[arg1].swork4 -= 16;
+    Player->smoke[arg1].Scale += 0.08;
+    if (Player->smoke[arg1].Timer >= 4) {
+        Player->smoke[arg1].Swork4 -= 16;
     }
 
-    if (player->smoke[arg1].swork4 <= 0) {
-        player->smoke[arg1].swork4 = 0;
+    if (Player->smoke[arg1].Swork4 <= 0) {
+        Player->smoke[arg1].Swork4 = 0;
     }
 }
 
-void random_smoke(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
+void RandomSmoke(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
     f32 sp44;
     f32 sp40;
     f32 sp3C;
 
-    if (player->smoke[arg1].lrflag == 1) {
-        if ((player->slip_flag & THUNDER)) {
-            make_smokepos(&sp44, &sp40, &sp3C, -2.0f, 0.0f,
-                          (-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 16,
-                          -player->smoke[arg1].ang, 2 * -player->kartroll);
-            player->smoke[arg1].trx = player->tire_RL.Position[0] + sp44;
-            player->smoke[arg1].trz = player->tire_RL.Position[2] + sp3C;
+    if (Player->smoke[arg1].Lrflag == 1) {
+        if ((Player->SlipFlag & THUNDER)) {
+            MakeSmokepos(&sp44, &sp40, &sp3C, -2.0f, 0.0f,
+                          (-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 16,
+                          -Player->smoke[arg1].ang, 2 * -Player->Kartroll);
+            Player->smoke[arg1].trx = Player->TireRL.Position[0] + sp44;
+            Player->smoke[arg1].trz = Player->TireRL.Position[2] + sp3C;
         } else {
-            player->smoke[arg1].trz =
-                player->tire_RL.Position[2] +
-                ((-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 16) *
-                    cosT(player->smoke[arg1].ang);
-            player->smoke[arg1].trx =
-                player->tire_RL.Position[0] +
-                ((-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 16) *
-                    sinT(player->smoke[arg1].ang);
+            Player->smoke[arg1].trz =
+                Player->TireRL.Position[2] +
+                ((-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 16) *
+                    CosT(Player->smoke[arg1].ang);
+            Player->smoke[arg1].trx =
+                Player->TireRL.Position[0] +
+                ((-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 16) *
+                    SinT(Player->smoke[arg1].ang);
         }
-    } else if ((player->slip_flag & THUNDER)) {
-        make_smokepos(&sp44, &sp40, &sp3C, 2.0f, 0.0f,
-                      (-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 16,
-                      -player->smoke[arg1].ang, 2 * -player->kartroll);
-        player->smoke[arg1].trx = player->tire_RR.Position[0] + sp44;
-        player->smoke[arg1].trz = player->tire_RR.Position[2] + sp3C;
+    } else if ((Player->SlipFlag & THUNDER)) {
+        MakeSmokepos(&sp44, &sp40, &sp3C, 2.0f, 0.0f,
+                      (-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 16,
+                      -Player->smoke[arg1].ang, 2 * -Player->Kartroll);
+        Player->smoke[arg1].trx = Player->TireRR.Position[0] + sp44;
+        Player->smoke[arg1].trz = Player->TireRR.Position[2] + sp3C;
     } else {
-        player->smoke[arg1].trz =
-            player->tire_RR.Position[2] +
-            ((-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 16) *
-                cosT(player->smoke[arg1].ang);
-        player->smoke[arg1].trx =
-            player->tire_RR.Position[0] +
-            ((-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 16) *
-                sinT(player->smoke[arg1].ang);
+        Player->smoke[arg1].trz =
+            Player->TireRR.Position[2] +
+            ((-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 16) *
+                CosT(Player->smoke[arg1].ang);
+        Player->smoke[arg1].trx =
+            Player->TireRR.Position[0] +
+            ((-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 16) *
+                SinT(Player->smoke[arg1].ang);
     }
 
-    ++player->smoke[arg1].timer;
-    player->smoke[arg1].try += 0.2;
-    if (((player->slip_flag & SPIN_L) != 0) || ((player->slip_flag & SPIN_R) != 0)) {
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].timer = 0;
+    ++Player->smoke[arg1].Timer;
+    Player->smoke[arg1].try += 0.2;
+    if (((Player->SlipFlag & SPIN_L) != 0) || ((Player->SlipFlag & SPIN_R) != 0)) {
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Timer = 0;
     }
 
-    if (player->smoke[arg1].timer == 8) {
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].timer = 0;
-        player->smoke[arg1].number = NO_PARTICLE;
+    if (Player->smoke[arg1].Timer == 8) {
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Timer = 0;
+        Player->smoke[arg1].Number = NO_PARTICLE;
     }
 
-    player->smoke[arg1].scale += 0.1;
-    if (player->smoke[arg1].swork5 == 0) {
-        if (player->smoke[arg1].timer >= 4) {
-            player->smoke[arg1].swork4 -= 12;
+    Player->smoke[arg1].Scale += 0.1;
+    if (Player->smoke[arg1].Swork5 == 0) {
+        if (Player->smoke[arg1].Timer >= 4) {
+            Player->smoke[arg1].Swork4 -= 12;
         }
-        if (player->smoke[arg1].swork4 <= 0) {
-            player->smoke[arg1].swork4 = 0;
+        if (Player->smoke[arg1].Swork4 <= 0) {
+            Player->smoke[arg1].Swork4 = 0;
         }
     } else {
-        if (player->smoke[arg1].timer >= 4) {
-            player->smoke[arg1].swork4 -= 16;
+        if (Player->smoke[arg1].Timer >= 4) {
+            Player->smoke[arg1].Swork4 -= 16;
         }
-        if (player->smoke[arg1].swork4 <= 0) {
-            player->smoke[arg1].swork4 = 0;
+        if (Player->smoke[arg1].Swork4 <= 0) {
+            Player->smoke[arg1].Swork4 = 0;
         }
     }
 }
 
-void rapid_smoke(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    if (player->smoke[arg1].lrflag == 1) {
-        player->smoke[arg1].trz =
-            player->tire_RL.Position[2] +
-            (-1.8f * player->smoke[arg1].timer) * cosT(player->smoke[arg1].ang);
-        player->smoke[arg1].trx =
-            player->tire_RL.Position[0] +
-            (-1.8f * player->smoke[arg1].timer) * sinT(player->smoke[arg1].ang);
+void RapidSmoke(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    if (Player->smoke[arg1].Lrflag == 1) {
+        Player->smoke[arg1].trz =
+            Player->TireRL.Position[2] +
+            (-1.8f * Player->smoke[arg1].Timer) * CosT(Player->smoke[arg1].ang);
+        Player->smoke[arg1].trx =
+            Player->TireRL.Position[0] +
+            (-1.8f * Player->smoke[arg1].Timer) * SinT(Player->smoke[arg1].ang);
     } else {
-        player->smoke[arg1].trz =
-            player->tire_RR.Position[2] +
-            (-1.8f * player->smoke[arg1].timer) * cosT(player->smoke[arg1].ang);
-        player->smoke[arg1].trx =
-            player->tire_RR.Position[0] +
-            (-1.8f * player->smoke[arg1].timer) * sinT(player->smoke[arg1].ang);
+        Player->smoke[arg1].trz =
+            Player->TireRR.Position[2] +
+            (-1.8f * Player->smoke[arg1].Timer) * CosT(Player->smoke[arg1].ang);
+        Player->smoke[arg1].trx =
+            Player->TireRR.Position[0] +
+            (-1.8f * Player->smoke[arg1].Timer) * SinT(Player->smoke[arg1].ang);
     }
-    ++player->smoke[arg1].timer;
-    player->smoke[arg1].try += 0.3;
-    if (player->smoke[arg1].timer == 8) {
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].timer = 0;
-        player->smoke[arg1].number = NO_PARTICLE;
+    ++Player->smoke[arg1].Timer;
+    Player->smoke[arg1].try += 0.3;
+    if (Player->smoke[arg1].Timer == 8) {
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Timer = 0;
+        Player->smoke[arg1].Number = NO_PARTICLE;
     }
 
-    player->smoke[arg1].scale += 0.15;
-    if (player->smoke[arg1].swork5 == 0) {
-        if ((s32) player->smoke[arg1].timer >= 4) {
-            --player->smoke[arg1].swork4;
+    Player->smoke[arg1].Scale += 0.15;
+    if (Player->smoke[arg1].Swork5 == 0) {
+        if ((s32) Player->smoke[arg1].Timer >= 4) {
+            --Player->smoke[arg1].Swork4;
         }
-        if ((s32) player->smoke[arg1].swork4 <= 0) {
-            player->smoke[arg1].swork4 = 0;
+        if ((s32) Player->smoke[arg1].Swork4 <= 0) {
+            Player->smoke[arg1].Swork4 = 0;
         }
     } else {
-        if ((s32) player->smoke[arg1].timer >= 4) {
-            player->smoke[arg1].swork4 -= 16;
+        if ((s32) Player->smoke[arg1].Timer >= 4) {
+            Player->smoke[arg1].Swork4 -= 16;
         }
-        if ((s32) player->smoke[arg1].swork4 <= 0) {
+        if ((s32) Player->smoke[arg1].Swork4 <= 0) {
 
-            player->smoke[arg1].swork4 = 0;
+            Player->smoke[arg1].Swork4 = 0;
         }
     }
 }
 
-void random_grass(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    if (player->smoke[arg1].lrflag == 1) {
-        player->smoke[arg1].trz =
-            player->tire_RL.Position[2] +
-            (-2 * player->smoke[arg1].timer * cosT(player->smoke[arg1].ang));
-        player->smoke[arg1].trx =
-            player->tire_RL.Position[0] +
-            (-2 * player->smoke[arg1].timer * sinT(player->smoke[arg1].ang));
+void RandomGrass(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    if (Player->smoke[arg1].Lrflag == 1) {
+        Player->smoke[arg1].trz =
+            Player->TireRL.Position[2] +
+            (-2 * Player->smoke[arg1].Timer * CosT(Player->smoke[arg1].ang));
+        Player->smoke[arg1].trx =
+            Player->TireRL.Position[0] +
+            (-2 * Player->smoke[arg1].Timer * SinT(Player->smoke[arg1].ang));
     } else {
-        player->smoke[arg1].trz =
-            player->tire_RR.Position[2] +
-            (-2 * player->smoke[arg1].timer * cosT(player->smoke[arg1].ang));
-        player->smoke[arg1].trx =
-            player->tire_RR.Position[0] +
-            (-2 * player->smoke[arg1].timer * sinT(player->smoke[arg1].ang));
+        Player->smoke[arg1].trz =
+            Player->TireRR.Position[2] +
+            (-2 * Player->smoke[arg1].Timer * CosT(Player->smoke[arg1].ang));
+        Player->smoke[arg1].trx =
+            Player->TireRR.Position[0] +
+            (-2 * Player->smoke[arg1].Timer * SinT(Player->smoke[arg1].ang));
     }
 
-    ++player->smoke[arg1].timer;
-    player->smoke[arg1].try += 0.2;
-    if (player->smoke[arg1].timer == 8) {
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].timer = 0;
-        player->smoke[arg1].number = NO_PARTICLE;
+    ++Player->smoke[arg1].Timer;
+    Player->smoke[arg1].try += 0.2;
+    if (Player->smoke[arg1].Timer == 8) {
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Timer = 0;
+        Player->smoke[arg1].Number = NO_PARTICLE;
     }
 
-    player->smoke[arg1].dev = 2.0f;
-    player->smoke[arg1].scale -= 0.06;
+    Player->smoke[arg1].dev = 2.0f;
+    Player->smoke[arg1].Scale -= 0.06;
 }
 
-void random_spl(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    if (player->smoke[arg1].lrflag == 1) {
-        player->smoke[arg1].trz =
-            player->tire_RL.Position[2] +
-            ((-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 20.0f) *
-                cosT(player->smoke[arg1].ang);
-        player->smoke[arg1].trx =
-            player->tire_RL.Position[0] +
-            ((-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 20.0f) *
-                sinT(player->smoke[arg1].ang);
+void RandomSpl(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    if (Player->smoke[arg1].Lrflag == 1) {
+        Player->smoke[arg1].trz =
+            Player->TireRL.Position[2] +
+            ((-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 20.0f) *
+                CosT(Player->smoke[arg1].ang);
+        Player->smoke[arg1].trx =
+            Player->TireRL.Position[0] +
+            ((-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 20.0f) *
+                SinT(Player->smoke[arg1].ang);
     } else {
-        player->smoke[arg1].trz =
-            player->tire_RR.Position[2] +
-            ((-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 20.0f) *
-                cosT(player->smoke[arg1].ang);
-        player->smoke[arg1].trx =
-            player->tire_RR.Position[0] +
-            ((-player->smoke[arg1].timer * (player->speed / 18.0f) * 216.0f) / 20.0f) *
-                sinT(player->smoke[arg1].ang);
+        Player->smoke[arg1].trz =
+            Player->TireRR.Position[2] +
+            ((-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 20.0f) *
+                CosT(Player->smoke[arg1].ang);
+        Player->smoke[arg1].trx =
+            Player->TireRR.Position[0] +
+            ((-Player->smoke[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 20.0f) *
+                SinT(Player->smoke[arg1].ang);
     }
 
-    ++player->smoke[arg1].timer;
-    if (player->smoke[arg1].timer == 8) {
-        player->smoke[arg1].timer = 0;
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].number = NO_PARTICLE;
+    ++Player->smoke[arg1].Timer;
+    if (Player->smoke[arg1].Timer == 8) {
+        Player->smoke[arg1].Timer = 0;
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Number = NO_PARTICLE;
     }
 
-    player->smoke[arg1].scale += 0.2;
-    if (player->smoke[arg1].timer >= 4) {
-        player->smoke[arg1].swork4 -= 18;
-        player->smoke[arg1].try -= 0.1;
+    Player->smoke[arg1].Scale += 0.2;
+    if (Player->smoke[arg1].Timer >= 4) {
+        Player->smoke[arg1].Swork4 -= 18;
+        Player->smoke[arg1].try -= 0.1;
     } else {
-        player->smoke[arg1].try += 0.4;
+        Player->smoke[arg1].try += 0.4;
     }
 
-    if (player->smoke[arg1].swork4 <= 0) {
-        player->smoke[arg1].swork4 = 0;
+    if (Player->smoke[arg1].Swork4 <= 0) {
+        Player->smoke[arg1].Swork4 = 0;
     }
 }
 
-void random_turbo(Player* player, s16 arg1, UNUSED s32 arg2, UNUSED s32 arg3) {
+void RandomTurbo(Player* Player, s16 arg1, UNUSED s32 Arg2, UNUSED s32 Arg3) {
     f32 sp3C;
     f32 sp38;
     f32 sp34;
 
-    if (player->smoke[arg1].lrflag == 1) {
-        make_smokepos(&sp3C, &sp34, &sp38, 3.0f, 0.0f,
-                      -5.5 - (player->smoke[arg1].timer * (((player->speed / 18.0f) * 216.0f) / 15.0f)),
-                      -player->smoke[arg1].ang, 0);
+    if (Player->smoke[arg1].Lrflag == 1) {
+        MakeSmokepos(&sp3C, &sp34, &sp38, 3.0f, 0.0f,
+                      -5.5 - (Player->smoke[arg1].Timer * (((Player->Speed / 18.0f) * 216.0f) / 15.0f)),
+                      -Player->smoke[arg1].ang, 0);
     } else {
-        make_smokepos(&sp3C, &sp34, &sp38, -3.0f, 0.0f,
-                      -5.5 - (player->smoke[arg1].timer * (((player->speed / 18.0f) * 216.0f) / 15.0f)),
-                      -player->smoke[arg1].ang, 0);
+        MakeSmokepos(&sp3C, &sp34, &sp38, -3.0f, 0.0f,
+                      -5.5 - (Player->smoke[arg1].Timer * (((Player->Speed / 18.0f) * 216.0f) / 15.0f)),
+                      -Player->smoke[arg1].ang, 0);
     }
-    player->smoke[arg1].trx = player->position[0] + sp3C;
-    player->smoke[arg1].trz = player->position[2] + sp38;
-    player->smoke[arg1].try = (player->position[1] - player->radius) + sp34;
-    player->smoke[arg1].timer++;
-    if (player->smoke[arg1].timer == 6) {
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].timer = 0;
-        player->smoke[arg1].number = NO_PARTICLE;
+    Player->smoke[arg1].trx = Player->Position[0] + sp3C;
+    Player->smoke[arg1].trz = Player->Position[2] + sp38;
+    Player->smoke[arg1].try = (Player->Position[1] - Player->Radius) + sp34;
+    Player->smoke[arg1].Timer++;
+    if (Player->smoke[arg1].Timer == 6) {
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Timer = 0;
+        Player->smoke[arg1].Number = NO_PARTICLE;
     }
 }
 
-void random_ring(Player* player, s16 arg1, s8 arg2, UNUSED s8 arg3) {
+void RandomRing(Player* Player, s16 arg1, s8 Arg2, UNUSED s8 Arg3) {
     f32 sp44;
     f32 sp40;
     f32 sp3C;
 
-    sp40 = g_waterlevelPlayer[arg2] - player->position[1] - 3.0f;
-    if (((player->water_flag & SUBMERGED) != 0) && (g_courseID != COURSE_KOOPA_BEACH)) {
-        sp40 = g_waterlevelPlayer[arg2] - player->position[1] + 0.1;
+    sp40 = WaterlevelPlayer[Arg2] - Player->Position[1] - 3.0f;
+    if (((Player->WaterFlag & SUBMERGED) != 0) && (CourseID != COURSE_KOOPA_BEACH)) {
+        sp40 = WaterlevelPlayer[Arg2] - Player->Position[1] + 0.1;
     }
 
-    make_smokepos(&sp44, &sp40, &sp3C, 0.0f, sp40,
-                  -4.0f + ((-player->gass[arg1].timer * (player->speed / 18.0f) * 216.0f) / 10.0f),
-                  -player->gass[arg1].ang, 2 * -player->kartroll);
-    player->gass[arg1].trx = player->position[0] + sp44;
-    player->gass[arg1].trz = player->position[2] + sp3C;
-    player->gass[arg1].try = player->position[1] + sp40;
-    ++player->gass[arg1].timer;
-    if ((player->gass[arg1].timer == 12) || (g_waterlevelPlayer[arg2] <= (player->position[1] - player->radius))) {
-        player->gass[arg1].flag = 0;
-        player->gass[arg1].timer = 0;
-        player->gass[arg1].number = NO_PARTICLE;
+    MakeSmokepos(&sp44, &sp40, &sp3C, 0.0f, sp40,
+                  -4.0f + ((-Player->Gass[arg1].Timer * (Player->Speed / 18.0f) * 216.0f) / 10.0f),
+                  -Player->Gass[arg1].ang, 2 * -Player->Kartroll);
+    Player->Gass[arg1].trx = Player->Position[0] + sp44;
+    Player->Gass[arg1].trz = Player->Position[2] + sp3C;
+    Player->Gass[arg1].try = Player->Position[1] + sp40;
+    ++Player->Gass[arg1].Timer;
+    if ((Player->Gass[arg1].Timer == 12) || (WaterlevelPlayer[Arg2] <= (Player->Position[1] - Player->Radius))) {
+        Player->Gass[arg1].Flag = 0;
+        Player->Gass[arg1].Timer = 0;
+        Player->Gass[arg1].Number = NO_PARTICLE;
     }
-    player->gass[arg1].dev = 2.0f;
-    player->gass[arg1].scale -= 0.35;
-    if (player->gass[arg1].scale < 0.0f) {
-        player->gass[arg1].scale = 0.0f;
-    }
-
-    player->gass[arg1].swork4 -= 22;
-    if (player->gass[arg1].swork4 <= 0) {
-        player->gass[arg1].swork4 = 0;
-    }
-}
-
-void spin_smoke(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    player->smoke[arg1].trz =
-        player->position[2] + (-1.2 * player->smoke[arg1].timer * cosT(player->smoke[arg1].ang));
-    player->smoke[arg1].trx =
-        player->position[0] + (-1.2 * player->smoke[arg1].timer * sinT(player->smoke[arg1].ang));
-    player->smoke[arg1].try = player->smoke[arg1].try + 0.5;
-
-    ++player->smoke[arg1].timer;
-    if (player->smoke[arg1].timer == 10) {
-        player->smoke[arg1].flag = 0;
-        player->smoke[arg1].timer = 0;
-        player->smoke[arg1].number = NO_PARTICLE;
+    Player->Gass[arg1].dev = 2.0f;
+    Player->Gass[arg1].Scale -= 0.35;
+    if (Player->Gass[arg1].Scale < 0.0f) {
+        Player->Gass[arg1].Scale = 0.0f;
     }
 
-    player->smoke[arg1].scale += 0.2;
-    player->smoke[arg1].swork4 -= 8;
-    if (player->smoke[arg1].swork4 <= 0) {
-        player->smoke[arg1].swork4 = 0;
+    Player->Gass[arg1].Swork4 -= 22;
+    if (Player->Gass[arg1].Swork4 <= 0) {
+        Player->Gass[arg1].Swork4 = 0;
     }
 }
 
-void star_dust(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
+void SpinSmoke(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    Player->smoke[arg1].trz =
+        Player->Position[2] + (-1.2 * Player->smoke[arg1].Timer * CosT(Player->smoke[arg1].ang));
+    Player->smoke[arg1].trx =
+        Player->Position[0] + (-1.2 * Player->smoke[arg1].Timer * SinT(Player->smoke[arg1].ang));
+    Player->smoke[arg1].try = Player->smoke[arg1].try + 0.5;
+
+    ++Player->smoke[arg1].Timer;
+    if (Player->smoke[arg1].Timer == 10) {
+        Player->smoke[arg1].Flag = 0;
+        Player->smoke[arg1].Timer = 0;
+        Player->smoke[arg1].Number = NO_PARTICLE;
+    }
+
+    Player->smoke[arg1].Scale += 0.2;
+    Player->smoke[arg1].Swork4 -= 8;
+    if (Player->smoke[arg1].Swork4 <= 0) {
+        Player->smoke[arg1].Swork4 = 0;
+    }
+}
+
+void StarDust(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
     f32 thing2;
     UNUSED s32 stackPadding0;
     s32 thing;
     UNUSED s32 stackPadding1;
 
-    if (player->spark[arg1].timer >= 9) {
-        player->spark[arg1].timer = 9;
+    if (Player->Spark[arg1].Timer >= 9) {
+        Player->Spark[arg1].Timer = 9;
     }
-    thing2 = player->spark[arg1].fwork1;
-    thing = player->spark[arg1].timer;
-    player->spark[arg1].trz = player->position[2] + (cosT(player->spark[arg1].ang) * (-0.7 * thing));
-    player->spark[arg1].trx = player->position[0] + (sinT(player->spark[arg1].ang) * (-0.7 * thing));
-    player->spark[arg1].timer++;
-    player->spark[arg1].try =
-        player->spark[arg1].fwork2 + (f32) ((thing * thing2) - (0.2 * (thing * thing)));
-    if (player->spark[arg1].timer == 0x000A) {
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].flag = 0;
-        player->spark[arg1].number = NO_PARTICLE;
+    thing2 = Player->Spark[arg1].Fwork1;
+    thing = Player->Spark[arg1].Timer;
+    Player->Spark[arg1].trz = Player->Position[2] + (CosT(Player->Spark[arg1].ang) * (-0.7 * thing));
+    Player->Spark[arg1].trx = Player->Position[0] + (SinT(Player->Spark[arg1].ang) * (-0.7 * thing));
+    Player->Spark[arg1].Timer++;
+    Player->Spark[arg1].try =
+        Player->Spark[arg1].Fwork2 + (f32) ((thing * thing2) - (0.2 * (thing * thing)));
+    if (Player->Spark[arg1].Timer == 0x000A) {
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Flag = 0;
+        Player->Spark[arg1].Number = NO_PARTICLE;
     }
-    if (player->spark[arg1].timer >= 7) {
-        player->spark[arg1].swork4 -= 0x60;
-        if (player->spark[arg1].swork4 <= 0) {
-            player->spark[arg1].swork4 = 0;
+    if (Player->Spark[arg1].Timer >= 7) {
+        Player->Spark[arg1].Swork4 -= 0x60;
+        if (Player->Spark[arg1].Swork4 <= 0) {
+            Player->Spark[arg1].Swork4 = 0;
         }
     }
 }
 
-void result_star(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
+void ResultStar(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
     f32 temp_f4;
     UNUSED s32 stackPadding0;
     s32 temp_v1;
     UNUSED s32 stackPadding1;
 
-    temp_v1 = player->spark[arg1].timer;
-    temp_f4 = player->spark[arg1].fwork1;
-    player->spark[arg1].trz =
-        player->position[2] + (cosT(player->spark[arg1].ang) * (-0.6 * temp_v1));
-    player->spark[arg1].trx =
-        player->position[0] + (sinT(player->spark[arg1].ang) * (-0.6 * temp_v1));
-    player->spark[arg1].timer++;
-    player->spark[arg1].try =
-        player->spark[arg1].fwork2 + (f32) ((temp_v1 * temp_f4) - (0.1 * (temp_v1 * temp_v1)));
-    if (player->spark[arg1].timer == 0x0019) {
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].flag = 0;
-        player->spark[arg1].number = NO_PARTICLE;
+    temp_v1 = Player->Spark[arg1].Timer;
+    temp_f4 = Player->Spark[arg1].Fwork1;
+    Player->Spark[arg1].trz =
+        Player->Position[2] + (CosT(Player->Spark[arg1].ang) * (-0.6 * temp_v1));
+    Player->Spark[arg1].trx =
+        Player->Position[0] + (SinT(Player->Spark[arg1].ang) * (-0.6 * temp_v1));
+    Player->Spark[arg1].Timer++;
+    Player->Spark[arg1].try =
+        Player->Spark[arg1].Fwork2 + (f32) ((temp_v1 * temp_f4) - (0.1 * (temp_v1 * temp_v1)));
+    if (Player->Spark[arg1].Timer == 0x0019) {
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Flag = 0;
+        Player->Spark[arg1].Number = NO_PARTICLE;
     }
-    if (player->spark[arg1].timer >= 7) {
-        player->spark[arg1].swork4 -= 0x6;
-        if (player->spark[arg1].swork4 <= 0) {
-            player->spark[arg1].swork4 = 0;
+    if (Player->Spark[arg1].Timer >= 7) {
+        Player->Spark[arg1].Swork4 -= 0x6;
+        if (Player->Spark[arg1].Swork4 <= 0) {
+            Player->Spark[arg1].Swork4 = 0;
         }
     }
 }
 
-void land_smoke(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
+void LandSmoke(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
 
-    ++player->spark[arg1].timer;
-    player->spark[arg1].trz =
-        player->position[2] + ((-0.8 * (player->spark[arg1].timer)) * cosT(player->spark[arg1].ang));
-    player->spark[arg1].trx =
-        player->position[0] + ((-0.8 * (player->spark[arg1].timer)) * sinT(player->spark[arg1].ang));
-    player->spark[arg1].try = (player->ground + 2.0f);
+    ++Player->Spark[arg1].Timer;
+    Player->Spark[arg1].trz =
+        Player->Position[2] + ((-0.8 * (Player->Spark[arg1].Timer)) * CosT(Player->Spark[arg1].ang));
+    Player->Spark[arg1].trx =
+        Player->Position[0] + ((-0.8 * (Player->Spark[arg1].Timer)) * SinT(Player->Spark[arg1].ang));
+    Player->Spark[arg1].try = (Player->Ground + 2.0f);
 
-    if (player->spark[arg1].timer == 14) {
-        player->spark[arg1].flag = 0;
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].number = NO_PARTICLE;
+    if (Player->Spark[arg1].Timer == 14) {
+        Player->Spark[arg1].Flag = 0;
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Number = NO_PARTICLE;
     }
 
-    player->spark[arg1].swork4 -= 12;
-    if (player->spark[arg1].swork4 <= 0) {
-        player->spark[arg1].swork4 = 0;
-    }
-}
-
-void burn_dust(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    ++player->spark[arg1].timer;
-    player->spark[arg1].scale -= 0.06;
-    player->spark[arg1].try += 0.1;
-    player->spark[arg1].swork4 -= 12;
-
-    if (player->spark[arg1].swork4 <= 0) {
-        player->spark[arg1].swork4 = 0;
-    }
-
-    if (player->spark[arg1].timer == 10) {
-        player->spark[arg1].flag = 0;
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].number = NO_PARTICLE;
+    Player->Spark[arg1].Swork4 -= 12;
+    if (Player->Spark[arg1].Swork4 <= 0) {
+        Player->Spark[arg1].Swork4 = 0;
     }
 }
 
-void water_dust(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
-    ++player->spark[arg1].timer;
-    player->spark[arg1].try -= 0.3;
+void BurnDust(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    ++Player->Spark[arg1].Timer;
+    Player->Spark[arg1].Scale -= 0.06;
+    Player->Spark[arg1].try += 0.1;
+    Player->Spark[arg1].Swork4 -= 12;
 
-    if (player->spark[arg1].timer == 10) {
-        player->spark[arg1].flag = 0;
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].number = NO_PARTICLE;
+    if (Player->Spark[arg1].Swork4 <= 0) {
+        Player->Spark[arg1].Swork4 = 0;
+    }
+
+    if (Player->Spark[arg1].Timer == 10) {
+        Player->Spark[arg1].Flag = 0;
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Number = NO_PARTICLE;
     }
 }
 
-void tail_dust(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
+void WaterDust(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
+    ++Player->Spark[arg1].Timer;
+    Player->Spark[arg1].try -= 0.3;
+
+    if (Player->Spark[arg1].Timer == 10) {
+        Player->Spark[arg1].Flag = 0;
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Number = NO_PARTICLE;
+    }
+}
+
+void TailDust(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
     f32 temp;
-    temp = player->spark[arg1].dev;
+    temp = Player->Spark[arg1].dev;
 
-    player->spark[arg1].trz =
-        player->spark_z + (((-temp) * player->spark[arg1].timer) * cosT(player->spark[arg1].ang));
-    player->spark[arg1].trx =
-        player->spark_x + (((-temp) * player->spark[arg1].timer) * sinT(player->spark[arg1].ang));
-    player->spark[arg1].try = player->position[1] + player->spark[arg1].type;
-    player->spark[arg1].scale += 0.04;
+    Player->Spark[arg1].trz =
+        Player->SparkZ + (((-temp) * Player->Spark[arg1].Timer) * CosT(Player->Spark[arg1].ang));
+    Player->Spark[arg1].trx =
+        Player->SparkX + (((-temp) * Player->Spark[arg1].Timer) * SinT(Player->Spark[arg1].ang));
+    Player->Spark[arg1].try = Player->Position[1] + Player->Spark[arg1].Type;
+    Player->Spark[arg1].Scale += 0.04;
 
-    ++player->spark[arg1].timer;
-    if (player->spark[arg1].timer == 12) {
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].flag = 0;
-        player->spark[arg1].number = NO_PARTICLE;
+    ++Player->Spark[arg1].Timer;
+    if (Player->Spark[arg1].Timer == 12) {
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Flag = 0;
+        Player->Spark[arg1].Number = NO_PARTICLE;
     }
 
-    if (player->spark[arg1].timer >= 9) {
-        player->spark[arg1].swork4 -= 0x10;
-        if (player->spark[arg1].swork4 <= 0) {
-            player->spark[arg1].swork4 = 0;
+    if (Player->Spark[arg1].Timer >= 9) {
+        Player->Spark[arg1].Swork4 -= 0x10;
+        if (Player->Spark[arg1].Swork4 <= 0) {
+            Player->Spark[arg1].Swork4 = 0;
         }
     }
 }
 
-void powder_dust(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
+void PowderDust(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
     f32 temp;
-    temp = player->spark[arg1].dev * 1.2;
+    temp = Player->Spark[arg1].dev * 1.2;
 
-    player->spark[arg1].trz =
-        (player->position[2] + (-temp * player->spark[arg1].timer) * (cosT(player->spark[arg1].ang)));
-    player->spark[arg1].trx =
-        (player->position[0] + (-temp * player->spark[arg1].timer) * (sinT(player->spark[arg1].ang)));
-    player->spark[arg1].try += 0.1;
+    Player->Spark[arg1].trz =
+        (Player->Position[2] + (-temp * Player->Spark[arg1].Timer) * (CosT(Player->Spark[arg1].ang)));
+    Player->Spark[arg1].trx =
+        (Player->Position[0] + (-temp * Player->Spark[arg1].Timer) * (SinT(Player->Spark[arg1].ang)));
+    Player->Spark[arg1].try += 0.1;
 
-    ++player->spark[arg1].timer;
-    if (player->spark[arg1].timer == 10) {
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].flag = 0;
-        player->spark[arg1].number = NO_PARTICLE;
+    ++Player->Spark[arg1].Timer;
+    if (Player->Spark[arg1].Timer == 10) {
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Flag = 0;
+        Player->Spark[arg1].Number = NO_PARTICLE;
     }
 
-    player->spark[arg1].swork1 += DEGREES(10);
-    if (player->spark[arg1].timer >= 6) {
-        player->spark[arg1].swork4 -= 16;
-        if (player->spark[arg1].swork4 <= 0) {
-            player->spark[arg1].swork4 = 0;
+    Player->Spark[arg1].Swork1 += DEGREES(10);
+    if (Player->Spark[arg1].Timer >= 6) {
+        Player->Spark[arg1].Swork4 -= 16;
+        if (Player->Spark[arg1].Swork4 <= 0) {
+            Player->Spark[arg1].Swork4 = 0;
         }
     }
 }
 
-void slip_stream(Player* player, s16 arg1, UNUSED s8 arg2, UNUSED s8 arg3) {
+void SlipStream(Player* Player, s16 arg1, UNUSED s8 Arg2, UNUSED s8 Arg3) {
 
-    if (player->spark[arg1].lrflag == 1) {
-        player->spark[arg1].ang += DEGREES(12);
+    if (Player->Spark[arg1].Lrflag == 1) {
+        Player->Spark[arg1].ang += DEGREES(12);
     } else {
-        player->spark[arg1].ang -= DEGREES(12);
+        Player->Spark[arg1].ang -= DEGREES(12);
     }
 
-    player->spark[arg1].trz =
-        player->position[2] + (cosT(player->spark[arg1].ang - player->direction[1] - player->slipang) * 5.0f);
-    player->spark[arg1].trx =
-        player->position[0] + (sinT(player->spark[arg1].ang - player->direction[1] - player->slipang) * 5.0f);
-    player->spark[arg1].try = player->position[1] - 1.0f;
-    player->spark[arg1].scale += 0.4;
-    ++player->spark[arg1].timer;
+    Player->Spark[arg1].trz =
+        Player->Position[2] + (CosT(Player->Spark[arg1].ang - Player->Direction[1] - Player->Slipang) * 5.0f);
+    Player->Spark[arg1].trx =
+        Player->Position[0] + (SinT(Player->Spark[arg1].ang - Player->Direction[1] - Player->Slipang) * 5.0f);
+    Player->Spark[arg1].try = Player->Position[1] - 1.0f;
+    Player->Spark[arg1].Scale += 0.4;
+    ++Player->Spark[arg1].Timer;
 
-    if (player->spark[arg1].timer == 10) {
-        player->spark[arg1].timer = 0;
-        player->spark[arg1].flag = 0;
-        player->spark[arg1].number = NO_PARTICLE;
+    if (Player->Spark[arg1].Timer == 10) {
+        Player->Spark[arg1].Timer = 0;
+        Player->Spark[arg1].Flag = 0;
+        Player->Spark[arg1].Number = NO_PARTICLE;
     }
-    if (player->spark[arg1].timer >= 5) {
-        player->spark[arg1].swork4 -= 20;
-        if (player->spark[arg1].swork4 <= 0) {
-            player->spark[arg1].swork4 = 0;
+    if (Player->Spark[arg1].Timer >= 5) {
+        Player->Spark[arg1].Swork4 -= 20;
+        if (Player->Spark[arg1].Swork4 <= 0) {
+            Player->Spark[arg1].Swork4 = 0;
         }
     }
 }
 
-void crash_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
+void CrashLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
 
-    player->letter[index].try = player->position[1];
-    ++player->letter[index].timer;
+    Player->Letter[Index].try = Player->Position[1];
+    ++Player->Letter[Index].Timer;
 
-    if (player->letter[index].timer == 9) {
-        player->talk &= ~CRASH;
-        player->letter[index].flag = 0;
-        player->letter[index].timer = 0;
-        player->letter[index].number = NO_PARTICLE;
+    if (Player->Letter[Index].Timer == 9) {
+        Player->Talk &= ~CRASH;
+        Player->Letter[Index].Flag = 0;
+        Player->Letter[Index].Timer = 0;
+        Player->Letter[Index].Number = NO_PARTICLE;
     }
 
-    player->letter[index].scale += 0.8;
-    if (player->letter[index].scale >= (f64) 2.5) {
-        player->letter[index].scale = 2.5f;
-    }
-}
-
-void hit_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    ++player->letter[index].timer;
-    if (player->letter[index].timer < 4) {
-        player->letter[index].scale += 1.2;
-        if (player->letter[index].scale >= 3.5) {
-            player->letter[index].scale = 3.5f;
-        }
-    } else {
-        player->letter[index].scale -= 1.8;
-        if (player->letter[index].scale <= 0.0f) {
-            player->talk &= ~FLASH;
-            player->letter[index].flag = 0;
-            player->letter[index].timer = 0;
-            player->letter[index].number = NO_PARTICLE;
-        }
+    Player->Letter[Index].Scale += 0.8;
+    if (Player->Letter[Index].Scale >= (f64) 2.5) {
+        Player->Letter[Index].Scale = 2.5f;
     }
 }
 
-void boing_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    ++player->letter[index].timer;
-    player->letter[index].scale += 0.15;
-
-    if (1.2 <= player->letter[index].scale) {
-        player->letter[index].scale = 1.2f;
-    }
-    if (player->letter[index].timer >= 12) {
-        player->talk &= ~BOING;
-        player->letter[index].flag = 0;
-        player->letter[index].timer = 0;
-        player->letter[index].number = NO_PARTICLE;
-    }
-}
-
-void poomp_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    ++player->letter[index].timer;
-
-    player->letter[index].try += 0.8;
-    player->letter[index].scale += 0.4;
-    if (player->letter[index].scale >= (f64) 1.5) {
-        player->letter[index].scale = 1.5f;
-    }
-
-    if (player->letter[index].timer >= 12) {
-        player->talk &= ~POOMP;
-        player->letter[index].flag = 0;
-        player->letter[index].timer = 0;
-        player->letter[index].number = NO_PARTICLE;
-    }
-}
-
-void spin_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    player->letter[index].trz = (f32) player->position[2];
-    player->letter[index].trx = (f32) player->position[0];
-    player->letter[index].try = (f32) (player->position[1] + 4.0f);
-    if ((player->slip_flag & SPIN_L) == SPIN_L) {
-        player->letter[index].ang += 26 * DEGREES(1);
-    } else {
-        player->letter[index].ang -= 26 * DEGREES(1);
-    }
-
-    if (((player->slip_flag & SPIN_L) != SPIN_L) &&
-        ((player->slip_flag & SPIN_R) != SPIN_R)) {
-        player->letter[index].flag = 0;
-        player->letter[index].timer = 0;
-        player->letter[index].number = NO_PARTICLE;
-    }
-
-    player->letter[index].scale += 0.08;
-    if (player->letter[index].scale >= 1.5) {
-        player->letter[index].scale = 1.5f;
-    }
-}
-
-void onpu_letter(Player* player, UNUSED s8 arg1, UNUSED s8 arg2, s8 index) {
-    ++player->letter[index].timer;
-    if (player->letter[index].timer < 8) {
-        player->letter[index].scale += 0.2;
-        if (1.2 <= player->letter[index].scale) {
-            player->letter[index].scale = 1.2f;
+void HitLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    ++Player->Letter[Index].Timer;
+    if (Player->Letter[Index].Timer < 4) {
+        Player->Letter[Index].Scale += 1.2;
+        if (Player->Letter[Index].Scale >= 3.5) {
+            Player->Letter[Index].Scale = 3.5f;
         }
     } else {
-        player->letter[index].scale -= 0.4;
-        if (player->letter[index].scale <= 0.0f) {
-            player->talk &= ~MUSIC_NOTE;
-            player->letter[index].flag = 0;
-            player->letter[index].timer = 0;
-            player->letter[index].number = NO_PARTICLE;
+        Player->Letter[Index].Scale -= 1.8;
+        if (Player->Letter[Index].Scale <= 0.0f) {
+            Player->Talk &= ~FLASH;
+            Player->Letter[Index].Flag = 0;
+            Player->Letter[Index].Timer = 0;
+            Player->Letter[Index].Number = NO_PARTICLE;
         }
     }
 }
 
-void common_mtx_calc(Vec3f arg0, Vec3s arg1, f32 scale) {
+void BoingLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    ++Player->Letter[Index].Timer;
+    Player->Letter[Index].Scale += 0.15;
+
+    if (1.2 <= Player->Letter[Index].Scale) {
+        Player->Letter[Index].Scale = 1.2f;
+    }
+    if (Player->Letter[Index].Timer >= 12) {
+        Player->Talk &= ~BOING;
+        Player->Letter[Index].Flag = 0;
+        Player->Letter[Index].Timer = 0;
+        Player->Letter[Index].Number = NO_PARTICLE;
+    }
+}
+
+void PoompLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    ++Player->Letter[Index].Timer;
+
+    Player->Letter[Index].try += 0.8;
+    Player->Letter[Index].Scale += 0.4;
+    if (Player->Letter[Index].Scale >= (f64) 1.5) {
+        Player->Letter[Index].Scale = 1.5f;
+    }
+
+    if (Player->Letter[Index].Timer >= 12) {
+        Player->Talk &= ~POOMP;
+        Player->Letter[Index].Flag = 0;
+        Player->Letter[Index].Timer = 0;
+        Player->Letter[Index].Number = NO_PARTICLE;
+    }
+}
+
+void SpinLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    Player->Letter[Index].trz = (f32) Player->Position[2];
+    Player->Letter[Index].trx = (f32) Player->Position[0];
+    Player->Letter[Index].try = (f32) (Player->Position[1] + 4.0f);
+    if ((Player->SlipFlag & SPIN_L) == SPIN_L) {
+        Player->Letter[Index].ang += 26 * DEGREES(1);
+    } else {
+        Player->Letter[Index].ang -= 26 * DEGREES(1);
+    }
+
+    if (((Player->SlipFlag & SPIN_L) != SPIN_L) &&
+        ((Player->SlipFlag & SPIN_R) != SPIN_R)) {
+        Player->Letter[Index].Flag = 0;
+        Player->Letter[Index].Timer = 0;
+        Player->Letter[Index].Number = NO_PARTICLE;
+    }
+
+    Player->Letter[Index].Scale += 0.08;
+    if (Player->Letter[Index].Scale >= 1.5) {
+        Player->Letter[Index].Scale = 1.5f;
+    }
+}
+
+void OnpuLetter(Player* Player, UNUSED s8 arg1, UNUSED s8 Arg2, s8 Index) {
+    ++Player->Letter[Index].Timer;
+    if (Player->Letter[Index].Timer < 8) {
+        Player->Letter[Index].Scale += 0.2;
+        if (1.2 <= Player->Letter[Index].Scale) {
+            Player->Letter[Index].Scale = 1.2f;
+        }
+    } else {
+        Player->Letter[Index].Scale -= 0.4;
+        if (Player->Letter[Index].Scale <= 0.0f) {
+            Player->Talk &= ~MUSIC_NOTE;
+            Player->Letter[Index].Flag = 0;
+            Player->Letter[Index].Timer = 0;
+            Player->Letter[Index].Number = NO_PARTICLE;
+        }
+    }
+}
+
+void CommonMTXCalc(Vec3f arg0, Vec3s arg1, f32 Scale) {
     Mat4 sp20;
 
-    createaffine(sp20, arg0, arg1);
-    scale_matrix(sp20, scale);
-    Affine2Mtx(&gDynamicP->mtxEffect[effectcount], sp20);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxEffect[effectcount]),
+    Createaffine(sp20, arg0, arg1);
+    ScaleMatrix(sp20, Scale);
+    Affine2Mtx(&DynamicP->MTXEffect[Effectcount], sp20);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXEffect[Effectcount]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-void set_gass_calc(Player* player, s8 playerIndex, s16 arg2, s8 arg3) {
+void SetGassCalc(Player* Player, s8 playerIndex, s16 Arg2, s8 Arg3) {
     Vec3f spB4;
     Vec3s spAC;
     s32 primColors[] = { MAKE_RGB(0xFB, 0xFF, 0xFB), MAKE_RGB(0xFF, 0xFB, 0x86) };
@@ -4941,81 +4941,81 @@ void set_gass_calc(Player* player, s8 playerIndex, s16 arg2, s8 arg3) {
     s16 envGreen;
     s16 envBlue;
 
-    if (player->gass[arg2].flag == 1) {
-        spB4[0] = player->gass[arg2].trx;
-        spB4[1] = player->gass[arg2].try;
-        spB4[2] = player->gass[arg2].trz;
+    if (Player->Gass[Arg2].Flag == 1) {
+        spB4[0] = Player->Gass[Arg2].trx;
+        spB4[1] = Player->Gass[Arg2].try;
+        spB4[2] = Player->Gass[Arg2].trz;
         spAC[0] = 0;
-        spAC[1] = player->angle_y[arg3];
+        spAC[1] = Player->AngleY[Arg3];
         spAC[2] = 0;
-        if ((player->slip_flag & STAR) &&
-            (((s32) g_gameTimer - g_StarUseCounter[playerIndex]) < STAR_EFFECT_DURATION - 1)) {
+        if ((Player->SlipFlag & STAR) &&
+            (((s32) GameTimer - StarUseCounter[playerIndex]) < STAR_EFFECT_DURATION - 1)) {
             primRed = (primColors[1] >> 0x10) & 0xFF;
             primGreen = (primColors[1] >> 0x08) & 0xFF;
             primBlue = (primColors[1] >> 0x00) & 0xFF;
             envRed = (envColors[1] >> 0x10) & 0xFF;
             envGreen = (envColors[1] >> 0x08) & 0xFF;
             envBlue = (envColors[1] >> 0x00) & 0xFF;
-            primAlpha = player->gass[arg2].swork4;
-            common_mtx_calc(spB4, spAC, ((player->gass[arg2].scale * player->offsetsize) * 1.4));
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPLoadTextureBlock(gDisplayListHead++, common_texture_particle_smoke[player->gass[arg2].lrflag],
+            primAlpha = Player->Gass[Arg2].Swork4;
+            CommonMTXCalc(spB4, spAC, ((Player->Gass[Arg2].Scale * Player->Offsetsize) * 1.4));
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPLoadTextureBlock(DisplayListHead++, common_texture_particle_smoke[Player->Gass[Arg2].Lrflag],
                                 G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             Color2Mode(primRed, primGreen, primBlue, envRed, envGreen, envBlue, primAlpha);
-            gDPSetAlphaCompare(gDisplayListHead++, G_AC_DITHER);
-            gSPDisplayList(gDisplayListHead++, D_0D008E48);
+            gDPSetAlphaCompare(DisplayListHead++, G_AC_DITHER);
+            gSPDisplayList(DisplayListHead++, D_0D008E48);
         } else {
-            primRed = (primColors[player->gass[arg2].swork1] >> 0x10) & 0xFF;
-            primGreen = (primColors[player->gass[arg2].swork1] >> 0x08) & 0xFF;
-            primBlue = (primColors[player->gass[arg2].swork1] >> 0x00) & 0xFF;
-            envRed = (envColors[player->gass[arg2].swork1] >> 0x10) & 0xFF;
-            envGreen = (envColors[player->gass[arg2].swork1] >> 0x08) & 0xFF;
-            envBlue = (envColors[player->gass[arg2].swork1] >> 0x00) & 0xFF;
-            primAlpha = player->gass[arg2].swork4;
-            common_mtx_calc(spB4, spAC, player->gass[arg2].scale * player->offsetsize);
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPLoadTextureBlock(gDisplayListHead++, common_texture_particle_smoke[player->gass[arg2].lrflag],
+            primRed = (primColors[Player->Gass[Arg2].Swork1] >> 0x10) & 0xFF;
+            primGreen = (primColors[Player->Gass[Arg2].Swork1] >> 0x08) & 0xFF;
+            primBlue = (primColors[Player->Gass[Arg2].Swork1] >> 0x00) & 0xFF;
+            envRed = (envColors[Player->Gass[Arg2].Swork1] >> 0x10) & 0xFF;
+            envGreen = (envColors[Player->Gass[Arg2].Swork1] >> 0x08) & 0xFF;
+            envBlue = (envColors[Player->Gass[Arg2].Swork1] >> 0x00) & 0xFF;
+            primAlpha = Player->Gass[Arg2].Swork4;
+            CommonMTXCalc(spB4, spAC, Player->Gass[Arg2].Scale * Player->Offsetsize);
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPLoadTextureBlock(DisplayListHead++, common_texture_particle_smoke[Player->Gass[Arg2].Lrflag],
                                 G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
             Color2Mode(primRed, primGreen, primBlue, envRed, envGreen, envBlue, primAlpha);
-            gSPDisplayList(gDisplayListHead++, D_0D008E48);
+            gSPDisplayList(DisplayListHead++, D_0D008E48);
         }
-        effectcount += 1;
+        Effectcount += 1;
     }
 }
 
-void set_teresa_calc(Player* player, UNUSED s8 playerIndex, s16 arg2, s8 arg3) {
+void SetTeresaCalc(Player* Player, UNUSED s8 playerIndex, s16 Arg2, s8 Arg3) {
     Vec3f sp54;
     Vec3s sp4C;
     s16 red;
-    s16 green;
-    s16 blue;
-    s16 alpha;
+    s16 Green;
+    s16 Blue;
+    s16 Alpha;
 
-    if (player->gass[arg2].flag == 1) {
-        red = player->gass[arg2].swork1;
-        green = player->gass[arg2].swork2;
-        blue = player->gass[arg2].swork3;
-        alpha = player->gass[arg2].swork4;
-        sp54[0] = player->gass[arg2].trx;
-        sp54[1] = player->gass[arg2].try;
-        sp54[2] = player->gass[arg2].trz;
+    if (Player->Gass[Arg2].Flag == 1) {
+        red = Player->Gass[Arg2].Swork1;
+        Green = Player->Gass[Arg2].Swork2;
+        Blue = Player->Gass[Arg2].Swork3;
+        Alpha = Player->Gass[Arg2].Swork4;
+        sp54[0] = Player->Gass[Arg2].trx;
+        sp54[1] = Player->Gass[Arg2].try;
+        sp54[2] = Player->Gass[Arg2].trz;
         sp4C[0] = 0;
-        sp4C[1] = player->angle_y[arg3];
+        sp4C[1] = Player->AngleY[Arg3];
         sp4C[2] = 0;
-        common_mtx_calc(sp54, sp4C, player->gass[arg2].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-        gDPLoadTextureBlock(gDisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+        CommonMTXCalc(sp54, sp4C, Player->Gass[Arg2].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008DB8);
+        gDPLoadTextureBlock(DisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
-        ToumeIMode(red, green, blue, alpha);
-        gSPDisplayList(gDisplayListHead++, D_0D008E48);
-        effectcount += 1;
+        ToumeIMode(red, Green, Blue, Alpha);
+        gSPDisplayList(DisplayListHead++, D_0D008E48);
+        Effectcount += 1;
     }
 }
 
-void set_drift_calc(Player* player, UNUSED s8 playerIndex, s16 arg2, s8 arg3) {
+void SetDriftCalc(Player* Player, UNUSED s8 playerIndex, s16 Arg2, s8 Arg3) {
     Vec3f spB4;
     Vec3s spAC;
     s32 var_s0;
@@ -5027,48 +5027,48 @@ void set_drift_calc(Player* player, UNUSED s8 playerIndex, s16 arg2, s8 arg3) {
     s16 envGreen;
     s16 envBlue;
     s32 sp8C[] = { 0x00ffffff, 0x00ffff00, 0x00ff9600 };
-    if (player->smoke[arg2].flag == 1) {
-        if (player->drift_count >= 50) {
+    if (Player->smoke[Arg2].Flag == 1) {
+        if (Player->DriftCount >= 50) {
             var_s0 = 1;
         } else {
             var_s0 = 0;
         }
-        primRed = player->smoke[arg2].swork1;
-        primGreen = player->smoke[arg2].swork2;
-        primBlue = player->smoke[arg2].swork3;
-        primAlpha = player->smoke[arg2].swork4;
-        envRed = (sp8C[player->smoke[arg2].swork5] >> 0x10) & 0xFF;
-        envGreen = (sp8C[player->smoke[arg2].swork5] >> 0x08) & 0xFF;
-        envBlue = (sp8C[player->smoke[arg2].swork5] >> 0x00) & 0xFF;
-        spB4[0] = player->smoke[arg2].trx;
-        spB4[1] = player->smoke[arg2].try;
-        spB4[2] = player->smoke[arg2].trz;
+        primRed = Player->smoke[Arg2].Swork1;
+        primGreen = Player->smoke[Arg2].Swork2;
+        primBlue = Player->smoke[Arg2].Swork3;
+        primAlpha = Player->smoke[Arg2].Swork4;
+        envRed = (sp8C[Player->smoke[Arg2].Swork5] >> 0x10) & 0xFF;
+        envGreen = (sp8C[Player->smoke[Arg2].Swork5] >> 0x08) & 0xFF;
+        envBlue = (sp8C[Player->smoke[Arg2].Swork5] >> 0x00) & 0xFF;
+        spB4[0] = Player->smoke[Arg2].trx;
+        spB4[1] = Player->smoke[Arg2].try;
+        spB4[2] = Player->smoke[Arg2].trz;
         spAC[0] = 0;
-        spAC[1] = player->angle_y[arg3];
+        spAC[1] = Player->AngleY[Arg3];
         spAC[2] = 0;
-        common_mtx_calc(spB4, spAC, player->smoke[arg2].scale * player->offsetsize);
+        CommonMTXCalc(spB4, spAC, Player->smoke[Arg2].Scale * Player->Offsetsize);
         if (var_s0 == 0) {
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPLoadTextureBlock(gDisplayListHead++, *D_800E4770[var_s0], G_IM_FMT_I, G_IM_SIZ_8b, 16, 16, 0,
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPLoadTextureBlock(DisplayListHead++, *D_800E4770[var_s0], G_IM_FMT_I, G_IM_SIZ_8b, 16, 16, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
             Color2Mode(primRed, primGreen, primBlue, envRed, envGreen, envBlue, primAlpha);
-            gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_XLU_SURF, G_RM_ZB_XLU_SURF2);
-            gSPDisplayList(gDisplayListHead++, D_0D008DF8);
+            gDPSetRenderMode(DisplayListHead++, G_RM_ZB_XLU_SURF, G_RM_ZB_XLU_SURF2);
+            gSPDisplayList(DisplayListHead++, D_0D008DF8);
         } else {
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPLoadTextureBlock(gDisplayListHead++, *D_800E4770[var_s0], G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPLoadTextureBlock(DisplayListHead++, *D_800E4770[var_s0], G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
             Color2Mode(primRed, primGreen, primBlue, envRed, envGreen, envBlue, primAlpha);
-            gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_XLU_SURF, G_RM_ZB_XLU_SURF2);
-            gSPDisplayList(gDisplayListHead++, D_0D008E48);
+            gDPSetRenderMode(DisplayListHead++, G_RM_ZB_XLU_SURF, G_RM_ZB_XLU_SURF2);
+            gSPDisplayList(DisplayListHead++, D_0D008E48);
         }
-        effectcount += 1;
+        Effectcount += 1;
     }
 }
 
-void set_smoke_calc(Player* player, UNUSED s8 playerIndex, s16 arg2, s8 arg3) {
+void SetSmokeCalc(Player* Player, UNUSED s8 playerIndex, s16 Arg2, s8 Arg3) {
     Vec3f pos;
     Vec3s spD4;
     s16 primRed;
@@ -5079,513 +5079,513 @@ void set_smoke_calc(Player* player, UNUSED s8 playerIndex, s16 arg2, s8 arg3) {
     s16 envGreen;
     s16 envBlue;
 
-    if ((player->smoke[arg2].flag == 1) && (player->smoke[arg2].timer != 0)) {
-        pos[0] = player->smoke[arg2].trx;
-        pos[1] = player->smoke[arg2].try;
-        pos[2] = player->smoke[arg2].trz;
+    if ((Player->smoke[Arg2].Flag == 1) && (Player->smoke[Arg2].Timer != 0)) {
+        pos[0] = Player->smoke[Arg2].trx;
+        pos[1] = Player->smoke[Arg2].try;
+        pos[2] = Player->smoke[Arg2].trz;
         spD4[0] = 0;
-        spD4[1] = player->angle_y[arg3];
+        spD4[1] = Player->AngleY[Arg3];
         spD4[2] = 0;
-        common_mtx_calc(pos, spD4, player->smoke[arg2].scale * player->offsetsize);
-        if ((s32) player->smoke[arg2].type != GRASS) {
+        CommonMTXCalc(pos, spD4, Player->smoke[Arg2].Scale * Player->Offsetsize);
+        if ((s32) Player->smoke[Arg2].Type != GRASS) {
             primRed =
-                ((NORM_SMOKE_IN[player->smoke[arg2].swork1] >> 0x10) & 0xFF) - player->smoke[arg2].swork2;
+                ((NORM_SMOKE_IN[Player->smoke[Arg2].Swork1] >> 0x10) & 0xFF) - Player->smoke[Arg2].Swork2;
             primGreen =
-                ((NORM_SMOKE_IN[player->smoke[arg2].swork1] >> 0x08) & 0xFF) - player->smoke[arg2].swork2;
+                ((NORM_SMOKE_IN[Player->smoke[Arg2].Swork1] >> 0x08) & 0xFF) - Player->smoke[Arg2].Swork2;
             primBlue =
-                ((NORM_SMOKE_IN[player->smoke[arg2].swork1] >> 0x00) & 0xFF) - player->smoke[arg2].swork2;
-            envRed = ((NORM_SMOKE_OUT[player->smoke[arg2].swork1] >> 0x10) & 0xFF) - player->smoke[arg2].swork2;
+                ((NORM_SMOKE_IN[Player->smoke[Arg2].Swork1] >> 0x00) & 0xFF) - Player->smoke[Arg2].Swork2;
+            envRed = ((NORM_SMOKE_OUT[Player->smoke[Arg2].Swork1] >> 0x10) & 0xFF) - Player->smoke[Arg2].Swork2;
             envGreen =
-                ((NORM_SMOKE_OUT[player->smoke[arg2].swork1] >> 0x08) & 0xFF) - player->smoke[arg2].swork2;
+                ((NORM_SMOKE_OUT[Player->smoke[Arg2].Swork1] >> 0x08) & 0xFF) - Player->smoke[Arg2].Swork2;
             envBlue =
-                ((NORM_SMOKE_OUT[player->smoke[arg2].swork1] >> 0x00) & 0xFF) - player->smoke[arg2].swork2;
-            primAlpha = player->smoke[arg2].swork4;
-            if (player->smoke[arg2].swork5 == 0) {
-                gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-                gDPLoadTextureBlock(gDisplayListHead++, smoke, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
+                ((NORM_SMOKE_OUT[Player->smoke[Arg2].Swork1] >> 0x00) & 0xFF) - Player->smoke[Arg2].Swork2;
+            primAlpha = Player->smoke[Arg2].Swork4;
+            if (Player->smoke[Arg2].Swork5 == 0) {
+                gSPDisplayList(DisplayListHead++, D_0D008DB8);
+                gDPLoadTextureBlock(DisplayListHead++, smoke, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
                                     G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                     G_TX_NOLOD, G_TX_NOLOD);
                 Color2Mode(primRed, primGreen, primBlue, envRed, envGreen, envBlue, primAlpha);
-                gSPDisplayList(gDisplayListHead++, D_0D008E48);
+                gSPDisplayList(DisplayListHead++, D_0D008E48);
             } else {
-                gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-                gDPLoadTextureBlock(gDisplayListHead++, smoke, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
+                gSPDisplayList(DisplayListHead++, D_0D008DB8);
+                gDPLoadTextureBlock(DisplayListHead++, smoke, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
                                     G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                     G_TX_NOLOD, G_TX_NOLOD);
                 Color2Mode(primRed, primGreen, primBlue, envRed, envGreen, envBlue, primAlpha);
-                gDPSetAlphaCompare(gDisplayListHead++, G_AC_DITHER);
-                gSPDisplayList(gDisplayListHead++, D_0D008E48);
+                gDPSetAlphaCompare(DisplayListHead++, G_AC_DITHER);
+                gSPDisplayList(DisplayListHead++, D_0D008E48);
             }
         } else {
-            primRed = player->smoke[arg2].swork1;
-            primGreen = player->smoke[arg2].swork2;
-            primBlue = player->smoke[arg2].swork3;
-            gSPDisplayList(gDisplayListHead++, D_0D008C90);
-            gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-            gDPLoadTextureBlock(gDisplayListHead++, grs, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 64, 0,
+            primRed = Player->smoke[Arg2].Swork1;
+            primGreen = Player->smoke[Arg2].Swork2;
+            primBlue = Player->smoke[Arg2].Swork3;
+            gSPDisplayList(DisplayListHead++, D_0D008C90);
+            gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+            gDPLoadTextureBlock(DisplayListHead++, Grs, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 64, 0,
                                 G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
             ToumeIMode(primRed, primGreen, primBlue, 0x000000FF);
-            gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
-            gSPVertex(gDisplayListHead++, D_800E8C00, 4, 0);
-            gSPDisplayList(gDisplayListHead++, D_0D008DA0);
+            gDPSetRenderMode(DisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
+            gSPVertex(DisplayListHead++, D_800E8C00, 4, 0);
+            gSPDisplayList(DisplayListHead++, D_0D008DA0);
         }
-        effectcount += 1;
+        Effectcount += 1;
     }
 }
 
-void set_spl_calc(Player* player, UNUSED s8 playerIndex, s16 arg2, s8 arg3) {
+void SetSplCalc(Player* Player, UNUSED s8 playerIndex, s16 Arg2, s8 Arg3) {
     Vec3f sp54;
     Vec3s sp4C;
     s16 red;
-    s16 green;
-    s16 blue;
-    s16 alpha;
+    s16 Green;
+    s16 Blue;
+    s16 Alpha;
 
-    if (player->smoke[arg2].flag == 1) {
-        red = player->smoke[arg2].swork1;
-        green = player->smoke[arg2].swork2;
-        blue = player->smoke[arg2].swork3;
-        alpha = player->smoke[arg2].swork4;
-        sp54[0] = player->smoke[arg2].trx;
-        sp54[1] = player->smoke[arg2].try;
-        sp54[2] = player->smoke[arg2].trz;
+    if (Player->smoke[Arg2].Flag == 1) {
+        red = Player->smoke[Arg2].Swork1;
+        Green = Player->smoke[Arg2].Swork2;
+        Blue = Player->smoke[Arg2].Swork3;
+        Alpha = Player->smoke[Arg2].Swork4;
+        sp54[0] = Player->smoke[Arg2].trx;
+        sp54[1] = Player->smoke[Arg2].try;
+        sp54[2] = Player->smoke[Arg2].trz;
         sp4C[0] = 0;
-        sp4C[1] = player->angle_y[arg3];
+        sp4C[1] = Player->AngleY[Arg3];
         sp4C[2] = 0;
-        common_mtx_calc(sp54, sp4C, player->smoke[arg2].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-        gDPSetAlphaCompare(gDisplayListHead++, G_AC_DITHER);
-        gDPLoadTextureBlock(gDisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+        CommonMTXCalc(sp54, sp4C, Player->smoke[Arg2].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008DB8);
+        gDPSetAlphaCompare(DisplayListHead++, G_AC_DITHER);
+        gDPLoadTextureBlock(DisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
-        ToumeIMode(red, green, blue, alpha);
-        gSPDisplayList(gDisplayListHead++, D_0D008E48);
-        effectcount += 1;
+        ToumeIMode(red, Green, Blue, Alpha);
+        gSPDisplayList(DisplayListHead++, D_0D008E48);
+        Effectcount += 1;
     }
 }
 
-void set_turbo_calc(Player* player, UNUSED s32 arg1, s16 arg2, s8 arg3) {
+void SetTurboCalc(Player* Player, UNUSED s32 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp5C;
     Vec3s sp54;
     s16 red;
-    s16 green;
-    s16 blue;
-    s16 alpha;
+    s16 Green;
+    s16 Blue;
+    s16 Alpha;
 
-    if (player->smoke[arg2].flag == 1) {
-        red = player->smoke[arg2].swork1;
-        green = player->smoke[arg2].swork2;
-        blue = player->smoke[arg2].swork3;
-        alpha = player->smoke[arg2].swork4;
-        sp5C[0] = player->smoke[arg2].trx;
-        sp5C[1] = player->smoke[arg2].try;
-        sp5C[2] = player->smoke[arg2].trz;
+    if (Player->smoke[Arg2].Flag == 1) {
+        red = Player->smoke[Arg2].Swork1;
+        Green = Player->smoke[Arg2].Swork2;
+        Blue = Player->smoke[Arg2].Swork3;
+        Alpha = Player->smoke[Arg2].Swork4;
+        sp5C[0] = Player->smoke[Arg2].trx;
+        sp5C[1] = Player->smoke[Arg2].try;
+        sp5C[2] = Player->smoke[Arg2].trz;
         sp54[0] = 0;
-        sp54[1] = player->angle_y[arg3];
+        sp54[1] = Player->AngleY[Arg3];
         sp54[2] = 0;
-        common_mtx_calc(sp5C, sp54, player->smoke[arg2].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008C90);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock(gDisplayListHead++, common_texture_particle_fire, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 64, 0,
+        CommonMTXCalc(sp5C, sp54, Player->smoke[Arg2].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008C90);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+        gDPLoadTextureBlock(DisplayListHead++, common_texture_particle_fire, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 64, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
-        ToumeIMode(red, green, blue, alpha);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_XLU_SURF, G_RM_ZB_XLU_SURF2);
-        gSPVertex(gDisplayListHead++, D_800E8B00, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        ToumeIMode(red, Green, Blue, Alpha);
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_XLU_SURF, G_RM_ZB_XLU_SURF2);
+        gSPVertex(DisplayListHead++, D_800E8B00, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void set_ring_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void SetRingCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp54;
     Vec3s sp4C;
     s16 red;
-    s16 green;
-    s16 blue;
-    s16 alpha;
+    s16 Green;
+    s16 Blue;
+    s16 Alpha;
 
-    if (player->gass[arg2].flag == 1) {
-        red = player->gass[arg2].swork1;
-        green = player->gass[arg2].swork2;
-        blue = player->gass[arg2].swork3;
-        alpha = player->gass[arg2].swork4;
-        sp54[0] = player->gass[arg2].trx;
-        sp54[1] = player->gass[arg2].try;
-        sp54[2] = player->gass[arg2].trz;
+    if (Player->Gass[Arg2].Flag == 1) {
+        red = Player->Gass[Arg2].Swork1;
+        Green = Player->Gass[Arg2].Swork2;
+        Blue = Player->Gass[Arg2].Swork3;
+        Alpha = Player->Gass[Arg2].Swork4;
+        sp54[0] = Player->Gass[Arg2].trx;
+        sp54[1] = Player->Gass[Arg2].try;
+        sp54[2] = Player->Gass[Arg2].trz;
         sp4C[0] = 0x4000;
-        sp4C[1] = player->angle_y[arg3];
+        sp4C[1] = Player->AngleY[Arg3];
         sp4C[2] = 0;
-        common_mtx_calc(sp54, sp4C, player->gass[arg2].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-        gDPLoadTextureBlock(gDisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+        CommonMTXCalc(sp54, sp4C, Player->Gass[Arg2].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008DB8);
+        gDPLoadTextureBlock(DisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
-        ToumeIMode(red, green, blue, alpha);
-        gSPDisplayList(gDisplayListHead++, D_0D008E48);
-        effectcount += 1;
+        ToumeIMode(red, Green, Blue, Alpha);
+        gSPDisplayList(DisplayListHead++, D_0D008E48);
+        Effectcount += 1;
     }
 }
 
-void set_thunder_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void SetThunderCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f spDC;
     Vec3s spD4;
     UNUSED s32 stackPadding;
 
-    if ((player->gass[arg2].flag == 1) && (player->gass[arg2].swork1 != 0x00FF)) {
+    if ((Player->Gass[Arg2].Flag == 1) && (Player->Gass[Arg2].Swork1 != 0x00FF)) {
 
-        if (player->bump.distance_zx >= 300.0f) {
-            spDC[1] = player->position[1] + 5.0f;
+        if (Player->Bump.DistanceZX >= 300.0f) {
+            spDC[1] = Player->Position[1] + 5.0f;
         } else {
-            spDC[1] = player->position[1] - 3.0f;
+            spDC[1] = Player->Position[1] - 3.0f;
         }
-        spDC[2] = player->position[2] + (cosT(player->angle_y[arg3]) * -10.0f);
-        spDC[0] = player->position[0] + (sinT(player->angle_y[arg3]) * -10.0f);
-        if (player->bump.distance_zx >= 300.0f) {
-            spD4[0] = cameras[arg3].camera_direction[0] - DEGREES(90);
+        spDC[2] = Player->Position[2] + (CosT(Player->AngleY[Arg3]) * -10.0f);
+        spDC[0] = Player->Position[0] + (SinT(Player->AngleY[Arg3]) * -10.0f);
+        if (Player->Bump.DistanceZX >= 300.0f) {
+            spD4[0] = Cameras[Arg3].CameraDirection[0] - DEGREES(90);
         } else {
             spD4[0] = 0;
         }
-        spD4[1] = player->angle_y[arg3];
+        spD4[1] = Player->AngleY[Arg3];
         spD4[2] = 0;
-        common_mtx_calc(spDC, spD4, player->gass[arg2].scale * player->offsetsize);
-        if (player->gass[arg2].swork1 == 0) {
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPSetCombineMode(gDisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
-            gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-            gDPLoadTextureBlock(gDisplayListHead++, thunderA, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+        CommonMTXCalc(spDC, spD4, Player->Gass[Arg2].Scale * Player->Offsetsize);
+        if (Player->Gass[Arg2].Swork1 == 0) {
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPSetCombineMode(DisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
+            gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+            gDPLoadTextureBlock(DisplayListHead++, ThunderA, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
-            gSPVertex(gDisplayListHead++, &D_800E8900[0][player->gass[arg2].swork1], 4, 0);
-            gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-            gDPLoadTextureBlock(gDisplayListHead++, thunderB, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+            gSPVertex(DisplayListHead++, &D_800E8900[0][Player->Gass[Arg2].Swork1], 4, 0);
+            gSPDisplayList(DisplayListHead++, common_square_plain_render);
+            gDPLoadTextureBlock(DisplayListHead++, ThunderB, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
-            gSPVertex(gDisplayListHead++, &D_800E8900[1][player->gass[arg2].swork1], 4, 0);
-            gSPDisplayList(gDisplayListHead++, D_0D008DA0);
+            gSPVertex(DisplayListHead++, &D_800E8900[1][Player->Gass[Arg2].Swork1], 4, 0);
+            gSPDisplayList(DisplayListHead++, D_0D008DA0);
         } else {
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPSetCombineMode(gDisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
-            gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-            gDPLoadTextureBlock(gDisplayListHead++, thunderB, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPSetCombineMode(DisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
+            gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+            gDPLoadTextureBlock(DisplayListHead++, ThunderB, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
-            gSPVertex(gDisplayListHead++, &D_800E8900[0][player->gass[arg2].swork1], 4, 0);
-            gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-            gDPLoadTextureBlock(gDisplayListHead++, thunderA, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+            gSPVertex(DisplayListHead++, &D_800E8900[0][Player->Gass[Arg2].Swork1], 4, 0);
+            gSPDisplayList(DisplayListHead++, common_square_plain_render);
+            gDPLoadTextureBlock(DisplayListHead++, ThunderA, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
-            gSPVertex(gDisplayListHead++, &D_800E8900[1][player->gass[arg2].swork1], 4, 0);
-            gSPDisplayList(gDisplayListHead++, D_0D008DA0);
+            gSPVertex(DisplayListHead++, &D_800E8900[1][Player->Gass[Arg2].Swork1], 4, 0);
+            gSPDisplayList(DisplayListHead++, D_0D008DA0);
         }
-        effectcount += 1;
+        Effectcount += 1;
     }
 }
 
-void set_slipstream_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void SetSlipstreamCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp7C;
     Vec3s sp74;
     s16 red;
-    s16 green;
-    s16 blue;
-    s16 alpha;
+    s16 Green;
+    s16 Blue;
+    s16 Alpha;
 
-    if (player->spark[arg2].flag == 1) {
-        red = player->spark[arg2].swork1;
-        green = player->spark[arg2].swork2;
-        blue = player->spark[arg2].swork3;
-        alpha = player->spark[arg2].swork4;
-        sp7C[0] = player->spark[arg2].trx;
-        sp7C[1] = player->spark[arg2].try;
-        sp7C[2] = player->spark[arg2].trz;
+    if (Player->Spark[Arg2].Flag == 1) {
+        red = Player->Spark[Arg2].Swork1;
+        Green = Player->Spark[Arg2].Swork2;
+        Blue = Player->Spark[Arg2].Swork3;
+        Alpha = Player->Spark[Arg2].Swork4;
+        sp7C[0] = Player->Spark[Arg2].trx;
+        sp7C[1] = Player->Spark[Arg2].try;
+        sp7C[2] = Player->Spark[Arg2].trz;
         sp74[0] = -0x071C; // DEGREES(10)?
         sp74[2] = 0;
-        if (player->spark[arg2].lrflag == 1) {
-            sp74[1] = player->angle_y[arg3] - 0x2000;
-            common_mtx_calc(sp7C, sp74, player->spark[arg2].scale * player->offsetsize);
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPLoadTextureBlock(gDisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+        if (Player->Spark[Arg2].Lrflag == 1) {
+            sp74[1] = Player->AngleY[Arg3] - 0x2000;
+            CommonMTXCalc(sp7C, sp74, Player->Spark[Arg2].Scale * Player->Offsetsize);
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPLoadTextureBlock(DisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
-            ToumeIMode(red, green, blue, alpha);
-            gSPDisplayList(gDisplayListHead++, D_0D008E70);
+            ToumeIMode(red, Green, Blue, Alpha);
+            gSPDisplayList(DisplayListHead++, D_0D008E70);
         } else {
-            sp74[1] = player->angle_y[arg3] + 0x2000;
-            common_mtx_calc(sp7C, sp74, player->spark[arg2].scale * player->offsetsize);
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPLoadTextureBlock(gDisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+            sp74[1] = Player->AngleY[Arg3] + 0x2000;
+            CommonMTXCalc(sp7C, sp74, Player->Spark[Arg2].Scale * Player->Offsetsize);
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPLoadTextureBlock(DisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
-            ToumeIMode(red, green, blue, alpha & 0xFFFFFFFF); // huh?
-            gSPDisplayList(gDisplayListHead++, D_0D008E48);
+            ToumeIMode(red, Green, Blue, Alpha & 0xFFFFFFFF); // huh?
+            gSPDisplayList(DisplayListHead++, D_0D008E48);
         }
-        effectcount += 1;
+        Effectcount += 1;
     }
 }
 
-void set_turbostream_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void SetTurbostreamCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp8C;
     Vec3s sp84;
     UNUSED s32 stackPadding[4];
 
-    if (player->spark[arg2].flag == 1) {
-        sp8C[0] = player->spark[arg2].trx;
-        sp8C[1] = player->spark[arg2].try;
-        sp8C[2] = player->spark[arg2].trz;
+    if (Player->Spark[Arg2].Flag == 1) {
+        sp8C[0] = Player->Spark[Arg2].trx;
+        sp8C[1] = Player->Spark[Arg2].try;
+        sp8C[2] = Player->Spark[Arg2].trz;
         sp84[0] = 0;
-        sp84[1] = player->angle_y[arg3];
+        sp84[1] = Player->AngleY[Arg3];
         sp84[2] = 0;
-        common_mtx_calc(sp8C, sp84, player->spark[arg2].scale * player->offsetsize);
-        if (player->spark[arg2].lrflag == 1) {
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPLoadTextureBlock(gDisplayListHead++, common_texture_particle_spark, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
+        CommonMTXCalc(sp8C, sp84, Player->Spark[Arg2].Scale * Player->Offsetsize);
+        if (Player->Spark[Arg2].Lrflag == 1) {
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPLoadTextureBlock(DisplayListHead++, common_texture_particle_spark, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
             Color2Mode(0x000000FF, 0x000000FF, 0x000000DF, 0x000000FF, 0x0000005F, 0, 0x00000060);
-            gSPDisplayList(gDisplayListHead++, D_0D008E70);
+            gSPDisplayList(DisplayListHead++, D_0D008E70);
         } else {
-            gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-            gDPLoadTextureBlock(gDisplayListHead++, common_texture_particle_spark, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
+            gSPDisplayList(DisplayListHead++, D_0D008DB8);
+            gDPLoadTextureBlock(DisplayListHead++, common_texture_particle_spark, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
             Color2Mode(0x000000FF, 0x000000FF, 0x000000DF, 0x000000FF, 0x0000005F, 0, 0x00000060);
-            gSPDisplayList(gDisplayListHead++, D_0D008E48);
+            gSPDisplayList(DisplayListHead++, D_0D008E48);
         }
-        effectcount += 1;
+        Effectcount += 1;
     }
 }
 
-void set_spin_calc(Player* player, UNUSED s8 arg1, f32 arg2, UNUSED s8 arg3, s8 arg4) {
+void SetSpinCalc(Player* Player, UNUSED s8 arg1, f32 Arg2, UNUSED s8 Arg3, s8 arg4) {
     Vec3f sp9C;
     Vec3s sp94;
     UNUSED s32 stackPadding[2];
 
-    if (player->letter[arg4].flag == 1) {
-        sp9C[0] = player->letter[arg4].trx;
-        sp9C[1] = player->letter[arg4].try;
-        sp9C[2] = player->letter[arg4].trz;
+    if (Player->Letter[arg4].Flag == 1) {
+        sp9C[0] = Player->Letter[arg4].trx;
+        sp9C[1] = Player->Letter[arg4].try;
+        sp9C[2] = Player->Letter[arg4].trz;
         sp94[0] = 0;
-        sp94[1] = player->letter[arg4].ang;
+        sp94[1] = Player->Letter[arg4].ang;
         sp94[2] = 0;
-        common_mtx_calc(sp9C, sp94, player->offsetsize * arg2);
-        gSPDisplayList(gDisplayListHead++, D_0D008C90);
-        gSPClearGeometryMode(gDisplayListHead++, G_CULL_BOTH);
-        gDPLoadTLUT_pal256(gDisplayListHead++, letter_pal);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_RGBA16);
-        gDPLoadTextureBlock(gDisplayListHead++, whir1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
+        CommonMTXCalc(sp9C, sp94, Player->Offsetsize * Arg2);
+        gSPDisplayList(DisplayListHead++, D_0D008C90);
+        gSPClearGeometryMode(DisplayListHead++, G_CULL_BOTH);
+        gDPLoadTLUT_pal256(DisplayListHead++, LetterPAL);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
+        gDPLoadTextureBlock(DisplayListHead++, Whir1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
-        gSPVertex(gDisplayListHead++, D_800E8840, 4, 0);
-        gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-        gDPLoadTextureBlock(gDisplayListHead++, whir2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
+        gSPVertex(DisplayListHead++, D_800E8840, 4, 0);
+        gSPDisplayList(DisplayListHead++, common_square_plain_render);
+        gDPLoadTextureBlock(DisplayListHead++, Whir2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
-        gSPVertex(gDisplayListHead++, D_800E8800, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        gSPVertex(DisplayListHead++, D_800E8800, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void set_fukidashi_calc(Player* player, s8 arg1, u8* texture, s8 arg3, f32 arg4, s32 arg5) {
+void SetFukidashiCalc(Player* Player, s8 arg1, u8* Texture, s8 Arg3, f32 arg4, s32 arg5) {
     Vec3f sp7C;
     Vec3s sp74;
     f32 sp54[8] = { 0.0f, -1.2f, 0.1f, 1.2f, -1.7f, -0.8f, -0.2f, -1.9f };
     // ????????????????????????????????????????
     s16 red = ((arg5 >> 0x10) & 0xFF) & 0xFF;
-    s16 green = ((arg5 >> 0x08) & 0xFF) & 0xFF;
-    s16 blue = ((arg5 >> 0x00) & 0xFF) & 0xFF;
+    s16 Green = ((arg5 >> 0x08) & 0xFF) & 0xFF;
+    s16 Blue = ((arg5 >> 0x00) & 0xFF) & 0xFF;
     // ????????????????????????????????????????
 
-    if (player->letter[arg3].flag == 1) {
+    if (Player->Letter[Arg3].Flag == 1) {
         sp74[0] = 0;
-        sp74[1] = player->angle_y[arg1];
+        sp74[1] = Player->AngleY[arg1];
         sp74[2] = 0;
-        sp7C[0] = player->position[0] + (sinT((0x4000 & 0xFFFFFFFF) - (player->direction[1] + player->slipang)) * arg4);
-        sp7C[1] = player->position[1] + player->radius - sp54[player->kart] - 2.0f;
-        sp7C[2] = player->position[2] + (cosT((0x4000 & 0xFFFFFFFF) - (player->direction[1] + player->slipang)) * arg4);
-        common_mtx_calc(sp7C, sp74, player->letter[arg3].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-        gDPLoadTextureBlock(gDisplayListHead++, texture, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
+        sp7C[0] = Player->Position[0] + (SinT((0x4000 & 0xFFFFFFFF) - (Player->Direction[1] + Player->Slipang)) * arg4);
+        sp7C[1] = Player->Position[1] + Player->Radius - sp54[Player->Kart] - 2.0f;
+        sp7C[2] = Player->Position[2] + (CosT((0x4000 & 0xFFFFFFFF) - (Player->Direction[1] + Player->Slipang)) * arg4);
+        CommonMTXCalc(sp7C, sp74, Player->Letter[Arg3].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008DB8);
+        gDPLoadTextureBlock(DisplayListHead++, Texture, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
-        SplashMode(red, green, blue, 0x000000FF);
-        gSPDisplayList(gDisplayListHead++, D_0D008E20);
-        effectcount += 1;
+        SplashMode(red, Green, Blue, 0x000000FF);
+        gSPDisplayList(DisplayListHead++, D_0D008E20);
+        Effectcount += 1;
     }
 }
 
-void set_word_calc(Player* player, s8 arg1, u8* texture, s8 arg3, f32 arg4, s32 arg5) {
+void SetWordCalc(Player* Player, s8 arg1, u8* Texture, s8 Arg3, f32 arg4, s32 arg5) {
     Vec3f sp7C;
     Vec3s sp74;
     f32 sp54[8] = { -0.7f, -1.9f, -0.6f, 0.4f, -2.5f, -1.6f, -0.95f, -2.7f };
     // ????????????????????????????????????????
     s16 red = ((arg5 >> 0x10) & 0xFF) & 0xFF;
-    s16 green = ((arg5 >> 0x08) & 0xFF) & 0xFF;
-    s16 blue = ((arg5 >> 0x00) & 0xFF) & 0xFF;
+    s16 Green = ((arg5 >> 0x08) & 0xFF) & 0xFF;
+    s16 Blue = ((arg5 >> 0x00) & 0xFF) & 0xFF;
     // ????????????????????????????????????????
 
-    if (player->letter[arg3].flag == 1) {
+    if (Player->Letter[Arg3].Flag == 1) {
         sp74[0] = 0;
-        sp74[1] = player->angle_y[arg1];
+        sp74[1] = Player->AngleY[arg1];
         sp74[2] = 0;
-        sp7C[0] = player->position[0] + (sinT((0x4000 & 0xFFFFFFFF) - (player->direction[1] + player->slipang)) * arg4);
-        sp7C[1] = player->position[1] + player->radius - sp54[player->kart] - 2.0f;
-        sp7C[2] = player->position[2] + (cosT((0x4000 & 0xFFFFFFFF) - (player->direction[1] + player->slipang)) * arg4);
-        common_mtx_calc(sp7C, sp74, player->letter[arg3].scale * player->offsetsize * 0.8);
-        gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-        gDPLoadTextureBlock(gDisplayListHead++, texture, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
+        sp7C[0] = Player->Position[0] + (SinT((0x4000 & 0xFFFFFFFF) - (Player->Direction[1] + Player->Slipang)) * arg4);
+        sp7C[1] = Player->Position[1] + Player->Radius - sp54[Player->Kart] - 2.0f;
+        sp7C[2] = Player->Position[2] + (CosT((0x4000 & 0xFFFFFFFF) - (Player->Direction[1] + Player->Slipang)) * arg4);
+        CommonMTXCalc(sp7C, sp74, Player->Letter[Arg3].Scale * Player->Offsetsize * 0.8);
+        gSPDisplayList(DisplayListHead++, D_0D008DB8);
+        gDPLoadTextureBlock(DisplayListHead++, Texture, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
-        SplashMode(red, green, blue, 0x000000FF);
-        gSPDisplayList(gDisplayListHead++, D_0D008E20);
-        effectcount += 1;
+        SplashMode(red, Green, Blue, 0x000000FF);
+        gSPDisplayList(DisplayListHead++, D_0D008E20);
+        Effectcount += 1;
     }
 }
 
-void set_crash_calc(Player* player, UNUSED s8 arg1, UNUSED f32 arg2, s8 arg3, s8 arg4) {
+void SetCrashCalc(Player* Player, UNUSED s8 arg1, UNUSED f32 Arg2, s8 Arg3, s8 arg4) {
     UNUSED s32 stackPadding[16]; // huh?
     Vec3f sp9C;
     Vec3s sp94;
 
-    if (player->letter[arg4].flag == 1) {
-        sp9C[1] = player->letter[arg4].try;
-        sp9C[2] = player->position[2] + (cosT(player->angle_y[arg3]) * -10.0f);
-        sp9C[0] = player->position[0] + (sinT(player->angle_y[arg3]) * -10.0f);
+    if (Player->Letter[arg4].Flag == 1) {
+        sp9C[1] = Player->Letter[arg4].try;
+        sp9C[2] = Player->Position[2] + (CosT(Player->AngleY[Arg3]) * -10.0f);
+        sp9C[0] = Player->Position[0] + (SinT(Player->AngleY[Arg3]) * -10.0f);
         sp94[0] = 0;
-        sp94[1] = player->angle_y[arg3];
+        sp94[1] = Player->AngleY[Arg3];
         sp94[2] = 0;
-        common_mtx_calc(sp9C, sp94, player->letter[arg4].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008C90);
-        gDPLoadTLUT_pal256(gDisplayListHead++, letter_pal);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_RGBA16);
-        gDPLoadTextureBlock(gDisplayListHead++, crash1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
+        CommonMTXCalc(sp9C, sp94, Player->Letter[arg4].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008C90);
+        gDPLoadTLUT_pal256(DisplayListHead++, LetterPAL);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
+        gDPLoadTextureBlock(DisplayListHead++, Crash1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
-        gSPVertex(gDisplayListHead++, D_800E8880, 4, 0);
-        gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-        gDPLoadTextureBlock(gDisplayListHead++, crash2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
+        gSPVertex(DisplayListHead++, D_800E8880, 4, 0);
+        gSPDisplayList(DisplayListHead++, common_square_plain_render);
+        gDPLoadTextureBlock(DisplayListHead++, Crash2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
-        gSPVertex(gDisplayListHead++, D_800E88C0, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        gSPVertex(DisplayListHead++, D_800E88C0, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void set_hit_calc(Player* player, UNUSED s8 arg1, UNUSED f32 arg2, s8 arg3, s8 arg4) {
+void SetHitCalc(Player* Player, UNUSED s8 arg1, UNUSED f32 Arg2, s8 Arg3, s8 arg4) {
     UNUSED s32 stackPadding[16]; // huh?
     Vec3f sp84;
     Vec3s sp7C;
 
-    if (player->letter[arg4].flag == 1) {
-        sp84[1] = player->position[1] - 3.0f;
-        sp84[2] = player->position[2] + (cosT(player->angle_y[arg3]) * -10.0f);
-        sp84[0] = player->position[0] + (sinT(player->angle_y[arg3]) * -10.0f);
+    if (Player->Letter[arg4].Flag == 1) {
+        sp84[1] = Player->Position[1] - 3.0f;
+        sp84[2] = Player->Position[2] + (CosT(Player->AngleY[Arg3]) * -10.0f);
+        sp84[0] = Player->Position[0] + (SinT(Player->AngleY[Arg3]) * -10.0f);
         sp7C[0] = 0;
-        sp7C[1] = player->angle_y[arg3];
+        sp7C[1] = Player->AngleY[Arg3];
         sp7C[2] = 0;
-        common_mtx_calc(sp84, sp7C, player->letter[arg4].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-        gDPSetCombineMode(gDisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-        gDPLoadTextureBlock(gDisplayListHead++, thunderA, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+        CommonMTXCalc(sp84, sp7C, Player->Letter[arg4].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008DB8);
+        gDPSetCombineMode(DisplayListHead++, G_CC_MODULATEIDECALA, G_CC_MODULATEIDECALA);
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+        gDPLoadTextureBlock(DisplayListHead++, ThunderA, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
-        gSPVertex(gDisplayListHead++, D_800E8A00, 4, 0);
-        gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-        gDPLoadTextureBlock(gDisplayListHead++, thunderB, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
+        gSPVertex(DisplayListHead++, D_800E8A00, 4, 0);
+        gSPDisplayList(DisplayListHead++, common_square_plain_render);
+        gDPLoadTextureBlock(DisplayListHead++, ThunderB, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
-        gSPVertex(gDisplayListHead++, D_800E8A40, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        gSPVertex(DisplayListHead++, D_800E8A40, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void set_boing_calc(Player* player, UNUSED s8 arg1, UNUSED f32 arg2, s8 arg3, s8 arg4) {
+void SetBoingCalc(Player* Player, UNUSED s8 arg1, UNUSED f32 Arg2, s8 Arg3, s8 arg4) {
     Vec3f sp64;
     Vec3s sp5C;
 
-    if ((player->letter[arg4].flag == 1) && (player->dir[arg3] < 0xD)) {
-        sp64[1] = player->position[1] - 3.0f;
-        sp64[2] = player->position[2] + ((-2.5 * player->letter[arg4].timer) * cosT(player->angle_y[arg3]));
-        sp64[0] = player->position[0] + ((-2.5 * player->letter[arg4].timer) * sinT(player->angle_y[arg3]));
+    if ((Player->Letter[arg4].Flag == 1) && (Player->dir[Arg3] < 0xD)) {
+        sp64[1] = Player->Position[1] - 3.0f;
+        sp64[2] = Player->Position[2] + ((-2.5 * Player->Letter[arg4].Timer) * CosT(Player->AngleY[Arg3]));
+        sp64[0] = Player->Position[0] + ((-2.5 * Player->Letter[arg4].Timer) * SinT(Player->AngleY[Arg3]));
         sp5C[0] = 0;
-        sp5C[1] = player->angle_y[arg3];
+        sp5C[1] = Player->AngleY[Arg3];
         sp5C[2] = 0;
-        common_mtx_calc(sp64, sp5C, player->letter[arg4].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008D58);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock(gDisplayListHead++, boing, G_IM_FMT_IA, G_IM_SIZ_8b, 64, 32, 0,
+        CommonMTXCalc(sp64, sp5C, Player->Letter[arg4].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008D58);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+        gDPLoadTextureBlock(DisplayListHead++, Boing, G_IM_FMT_IA, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
         ToumeIMode(0x000000FF, 0x000000FF, 0x000000FF, 0x000000FF);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-        gSPVertex(gDisplayListHead++, D_800E8B40, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+        gSPVertex(DisplayListHead++, D_800E8B40, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void set_poomp_calc(Player* player, UNUSED s8 arg1, UNUSED f32 arg2, s8 arg3, s8 arg4) {
+void SetPoompCalc(Player* Player, UNUSED s8 arg1, UNUSED f32 Arg2, s8 Arg3, s8 arg4) {
     Vec3f sp9C;
     Vec3s sp94;
 
-    if ((player->letter[arg4].flag == 1) && ((s32) player->dir[arg3] < 0xD)) {
-        sp9C[1] = (player->position[1] - 3.0f) + player->letter[arg4].try;
-        sp9C[2] = player->position[2] + (cosT(player->angle_y[arg3]) * -10.0f);
-        sp9C[0] = player->position[0] + (sinT(player->angle_y[arg3]) * -10.0f);
+    if ((Player->Letter[arg4].Flag == 1) && ((s32) Player->dir[Arg3] < 0xD)) {
+        sp9C[1] = (Player->Position[1] - 3.0f) + Player->Letter[arg4].try;
+        sp9C[2] = Player->Position[2] + (CosT(Player->AngleY[Arg3]) * -10.0f);
+        sp9C[0] = Player->Position[0] + (SinT(Player->AngleY[Arg3]) * -10.0f);
         sp94[0] = 0;
-        sp94[1] = player->angle_y[arg3];
+        sp94[1] = Player->AngleY[Arg3];
         sp94[2] = 0;
-        common_mtx_calc(sp9C, sp94, player->letter[arg4].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008C90);
-        gDPLoadTLUT_pal256(gDisplayListHead++, letter_pal);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_RGBA16);
-        gDPLoadTextureBlock(gDisplayListHead++, poomp1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
+        CommonMTXCalc(sp9C, sp94, Player->Letter[arg4].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008C90);
+        gDPLoadTLUT_pal256(DisplayListHead++, LetterPAL);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
+        gDPLoadTextureBlock(DisplayListHead++, Poomp1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
-        gSPVertex(gDisplayListHead++, D_800E8B80, 4, 0);
-        gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-        gDPLoadTextureBlock(gDisplayListHead++, poomp2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
+        gSPVertex(DisplayListHead++, D_800E8B80, 4, 0);
+        gSPDisplayList(DisplayListHead++, common_square_plain_render);
+        gDPLoadTextureBlock(DisplayListHead++, Poomp2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
-        gSPVertex(gDisplayListHead++, D_800E8BC0, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        gSPVertex(DisplayListHead++, D_800E8BC0, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void set_star_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void SetStarCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp5C;
     Vec3s sp54;
-    s16 alpha;
+    s16 Alpha;
 
-    if (player->spark[arg2].flag == 1) {
-        alpha = player->spark[arg2].swork4;
-        sp5C[0] = player->spark[arg2].trx;
-        sp5C[1] = player->spark[arg2].try;
-        sp5C[2] = player->spark[arg2].trz;
+    if (Player->Spark[Arg2].Flag == 1) {
+        Alpha = Player->Spark[Arg2].Swork4;
+        sp5C[0] = Player->Spark[Arg2].trx;
+        sp5C[1] = Player->Spark[Arg2].try;
+        sp5C[2] = Player->Spark[Arg2].trz;
         sp54[0] = 0;
-        sp54[1] = player->angle_y[arg3];
-        player->spark[arg2].swork2 += 0x1C71;
-        sp54[2] = player->spark[arg2].swork2;
-        common_mtx_calc(sp5C, sp54, player->offsetsize * 0.5);
-        gSPDisplayList(gDisplayListHead++, D_0D008D58);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock(gDisplayListHead++, hoshi, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+        sp54[1] = Player->AngleY[Arg3];
+        Player->Spark[Arg2].Swork2 += 0x1C71;
+        sp54[2] = Player->Spark[Arg2].Swork2;
+        CommonMTXCalc(sp5C, sp54, Player->Offsetsize * 0.5);
+        gSPDisplayList(DisplayListHead++, D_0D008D58);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+        gDPLoadTextureBlock(DisplayListHead++, Hoshi, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
-        ToumeIMode(0xFF, 0xFF, 0, alpha);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-        gSPVertex(gDisplayListHead++, D_800E87C0, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount++;
+        ToumeIMode(0xFF, 0xFF, 0, Alpha);
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+        gSPVertex(DisplayListHead++, D_800E87C0, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount++;
     }
 }
 
-void land_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void LandCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp74;
     Vec3s sp6C;
     s16 primRed;
@@ -5596,211 +5596,211 @@ void land_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
     s16 envGreen;
     s16 envBlue;
     u16 test;
-    if (player->spark[arg2].flag == 1) {
-        primRed = (NORM_SMOKE_IN[player->spark[arg2].swork1] >> 0x10) & 0xFF;
-        primGreen = (NORM_SMOKE_IN[player->spark[arg2].swork1] >> 8) & 0xFF;
-        primBlue = NORM_SMOKE_IN[player->spark[arg2].swork1] & 0xFF;
+    if (Player->Spark[Arg2].Flag == 1) {
+        primRed = (NORM_SMOKE_IN[Player->Spark[Arg2].Swork1] >> 0x10) & 0xFF;
+        primGreen = (NORM_SMOKE_IN[Player->Spark[Arg2].Swork1] >> 8) & 0xFF;
+        primBlue = NORM_SMOKE_IN[Player->Spark[Arg2].Swork1] & 0xFF;
 
-        envRed = (NORM_SMOKE_OUT[player->spark[arg2].swork1] >> 0x10) & 0xFF;
-        envGreen = (NORM_SMOKE_OUT[player->spark[arg2].swork1] >> 8) & 0xFF;
-        envBlue = NORM_SMOKE_OUT[player->spark[arg2].swork1] & 0xFF;
-        primAlpha = player->spark[arg2].swork4;
+        envRed = (NORM_SMOKE_OUT[Player->Spark[Arg2].Swork1] >> 0x10) & 0xFF;
+        envGreen = (NORM_SMOKE_OUT[Player->Spark[Arg2].Swork1] >> 8) & 0xFF;
+        envBlue = NORM_SMOKE_OUT[Player->Spark[Arg2].Swork1] & 0xFF;
+        primAlpha = Player->Spark[Arg2].Swork4;
 
-        sp74[0] = player->spark[arg2].trx;
-        sp74[1] = player->spark[arg2].try;
-        sp74[2] = player->spark[arg2].trz;
+        sp74[0] = Player->Spark[Arg2].trx;
+        sp74[1] = Player->Spark[Arg2].try;
+        sp74[2] = Player->Spark[Arg2].trz;
         sp6C[0] = 0;
-        sp6C[1] = player->angle_y[arg3];
+        sp6C[1] = Player->AngleY[Arg3];
         sp6C[2] = 0;
-        common_mtx_calc(sp74, sp6C, player->offsetsize * 1.5);
-        gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-        gDPLoadTextureBlock(gDisplayListHead++, smoke, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
+        CommonMTXCalc(sp74, sp6C, Player->Offsetsize * 1.5);
+        gSPDisplayList(DisplayListHead++, D_0D008DB8);
+        gDPLoadTextureBlock(DisplayListHead++, smoke, G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
         // `test` MUST be a u16
-        // `test` MUST be set to `envRed`s value
+        // `test` MUST be set to `envRed`s Value
         // `test` MUST be typecast to s16 when passed as a function parameter
         // What. the. fuck.
         test = envRed;
         Color2Mode(primRed, primGreen, primBlue, (s16) test, envGreen, envBlue, primAlpha);
-        gSPDisplayList(gDisplayListHead++, D_0D008E48);
-        effectcount += 1;
+        gSPDisplayList(DisplayListHead++, D_0D008E48);
+        Effectcount += 1;
     }
 }
 
-void set_startail_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3, f32 arg4) {
+void SetStartailCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3, f32 arg4) {
     Vec3f sp5C;
     Vec3s sp54;
-    s16 alpha;
+    s16 Alpha;
 
-    if (player->spark[arg2].flag == 1) {
-        alpha = player->spark[arg2].swork4;
-        sp5C[0] = player->spark[arg2].trx;
-        sp5C[1] = player->spark[arg2].try;
-        sp5C[2] = player->spark[arg2].trz;
+    if (Player->Spark[Arg2].Flag == 1) {
+        Alpha = Player->Spark[Arg2].Swork4;
+        sp5C[0] = Player->Spark[Arg2].trx;
+        sp5C[1] = Player->Spark[Arg2].try;
+        sp5C[2] = Player->Spark[Arg2].trz;
         sp54[0] = 0;
-        sp54[1] = player->angle_y[arg3];
+        sp54[1] = Player->AngleY[Arg3];
         sp54[2] = 0;
-        common_mtx_calc(sp5C, sp54, player->offsetsize * arg4);
-        gSPDisplayList(gDisplayListHead++, D_0D008D58);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock(gDisplayListHead++, hoshi, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+        CommonMTXCalc(sp5C, sp54, Player->Offsetsize * arg4);
+        gSPDisplayList(DisplayListHead++, D_0D008D58);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+        gDPLoadTextureBlock(DisplayListHead++, Hoshi, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
-        ToumeIMode(0x000000FF, 0x000000FF, 0, alpha);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-        gSPVertex(gDisplayListHead++, D_800E87C0, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        ToumeIMode(0x000000FF, 0x000000FF, 0, Alpha);
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+        gSPVertex(DisplayListHead++, D_800E87C0, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void powder_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void PowderCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp5C;
     Vec3s sp54;
-    s16 alpha;
+    s16 Alpha;
 
-    if (player->spark[arg2].flag == 1) {
-        alpha = player->spark[arg2].swork4;
-        sp5C[0] = player->spark[arg2].trx;
-        sp5C[1] = player->spark[arg2].try;
-        sp5C[2] = player->spark[arg2].trz;
+    if (Player->Spark[Arg2].Flag == 1) {
+        Alpha = Player->Spark[Arg2].Swork4;
+        sp5C[0] = Player->Spark[Arg2].trx;
+        sp5C[1] = Player->Spark[Arg2].try;
+        sp5C[2] = Player->Spark[Arg2].trz;
         sp54[0] = 0;
-        sp54[1] = player->angle_y[arg3];
-        sp54[2] = player->spark[arg2].swork1;
-        common_mtx_calc(sp5C, sp54, player->spark[arg2].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008D58);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock(gDisplayListHead++, hoshi, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+        sp54[1] = Player->AngleY[Arg3];
+        sp54[2] = Player->Spark[Arg2].Swork1;
+        CommonMTXCalc(sp5C, sp54, Player->Spark[Arg2].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008D58);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+        gDPLoadTextureBlock(DisplayListHead++, Hoshi, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
-        ToumeIMode(0x000000FF, 0x000000FF, 0, alpha);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-        gSPVertex(gDisplayListHead++, D_800E87C0, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        ToumeIMode(0x000000FF, 0x000000FF, 0, Alpha);
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+        gSPVertex(DisplayListHead++, D_800E87C0, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void burn_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void BurnCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp54;
     Vec3s sp4C;
     s16 red;
-    s16 green;
-    s16 blue;
-    s16 alpha;
+    s16 Green;
+    s16 Blue;
+    s16 Alpha;
 
-    if (player->spark[arg2].flag == 1) {
-        red = player->spark[arg2].swork1;
-        green = player->spark[arg2].swork2;
-        blue = player->spark[arg2].swork3;
-        alpha = player->spark[arg2].swork4;
-        sp54[0] = player->spark[arg2].trx;
-        sp54[1] = player->spark[arg2].try;
-        sp54[2] = player->spark[arg2].trz;
+    if (Player->Spark[Arg2].Flag == 1) {
+        red = Player->Spark[Arg2].Swork1;
+        Green = Player->Spark[Arg2].Swork2;
+        Blue = Player->Spark[Arg2].Swork3;
+        Alpha = Player->Spark[Arg2].Swork4;
+        sp54[0] = Player->Spark[Arg2].trx;
+        sp54[1] = Player->Spark[Arg2].try;
+        sp54[2] = Player->Spark[Arg2].trz;
         sp4C[0] = 0;
-        sp4C[1] = player->angle_y[arg3];
+        sp4C[1] = Player->AngleY[Arg3];
         sp4C[2] = 0;
-        common_mtx_calc(sp54, sp4C, player->spark[arg2].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-        gDPLoadTextureBlock(gDisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
+        CommonMTXCalc(sp54, sp4C, Player->Spark[Arg2].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008DB8);
+        gDPLoadTextureBlock(DisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
-        ToumeIMode(red, green, blue, alpha);
-        gSPDisplayList(gDisplayListHead++, D_0D008E48);
-        effectcount += 1;
+        ToumeIMode(red, Green, Blue, Alpha);
+        gSPDisplayList(DisplayListHead++, D_0D008E48);
+        Effectcount += 1;
     }
 }
 
-void water_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void WaterCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp5C;
     Vec3s sp54;
     UNUSED s32 stackPadding[2];
 
-    if (player->spark[arg2].flag == 1) {
-        sp5C[0] = player->spark[arg2].trx;
-        sp5C[1] = player->spark[arg2].try;
-        sp5C[2] = player->spark[arg2].trz;
+    if (Player->Spark[Arg2].Flag == 1) {
+        sp5C[0] = Player->Spark[Arg2].trx;
+        sp5C[1] = Player->Spark[Arg2].try;
+        sp5C[2] = Player->Spark[Arg2].trz;
         sp54[0] = 0;
-        sp54[1] = player->angle_y[arg3];
+        sp54[1] = Player->AngleY[Arg3];
         sp54[2] = 0;
-        common_mtx_calc(sp5C, sp54, player->spark[arg2].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008D58);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock(gDisplayListHead++, bubble, G_IM_FMT_IA, G_IM_SIZ_16b, 16, 16, 0,
+        CommonMTXCalc(sp5C, sp54, Player->Spark[Arg2].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008D58);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+        gDPLoadTextureBlock(DisplayListHead++, Bubble, G_IM_FMT_IA, G_IM_SIZ_16b, 16, 16, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
         ToumeIMode(0x000000FF, 0x000000FF, 0x000000FF, 0x000000FF);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-        gSPVertex(gDisplayListHead++, D_800E8740, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+        gSPVertex(DisplayListHead++, D_800E8740, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void set_bubble_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void SetBubbleCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp54;
     Vec3s sp4C;
 
-    if (player->gass[arg2].flag == 1) {
-        sp54[0] = player->smoke[arg2].trx;
-        sp54[1] = player->smoke[arg2].try;
-        sp54[2] = player->smoke[arg2].trz;
+    if (Player->Gass[Arg2].Flag == 1) {
+        sp54[0] = Player->smoke[Arg2].trx;
+        sp54[1] = Player->smoke[Arg2].try;
+        sp54[2] = Player->smoke[Arg2].trz;
         sp4C[0] = 0;
-        sp4C[1] = player->angle_y[arg3];
+        sp4C[1] = Player->AngleY[Arg3];
         sp4C[2] = 0;
-        common_mtx_calc(sp54, sp4C, player->smoke[arg2].scale * player->offsetsize);
+        CommonMTXCalc(sp54, sp4C, Player->smoke[Arg2].Scale * Player->Offsetsize);
 
-        gSPDisplayList(gDisplayListHead++, D_0D008D58);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock(gDisplayListHead++, bubble, G_IM_FMT_IA, G_IM_SIZ_16b, 16, 16, 0,
+        gSPDisplayList(DisplayListHead++, D_0D008D58);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+        gDPLoadTextureBlock(DisplayListHead++, Bubble, G_IM_FMT_IA, G_IM_SIZ_16b, 16, 16, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
         ToumeIMode(0xFF, 0xFF, 0xFF, 0xFF);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-        gSPVertex(gDisplayListHead++, D_0D008B78, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount++;
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+        gSPVertex(DisplayListHead++, D_0D008B78, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount++;
     }
 }
 
-void set_dobon_calc(Player* player, UNUSED s8 arg1, s16 arg2, s8 arg3) {
+void SetDobonCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
     Vec3f sp5C;
     Vec3s sp54;
     s16 red;
-    s16 green;
-    s16 blue;
+    s16 Green;
+    s16 Blue;
 
-    if (player->gass[arg2].flag == 1) {
-        red = player->gass[arg2].swork1;
-        green = player->gass[arg2].swork2;
-        blue = player->gass[arg2].swork3;
-        sp5C[0] = player->gass[arg2].trx;
-        sp5C[1] = player->gass[arg2].try;
-        sp5C[2] = player->gass[arg2].trz;
+    if (Player->Gass[Arg2].Flag == 1) {
+        red = Player->Gass[Arg2].Swork1;
+        Green = Player->Gass[Arg2].Swork2;
+        Blue = Player->Gass[Arg2].Swork3;
+        sp5C[0] = Player->Gass[Arg2].trx;
+        sp5C[1] = Player->Gass[Arg2].try;
+        sp5C[2] = Player->Gass[Arg2].trz;
         sp54[0] = 0;
-        sp54[1] = player->angle_y[arg3];
+        sp54[1] = Player->AngleY[Arg3];
         sp54[2] = 0;
-        common_mtx_calc(sp5C, sp54, player->gass[arg2].scale * player->offsetsize);
-        gSPDisplayList(gDisplayListHead++, D_0D008D58);
-        gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock_4b(gDisplayListHead++, *D_800E47A0[player->gass[arg2].timer], G_IM_FMT_I, 64, 64,
+        CommonMTXCalc(sp5C, sp54, Player->Gass[Arg2].Scale * Player->Offsetsize);
+        gSPDisplayList(DisplayListHead++, D_0D008D58);
+        gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+        gDPLoadTextureBlock_4b(DisplayListHead++, *D_800E47A0[Player->Gass[Arg2].Timer], G_IM_FMT_I, 64, 64,
                                0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                                G_TX_NOLOD, G_TX_NOLOD);
-        SplashMode(red, green, blue, 0x000000FF);
-        gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-        gSPVertex(gDisplayListHead++, D_800E8780, 4, 0);
-        gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-        effectcount += 1;
+        SplashMode(red, Green, Blue, 0x000000FF);
+        gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+        gSPVertex(DisplayListHead++, D_800E8780, 4, 0);
+        gSPDisplayList(DisplayListHead++, D_0D008DA0);
+        Effectcount += 1;
     }
 }
 
-void BalloonDisp(Player* player, f32 arg1, f32 arg2, s8 playerIndex, s8 balloonIndex, s16 rotation) {
+void BalloonDisp(Player* Player, f32 arg1, f32 Arg2, s8 playerIndex, s8 balloonIndex, s16 Rotation) {
     f32 someX;
     f32 someY;
     f32 someZ;
 
-    gPlayerBalloonStatus[playerIndex][balloonIndex] = BALLOON_STATUS_GONE;
+    PlayerBalloonStatus[playerIndex][balloonIndex] = BALLOON_STATUS_GONE;
     D_8018D650[playerIndex][balloonIndex] = 0.1f;
     D_8018D6B0[playerIndex][balloonIndex] = 0.0f;
     D_8018D710[playerIndex][balloonIndex] = 0.0f;
@@ -5809,17 +5809,17 @@ void BalloonDisp(Player* player, f32 arg1, f32 arg2, s8 playerIndex, s8 balloonI
     D_8018D7D0[playerIndex][balloonIndex] = 0;
     D_8018D800[playerIndex][balloonIndex] = 5;
     D_8018D830[playerIndex][balloonIndex] = 1;
-    D_8018D620[playerIndex][balloonIndex] = -player->direction[1] - player->slipang;
-    make_smokepos(&someX, &someY, &someZ, arg1, 4.0f, arg2 + -3.8, -player->direction[1], 0);
-    gPlayerBalloonPosX[playerIndex][balloonIndex] = player->position[0] + someX;
-    gPlayerBalloonPosZ[playerIndex][balloonIndex] = player->position[2] + someZ;
-    gPlayerBalloonPosY[playerIndex][balloonIndex] = (player->position[1] - player->radius) + someY;
-    gPlayerBalloonStatus[playerIndex][balloonIndex] |= BALLOON_STATUS_PRESENT;
-    gPlayerBalloonRotation[playerIndex][balloonIndex] = rotation; // Sprite rotation
+    D_8018D620[playerIndex][balloonIndex] = -Player->Direction[1] - Player->Slipang;
+    MakeSmokepos(&someX, &someY, &someZ, arg1, 4.0f, Arg2 + -3.8, -Player->Direction[1], 0);
+    PlayerBalloonPosX[playerIndex][balloonIndex] = Player->Position[0] + someX;
+    PlayerBalloonPosZ[playerIndex][balloonIndex] = Player->Position[2] + someZ;
+    PlayerBalloonPosY[playerIndex][balloonIndex] = (Player->Position[1] - Player->Radius) + someY;
+    PlayerBalloonStatus[playerIndex][balloonIndex] |= BALLOON_STATUS_PRESENT;
+    PlayerBalloonRotation[playerIndex][balloonIndex] = Rotation; // Sprite Rotation
     D_8018D890[playerIndex][balloonIndex] = 0;
 }
 
-void balloon_strat(Player* player, f32 arg1, f32 arg2, s8 playerId, s8 balloonId) {
+void BalloonStrat(Player* Player, f32 arg1, f32 Arg2, s8 PlayerId, s8 balloonId) {
     f32 sp80[] = {
         9.0f, 10.0f, 9.0f, 8.0f, 10.0f, 9.5f, 9.5f, 11.0f,
     };
@@ -5831,81 +5831,81 @@ void balloon_strat(Player* player, f32 arg1, f32 arg2, s8 playerId, s8 balloonId
     UNUSED s32 stackPadding1;
     UNUSED s32 stackPadding2;
 
-    sp6C = (-(player->speed / 18.0f) * 216.0f) / 10.0f;
-    if ((gPlayerBalloonStatus[playerId][balloonId] & 2) != 2) {
-        D_8018D650[playerId][balloonId] += -0.003 + (-player->speed * 0.0006);
-        if (D_8018D650[playerId][balloonId] >= 0.05) {
-            D_8018D650[playerId][balloonId] = 0.05f;
+    sp6C = (-(Player->Speed / 18.0f) * 216.0f) / 10.0f;
+    if ((PlayerBalloonStatus[PlayerId][balloonId] & 2) != 2) {
+        D_8018D650[PlayerId][balloonId] += -0.003 + (-Player->Speed * 0.0006);
+        if (D_8018D650[PlayerId][balloonId] >= 0.05) {
+            D_8018D650[PlayerId][balloonId] = 0.05f;
         }
-        if (D_8018D650[playerId][balloonId] <= -0.05) {
-            D_8018D650[playerId][balloonId] = -0.05f;
+        if (D_8018D650[PlayerId][balloonId] <= -0.05) {
+            D_8018D650[PlayerId][balloonId] = -0.05f;
         }
-        D_8018D6B0[playerId][balloonId] += D_8018D650[playerId][balloonId];
-        if (D_8018D6B0[playerId][balloonId] >= 0.06) {
-            D_8018D6B0[playerId][balloonId] = 0.06f;
+        D_8018D6B0[PlayerId][balloonId] += D_8018D650[PlayerId][balloonId];
+        if (D_8018D6B0[PlayerId][balloonId] >= 0.06) {
+            D_8018D6B0[PlayerId][balloonId] = 0.06f;
         }
-        if (D_8018D6B0[playerId][balloonId] <= -0.06) {
-            D_8018D6B0[playerId][balloonId] = -0.06f;
+        if (D_8018D6B0[PlayerId][balloonId] <= -0.06) {
+            D_8018D6B0[PlayerId][balloonId] = -0.06f;
         }
-        D_8018D710[playerId][balloonId] += D_8018D6B0[playerId][balloonId];
-        if (D_8018D710[playerId][balloonId] < 0.0f) {
-            D_8018D650[playerId][balloonId] = MakeRandomLimmit(0x000BU) / 10;
-            D_8018D6B0[playerId][balloonId] = 0.0f;
-            D_8018D710[playerId][balloonId] = 0.0f;
+        D_8018D710[PlayerId][balloonId] += D_8018D6B0[PlayerId][balloonId];
+        if (D_8018D710[PlayerId][balloonId] < 0.0f) {
+            D_8018D650[PlayerId][balloonId] = MakeRandomLimmit(0x000BU) / 10;
+            D_8018D6B0[PlayerId][balloonId] = 0.0f;
+            D_8018D710[PlayerId][balloonId] = 0.0f;
         }
-        D_8018D620[playerId][balloonId] = -player->direction[1] - player->slipang;
-        chase_Snumber(&D_8018D890[playerId][balloonId], player->speed * (f32) DEGREES(1), 0.1f);
+        D_8018D620[PlayerId][balloonId] = -Player->Direction[1] - Player->Slipang;
+        ChaseSnumber(&D_8018D890[PlayerId][balloonId], Player->Speed * (f32) DEGREES(1), 0.1f);
     }
-    if (D_8018D830[playerId][balloonId] == 1) {
-        D_8018D770[playerId][balloonId] += D_8018D800[playerId][balloonId] - player->speed;
+    if (D_8018D830[PlayerId][balloonId] == 1) {
+        D_8018D770[PlayerId][balloonId] += D_8018D800[PlayerId][balloonId] - Player->Speed;
     } else {
-        D_8018D770[playerId][balloonId] += D_8018D800[playerId][balloonId] + player->speed;
+        D_8018D770[PlayerId][balloonId] += D_8018D800[PlayerId][balloonId] + Player->Speed;
     }
-    if (D_8018D770[playerId][balloonId] >= 0xB) {
-        D_8018D770[playerId][balloonId] = 0x000B;
+    if (D_8018D770[PlayerId][balloonId] >= 0xB) {
+        D_8018D770[PlayerId][balloonId] = 0x000B;
     }
-    if (D_8018D770[playerId][balloonId] < -0xA) {
-        D_8018D770[playerId][balloonId] = -0x000B;
+    if (D_8018D770[PlayerId][balloonId] < -0xA) {
+        D_8018D770[PlayerId][balloonId] = -0x000B;
     }
-    D_8018D7A0[playerId][balloonId] += D_8018D770[playerId][balloonId];
-    if (D_8018D7A0[playerId][balloonId] >= 0x29) {
-        D_8018D7A0[playerId][balloonId] = 0x0029;
+    D_8018D7A0[PlayerId][balloonId] += D_8018D770[PlayerId][balloonId];
+    if (D_8018D7A0[PlayerId][balloonId] >= 0x29) {
+        D_8018D7A0[PlayerId][balloonId] = 0x0029;
     }
-    if (D_8018D7A0[playerId][balloonId] < -0x28) {
-        D_8018D7A0[playerId][balloonId] = -0x0029;
+    if (D_8018D7A0[PlayerId][balloonId] < -0x28) {
+        D_8018D7A0[PlayerId][balloonId] = -0x0029;
     }
-    D_8018D7D0[playerId][balloonId] += D_8018D7A0[playerId][balloonId];
-    if (D_8018D7D0[playerId][balloonId] >= 0x38E) { // 0x38E is DEGREES(5) possibly
-        D_8018D800[playerId][balloonId] = -MakeRandomLimmit(8U);
-        if (D_8018D830[playerId][balloonId] != 1) {
-            D_8018D830[playerId][balloonId] = 1;
+    D_8018D7D0[PlayerId][balloonId] += D_8018D7A0[PlayerId][balloonId];
+    if (D_8018D7D0[PlayerId][balloonId] >= 0x38E) { // 0x38E is DEGREES(5) possibly
+        D_8018D800[PlayerId][balloonId] = -MakeRandomLimmit(8U);
+        if (D_8018D830[PlayerId][balloonId] != 1) {
+            D_8018D830[PlayerId][balloonId] = 1;
         }
     }
-    if (D_8018D7D0[playerId][balloonId] < -0x38D) {
-        D_8018D800[playerId][balloonId] = MakeRandomLimmit(8U);
-        if (D_8018D830[playerId][balloonId] != -1) {
-            D_8018D830[playerId][balloonId] = -1;
+    if (D_8018D7D0[PlayerId][balloonId] < -0x38D) {
+        D_8018D800[PlayerId][balloonId] = MakeRandomLimmit(8U);
+        if (D_8018D830[PlayerId][balloonId] != -1) {
+            D_8018D830[PlayerId][balloonId] = -1;
         }
     }
-    make_smokepos(&someX, &someY, &someZ, arg1, sp80[player->kart] - D_8018D710[playerId][balloonId],
-                  arg2 + -3.2 + (sp6C * 1), -D_8018D620[playerId][balloonId], -player->kartroll * 2);
-    if ((gPlayerBalloonStatus[playerId][balloonId] & 2) != 2) {
-        gPlayerBalloonPosY[playerId][balloonId] = (player->position[1] - player->radius) + someY;
-        gPlayerBalloonPosX[playerId][balloonId] = player->position[0] + someX;
-        gPlayerBalloonPosZ[playerId][balloonId] = player->position[2] + someZ;
-        gPlayerBalloonDepartingTimer[playerId][balloonId] = 0;
+    MakeSmokepos(&someX, &someY, &someZ, arg1, sp80[Player->Kart] - D_8018D710[PlayerId][balloonId],
+                  Arg2 + -3.2 + (sp6C * 1), -D_8018D620[PlayerId][balloonId], -Player->Kartroll * 2);
+    if ((PlayerBalloonStatus[PlayerId][balloonId] & 2) != 2) {
+        PlayerBalloonPosY[PlayerId][balloonId] = (Player->Position[1] - Player->Radius) + someY;
+        PlayerBalloonPosX[PlayerId][balloonId] = Player->Position[0] + someX;
+        PlayerBalloonPosZ[PlayerId][balloonId] = Player->Position[2] + someZ;
+        PlayerBalloonDepartingTimer[PlayerId][balloonId] = 0;
     } else {
-        gPlayerBalloonPosY[playerId][balloonId] += 0.2;
-        gPlayerBalloonDepartingTimer[playerId][balloonId] += 1;
-        chase_Snumber(&D_8018D890[playerId][balloonId], 0, 0.1f);
-        chase_Snumber(&gPlayerBalloonRotation[playerId][balloonId], 0, 0.1f);
-        if (gPlayerBalloonDepartingTimer[playerId][balloonId] >= 0x78) {
-            kill_balloon((s32) player, playerId, balloonId);
+        PlayerBalloonPosY[PlayerId][balloonId] += 0.2;
+        PlayerBalloonDepartingTimer[PlayerId][balloonId] += 1;
+        ChaseSnumber(&D_8018D890[PlayerId][balloonId], 0, 0.1f);
+        ChaseSnumber(&PlayerBalloonRotation[PlayerId][balloonId], 0, 0.1f);
+        if (PlayerBalloonDepartingTimer[PlayerId][balloonId] >= 0x78) {
+            KillBalloon((s32) Player, PlayerId, balloonId);
         }
     }
 }
 
-void make_balloon_calc(Player* player, s8 playerIndex, s16 balloonIndex, s8 screenId) {
+void MakeBalloonCalc(Player* Player, s8 playerIndex, s16 balloonIndex, s8 screenId) {
     Mat4 sp140;
     Vec3f sp134;
     Vec3s sp12C;
@@ -5929,21 +5929,21 @@ void make_balloon_calc(Player* player, s8 playerIndex, s16 balloonIndex, s8 scre
         MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00),
     };
 
-    primRed = (primColors[player->kart] >> 0x10) & 0xFF;
-    primGreen = (primColors[player->kart] >> 0x08) & 0xFF;
-    primBlue = (primColors[player->kart] >> 0x00) & 0xFF;
-    envRed = (envColors[player->kart] >> 0x10) & 0xFF;
-    envGreen = (envColors[player->kart] >> 0x08) & 0xFF;
-    envBlue = (envColors[player->kart] >> 0x00) & 0xFF;
-    temp_t1 = (((player->angle_y[screenId] + player->direction[1] + player->slipang) & 0xFFFF) / 128);
+    primRed = (primColors[Player->Kart] >> 0x10) & 0xFF;
+    primGreen = (primColors[Player->Kart] >> 0x08) & 0xFF;
+    primBlue = (primColors[Player->Kart] >> 0x00) & 0xFF;
+    envRed = (envColors[Player->Kart] >> 0x10) & 0xFF;
+    envGreen = (envColors[Player->Kart] >> 0x08) & 0xFF;
+    envBlue = (envColors[Player->Kart] >> 0x00) & 0xFF;
+    temp_t1 = (((Player->AngleY[screenId] + Player->Direction[1] + Player->Slipang) & 0xFFFF) / 128);
     temp_t1 <<= 7;
     if (screenId == playerIndex) {
         var_f20 = 0.3f;
     } else {
         // wut?
-        xdiff = (var_f20 = player->position[0] - cameras[screenId].camera_pos[0]);
-        zdiff = player->position[2] - cameras[screenId].camera_pos[2];
-        if (g_ScreenSplitA != 3) {
+        xdiff = (var_f20 = Player->Position[0] - Cameras[screenId].CameraPos[0]);
+        zdiff = Player->Position[2] - Cameras[screenId].CameraPos[2];
+        if (ScreenSplitA != 3) {
             var_f20 = sqrtf((xdiff * xdiff) + (zdiff * zdiff)) / 300.0f;
         } else {
             var_f20 = sqrtf((xdiff * xdiff) + (zdiff * zdiff)) / 200.0f;
@@ -5955,105 +5955,105 @@ void make_balloon_calc(Player* player, s8 playerIndex, s16 balloonIndex, s8 scre
             var_f20 = 0.3f;
         }
     }
-    sp134[0] = gPlayerBalloonPosX[playerIndex][balloonIndex];
-    sp134[1] = gPlayerBalloonPosY[playerIndex][balloonIndex];
-    sp134[2] = gPlayerBalloonPosZ[playerIndex][balloonIndex];
-    sp12C[0] = -((D_8018D890[playerIndex][balloonIndex] * 4) * cosT(temp_t1));
-    sp12C[1] = player->angle_y[screenId];
+    sp134[0] = PlayerBalloonPosX[playerIndex][balloonIndex];
+    sp134[1] = PlayerBalloonPosY[playerIndex][balloonIndex];
+    sp134[2] = PlayerBalloonPosZ[playerIndex][balloonIndex];
+    sp12C[0] = -((D_8018D890[playerIndex][balloonIndex] * 4) * CosT(temp_t1));
+    sp12C[1] = Player->AngleY[screenId];
     sp12C[2] = D_8018D7D0[playerIndex][balloonIndex] -
-               (gPlayerBalloonRotation[playerIndex][balloonIndex] * cosT(temp_t1)) -
-               ((D_8018D890[playerIndex][balloonIndex] * 8) * sinT(temp_t1));
-    createaffine(sp140, sp134, sp12C);
-    scale_matrix(sp140, var_f20);
-    Affine2Mtx(&gDynamicP->mtxEffect[effectcount], sp140);
+               (PlayerBalloonRotation[playerIndex][balloonIndex] * CosT(temp_t1)) -
+               ((D_8018D890[playerIndex][balloonIndex] * 8) * SinT(temp_t1));
+    Createaffine(sp140, sp134, sp12C);
+    ScaleMatrix(sp140, var_f20);
+    Affine2Mtx(&DynamicP->MTXEffect[Effectcount], sp140);
 
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxEffect[effectcount]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXEffect[Effectcount]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-    gDPLoadTLUT_pal256(gDisplayListHead++, letter_pal);
-    gDPSetTextureLUT(gDisplayListHead++, G_TT_RGBA16);
+    gSPDisplayList(DisplayListHead++, D_0D008DB8);
+    gDPLoadTLUT_pal256(DisplayListHead++, LetterPAL);
+    gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
 
     IceMode(primRed, primGreen, primBlue, envRed, envGreen, envBlue, 0x000000D8);
 
-    gDPSetRenderMode(gDisplayListHead++,
+    gDPSetRenderMode(DisplayListHead++,
                      AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_WRAP | ZMODE_XLU | CVG_X_ALPHA | FORCE_BL |
                          GBL_c1(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA),
                      AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_WRAP | ZMODE_XLU | CVG_X_ALPHA | FORCE_BL |
                          GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA));
-    gDPLoadTextureBlock(gDisplayListHead++, balloon1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP,
+    gDPLoadTextureBlock(DisplayListHead++, Balloon1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-    gSPVertex(gDisplayListHead++, gBalloonVertexPlane1, 4, 0);
-    gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-    gDPLoadTextureBlock(gDisplayListHead++, balloon2 - 0x40, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
+    gSPVertex(DisplayListHead++, BalloonVertexPlane1, 4, 0);
+    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gDPLoadTextureBlock(DisplayListHead++, Balloon2 - 0x40, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
-    gSPVertex(gDisplayListHead++, gBalloonVertexPlane2, 4, 0);
-    gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-    gSPTexture(gDisplayListHead++, 0x0001, 0x0001, 0, G_TX_RENDERTILE, G_OFF);
-    effectcount++;
+    gSPVertex(DisplayListHead++, BalloonVertexPlane2, 4, 0);
+    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPTexture(DisplayListHead++, 0x0001, 0x0001, 0, G_TX_RENDERTILE, G_OFF);
+    Effectcount++;
 }
 
-void init_all_player_balloons(Player* player, s8 playerIndex) {
-    BalloonDisp(player, 0.0f, 0.0f, playerIndex, (s8) 0, (s16) 0);
-    BalloonCheck(player, 1.5f, 2.0f, playerIndex, (s8) 1, (s16) 0x1C70);
-    BalloonCheck(player, -1.5f, 2.0f, playerIndex, (s8) 2, (s16) -0x1C70);
+void InitAllPlayerBalloons(Player* Player, s8 playerIndex) {
+    BalloonDisp(Player, 0.0f, 0.0f, playerIndex, (s8) 0, (s16) 0);
+    BalloonCheck(Player, 1.5f, 2.0f, playerIndex, (s8) 1, (s16) 0x1C70);
+    BalloonCheck(Player, -1.5f, 2.0f, playerIndex, (s8) 2, (s16) -0x1C70);
     BalloonCount[playerIndex] = 2;
 }
 
-void allkill_balloon(UNUSED Player* player, s8 playerIndex) {
-    gPlayerBalloonStatus[playerIndex][0] = BALLOON_STATUS_GONE;
-    gPlayerBalloonStatus[playerIndex][1] = BALLOON_STATUS_GONE;
-    gPlayerBalloonStatus[playerIndex][2] = BALLOON_STATUS_GONE;
+void AllkillBalloon(UNUSED Player* Player, s8 playerIndex) {
+    PlayerBalloonStatus[playerIndex][0] = BALLOON_STATUS_GONE;
+    PlayerBalloonStatus[playerIndex][1] = BALLOON_STATUS_GONE;
+    PlayerBalloonStatus[playerIndex][2] = BALLOON_STATUS_GONE;
 }
 
-void cut_balloon(Player* player, s8 playerIndex) {
+void CutPlayerBalloon(Player* Player, s8 playerIndex) {
     if (BalloonCount[playerIndex] >= 0) {
-        gPlayerBalloonStatus[playerIndex][BalloonCount[playerIndex]] &= ~BALLOON_STATUS_PRESENT;
-        gPlayerBalloonStatus[playerIndex][BalloonCount[playerIndex]] |= BALLOON_STATUS_DEPARTING;
+        PlayerBalloonStatus[playerIndex][BalloonCount[playerIndex]] &= ~BALLOON_STATUS_PRESENT;
+        PlayerBalloonStatus[playerIndex][BalloonCount[playerIndex]] |= BALLOON_STATUS_DEPARTING;
         BalloonCount[playerIndex]--;
         NAPlyTrgStart(playerIndex, SOUND_ARG_LOAD(0x19, 0x00, 0x90, 0x51));
         if (BalloonCount[playerIndex] < 0) {
-            set_change_bomb(player, playerIndex);
+            SetChangeBomb(Player, playerIndex);
         }
     }
 }
 
-void kill_balloon(UNUSED s32 arg0, s8 playerIndex, s8 balloonIndex) {
+void KillBalloon(UNUSED s32 arg0, s8 playerIndex, s8 balloonIndex) {
     if (BalloonCount[playerIndex] >= 0) {
-        gPlayerBalloonStatus[playerIndex][balloonIndex] = BALLOON_STATUS_GONE;
+        PlayerBalloonStatus[playerIndex][balloonIndex] = BALLOON_STATUS_GONE;
     }
 }
 
-void balloonset(Player* player, s8 playerId) {
-    if (gPlayerBalloonStatus[playerId][0] != BALLOON_STATUS_GONE) {
-        balloon_strat(player, 0.0f, 0.0f, playerId, 0);
+void Balloonset(Player* Player, s8 PlayerId) {
+    if (PlayerBalloonStatus[PlayerId][0] != BALLOON_STATUS_GONE) {
+        BalloonStrat(Player, 0.0f, 0.0f, PlayerId, 0);
     }
 
-    if (gPlayerBalloonStatus[playerId][1] != BALLOON_STATUS_GONE) {
-        balloon_strat(player, 1.8f, 2.6f, playerId, 1);
+    if (PlayerBalloonStatus[PlayerId][1] != BALLOON_STATUS_GONE) {
+        BalloonStrat(Player, 1.8f, 2.6f, PlayerId, 1);
     }
 
-    if (gPlayerBalloonStatus[playerId][2] != BALLOON_STATUS_GONE) {
-        balloon_strat(player, -1.8f, 2.6f, playerId, 2);
+    if (PlayerBalloonStatus[PlayerId][2] != BALLOON_STATUS_GONE) {
+        BalloonStrat(Player, -1.8f, 2.6f, PlayerId, 2);
     }
 }
 
-void set_balloon_calc(Player* player, s8 playerIndex, s8 screenId) {
-    if (gPlayerBalloonStatus[playerIndex][0] != BALLOON_STATUS_GONE) {
-        make_balloon_calc(player, playerIndex, 0, screenId);
+void SetBalloonCalc(Player* Player, s8 playerIndex, s8 screenId) {
+    if (PlayerBalloonStatus[playerIndex][0] != BALLOON_STATUS_GONE) {
+        MakeBalloonCalc(Player, playerIndex, 0, screenId);
     }
-    if (gPlayerBalloonStatus[playerIndex][1] != BALLOON_STATUS_GONE) {
-        make_balloon_calc(player, playerIndex, 1, screenId);
+    if (PlayerBalloonStatus[playerIndex][1] != BALLOON_STATUS_GONE) {
+        MakeBalloonCalc(Player, playerIndex, 1, screenId);
     }
-    if (gPlayerBalloonStatus[playerIndex][2] != BALLOON_STATUS_GONE) {
-        make_balloon_calc(player, playerIndex, 2, screenId);
+    if (PlayerBalloonStatus[playerIndex][2] != BALLOON_STATUS_GONE) {
+        MakeBalloonCalc(Player, playerIndex, 2, screenId);
     }
 }
 
 /**
  * Used in podium ceremony.
  */
-void draw_balloon(Vec3f arg0, f32 arg1, s16 arg2, s16 arg3) {
+void DrawBalloon(Vec3f arg0, f32 arg1, s16 Arg2, s16 Arg3) {
     Mat4 sp108;
     Vec3f spFC;
     Vec3s spF4;
@@ -6073,339 +6073,339 @@ void draw_balloon(Vec3f arg0, f32 arg1, s16 arg2, s16 arg3) {
         MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00),
     };
 
-    primRed = (primColors[arg3] >> 0x10) & 0xFF;
-    primGreen = (primColors[arg3] >> 0x08) & 0xFF;
-    primBlue = (primColors[arg3] >> 0x00) & 0xFF;
-    envRed = (envColors[arg3] >> 0x10) & 0xFF;
-    envGreen = (envColors[arg3] >> 0x08) & 0xFF;
-    envBlue = (envColors[arg3] >> 0x00) & 0xFF;
+    primRed = (primColors[Arg3] >> 0x10) & 0xFF;
+    primGreen = (primColors[Arg3] >> 0x08) & 0xFF;
+    primBlue = (primColors[Arg3] >> 0x00) & 0xFF;
+    envRed = (envColors[Arg3] >> 0x10) & 0xFF;
+    envGreen = (envColors[Arg3] >> 0x08) & 0xFF;
+    envBlue = (envColors[Arg3] >> 0x00) & 0xFF;
     spFC[0] = arg0[0];
     spFC[1] = arg0[1];
     spFC[2] = arg0[2];
     spF4[0] = 0;
-    spF4[1] = camera1->camera_direction[1];
-    spF4[2] = arg2;
-    createaffine(sp108, spFC, spF4);
-    scale_matrix(sp108, arg1);
-    Affine2Mtx(&gDynamicP->mtxEffect[effectcount], sp108);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxEffect[effectcount]),
+    spF4[1] = Camera1->CameraDirection[1];
+    spF4[2] = Arg2;
+    Createaffine(sp108, spFC, spF4);
+    ScaleMatrix(sp108, arg1);
+    Affine2Mtx(&DynamicP->MTXEffect[Effectcount], sp108);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXEffect[Effectcount]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-    gDPLoadTLUT_pal256(gDisplayListHead++, letter_pal);
-    gDPSetTextureLUT(gDisplayListHead++, G_TT_RGBA16);
+    gSPDisplayList(DisplayListHead++, D_0D008DB8);
+    gDPLoadTLUT_pal256(DisplayListHead++, LetterPAL);
+    gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
     IceMode(primRed, primGreen, primBlue, envRed, envGreen, envBlue, 0x000000D8);
-    gDPSetRenderMode(gDisplayListHead++,
+    gDPSetRenderMode(DisplayListHead++,
                      AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_WRAP | ZMODE_XLU | CVG_X_ALPHA | FORCE_BL |
                          GBL_c1(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA),
                      AA_EN | Z_CMP | Z_UPD | IM_RD | CVG_DST_WRAP | ZMODE_XLU | CVG_X_ALPHA | FORCE_BL |
                          GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_1MA));
-    gDPLoadTextureBlock(gDisplayListHead++, balloon1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP,
+    gDPLoadTextureBlock(DisplayListHead++, Balloon1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-    gSPVertex(gDisplayListHead++, gBalloonVertexPlane1, 4, 0);
-    gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-    // balloon2 is correct. But interestingly, IDO seems to set "-0x40" to a different register so the texture still
+    gSPVertex(DisplayListHead++, BalloonVertexPlane1, 4, 0);
+    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    // Balloon2 is correct. But interestingly, IDO seems to set "-0x40" to a different register so the Texture still
     // looks fine.
-    gDPLoadTextureBlock(gDisplayListHead++, balloon2 - 0x40, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
+    gDPLoadTextureBlock(DisplayListHead++, Balloon2 - 0x40, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
-    gSPVertex(gDisplayListHead++, gBalloonVertexPlane2, 4, 0);
-    gSPDisplayList(gDisplayListHead++, common_square_plain_render);
-    gSPTexture(gDisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
-    effectcount += 1;
+    gSPVertex(DisplayListHead++, BalloonVertexPlane2, 4, 0);
+    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
+    Effectcount += 1;
 }
 
-void draw_smoke(Vec3f arg0, f32 arg1, s32 rgb, s16 alpha) {
+void DrawSmoke(Vec3f arg0, f32 arg1, s32 rgb, s16 Alpha) {
     Vec3f sp4C;
     Vec3s sp44;
     s16 red;
-    s16 green;
-    s16 blue;
+    s16 Green;
+    s16 Blue;
 
     sp4C[0] = arg0[0];
     sp4C[1] = arg0[1];
     sp4C[2] = arg0[2];
     sp44[0] = 0;
-    sp44[1] = camera1->camera_direction[1];
+    sp44[1] = Camera1->CameraDirection[1];
     sp44[2] = 0;
-    common_mtx_calc(sp4C, sp44, arg1);
-    gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-    gDPLoadTextureBlock(gDisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
+    CommonMTXCalc(sp4C, sp44, arg1);
+    gSPDisplayList(DisplayListHead++, D_0D008DB8);
+    gDPLoadTextureBlock(DisplayListHead++, D_8018D48C, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP,
                         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
     // ???????????????????????????????????
     red = ((rgb >> 0x10) & 0xFF) & 0xFF;
-    green = ((rgb >> 0x08) & 0xFF) & 0xFF;
-    blue = ((rgb >> 0x00) & 0xFF) & 0xFF;
+    Green = ((rgb >> 0x08) & 0xFF) & 0xFF;
+    Blue = ((rgb >> 0x00) & 0xFF) & 0xFF;
     // ???????????????????????????????????
-    ToumeIMode(red, green, blue, alpha);
-    gSPDisplayList(gDisplayListHead++, D_0D008E48);
-    effectcount += 1;
+    ToumeIMode(red, Green, Blue, Alpha);
+    gSPDisplayList(DisplayListHead++, D_0D008E48);
+    Effectcount += 1;
 }
 
-void draw_star(Vec3f arg0, f32 arg1, s32 rgb, s16 alpha) {
+void DrawStar(Vec3f arg0, f32 arg1, s32 rgb, s16 Alpha) {
     Vec3f sp5C;
     Vec3s sp54;
     // ???????????????????????????????????????
     s16 red = ((rgb >> 0x10) & 0xFF) & 0xFF;
-    s16 green = ((rgb >> 0x08) & 0xFF) & 0xFF;
-    s16 blue = ((rgb >> 0x00) & 0xFF) & 0xFF;
+    s16 Green = ((rgb >> 0x08) & 0xFF) & 0xFF;
+    s16 Blue = ((rgb >> 0x00) & 0xFF) & 0xFF;
     // ???????????????????????????????????????
 
     sp5C[0] = arg0[0];
     sp5C[1] = arg0[1];
     sp5C[2] = arg0[2];
     sp54[0] = 0;
-    sp54[1] = camera1->camera_direction[1];
+    sp54[1] = Camera1->CameraDirection[1];
     sp54[2] = 0;
-    common_mtx_calc(sp5C, sp54, arg1);
-    gSPDisplayList(gDisplayListHead++, D_0D008D58);
-    gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-    gDPLoadTextureBlock(gDisplayListHead++, hoshi, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP,
+    CommonMTXCalc(sp5C, sp54, arg1);
+    gSPDisplayList(DisplayListHead++, D_0D008D58);
+    gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+    gDPLoadTextureBlock(DisplayListHead++, Hoshi, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-    ToumeIMode(red, green, blue, alpha);
-    gDPSetRenderMode(gDisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
-    gSPVertex(gDisplayListHead++, D_800E87C0, 4, 0);
-    gSPDisplayList(gDisplayListHead++, D_0D008DA0);
-    effectcount += 1;
+    ToumeIMode(red, Green, Blue, Alpha);
+    gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
+    gSPVertex(DisplayListHead++, D_800E87C0, 4, 0);
+    gSPDisplayList(DisplayListHead++, D_0D008DA0);
+    Effectcount += 1;
 }
 
-void draw_pachipachi(Vec3f arg0, f32 arg1, s32 rgb, s16 alpha, s16 arg4) {
+void DrawPachipachi(Vec3f arg0, f32 arg1, s32 rgb, s16 Alpha, s16 arg4) {
     Vec3f sp4C;
     Vec3s sp44;
     // ???????????????????????????????????????
     s16 red = ((rgb >> 0x10) & 0xFF) & 0xFF;
-    s16 green = ((rgb >> 0x08) & 0xFF) & 0xFF;
-    s16 blue = ((rgb >> 0x00) & 0xFF) & 0xFF;
+    s16 Green = ((rgb >> 0x08) & 0xFF) & 0xFF;
+    s16 Blue = ((rgb >> 0x00) & 0xFF) & 0xFF;
     // ???????????????????????????????????????
 
     sp4C[0] = arg0[0];
     sp4C[1] = arg0[1];
     sp4C[2] = arg0[2];
     sp44[0] = 0;
-    sp44[1] = camera1->camera_direction[1];
+    sp44[1] = Camera1->CameraDirection[1];
     sp44[2] = 0;
-    common_mtx_calc(sp4C, sp44, arg1);
-    gSPDisplayList(gDisplayListHead++, D_0D008DB8);
-    gDPLoadTextureBlock(gDisplayListHead++, common_texture_particle_spark[arg4], G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
+    CommonMTXCalc(sp4C, sp44, arg1);
+    gSPDisplayList(DisplayListHead++, D_0D008DB8);
+    gDPLoadTextureBlock(DisplayListHead++, common_texture_particle_spark[arg4], G_IM_FMT_I, G_IM_SIZ_8b, 32, 32, 0,
                         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
-    SplashMode(red, green, blue, alpha);
-    gSPDisplayList(gDisplayListHead++, D_0D008E48);
-    effectcount += 1;
+    SplashMode(red, Green, Blue, Alpha);
+    gSPDisplayList(DisplayListHead++, D_0D008E48);
+    Effectcount += 1;
 }
 
-void smokeset(Player* player, s16 particleIndex, s8 playerId, s8 arg3) {
-    s8 playerIdCopy = playerId;
+void Smokeset(Player* Player, s16 particleIndex, s8 PlayerId, s8 Arg3) {
+    s8 playerIdCopy = PlayerId;
     s32 sp28;
 
     sp28 = particleIndex - 1;
     if (sp28 < 0) {
         sp28 = 9;
     }
-    if (player->smoke[particleIndex].flag == 1) {
-        switch (player->smoke[particleIndex].number) {
+    if (Player->smoke[particleIndex].Flag == 1) {
+        switch (Player->smoke[particleIndex].Number) {
             case 1:
-                drift_smoke(player, particleIndex, playerIdCopy, arg3);
+                DriftSmoke(Player, particleIndex, playerIdCopy, Arg3);
                 break;
             case 2:
-                random_smoke(player, particleIndex, playerIdCopy, arg3);
+                RandomSmoke(Player, particleIndex, playerIdCopy, Arg3);
                 break;
             case 3:
-                random_grass(player, particleIndex, playerIdCopy, arg3);
+                RandomGrass(Player, particleIndex, playerIdCopy, Arg3);
                 break;
             case 4:
-                spin_smoke(player, particleIndex, playerIdCopy, arg3);
+                SpinSmoke(Player, particleIndex, playerIdCopy, Arg3);
                 break;
             case 5:
-                rapid_smoke(player, particleIndex, playerIdCopy, arg3);
+                RapidSmoke(Player, particleIndex, playerIdCopy, Arg3);
                 break;
             case 9:
-                random_spl(player, particleIndex, playerIdCopy, arg3);
+                RandomSpl(Player, particleIndex, playerIdCopy, Arg3);
                 break;
             case 11:
-                random_bubble(player, particleIndex, playerIdCopy, arg3);
+                RandomBubble(Player, particleIndex, playerIdCopy, Arg3);
                 break;
             default:
                 break;
         }
     } else {
-        if (player->water_flag & SUBMERGED) {
-            init_bubble(player, particleIndex, sp28, playerIdCopy, arg3);
-        } else if (!(player->slip_flag & N_JUMP) && !(player->slip_flag & D_JUMP)) {
-            if (((player->slip_flag & DRIFT) == DRIFT) &&
-                ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-                initdrift_smoke(player, particleIndex, sp28, playerIdCopy, arg3);
-            } else if (((f64) (g_waterlevelPlayer[playerIdCopy] - player->tire_RR.Height) >= 3.5) ||
-                       ((f64) (g_waterlevelPlayer[playerIdCopy] - player->tire_RL.Height) >= 3.5)) {
-                initrnd_spl(player, particleIndex, sp28, playerIdCopy, arg3);
-            } else if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-                       ((player->slip_flag & SPIN_R) == SPIN_R)) {
-                InitSpinSmokeHook(player, particleIndex, sp28, playerIdCopy, arg3);
-            } else if (((player->slip_flag & RAPID_ACC) && !(player->flag & NO_CONTROLS)) ||
-                       (player->slip_flag & WHEELSPIN) || (player->slip_flag & SPIN_TURN) ||
-                       (player->handling_flag & SPINOUT_SWERVE)) {
-                InitRapidSmokeHook(player, particleIndex, sp28, playerIdCopy, arg3);
+        if (Player->WaterFlag & SUBMERGED) {
+            InitBubble(Player, particleIndex, sp28, playerIdCopy, Arg3);
+        } else if (!(Player->SlipFlag & N_JUMP) && !(Player->SlipFlag & D_JUMP)) {
+            if (((Player->SlipFlag & DRIFT) == DRIFT) &&
+                ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+                InitdriftSmoke(Player, particleIndex, sp28, playerIdCopy, Arg3);
+            } else if (((f64) (WaterlevelPlayer[playerIdCopy] - Player->TireRR.Height) >= 3.5) ||
+                       ((f64) (WaterlevelPlayer[playerIdCopy] - Player->TireRL.Height) >= 3.5)) {
+                InitrndSpl(Player, particleIndex, sp28, playerIdCopy, Arg3);
+            } else if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+                       ((Player->SlipFlag & SPIN_R) == SPIN_R)) {
+                InitSpinSmokeHook(Player, particleIndex, sp28, playerIdCopy, Arg3);
+            } else if (((Player->SlipFlag & RAPID_ACC) && !(Player->Flag & NO_CONTROLS)) ||
+                       (Player->SlipFlag & WHEELSPIN) || (Player->SlipFlag & SPIN_TURN) ||
+                       (Player->HandlingFlag & SPINOUT_SWERVE)) {
+                InitRapidSmokeHook(Player, particleIndex, sp28, playerIdCopy, Arg3);
             } else {
-                InitRndSmokeHook(player, particleIndex, sp28, playerIdCopy, arg3);
+                InitRndSmokeHook(Player, particleIndex, sp28, playerIdCopy, Arg3);
             }
         }
     }
 }
 
-void sparkset(Player* player, s16 arg1, s8 playerIndex, s8 arg3) {
+void Sparkset(Player* Player, s16 arg1, s8 playerIndex, s8 Arg3) {
     UNUSED s32 stackPadding;
     s32 sp28;
     sp28 = arg1 - 1;
     if (sp28 < 0) {
         sp28 = 9;
     }
-    if (player->spark[arg1].flag == 1) {
-        switch (player->spark[arg1].number) {
+    if (Player->Spark[arg1].Flag == 1) {
+        switch (Player->Spark[arg1].Number) {
             case 1:
-                star_dust(player, arg1, playerIndex, arg3);
+                StarDust(Player, arg1, playerIndex, Arg3);
                 break;
 
             case 2:
-                tail_dust(player, arg1, playerIndex, arg3);
+                TailDust(Player, arg1, playerIndex, Arg3);
                 break;
 
             case 3:
-                slip_stream(player, arg1, playerIndex, arg3);
+                SlipStream(Player, arg1, playerIndex, Arg3);
                 break;
 
             case 4:
-                land_smoke(player, arg1, playerIndex, arg3);
+                LandSmoke(Player, arg1, playerIndex, Arg3);
                 break;
 
             case 5:
-                powder_dust(player, arg1, playerIndex, arg3);
+                PowderDust(Player, arg1, playerIndex, Arg3);
                 break;
 
             case 6:
-                burn_dust(player, arg1, playerIndex, arg3);
+                BurnDust(Player, arg1, playerIndex, Arg3);
                 break;
 
             case 7:
-                water_dust(player, arg1, playerIndex, arg3);
+                WaterDust(Player, arg1, playerIndex, Arg3);
                 break;
 
             case 8:
-                slip_stream(player, arg1, playerIndex, arg3);
+                SlipStream(Player, arg1, playerIndex, Arg3);
                 break;
 
             case 9:
-                result_star(player, arg1, playerIndex, arg3);
+                ResultStar(Player, arg1, playerIndex, Arg3);
                 break;
 
             default:
                 break;
         }
     } else {
-        if (player->handling_flag & TROPHYJUMP_STARS) {
-            initresult_star(player, arg1, sp28, playerIndex, arg3);
-            player->handling_flag &= ~LANDING_DUST;
+        if (Player->HandlingFlag & TROPHYJUMP_STARS) {
+            InitresultStar(Player, arg1, sp28, playerIndex, Arg3);
+            Player->HandlingFlag &= ~LANDING_DUST;
             return;
         }
-        if (((((player->jugemu_flag & LAVA_EFFECT) == LAVA_EFFECT) ||
-              ((player->bomb_timer < 2) && (player->slip_flag & EXPLODE))) ||
-             ((player->bomb_timer < 2) && (player->slip_flag & THROW_EXPLODE))) ||
-            (player->slip_flag & ROLLOVER)) {
-            initburn_dust(player, arg1, sp28, playerIndex, arg3);
-            player->hit_flag &= ~0x0008;
-            player->handling_flag &= ~LANDING_DUST;
+        if (((((Player->JugemuFlag & LAVA_EFFECT) == LAVA_EFFECT) ||
+              ((Player->BombTimer < 2) && (Player->SlipFlag & EXPLODE))) ||
+             ((Player->BombTimer < 2) && (Player->SlipFlag & THROW_EXPLODE))) ||
+            (Player->SlipFlag & ROLLOVER)) {
+            InitburnDust(Player, arg1, sp28, playerIndex, Arg3);
+            Player->HitFlag &= ~0x0008;
+            Player->HandlingFlag &= ~LANDING_DUST;
             return;
         }
-        if ((player->jugemu_flag & WATER_EFFECT) == WATER_EFFECT) {
-            initwater_dust(player, arg1, sp28, playerIndex, arg3);
-            player->hit_flag &= ~0x0008;
-            player->handling_flag &= ~LANDING_DUST;
+        if ((Player->JugemuFlag & WATER_EFFECT) == WATER_EFFECT) {
+            InitwaterDust(Player, arg1, sp28, playerIndex, Arg3);
+            Player->HitFlag &= ~0x0008;
+            Player->HandlingFlag &= ~LANDING_DUST;
             return;
         }
-        if ((player->slip_flag & STAR) &&
-            ((((s32) g_gameTimer) - g_StarUseCounter[playerIndex]) < STAR_EFFECT_DURATION - 1)) {
-            initpowder_dust(player, arg1, sp28, playerIndex, arg3);
-            player->hit_flag &= ~0x0008;
-            player->handling_flag &= ~LANDING_DUST;
+        if ((Player->SlipFlag & STAR) &&
+            ((((s32) GameTimer) - StarUseCounter[playerIndex]) < STAR_EFFECT_DURATION - 1)) {
+            InitpowderDust(Player, arg1, sp28, playerIndex, Arg3);
+            Player->HitFlag &= ~0x0008;
+            Player->HandlingFlag &= ~LANDING_DUST;
             return;
         }
-        if ((player->hit_flag & 8) == 8) {
-            initstar_dust(player, arg1, sp28, playerIndex, arg3);
-            player->handling_flag &= ~LANDING_DUST;
+        if ((Player->HitFlag & 8) == 8) {
+            InitstarDust(Player, arg1, sp28, playerIndex, Arg3);
+            Player->HandlingFlag &= ~LANDING_DUST;
             return;
         }
-        if (((player->hit_flag & 0x20) == 0x20) && (((player->speed / 18.0f) * 216.0f) >= 20.0f)) {
-            inittail_dust(player, arg1, sp28, playerIndex, arg3);
-            player->hit_flag &= ~0x0008;
-            player->handling_flag &= ~LANDING_DUST;
+        if (((Player->HitFlag & 0x20) == 0x20) && (((Player->Speed / 18.0f) * 216.0f) >= 20.0f)) {
+            InittailDust(Player, arg1, sp28, playerIndex, Arg3);
+            Player->HitFlag &= ~0x0008;
+            Player->HandlingFlag &= ~LANDING_DUST;
             return;
         }
-        if ((player->slip_flag & TURBO) && (player->flag & IS_PLAYER)) {
-            init_turbostream(player, arg1, sp28, playerIndex, arg3);
+        if ((Player->SlipFlag & TURBO) && (Player->Flag & IS_PLAYER)) {
+            InitTurbostream(Player, arg1, sp28, playerIndex, Arg3);
             return;
         }
-        if (((player->slip_flag & SLIP_STREAM) || (player->slip_flag & DASH_JUMP)) &&
-            ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-            init_slipstream(player, arg1, sp28, playerIndex, arg3);
-            player->hit_flag &= ~0x0008;
-            player->handling_flag &= ~LANDING_DUST;
+        if (((Player->SlipFlag & SLIP_STREAM) || (Player->SlipFlag & DASH_JUMP)) &&
+            ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+            InitSlipstream(Player, arg1, sp28, playerIndex, Arg3);
+            Player->HitFlag &= ~0x0008;
+            Player->HandlingFlag &= ~LANDING_DUST;
             return;
         }
-        if ((player->handling_flag & LANDING_DUST) == LANDING_DUST) {
-            init_land(player, arg1, sp28, playerIndex, arg3);
-            player->hit_flag &= ~0x0008;
+        if ((Player->HandlingFlag & LANDING_DUST) == LANDING_DUST) {
+            InitLand(Player, arg1, sp28, playerIndex, Arg3);
+            Player->HitFlag &= ~0x0008;
         }
     }
 }
 
-void gassset(Player* arg0, s16 arg1, s8 playerId, s8 arg3) {
+void Gassset(Player* arg0, s16 arg1, s8 PlayerId, s8 Arg3) {
     UNUSED u16 temp_v0_3;
     s32 sp20 = arg1;
     if (--sp20 < 0) {
         sp20 = 9;
     }
     // Spawn particles when oob    
-    if (arg0->gass[arg1].flag == 1) {
-        switch (arg0->gass[arg1].number) {
+    if (arg0->Gass[arg1].Flag == 1) {
+        switch (arg0->Gass[arg1].Number) {
             case 1:
-                engine_smoke(arg0, arg1, playerId, arg3);
+                EngineSmoke(arg0, arg1, PlayerId, Arg3);
                 break;
             case 3:
-                random_ring(arg0, arg1, playerId, arg3);
+                RandomRing(arg0, arg1, PlayerId, Arg3);
                 break;
             case 5:
-                dobon_splash(arg0, arg1, playerId, arg3);
+                DobonSplash(arg0, arg1, PlayerId, Arg3);
                 break;
             case 6:
-                thunder_effect(arg0, arg1, playerId, arg3);
+                ThunderEffect(arg0, arg1, PlayerId, Arg3);
                 break;
             case 7:
-                teresa_effect(arg0, arg1, playerId, arg3);
+                TeresaEffect(arg0, arg1, PlayerId, Arg3);
                 break;
         }
     } else {
-        if ((arg0->handling_flag & BOO_SMOKE_EFFECT) && (arg0->flag & SPINOUT_SWERVE)) {
-            init_teresa(arg0, arg1, sp20, playerId, arg3);
+        if ((arg0->HandlingFlag & BOO_SMOKE_EFFECT) && (arg0->Flag & SPINOUT_SWERVE)) {
+            InitTeresa(arg0, arg1, sp20, PlayerId, Arg3);
             return;
-        } else if (((arg0->slip_flag & THUNDER) == THUNDER) && (arg0->thunder_timer < 0x32)) {
-            init_thunder(arg0, arg1, sp20, playerId, arg3);
+        } else if (((arg0->SlipFlag & THUNDER) == THUNDER) && (arg0->ThunderTimer < 0x32)) {
+            InitThunder(arg0, arg1, sp20, PlayerId, Arg3);
             return;
-        } else if ((arg0->flag & IS_PLAYER) == IS_PLAYER) {
-            if ((arg0->water_flag & SPLASH_DIVE) == SPLASH_DIVE) {
-                init_dobon(arg0, arg1, sp20, playerId, arg3);
+        } else if ((arg0->Flag & IS_PLAYER) == IS_PLAYER) {
+            if ((arg0->WaterFlag & SPLASH_DIVE) == SPLASH_DIVE) {
+                InitDobon(arg0, arg1, sp20, PlayerId, Arg3);
                 return;
-            } else if ((arg0->water_flag & HALF_SUBMERGED) || (arg0->water_flag & SUBMERGED)) {
-                init_ring(arg0, arg1, sp20, playerId, arg3);
+            } else if ((arg0->WaterFlag & HALF_SUBMERGED) || (arg0->WaterFlag & SUBMERGED)) {
+                InitRing(arg0, arg1, sp20, PlayerId, Arg3);
                 return;
             }
         }
-        switch (g_ScreenSplitA) {
+        switch (ScreenSplitA) {
             case SCREEN_MODE_1P:
-                if (((arg0->slip_flag & BROKEN) != BROKEN) &&
-                    ((arg0->slip_flag & ROLLOVER) != ROLLOVER) &&
-                    ((arg0->slip_flag & EXPLODE) != EXPLODE)) {
-                    if (((arg0->jugemu_flag & ON_LAKITU_ROD) != ON_LAKITU_ROD) &&
-                        ((arg0->jugemu_flag & IS_FROZEN) != IS_FROZEN) &&
-                        !(arg0->jugemu_flag & LAKITU_CAMERA)) {
-                        initengine_smoke(arg0, arg1, sp20, playerId, arg3);
+                if (((arg0->SlipFlag & BROKEN) != BROKEN) &&
+                    ((arg0->SlipFlag & ROLLOVER) != ROLLOVER) &&
+                    ((arg0->SlipFlag & EXPLODE) != EXPLODE)) {
+                    if (((arg0->JugemuFlag & ON_LAKITU_ROD) != ON_LAKITU_ROD) &&
+                        ((arg0->JugemuFlag & IS_FROZEN) != IS_FROZEN) &&
+                        !(arg0->JugemuFlag & LAKITU_CAMERA)) {
+                        InitengineSmoke(arg0, arg1, sp20, PlayerId, Arg3);
                     }
                 }
                 break;
@@ -6414,13 +6414,13 @@ void gassset(Player* arg0, s16 arg1, s8 playerId, s8 arg3) {
             case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
             case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
             case SCREEN_MODE_3P_4P_SPLITSCREEN:
-                if (((arg0->flag & IS_PLAYER) != 0) && ((arg0->slip_flag & BROKEN) != BROKEN) &&
-                    ((arg0->slip_flag & ROLLOVER) != ROLLOVER) &&
-                    ((arg0->slip_flag & EXPLODE) != EXPLODE)) {
-                    if (((arg0->jugemu_flag & ON_LAKITU_ROD) != ON_LAKITU_ROD) &&
-                        ((arg0->jugemu_flag & IS_FROZEN) != IS_FROZEN) &&
-                        !(arg0->jugemu_flag & LAKITU_CAMERA)) {
-                        initengine_smoke(arg0, arg1, sp20, playerId, arg3);
+                if (((arg0->Flag & IS_PLAYER) != 0) && ((arg0->SlipFlag & BROKEN) != BROKEN) &&
+                    ((arg0->SlipFlag & ROLLOVER) != ROLLOVER) &&
+                    ((arg0->SlipFlag & EXPLODE) != EXPLODE)) {
+                    if (((arg0->JugemuFlag & ON_LAKITU_ROD) != ON_LAKITU_ROD) &&
+                        ((arg0->JugemuFlag & IS_FROZEN) != IS_FROZEN) &&
+                        !(arg0->JugemuFlag & LAKITU_CAMERA)) {
+                        InitengineSmoke(arg0, arg1, sp20, PlayerId, Arg3);
                     }
                 }
             break;
@@ -6428,282 +6428,282 @@ void gassset(Player* arg0, s16 arg1, s8 playerId, s8 arg3) {
     }
 }
 
-void letterset(Player* player, s8 playerIndex, s8 arg2) {
-    if (player->letter[0].flag == 1) {
-        switch (player->letter[0].number) {
+void Letterset(Player* Player, s8 playerIndex, s8 Arg2) {
+    if (Player->Letter[0].Flag == 1) {
+        switch (Player->Letter[0].Number) {
             case 2:
-                crash_letter(player, playerIndex, arg2, 0);
+                CrashLetter(Player, playerIndex, Arg2, 0);
                 break;
             case 3:
-                spin_letter(player, playerIndex, arg2, 0);
+                SpinLetter(Player, playerIndex, Arg2, 0);
                 break;
             case 4:
-                hit_letter(player, playerIndex, arg2, 0);
+                HitLetter(Player, playerIndex, Arg2, 0);
                 break;
             case 5:
-                boing_letter(player, playerIndex, arg2, 0);
+                BoingLetter(Player, playerIndex, Arg2, 0);
                 break;
             case 6:
-                poomp_letter(player, playerIndex, arg2, 0);
+                PoompLetter(Player, playerIndex, Arg2, 0);
                 break;
         }
     } else {
-        if ((player->talk & CRASH) == CRASH) {
-            initcrash_letter(player, playerIndex, arg2, 0);
+        if ((Player->Talk & CRASH) == CRASH) {
+            InitcrashLetter(Player, playerIndex, Arg2, 0);
         }
-        if ((player->talk & BOING) == BOING) {
-            initboing_letter(player, playerIndex, arg2, 0);
+        if ((Player->Talk & BOING) == BOING) {
+            InitboingLetter(Player, playerIndex, Arg2, 0);
         }
-        if ((player->talk & FLASH) == FLASH) {
-            inithit_letter(player, playerIndex, arg2, 0);
+        if ((Player->Talk & FLASH) == FLASH) {
+            InithitLetter(Player, playerIndex, Arg2, 0);
         }
-        if ((player->talk & WHIRRR) == WHIRRR) {
-            initspin_letter(player, playerIndex, arg2, 0);
+        if ((Player->Talk & WHIRRR) == WHIRRR) {
+            InitspinLetter(Player, playerIndex, Arg2, 0);
         }
-        if ((player->talk & POOMP) == POOMP) {
-            initpoomp_letter(player, playerIndex, arg2, 0);
+        if ((Player->Talk & POOMP) == POOMP) {
+            InitpoompLetter(Player, playerIndex, Arg2, 0);
         }
     }
-    if (player->letter[1].flag == 1) {
-        if (player->letter[1].number == 5) {
-            onpu_letter(player, playerIndex, arg2, 1);
+    if (Player->Letter[1].Flag == 1) {
+        if (Player->Letter[1].Number == 5) {
+            OnpuLetter(Player, playerIndex, Arg2, 1);
         }
-    } else if ((player->talk & MUSIC_NOTE) == MUSIC_NOTE) {
-        initonpu_letter(player, playerIndex, arg2, 1);
+    } else if ((Player->Talk & MUSIC_NOTE) == MUSIC_NOTE) {
+        InitonpuLetter(Player, playerIndex, Arg2, 1);
     }
 }
 
-void OBJCalculation(Player* player, s8 playerId, s8 screenId) {
+void OBJCalculation(Player* Player, s8 PlayerId, s8 screenId) {
     s16 var_s2;
-    if ((player->status & (P1_DRAW_PARTICLES << (screenId * 4))) == (P1_DRAW_PARTICLES << (screenId * 4))) {
+    if ((Player->Status & (P1_DRAW_PARTICLES << (screenId * 4))) == (P1_DRAW_PARTICLES << (screenId * 4))) {
         for (var_s2 = 0; var_s2 < 10; var_s2++) {
-            switch (player->gass[var_s2].number) {
+            switch (Player->Gass[var_s2].Number) {
                 case 1:
-                    if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
-                        if (screenId == playerId) {
-                            set_gass_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+                        if (screenId == PlayerId) {
+                            SetGassCalc(Player, PlayerId, var_s2, screenId);
                         }
                     } else {
-                        set_gass_calc(player, playerId, var_s2, screenId);
+                        SetGassCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
                 case 6:
-                    if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
-                        if (screenId == playerId) {
-                            set_thunder_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+                        if (screenId == PlayerId) {
+                            SetThunderCalc(Player, PlayerId, var_s2, screenId);
                         }
-                    } else if (screenId == playerId) {
-                        set_thunder_calc(player, playerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        SetThunderCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
             }
-            switch (player->spark[var_s2].number) {
+            switch (Player->Spark[var_s2].Number) {
                 case 1:
                 case 9:
-                    if (g_ScreenSplitA == SCREEN_MODE_1P) {
-                        set_star_calc(player, playerId, var_s2, screenId);
-                    } else if (screenId == playerId) {
-                        set_star_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_1P) {
+                        SetStarCalc(Player, PlayerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        SetStarCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
                 case 2:
-                    if (g_ScreenSplitA == SCREEN_MODE_1P) {
-                        set_startail_calc(player, playerId, var_s2, screenId, player->spark[var_s2].scale);
-                    } else if (screenId == playerId) {
-                        set_startail_calc(player, playerId, var_s2, screenId, player->spark[var_s2].scale);
+                    if (ScreenSplitA == SCREEN_MODE_1P) {
+                        SetStartailCalc(Player, PlayerId, var_s2, screenId, Player->Spark[var_s2].Scale);
+                    } else if (screenId == PlayerId) {
+                        SetStartailCalc(Player, PlayerId, var_s2, screenId, Player->Spark[var_s2].Scale);
                     }
                     break;
                 case 3:
-                    if (g_ScreenSplitA == SCREEN_MODE_1P) {
-                        set_slipstream_calc(player, playerId, var_s2, screenId);
-                    } else if (screenId == playerId) {
-                        set_slipstream_calc(player, (s32) playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_1P) {
+                        SetSlipstreamCalc(Player, PlayerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        SetSlipstreamCalc(Player, (s32) PlayerId, var_s2, screenId);
                     }
                     break;
                 case 4:
-                    if (g_ScreenSplitA == SCREEN_MODE_1P) {
-                        land_calc(player, playerId, var_s2, screenId);
-                    } else if (screenId == playerId) {
-                        land_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_1P) {
+                        LandCalc(Player, PlayerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        LandCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
                 case 5:
-                    if (g_ScreenSplitA == SCREEN_MODE_1P) {
-                        powder_calc(player, playerId, var_s2, screenId);
-                    } else if (screenId == playerId) {
-                        powder_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_1P) {
+                        PowderCalc(Player, PlayerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        PowderCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
                 case 6:
-                    if (g_ScreenSplitA == SCREEN_MODE_1P) {
-                        burn_calc(player, playerId, var_s2, screenId);
-                    } else if (screenId == playerId) {
-                        burn_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_1P) {
+                        BurnCalc(Player, PlayerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        BurnCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
                 case 7:
-                    if (g_ScreenSplitA == SCREEN_MODE_1P) {
-                        water_calc(player, playerId, var_s2, screenId);
-                    } else if (screenId == playerId) {
-                        water_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_1P) {
+                        WaterCalc(Player, PlayerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        WaterCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
                 case 8:
-                    if (g_ScreenSplitA == SCREEN_MODE_1P) {
-                        set_turbostream_calc(player, playerId, var_s2, screenId);
-                    } else if (screenId == playerId) {
-                        set_turbostream_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_1P) {
+                        SetTurbostreamCalc(Player, PlayerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        SetTurbostreamCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
             }
-            switch (player->smoke[var_s2].number) {
+            switch (Player->smoke[var_s2].Number) {
                 case DRIFT_PARTICLE:
-                    if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
-                        if (screenId == playerId) {
-                            set_drift_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+                        if (screenId == PlayerId) {
+                            SetDriftCalc(Player, PlayerId, var_s2, screenId);
                         }
                     } else {
-                        set_drift_calc(player, playerId, var_s2, screenId);
+                        SetDriftCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
                 case GROUND_PARTICLE:
                 case GRASS_PARTICLE:
                 case 4:
                 case 5:
-                    if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
-                        if (screenId == playerId) {
-                            set_smoke_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+                        if (screenId == PlayerId) {
+                            SetSmokeCalc(Player, PlayerId, var_s2, screenId);
                         }
                     } else {
-                        set_smoke_calc(player, playerId, var_s2, screenId);
+                        SetSmokeCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
                 case 9:
-                    if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
-                        if (screenId == playerId) {
-                            set_spl_calc(player, (s32) playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+                        if (screenId == PlayerId) {
+                            SetSplCalc(Player, (s32) PlayerId, var_s2, screenId);
                         }
                     } else {
-                        set_spl_calc(player, (s32) playerId, var_s2, screenId);
+                        SetSplCalc(Player, (s32) PlayerId, var_s2, screenId);
                     }
                     break;
                 case 11:
-                    if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
-                        if (screenId == playerId) {
-                            set_bubble_calc(player, playerId, var_s2, screenId);
+                    if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+                        if (screenId == PlayerId) {
+                            SetBubbleCalc(Player, PlayerId, var_s2, screenId);
                         }
-                    } else if (screenId == playerId) {
-                        set_bubble_calc(player, playerId, var_s2, screenId);
+                    } else if (screenId == PlayerId) {
+                        SetBubbleCalc(Player, PlayerId, var_s2, screenId);
                     }
                     break;
             }
         }
     }
-    if ((g_gameMode == BATTLE) && (player->status & (P1_DRAW_SPRITE << (screenId * 4)))) {
-        set_balloon_calc(player, playerId, screenId);
+    if ((GameMode == BATTLE) && (Player->Status & (P1_DRAW_SPRITE << (screenId * 4)))) {
+        SetBalloonCalc(Player, PlayerId, screenId);
     }
 }
 
-void exce_obj_calculation(Player* player, s8 playerIndex, s8 screenId) {
+void ExceObjCalculation(Player* Player, s8 playerIndex, s8 screenId) {
     s16 i;
     s32 bitwiseMask;
 
     bitwiseMask = P1_DRAW_PARTICLES << (screenId * 4);
-    if (bitwiseMask == (player->status & bitwiseMask)) {
+    if (bitwiseMask == (Player->Status & bitwiseMask)) {
         for (i = 0; i < 10; i++) {
-            if (player->gass[i].number == 7) {
-                set_teresa_calc(player, playerIndex, i, screenId);
+            if (Player->Gass[i].Number == 7) {
+                SetTeresaCalc(Player, playerIndex, i, screenId);
             }
         }
     }
 }
 
-void obj_calculation1(Player* arg0, s8 arg1, s8 arg2) {
+void ObjCalculation1(Player* arg0, s8 arg1, s8 Arg2) {
     s16 temp_s0;
     s32 temp_v0;
 
-    temp_v0 = P1_DRAW_PARTICLES << (arg2 * 4);
-    if (temp_v0 == (arg0->status & temp_v0)) {
+    temp_v0 = P1_DRAW_PARTICLES << (Arg2 * 4);
+    if (temp_v0 == (arg0->Status & temp_v0)) {
         for (temp_s0 = 0; temp_s0 < 10; ++temp_s0) {
-            temp_v0 = arg0->gass[temp_s0].number;
+            temp_v0 = arg0->Gass[temp_s0].Number;
             if (temp_v0 != 3) {
                 if (temp_v0 == 5) {
-                    set_dobon_calc(arg0, arg1, temp_s0, arg2);
+                    SetDobonCalc(arg0, arg1, temp_s0, Arg2);
                 }
-            } else if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
-                if (arg2 == arg1) {
-                    set_ring_calc(arg0, arg1, temp_s0, arg2);
+            } else if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+                if (Arg2 == arg1) {
+                    SetRingCalc(arg0, arg1, temp_s0, Arg2);
                 }
             } else {
-                set_ring_calc(arg0, arg1, temp_s0, arg2);
+                SetRingCalc(arg0, arg1, temp_s0, Arg2);
             }
         }
 
-        if (((arg0->flag & IS_PLAYER) == IS_PLAYER) && (arg2 == arg1)) {
-            switch (arg0->letter[0].number) {
+        if (((arg0->Flag & IS_PLAYER) == IS_PLAYER) && (Arg2 == arg1)) {
+            switch (arg0->Letter[0].Number) {
                 case 2:
-                    set_crash_calc(arg0, arg1, arg0->letter[0].scale, arg2, 0);
+                    SetCrashCalc(arg0, arg1, arg0->Letter[0].Scale, Arg2, 0);
                     break;
                 case 3:
-                    set_spin_calc(arg0, arg1, arg0->letter[0].scale, arg2, 0);
+                    SetSpinCalc(arg0, arg1, arg0->Letter[0].Scale, Arg2, 0);
                     break;
                 case 4:
-                    set_hit_calc(arg0, arg1, arg0->letter[0].scale, arg2, 0);
+                    SetHitCalc(arg0, arg1, arg0->Letter[0].Scale, Arg2, 0);
                     break;
                 case 5:
-                    set_boing_calc(arg0, arg1, arg0->letter[0].scale, arg2, 0);
+                    SetBoingCalc(arg0, arg1, arg0->Letter[0].Scale, Arg2, 0);
                     break;
                 case 6:
-                    set_poomp_calc(arg0, arg1, arg0->letter[0].scale, arg2, 0);
+                    SetPoompCalc(arg0, arg1, arg0->Letter[0].Scale, Arg2, 0);
                     break;
             }
-            if (arg0->letter[1].number == 5) {
-                set_fukidashi_calc(arg0, arg2, fukidashi2, 1, 1.6f, 0xFFFFFF);
-                set_word_calc(arg0, arg2, onpu, 1, 1.6f, 0xFF);
+            if (arg0->Letter[1].Number == 5) {
+                SetFukidashiCalc(arg0, Arg2, Fukidashi2, 1, 1.6f, 0xFFFFFF);
+                SetWordCalc(arg0, Arg2, Onpu, 1, 1.6f, 0xFF);
             }
         }
     }
 }
 
-void kart_effect_strategy(void) {
-    switch (g_ScreenSplitA) {
+void KartEffectStrategy(void) {
+    switch (ScreenSplitA) {
         case SCREEN_MODE_1P:
-            switch (g_gameMode) {
+            switch (GameMode) {
                 case GRAND_PRIX:
-                    effect_strategy(gPlayerOne, PLAYER_ONE, 0);
-                    effect_strategy(gPlayerTwo, PLAYER_TWO, 0);
-                    effect_strategy(gPlayerThree, PLAYER_THREE, 0);
-                    effect_strategy(gPlayerFour, PLAYER_FOUR, 0);
-                    effect_strategy(gPlayerFive, PLAYER_FIVE, 0);
-                    effect_strategy(gPlayerSix, PLAYER_SIX, 0);
-                    effect_strategy(gPlayerSeven, PLAYER_SEVEN, 0);
-                    effect_strategy(gPlayerEight, PLAYER_EIGHT, 0);
+                    EffectStrategy(PlayerOne, PLAYER_ONE, 0);
+                    EffectStrategy(PlayerTwo, PLAYER_TWO, 0);
+                    EffectStrategy(PlayerThree, PLAYER_THREE, 0);
+                    EffectStrategy(PlayerFour, PLAYER_FOUR, 0);
+                    EffectStrategy(PlayerFive, PLAYER_FIVE, 0);
+                    EffectStrategy(PlayerSix, PLAYER_SIX, 0);
+                    EffectStrategy(PlayerSeven, PLAYER_SEVEN, 0);
+                    EffectStrategy(PlayerEight, PLAYER_EIGHT, 0);
 
                     break;
                 case TIME_TRIALS:
-                    effect_strategy(gPlayerOne, PLAYER_ONE, 0);
+                    EffectStrategy(PlayerOne, PLAYER_ONE, 0);
 
-                    if ((gPlayerTwo->flag & IS_GHOST) == IS_GHOST) {
-                        effect_strategy(gPlayerTwo, PLAYER_TWO, 0);
+                    if ((PlayerTwo->Flag & IS_GHOST) == IS_GHOST) {
+                        EffectStrategy(PlayerTwo, PLAYER_TWO, 0);
                     }
 
-                    if ((gPlayerThree->flag & IS_GHOST) == IS_GHOST) {
-                        effect_strategy(gPlayerThree, PLAYER_THREE, 0);
+                    if ((PlayerThree->Flag & IS_GHOST) == IS_GHOST) {
+                        EffectStrategy(PlayerThree, PLAYER_THREE, 0);
                         break;
                     }
 
                     break;
                 case VERSUS:
                 case BATTLE:
-                    effect_strategy(gPlayerOne, PLAYER_ONE, 0);
-                    effect_strategy(gPlayerTwo, PLAYER_TWO, 0);
+                    EffectStrategy(PlayerOne, PLAYER_ONE, 0);
+                    EffectStrategy(PlayerTwo, PLAYER_TWO, 0);
 
-                    if (g_playerCount >= 3) {
-                        effect_strategy(gPlayerThree, PLAYER_THREE, 0);
+                    if (PlayerCount >= 3) {
+                        EffectStrategy(PlayerThree, PLAYER_THREE, 0);
                     }
 
-                    if (g_playerCount == 4) {
-                        effect_strategy(gPlayerFour, PLAYER_FOUR, 0);
+                    if (PlayerCount == 4) {
+                        EffectStrategy(PlayerFour, PLAYER_FOUR, 0);
                         break;
                     }
 
@@ -6713,29 +6713,29 @@ void kart_effect_strategy(void) {
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            switch (g_gameMode) {
+            switch (GameMode) {
                 case GRAND_PRIX:
-                    effect_strategy(gPlayerOne, PLAYER_ONE, 0);
-                    effect_strategy(gPlayerTwo, PLAYER_TWO, 0);
-                    effect_strategy(gPlayerThree, PLAYER_THREE, 0);
-                    effect_strategy(gPlayerFour, PLAYER_FOUR, 0);
-                    effect_strategy(gPlayerFive, PLAYER_FIVE, 0);
-                    effect_strategy(gPlayerSix, PLAYER_SIX, 0);
-                    effect_strategy(gPlayerSeven, PLAYER_SEVEN, 0);
-                    effect_strategy(gPlayerEight, PLAYER_EIGHT, 0);
+                    EffectStrategy(PlayerOne, PLAYER_ONE, 0);
+                    EffectStrategy(PlayerTwo, PLAYER_TWO, 0);
+                    EffectStrategy(PlayerThree, PLAYER_THREE, 0);
+                    EffectStrategy(PlayerFour, PLAYER_FOUR, 0);
+                    EffectStrategy(PlayerFive, PLAYER_FIVE, 0);
+                    EffectStrategy(PlayerSix, PLAYER_SIX, 0);
+                    EffectStrategy(PlayerSeven, PLAYER_SEVEN, 0);
+                    EffectStrategy(PlayerEight, PLAYER_EIGHT, 0);
 
                     break;
                 case VERSUS:
                 case BATTLE:
-                    effect_strategy(gPlayerOne, PLAYER_ONE, 0);
-                    effect_strategy(gPlayerTwo, PLAYER_TWO, 0);
+                    EffectStrategy(PlayerOne, PLAYER_ONE, 0);
+                    EffectStrategy(PlayerTwo, PLAYER_TWO, 0);
 
                     break;
                 case TIME_TRIALS:
-                    effect_strategy(gPlayerOne, PLAYER_ONE, 0);
+                    EffectStrategy(PlayerOne, PLAYER_ONE, 0);
 
-                    if ((gPlayerTwo->flag & EXISTS) == EXISTS) {
-                        effect_strategy(gPlayerTwo, PLAYER_TWO, 0);
+                    if ((PlayerTwo->Flag & EXISTS) == EXISTS) {
+                        EffectStrategy(PlayerTwo, PLAYER_TWO, 0);
                         break;
                     }
 
@@ -6744,13 +6744,13 @@ void kart_effect_strategy(void) {
 
             break;
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            if ((VERSUS == g_gameMode) || (BATTLE == g_gameMode)) {
-                effect_strategy(gPlayerOne, PLAYER_ONE, 0);
-                effect_strategy(gPlayerTwo, PLAYER_TWO, 0);
-                effect_strategy(gPlayerThree, PLAYER_THREE, 0);
+            if ((VERSUS == GameMode) || (BATTLE == GameMode)) {
+                EffectStrategy(PlayerOne, PLAYER_ONE, 0);
+                EffectStrategy(PlayerTwo, PLAYER_TWO, 0);
+                EffectStrategy(PlayerThree, PLAYER_THREE, 0);
 
-                if (g_playerCount == 4) {
-                    effect_strategy(gPlayerFour, PLAYER_FOUR, 0);
+                if (PlayerCount == 4) {
+                    EffectStrategy(PlayerFour, PLAYER_FOUR, 0);
                 }
             }
 
@@ -6758,125 +6758,125 @@ void kart_effect_strategy(void) {
     }
 }
 
-void effect_strategy(Player* player, s8 playerIndex, s8 arg2) {
-    // arg2 is always 0
+void EffectStrategy(Player* Player, s8 playerIndex, s8 Arg2) {
+    // Arg2 is always 0
     s16 temp_s0;
 
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-            letterset(player, playerIndex, arg2);
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+            Letterset(Player, playerIndex, Arg2);
         }
 
         for (temp_s0 = 0; temp_s0 < 10; ++temp_s0) {
-            gassset(player, temp_s0, playerIndex, arg2);
-            if (((player->flag & IS_PLAYER) == IS_PLAYER) || (gGamestate == ENDING)) {
-                sparkset(player, temp_s0, playerIndex, arg2);
+            Gassset(Player, temp_s0, playerIndex, Arg2);
+            if (((Player->Flag & IS_PLAYER) == IS_PLAYER) || (GameState == ENDING)) {
+                Sparkset(Player, temp_s0, playerIndex, Arg2);
             }
-            smokeset(player, temp_s0, playerIndex, arg2);
+            Smokeset(Player, temp_s0, playerIndex, Arg2);
         }
 
-        if (g_gameMode == BATTLE) {
-            balloonset(player, playerIndex);
+        if (GameMode == BATTLE) {
+            Balloonset(Player, playerIndex);
         }
     }
 }
 
-void SmokeDisp(Player* player, s8 playerId, s8 screenId) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->slip_flag & TERESA) == TERESA) {
-            if (playerId == screenId) {
-                OBJCalculation(player, playerId, screenId);
+void SmokeDisp(Player* Player, s8 PlayerId, s8 screenId) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->SlipFlag & TERESA) == TERESA) {
+            if (PlayerId == screenId) {
+                OBJCalculation(Player, PlayerId, screenId);
             }
         } else {
-            OBJCalculation(player, playerId, screenId);
+            OBJCalculation(Player, PlayerId, screenId);
         }
-        exce_obj_calculation(player, playerId, screenId);
+        ExceObjCalculation(Player, PlayerId, screenId);
     }
 }
 
-void SmokeDisp2P(Player* player, s8 playerIndex, s8 screenId) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->slip_flag & TERESA) == TERESA) {
+void SmokeDisp2P(Player* Player, s8 playerIndex, s8 screenId) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->SlipFlag & TERESA) == TERESA) {
             if (playerIndex == screenId) {
-                OBJCalculation(player, playerIndex, screenId);
+                OBJCalculation(Player, playerIndex, screenId);
             }
         } else {
-            OBJCalculation(player, playerIndex, screenId);
+            OBJCalculation(Player, playerIndex, screenId);
         }
-        exce_obj_calculation(player, playerIndex, screenId);
+        ExceObjCalculation(Player, playerIndex, screenId);
     }
 }
 
-void SmokeDisp3P(Player* player, s8 playerIndex, s8 screenId) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->slip_flag & TERESA) == TERESA) {
+void SmokeDisp3P(Player* Player, s8 playerIndex, s8 screenId) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->SlipFlag & TERESA) == TERESA) {
             if (playerIndex == screenId) {
-                OBJCalculation(player, playerIndex, screenId);
+                OBJCalculation(Player, playerIndex, screenId);
             }
         } else {
-            OBJCalculation(player, playerIndex, screenId);
+            OBJCalculation(Player, playerIndex, screenId);
         }
-        exce_obj_calculation(player, playerIndex, screenId);
+        ExceObjCalculation(Player, playerIndex, screenId);
     }
 }
 
-void SmokeDisp4P(Player* player, s8 playerIndex, s8 screenId) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->slip_flag & TERESA) == TERESA) {
+void SmokeDisp4P(Player* Player, s8 playerIndex, s8 screenId) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->SlipFlag & TERESA) == TERESA) {
             if (playerIndex == screenId) {
-                OBJCalculation(player, playerIndex, screenId);
+                OBJCalculation(Player, playerIndex, screenId);
             }
         } else {
-            OBJCalculation(player, playerIndex, screenId);
+            OBJCalculation(Player, playerIndex, screenId);
         }
-        exce_obj_calculation(player, playerIndex, screenId);
+        ExceObjCalculation(Player, playerIndex, screenId);
     }
 }
 
-void SmokeDispAfter(Player* player, s8 arg1, s8 arg2) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->slip_flag & TERESA) == TERESA) {
-            if (arg1 == arg2) {
-                obj_calculation1(player, arg1, arg2);
+void SmokeDispAfter(Player* Player, s8 arg1, s8 Arg2) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->SlipFlag & TERESA) == TERESA) {
+            if (arg1 == Arg2) {
+                ObjCalculation1(Player, arg1, Arg2);
             }
         } else {
-            obj_calculation1(player, arg1, arg2);
-        }
-    }
-}
-
-void SmokeDispAfter2P(Player* player, s8 arg1, s8 arg2) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->slip_flag & TERESA) == TERESA) {
-            if (arg1 == arg2) {
-                obj_calculation1(player, arg1, arg2);
-            }
-        } else {
-            obj_calculation1(player, arg1, arg2);
+            ObjCalculation1(Player, arg1, Arg2);
         }
     }
 }
 
-void SmokeDispAfter3P(Player* player, s8 arg1, s8 arg2) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->slip_flag & TERESA) == TERESA) {
-            if (arg1 == arg2) {
-                obj_calculation1(player, arg1, arg2);
+void SmokeDispAfter2P(Player* Player, s8 arg1, s8 Arg2) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->SlipFlag & TERESA) == TERESA) {
+            if (arg1 == Arg2) {
+                ObjCalculation1(Player, arg1, Arg2);
             }
         } else {
-            obj_calculation1(player, arg1, arg2);
+            ObjCalculation1(Player, arg1, Arg2);
         }
     }
 }
 
-void SmokeDispAfter4P(Player* player, s8 arg1, s8 arg2) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        if ((player->slip_flag & TERESA) == TERESA) {
-            if (arg1 == arg2) {
-                obj_calculation1(player, arg1, arg2);
+void SmokeDispAfter3P(Player* Player, s8 arg1, s8 Arg2) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->SlipFlag & TERESA) == TERESA) {
+            if (arg1 == Arg2) {
+                ObjCalculation1(Player, arg1, Arg2);
             }
         } else {
-            obj_calculation1(player, arg1, arg2);
+            ObjCalculation1(Player, arg1, Arg2);
+        }
+    }
+}
+
+void SmokeDispAfter4P(Player* Player, s8 arg1, s8 Arg2) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        if ((Player->SlipFlag & TERESA) == TERESA) {
+            if (arg1 == Arg2) {
+                ObjCalculation1(Player, arg1, Arg2);
+            }
+        } else {
+            ObjCalculation1(Player, arg1, Arg2);
         }
     }
 }
@@ -6884,6 +6884,6 @@ void SmokeDispAfter4P(Player* player, s8 arg1, s8 arg2) {
 /***************************************************************/
 /* Just a random 10 laying around in data, nothing to see here */
 /***************************************************************/
-s32 some_unused_data = 10;
+s32 SomeUnusedData = 10;
 
 #undef MAKE_RGB

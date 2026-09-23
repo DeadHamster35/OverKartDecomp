@@ -1,6 +1,6 @@
 #include "../../MainInclude.h"
 
-unsigned short net[] = {
+unsigned short Net[] = {
 0xFFFF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xFFFF, 0x0000, 
 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
 0xFFFF, 0xFFFF, 0x0000, 0x0000, 0x0000, 0xFFFF, 0xFFFF, 0x0000, 
@@ -259,7 +259,7 @@ unsigned short net[] = {
 0x0000, 0x0000, 0x0000, 0x0000, 0xFC01, 0xFC01, 0xFC01, 0xFC01, 
 };
 
-Vtx Frame_V[] = {
+Vtx FrameV[] = {
 { {  { -24, -11, 21 }, 0,  {1985, -957}, {252, 252, 252, 255} } },
 { {  { 24, -11, 21 }, 0,  {1985, -957}, {252, 252, 252, 255} } },
 { {  { 24, -9, 21 }, 0,  {1985, -957}, {252, 252, 252, 255} } },
@@ -405,7 +405,7 @@ Vtx Frame_V[] = {
 { {  { 24, 9, 17 }, 0,  {1985, -957}, {252, 252, 252, 255} } },
 { {  { 26, 9, 17 }, 0,  {1985, -957}, {252, 252, 252, 255} } },
 };
-Vtx Net_V[] = {
+Vtx NetV[] = {
 { {  { 24, 9, 17 }, 0,  {-1510, -993}, {252, 252, 252, 255} } },
 { {  { -24, 9, 17 }, 0,  {-1510, 7810}, {252, 252, 252, 255} } },
 { {  { -24, -9, 21 }, 0,  {1845, 7810}, {252, 252, 252, 255} } },
@@ -431,12 +431,12 @@ Vtx Net_V[] = {
 { {  { -26, -9, 0 }, 0,  {1836, -106}, {252, 252, 252, 255} } },
 { {  { -26, -9, 19 }, 0,  {-1348, -106}, {252, 252, 252, 255} } },
 };
-void GFX_Frame(void)
+void GFXFrame(void)
 {
 
 	//Frame
 	//Start Texture Load
-	//net
+	//Net
 
 	gSPTexture( GraphPtrOffset++, 65535, 65535, 0, 0, 1);
 	gDPPipeSync( GraphPtrOffset++);
@@ -447,7 +447,7 @@ void GFX_Frame(void)
 	gDPSetTileSize( GraphPtrOffset++, 0, 0, 0, (64 - 1) << 2, (32 - 1) << 2);
 	gSPClearGeometryMode( GraphPtrOffset++, 10433029);
 	gSPSetGeometryMode( GraphPtrOffset++, 8397317);
-	gDPSetTextureImage( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &net );
+	gDPSetTextureImage( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &Net );
 	gDPTileSync( GraphPtrOffset++);
 	gDPSetTile( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0);
 	gDPLoadSync( GraphPtrOffset++);
@@ -457,35 +457,35 @@ void GFX_Frame(void)
 	//Start DrawCalls
 
 
-	gSPVertex( GraphPtrOffset++, &Frame_V[0] , 30, 0);
+	gSPVertex( GraphPtrOffset++, &FrameV[0] , 30, 0);
 		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
 		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
 		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
 		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
 		gSP2Triangles( GraphPtrOffset++, 24, 25, 26, 0, 27, 28, 29, 0 );
 
-	gSPVertex( GraphPtrOffset++, &Frame_V[30] , 30, 0);
+	gSPVertex( GraphPtrOffset++, &FrameV[30] , 30, 0);
 		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
 		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
 		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
 		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
 		gSP2Triangles( GraphPtrOffset++, 24, 25, 26, 0, 27, 28, 29, 0 );
 
-	gSPVertex( GraphPtrOffset++, &Frame_V[60] , 30, 0);
+	gSPVertex( GraphPtrOffset++, &FrameV[60] , 30, 0);
 		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
 		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
 		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
 		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
 		gSP2Triangles( GraphPtrOffset++, 24, 25, 26, 0, 27, 28, 29, 0 );
 
-	gSPVertex( GraphPtrOffset++, &Frame_V[90] , 30, 0);
+	gSPVertex( GraphPtrOffset++, &FrameV[90] , 30, 0);
 		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
 		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
 		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
 		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
 		gSP2Triangles( GraphPtrOffset++, 24, 25, 26, 0, 27, 28, 29, 0 );
 
-	gSPVertex( GraphPtrOffset++, &Frame_V[120] , 30, 0);
+	gSPVertex( GraphPtrOffset++, &FrameV[120] , 30, 0);
 		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
 		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
 		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
@@ -495,12 +495,12 @@ void GFX_Frame(void)
 	//End Frame
 
 }
-void GFX_Net(void)
+void GFXNet(void)
 {
 
 	//Net
 	//Start Texture Load
-	//net
+	//Net
 
 	gSPTexture( GraphPtrOffset++, 65535, 65535, 0, 0, 1);
 	gDPPipeSync( GraphPtrOffset++);
@@ -511,7 +511,7 @@ void GFX_Net(void)
 	gDPSetTileSize( GraphPtrOffset++, 0, 0, 0, (64 - 1) << 2, (32 - 1) << 2);
 	gSPClearGeometryMode( GraphPtrOffset++, 10433029);
 	gSPSetGeometryMode( GraphPtrOffset++, 8397317);
-	gDPSetTextureImage( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &net );
+	gDPSetTextureImage( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &Net );
 	gDPTileSync( GraphPtrOffset++);
 	gDPSetTile( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0);
 	gDPLoadSync( GraphPtrOffset++);
@@ -522,7 +522,7 @@ void GFX_Net(void)
 	//Start DrawCalls
 
 
-	gSPVertex( GraphPtrOffset++, &Net_V[0] , 30, 0);
+	gSPVertex( GraphPtrOffset++, &NetV[0] , 30, 0);
 		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
 		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
 		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
@@ -537,17 +537,17 @@ void GFX_Net(void)
 
 void DrawTheNet(Camera* PlayerCamera, AffineMtx Affine, Object* TreeObj)
 {
-	int LocalPlayer = (int)( ( (uint)(PlayerCamera) - (uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
+	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
 
 	// Calc Distance
 	//
 	float LocalDistance = 
 	CheckDisplayRange(
-		PlayerCamera->camera_pos,
-		TreeObj->position,
-		PlayerCamera->camera_direction[1],
+		PlayerCamera->CameraPos,
+		TreeObj->Position,
+		PlayerCamera->CameraDirection[1],
 		0,
-		ScreenViewAngle[LocalPlayer],
+		CameraZoom[LocalPlayer],
 		16000000
 	);
 	//
@@ -557,18 +557,18 @@ void DrawTheNet(Camera* PlayerCamera, AffineMtx Affine, Object* TreeObj)
 	{
 		return;
 	}
-	objectAngle[0] = TreeObj->angle[0];
-	objectAngle[1] = TreeObj->angle[1] * -1;
-	objectAngle[2] = TreeObj->angle[2];
-	if( !(TreeObj->flag & FLYINGOBJ) && (LocalDistance < 250000) )
+	ObjectAngle[0] = TreeObj->Angle[0];
+	ObjectAngle[1] = TreeObj->Angle[1] * -1;
+	ObjectAngle[2] = TreeObj->Angle[2];
+	if( !(TreeObj->Flag & FLYINGOBJ) && (LocalDistance < 250000) )
 	{
-		DisplayShadow(TreeObj->position,objectAngle,3.0f);	
+		DisplayShadow(TreeObj->Position,ObjectAngle,3.0f);	
 	}
-	CreateModelingMatrix(AffineMatrix,TreeObj->position,objectAngle);
+	CreateModelingMatrix(AffineMatrix,TreeObj->Position,ObjectAngle);
 	ScalingMatrix(AffineMatrix,1.0);	
 	if(SetMatrix(Affine,0))  
 	{
-		GFX_Frame();
-		GFX_Net();
+		GFXFrame();
+		GFXNet();
 	}
 }

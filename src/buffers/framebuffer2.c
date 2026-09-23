@@ -3,4 +3,4 @@
 #include <mk64.h>
 #include "buffers.h"
 
-ALIGNED8 u16 gFramebuffer2[SCREEN_WIDTH * SCREEN_HEIGHT];
+ALIGNED8 u16 Framebuffer2[SCREEN_WIDTH * SCREEN_HEIGHT];

@@ -9,79 +9,79 @@
 #define PRELOAD_BANKS 2
 #define PRELOAD_SEQUENCE 1
 
-#define IS_SEQUENCE_CHANNEL_VALID(ptr) ((uintptr_t) (ptr) != (uintptr_t) &gSequenceChannelNone)
+#define IS_SEQUENCE_CHANNEL_VALID(ptr) ((uintptr_t) (ptr) != (uintptr_t) &SequenceChannelNone)
 
 struct SharedDma {
-    /*0x0*/ u8* buffer;       // target, points to pre-allocated buffer
-    /*0x4*/ uintptr_t source; // device address
-    /*0x8*/ u16 sizeUnused;   // set to bufSize, never read
-    /*0xA*/ u16 bufSize;      // size of buffer
-    /*0xC*/ u8 unused2;       // set to 0, never read
-    /*0xD*/ u8 reuseIndex;    // position in sSampleDmaReuseQueue1/2, if ttl == 0
-    /*0xE*/ u8 ttl;           // duration after which the DMA can be discarded
-}; // size = 0x10
+    /*0x0*/ u8* Buffer;       // Target, points to pre-allocated Buffer
+    /*0x4*/ uintptr_t Source; // device Address
+    /*0x8*/ u16 SizeUnused;   // set to BufSize, never read
+    /*0xA*/ u16 BufSize;      // Size of Buffer
+    /*0xC*/ u8 Unused2;       // set to 0, never read
+    /*0xD*/ u8 ReuseIndex;    // Position in SSampleDmaReuseQueue1/2, if ttl == 0
+    /*0xE*/ u8 ttl;           // Duration after which the DMA can be discarded
+}; // Size = 0x10
 
 void EmemLoad(u8* devAddr, void* vAddr, size_t nbytes);
-void Nas_FastRomCopy(uintptr_t, void*, size_t, OSMesgQueue*, OSIoMesg*);
-void Nas_SlowRomCopy(uintptr_t*, u8**, ssize_t*, OSMesgQueue*, OSIoMesg*);
-void Nas_SlowRomCopy4096(void);
-void* Nas_WaveDmaFrameWork(uintptr_t, u32, s32, u8*);
-void Nas_WaveDmaCallBack(s32);
-s32 Nas_WaveDmaNew(struct AudioBankSample*);
-s32 Nas_LoadVoice(s32 bankId, s32 instId, s32 arg2);
-void Nas_BankHeaderInit(ALSeqFile*, u8*);
-void Nas_smzWaveTouch(struct AudioBankSound* sound, u8* memBase, u8* offsetBase);
-void Nas_smzBnkOfsToAdd(s32);
-void Nas_smzBnkOfsToAdd_Inner(struct AudioBank* mem, u8* offset, u32 numInstruments, u32 numDrums);
-struct AudioBank* Nas_MyBankLoad(s32, s32);
-struct AudioBank* Nas_MyBankSlowLoad(s32, s32, struct SequencePlayer*);
-void* Nas_MySeqLoad(s32, s32);
-void* Nas_MySeqLoadSlow(s32, s32, struct SequencePlayer*);
-u8 Nas_CountBankInSeq(u32 seqId, s32* nonNullCount, s32* nullCount);
-struct AudioBank* Nas_PreLoadBank(s32, u8*);
-void Nas_PreLoadSeq(u32, u8);
-void Nas_StartMySeq(u32, u32, s32);
-void Nas_StartMySeq_Inner(u32, u32, s32);
+void NasFastRomCopy(uintptr_t, void*, size_t, OSMesgQueue*, OSIoMesg*);
+void NasSlowRomCopy(uintptr_t*, u8**, ssize_t*, OSMesgQueue*, OSIoMesg*);
+void NasSlowRomCopy4096(void);
+void* NasWaveDmaFrameWork(uintptr_t, u32, s32, u8*);
+void NasWaveDmaCallBack(s32);
+s32 NasWaveDmaNew(struct AudioBankSample*);
+s32 NasLoadVoice(s32 BankId, s32 instId, s32 Arg2);
+void NasBankHeaderInit(ALSeqFile*, u8*);
+void NasSmzWaveTouch(struct AudioBankSound* Sound, u8* memBase, u8* offsetBase);
+void NasSmzBnkOfsToAdd(s32);
+void NasSmzBnkOfsToAddInner(struct AudioBank* mem, u8* Offset, u32 NumInstruments, u32 NumDrums);
+struct AudioBank* NasMyBankLoad(s32, s32);
+struct AudioBank* NasMyBankSlowLoad(s32, s32, struct SequencePlayer*);
+void* NasMySeqLoad(s32, s32);
+void* NasMySeqLoadSlow(s32, s32, struct SequencePlayer*);
+u8 NasCountBankInSeq(u32 SEQId, s32* nonNullCount, s32* nullCount);
+struct AudioBank* NasPreLoadBank(s32, u8*);
+void NasPreLoadSeq(u32, u8);
+void NasStartMySeq(u32, u32, s32);
+void NasStartMySeqInner(u32, u32, s32);
 
 extern struct SequencePlayer SeqPlayer[SEQUENCE_PLAYERS];
-extern struct SequenceChannel gSequenceChannels[SEQUENCE_CHANNELS];
-extern struct SequenceChannelLayer gSequenceLayers[SEQUENCE_LAYERS];
-extern struct SequenceChannel gSequenceChannelNone;
-extern struct AudioListItem gLayerFreeList;
-extern struct NotePool gNoteFreeLists;
-extern OSMesgQueue gCurrAudioFrameDmaQueue;
-extern OSMesg gCurrAudioFrameDmaMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
-extern OSIoMesg gCurrAudioFrameDmaIoMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
+extern struct SequenceChannel SequenceChannels[SEQUENCE_CHANNELS];
+extern struct SequenceChannelLayer SequenceLayers[SEQUENCE_LAYERS];
+extern struct SequenceChannel SequenceChannelNone;
+extern struct AudioListItem LayerFreeList;
+extern struct NotePool NoteFreeLists;
+extern OSMesgQueue CurrAudioFrameDmaQueue;
+extern OSMesg CurrAudioFrameDmaMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
+extern OSIoMesg CurrAudioFrameDmaIoMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
 extern OSMesgQueue D_803B6720;
 extern OSMesg D_803B6738;
 
 extern OSIoMesg D_803B6740;
-extern struct SharedDma sSampleDmas[0x70];
-extern u32 gSampleDmaNumListItems;
-extern u32 sSampleDmaListSize1;
+extern struct SharedDma SSampleDmas[0x70];
+extern u32 SampleDmaNumListItems;
+extern u32 SSampleDmaListSize1;
 extern s32 D_803B6E60;
-extern s32 load_bss_pad;
+extern s32 LoadBssPad;
 
-extern u8 sSampleDmaReuseQueue1[256];
-extern u8 sSampleDmaReuseQueue2[256];
-extern u8 sSampleDmaReuseQueueTail1;
-extern u8 sSampleDmaReuseQueueTail2;
-extern u8 sSampleDmaReuseQueueHead1;
-extern u8 sSampleDmaReuseQueueHead2;
+extern u8 SSampleDmaReuseQueue1[256];
+extern u8 SSampleDmaReuseQueue2[256];
+extern u8 SSampleDmaReuseQueueTail1;
+extern u8 SSampleDmaReuseQueueTail2;
+extern u8 SSampleDmaReuseQueueHead1;
+extern u8 SSampleDmaReuseQueueHead2;
 
-extern ALSeqFile* g_MUSTablePointer;
-extern ALSeqFile* gAlCtlHeader;
-extern ALSeqFile* gAlTbl;
-extern u8* gAlBankSets;
-extern u16 gSequenceCount;
-extern struct CtlEntry* g_sfxPointer;
-extern struct AudioBufferParametersEU gAudioBufferParameters;
+extern ALSeqFile* MUSTablePointer;
+extern ALSeqFile* AlCtlHeader;
+extern ALSeqFile* AlTbl;
+extern u8* AlBankSets;
+extern u16 SequenceCount;
+extern struct CtlEntry* SFXPointer;
+extern struct AudioBufferParametersEU AudioBufferParameters;
 extern u32 D_803B70A8;
-extern s32 gMaxAudioCmds;
-extern s32 gMaxSimultaneousNotes;
-extern s16 gTempoInternalToExternal;
-extern s8 gAudioLibSoundMode;
-extern volatile s32 gAudioFrameCount;
-extern s32 gCurrAudioFrameDmaCount;
+extern s32 MaxAudioCmds;
+extern s32 MaxSimultaneousNotes;
+extern s16 TempoInternalToExternal;
+extern s8 AudioLibSoundMode;
+extern volatile s32 AudioFrameCount;
+extern s32 CurrAudioFrameDmaCount;
 
 #endif // AUDIO_LOAD_H

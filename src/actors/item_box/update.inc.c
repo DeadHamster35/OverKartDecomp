@@ -1,67 +1,67 @@
 #include <actors.h>
 
 /**
- * @brief Updates the item box under the hot air balloon object.
- * It used in Luigi Raceway.
- * (here it's just update the rotation of the item box not the position, for the position it's in object)
+ * @brief Updates the Item box under the hot air balloon object.
+ * It Used in Luigi Raceway.
+ * (here it's just update the Rotation of the Item box not the Position, for the Position it's in object)
  *
- * @param itemBox
+ * @Param itemBox
  */
-void move_special_itembox(struct ItemBox* itemBox) {
-    switch (itemBox->sparam) {
+void MoveSpecialItembox(struct ItemBox* itemBox) {
+    switch (itemBox->Sparam) {
         case 5:
-            itemBox->angle[0] += DEGREES(1);
-            itemBox->angle[1] -= DEGREES(2);
-            itemBox->angle[2] += DEGREES(1);
+            itemBox->Angle[0] += DEGREES(1);
+            itemBox->Angle[1] -= DEGREES(2);
+            itemBox->Angle[2] += DEGREES(1);
             break;
         case 3:
-            if (itemBox->someTimer == 0x14) {
-                itemBox->sparam = 5;
-                itemBox->flag = -0x4000;
+            if (itemBox->SomeTimer == 0x14) {
+                itemBox->Sparam = 5;
+                itemBox->Flag = -0x4000;
             } else {
-                itemBox->someTimer++;
-                itemBox->angle[0] += DEGREES(6);
-                itemBox->angle[1] -= DEGREES(4);
-                itemBox->angle[2] += DEGREES(2);
+                itemBox->SomeTimer++;
+                itemBox->Angle[0] += DEGREES(6);
+                itemBox->Angle[1] -= DEGREES(4);
+                itemBox->Angle[2] += DEGREES(2);
             }
             break;
     }
 }
 
 /**
- * @brief Updates the item box actor.
+ * @brief Updates the Item box actor.
  *
- * @param itemBox
+ * @Param itemBox
  */
-void move_itembox(struct ItemBox* itemBox) {
-    switch (itemBox->sparam) {
+void MoveItembox(struct ItemBox* itemBox) {
+    switch (itemBox->Sparam) {
         case 0:
-            itemBox->sparam = 1;
+            itemBox->Sparam = 1;
             break;
         case 1:
-            if ((itemBox->position[1] - itemBox->origY) < 8.66f) {
-                itemBox->position[1] += 0.45f;
+            if ((itemBox->Position[1] - itemBox->OrigY) < 8.66f) {
+                itemBox->Position[1] += 0.45f;
             } else {
-                itemBox->position[1] = itemBox->origY + 8.66f;
-                itemBox->sparam = 2;
-                itemBox->flag = 0xC000;
+                itemBox->Position[1] = itemBox->OrigY + 8.66f;
+                itemBox->Sparam = 2;
+                itemBox->Flag = 0xC000;
             }
             break;
         case 2:
-            itemBox->angle[0] += DEGREES(1);
-            itemBox->angle[1] -= DEGREES(2);
-            itemBox->angle[2] += DEGREES(1);
+            itemBox->Angle[0] += DEGREES(1);
+            itemBox->Angle[1] -= DEGREES(2);
+            itemBox->Angle[2] += DEGREES(1);
             break;
         case 3:
-            if (itemBox->someTimer == 20) {
-                itemBox->sparam = 0;
-                itemBox->position[1] = itemBox->resetDistance - 20.0f;
-                itemBox->flag = 0xC000;
+            if (itemBox->SomeTimer == 20) {
+                itemBox->Sparam = 0;
+                itemBox->Position[1] = itemBox->ResetDistance - 20.0f;
+                itemBox->Flag = 0xC000;
             } else {
-                itemBox->someTimer++;
-                itemBox->angle[0] += DEGREES(6);
-                itemBox->angle[1] -= DEGREES(4);
-                itemBox->angle[2] += DEGREES(2);
+                itemBox->SomeTimer++;
+                itemBox->Angle[0] += DEGREES(6);
+                itemBox->Angle[1] -= DEGREES(4);
+                itemBox->Angle[2] += DEGREES(2);
             }
             break;
     }

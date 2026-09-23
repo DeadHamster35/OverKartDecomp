@@ -2,14 +2,14 @@
 #define SOUNDS_H
 
 //! @todo format like sm64 sounds.h
-// The sound cue bit fields can be split up into its basic pieces and put back together.
+// The Sound cue bit fields can be split up into its basic pieces and put back together.
 
 // Sound Magic Definition:
 // First Byte (Upper Nibble): Sound Bank (not the same as audio bank!)
 // First Byte (Lower Nibble): Bitflags for audio playback?
 // Third/Second Byte: Priority
 // Third/Second Byte (Upper Nibble): More bitflags
-// Third/Second Byte (Lower Nibble): Sound Status (this is set to SOUND_STATUS_PLAYING when passed to the audio driver.)
+// Third/Second Byte (Lower Nibble): Sound Status (this is set to SOUND_STATUS_PLAYING when passed to the audio Driver.)
 // Fourth Byte: Sound ID
 #define SOUND_ARG_LOAD(sound_bank, byte2, byte3, sound_id) \
     ((sound_bank << 24) | (byte2 << 16) | (byte3 << 8) | sound_id)
@@ -25,7 +25,7 @@
 
 #define SOUND_MENU_CURSOR_MOVE SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x00)
 #define SOUND_MENU_GO_BACK SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x02)
-// Used elsewhere, seems same as above sound.
+// Used elsewhere, seems same as above Sound.
 #define SOUND_ACTION_GO_BACK_2 SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x05)
 
 #define SOUND_ACTION_UNKNOWN_CONFIRMATION SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x06)
@@ -45,10 +45,10 @@
 // OK?
 #define SOUND_MENU_OK SOUND_ARG_LOAD(0x49, 0x00, 0x90, 0x0F)
 
-// Select your player
+// Select your Player
 #define SOUND_MENU_SELECT_PLAYER SOUND_ARG_LOAD(0x49, 0x00, 0x90, 0x12)
 
-// Select map
+// Select Map
 #define SOUND_MENU_SELECT_MAP SOUND_ARG_LOAD(0x49, 0x00, 0x90, 0x13)
 
 // Plays in option if no controller pak.
@@ -70,18 +70,18 @@
 // Red and orange staging lights that Lakitu holds.
 #define SOUND_ACTION_COUNTDOWN_LIGHT SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x03)
 #define SOUND_ACTION_GREEN_LIGHT SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x04)
-// Activates when light turns green.
+// Activates when light turns Green.
 #define SOUND_ACTION_REV_ENGINE SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x18)
 #define SOUND_ACTION_REV_ENGINE_2 SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x19)
 
 /* Racing */
 
-// Volume Mode and unknown
+// Volume Mode and Unknown
 #define SOUND_ACTION_PING SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x1C)
 
 #define SOUND_ACTION_TIRE_SQUEAL SOUND_ARG_LOAD(0x01, 0x00, 0xF9, 0x08)
 
-// Falling rock and bomb sound.
+// Falling rock and Bomb Sound.
 #define SOUND_ACTION_EXPLOSION SOUND_ARG_LOAD(0x19, 0x00, 0x90, 0x05)
 
 #define SOUND_ACTION_EXPLOSION_2 SOUND_ARG_LOAD(0x19, 0x00, 0xF0, 0x0C)
@@ -93,10 +93,10 @@
 #define SOUND_ITEM_THUNDERBOLT SOUND_ARG_LOAD(0x51, 0x01, 0xC0, 0x0C)
 
 /* Score Screen */
-// Coin pickup sound (perfect fourth; B to E)
+// Coin pickup Sound (perfect fourth; B to E)
 #define SOUND_ACTION_COUNT_SCORE SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x17)
 #define SOUND_ACTION_NEXT_COURSE SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x15)
-// Same sound as ENTER_MENU
+// Same Sound as ENTER_MENU
 #define SOUND_ACTION_CONTINUE_UNKNOWN SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x1B)
 
 /* Ceremony */
@@ -108,11 +108,11 @@
 #define SOUND_CEREMONY_SHOOT_TROPHY SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x21)
 #define SOUND_CEREMONY_PODIUM SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x22)
 
-// The sound of the trophy. Plays in the background
+// The Sound of the trophy. Plays in the background
 #define SOUND_CEREMONY_TROPHY SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x23)
 
 /* Credits */
-// Hey, you're very good. See you next time!
+// Hey, you're very good. See you Next Time!
 #define SOUND_CREDITS_FAREWELL SOUND_ARG_LOAD(0x49, 0x00, 0x80, 0x26)
 
 #endif // SOUNDS_H

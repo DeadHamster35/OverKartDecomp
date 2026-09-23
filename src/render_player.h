@@ -9,16 +9,16 @@
 
 /* Function Prototypes */
 
-void check_frame(s32*, s32*);
+void CheckFrame(s32*, s32*);
 void CheckViewport(Player*, Camera*, s8);
-u16 viewport(Player*, Camera*, f32, f32);
-u16 slipstream_kart(Player*, f32, f32, f32);
-void init_render_player(Player*, Camera*, s8, s8);
+u16 IsInViewport(Player*, Camera*, f32, f32);
+u16 SlipstreamKart(Player*, f32, f32, f32);
+void InitRenderPlayer(Player*, Camera*, s8, s8);
 void CheckDMA(void);
 void CheckDMA2P(void);
 void CheckDMA3P(void);
 void CheckDMA4P(void);
-void try_rendering_player(Player*, s8, s8);
+void TryRenderingPlayer(Player*, s8, s8);
 void DrawKart(void);
 void DrawKart2P(void);
 void DrawKart3P(void);
@@ -27,73 +27,73 @@ void DrawKartAfter(void);
 void DrawKart2PAfter(void);
 void DrawKart3PAfter(void);
 void DrawKart4PAfter(void);
-void createaffine(Mat4, Vec3f, Vec3s);
-void trans_matrix(Mat4, Vec3f);
-void scale_matrix(Mat4, f32);
+void Createaffine(Mat4, Vec3f, Vec3s);
+void TransMatrix(Mat4, Vec3f);
+void ScaleMatrix(Mat4, f32);
 void Affine2normMtx(Mtx*, Mat4);
 void Affine2Mtx(Mtx*, Mat4);
 bool ChaseDir(s16*, s16, s16);
-void chase_Inumber(s32*, s32, f32);
-void chase_Fnumber(f32*, f32, f32);
-void chase_Snumber(s16*, s16, f32);
-void chase_USnumber(u16*, s16, f32);
-void ken_startegy(void);
-void vtx_strategy(void);
-void vtx_calc(Player*, s8);
-void broken_calc(Player*, s8);
-void restore_calc(Player*, s8);
-void broken_set(Player*, s8, s8, s8);
-void jugemu_set(Player*, s8, s8, s8);
-void bound_calc(Player*, s8);
-void bound_set(Player*, s8, s8, s8);
+void ChaseInumber(s32*, s32, f32);
+void ChaseFnumber(f32*, f32, f32);
+void ChaseSnumber(s16*, s16, f32);
+void ChaseUSnumber(u16*, s16, f32);
+void KenStartegy(void);
+void VTXStrategy(void);
+void VTXCalc(Player*, s8);
+void BrokenCalc(Player*, s8);
+void RestoreCalc(Player*, s8);
+void BrokenSet(Player*, s8, s8, s8);
+void JugemuSet(Player*, s8, s8, s8);
+void BoundCalc(Player*, s8);
+void BoundSet(Player*, s8, s8, s8);
 void MakeBodyColor(Player*, s8, s32, f32);
 void MakeBodyColorAdjust(Player*, s8, s32, f32);
-bool check_map_bright_before(Player*, s8);
-void check_map_bright_after(Player*, s8);
-void bright_calc(Player*, s8);
-void check_vtx(Player*, s8, s8, s8);
-void draw_shadow(Player*, s8, s8);
-void draw_result_shadow(Player*, s8, s8);
-void draw_mainkart(Player*, s8, s8, s8);
-void draw_ghostkart(Player*, s8, s8, s8);
-void draw_turbokart(Player*, s8, s8, s8);
-void draw_reflectkart(Player*, s8, s8, s8);
+bool CheckMapBrightBefore(Player*, s8);
+void CheckMapBrightAfter(Player*, s8);
+void BrightCalc(Player*, s8);
+void CheckVTX(Player*, s8, s8, s8);
+void DrawShadow(Player*, s8, s8);
+void DrawResultShadow(Player*, s8, s8);
+void DrawMainkart(Player*, s8, s8, s8);
+void DrawGhostkart(Player*, s8, s8, s8);
+void DrawTurbokart(Player*, s8, s8, s8);
+void DrawReflectkart(Player*, s8, s8, s8);
 void Doobj(Player*, s8, s8);
-void change_tirecol_calc(Player*, s8);
-void change_tirecol_Pa(Player*, s8, s8, s8);
-void shake_set(Player*);
-void tire_pos_calc(void);
-void debug_tire_cube(s32, s32, s32);
+void ChangeTirecolCalc(Player*, s8);
+void ChangeTirecolPa(Player*, s8, s8, s8);
+void ShakeSet(Player*);
+void TirePosCalc(void);
+void DebugTireCube(s32, s32, s32);
 
 /* This is where I'd put my static data, if I had any */
 
-extern struct_D_802F1F80* gPlayerPalette;
-extern u8* sKartUpperTexture;
-extern u8* sKartLowerTexture;
+extern struct_D_802F1F80* PlayerPalette;
+extern u8* SKartUpperTexture;
+extern u8* SKartLowerTexture;
 
-extern s32 opening_flag;
-extern s16 gPlayersToRenderPlayerId[];
+extern s32 OpeningFlag;
+extern s16 PlayersToRenderPlayerId[];
 extern s16 D_80164ABE[];
-extern s16 gPlayersToRenderScreenId[];
-extern Player* buffer_car[];
-extern s16 effectcount;
-extern u16 g_colorPlayer0R[];
-extern u16 bright_g[];
-extern u16 bright_b[];
-extern u16 adjust_r[];
-extern u16 adjust_g[];
-extern u16 adjust_b[];
-extern s32 color_timer[];
+extern s16 PlayersToRenderScreenId[];
+extern Player* BufferCar[];
+extern s16 Effectcount;
+extern u16 ColorPlayer0R[];
+extern u16 BrightG[];
+extern u16 BrightB[];
+extern u16 AdjustR[];
+extern u16 AdjustG[];
+extern u16 AdjustB[];
+extern s32 ColorTimer[];
 
-extern s32 g_StarUseCounter[];
+extern s32 StarUseCounter[];
 
 extern Gfx common_square_plain_render[];
 extern Gfx D_0D008D58[];
 
-extern s32 gPlayersToRenderCount;
+extern s32 PlayersToRenderCount;
 extern void* D_800DDB5C[];
 extern Vtx* KartVtx[];
-extern f32 gCharacterSize[];
+extern f32 CharacterSize[];
 extern s32 D_800DDE74[];
 extern Vtx D_800E51D0[];
 extern Vtx D_800E5210[];
@@ -102,14 +102,14 @@ extern f64 D_800ED688;
 extern f32 D_800ED6A8;
 
 // There are actually found in data_0DD0A0_2_0.s
-extern Vtx gPlayerOneVtx[];
-extern Vtx gPlayerTwoVtx[];
-extern Vtx gPlayerThreeVtx[];
-extern Vtx gPlayerFourVtx[];
-extern Vtx gPlayerFiveVtx[];
-extern Vtx gPlayerSixVtx[];
-extern Vtx gPlayerSevenVtx[];
-extern Vtx gPlayerEightVtx[];
+extern Vtx PlayerOneVtx[];
+extern Vtx PlayerTwoVtx[];
+extern Vtx PlayerThreeVtx[];
+extern Vtx PlayerFourVtx[];
+extern Vtx PlayerFiveVtx[];
+extern Vtx PlayerSixVtx[];
+extern Vtx PlayerSevenVtx[];
+extern Vtx PlayerEightVtx[];
 
 extern u8** gKartMarioWheels0[];
 extern u8** gKartMarioWheels1[];
@@ -131,7 +131,7 @@ extern u8** gKartWarioWheels1[];
 extern u16** gKartWheels0[];
 extern u16** gKartWheels1[];
 
-// These all come the kart data stuff, they should end up in their own inc.c eventually
+// These all come the Kart data stuff, they should end up in their own inc.c eventually
 extern u8* gKartMario168Wheel0[];
 extern u8* gKartMario147Wheel0[];
 extern u8* gKartMario126Wheel0[];
@@ -278,11 +278,11 @@ extern u8* gKartWario189Wheel0[];
 extern u8* gKartWario189Wheel0[];
 
 extern s16 D_80165020[40];
-extern Vec3f old_velocity[8];
-extern s16 old_dir[4][8];
-extern s16 old_deg[4][8];
-extern s16 old_slipcount[4][8];
-extern s16 compel_flag[4][8];
-extern s16 draw_number[4][8];
+extern Vec3f OldVelocity[8];
+extern s16 OldDir[4][8];
+extern s16 OldDeg[4][8];
+extern s16 OldSlipcount[4][8];
+extern s16 CompelFlag[4][8];
+extern s16 DrawNumber[4][8];
 
 #endif

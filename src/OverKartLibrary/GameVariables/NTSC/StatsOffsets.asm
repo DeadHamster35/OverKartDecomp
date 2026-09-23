@@ -83,7 +83,7 @@
 .definelabel friction_Peach, 0x800E2688
 .definelabel friction_Bowser, 0x800E268C
 
-//jump (drift & hit) / gravity
+//Jump (drift & hit) / Gravity
 .definelabel driftJump_Mario, 0x800E36D0
 .definelabel driftJump_Luigi, 0x800E36D4
 .definelabel driftJump_Yoshi, 0x800E36D8
@@ -145,7 +145,7 @@ Fspeed 800E37D0
 Acc 800E37F0
 */
 
-//speed
+//Speed
 .definelabel maxSpeed_Mario, 0x800E2690
 .definelabel maxSpeed_Luigi, 0x800E2694
 .definelabel maxSpeed_Yoshi, 0x800E2698
@@ -308,7 +308,7 @@ Acc 800E37F0
 .definelabel  tripleTap_Peach, 0x800E36C8
 .definelabel  tripleTap_Bowser, 0x800E36CC
 
-//grip 
+//Grip 
 .definelabel frontgrip50_Mario, 0x800E2360
 .definelabel frontgrip50_Luigi, 0x800E2364
 .definelabel frontgrip50_Yoshi, 0x800E2368

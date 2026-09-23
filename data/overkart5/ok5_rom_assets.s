@@ -1,4 +1,4 @@
-# OverKart5 ROM DMA sources (VMA = cart offset; not copied by init_overkart).
+# OverKart5 ROM DMA sources (VMA = cart Offset; not copied by InitOverkart).
 # After .overkart at 0xC00000. Crash / HudButtons / LibraryFont (NewFont) /
 # AmpedUpFont already live in data/overkart/ok_rom_assets.s — do not duplicate.
 

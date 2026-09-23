@@ -4,8 +4,8 @@
 //extern void GetSurfaceID();
 
 extern void LavaFloorRecoil(void);
-extern void InteractLavaFloor(Bump* bump, ushort pointer, int FlagAxis);
-extern float absFloat(float value);
+extern void InteractLavaFloor(Bump* Bump, Ushort Pointer, int FlagAxis);
+extern float AbsFloat(float Value);
 extern int LavaFloorBumpCount[8];
 extern bool LavaFloorRecoiling[8];
 void CheckDirectionFunc(int Null, Screen *display);
@@ -13,7 +13,7 @@ void ExplorerSetJugemu(Player* Target);
 void ExplorerCallJugemu(Player* Target);
 void ExplorerHangJugemu(Player* Target, char Index, char place);
 void ExplorerKWDisplayJugemu(int Player);
-extern void custom_SpinKart(Player* Car, Camera* camera, char place, char kno);
+extern void CustomSpinKart(Player* Car, Camera* Camera, char place, char kno);
 extern void SurfaceSFX(Player *car, int SFX_ID, float min_Speed);
 
 
@@ -83,7 +83,7 @@ extern bool LavaFloorRecoiling[];
 
 #define Mud				18
 
-/* Amped Up extra surface IDs. Numbers do not overlap the Tarmac table.
+/* Amped Up extra surface IDs. Numbers do not overlap the Tarmac Table.
    Do not #define Boo — OKExternal has extern long Boo; host uses BooSurface. */
 #define TrickJump2		150
 #define TrickJump3		151

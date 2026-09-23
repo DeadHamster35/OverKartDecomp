@@ -1,9 +1,9 @@
 /*
 This is our BootCode
 it overwrites the existing startup routines, attempts a check on Expansion RAM
-If Expansion RAM is present, the game runs, if not an Error Image is loaded into the FrameBuffer
+If Expansion RAM is present, the game runs, if not an Error Image is Loaded into the FrameBuffer
 
-It needs to be placed in static ROM with no offset to the address
+It needs to be placed in static ROM with no Offset to the Address
 */
 
 
@@ -123,13 +123,13 @@ LW ra, 0x001C(sp)
 .align 0x10
 GlobalCustomCode:
 ADDIU sp, sp, -0x20
-SW ra, 0x001C (sp) //push ra to the stack
+SW ra, 0x001C (sp) //push ra to the Stack
 NOP
 JAL allRunSwitch
 NOP
-LW ra, 0x001C (sp) //pop ra from the stack
+LW ra, 0x001C (sp) //pop ra from the Stack
 ADDIU sp, sp, 0x20
-J 0x8000286C //tells the game where to jump back to, dont remove
+J 0x8000286C //tells the game where to Jump back to, dont remove
 NOP
 
 

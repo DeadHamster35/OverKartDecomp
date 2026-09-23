@@ -39,10 +39,10 @@ extern u8 _startupLogoSegmentRomStart[];
 extern u8 _startupLogoSegmentRomEnd[];
 
 /**
- * mk64 has three code segments:
- *     main   0x80000400
- *     ending 0x80280000    size 0xDF00
- *     race   0x8028DF00    size 0x2C470
+ * mk64 has three Code segments:
+ *     Main   0x80000400
+ *     ending 0x80280000    Size 0xDF00
+ *     race   0x8028DF00    Size 0x2C470
  **/
 
 #define SEG_START 0x80000000
@@ -56,8 +56,8 @@ extern u8 _startupLogoSegmentRomEnd[];
 #define SEG_ENDING (uintptr_t) &_endingSegmentStart[0]
 #define SEG_ENDING_ROM_START (uintptr_t) &_endingSegmentRomStart[0]
 /**
- * Ending segment original size is 0xDF00 but much of that remains unused.
- * This auto fits the segment to its proper size.
+ * Ending segment original Size is 0xDF00 but much of that remains Unused.
+ * This auto fits the segment to its proper Size.
  */
 #define SEG_ENDING_SIZE (size_t) ALIGN16((ptrdiff_t) (&_endingSegmentNoloadEnd[0] - &_endingSegmentStart[0]))
 #define SEG_ENDING_ROM_SIZE (size_t) ALIGN16((ptrdiff_t) (&_endingSegmentRomEnd[0] - &_endingSegmentRomStart[0]))

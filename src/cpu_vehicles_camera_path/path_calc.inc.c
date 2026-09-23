@@ -1,9 +1,9 @@
-// @arg index from 0 to 3.
+// @arg Index from 0 to 3.
 
-// Processes course path by index.
-// @arg index from 0 to 3.
+// Processes course path by Index.
+// @arg Index from 0 to 3.
 // Each course can have 1-4 course paths.
-void AreaBunkatuBP(s32 pathIndex) {
+void AreaBunkatuBP(s32 PathIndex) {
 
     CenterPathStruct* ptr;
     CenterPathStruct* pathDest;
@@ -16,19 +16,19 @@ void AreaBunkatuBP(s32 pathIndex) {
 
     // cast required
     if ((s32) GET_COURSE_AIMaximumSeparation >= 0) {
-        pathDest = CenterPathBP[pathIndex];
+        pathDest = CenterPathBP[PathIndex];
         bInvalidPath = 1;
-        if (g_courseID != COURSE_AWARD_CEREMONY) {
-            var_v0 = area_read_rom_sub(pathDest, GET_COURSE_PathTable2(pathIndex));
-            g_courseTotalPathPoints[pathIndex] = (u16) var_v0;
+        if (CourseID != COURSE_AWARD_CEREMONY) {
+            var_v0 = AreaReadROMSub(pathDest, GET_COURSE_PathTable2(PathIndex));
+            CourseTotalPathPoints[PathIndex] = (u16) var_v0;
         } else {
-            // Course path included in course_data which has already been loaded into memory.
-            // This is how we get the addr to our path data.
-            path = GET_COURSE_PathTable(pathIndex);
+            // Course path included in course_data which has already been Loaded into memory.
+            // This is how we get the Addr to our path data.
+            path = GET_COURSE_PathTable(PathIndex);
             ptr = path;
 
             for (i = 0; i < 3000; i++, ptr++) {
-                if ((u16) ptr->pointx == 0x8000) {
+                if ((u16) ptr->Pointx == 0x8000) {
                     sp24 = i - 1;
                     bInvalidPath = 0;
                     break;
@@ -39,14 +39,14 @@ void AreaBunkatuBP(s32 pathIndex) {
             // Skip processing the data.
             //! @todo Confirm this comment
             if (!bInvalidPath) {
-                var_v0 = area_bunkatu_sub(pathDest, path, sp24, pathIndex);
-                g_courseTotalPathPoints[pathIndex] = (u16) var_v0;
+                var_v0 = AreaBunkatuSub(pathDest, path, sp24, PathIndex);
+                CourseTotalPathPoints[PathIndex] = (u16) var_v0;
             }
         }
     }
 }
 
-void SidePointCalcBP(s32 pathIndex) {
+void SidePointCalcBP(s32 PathIndex) {
     f32 pathPointWidth;
     f32 x1;
     f32 y1;
@@ -60,7 +60,7 @@ void SidePointCalcBP(s32 pathIndex) {
     f32 neg_z_dist;
     f32 xz_dist;
     s32 temp_f16;
-    s32 pathPointIndex;
+    s32 PathPointIndex;
     CenterPathStruct* pathPoint;
     CenterPathStruct* nextPathPoint;
     CenterPathStruct* var_s1;
@@ -68,19 +68,19 @@ void SidePointCalcBP(s32 pathIndex) {
 
     if (((s32) GET_COURSE_AIMaximumSeparation) >= 0) {
         pathPointWidth = GET_COURSE_AIMaximumSeparation;
-        pathPoint = &CenterPathBP[pathIndex][0];
-        var_s1 = &SideLPathBP[pathIndex][0];
-        var_s2 = &SideRPathBP[pathIndex][0];
-        for (pathPointIndex = 0; pathPointIndex < g_courseTotalPathPoints[pathIndex];
-             pathPointIndex++, var_s1++, var_s2++) {
-            x1 = pathPoint->pointx;
-            y1 = pathPoint->pointy;
-            z1 = pathPoint->pointz;
+        pathPoint = &CenterPathBP[PathIndex][0];
+        var_s1 = &SideLPathBP[PathIndex][0];
+        var_s2 = &SideRPathBP[PathIndex][0];
+        for (PathPointIndex = 0; PathPointIndex < CourseTotalPathPoints[PathIndex];
+             PathPointIndex++, var_s1++, var_s2++) {
+            x1 = pathPoint->Pointx;
+            y1 = pathPoint->Pointy;
+            z1 = pathPoint->Pointz;
             pathPoint++;
-            nextPathPoint = &CenterPathBP[pathIndex][(pathPointIndex + 1) % ((s32) g_courseTotalPathPoints[pathIndex])];
-            x2 = nextPathPoint->pointx;
-            y2 = nextPathPoint->pointy;
-            z2 = nextPathPoint->pointz;
+            nextPathPoint = &CenterPathBP[PathIndex][(PathPointIndex + 1) % ((s32) CourseTotalPathPoints[PathIndex])];
+            x2 = nextPathPoint->Pointx;
+            y2 = nextPathPoint->Pointy;
+            z2 = nextPathPoint->Pointz;
             x_dist = x2 - x1;
             z_dist = z2 - z1;
             neg_x_dist = x1 - x2;
@@ -88,33 +88,33 @@ void SidePointCalcBP(s32 pathIndex) {
             xz_dist = sqrtf((x_dist * x_dist) + (z_dist * z_dist));
             temp_f16 = (f32) ((y1 + y2) * 0.5);
 
-            // Calculate left boundary position
-            // Uses perpendicular vector (Z, -X) normalized by segment length
-            var_s1->pointx = ((pathPointWidth * z_dist) / xz_dist) + x1;
-            var_s1->pointy = temp_f16;
-            var_s1->pointz = ((pathPointWidth * neg_x_dist) / xz_dist) + z1;
+            // Calculate Left boundary Position
+            // Uses perpendicular vector (Z, -X) normalized by segment Length
+            var_s1->Pointx = ((pathPointWidth * z_dist) / xz_dist) + x1;
+            var_s1->Pointy = temp_f16;
+            var_s1->Pointz = ((pathPointWidth * neg_x_dist) / xz_dist) + z1;
 
-            // Calculate right boundary position
+            // Calculate Right boundary Position
             // Uses opposite perpendicular vector (-Z, X)
-            var_s2->pointx = ((pathPointWidth * neg_z_dist) / xz_dist) + x1;
-            var_s2->pointy = temp_f16;
-            var_s2->pointz = ((pathPointWidth * x_dist) / xz_dist) + z1;
+            var_s2->Pointx = ((pathPointWidth * neg_z_dist) / xz_dist) + x1;
+            var_s2->Pointy = temp_f16;
+            var_s2->Pointz = ((pathPointWidth * x_dist) / xz_dist) + z1;
         }
     }
 }
 
 /**
  * Calculates the track curvature using two sets of three path.
- * Returns a normalized value indicating curve direction and severity:
+ * Returns a normalized Value indicating Curve Direction and severity:
  * - Positive: Right turn
  * - Negative: Left turn
  * - Near zero: Straight section
  *
- * @param pathIndex Track path index
- * @param pathPointIndex Starting pathPoint for calculation
- * @return Normalized curvature value (-1 to 1)
+ * @Param PathIndex Track path Index
+ * @Param PathPointIndex Starting pathPoint for calculation
+ * @return Normalized curvature Value (-1 to 1)
  */
-f32 curve_chk_BP(s32 pathIndex, u16 pathPointIndex) {
+f32 CurveChkBP(s32 PathIndex, u16 PathPointIndex) {
     f32 secondVectorX;
     f32 secondVectorZ;
     UNUSED f32 pad;
@@ -137,33 +137,33 @@ f32 curve_chk_BP(s32 pathIndex, u16 pathPointIndex) {
     if ((s32) GET_COURSE_AIMaximumSeparation < 0) {
         return 0.0f;
     }
-    pathPointCount = g_courseTotalPathPoints[pathIndex];
-    pathPathPoints = CenterPathBP[pathIndex];
+    pathPointCount = CourseTotalPathPoints[PathIndex];
+    pathPathPoints = CenterPathBP[PathIndex];
 
-    pathPoint1 = &pathPathPoints[pathPointIndex];
-    pathPoint2 = &pathPathPoints[(pathPointIndex + 1) % pathPointCount];
-    pathPoint3 = &pathPathPoints[(pathPointIndex + 2) % pathPointCount];
+    pathPoint1 = &pathPathPoints[PathPointIndex];
+    pathPoint2 = &pathPathPoints[(PathPointIndex + 1) % pathPointCount];
+    pathPoint3 = &pathPathPoints[(PathPointIndex + 2) % pathPointCount];
 
-    x1 = pathPoint1->pointx;
-    z1 = pathPoint1->pointz;
-    x2 = pathPoint2->pointx;
-    z2 = pathPoint2->pointz;
-    x3 = pathPoint3->pointx;
-    z3 = pathPoint3->pointz;
+    x1 = pathPoint1->Pointx;
+    z1 = pathPoint1->Pointz;
+    x2 = pathPoint2->Pointx;
+    z2 = pathPoint2->Pointz;
+    x3 = pathPoint3->Pointx;
+    z3 = pathPoint3->Pointz;
 
     firstVectorX = (((x2 + x3) * 0.5) - x1);
     firstVectorZ = (((z2 + z3) * 0.5) - z1);
 
-    pathPoint1 = &pathPathPoints[(pathPointIndex + 3) % pathPointCount];
-    pathPoint2 = &pathPathPoints[(pathPointIndex + 4) % pathPointCount];
-    pathPoint3 = &pathPathPoints[(pathPointIndex + 5) % pathPointCount];
+    pathPoint1 = &pathPathPoints[(PathPointIndex + 3) % pathPointCount];
+    pathPoint2 = &pathPathPoints[(PathPointIndex + 4) % pathPointCount];
+    pathPoint3 = &pathPathPoints[(PathPointIndex + 5) % pathPointCount];
 
-    x1 = pathPoint1->pointx;
-    z1 = pathPoint1->pointz;
-    x2 = pathPoint2->pointx;
-    z2 = pathPoint2->pointz;
-    x3 = pathPoint3->pointx;
-    z3 = pathPoint3->pointz;
+    x1 = pathPoint1->Pointx;
+    z1 = pathPoint1->Pointz;
+    x2 = pathPoint2->Pointx;
+    z2 = pathPoint2->Pointz;
+    x3 = pathPoint3->Pointx;
+    z3 = pathPoint3->Pointz;
 
     secondVectorX = (((x2 + x3) * 0.5) - x1);
     secondVectorZ = (((z2 + z3) * 0.5) - z1);
@@ -173,7 +173,7 @@ f32 curve_chk_BP(s32 pathIndex, u16 pathPointIndex) {
     return -((firstVectorZ * secondVectorX) - (firstVectorX * secondVectorZ)) / (secondLength * firstLength);
 }
 
-void CurveDataCalcBP(s32 pathIndex) {
+void CurveDataCalcBP(s32 PathIndex) {
     f64 sectionCurvature;
     UNUSED s32 pad;
     s32 k;
@@ -184,10 +184,10 @@ void CurveDataCalcBP(s32 pathIndex) {
     s16* nextSection;
 
     if ((s32) GET_COURSE_AIMaximumSeparation >= 0) {
-        pathPointCount = g_courseTotalPathPoints[pathIndex];
-        currentSection = CurvePathDataBP[pathIndex];
+        pathPointCount = CourseTotalPathPoints[PathIndex];
+        currentSection = CurvePathDataBP[PathIndex];
         for (i = 0; i < pathPointCount; i++, currentSection++) {
-            sectionCurvature = curve_chk_BP(pathIndex, i);
+            sectionCurvature = CurveChkBP(PathIndex, i);
             *currentSection = STRAIGHT;
             if (sectionCurvature > 0.1) {
                 *currentSection = RIGHT_CURVE;
@@ -196,17 +196,17 @@ void CurveDataCalcBP(s32 pathIndex) {
                 *currentSection = LEFT_CURVE;
             }
         }
-        currentSection = CurvePathDataBP[pathIndex];
+        currentSection = CurvePathDataBP[PathIndex];
         for (i = 0; i < pathPointCount; i++, currentSection++) {
             if (*currentSection == STRAIGHT) {
-                // Look ahead for next curved section
+                // Look ahead for Next curved section
                 for (j = 1; j < pathPointCount; j++) {
-                    nextSection = &CurvePathDataBP[pathIndex][(i + j) % pathPointCount];
+                    nextSection = &CurvePathDataBP[PathIndex][(i + j) % pathPointCount];
                     switch (*nextSection) {
                         case RIGHT_LEANING_CURVE:
                         case RIGHT_CURVE:
                             for (k = 0; k < j; k++) {
-                                CurvePathDataBP[pathIndex][(i + k) % pathPointCount] = RIGHT_LEANING_CURVE;
+                                CurvePathDataBP[PathIndex][(i + k) % pathPointCount] = RIGHT_LEANING_CURVE;
                             }
                             i += j;
                             currentSection += j;
@@ -215,7 +215,7 @@ void CurveDataCalcBP(s32 pathIndex) {
                         case LEFT_LEANING_CURVE:
                         case LEFT_CURVE:
                             for (k = 0; k < j; k++) {
-                                CurvePathDataBP[pathIndex][(i + k) % pathPointCount] = LEFT_LEANING_CURVE;
+                                CurvePathDataBP[PathIndex][(i + k) % pathPointCount] = LEFT_LEANING_CURVE;
                             }
                             i += j;
                             currentSection += j;
@@ -228,39 +228,39 @@ void CurveDataCalcBP(s32 pathIndex) {
     }
 }
 
-// Seemingly calculates the atan2 angle between a pathPoint and its forward neighbor
-s16 angle_chk_BP(s32 pathIndex, s32 pathPointIndex) {
+// Seemingly calculates the atan2 Angle between a pathPoint and its forward neighbor
+s16 AngleChkBP(s32 PathIndex, s32 PathPointIndex) {
     s16 ret;
     Vec3f sp30;
     Vec3f sp24;
     CenterPathStruct* temp_v0;
 
-    temp_v0 = &CenterPathBP[pathIndex][pathPointIndex];
-    sp30[0] = temp_v0->pointx;
-    sp30[1] = temp_v0->pointy;
-    sp30[2] = temp_v0->pointz;
-    temp_v0 = &CenterPathBP[pathIndex][(pathPointIndex + 1) % g_courseTotalPathPoints[pathIndex]];
-    sp24[0] = temp_v0->pointx;
-    sp24[1] = temp_v0->pointy;
-    sp24[2] = temp_v0->pointz;
+    temp_v0 = &CenterPathBP[PathIndex][PathPointIndex];
+    sp30[0] = temp_v0->Pointx;
+    sp30[1] = temp_v0->Pointy;
+    sp30[2] = temp_v0->Pointz;
+    temp_v0 = &CenterPathBP[PathIndex][(PathPointIndex + 1) % CourseTotalPathPoints[PathIndex]];
+    sp24[0] = temp_v0->Pointx;
+    sp24[1] = temp_v0->Pointy;
+    sp24[2] = temp_v0->Pointz;
     ret = CalcDirection(sp30, sp24);
     return -ret;
 }
 
 // Populates AnglePathDataBP
-void AngleDataCalcBP(s32 pathIndex) {
-    s32 pathPointIndex;
-    u16* angle;
+void AngleDataCalcBP(s32 PathIndex) {
+    s32 PathPointIndex;
+    u16* Angle;
 
     if ((s32) GET_COURSE_AIMaximumSeparation >= 0) {
-        for (angle = (u16*) &AnglePathDataBP[pathIndex][0], pathPointIndex = 0;
-             pathPointIndex < g_courseTotalPathPoints[pathIndex]; pathPointIndex++, angle++) {
-            *angle = angle_chk_BP(pathIndex, pathPointIndex);
+        for (Angle = (u16*) &AnglePathDataBP[PathIndex][0], PathPointIndex = 0;
+             PathPointIndex < CourseTotalPathPoints[PathIndex]; PathPointIndex++, Angle++) {
+            *Angle = AngleChkBP(PathIndex, PathPointIndex);
         }
     }
 }
 
-void ShortcutDataCalcBP(s32 pathIndex) {
+void ShortcutDataCalcBP(s32 PathIndex) {
     s16* trackCurveCount;
     s16 curveCount;
     s16 temp_t0;
@@ -268,9 +268,9 @@ void ShortcutDataCalcBP(s32 pathIndex) {
     s16* trackSectionType;
     s32 i, j;
 
-    pathPointCount = g_courseTotalPathPoints[pathIndex];
-    trackSectionType = CurvePathDataBP[pathIndex];
-    trackCurveCount = ShortCutPathDataBP[pathIndex];
+    pathPointCount = CourseTotalPathPoints[PathIndex];
+    trackSectionType = CurvePathDataBP[PathIndex];
+    trackCurveCount = ShortCutPathDataBP[PathIndex];
 
     for (i = 0; i < pathPointCount; i++) {
         curveCount = 0;
@@ -281,7 +281,7 @@ void ShortcutDataCalcBP(s32 pathIndex) {
             } else {
                 break;
             }
-            if (g_courseID == COURSE_AWARD_CEREMONY) {
+            if (CourseID == COURSE_AWARD_CEREMONY) {
                 break;
             }
         }
@@ -290,22 +290,22 @@ void ShortcutDataCalcBP(s32 pathIndex) {
     }
 }
 
-f32 calc_cy_init(f32 arg0, f32 arg1, f32 arg2, UNUSED s32 arg3, UNUSED s32 arg4) {
-    arg1 = CheckHight(arg0, 2000.0f, arg2);
-    CheckBump(&D_80162E70, 1.0f, arg0, arg1, arg2);
+f32 CalcCyInit(f32 arg0, f32 arg1, f32 Arg2, UNUSED s32 Arg3, UNUSED s32 arg4) {
+    arg1 = CheckHight(arg0, 2000.0f, Arg2);
+    CheckBump(&D_80162E70, 1.0f, arg0, arg1, Arg2);
     return arg1;
 }
 
-f32 calc_cy(f32 arg0, f32 arg1, f32 arg2, UNUSED s32 arg3, UNUSED s32 arg4) {
-    arg1 = CheckHight(arg0, (f32) ((f64) arg1 + 30.0), arg2);
-    CheckBump(&D_80162E70, 10.0f, arg0, arg1, arg2);
+f32 CalcCy(f32 arg0, f32 arg1, f32 Arg2, UNUSED s32 Arg3, UNUSED s32 arg4) {
+    arg1 = CheckHight(arg0, (f32) ((f64) arg1 + 30.0), Arg2);
+    CheckBump(&D_80162E70, 10.0f, arg0, arg1, Arg2);
     return arg1;
 }
 
 /**
- * @return's the number of items processed.
+ * @return's the Number of items processed.
  */
-s32 area_bunkatu_sub(CenterPathStruct* pathDest, CenterPathStruct* path, s32 numPathPoints, UNUSED s32 pathIndex) {
+s32 AreaBunkatuSub(CenterPathStruct* pathDest, CenterPathStruct* path, s32 numPathPoints, UNUSED s32 PathIndex) {
     f32 temp_f24_2;
     f32 temp_f2_3;
     f32 var_f20_2;
@@ -334,20 +334,20 @@ s32 area_bunkatu_sub(CenterPathStruct* pathDest, CenterPathStruct* path, s32 num
     UNUSED CenterPathStruct* dest;
     var_f30 = 0.0f;
     var_s0 = 0;
-    temp_f20 = (f32) path[0].pointx;
-    temp_f22 = (f32) path[0].pointz;
-    var_f28 = calc_cy_init(temp_f20, 2000.0f, temp_f22, g_courseID, 0);
+    temp_f20 = (f32) path[0].Pointx;
+    temp_f22 = (f32) path[0].Pointz;
+    var_f28 = CalcCyInit(temp_f20, 2000.0f, temp_f22, CourseID, 0);
 
     for (i = 0; i < numPathPoints; i++) {
         point1 = &path[i % numPathPoints];
         point2 = &path[(i + 1) % numPathPoints];
         point3 = &path[(s32) (i + 2) % numPathPoints];
-        x1 = (f32) point1->pointx;
-        z1 = (f32) point1->pointz;
-        x2 = (f32) point2->pointx;
-        z2 = (f32) point2->pointz;
-        x3 = (f32) point3->pointx;
-        z3 = (f32) point3->pointz;
+        x1 = (f32) point1->Pointx;
+        z1 = (f32) point1->Pointz;
+        x2 = (f32) point2->Pointx;
+        z2 = (f32) point2->Pointz;
+        x3 = (f32) point3->Pointx;
+        z3 = (f32) point3->Pointz;
 
         temp = 0.05 / (sqrtf(((x2 - x1) * (x2 - x1)) + ((z2 - z1) * (z2 - z1))) +
                        (sqrtf(((x3 - x2) * (x3 - x2)) + ((z3 - z2) * (z3 - z2)))));
@@ -368,23 +368,23 @@ s32 area_bunkatu_sub(CenterPathStruct* pathDest, CenterPathStruct* path, s32 num
             temp_f22 = x1_2;
 
             if ((var_f30 > 20.0f) || ((i == 0) && (j == 0.0))) {
-                if (g_ScreenFlip) {
+                if (ScreenFlip) {
                     // temp_f12 = -temp_f24_2;
-                    pathDest->pointx = (s16) -temp_f24_2;
-                    var_f20_2 = calc_cy(-temp_f24_2, var_f28, x1_2, g_courseID, var_s0);
+                    pathDest->Pointx = (s16) -temp_f24_2;
+                    var_f20_2 = CalcCy(-temp_f24_2, var_f28, x1_2, CourseID, var_s0);
                 } else {
-                    pathDest->pointx = (s16) temp_f24_2;
-                    var_f20_2 = calc_cy(temp_f24_2, var_f28, x1_2, g_courseID, var_s0);
+                    pathDest->Pointx = (s16) temp_f24_2;
+                    var_f20_2 = CalcCy(temp_f24_2, var_f28, x1_2, CourseID, var_s0);
                 }
 
-                pathDest->pointz = (s16) temp_f22;
-                pathDest->unknown = CheckArea(D_80162E70.last_zx);
+                pathDest->Pointz = (s16) temp_f22;
+                pathDest->Unknown = CheckArea(D_80162E70.LastZX);
 
                 if (var_f20_2 < -500.0) {
                     var_f20_2 = var_f28;
                 } else {
 
-                    switch (g_courseID) {
+                    switch (CourseID) {
                         case COURSE_RAINBOW_ROAD:
                             if (var_f20_2 < (var_f28 - 15.0)) {
                                 var_f20_2 = (f32) var_f28 - 15.0;
@@ -416,7 +416,7 @@ s32 area_bunkatu_sub(CenterPathStruct* pathDest, CenterPathStruct* path, s32 num
                     }
                 }
                 var_f28 = var_f20_2;
-                pathDest->pointy = (s16) (s32) var_f20_2;
+                pathDest->Pointy = (s16) (s32) var_f20_2;
                 var_f30 = 0.0f;
                 pathDest++;
                 var_s0 += 1;
@@ -426,8 +426,8 @@ s32 area_bunkatu_sub(CenterPathStruct* pathDest, CenterPathStruct* path, s32 num
     return var_s0;
 }
 
-// Returns number of path processed.
-s32 area_read_rom_sub(CenterPathStruct* dest, CenterPathStruct* src) {
+// Returns Number of path processed.
+s32 AreaReadROMSub(CenterPathStruct* dest, CenterPathStruct* src) {
     s16 temp_a0;
     s16 temp_a2;
     s16 temp_a3;
@@ -437,29 +437,29 @@ s32 area_read_rom_sub(CenterPathStruct* dest, CenterPathStruct* src) {
 
     var_v1 = 0;
     for (var_v0 = 0; var_v0 < 0x7D0; var_v0++) {
-        temp_a0 = src->pointx;
-        temp_a2 = src->pointy;
-        temp_a3 = src->pointz;
-        temp_t0 = src->unknown;
+        temp_a0 = src->Pointx;
+        temp_a2 = src->Pointy;
+        temp_a3 = src->Pointz;
+        temp_t0 = src->Unknown;
         src++;
         if (((temp_a0 & 0xFFFF) == 0x8000) && ((temp_a2 & 0xFFFF) == 0x8000) && ((temp_a3 & 0xFFFF) == 0x8000)) {
             break;
         }
-        if (g_ScreenFlip != 0) {
-            dest->pointx = -temp_a0;
+        if (ScreenFlip != 0) {
+            dest->Pointx = -temp_a0;
         } else {
-            dest->pointx = temp_a0;
+            dest->Pointx = temp_a0;
         }
         var_v1++;
-        dest->pointy = temp_a2;
-        dest->pointz = temp_a3;
-        dest->unknown = temp_t0;
+        dest->Pointy = temp_a2;
+        dest->Pointz = temp_a3;
+        dest->Unknown = temp_t0;
         dest++;
     }
     return var_v1;
 }
 
-s32 area_bunkatu_SL_SHIP_sub(Path2D* pathDest, CenterPathStruct* pathSrc, s32 numPathPoints) {
+s32 AreaBunkatuSLSHIPSub(Path2D* pathDest, CenterPathStruct* pathSrc, s32 numPathPoints) {
     f32 temp_f14_3;
     f32 temp_f16_2;
     UNUSED s32 pad;
@@ -471,7 +471,7 @@ s32 area_bunkatu_SL_SHIP_sub(Path2D* pathDest, CenterPathStruct* pathSrc, s32 nu
     f32 x3;
     f32 z3;
 
-    UNUSED s32 pad2;
+    UNUSED s32 Pad2;
     f32 temp_f24;
 
     f32 spA8;
@@ -489,20 +489,20 @@ s32 area_bunkatu_SL_SHIP_sub(Path2D* pathDest, CenterPathStruct* pathSrc, s32 nu
     s32 nbElement;
     f32 sp7C;
 
-    spA8 = pathSrc[0].pointx;
-    spA0 = pathSrc[0].pointz;
+    spA8 = pathSrc[0].Pointx;
+    spA0 = pathSrc[0].Pointz;
     nbElement = 0;
 
     for (i = 0; i < numPathPoints; i++) {
         point1 = &pathSrc[((i % numPathPoints))];
         point2 = &pathSrc[(((i + 1) % numPathPoints))];
         point3 = &pathSrc[(((i + 2) % numPathPoints))];
-        x1 = point1->pointx;
-        z1 = point1->pointz;
-        x2 = point2->pointx;
-        z2 = point2->pointz;
-        x3 = point3->pointx;
-        z3 = point3->pointz;
+        x1 = point1->Pointx;
+        z1 = point1->Pointz;
+        x2 = point2->Pointx;
+        z2 = point2->Pointz;
+        x3 = point3->Pointx;
+        z3 = point3->Pointz;
 
         sp7C = 0.05 / (sqrtf(((x2 - x1) * (x2 - x1)) + ((z2 - z1) * (z2 - z1))) +
                        sqrtf(((x3 - x2) * (x3 - x2)) + ((z3 - z2) * (z3 - z2))));
@@ -518,7 +518,7 @@ s32 area_bunkatu_SL_SHIP_sub(Path2D* pathDest, CenterPathStruct* pathSrc, s32 nu
             spA8 = temp_f24;
             spA0 = temp_f26;
             if ((temp_f6 > 20.0f) || ((i == 0) && (j == 0.0))) {
-                if (g_ScreenFlip) {
+                if (ScreenFlip) {
                     pathDest->x = (s16) -spA8;
                 } else {
                     pathDest->x = (s16) spA8;

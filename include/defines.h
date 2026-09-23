@@ -2,31 +2,31 @@
 #define DEFINES_H
 
 /**
- * @brief Options for Controller Pak state
+ * @brief Options for Controller Pak State
  */
 #define OK 1
 #define BAD 0
 
 /**
- * @brief Enable debug mode
+ * @brief Enable debug Mode
  *
- * Press start to skip through menus
+ * Press Start to skip through menus
  *
  * Toggle resource meters by holding R and tapping B. L must not be held.
  *
- * Reset to start screen by holding A, B, R, and L.
+ * Reset to Start screen by holding A, B, R, and L.
  *
- * View player direction and currentPathPoint in a single player race during staging tap L while holding A and B.
+ * View Player Direction and currentPathPoint in a single Player race during staging tap L while holding A and B.
  * Turn off this UI by tapping R while holding A and B.
- * @bug This looks like it should work at any point in the race.
+ * @bug This looks like it should work at any Point in the race.
  *
- * Set player 1 to the final lap by tapping D-pad up.
- * Set player 1 and player 2 to the final lap by tapping D-pad right.
- * Set player all players to the final lap by tapping D-pad down.
+ * Set Player 1 to the final lap by tapping D-pad up.
+ * Set Player 1 and Player 2 to the final lap by tapping D-pad Right.
+ * Set Player all players to the final lap by tapping D-pad down.
  *
- * Immediately start the race if any controller presses Z.
+ * Immediately Start the race if any controller presses Z.
  *
- * As the ceremony cutscene starts hold a C or D-pad to switch characters.
+ * As the ceremony Cutscene starts hold a C or D-pad to switch characters.
  * C UP        = LUIGI
  * C LEFT      = YOSHI
  * C RIGHT     = TOAD
@@ -50,9 +50,9 @@
      L_CBUTTONS | R_CBUTTONS | D_CBUTTONS)
 /**
  * Replay controller buttons
- * Used for time trial replays (including staff and player ghosts)
- * Each entry is converted to a u32 value
- * This allows access to the button struct member
+ * Used for Time trial replays (including staff and Player ghosts)
+ * Each entry is converted to a u32 Value
+ * This allows access to the Button struct member
  */
 #define REPLAY_A_BUTTON (1 << 31) // 0x80000000
 #define REPLAY_B_BUTTON (1 << 30) // 0x40000000
@@ -66,7 +66,7 @@
 #define REPLAY_FRAME_INCREMENT 0x10000
 
 /**
- * @brief Jump to demo mode from the debug menu using L and A
+ * @brief Jump to demo Mode from the debug menu using L and A
  */
 #define DEMO_MODE_ACTIVE 1
 #define DEMO_MODE_INACTIVE 0
@@ -89,17 +89,17 @@
 /**
  * Racing terms:
  * Staging means aligning a racecar to the starting line.
- * Start sequence means waiting for the light to turn green.
- * Used in the Player struct's 'type' member: player->flag
+ * Start sequence means waiting for the light to turn Green.
+ * Used in the Player struct's 'Type' member: Player->Flag
  */
 #define PLAYER_INACTIVE 0                 // 0x0000
-#define MOTOR_ON (1 << 4)      // 0x0010 // unused?
+#define MOTOR_ON (1 << 4)      // 0x0010 // Unused?
 #define IS_BOMB (1 << 6)      // 0x0040
 #define PLAYER_UNKNOWN_0x80 (1 << 7)      // 0x0080 // UNUSED
 #define IS_GHOST (1 << 8) // 0x0100
 #define IS_GP_OPENING (1 << 9)           // 0x0200
-#define PLAYER_UNKNOWN (1 << 10)          // 0x0400 // unused ?
-#define IS_RACE_FINISH (1 << 11)   // 0x0800 // Also used to track eliminations in Battle mode.
+#define PLAYER_UNKNOWN (1 << 10)          // 0x0400 // Unused ?
+#define IS_RACE_FINISH (1 << 11)   // 0x0800 // Also Used to track eliminations in Battle Mode.
 #define IS_CPU_PLAYER (1 << 12)              // 0x1000
 #define NO_CONTROLS (1 << 13)   // 0x2000
 #define IS_PLAYER (1 << 14)            // 0x4000
@@ -142,7 +142,7 @@ enum PlayerId {
 #define MAX_NUM_MAIN_MENU_GAME_TYPES 3
 
 /**
- * @brief Options for g_gameMode
+ * @brief Options for GameMode
  */
 #define GRAND_PRIX 0
 #define TIME_TRIALS 1
@@ -150,11 +150,11 @@ enum PlayerId {
 #define BATTLE 3
 
 /**
- * @brief Options for g_raceClass
+ * @brief Options for RaceClass
  * CC stands for cubic-centimetres.
  * It measures engine displacement composed from
- * cylinder volume.
- * Generally, the main determiner of horsepower output.
+ * cylinder Volume.
+ * Generally, the Main determiner of horsepower Output.
  */
 
 #define CC_50 0
@@ -164,8 +164,8 @@ enum PlayerId {
 #define CC_BATTLE 4
 
 /**
- * @brief Options for g_cupSelect
- * There is a "cup" for battle mode, probably so that
+ * @brief Options for CupSelect
+ * There is a "cup" for battle Mode, probably so that
  * the battle courses could be displayed in the same
  * way race courses are.
  */
@@ -174,15 +174,15 @@ enum { MUSHROOM_CUP, FLOWER_CUP, STAR_CUP, SPECIAL_CUP, BATTLE_CUP, NUM_CUPS };
 #define NUM_COURSES_PER_CUP 4
 
 /**
- * @brief Options for g_courseSelect
+ * @brief Options for CourseSelect
  */
 enum { COURSE_ONE, COURSE_TWO, COURSE_THREE, COURSE_FOUR };
 
 /**
  * @brief Character IDs
  * Note that these are not the same as the values
- * found in g_player1Character as those are
- * ordered by table
+ * found in Player1Character as those are
+ * ordered by Table
  */
 #define MARIO 0
 #define LUIGI 1
@@ -208,7 +208,7 @@ enum { COURSE_ONE, COURSE_TWO, COURSE_THREE, COURSE_FOUR };
 #define RACING_DUPLICATE 14
 
 /**
- * @brief Options for gGameState next_sequence_mode and gGotoMenu
+ * @brief Options for gGameState NextSequenceMode and GotoMenu
  */
 #define START_MENU_FROM_QUIT 0
 #define MAIN_MENU_FROM_QUIT 1
@@ -219,7 +219,7 @@ enum { COURSE_ONE, COURSE_TWO, COURSE_THREE, COURSE_FOUR };
 #define CREDITS_SEQUENCE 9
 
 /**
- * @brief Options for g_ScreenSplitB and g_ScreenSplitA
+ * @brief Options for ScreenSplitB and ScreenSplitA
  */
 #define SCREEN_MODE_1P 0
 #define SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL 1
@@ -242,8 +242,8 @@ enum { COURSE_ONE, COURSE_TWO, COURSE_THREE, COURSE_FOUR };
  * The 2 cycling options cycle through Blue -> Green -> Red
  * Cycle 2 appears to be one step ahead of Cycle 1
  * Other values like 6 and 7 sort of work, they cause rapid
- * flashing between 2 colors, but also cause individual characters
- * to be cutoff on their right side
+ * flashing between 2 Colors, but also cause individual characters
+ * to be cutoff on their Right side
  */
 enum COLOR_ID {
     TEXT_BLUE,
@@ -255,8 +255,8 @@ enum COLOR_ID {
 };
 
 /**
- * @brief Sound mode options
- * Option 2 appears to be unused, as such its probably not
+ * @brief Sound Mode options
+ * Option 2 appears to be Unused, as such its probably not
  * a valid option
  */
 #define SOUND_STEREO 0
@@ -319,14 +319,14 @@ enum DIRECTION { NORTH, EAST, SOUTH, WEST };
 enum PLACE { FIRST_PLACE, SECOND_PLACE, THIRD_PLACE, FOURTH_PLACE };
 
 /**
- * @brief Balloon status
+ * @brief Balloon Status
  */
 #define BALLOON_STATUS_GONE 0
 #define BALLOON_STATUS_PRESENT 1
 #define BALLOON_STATUS_DEPARTING 2
 
 /**
- * @brief Max representable time, 100 minutes measured in centiseconds
+ * @brief Max representable Time, 100 Minutes measured in centiseconds
  */
 #define MAX_TIME 0x927C0
 
@@ -335,110 +335,110 @@ enum PLACE { FIRST_PLACE, SECOND_PLACE, THIRD_PLACE, FOURTH_PLACE };
    spaced angles around a circle. (e.g. (u16) 0x8000 is 2**15, which represents half a circle, or 180 degrees)
    
    However, it is clear that the developers were thinking in terms of degrees and often worked
-   with values that corresponded to a specific number of degrees. The DEGREES macro converts
-   from the specified number of degrees to the 16-bit representation. This allows readers to
-   think in degrees while leaving the compiled machine code unaffected.
+   with values that corresponded to a specific Number of degrees. The DEGREES macro converts
+   from the specified Number of degrees to the 16-bit representation. This allows readers to
+   think in degrees while leaving the compiled machine Code unaffected.
 
-   Note that 2**16 / 360 is not an integer. It has a value of ~182.04, but is rounded to 182 
+   Note that 2**16 / 360 is not an integer. It has a Value of ~182.04, but is rounded to 182 
    by the DEGREES function. There is some inconsistency with how the codebase handles this. 
    e.g. 70 degrees might be represented as DEGREES(70) or 70 * DEGREES(1), which are slightly
    different values due to this rounding. As a practical matter, this rounding is less than
    0.1 degrees in all cases */
 #define DEGREES(degree) ((u16) (degree * 65536.0f / 360.0f))
 
-// player->hit_flag
+// Player->HitFlag
 
-/* The first time you touch a penguin or bat, and anytime you touch a thwomp during a
-   race will set a flag which will cause your next spinout to be instant (i.e. no 
-   sliding forward). Probably half-implemented code to prevent sliding through enemies,
+/* The first Time you touch a penguin or bat, and anytime you touch a thwomp during a
+   race will set a Flag which will cause your Next spinout to be instant (i.e. no 
+   sliding forward). Probably half-implemented Code to prevent sliding through enemies,
    but causes this bug */
 #define CRITTER_TOUCH 0x2 // Touched a penguin, bat or thwomp
 #define CRITTER_TOUCH_GATE 0x4
 #define INSTANT_SPINOUT 0x40
 
-// player->water_flag
+// Player->WaterFlag
 /* Deals with the lower out of bounds (OOB) plane on levels. Represented by fluids (water / lava)
   or nothing for Rainbow Road and Skyscraper. */
 #define SUBMERGED 0x1 // Set while mostly under the plane. Does not necessarily trigger Lakitu on Koopa Troopa Beach.
-#define HALF_SUBMERGED 0x2 // Set when passing through the lower plane in either direction
-// The next two are also activated when passing through the lower plane.
-#define SPLASH_START 0x4 // Stays active until Lakitu places back on track
-#define SPLASH_DIVE 0x8 // Active while under a non-fluid OOB plane. Is momentarily active when passing through fluids.
+#define HALF_SUBMERGED 0x2 // Set when passing through the lower plane in either Direction
+// The Next two are also activated when passing through the lower plane.
+#define SPLASH_START 0x4 // Stays Active until Lakitu places back on track
+#define SPLASH_DIVE 0x8 // Active while under a non-fluid OOB plane. Is momentarily Active when passing through fluids.
 
 
-/* UNK_002 has something to do with player animations. Each player has a 32-bit
-flag broken into 8 groups of 4 bits. Those 4 bits affect how each of the 8 players
-appear to the specified player */
-#define P1_DMA_SPRITE 0x1 // Seems to be set when the kart animation has to change.
+/* UNK_002 has something to do with Player animations. Each Player has a 32-bit
+Flag Broken into 8 groups of 4 bits. Those 4 bits affect how each of the 8 players
+appear to the specified Player */
+#define P1_DMA_SPRITE 0x1 // Seems to be set when the Kart animation has to change.
 #define P1_DRAW_SPRITE 0x2 
-#define P1_FLIP_SPRITE 0x4 /* Unclear, but has to do with viewing the side of player. At least tends to change if target
-player spins. Something  with avoding rollover of aniamation frame data? */
-#define P1_DRAW_PARTICLES 0x8 // Seems to be whether you are in a rectangle shooting out from both sides of target player
+#define P1_FLIP_SPRITE 0x4 /* Unclear, but has to do with viewing the side of Player. At least tends to change if Target
+Player spins. Something  with avoding Rollover of aniamation frame data? */
+#define P1_DRAW_PARTICLES 0x8 // Seems to be whether you are in a rectangle shooting out from both sides of Target Player
 
 #define MUSIC_NOTE 0x20     // Whistle spinout save graphic
 #define CRASH 0x40       // Crash! graphic (vertical tumble)
 #define WHIRRR 0x80      // Whirrr! graphic (spinning out)
-#define POOMP 0x100      // Poomp! graphic (landing from a height)
+#define POOMP 0x100      // Poomp! graphic (landing from a Height)
 #define BOING 0x800      // Boing! graphic (hopping)
 #define FLASH 0x1000 // Big shock looking graphic when starting tumble
 
-// player->jugemu_flag
+// Player->JugemuFlag
 #define IS_IN_WATER 0x1 // While lakitu is grabbing you, but before the scene transition of being placed on the track
 #define ON_LAKITU_ROD   0x2
 #define IS_FADING_OUT    0x4 // Disintegration and reintegration effect when transitioning from retrieval to placement
 #define LAKITU_SCENE     0x8 // the whole segment from when lakitu is called to when you regain control
-#define IS_FROZEN   0x10 // Cold colors on Sherbet Land after in frigid water
-#define IS_MELTING  0x20 // Regaining usual colors post frigid effect
+#define IS_FROZEN   0x10 // Cold Colors on Sherbet Land after in frigid water
+#define IS_MELTING  0x20 // Regaining usual Colors post frigid effect
 #define HAS_ICE_CUBE   0x80 // In the ice cube
-#define LAKITU_CAMERA  0x100 // Player went over (or is on) an OOB area. Cancelled if touch back in bounds
+#define LAKITU_CAMERA  0x100 // Player went over (or is on) an OOB Area. Cancelled if touch back in bounds
 #define LAVA_EFFECT   0x1000 // smoky effect when retrieved from lava
 #define WATER_EFFECT  0x2000 // dripping effect when retreived from water
 
-// player->handling_flag
+// Player->HandlingFlag
 #define REVERSE_GEAR               0x1
 #define STEER_RIGHT            0x2 // non-drifting (more than 5 degrees)
 #define STEER_LEFT             0x4 // non-drifting (more than 5 degrees)
 #define REVERSE_ACCEL        0x8 // includes lakitu
 #define CPU_SIMPLE_KART         0x10 // pointless, only unsets itself
 #define ACCELERATE             0x20 // Closely tied to just pressing A. Possible exception for AB-spins
-#define START_SPIN_RIGHT  0x40 // Spinning out while facing right (not actually used for anything)
-#define START_SPIN_LEFT   0x80 // Spinning out while facing left
+#define START_SPIN_RIGHT  0x40 // Spinning out while facing Right (not actually Used for anything)
+#define START_SPIN_LEFT   0x80 // Spinning out while facing Left
 #define LANDING_DUST     0x100 // Causes particles after a vertical tumble, I think
 #define BOO_SMOKE_EFFECT    0x200
-#define TROPHYJUMP_START        0x400 // locked behind 0x800 (result_kart_jump_start)
-#define TROPHYJUMP_END        0x800 // locked behind 0x400 (WeaponStatus -> set_result_jump)
-#define TROPHYJUMP_STARS      0x1000 // 0x1000 locked behind 0x400 (WeaponStatus -> set_result_jump)
-#define TROPHYJUMP_KEEP      0x2000 // 0x2000 locked behind 0x400 and 0x800 (WeaponStatus -> set_result_jump, SetStrategy -> result_jump,
-                                  // result_kart_jump_start)
+#define TROPHYJUMP_START        0x400 // locked behind 0x800 (ResultKartJumpStart)
+#define TROPHYJUMP_END        0x800 // locked behind 0x400 (WeaponStatus -> SetResultJump)
+#define TROPHYJUMP_STARS      0x1000 // 0x1000 locked behind 0x400 (WeaponStatus -> SetResultJump)
+#define TROPHYJUMP_KEEP      0x2000 // 0x2000 locked behind 0x400 and 0x800 (WeaponStatus -> SetResultJump, SetStrategy -> ResultJump,
+                                  // ResultKartJumpStart)
 #define SPINOUT_SWERVE 0x4000
 #define BALLOON_CUT 0x8000 // 0x8000 something battle related, unclear if ever set
 
 /*
- * @brief triggers indicating that an effect should be applied to a kart
+ * @brief triggers indicating that an effect should be applied to a Kart
  */
 #define HIT_BANANA              0x1 // hits a banana
-#define HIT_REDSHELL             0x2 // hit by a red shell, blue shell, or hit a mole
-#define HIT_GREENSHELL              0x4 // hit by a green shell
+#define HIT_REDSHELL             0x2 // hit by a red shell, Blue shell, or hit a mole
+#define HIT_GREENSHELL              0x4 // hit by a Green shell
 #define PRESS_SAVESPIN        0x80 // spinning out from erratic driving
 #define PRESS_SQUISH         0x100 // stomped by thwomp
 #define USE_MUSHROOM                0x200 // being boosted by trigger a mushroom
 #define USE_BOO                   0x800 // being a boo
 #define USE_FEATHER        0x1000 // Unused
-#define USE_STAR                 0x2000 // Starting a star
+#define USE_STAR                 0x2000 // Starting a Star
 #define HIT_LIGHTNING     0x4000 // Struck by lightning
 #define PRESS_BOOSTJUMP      0x8000 // being boosted by a ramp
 #define HIT_TORNADO      0x20000 // Unused
-#define USE_BANANA            0x40000 // holding a non-shell item behind you
+#define USE_BANANA            0x40000 // holding a non-shell Item behind you
 #define HIT_BOAT     0x80000 // hit paddle boat
 #define UNUSED_TRIGGER_0x10000     0x100000 // Unused
 #define HIT_CRITTER            0x200000 // hit crab or spiny spinout or losing versus race
-#define HIT_BOMB    0x400000 // hitting a fake item / bomb / snowman / car / train
+#define HIT_BOMB    0x400000 // hitting a fake Item / Bomb / snowman / car / train
 #define PRESS_BOOSTPAD 0x800000 // being boosted by a boost pad
-#define HIT_BOMB_THROW       0x1000000 // being hit by a star
+#define HIT_BOMB_THROW       0x1000000 // being hit by a Star
 #define USE_STARTDASH       0x2000000 // Start boost
-#define PRESS_BECOME_BOMB        0x4000000 // When losing battle mode
-#define PRESS_IS_BOMB        0x8000000 // When becoming a bomb in battle mode
-#define PRESS_STARTSPIN    0x10000000 // Spinning out by holding gas at start of race
+#define PRESS_BECOME_BOMB        0x4000000 // When losing battle Mode
+#define PRESS_IS_BOMB        0x8000000 // When becoming a Bomb in battle Mode
+#define PRESS_STARTSPIN    0x10000000 // Spinning out by holding gas at Start of race
 
 #define ALL_TRIGGERS (0xFFFFFFFF)
 #define RACING_SPINOUT_TRIGGERS (HIT_CRITTER | PRESS_SAVESPIN | HIT_BANANA) // 0x200081
@@ -451,7 +451,7 @@ player spins. Something  with avoding rollover of aniamation frame data? */
      HIT_REDSHELL | PRESS_SQUISH) // 0x01404106
 
 /**
- * @brief effect of player's
+ * @brief effect of Player's
  * for effects
  */
 // clang-format off
@@ -462,12 +462,12 @@ player spins. Something  with avoding rollover of aniamation frame data? */
 #define DRIFT                 0x10 // drifting
 #define SPIN_TURN                  0x20 // spinning with a+b
 #define SPIN_R          0x40 // spinout (from erratic driving) or crab
-#define SPIN_L           0x80 // spinout (from hitting a banana or another driver)
+#define SPIN_L           0x80 // spinout (from hitting a banana or another Driver)
 #define DRIFT_TURBO              0x100 // mini-turbo
-#define STAR                    0x200 // using a star
-#define ROLLOVER      0x400 // tumbling after hit with a green shell
+#define STAR                    0x200 // using a Star
+#define ROLLOVER      0x400 // tumbling after hit with a Green shell
 #define WHEELSPIN     0x800 // decreased steering sensitivity after hitting a banana, but before spinning out
-#define CENTER_LINE              0x1000 // lost race in GP mode
+#define CENTER_LINE              0x1000 // lost race in GP Mode
 #define TURBO               0x2000 // using a mushroom
 #define RAPID_ACC    0x4000 // spinning out by pressing a too early at the startline or after lakitu retrieves you
 #define CARHIT             0x8000 // bouncing off an enemy (penguin, thwomp, etc)
@@ -476,14 +476,14 @@ player spins. Something  with avoding rollover of aniamation frame data? */
 #define DISABLE_SPIN   0x40000 // avoid spinning out by pressing b
 #define WING       0x80000 // Only set when soundEffect 0x1000 is set. Unclear if it ever is
 #define DASH_JUMP   0x100000 // being boosted by the Royal Raceway ramp
-#define SLIP_STREAM             0x200000 // CPU Rubberbanding flag
+#define SLIP_STREAM             0x200000 // CPU Rubberbanding Flag
 #define REVERSE              0x400000 // facing backwards
 #define STORM     0x800000 // Only set when soundEffect 0x20000 is set
 #define EXPLODE     0x1000000 // vertical launch (hitting car, snowman, etc.)
-#define THROW_EXPLODE         0x2000000 // being hit by a red shell or star
+#define THROW_EXPLODE         0x2000000 // being hit by a red shell or Star
 #define BROKEN              0x4000000 // hitting an object
 #define RESTORE         0x8000000 // briefly after being squished (boulder, thwomp, etc.)
-#define HEIGHT_JUMP 0x10000000 // UNUSED (set in unused SetHeightJump)
+#define HEIGHT_JUMP 0x10000000 // UNUSED (set in Unused SetHeightJump)
 #define STOPSTERR      0x20000000 // drifting toward the outside of your turn
 #define THUNDER          0x40000000 // suffering the effects of lightning
 #define TERESA                0x80000000 // being a boo
@@ -497,14 +497,14 @@ player spins. Something  with avoding rollover of aniamation frame data? */
 #define BOO_EFFECT_DURATION 0x7
 
 /**
- * @brief alpha relates values
+ * @brief Alpha relates values
  */
 #define ALPHA_MAX 0xFF
 #define ALPHA_MIN 0x0
 #define ALPHA_BOO_EFFECT 0x60
 
 /**
- * @brief shell state
+ * @brief shell State
  *
  */
 #define SPAWN_FIRST_SHELL 0
@@ -536,7 +536,7 @@ player spins. Something  with avoding rollover of aniamation frame data? */
 #define RACE_PREP 1
 #define RACE_STAGING 2
 #define RACE_IN_PROGRESS 3
-#define RACE_HUMAN_FINISHED 4 // At least 1 human has finished
+#define RACE_HUMAN_FINISHED 4 // At least 1 human has Finished
 #define RACE_DONE 5
 #define RACE_QUITTING 6
-#define RACE_QUADRANT_RESULTS 7 // The results screen in GP and Time trials mode
+#define RACE_QUADRANT_RESULTS 7 // The results screen in GP and Time trials Mode

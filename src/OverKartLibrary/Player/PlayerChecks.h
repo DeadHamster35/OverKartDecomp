@@ -1,12 +1,12 @@
 #ifndef PlayerCheckH
 #define PlayerCheckH
 extern short GetCourseLapMax(void);
-extern short GetCourseLapIndex(int player);
+extern short GetCourseLapIndex(int Player);
 extern Vector SprintStartBanner;
 extern bool SprintFinishArmed;
 extern void SetSprintFinish(void);
-extern void WrapPathIndexAtFinishCheck(float posX, float posY, float posZ, short *wayPointIndex, int pathIndex);
-extern void SprintLapCheck(int playerID, Player *car);
+extern void WrapPathIndexAtFinishCheck(float PosX, float PosY, float PosZ, short *wayPointIndex, int PathIndex);
+extern void SprintLapCheck(int PlayerID, Player *car);
 extern void SetLapIndex(void);
 extern void CheckPaths(void);
 extern void SetWaterType(char WaterType);

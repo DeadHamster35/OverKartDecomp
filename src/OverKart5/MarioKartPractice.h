@@ -2,9 +2,9 @@
 #define MarioKartPracticeH
 #include "MainInclude.h"
 #include "OKInclude.h"
-extern void practiceHack();
-extern void drawInputDisplay();
-extern void modCheck();
+extern void PracticeHack();
+extern void DrawInputDisplay();
+extern void ModCheck();
 extern void RunFlyCam();
 extern void FlyCamInit();
 #endif

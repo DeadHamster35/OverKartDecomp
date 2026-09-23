@@ -2,7 +2,7 @@
 
 /*
 //Soundeffect IDs//
-0 - Kart: Boing jump/thwomp hit
+0 - Kart: Boing Jump/thwomp hit
 1 - Kart: Boom (high fall royal)
 2 - Kart: Motor DK
 3 - EnemySounds: Kart: Motor Idle
@@ -26,7 +26,7 @@
 21 - Luigi: I'm-a Luigi! Number one!
 22 - Yoshi: positive/negative
 23 - Surface: Drowning in water
-24 - (unknown)Thud Hit
+24 - (Unknown)Thud Hit
 25 - DK: Happy
 26 - DK: Upset
 27 - Bowser: Happy
@@ -69,27 +69,27 @@
 64 - Course: Bowser Statue Fire
 65 - Peach: Let's go!
 66 - Peach: Yeah! Peach has got it!
-67 - (unknown) Beep Low
-68 - (unknown) Beep High
-69 - (unknown) Beep Medium
+67 - (Unknown) Beep Low
+68 - (Unknown) Beep High
+69 - (Unknown) Beep Medium
 70 - Course: Kalimari Train Rail Noise
 71 - Course: Cow Noise
-72 - (unknown) Thump Hit
-73 - (unknown) Ding
+72 - (Unknown) Thump Hit
+73 - (Unknown) Ding
 74 - Kart: Glass Shatter (freeze)
 75 - Kart: Ceramic Shatter (defreeze)
 76 - Kart: Brake
 77 - Kart: Drift
 78 - Surface: Sand/Grass
 79 - Surface: Wet Sand
-80 - (unknown) Ding High
-81 - (unknown) Doot
+80 - (Unknown) Ding High
+81 - (Unknown) Doot
 82 - Enemysounds: Kart: Motor who?
-83 - (unknown) Short Beep
+83 - (Unknown) Short Beep
 84 - EnemySounds: Kart: Motor who?
 85 - EnemySounds/Course: Kart: Motor Wario? / Turnpike Truck Motor
-86 - (unknown) Short Beep
-87 - (unknown) Bell or Beep
+86 - (Unknown) Short Beep
+87 - (Unknown) Bell or Beep
 88 - Kart: Motor Peach/Yoshi
 89 - EnemySounds: Kart: Motor who?
 90 - Kart: Motor Toad
@@ -97,10 +97,10 @@
 92 - Kart: Jump Hit Ground
 93 - Kart: Hit Wall
 94 - Kart/Course: Kart Collision/Thwomp Pound
-95 - (unknown) Thud Hit
-96 - (unknown) Engine Noise
+95 - (Unknown) Thud Hit
+96 - (Unknown) Engine Noise
 97 - Mario: Yippie!
-98 - (unknown) Short Beep 2
+98 - (Unknown) Short Beep 2
 99 - Menu: Title Motor Noise
 100 - Item: Item Box Hit
 101 - Course: Train/Ship Honk
@@ -122,39 +122,39 @@
 117 - EnemySounds: Item: Starman
 118 - Kart: Motor Mario/Luigi
 119 - Course: Kalimari Crossing Signal
-120 - (unknown) Wooden Sticks
+120 - (Unknown) Wooden Sticks
 121 - Course: Rainbow Dog Noise
-122 - Mario: Hey! You're very good! See you next time!
-123 - (unknown: JAP Intro?) Course: Crowd Cheer
+122 - Mario: Hey! You're very good! See you Next Time!
+123 - (Unknown: JAP Intro?) Course: Crowd Cheer
 124 - Menu: Welcome to Mario Kart!
 125 - Surface: Dirt/Dirt Trap
-126 - (unknown) Short Boop
+126 - (Unknown) Short Boop
 */
 
 
-void SetCustomSFXData(char sfxID, long rawSFX, long loopPred, long predictors)
+void SetCustomSFXData(char sfxID, long rawSFX, long loopPred, long Predictors)
 {
 // Follow all the pointers
 
 //TO DO PLEASE FIX THIS
 //TO DO PLEASE FIX THIS
 //TO DO PLEASE FIX THIS
-    GlobalAddressA = *(long*)((uint)&g_sfxPointer + 0x4) + (sfxID * 0x4);
+    GlobalAddressA = *(long*)((Uint)&SFXPointer + 0x4) + (sfxID * 0x4);
     GlobalAddressB = *(long*)(GlobalAddressA);
     GlobalAddressC = (GlobalAddressB + 0x10);
     GlobalAddressA = *(long*)(GlobalAddressC);
 
-// Set of pointers to sound data 
+// Set of pointers to Sound data 
     *(long*)(GlobalAddressA + (1* 0x4)) = rawSFX;
     *(long*)(GlobalAddressA + (2* 0x4)) = loopPred;
-    *(long*)(GlobalAddressA + (3* 0x4)) = predictors;
+    *(long*)(GlobalAddressA + (3* 0x4)) = Predictors;
 }
 
 void PlayCustomSound(void)
 {
     SetCustomSFXData(122, 0xADE1C0, 0x803F6980, 0x803F6930);
 //	SetCustomSFXData(122, 0xAED840, 0x803F6A30, 0x803F3E50); //Test
-    playSound(0x49008026);
+    PlaySound(0x49008026);
 }
 
 
@@ -273,23 +273,23 @@ void PlayCustomSound(void)
 #define SE_ITEM_BLUE_SHELL 	        0x51018008
 
 
-bool isAnyPlayerNear(float targetpos[], float radius)
+bool IsAnyPlayerNear(float targetpos[], float Radius)
 {
     char near[4];
 
     {
-        int playerID;
-    for (playerID = 0; playerID < 4; playerID++)		
+        int PlayerID;
+    for (PlayerID = 0; PlayerID < 4; PlayerID++)		
     {
-        if(((GlobalPlayer[(int)playerID].flag & IS_PLAYER) != 0) && ((GlobalPlayer[(int)playerID].flag & IS_GHOST) == 0))
+        if(((GlobalPlayer[(int)PlayerID].Flag & IS_PLAYER) != 0) && ((GlobalPlayer[(int)PlayerID].Flag & IS_GHOST) == 0))
         {
-            if(KWCheckRadiusXZ(GlobalPlayer[(int)playerID].position[0],GlobalPlayer[(int)playerID].position[2],targetpos[0],targetpos[2],radius) == 1)
+            if(KWCheckRadiusXZ(GlobalPlayer[(int)PlayerID].Position[0],GlobalPlayer[(int)PlayerID].Position[2],targetpos[0],targetpos[2],Radius) == 1)
             {
-                near[(int)playerID] = 1;
+                near[(int)PlayerID] = 1;
             }
             else
             {
-                near[(int)playerID] = 0;
+                near[(int)PlayerID] = 0;
             }
         }
     }
@@ -306,54 +306,54 @@ bool isAnyPlayerNear(float targetpos[], float radius)
 }
 
 
-char isPlaying[50]; //Reserve table for playing checks
+char IsPlaying[50]; //Reserve Table for playing checks
 
 int SFX[8] = {SE_SEDAN_HORN_MULTI,SE_UI_CAMERA_OUT,SE_LEVEL_BATS,SE_BALLOON_LOST,SE_SEAGULL,SE_PENGUIN_SMALL,SE_KART_HIT_PENGUIN,SE_ITEM_BLUE_SHELL}; //temp array SFX ID
-float SFX_rad[8] = {100,75,300,75,50,100,100,300}; //temp array SFX radius
-char SFX_global[8] = {0,0,0,1,1,0,1,0}; //temp array directional or global check
+float SFXRad[8] = {100,75,300,75,50,100,100,300}; //temp array SFX Radius
+char SFXGlobal[8] = {0,0,0,1,1,0,1,0}; //temp array directional or global check
 
 
 void LevelSoundDistanceCheck(void) //Using fire particle positions for testing
 {
-char TotalLevelSounds = 8; //How many sounds are used in level
+char TotalLevelSounds = 8; //How many sounds are Used in level
 
-    if (g_startingIndicator == 0x01)
+    if (StartingIndicator == 0x01)
     {
         {
             int initi;
         for (initi = 0; initi < 50; initi++)
         {
-            isPlaying[initi] = 0; //Reset playing checks on init
+            IsPlaying[initi] = 0; //Reset playing checks on init
         }
         } 
     }
     {
-        int index;
-    for (index = 0; index < TotalLevelSounds; index++)
+        int Index;
+    for (Index = 0; Index < TotalLevelSounds; Index++)
     {
-        if (g_startingIndicator > 0x01)
+        if (StartingIndicator > 0x01)
         {
-            if(isAnyPlayerNear(g_DynamicObjects[FireParticleAllocArray[index]].pos_start, SFX_rad[index])) //Checks if any player is inside radius of SFX coordinates
+            if(IsAnyPlayerNear(DynamicObjects[FireParticleAllocArray[Index]].PosStart, SFXRad[Index])) //Checks if any Player is inside Radius of SFX coordinates
             {
-                if (isPlaying[index] == 0)
+                if (IsPlaying[Index] == 0)
                 {
-                    isPlaying[index] = 1;
+                    IsPlaying[Index] = 1;
 
-                    if(SFX_global[index] == 1 && g_playerCount == 1)
+                    if(SFXGlobal[Index] == 1 && PlayerCount == 1)
                     {
-                        NaPlyLevelStart(0,SFX[index]); //Play globally
+                        NaPlyLevelStart(0,SFX[Index]); //Play globally
                     }
                     else
                     {
-                        NaSceneLevelStart(g_DynamicObjects[FireParticleAllocArray[index]].pos_start,ZeroVector,SFX[index]); //Play directionally
+                        NaSceneLevelStart(DynamicObjects[FireParticleAllocArray[Index]].PosStart,ZeroVector,SFX[Index]); //Play directionally
                     }
                 }
             }
             else
             {
-                isPlaying[index] = 0;
+                IsPlaying[Index] = 0;
 
-                switch (SFX[index]) //Stop Loop Sounds
+                switch (SFX[Index]) //Stop Loop Sounds
                 {
                 case SE_LAKITU_REVERSE:
                 case SE_ITEM_ROULETTE:
@@ -377,13 +377,13 @@ char TotalLevelSounds = 8; //How many sounds are used in level
                 case SE_STATE_INVISIBLE:
                 case SE_STATE_INVINCIBLE:
                 case SE_ITEM_BLUE_SHELL:
-                    if(SFX_global[index] == 1 && g_playerCount == 1)
+                    if(SFXGlobal[Index] == 1 && PlayerCount == 1)
                     {
-                        NaPlyLevelStop(0,SFX[index]); //Stop globally
+                        NaPlyLevelStop(0,SFX[Index]); //Stop globally
                     }
                     else
                     {
-                        NaSceneLevelStop(g_DynamicObjects[FireParticleAllocArray[index]].pos_start,SFX[index]); //Stop directionally
+                        NaSceneLevelStop(DynamicObjects[FireParticleAllocArray[Index]].PosStart,SFX[Index]); //Stop directionally
                     }                    
                     break;
                 
@@ -409,18 +409,18 @@ void SetLevelSounds(void)
     LevelSoundDistanceCheck();
 }
 
-void PlayStarMusicHook(uchar playerID)
+void PlayStarMusicHook(Uchar PlayerID)
 {
-    NaPlyLevelStart(playerID,0x0108ff2c);
+    NaPlyLevelStart(PlayerID,0x0108ff2c);
 }
 
-void StopStarMusicHook(uchar playerID)
+void StopStarMusicHook(Uchar PlayerID)
 {
-    NaPlyLevelStop(playerID,0x0108ff2c);
+    NaPlyLevelStop(PlayerID,0x0108ff2c);
 }
 
-void PlayFinalLapMusicHook(uchar playerID)
+void PlayFinalLapMusicHook(Uchar PlayerID)
 {
-    NaPlyLevelStart(playerID,0x1908ff3a);
+    NaPlyLevelStart(PlayerID,0x1908ff3a);
     MusSeqTempoPercent(0,125,150);
 }

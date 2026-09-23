@@ -12,115 +12,115 @@ void PrintMenuTest(void)
 
 }
 
-void printGPTime(float printTime, int OffsetY)
+void PrintGPTime(float printTime, int OffsetY)
 {
 
 
 
 
-     wholeNumber = (int) printTime;
-     decimalNumber = (int) ((printTime - wholeNumber) * 100);
+     WholeNumber = (int) printTime;
+     DecimalNumber = (int) ((printTime - WholeNumber) * 100);
 
 
 
-     if (decimalNumber < 0)
+     if (DecimalNumber < 0)
      {
-          decimalNumber = decimalNumber * -1;
+          DecimalNumber = DecimalNumber * -1;
      }
 
-     if (wholeNumber > 60)
+     if (WholeNumber > 60)
      {
-          minutes = wholeNumber / 60;
-          seconds = wholeNumber - (minutes * 60);
+          Minutes = WholeNumber / 60;
+          Seconds = WholeNumber - (Minutes * 60);
      }
      else
      {
-          seconds = wholeNumber;
+          Seconds = WholeNumber;
      }
 
-     if (minutes >= 10)
+     if (Minutes >= 10)
      {
-          if (minutes >= 100)
+          if (Minutes >= 100)
           {
-               if (minutes >= 1000)
+               if (Minutes >= 1000)
                {
 
-                    printOffsetA = 40;
+                    PrintOffsetA = 40;
                }
                else
                {
-                    printOffsetA = 32;
+                    PrintOffsetA = 32;
                }
           }
           else
           {
-               printOffsetA = 24;
+               PrintOffsetA = 24;
           }
      }
      else
      {
-          printOffsetA = 16;
+          PrintOffsetA = 16;
      }
 
-     if (seconds >= 10)
+     if (Seconds >= 10)
      {
-          if (seconds >= 100)
+          if (Seconds >= 100)
           {
-               if (seconds >= 1000)
+               if (Seconds >= 1000)
                {
 
-                    printOffsetB = 40;
+                    PrintOffsetB = 40;
                }
                else
                {
-                    printOffsetB = 32;
+                    PrintOffsetB = 32;
                }
           }
           else
           {
-               printOffsetB = 24;
+               PrintOffsetB = 24;
           }
      }
      else
      {
-          printOffsetB = 16;
+          PrintOffsetB = 16;
      }
 
 
 
-     printOffsetB = printOffsetB + printOffsetA;
+     PrintOffsetB = PrintOffsetB + PrintOffsetA;
 
 
-     loadFont();
+     LoadFont();
      MenuPosition[1] = 170+(int)OffsetY;
      MenuPosition[0] = 55;
 
-     printString(MenuPosition[0],MenuPosition[1],"Total Time:");
+     PrintString(MenuPosition[0],MenuPosition[1],"Total Time:");
 
      MenuPosition[0] = 145;
 
 
-     printString(MenuPosition[0] + printOffsetA, MenuPosition[1], "'");
-     if (seconds < 10)
+     PrintString(MenuPosition[0] + PrintOffsetA, MenuPosition[1], "'");
+     if (Seconds < 10)
      {
-          printStringNumber(MenuPosition[0] + printOffsetA,MenuPosition[1],"",0);
-          printOffsetA = printOffsetA + 8;
-          printOffsetB = printOffsetB + 8;
+          PrintStringNumber(MenuPosition[0] + PrintOffsetA,MenuPosition[1],"",0);
+          PrintOffsetA = PrintOffsetA + 8;
+          PrintOffsetB = PrintOffsetB + 8;
      }
 
-     printString(MenuPosition[0] + printOffsetB, MenuPosition[1], "\"");
-     if (decimalNumber < 10)
+     PrintString(MenuPosition[0] + PrintOffsetB, MenuPosition[1], "\"");
+     if (DecimalNumber < 10)
      {
-          printStringNumber(MenuPosition[0]+printOffsetB,MenuPosition[1],"",0);
-          printOffsetB = printOffsetB + 8;
+          PrintStringNumber(MenuPosition[0]+PrintOffsetB,MenuPosition[1],"",0);
+          PrintOffsetB = PrintOffsetB + 8;
      }
 
 
 
 
-     printStringNumber(MenuPosition[0],MenuPosition[1],"",minutes);
-     printStringNumber(MenuPosition[0] + printOffsetA,MenuPosition[1],"",seconds);
-     printStringNumber(MenuPosition[0]+printOffsetB,MenuPosition[1],"",decimalNumber);
+     PrintStringNumber(MenuPosition[0],MenuPosition[1],"",Minutes);
+     PrintStringNumber(MenuPosition[0] + PrintOffsetA,MenuPosition[1],"",Seconds);
+     PrintStringNumber(MenuPosition[0]+PrintOffsetB,MenuPosition[1],"",DecimalNumber);
 
 
 
@@ -128,24 +128,24 @@ void printGPTime(float printTime, int OffsetY)
 
 
 
-void printMap(int devParameter)
+void PrintMap(int devParameter)
 {
      
      MenuPosition[0] = 25;
      MenuPosition[1] = 150;
      GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + 185, MenuPosition[1] + 68, 0, 0, 0, 175);
      GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18 + (devParameter * 10), MenuPosition[0] + 74, MenuPosition[1] + 28 + (devParameter * 10), 200, 0, 0, 175);
-     loadFont();
+     LoadFont();
 
 
-     printStringNumber(MenuPosition[0],MenuPosition[1],"  Map XY:",g_mapX[0]);
-     printStringNumber(MenuPosition[0]+112,MenuPosition[1],"",g_mapY[0]);
-     printStringNumber(MenuPosition[0],MenuPosition[1]+10,"Start XY:",g_startX);
-     printStringNumber(MenuPosition[0]+112,MenuPosition[1]+10,"",g_startY);
-     printString(MenuPosition[0],MenuPosition[1]+20,"   Scale:");               
-     printFloat(MenuPosition[0] + 72,MenuPosition[1]+20,(g_mapScale * 100.0f));
-     printStringNumber(MenuPosition[0],MenuPosition[1]+30,"Line XY:",RadarLineX);
-     printStringNumber(MenuPosition[0]+112,MenuPosition[1]+30,"",RadarLineY);
+     PrintStringNumber(MenuPosition[0],MenuPosition[1],"  Map XY:",MapX[0]);
+     PrintStringNumber(MenuPosition[0]+112,MenuPosition[1],"",MapY[0]);
+     PrintStringNumber(MenuPosition[0],MenuPosition[1]+10,"Start XY:",StartX);
+     PrintStringNumber(MenuPosition[0]+112,MenuPosition[1]+10,"",StartY);
+     PrintString(MenuPosition[0],MenuPosition[1]+20,"   Scale:");               
+     PrintFloat(MenuPosition[0] + 72,MenuPosition[1]+20,(MapScale * 100.0f));
+     PrintStringNumber(MenuPosition[0],MenuPosition[1]+30,"Line XY:",RadarLineX);
+     PrintStringNumber(MenuPosition[0]+112,MenuPosition[1]+30,"",RadarLineY);
                
 
      
@@ -164,7 +164,7 @@ void CourseMenu(int Alpha)
      DrawBox(50,8,220,2,255,0,0,255);
      DrawBox(50,130,220,2,255,0,0,255);
      DrawBox(60,32,200,1,0,0,0,255);
-     KWSprite(80,22,16,16,(ushort*)&lit_arrowsprite_l);
+     KWSprite(80,22,16,16,(Ushort*)&lit_arrowsprite_l);
      
      
 
@@ -175,8 +175,8 @@ void CourseMenu(int Alpha)
      }
      else if (ParameterIndex == 1) //currentParameter
      {
-          MenuPosition[0] = 155 - ((cupChar[MenuCup]) * 4);
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0], 41, MenuPosition[0] + (cupChar[MenuCup] * 8), 51, 0, 200, 0, 200);
+          MenuPosition[0] = 155 - ((CupChar[MenuCup]) * 4);
+          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0], 41, MenuPosition[0] + (CupChar[MenuCup] * 8), 51, 0, 200, 0, 200);
      }
      else
      {
@@ -189,15 +189,15 @@ void CourseMenu(int Alpha)
                GlobalAddressA = (cup_NTSC + (MenuCup * 8) + ((ParameterIndex - 2) * 2));
           }
           l_courseID = (short *)GlobalAddressA;
-          MenuPosition[0] = 157 - ((courseChar[(long)*l_courseID]) * 4);
+          MenuPosition[0] = 157 - ((CourseChar[(long)*l_courseID]) * 4);
           MenuPosition[1] = ((ParameterIndex - 1) * 14) + 44;
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0], MenuPosition[1], MenuPosition[0] + (courseChar[(long)*l_courseID] * 8), MenuPosition[1]+11, 0, 0, 200, 200);
+          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0], MenuPosition[1], MenuPosition[0] + (CourseChar[(long)*l_courseID] * 8), MenuPosition[1]+11, 0, 0, 200, 200);
      }
      LoopValue = 0;
-     loadFont();
-     printString(98,0,"Cup Editor");
-     MenuPosition[0] = 135 - (cupChar[MenuCup] * 4);
-     printString(MenuPosition[0],22,cupNames[MenuCup]);
+     LoadFont();
+     PrintString(98,0,"Cup Editor");
+     MenuPosition[0] = 135 - (CupChar[MenuCup] * 4);
+     PrintString(MenuPosition[0],22,CupNames[MenuCup]);
      MenuPosition[1] = 40;
      do{
           if (SYSTEM_Region == 0x00)
@@ -209,8 +209,8 @@ void CourseMenu(int Alpha)
                GlobalAddressA = (cup_NTSC + (MenuCup * 8) + LoopValue * 2);
           }
           l_courseID = (short *)GlobalAddressA;
-          MenuPosition[0] = 138 - (courseChar[(long)*l_courseID] * 4);
-          printString(MenuPosition[0],MenuPosition[1],courseNames[(long)*l_courseID]);
+          MenuPosition[0] = 138 - (CourseChar[(long)*l_courseID] * 4);
+          PrintString(MenuPosition[0],MenuPosition[1],CourseNames[(long)*l_courseID]);
           MenuPosition[1] = MenuPosition[1] + 14;
           LoopValue++;
      } while (LoopValue < 4);
@@ -224,9 +224,9 @@ void DrawFPS(int X, int Y)
         FPSA = (1 * CPU2SEC) / CycleCount[0];
         FPSB = (1 * CPU2SEC) / CycleCount[1];
     }
-    loadFont();
-    printDecimal(X,Y,FPSA, 2);         
-    printDecimal(X,Y + 10,FPSB, 2); 
+    LoadFont();
+    PrintDecimal(X,Y,FPSA, 2);         
+    PrintDecimal(X,Y + 10,FPSB, 2); 
 }
 
 
@@ -262,7 +262,7 @@ void ModularMenu(OKMenu* OptionsMenu)
           MenuPosition[1] = ParameterIndex * 19 + 32;          
           if (MenuBlink < 29)  
           {
-               KWSprite(38,MenuPosition[1]+2,16,16,(ushort*)&lit_red_selecter);
+               KWSprite(38,MenuPosition[1]+2,16,16,(Ushort*)&lit_red_selecter);
           }
      }
 
@@ -271,10 +271,10 @@ void ModularMenu(OKMenu* OptionsMenu)
      
      
      
-     loadFont();
+     LoadFont();
      SetFontColor(255,255,255,75,75,75);
      
-     printString(MenuPosition[0],0,(char*)OptionsMenu->PanelAddress[MenuIndex].NameAddress);
+     PrintString(MenuPosition[0],0,(char*)OptionsMenu->PanelAddress[MenuIndex].NameAddress);
      
      MenuPosition[1] = 30;
      
@@ -289,34 +289,34 @@ void ModularMenu(OKMenu* OptionsMenu)
      for (LoopValue = 0; LoopValue < GlobalShortB; LoopValue++)
      {
           OKOption* ThisOption = (OKOption*)(&OptionsMenu->PanelAddress[MenuIndex].Options[LoopValue + (long)MenuOverflow]);          
-          printString(30,MenuPosition[1],(char*)ThisOption->OptionName);
+          PrintString(30,MenuPosition[1],(char*)ThisOption->OptionName);
           GlobalShortA = (int)OptionsMenu->PanelAddress[MenuIndex].ParameterToggles[LoopValue + (long)MenuOverflow];
           MenuPosition[0] = 220 - (ThisOption->ParameterLengths[GlobalShortA] * 4);          
-          printString(MenuPosition[0],MenuPosition[1],(char*)ThisOption->ParameterNames[GlobalShortA]);
+          PrintString(MenuPosition[0],MenuPosition[1],(char*)ThisOption->ParameterNames[GlobalShortA]);
           MenuPosition[1] = MenuPosition[1] + 19;     
      } 
      
      if ((MenuOverflow + 7) < OptionsMenu->PanelAddress[MenuIndex].OptionCount)  //menuOverflowIndex
      {
-          if (MenuBlink < 15)  //used for blinking down arrow
+          if (MenuBlink < 15)  //Used for blinking down arrow
           {
-               KWSprite(161,190,16,16,(ushort*)&lit_arrowsprite_d);
+               KWSprite(161,190,16,16,(Ushort*)&lit_arrowsprite_d);
           }
      }
      if (MenuOverflow > 0)  //menuOverflowIndex
      {
-          if (MenuBlink < 15)  //used for blinking down arrow
+          if (MenuBlink < 15)  //Used for blinking down arrow
           {
-               KWSprite(161,40,16,16,(ushort*)&lit_arrowsprite_u);
+               KWSprite(161,40,16,16,(Ushort*)&lit_arrowsprite_u);
           }
      }
-     if (MenuIndex > 0)  //used for left arrow
+     if (MenuIndex > 0)  //Used for Left arrow
      {
-          KWSprite(80,22,16,16,(ushort*)&lit_arrowsprite_l);
+          KWSprite(80,22,16,16,(Ushort*)&lit_arrowsprite_l);
      }
-     if (MenuIndex < (int)OptionsMenu->PanelCount)  //used for right arrow
+     if (MenuIndex < (int)OptionsMenu->PanelCount)  //Used for Right arrow
      {
-          KWSprite(240,22,16,16,(ushort*)&lit_arrowsprite_r);
+          KWSprite(240,22,16,16,(Ushort*)&lit_arrowsprite_r);
      }
 }
 
@@ -325,7 +325,7 @@ void ModularMenu(OKMenu* OptionsMenu)
 
 
 
-int numPlaces (int n) 
+int NumPlaces (int n) 
 {
     if (n < 0) return 0;
     if (n < 10) return 1;
@@ -339,17 +339,17 @@ int numPlaces (int n)
     return 9;
 }
 
-void DrawNumberSprite(int x, int y, int number)
+void DrawNumberSprite(int x, int y, int Number)
 {
-	SprDrawClipST(x,y,8,16,number*8,0,1);
+	SprDrawClipST(x,y,8,16,Number*8,0,1);
 }
 
-//Prints a value with right-handed number sprites
-void printNumberSprite(int X, int Y, int Value)
+//Prints a Value with Right-handed Number sprites
+void PrintNumberSprite(int X, int Y, int Value)
 {
 	char negativeVal;
 	int digit[9];
-	int index;
+	int Index;
 
 	KWSprite(1000,1000,104,16,StockNumberSprites);
 
@@ -371,13 +371,13 @@ void printNumberSprite(int X, int Y, int Value)
 	digit[7] = ((Value%100000000)/10000000);
 	digit[8] = ((Value%1000000000)/100000000);
 
-	for (index = 0; index < numPlaces(Value); index++)
+	for (Index = 0; Index < NumPlaces(Value); Index++)
 	{
-		DrawNumberSprite(X-9*index, Y, digit[index]);
+		DrawNumberSprite(X-9*Index, Y, digit[Index]);
 		if (negativeVal == 1)
 		{
-			DrawNumberSprite(X-9*(numPlaces(Value)), Y+4, 11);
-			DrawNumberSprite(X-9*(numPlaces(Value)), Y+4, 10);
+			DrawNumberSprite(X-9*(NumPlaces(Value)), Y+4, 11);
+			DrawNumberSprite(X-9*(NumPlaces(Value)), Y+4, 10);
 			negativeVal = 0;
 		}
 	}
@@ -403,517 +403,517 @@ int ReturnStringLength(char *stringAddress)
 
 ///////////////HUD Buttons///////////////
 
-void loadHudButtons(void)
+void LoadHudButtons(void)
 {
-     *sourceAddress = (int)(&HudButtonsROM);
-     *targetAddress = (int)(&ok_FreeSpace);
-     dataLength = 0x4400;
-     runDMA();
-     *sourceAddress = (int)(&ok_FreeSpace);
-     *targetAddress = (int)(&hud_buttons);
-     runMIO();
+     *SourceAddress = (int)(&HudButtonsROM);
+     *TargetAddress = (int)(&ok_FreeSpace);
+     DataLength = 0x4400;
+     RunDMA();
+     *SourceAddress = (int)(&ok_FreeSpace);
+     *TargetAddress = (int)(&hud_buttons);
+     RunMIO();
 }
 
 
-void SpriteBtnA(int posx, int posy, float scale, bool pressed)
+void SpriteBtnA(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x100));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x100));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x100),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x100),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,hud_buttons);
+               KWSprite(Posx,Posy,16,16,hud_buttons);
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,hud_buttons,16,16);
+               KWSpriteScale(Posx,Posy,Scale,hud_buttons,16,16);
           }
           break;
      }
 }
 
-void SpriteBtnB(int posx, int posy, float scale, bool pressed)
+void SpriteBtnB(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x300));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x300));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x300),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x300),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x200));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x200));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x200),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x200),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnStart(int posx, int posy, float scale, bool pressed)
+void SpriteBtnStart(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x500));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x500));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x500),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x500),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x400));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x400));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x400),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x400),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnCUp(int posx, int posy, float scale, bool pressed)
+void SpriteBtnCUp(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x700));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x700));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x700),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x700),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x600));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x600));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x600),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x600),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnCDown(int posx, int posy, float scale, bool pressed)
+void SpriteBtnCDown(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x900));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x900));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x900),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x900),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x800));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x800));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x800),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x800),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnCLeft(int posx, int posy, float scale, bool pressed)
+void SpriteBtnCLeft(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0xB00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0xB00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0xB00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0xB00),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0xA00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0xA00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0xA00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0xA00),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnCRight(int posx, int posy, float scale, bool pressed)
+void SpriteBtnCRight(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0xD00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0xD00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0xD00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0xD00),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0xC00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0xC00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0xC00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0xC00),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnL(int posx, int posy, float scale, bool pressed)
+void SpriteBtnL(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0xF00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0xF00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0xF00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0xF00),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0xE00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0xE00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0xE00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0xE00),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnR(int posx, int posy, float scale, bool pressed)
+void SpriteBtnR(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1100));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1100));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1100),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1100),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1000));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1000));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1000),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1000),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnZ(int posx, int posy, float scale, bool pressed)
+void SpriteBtnZ(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1300));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1300));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1300),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1300),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1200));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1200));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1200),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1200),16,16);
           }
           break;
      }
 }
 
 
-void SpriteBtnDUp(int posx, int posy, float scale, bool pressed)
+void SpriteBtnDUp(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1500));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1500));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1500),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1500),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1400));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1400));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1400),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1400),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnDDown(int posx, int posy, float scale, bool pressed)
+void SpriteBtnDDown(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1700));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1700));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1700),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1700),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1600));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1600));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1600),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1600),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnDLeft(int posx, int posy, float scale, bool pressed)
+void SpriteBtnDLeft(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1900));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1900));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1900),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1900),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1800));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1800));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1800),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1800),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnDRight(int posx, int posy, float scale, bool pressed)
+void SpriteBtnDRight(int Posx, int Posy, float Scale, bool pressed)
 {
      switch (pressed)
      {
      case true:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1B00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1B00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1B00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1B00),16,16);
           }
           break;
      
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1A00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1A00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1A00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1A00),16,16);
           }
           break;
      }
 }
 
-void SpriteBtnDMid(int posx, int posy, float scale)
+void SpriteBtnDMid(int Posx, int Posy, float Scale)
 {
 
-     if (scale == 1 || scale == 0)
+     if (Scale == 1 || Scale == 0)
      {
-          KWSprite(posx,posy,16,16,(hud_buttons+0x1C00));
+          KWSprite(Posx,Posy,16,16,(hud_buttons+0x1C00));
      }
      else
      {
           KWSprite(0,0,0,0,hud_buttons);
-          KWSpriteScale(posx,posy,scale,(hud_buttons+0x1C00),16,16);
+          KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1C00),16,16);
      }
 }
 
 //Direction: 0-Mid; 1-Up; 2-Down; 3-Left; 4-Right
-void SpriteAnalogStick(int posx, int posy, float scale, char direction)
+void SpriteAnalogStick(int Posx, int Posy, float Scale, char Direction)
 {
-     switch (direction)
+     switch (Direction)
      {
      case 1: //UP
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1E00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1E00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1E00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1E00),16,16);
           }
           break;
      case 2: //DOWN
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1F00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1F00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1F00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1F00),16,16);
           }
           break;
      case 3: //LEFT
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x2000));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x2000));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x2000),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x2000),16,16);
           }
           break;
      case 4: //RIGHT
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x2100));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x2100));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x2100),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x2100),16,16);
           }
           break;	
      default:
-          if (scale == 1 || scale == 0)
+          if (Scale == 1 || Scale == 0)
           {
-               KWSprite(posx,posy,16,16,(hud_buttons+0x1D00));
+               KWSprite(Posx,Posy,16,16,(hud_buttons+0x1D00));
           }
           else
           {
                KWSprite(0,0,0,0,hud_buttons);
-               KWSpriteScale(posx,posy,scale,(hud_buttons+0x1D00),16,16);
+               KWSpriteScale(Posx,Posy,Scale,(hud_buttons+0x1D00),16,16);
           }
           break;
      }
 }
 
-void PrintNiceText(int posx, int posy, float scale, char *text)
+void PrintNiceText(int Posx, int Posy, float Scale, char *text)
 {
 	char *FontString = text;
 
@@ -935,40 +935,40 @@ void PrintNiceText(int posx, int posy, float scale, char *text)
 		}
 		if (ch >= 97 && ch <= 122)
 		{
-			if (scale == 1 || scale == 0)
+			if (Scale == 1 || Scale == 0)
 			{
-				KWSprite(posx+i*7,posy,8,16,(nicefont+0x80*(FontString[i]-64)-0x80));
+				KWSprite(Posx+i*7,Posy,8,16,(nicefont+0x80*(FontString[i]-64)-0x80));
 			}
 			else
 			{
 				KWSprite(0,0,0,0,nicefont);
-				KWSpriteScale(posx+i*8*scale,posy,scale,(nicefont+0x80*(FontString[i]-64)-0x80),8,16);
+				KWSpriteScale(Posx+i*8*Scale,Posy,Scale,(nicefont+0x80*(FontString[i]-64)-0x80),8,16);
 			}
 			continue;
 		}
 		if (ch >= 123 && ch <= 127)
 		{
-			if (scale == 1 || scale == 0)
+			if (Scale == 1 || Scale == 0)
 			{
-				KWSprite(posx+i*7,posy,8,16,(nicefont+0x80*(FontString[i]-58)-0x80));
+				KWSprite(Posx+i*7,Posy,8,16,(nicefont+0x80*(FontString[i]-58)-0x80));
 			}
 			else
 			{
 				KWSprite(0,0,0,0,nicefont);
-				KWSpriteScale(posx+i*8*scale,posy,scale,(nicefont+0x80*(FontString[i]-58)-0x80),8,16);
+				KWSpriteScale(Posx+i*8*Scale,Posy,Scale,(nicefont+0x80*(FontString[i]-58)-0x80),8,16);
 			}
 			continue;
 		}			
 		else
 		{
-			if (scale == 1 || scale == 0)
+			if (Scale == 1 || Scale == 0)
 			{
-				KWSprite(posx+i*7,posy,8,16,(nicefont+0x80*(FontString[i]-32)-0x80));
+				KWSprite(Posx+i*7,Posy,8,16,(nicefont+0x80*(FontString[i]-32)-0x80));
 			}
 			else
 			{
 				KWSprite(0,0,0,0,nicefont);
-				KWSpriteScale(posx+i*8*scale,posy,scale,(nicefont+0x80*(FontString[i]-32)-0x80),8,16);
+				KWSpriteScale(Posx+i*8*Scale,Posy,Scale,(nicefont+0x80*(FontString[i]-32)-0x80),8,16);
 			}
 		}
 	}
@@ -976,7 +976,7 @@ void PrintNiceText(int posx, int posy, float scale, char *text)
 }
 
 
-void PrintBigText(int posx, int posy, float scale, char *text)
+void PrintBigText(int Posx, int Posy, float Scale, char *text)
 {
 	char *FontString = text;
 
@@ -998,27 +998,27 @@ void PrintBigText(int posx, int posy, float scale, char *text)
 		}
 		if (ch >= 97 && ch <= 122)
 		{
-			GlobalAddressA = (uint)((&nicefont[0])+(0x200*(FontString[i]-64)-0x200));
-               KWTexture2DRGBA(posx+(scale*i*16),posy,0,scale,(u16*)GlobalAddressA,(Vtx*)(&V1632), 16, 32, 16, 32);
+			GlobalAddressA = (Uint)((&nicefont[0])+(0x200*(FontString[i]-64)-0x200));
+               KWTexture2DRGBA(Posx+(Scale*i*16),Posy,0,Scale,(u16*)GlobalAddressA,(Vtx*)(&V1632), 16, 32, 16, 32);
 			continue;
 		}
 		if (ch >= 123 && ch <= 127)
 		{
-			GlobalAddressA = (uint)((&nicefont[0])+(0x200*(FontString[i]-58)-0x200));
-               KWTexture2DRGBA(posx+(scale*i*16),posy,0,scale,(u16*)GlobalAddressA,(Vtx*)(&V1632), 16, 32, 16, 32);
+			GlobalAddressA = (Uint)((&nicefont[0])+(0x200*(FontString[i]-58)-0x200));
+               KWTexture2DRGBA(Posx+(Scale*i*16),Posy,0,Scale,(u16*)GlobalAddressA,(Vtx*)(&V1632), 16, 32, 16, 32);
 			continue;
 		}			
 		else
 		{
-			GlobalAddressA = (uint)((&nicefont[0])+(0x200*(FontString[i]-32)-0x200));
-               KWTexture2DRGBA(posx+(scale*i*16),posy,0,scale,(u16*)GlobalAddressA,(Vtx*)(&V1632), 16, 32, 16, 32);
+			GlobalAddressA = (Uint)((&nicefont[0])+(0x200*(FontString[i]-32)-0x200));
+               KWTexture2DRGBA(Posx+(Scale*i*16),Posy,0,Scale,(u16*)GlobalAddressA,(Vtx*)(&V1632), 16, 32, 16, 32);
 		}
 	}
 	}
 }
 
 
-void PrintBigTextNumber(int posx, int posy, float scale, char *text, int value)
+void PrintBigTextNumber(int Posx, int Posy, float Scale, char *text, int Value)
 {
 	char negativeVal;
 	int digit[9];
@@ -1026,52 +1026,52 @@ void PrintBigTextNumber(int posx, int posy, float scale, char *text, int value)
 	int a;
 	int i;
 
-	PrintBigText(posx, posy, scale, text);
+	PrintBigText(Posx, Posy, Scale, text);
      
 	negativeVal = 0;
 
-	if (value < 0)
+	if (Value < 0)
 	{
-		value = value*-1;
+		Value = Value*-1;
 		negativeVal = 1;
 	}
 
-	digit[0] = ((value%10));
-	digit[1] = ((value%100)/10);
-	digit[2] = ((value%1000)/100);
-	digit[3] = ((value%10000)/1000);
-	digit[4] = ((value%100000)/10000);
-	digit[5] = ((value%1000000)/100000);
-	digit[6] = ((value%10000000)/1000000);
-	digit[7] = ((value%100000000)/10000000);
-	digit[8] = ((value%1000000000)/100000000);
+	digit[0] = ((Value%10));
+	digit[1] = ((Value%100)/10);
+	digit[2] = ((Value%1000)/100);
+	digit[3] = ((Value%10000)/1000);
+	digit[4] = ((Value%100000)/10000);
+	digit[5] = ((Value%1000000)/100000);
+	digit[6] = ((Value%10000000)/1000000);
+	digit[7] = ((Value%100000000)/10000000);
+	digit[8] = ((Value%1000000000)/100000000);
 
 	for (a = 0; a < 50; a++)
 	{
 		valstring[a] = 32;
 	}
 	
-	for (i = 0; i < numPlaces(value); i++)
+	for (i = 0; i < NumPlaces(Value); i++)
 	{
 		if (i > 9)
 		{
 			continue;
 		}
-		valstring[i] = (digit[numPlaces(value)-1-i] + 48);
+		valstring[i] = (digit[NumPlaces(Value)-1-i] + 48);
 	}
 
-	PrintBigText((scale*32)+posx+(ReturnStringLength(text))*15*scale, posy, scale, valstring);		
+	PrintBigText((Scale*32)+Posx+(ReturnStringLength(text))*15*Scale, Posy, Scale, valstring);		
 
 	if (negativeVal == 1)
 	{
-		PrintBigText((scale*15)+posx+(ReturnStringLength(text))*15*scale, posy, scale, "-");
+		PrintBigText((Scale*15)+Posx+(ReturnStringLength(text))*15*Scale, Posy, Scale, "-");
 		negativeVal = 0;
 	}
 }
 
 
 
-void PrintBigTextNumberNoGap(int posx, int posy, float scale, char *text, int value)
+void PrintBigTextNumberNoGap(int Posx, int Posy, float Scale, char *text, int Value)
 {
 	char negativeVal;
 	int digit[9];
@@ -1079,50 +1079,50 @@ void PrintBigTextNumberNoGap(int posx, int posy, float scale, char *text, int va
 	int a;
 	int i;
 
-	PrintBigText(posx, posy, scale, text);
+	PrintBigText(Posx, Posy, Scale, text);
      
 	negativeVal = 0;
 
-	if (value < 0)
+	if (Value < 0)
 	{
-		value = value*-1;
+		Value = Value*-1;
 		negativeVal = 1;
 	}
 
-	digit[0] = ((value%10));
-	digit[1] = ((value%100)/10);
-	digit[2] = ((value%1000)/100);
-	digit[3] = ((value%10000)/1000);
-	digit[4] = ((value%100000)/10000);
-	digit[5] = ((value%1000000)/100000);
-	digit[6] = ((value%10000000)/1000000);
-	digit[7] = ((value%100000000)/10000000);
-	digit[8] = ((value%1000000000)/100000000);
+	digit[0] = ((Value%10));
+	digit[1] = ((Value%100)/10);
+	digit[2] = ((Value%1000)/100);
+	digit[3] = ((Value%10000)/1000);
+	digit[4] = ((Value%100000)/10000);
+	digit[5] = ((Value%1000000)/100000);
+	digit[6] = ((Value%10000000)/1000000);
+	digit[7] = ((Value%100000000)/10000000);
+	digit[8] = ((Value%1000000000)/100000000);
 
 	for (a = 0; a < 50; a++)
 	{
 		valstring[a] = 32;
 	}
 	
-	for (i = 0; i < numPlaces(value); i++)
+	for (i = 0; i < NumPlaces(Value); i++)
 	{
 		if (i > 9)
 		{
 			continue;
 		}
-		valstring[i] = (digit[numPlaces(value)-1-i] + 48);
+		valstring[i] = (digit[NumPlaces(Value)-1-i] + 48);
 	}
 
-	PrintBigText((scale*32)+posx+(ReturnStringLength(text) -1)*15*scale, posy, scale, valstring);		
+	PrintBigText((Scale*32)+Posx+(ReturnStringLength(text) -1)*15*Scale, Posy, Scale, valstring);		
 
 	if (negativeVal == 1)
 	{
-		PrintBigText((scale*15)+posx+(ReturnStringLength(text) -1)*15*scale, posy, scale, "-");
+		PrintBigText((Scale*15)+Posx+(ReturnStringLength(text) -1)*15*Scale, Posy, Scale, "-");
 		negativeVal = 0;
 	}
 }
 
-void PrintNiceTextNumber(int posx, int posy, float scale, char *text, int value)
+void PrintNiceTextNumber(int Posx, int Posy, float Scale, char *text, int Value)
 {
 	char negativeVal;
 	int digit[9];
@@ -1130,67 +1130,67 @@ void PrintNiceTextNumber(int posx, int posy, float scale, char *text, int value)
 	int a;
 	int i;
 
-	PrintNiceText(posx, posy, scale, text);
+	PrintNiceText(Posx, Posy, Scale, text);
 
 	negativeVal = 0;
 
-	if (value < 0)
+	if (Value < 0)
 	{
-		value = value*-1;
+		Value = Value*-1;
 		negativeVal = 1;
 	}
 
-	digit[0] = ((value%10));
-	digit[1] = ((value%100)/10);
-	digit[2] = ((value%1000)/100);
-	digit[3] = ((value%10000)/1000);
-	digit[4] = ((value%100000)/10000);
-	digit[5] = ((value%1000000)/100000);
-	digit[6] = ((value%10000000)/1000000);
-	digit[7] = ((value%100000000)/10000000);
-	digit[8] = ((value%1000000000)/100000000);
+	digit[0] = ((Value%10));
+	digit[1] = ((Value%100)/10);
+	digit[2] = ((Value%1000)/100);
+	digit[3] = ((Value%10000)/1000);
+	digit[4] = ((Value%100000)/10000);
+	digit[5] = ((Value%1000000)/100000);
+	digit[6] = ((Value%10000000)/1000000);
+	digit[7] = ((Value%100000000)/10000000);
+	digit[8] = ((Value%1000000000)/100000000);
 
 	for (a = 0; a < 50; a++)
 	{
 		valstring[a] = 32;
 	}
 	
-	for (i = 0; i < numPlaces(value); i++)
+	for (i = 0; i < NumPlaces(Value); i++)
 	{
 		if (i > 9)
 		{
 			continue;
 		}
-		valstring[i] = (digit[numPlaces(value)-1-i] + 48);
+		valstring[i] = (digit[NumPlaces(Value)-1-i] + 48);
 	}
 
-	PrintNiceText((scale*14)+posx+(ReturnStringLength(text))*7*scale, posy, scale, valstring);		
+	PrintNiceText((Scale*14)+Posx+(ReturnStringLength(text))*7*Scale, Posy, Scale, valstring);		
 
 	if (negativeVal == 1)
 	{
-		PrintNiceText((scale*7)+posx+(ReturnStringLength(text))*7*scale, posy, scale, "-");
+		PrintNiceText((Scale*7)+Posx+(ReturnStringLength(text))*7*Scale, Posy, Scale, "-");
 		negativeVal = 0;
 	}
 }
 
 
-void drawButtonInputDisplay(bool FullMenu)
+void DrawButtonInputDisplay(bool FullMenu)
 {
 	short PosX[4], PosY[4];
 	short OffsetX;
 	short OffsetY;
-	float scale;
+	float Scale;
 	int i;
 
-	if (g_startingIndicator < 3 || g_startingIndicator > 4 || g_playerCount > 2)
+	if (StartingIndicator < 3 || StartingIndicator > 4 || PlayerCount > 2)
 	{
 		return;
 	}
 	
 	OffsetX = 85;
 	OffsetY = 55;
-	scale = 0.5f;
-	switch (g_playerCount)
+	Scale = 0.5f;
+	switch (PlayerCount)
 	{
 	case 2:
 		OffsetY = 30;
@@ -1198,17 +1198,17 @@ void drawButtonInputDisplay(bool FullMenu)
 	}
 
 	{
-	for (i = 0; i < g_playerCount; i++)
+	for (i = 0; i < PlayerCount; i++)
 	{
 
-		if (GlobalPlayer[i].flag&IS_CPU_PLAYER)
+		if (GlobalPlayer[i].Flag&IS_CPU_PLAYER)
 		{
 			continue;
 		}
 		
 
-		PosX[i] = GlobalScreen[i]->posx-GlobalScreen[i]->width/2 +OffsetX;
-		PosY[i] = GlobalScreen[i]->posy-GlobalScreen[i]->height/2 +OffsetY;
+		PosX[i] = GlobalScreen[i]->Posx-GlobalScreen[i]->Width/2 +OffsetX;
+		PosY[i] = GlobalScreen[i]->Posy-GlobalScreen[i]->Height/2 +OffsetY;
 
 		GraphPtr = FillRect1ColorF(GraphPtr,
 		PosX[i] - 20, PosY[i] - 22, PosX[i] + 40, PosY[i] + 10, //x1, y1, x2, y2
@@ -1216,124 +1216,124 @@ void drawButtonInputDisplay(bool FullMenu)
 
 		if (GlobalController[i]->ButtonHeld&BTN_A)
 		{
-			SpriteBtnA(PosX[i]+21,PosY[i]+3,scale,1);
+			SpriteBtnA(PosX[i]+21,PosY[i]+3,Scale,1);
 		}
 		else
 		{
-			SpriteBtnA(PosX[i]+21,PosY[i]+3,scale,0);
+			SpriteBtnA(PosX[i]+21,PosY[i]+3,Scale,0);
 		}
 
 		if (GlobalController[i]->ButtonHeld&BTN_B)
 		{
-			SpriteBtnB(PosX[i]+15,PosY[i]-3,scale,1);
+			SpriteBtnB(PosX[i]+15,PosY[i]-3,Scale,1);
 		}
 		else
 		{
-			SpriteBtnB(PosX[i]+15,PosY[i]-3,scale,0);
+			SpriteBtnB(PosX[i]+15,PosY[i]-3,Scale,0);
 		}
 
 		if (GlobalController[i]->ButtonHeld&BTN_START)
 		{
-			SpriteBtnStart(PosX[i]+4,PosY[i]+5,scale,1);
+			SpriteBtnStart(PosX[i]+4,PosY[i]+5,Scale,1);
 		}
 		else
 		{
-			SpriteBtnStart(PosX[i]+4,PosY[i]+5,scale,0);
+			SpriteBtnStart(PosX[i]+4,PosY[i]+5,Scale,0);
 		}
 
 		if (GlobalController[i]->ButtonHeld&BTN_CDOWN)
 		{
-			SpriteBtnCDown(PosX[i]+30,PosY[i],scale,1);
+			SpriteBtnCDown(PosX[i]+30,PosY[i],Scale,1);
 		}
 		else
 		{
-			SpriteBtnCDown(PosX[i]+30,PosY[i],scale,0);
+			SpriteBtnCDown(PosX[i]+30,PosY[i],Scale,0);
 		}
 
 		if (GlobalController[i]->ButtonHeld&BTN_CLEFT)
 		{
-			SpriteBtnCLeft(PosX[i]+25,PosY[i]-5,scale,1);
+			SpriteBtnCLeft(PosX[i]+25,PosY[i]-5,Scale,1);
 		}
 		else
 		{
-			SpriteBtnCLeft(PosX[i]+25,PosY[i]-5,scale,0);
+			SpriteBtnCLeft(PosX[i]+25,PosY[i]-5,Scale,0);
 		}
 
 		if (GlobalController[i]->ButtonHeld&BTN_CRIGHT)
 		{
-			SpriteBtnCRight(PosX[i]+35,PosY[i]-5,scale,1);
+			SpriteBtnCRight(PosX[i]+35,PosY[i]-5,Scale,1);
 		}
 		else
 		{
-			SpriteBtnCRight(PosX[i]+35,PosY[i]-5,scale,0);
+			SpriteBtnCRight(PosX[i]+35,PosY[i]-5,Scale,0);
 		}
 
 		if (GlobalController[i]->ButtonHeld&BTN_CUP)
 		{
-			SpriteBtnCUp(PosX[i]+30,PosY[i]-10,scale,1);
+			SpriteBtnCUp(PosX[i]+30,PosY[i]-10,Scale,1);
 		}
 		else
 		{
-			SpriteBtnCUp(PosX[i]+30,PosY[i]-10,scale,0);
+			SpriteBtnCUp(PosX[i]+30,PosY[i]-10,Scale,0);
 		}
 
 		if (GlobalController[i]->ButtonHeld&BTN_R)
 		{
-			SpriteBtnR(PosX[i]+35,PosY[i]-17,scale,1);
+			SpriteBtnR(PosX[i]+35,PosY[i]-17,Scale,1);
 		}
 		else
 		{
-			SpriteBtnR(PosX[i]+35,PosY[i]-17,scale,0);
+			SpriteBtnR(PosX[i]+35,PosY[i]-17,Scale,0);
 		}
 
 		if (GlobalController[i]->ButtonHeld&BTN_Z)
 		{
-			SpriteBtnZ(PosX[i]+17,PosY[i]-17,scale,1);
+			SpriteBtnZ(PosX[i]+17,PosY[i]-17,Scale,1);
 		}
 		else
 		{
-			SpriteBtnZ(PosX[i]+17,PosY[i]-17,scale,0);
+			SpriteBtnZ(PosX[i]+17,PosY[i]-17,Scale,0);
 		}
 
 
           if (FullMenu)
           {
-               SpriteBtnDMid(PosX[i]-10,PosY[i],scale);
+               SpriteBtnDMid(PosX[i]-10,PosY[i],Scale);
 
                if (GlobalController[i]->ButtonHeld&BTN_DDOWN)
                {
-                    SpriteBtnDDown(PosX[i]-10,PosY[i]+7,scale,1);
+                    SpriteBtnDDown(PosX[i]-10,PosY[i]+7,Scale,1);
                }
                else
                {
-                    SpriteBtnDDown(PosX[i]-10,PosY[i]+7,scale,0);
+                    SpriteBtnDDown(PosX[i]-10,PosY[i]+7,Scale,0);
                }
 
                if (GlobalController[i]->ButtonHeld&BTN_DUP)
                {
-                    SpriteBtnDUp(PosX[i]-10,PosY[i]-7,scale,1);
+                    SpriteBtnDUp(PosX[i]-10,PosY[i]-7,Scale,1);
                }
                else
                {
-                    SpriteBtnDUp(PosX[i]-10,PosY[i]-7,scale,0);
+                    SpriteBtnDUp(PosX[i]-10,PosY[i]-7,Scale,0);
                }
           
                if (GlobalController[i]->ButtonHeld&BTN_DLEFT)
                {
-                    SpriteBtnDLeft(PosX[i]-17,PosY[i],scale,1);
+                    SpriteBtnDLeft(PosX[i]-17,PosY[i],Scale,1);
                }
                else
                {
-                    SpriteBtnDLeft(PosX[i]-17,PosY[i],scale,0);
+                    SpriteBtnDLeft(PosX[i]-17,PosY[i],Scale,0);
                }
 
                if (GlobalController[i]->ButtonHeld&BTN_DRIGHT)
                {
-                    SpriteBtnDRight(PosX[i]-3,PosY[i],scale,1);
+                    SpriteBtnDRight(PosX[i]-3,PosY[i],Scale,1);
                }
                else
                {
-                    SpriteBtnDRight(PosX[i]-3,PosY[i],scale,0);
+                    SpriteBtnDRight(PosX[i]-3,PosY[i],Scale,0);
                }
                
                //
@@ -1341,16 +1341,16 @@ void drawButtonInputDisplay(bool FullMenu)
 
                if (GlobalController[i]->ButtonHeld&BTN_L)
                {
-                    SpriteBtnL(PosX[i]-10,PosY[i]-17,scale,1);
+                    SpriteBtnL(PosX[i]-10,PosY[i]-17,Scale,1);
                }
                else
                {
-                    SpriteBtnL(PosX[i]-10,PosY[i]-17,scale,0);
+                    SpriteBtnL(PosX[i]-10,PosY[i]-17,Scale,0);
                }
 
           }
 
-		SpriteAnalogStick(PosX[i]+4+(GlobalController[i]->AnalogX*0.05f),PosY[i]-10+(GlobalController[i]->AnalogY*-0.05f),scale,0);
+		SpriteAnalogStick(PosX[i]+4+(GlobalController[i]->AnalogX*0.05f),PosY[i]-10+(GlobalController[i]->AnalogY*-0.05f),Scale,0);
 	}
 	}
 }
@@ -1362,9 +1362,9 @@ short AnchorPoint[][4]  =
      {120,90,130,85}, {180,210,190,205},
 };
 
-void Zanzou2(int player)
+void Zanzou2(int Player)
 {
-    uint time = 0x0D00C158;
+    Uint Time = 0x0D00C158;
     short LapMax = GetCourseLapMax();
     int LocalLapY;
     int LocalLapX;
@@ -1372,19 +1372,19 @@ void Zanzou2(int player)
 
 
     //Time
-	if (KWLap[player].tptr2) 
+	if (KWLap[Player].Tptr2) 
     {
-		KWSpriteXLU(KWLap[player].lap1CompletionTimeX-19,KWLap[player].ty+8,128,(ushort*)time,32,16,32,16);
-        KWPrintLapTimeXLU(KWLap[player].lap1CompletionTimeX,KWLap[player].ty,128,KWLap[player].totaltime);
+		KWSpriteXLU(KWLap[Player].Lap1CompletionTimeX-19,KWLap[Player].ty+8,128,(Ushort*)Time,32,16,32,16);
+        KWPrintLapTimeXLU(KWLap[Player].Lap1CompletionTimeX,KWLap[Player].ty,128,KWLap[Player].Totaltime);
 	}
-	if (KWLap[player].tptr3) 
+	if (KWLap[Player].Tptr3) 
     {
-        KWSpriteXLU(KWLap[player].lap2CompletionTimeX-19,KWLap[player].ty+8,80,(ushort*)time,32,16,32,16);
-        KWPrintLapTimeXLU(KWLap[player].lap2CompletionTimeX,KWLap[player].ty,80,KWLap[player].totaltime);
+        KWSpriteXLU(KWLap[Player].Lap2CompletionTimeX-19,KWLap[Player].ty+8,80,(Ushort*)Time,32,16,32,16);
+        KWPrintLapTimeXLU(KWLap[Player].Lap2CompletionTimeX,KWLap[Player].ty,80,KWLap[Player].Totaltime);
 	}
 
-    LocalLapY = KWLap[player].cy + 3;
-    LocalLapX = KWLap[player].cx2;
+    LocalLapY = KWLap[Player].cy + 3;
+    LocalLapX = KWLap[Player].cx2;
 
     LocalLapX -= 16;
     LocalLapY -= 4;
@@ -1412,22 +1412,22 @@ void Zanzou2(int player)
     
     gDPSetTextureLUT(GraphPtrOffset++, G_TT_RGBA16);
 	gSPTexture(GraphPtrOffset++, 65535, 65535, 0, 0, 1);
-	gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (uint)&LapCounterTextures + laptext_PaletteOffset);
-	gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
+	gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
+	gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
     
     
     gDPTileSync(GraphPtrOffset++);
     KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
     
-  	if (KWLap[player].cptr2)
+  	if (KWLap[Player].Cptr2)
     {
-        LocalLapX =  KWLap[player].cx2;
+        LocalLapX =  KWLap[Player].cx2;
         gDPSetPrimColor(GraphPtrOffset++, 0, 0, 255, 255, 255, 128);
         KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
 	}
-    if (KWLap[player].cptr3)
+    if (KWLap[Player].Cptr3)
     {
-        LocalLapX =  KWLap[player].cx3;
+        LocalLapX =  KWLap[Player].cx3;
         gDPSetPrimColor(GraphPtrOffset++, 0, 0, 255, 255, 255, 80);
         KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
 	}
@@ -1438,26 +1438,26 @@ void Zanzou2(int player)
 
     gDPSetPrimColor(GraphPtrOffset++, 0, 0, 255, 255, 255, 255);
 
-    LocalLapX = KWLap[player].cx + 10;
-    LocalLapY = KWLap[player].cy;
+    LocalLapX = KWLap[Player].cx + 10;
+    LocalLapY = KWLap[Player].cy;
 
     
     LocalLapY -= 8;
 
-    LapIndex = GetCourseLapIndex(player);
+    LapIndex = GetCourseLapIndex(Player);
     
-    //1 player large font.
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (uint)&LapCounterTextures + LargeLapNumbers_PaletteOffset);
+    //1 Player large font.
+    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + LargeLapNumbers_PaletteOffset);
 
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapIndex), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapIndex), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
     KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
 
     LocalLapX += 10;
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * 10), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * 10), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
     KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
 
     LocalLapX += 9;
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapMax), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapMax), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
     KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
     
     
@@ -1476,7 +1476,7 @@ void KWDisplayUDLapWrapper(int ThisPlayer)
     
     
     
-    if (g_KWDBDispSW != 0)
+    if (KWDBDispSW != 0)
     {
         KWDisplayItembox(ThisPlayer);
         return;
@@ -1486,7 +1486,7 @@ void KWDisplayUDLapWrapper(int ThisPlayer)
         KWDisplayItembox(ThisPlayer);
         return;
     }
-    if (g_KWScreenEnable == 0)
+    if (KWScreenEnable == 0)
     {
         KWDisplayItembox(ThisPlayer);
         return;
@@ -1500,30 +1500,30 @@ void KWDisplayUDLapWrapper(int ThisPlayer)
     KWDisplayInit();
     LapMax = GetCourseLapMax();
     
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (uint)&LapCounterTextures + laptext_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
+    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
+    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
 
     LocalLapX = KWLap[ThisPlayer].cx - 16;
     LocalLapY = KWLap[ThisPlayer].cy -1;
     KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
     
-    if (KWLap[ThisPlayer].goal != LapMax)
+    if (KWLap[ThisPlayer].Goal != LapMax)
     {
         LapIndex = GetCourseLapIndex(ThisPlayer);
 
-        //1 player large font.
-        gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (uint)&LapCounterTextures + LargeLapNumbers_PaletteOffset);
+        //1 Player large font.
+        gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + LargeLapNumbers_PaletteOffset);
         LocalLapX += 26;
         LocalLapY -= 7;
-        gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapIndex), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+        gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapIndex), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
         KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
 
         LocalLapX += 10;
-        gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * 10), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+        gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * 10), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
         KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
 
         LocalLapX += 9;
-        gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapMax), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+        gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapMax), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
         KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
     }
 
@@ -1539,14 +1539,14 @@ void KWDisplay4LapWrapper(int ThisPlayer)
 
     KWDisplayTotalTime(ThisPlayer);
 
-    if ((g_KWScreenEnable == 0) || (g_KWLapSW == 0) )
+    if ((KWScreenEnable == 0) || (KWLapSW == 0) )
     {
     
-        if (KWLap[ThisPlayer].bomb)
+        if (KWLap[ThisPlayer].Bomb)
         {
             KWTexture2DCI8BL(
-                KWLap[ThisPlayer].bombx, 
-                KWLap[ThisPlayer].bomby, 
+                KWLap[ThisPlayer].Bombx, 
+                KWLap[ThisPlayer].Bomby, 
                 0, 1.0f, 
                 (u8*)0x0D01B4D8, 
                 (u8*)0x0D01D6D8,
@@ -1563,22 +1563,22 @@ void KWDisplay4LapWrapper(int ThisPlayer)
     KWDisplayInit();
     LapMax = GetCourseLapMax();
 
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (uint)&LapCounterTextures + laptext_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
+    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
+    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
 
     
     
-    if (KWLap[ThisPlayer].goal != LapMax)
+    if (KWLap[ThisPlayer].Goal != LapMax)
     {
         LocalLapX = KWLap[ThisPlayer].cx - 16;
         LocalLapY = KWLap[ThisPlayer].cy - 4;
         KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
     }
 
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (uint)&LapCounterTextures + SmallLapNumbers_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, ((uint)&LapCounterTextures + SmallLapNumbers_Offset), G_IM_FMT_CI,16,128,0,G_TX_CLAMP,G_TX_CLAMP,4,7,0,0);
+    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + SmallLapNumbers_PaletteOffset);
+    gDPLoadTextureBlock_4b(GraphPtrOffset++, ((Uint)&LapCounterTextures + SmallLapNumbers_Offset), G_IM_FMT_CI,16,128,0,G_TX_CLAMP,G_TX_CLAMP,4,7,0,0);
 
-    if (KWLap[ThisPlayer].goal != LapMax)
+    if (KWLap[ThisPlayer].Goal != LapMax)
     {
         LocalLapX = KWLap[ThisPlayer].cx - 26;
         LocalLapY = KWLap[ThisPlayer].cy + 4;
@@ -1591,11 +1591,11 @@ void KWDisplay4LapWrapper(int ThisPlayer)
     }
     
     
-    if (KWLap[ThisPlayer].bomb)
+    if (KWLap[ThisPlayer].Bomb)
     {
         KWTexture2DCI8BL(
-            KWLap[ThisPlayer].bombx, 
-            KWLap[ThisPlayer].bomby, 
+            KWLap[ThisPlayer].Bombx, 
+            KWLap[ThisPlayer].Bomby, 
             0, 1.0f, 
             (u8*)0x0D01B4D8, 
             (u8*)0x0D01D6D8,
@@ -1617,7 +1617,7 @@ void KWDisplayLRLapWrapper(int ThisPlayer)
     
     
 
-    if ((g_KWScreenEnable == 0) || (g_KWLapSW == 0) )
+    if ((KWScreenEnable == 0) || (KWLapSW == 0) )
     {
         KWDisplayItembox(ThisPlayer);
         return;
@@ -1627,22 +1627,22 @@ void KWDisplayLRLapWrapper(int ThisPlayer)
 
     KWDisplayInit();
     LapMax = GetCourseLapMax();
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (uint)&LapCounterTextures + laptext_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
+    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
+    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
 
     
     
-    if (KWLap[ThisPlayer].goal != LapMax)
+    if (KWLap[ThisPlayer].Goal != LapMax)
     {
         LocalLapX = KWLap[ThisPlayer].cx - 16;
         LocalLapY = KWLap[ThisPlayer].cy - 4;
         KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
     }
 
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (uint)&LapCounterTextures + SmallLapNumbers_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, ((uint)&LapCounterTextures + SmallLapNumbers_Offset), G_IM_FMT_CI,16,128,0,G_TX_CLAMP,G_TX_CLAMP,4,7,0,0);
+    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + SmallLapNumbers_PaletteOffset);
+    gDPLoadTextureBlock_4b(GraphPtrOffset++, ((Uint)&LapCounterTextures + SmallLapNumbers_Offset), G_IM_FMT_CI,16,128,0,G_TX_CLAMP,G_TX_CLAMP,4,7,0,0);
 
-    if (KWLap[ThisPlayer].goal != LapMax)
+    if (KWLap[ThisPlayer].Goal != LapMax)
     {
         LocalLapX = KWLap[ThisPlayer].cx;
         LocalLapY = KWLap[ThisPlayer].cy - 4;
@@ -1687,40 +1687,40 @@ void KWDisplayInit(void)
     
 }
 
-void KWDisplay2P_1LR()
+void KWDisplay2P1LR()
 {
     KWDisplayLRLapWrapper(0);
 }
-void KWDisplay2P_2LR()
+void KWDisplay2P2LR()
 {
     KWDisplayLRLapWrapper(1);
 }
 
 
-void KWDisplay4P_1()
+void KWDisplay4P1()
 {
     KWDisplay4LapWrapper(0);
 }
-void KWDisplay4P_2()
+void KWDisplay4P2()
 {
     KW2DMatrixInit();
     KWDisplay4LapWrapper(1);
 }
-void KWDisplay4P_3()
+void KWDisplay4P3()
 {
     KWDisplay4LapWrapper(2);
 }
-void KWDisplay4P_4()
+void KWDisplay4P4()
 {
     KWDisplay4LapWrapper(3);
 }
 
 
-void KWDisplay2P_1UD()
+void KWDisplay2P1UD()
 {
     KWDisplayUDLapWrapper(0);
 }
-void KWDisplay2P_2UD()
+void KWDisplay2P2UD()
 {
     KWDisplayUDLapWrapper(1);
 }

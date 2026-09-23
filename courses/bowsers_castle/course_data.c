@@ -3259,7 +3259,7 @@ Gfx d_course_bowsers_castle_dl_9228[] = {
     gsSPEndDisplayList(),
 };
 
-// 0x9290 Spawn locations for item boxes and trees
+// 0x9290 Spawn locations for Item boxes and trees
 struct ActorSpawnData d_course_bowsers_castle_tree_spawn[] = {
     { { -150, 0, -1350 }, { 7 } }, { { -150, 0, -1450 }, { 7 } }, { { -150, 0, -1550 }, { 7 } },
     { { -150, 0, -1650 }, { 7 } }, { { 400, 0, -1900 }, { 7 } },  { { 300, 0, -1900 }, { 7 } },

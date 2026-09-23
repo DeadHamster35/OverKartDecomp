@@ -1,16 +1,16 @@
 #include <actors.h>
 #include <PR/gbi.h>
-#include <main.h>
+#include <Main.h>
 #include <assets/common_data.h>
 
 /**
- * @brief Renders the green shell actor.
+ * @brief Renders the Green shell actor.
  *
- * @param camera
- * @param matrix
- * @param shell
+ * @Param Camera
+ * @Param Matrix
+ * @Param shell
  */
-void display_gshell(Camera* camera, Mat4 matrix, struct ShellActor* shell) {
-    gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_green_shell); // set texture
-    display_shell(camera, matrix, shell);
+void DisplayGshell(Camera* Camera, Mat4 Matrix, struct ShellActor* shell) {
+    gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_green_shell); // set Texture
+    DisplayShell(Camera, Matrix, shell);
 }

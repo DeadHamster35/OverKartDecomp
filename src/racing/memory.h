@@ -2,35 +2,35 @@
 #define MEMORY_H
 
 struct MainPoolBlock {
-    struct MainPoolBlock* prev;
-    struct MainPoolBlock* next;
+    struct MainPoolBlock* Prev;
+    struct MainPoolBlock* Next;
 };
 
 struct MainPoolState {
-    uintptr_t freeSpace;
-    struct MainPoolBlock* listHeadL;
-    struct MainPoolBlock* listHeadR;
-    struct MainPoolState* prev;
+    uintptr_t FreeSpace;
+    struct MainPoolBlock* ListHeadL;
+    struct MainPoolBlock* ListHeadR;
+    struct MainPoolState* Prev;
 };
 
 struct UnkStruct802AF7B4 {
-    s32 unk0;
+    s32 Unk0;
     s32 unk4;
 };
 
 struct UnkStruct_802B8CD4 {
-    s16 unk0;
-    s16 unk2;
+    s16 Unk0;
+    s16 Unk2;
     s32 unk4;
-    s32 unk8;
-    s32 fill;
+    s32 Unk8;
+    s32 Fill;
 };
 
 struct AllocOnlyPool {
-    s32 totalSpace;
-    s32 usedSpace;
-    u8* startPtr;
-    u8* freePtr;
+    s32 TotalSpace;
+    s32 UsedSpace;
+    u8* StartPtr;
+    u8* FreePtr;
 };
 
 #define MEMORY_POOL_LEFT 0
@@ -38,18 +38,18 @@ struct AllocOnlyPool {
 
 #define ALIGN4(val) (((val) + 0x3) & ~0x3)
 
-extern f32 g_ScreenStretch;
+extern f32 ScreenStretch;
 
 void* AllocateMemory(uintptr_t);
 uintptr_t SetSegment(s32, void*);
 void* GetSegment(s32);
 void* SegmentToVirtual(const void*);
 void StoreSegments(void);
-void initial_free_memory(uintptr_t, uintptr_t);
-void* load_press_data(u8*, u8*);
-void* allocate_free_memory(size_t);
-void* load_data(uintptr_t, uintptr_t);
-void set_segment_record(s32, s32);
+void InitialFreeMemory(uintptr_t, uintptr_t);
+void* LoadPressData(u8*, u8*);
+void* AllocateFreeMemory(size_t);
+void* LoadSegment(uintptr_t, uintptr_t);
+void SetSegmentRecord(s32, s32);
 
 void InitFreeZone(uintptr_t, uintptr_t);
 void* AllocFreeZone(uintptr_t, uintptr_t);
@@ -62,31 +62,31 @@ void* LoadData(u8*, u8*, u8*);
 void BootSegment(void);
 struct AllocOnlyPool* InitHeap(uintptr_t, uintptr_t);
 uintptr_t AllocDynamic(s32);
-uintptr_t decodeimage(s32, s32, s32);
+uintptr_t Decodeimage(s32, s32, s32);
 u8* DecodeMapImage1(u8*, uintptr_t, uintptr_t);
-uintptr_t decodemapimage2(u8*, uintptr_t, uintptr_t);
-void decodematerial(void);
-void decodelight(Gfx*, u8*, s8);
-void decodespdisplaylist(Gfx*, u8*, s8);
-void decodespenddisplaylist(Gfx*, u8*, s8);
-void decodesetcullback(Gfx*, u8*, s8);
-void decodeclearcullback(Gfx*, u8*, s8);
-void decodespculldisplaylist(Gfx*, u8*, s8);
-void decodecombine1(Gfx*, u8*, uintptr_t);
-void decodecombine2(Gfx*, u8*, uintptr_t);
-void decodecombine3(Gfx*, u8*, uintptr_t);
-void decodecombine4(Gfx*, u8*, uintptr_t);
-void decodecombine5(Gfx*, u8*, uintptr_t);
-void decoderender1(Gfx*, u8*, uintptr_t);
-void decoderender2(Gfx*, u8*, uintptr_t);
-void decoderender3(Gfx*, u8*, uintptr_t);
-void decoderender4(Gfx*, u8*, uintptr_t);
-void decoderender5(Gfx*, u8*, uintptr_t);
-void decodesetup(Gfx*, u8*, s8);
-void decodeload(Gfx*, u8*, s8);
-void decodesptextureon(Gfx*, u8*, s8);
-void decodesptextureoff(Gfx*, u8*, s8);
-u8* load_course(s32);
+uintptr_t Decodemapimage2(u8*, uintptr_t, uintptr_t);
+void Decodematerial(void);
+void Decodelight(Gfx*, u8*, s8);
+void Decodespdisplaylist(Gfx*, u8*, s8);
+void Decodespenddisplaylist(Gfx*, u8*, s8);
+void Decodesetcullback(Gfx*, u8*, s8);
+void Decodeclearcullback(Gfx*, u8*, s8);
+void Decodespculldisplaylist(Gfx*, u8*, s8);
+void Decodecombine1(Gfx*, u8*, uintptr_t);
+void Decodecombine2(Gfx*, u8*, uintptr_t);
+void Decodecombine3(Gfx*, u8*, uintptr_t);
+void Decodecombine4(Gfx*, u8*, uintptr_t);
+void Decodecombine5(Gfx*, u8*, uintptr_t);
+void Decoderender1(Gfx*, u8*, uintptr_t);
+void Decoderender2(Gfx*, u8*, uintptr_t);
+void Decoderender3(Gfx*, u8*, uintptr_t);
+void Decoderender4(Gfx*, u8*, uintptr_t);
+void Decoderender5(Gfx*, u8*, uintptr_t);
+void Decodesetup(Gfx*, u8*, s8);
+void Decodeload(Gfx*, u8*, s8);
+void Decodesptextureon(Gfx*, u8*, s8);
+void Decodesptextureoff(Gfx*, u8*, s8);
+u8* LoadCourse(s32);
 void CheckCourseMemoryHighWater(void);
 
 extern u8 _other_texturesSegmentRomStart[];

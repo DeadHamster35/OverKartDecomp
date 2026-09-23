@@ -8,7 +8,7 @@
 
 s32 _Printf(char* (*prout)(char*, const char*, size_t), char* dst, const char* fmt, va_list args);
 
-u32 crashScreenFont2[7 * 9 + 1] = {
+u32 CrashScreenFont2[7 * 9 + 1] = {
     0x70871c30, 0x8988a250, 0x88808290, 0x88831c90, 0x888402f8, 0x88882210, 0x71cf9c10, 0xf9cf9c70, 0x8228a288,
     0xf200a288, 0x0bc11c78, 0x0a222208, 0x8a222288, 0x71c21c70, 0x23c738f8, 0x5228a480, 0x8a282280, 0x8bc822f0,
     0xfa282280, 0x8a28a480, 0x8bc738f8, 0xf9c89c08, 0x82288808, 0x82088808, 0xf2ef8808, 0x82288888, 0x82288888,
@@ -20,7 +20,7 @@ u32 crashScreenFont2[7 * 9 + 1] = {
 
 extern u64 osClockRate;
 
-u8 gCrashScreenCharToGlyph[128] = {
+u8 CrashScreenCharToGlyph[128] = {
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, 41, -1, -1, -1, 43, -1, -1, 37, 38, -1, 42, -1, 39, 44, -1, 0,  1,  2,  3,
     4,  5,  6,  7,  8,  9,  36, -1, -1, -1, -1, 40, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
@@ -28,7 +28,7 @@ u8 gCrashScreenCharToGlyph[128] = {
     17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, -1, -1, -1, -1, -1,
 };
 
-char* gCauseDesc[18] = {
+char* CauseDesc[18] = {
     "Interrupt",
     "TLB modification",
     "TLB exception on load",
@@ -49,19 +49,19 @@ char* gCauseDesc[18] = {
     "Virtual coherency on data",
 };
 
-char* gFpcsrDesc[6] = {
+char* FpcsrDesc[6] = {
     "Unimplemented operation", "Invalid operation", "Division by zero", "Overflow", "Underflow", "Inexact operation",
 };
 
-void crash_screen_draw_glyph_enhancement(s32 x, s32 y, s32 glyph) {
+void CrashScreenDrawGlyphEnhancement(s32 x, s32 y, s32 glyph) {
     const u32* data;
     u16* ptr;
     u32 bit;
     u32 rowMask;
     s32 i, j;
 
-    data = &crashScreenFont2[glyph / 5 * 7];
-    ptr = pFramebuffer + SCREEN_WIDTH * y + x;
+    data = &CrashScreenFont2[glyph / 5 * 7];
+    ptr = PFramebuffer + SCREEN_WIDTH * y + x;
 
     for (i = 0; i < 7; i++) {
         bit = 0x80000000U >> ((glyph % 5) * 6);
@@ -75,11 +75,11 @@ void crash_screen_draw_glyph_enhancement(s32 x, s32 y, s32 glyph) {
     }
 }
 
-void crash_screen_draw_rect(s32 x, s32 y, s32 w, s32 h) {
+void CrashScreenDrawRect(s32 x, s32 y, s32 w, s32 h) {
     u16* ptr;
     s32 i, j;
 
-    ptr = pFramebuffer + SCREEN_WIDTH * y + x;
+    ptr = PFramebuffer + SCREEN_WIDTH * y + x;
     for (i = 0; i < h; i++) {
         for (j = 0; j < w; j++) {
             // 0xe738 = 0b1110011100111000
@@ -90,33 +90,33 @@ void crash_screen_draw_rect(s32 x, s32 y, s32 w, s32 h) {
     }
 }
 
-static char* write_to_buf(char* buffer, const char* data, size_t size) {
-    return (char*) memcpy(buffer, data, size) + size;
+static char* write_to_buf(char* Buffer, const char* data, size_t Size) {
+    return (char*) memcpy(Buffer, data, Size) + Size;
 }
 
-void crash_screen_print(s32 x, s32 y, const char* fmt, ...) {
+void CrashScreenPrint(s32 x, s32 y, const char* fmt, ...) {
     char* ptr;
     u32 glyph;
-    s32 size;
+    s32 Size;
     char buf[0x100];
 
     va_list args;
     va_start(args, fmt);
 
-    size = _Printf(write_to_buf, buf, fmt, args);
+    Size = _Printf(write_to_buf, buf, fmt, args);
 
-    if (size > 0) {
+    if (Size > 0) {
         ptr = buf;
 
-        while (size > 0) {
+        while (Size > 0) {
 
-            glyph = gCrashScreenCharToGlyph[*ptr & 0x7f];
+            glyph = CrashScreenCharToGlyph[*ptr & 0x7f];
 
             if (glyph != 0xff) {
-                crash_screen_draw_glyph_enhancement(x, y, glyph);
+                CrashScreenDrawGlyphEnhancement(x, y, glyph);
             }
 
-            size--;
+            Size--;
 
             ptr++;
             x += 6;
@@ -126,41 +126,41 @@ void crash_screen_print(s32 x, s32 y, const char* fmt, ...) {
     va_end(args);
 }
 
-void crash_screen_sleep(s32 ms) {
+void CrashScreenSleep(s32 ms) {
     u64 cycles = ms * 1000LL * osClockRate / 1000000ULL;
     osSetTime(0);
     while (osGetTime() < cycles) {}
 }
 
-void crash_screen_print_float_reg(s32 x, s32 y, s32 regNum, void* addr) {
+void CrashScreenPrintFloatReg(s32 x, s32 y, s32 regNum, void* Addr) {
     u32 bits;
     s32 exponent;
 
-    bits = *(u32*) addr;
+    bits = *(u32*) Addr;
     exponent = ((bits & 0x7f800000U) >> 0x17) - 0x7f;
     if ((exponent >= -0x7e && exponent <= 0x7f) || bits == 0) {
-        crash_screen_print(x, y, "F%02d:%.3e", regNum, *(f32*) addr);
+        CrashScreenPrint(x, y, "F%02d:%.3e", regNum, *(f32*) Addr);
     } else {
-        crash_screen_print(x, y, "F%02d:---------", regNum);
+        CrashScreenPrint(x, y, "F%02d:---------", regNum);
     }
 }
 
-void crash_screen_print_fpcsr(u32 fpcsr) {
+void CrashScreenPrintFpcsr(u32 fpcsr) {
     s32 i;
     u32 bit;
 
     bit = 1 << 17;
-    crash_screen_print(30, 155, "FPCSR:%08XH", fpcsr);
+    CrashScreenPrint(30, 155, "FPCSR:%08XH", fpcsr);
     for (i = 0; i < 6; i++) {
         if (fpcsr & bit) {
-            crash_screen_print(132, 155, "(%s)", gFpcsrDesc[i]);
+            CrashScreenPrint(132, 155, "(%s)", FpcsrDesc[i]);
             return;
         }
         bit >>= 1;
     }
 }
 
-void crash_screen_draw(OSThread* thread) {
+void CrashScreenDraw(OSThread* thread) {
     s16 cause;
     __OSThreadContext* tc = &thread->context;
 
@@ -174,38 +174,38 @@ void crash_screen_draw(OSThread* thread) {
 
     osWritebackDCacheAll();
 
-    crash_screen_draw_rect(25, 20, 270, 25);
-    crash_screen_print(30, 25, "THREAD:%d  (%s)", thread->id, gCauseDesc[cause]);
-    crash_screen_print(30, 35, "PC:%08XH   SR:%08XH   VA:%08XH", tc->pc, tc->sr, tc->badvaddr);
-    crash_screen_sleep(2000);
-    crash_screen_draw_rect(25, 45, 270, 185);
-    crash_screen_print(30, 50, "AT:%08XH   V0:%08XH   V1:%08XH", (u32) tc->at, (u32) tc->v0, (u32) tc->v1);
-    crash_screen_print(30, 60, "A0:%08XH   A1:%08XH   A2:%08XH", (u32) tc->a0, (u32) tc->a1, (u32) tc->a2);
-    crash_screen_print(30, 70, "A3:%08XH   T0:%08XH   T1:%08XH", (u32) tc->a3, (u32) tc->t0, (u32) tc->t1);
-    crash_screen_print(30, 80, "T2:%08XH   T3:%08XH   T4:%08XH", (u32) tc->t2, (u32) tc->t3, (u32) tc->t4);
-    crash_screen_print(30, 90, "T5:%08XH   T6:%08XH   T7:%08XH", (u32) tc->t5, (u32) tc->t6, (u32) tc->t7);
-    crash_screen_print(30, 100, "S0:%08XH   S1:%08XH   S2:%08XH", (u32) tc->s0, (u32) tc->s1, (u32) tc->s2);
-    crash_screen_print(30, 110, "S3:%08XH   S4:%08XH   S5:%08XH", (u32) tc->s3, (u32) tc->s4, (u32) tc->s5);
-    crash_screen_print(30, 120, "S6:%08XH   S7:%08XH   T8:%08XH", (u32) tc->s6, (u32) tc->s7, (u32) tc->t8);
-    crash_screen_print(30, 130, "T9:%08XH   GP:%08XH   SP:%08XH", (u32) tc->t9, (u32) tc->gp, (u32) tc->sp);
-    crash_screen_print(30, 140, "S8:%08XH   RA:%08XH", (u32) tc->s8, (u32) tc->ra);
-    crash_screen_print_fpcsr(tc->fpcsr);
-    crash_screen_print_float_reg(30, 170, 0, &tc->fp0.f.f_even);
-    crash_screen_print_float_reg(120, 170, 2, &tc->fp2.f.f_even);
-    crash_screen_print_float_reg(210, 170, 4, &tc->fp4.f.f_even);
-    crash_screen_print_float_reg(30, 180, 6, &tc->fp6.f.f_even);
-    crash_screen_print_float_reg(120, 180, 8, &tc->fp8.f.f_even);
-    crash_screen_print_float_reg(210, 180, 10, &tc->fp10.f.f_even);
-    crash_screen_print_float_reg(30, 190, 12, &tc->fp12.f.f_even);
-    crash_screen_print_float_reg(120, 190, 14, &tc->fp14.f.f_even);
-    crash_screen_print_float_reg(210, 190, 16, &tc->fp16.f.f_even);
-    crash_screen_print_float_reg(30, 200, 18, &tc->fp18.f.f_even);
-    crash_screen_print_float_reg(120, 200, 20, &tc->fp20.f.f_even);
-    crash_screen_print_float_reg(210, 200, 22, &tc->fp22.f.f_even);
-    crash_screen_print_float_reg(30, 210, 24, &tc->fp24.f.f_even);
-    crash_screen_print_float_reg(120, 210, 26, &tc->fp26.f.f_even);
-    crash_screen_print_float_reg(210, 210, 28, &tc->fp28.f.f_even);
-    crash_screen_print_float_reg(30, 220, 30, &tc->fp30.f.f_even);
+    CrashScreenDrawRect(25, 20, 270, 25);
+    CrashScreenPrint(30, 25, "THREAD:%d  (%s)", thread->id, CauseDesc[cause]);
+    CrashScreenPrint(30, 35, "PC:%08XH   SR:%08XH   VA:%08XH", tc->pc, tc->sr, tc->badvaddr);
+    CrashScreenSleep(2000);
+    CrashScreenDrawRect(25, 45, 270, 185);
+    CrashScreenPrint(30, 50, "AT:%08XH   V0:%08XH   V1:%08XH", (u32) tc->at, (u32) tc->v0, (u32) tc->v1);
+    CrashScreenPrint(30, 60, "A0:%08XH   A1:%08XH   A2:%08XH", (u32) tc->a0, (u32) tc->a1, (u32) tc->a2);
+    CrashScreenPrint(30, 70, "A3:%08XH   T0:%08XH   T1:%08XH", (u32) tc->a3, (u32) tc->t0, (u32) tc->t1);
+    CrashScreenPrint(30, 80, "T2:%08XH   T3:%08XH   T4:%08XH", (u32) tc->t2, (u32) tc->t3, (u32) tc->t4);
+    CrashScreenPrint(30, 90, "T5:%08XH   T6:%08XH   T7:%08XH", (u32) tc->t5, (u32) tc->t6, (u32) tc->t7);
+    CrashScreenPrint(30, 100, "S0:%08XH   S1:%08XH   S2:%08XH", (u32) tc->s0, (u32) tc->s1, (u32) tc->s2);
+    CrashScreenPrint(30, 110, "S3:%08XH   S4:%08XH   S5:%08XH", (u32) tc->s3, (u32) tc->s4, (u32) tc->s5);
+    CrashScreenPrint(30, 120, "S6:%08XH   S7:%08XH   T8:%08XH", (u32) tc->s6, (u32) tc->s7, (u32) tc->t8);
+    CrashScreenPrint(30, 130, "T9:%08XH   GP:%08XH   SP:%08XH", (u32) tc->t9, (u32) tc->gp, (u32) tc->sp);
+    CrashScreenPrint(30, 140, "S8:%08XH   RA:%08XH", (u32) tc->s8, (u32) tc->ra);
+    CrashScreenPrintFpcsr(tc->fpcsr);
+    CrashScreenPrintFloatReg(30, 170, 0, &tc->fp0.f.f_even);
+    CrashScreenPrintFloatReg(120, 170, 2, &tc->fp2.f.f_even);
+    CrashScreenPrintFloatReg(210, 170, 4, &tc->fp4.f.f_even);
+    CrashScreenPrintFloatReg(30, 180, 6, &tc->fp6.f.f_even);
+    CrashScreenPrintFloatReg(120, 180, 8, &tc->fp8.f.f_even);
+    CrashScreenPrintFloatReg(210, 180, 10, &tc->fp10.f.f_even);
+    CrashScreenPrintFloatReg(30, 190, 12, &tc->fp12.f.f_even);
+    CrashScreenPrintFloatReg(120, 190, 14, &tc->fp14.f.f_even);
+    CrashScreenPrintFloatReg(210, 190, 16, &tc->fp16.f.f_even);
+    CrashScreenPrintFloatReg(30, 200, 18, &tc->fp18.f.f_even);
+    CrashScreenPrintFloatReg(120, 200, 20, &tc->fp20.f.f_even);
+    CrashScreenPrintFloatReg(210, 200, 22, &tc->fp22.f.f_even);
+    CrashScreenPrintFloatReg(30, 210, 24, &tc->fp24.f.f_even);
+    CrashScreenPrintFloatReg(120, 210, 26, &tc->fp26.f.f_even);
+    CrashScreenPrintFloatReg(210, 210, 28, &tc->fp28.f.f_even);
+    CrashScreenPrintFloatReg(30, 220, 30, &tc->fp30.f.f_even);
     osViBlack(false);
-    osViSwapBuffer(pFramebuffer);
+    osViSwapBuffer(PFramebuffer);
 }

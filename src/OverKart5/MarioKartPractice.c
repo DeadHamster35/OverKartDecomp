@@ -5,7 +5,7 @@ extern OSViContext *__osViCurr;
 extern OSViContext *__osViNext;
 
 
-//practiceHack Variables//
+//PracticeHack Variables//
 /*
 char GlobalCharA;  //DpadInput
 short GlobalCharD;  //Cpad Input
@@ -15,8 +15,8 @@ char MenuOverflow;   A/B Buttons
 
 
 
-float SaveState_WaterLevel = 0;
-uint SaveState_KeystockCounter = 0;
+float SaveStateWaterLevel = 0;
+Uint SaveStateKeystockCounter = 0;
 char SplitTimerToggle, SplitTimerToggleSave = 0x00;
 float SaveTimer, SplitTimer = 0;
 
@@ -29,30 +29,30 @@ static char resetToggle = 0x00;
 
 */
 
-void splitFunc()
+void SplitFunc()
 {
 	if (SplitTimerToggle == 0x01)
 	{
-		if (gNearestPathPointByPlayerId[0] < SplitStartMarker)
+		if (NearestPathPointByPlayerId[0] < SplitStartMarker)
 		{
-			g_gameTimer = 0;
+			GameTimer = 0;
 		}
-		if (gNearestPathPointByPlayerId[0] >= SplitStartMarker)
+		if (NearestPathPointByPlayerId[0] >= SplitStartMarker)
 		{
 			SplitTimerToggle = 0x02;
 		}
 	}
 	if (SplitTimerToggle == 0x02)
 	{
-		if (gNearestPathPointByPlayerId[0] >= SplitEndMarker)
+		if (NearestPathPointByPlayerId[0] >= SplitEndMarker)
 		{
-			SplitTimer = g_gameTimer;
+			SplitTimer = GameTimer;
 			SplitTimerToggle = 0x03;
 		}
 	}
 	if (SplitTimerToggle == 0x03)
 	{
-		g_gameTimer = SplitTimer;
+		GameTimer = SplitTimer;
 	}
 
 }
@@ -60,27 +60,27 @@ void splitFunc()
 
 
 
-void modCheck()
+void ModCheck()
 {
 	if (SaveGame.RenderSettings.AudioMode != AudioLanguage)
 	{
 		AudioLanguage = SaveGame.RenderSettings.AudioMode;
 		if (AudioLanguage == 0)
 		{
-			g_MUSRawAudioTable.pointer[0].address = *(long*)&ok_USAudio;
-			g_MUSRawAudioTable.pointer[0].length = 0x24C3F0;
+			g_MUSRawAudioTable.Pointer[0].Address = *(long*)&ok_USAudio;
+			g_MUSRawAudioTable.Pointer[0].Length = 0x24C3F0;
 
-			g_MUSInstrumentTable.pointer[0].address = *(long*)(&ok_USAudio + 1);
-			g_MUSInstrumentTable.pointer[0].length = 0x44D0;
+			g_MUSInstrumentTable.Pointer[0].Address = *(long*)(&ok_USAudio + 1);
+			g_MUSInstrumentTable.Pointer[0].Length = 0x44D0;
 
 		}
 		else
 		{
-			g_MUSRawAudioTable.pointer[0].address = (long)&JP_Audio;
-			g_MUSRawAudioTable.pointer[0].length = 0x24C580;
+			g_MUSRawAudioTable.Pointer[0].Address = (long)&JP_Audio;
+			g_MUSRawAudioTable.Pointer[0].Length = 0x24C580;
 
-			g_MUSInstrumentTable.pointer[0].address = (long)&JP_Bank;
-			g_MUSInstrumentTable.pointer[0].length = 0x4540;
+			g_MUSInstrumentTable.Pointer[0].Address = (long)&JP_Bank;
+			g_MUSInstrumentTable.Pointer[0].Length = 0x4540;
 			
 		}		
 		InitMKCode();
@@ -90,35 +90,35 @@ void modCheck()
 	ScaleYMode = SaveGame.LevelSettings.ScaleYMode;
 	ScaleZMode = SaveGame.LevelSettings.ScaleZMode;
 
-	g_ScreenFlip = SaveGame.LevelSettings.MirrorX;
+	ScreenFlip = SaveGame.LevelSettings.MirrorX;
 	YFLIP = SaveGame.LevelSettings.MirrorY;
 	ZFLIP = SaveGame.LevelSettings.MirrorZ;
 
-	if ((SaveGame.GameSettings.AIMode > 0x00) && (g_gameMode != GAMEMODE_TT))
+	if ((SaveGame.GameSettings.AIMode > 0x00) && (GameMode != GAMEMODE_TT))
 	{
-		aiSetup();
+		AISetup();
 	}
 
 	if (SaveGame.RenderSettings.ScreenMode > 0x00)
 	{
-		if ((g_ScreenSplitA != 0) && (SaveGame.RenderSettings.SplitMode == 0x00))
+		if ((ScreenSplitA != 0) && (SaveGame.RenderSettings.SplitMode == 0x00))
 		{
-			g_aspectRatio = 3.5;
+			AspectRatio = 3.5;
 		}
 		else
 		{
-			g_aspectRatio = 1.77778;
+			AspectRatio = 1.77778;
 		}
 	}
 	else
 	{
-		if ((g_ScreenSplitA != 0) && (g_playerCount == 2))
+		if ((ScreenSplitA != 0) && (PlayerCount == 2))
 		{
-			g_aspectRatio = 2.6666667;
+			AspectRatio = 2.6666667;
 		}
 		else
 		{
-			g_aspectRatio = 1.333334;
+			AspectRatio = 1.333334;
 		}
 	}
 	
@@ -135,20 +135,20 @@ void modCheck()
 	//SaveGame.RenderSettings.SplitMode 3D racers;
 	if (SaveGame.RenderSettings.SplitMode > 0x00)
 	{
-		if (g_playerCount == 0x02)
+		if (PlayerCount == 0x02)
 		{
-			g_ScreenSplitA = 2;
-			g_ScreenSplitB = 2;
+			ScreenSplitA = 2;
+			ScreenSplitB = 2;
 		}
 	}
 
 	if (SaveGame.GameSettings.ItemMode == IM_NONE)
 	{
-		g_ItemSetFlag = 0;
+		ItemSetFlag = 0;
 	}
 	else
 	{
-		g_ItemSetFlag = 1;
+		ItemSetFlag = 1;
 	}
 
 
@@ -157,123 +157,123 @@ void modCheck()
 
 }
 
-void saveState()
+void SaveState()
 {
 	//simpleObjects
-	dataLength = 0x2BC0;
-	*targetAddress = (long)(&ok_SaveState);
-	*sourceAddress = (long)(&g_SimpleObjectArray);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	DataLength = 0x2BC0;
+	*TargetAddress = (long)(&ok_SaveState);
+	*SourceAddress = (long)(&SimpleObjectArray);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 	//dynamicObjects
-	*targetAddress += dataLength;
-	dataLength = 0x1E140;
-	*sourceAddress = (long)(&g_DynamicObjects);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*TargetAddress += DataLength;
+	DataLength = 0x1E140;
+	*SourceAddress = (long)(&DynamicObjects);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 	//playerData
-	*targetAddress += dataLength;
-	dataLength = 0x6EC0;
-	*sourceAddress = (long)(&g_PlayerStructTable);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*TargetAddress += DataLength;
+	DataLength = 0x6EC0;
+	*SourceAddress = (long)(&g_PlayerStructTable);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 
 	//courseOBJ
-	*targetAddress += dataLength;
-	dataLength = 0x840;
-	*sourceAddress = (long)(&g_CourseObstacle);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*TargetAddress += DataLength;
+	DataLength = 0x840;
+	*SourceAddress = (long)(&CourseObstacle);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
-	//camera data
-	*targetAddress += dataLength;
-	dataLength = 0x2E0;
-	*sourceAddress = (long)(&g_CameraTable);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	//Camera data
+	*TargetAddress += DataLength;
+	DataLength = 0x2E0;
+	*SourceAddress = (long)(&g_CameraTable);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
-	//lap timers
-	*targetAddress += dataLength;
-	dataLength = 0x210;
-	*sourceAddress = (long)(&g_hudStruct);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	//lap Timers
+	*TargetAddress += DataLength;
+	DataLength = 0x210;
+	*SourceAddress = (long)(&g_hudStruct);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 	//Player Timers
-	*targetAddress += dataLength;
-	dataLength = 0x20;
-	*sourceAddress = (long)(&g_GameLapTable);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*TargetAddress += DataLength;
+	DataLength = 0x20;
+	*SourceAddress = (long)(&g_GameLapTable);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 	//Trials Time
-	*targetAddress += dataLength;
-	dataLength = 0x70;
-	*sourceAddress = (long)(&g_TrialTime);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*TargetAddress += DataLength;
+	DataLength = 0x70;
+	*SourceAddress = (long)(&g_TrialTime);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
-	SaveTimer = g_gameTimer;
+	SaveTimer = GameTimer;
 	SplitTimerToggleSave = SplitTimerToggle;
-	SaveState_WaterLevel = g_waterHeight;
-	SaveState_KeystockCounter = KeystockCounter;
+	SaveStateWaterLevel = WaterHeight;
+	SaveStateKeystockCounter = KeystockCounter;
 }
 
-void loadState()
+void LoadState()
 {
 	//simpleObjects
-	dataLength = 0x2BC0;
-	*sourceAddress = (long)(&ok_SaveState);
-	*targetAddress = (long)(&g_SimpleObjectArray);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	DataLength = 0x2BC0;
+	*SourceAddress = (long)(&ok_SaveState);
+	*TargetAddress = (long)(&SimpleObjectArray);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 	//dynamicObjects
-	*sourceAddress += dataLength;
-	dataLength = 0x1E140;
-	*targetAddress = (long)(&g_DynamicObjects);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*SourceAddress += DataLength;
+	DataLength = 0x1E140;
+	*TargetAddress = (long)(&DynamicObjects);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 	//playerData
-	*sourceAddress += dataLength;
-	dataLength = 0x6EC0;
-	*targetAddress = (long)(&g_PlayerStructTable);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*SourceAddress += DataLength;
+	DataLength = 0x6EC0;
+	*TargetAddress = (long)(&g_PlayerStructTable);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 
 	//courseOBJ
-	*sourceAddress += dataLength;
-	dataLength = 0x840;
-	*targetAddress = (long)(&g_CourseObstacle);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*SourceAddress += DataLength;
+	DataLength = 0x840;
+	*TargetAddress = (long)(&CourseObstacle);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
-	//camera data
-	*sourceAddress += dataLength;
-	dataLength = 0x2E0;
-	*targetAddress = (long)(&g_CameraTable);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	//Camera data
+	*SourceAddress += DataLength;
+	DataLength = 0x2E0;
+	*TargetAddress = (long)(&g_CameraTable);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
-	//lap timers
-	*sourceAddress += dataLength;
-	dataLength = 0x210;
-	*targetAddress = (long)(&g_hudStruct);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	//lap Timers
+	*SourceAddress += DataLength;
+	DataLength = 0x210;
+	*TargetAddress = (long)(&g_hudStruct);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 	//Player Timers
-	*sourceAddress += dataLength;
-	dataLength = 0x20;
-	*targetAddress = (long)(&g_GameLapTable);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*SourceAddress += DataLength;
+	DataLength = 0x20;
+	*TargetAddress = (long)(&g_GameLapTable);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
 	//Trials Time
-	*sourceAddress += dataLength;
-	dataLength = 0x70;
-	*targetAddress = (long)(&g_TrialTime);
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	*SourceAddress += DataLength;
+	DataLength = 0x70;
+	*TargetAddress = (long)(&g_TrialTime);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 
-	g_gameTimer = SaveTimer;
+	GameTimer = SaveTimer;
 	SplitTimerToggle = SplitTimerToggleSave;
-	g_waterHeight = SaveState_WaterLevel;
-	KeystockCounter = SaveState_KeystockCounter;
+	WaterHeight = SaveStateWaterLevel;
+	KeystockCounter = SaveStateKeystockCounter;
 }
 
 
 
-void drawInputDisplay()
+void DrawInputDisplay()
 {
 	
 	GlobalUShortA = 0x8000;
@@ -284,13 +284,13 @@ void drawInputDisplay()
 
 	{ int i; for (i=0; i<16; i++)
 	{
-		if(names[i][0])
+		if(Names[i][0])
 		{
-			InputColor[0] = colors[i][0];
-			InputColor[1] = colors[i][1];
-			InputColor[2] = colors[i][2];
+			InputColor[0] = InputColors[i][0];
+			InputColor[1] = InputColors[i][1];
+			InputColor[2] = InputColors[i][2];
 
-			if (gControllers[0].ButtonHeld & GlobalUShortA)
+			if (Controllers[0].ButtonHeld & GlobalUShortA)
 			{
 				InputColor[3] = 255;
 			}
@@ -298,8 +298,8 @@ void drawInputDisplay()
 			{
 				InputColor[3] = 64;
 			}
-			AnalogInput[0] = ControllerInputX + (coords[i][0] * 6);
-			AnalogInput[1] = ControllerInputY + (coords[i][1] * 5);
+			AnalogInput[0] = ControllerInputX + (Coords[i][0] * 6);
+			AnalogInput[1] = ControllerInputY + (Coords[i][1] * 5);
 
 			GraphPtr = FillRect1ColorF(GraphPtr,
 				AnalogInput[0] + 1 , AnalogInput[1] + 1, AnalogInput[0]+6, AnalogInput[1]+5, //x1, y1, x2, y2
@@ -310,13 +310,13 @@ void drawInputDisplay()
 	} }
 	{ int i; for (i=0; i<4; i++)
 	{
-		if(stickNames[i][0])
+		if(StickNames[i][0])
 		{
-			InputColor[0] = stickColor[i][0];
-			InputColor[1] = stickColor[i][1];
-			InputColor[2] = stickColor[i][2];
+			InputColor[0] = StickColor[i][0];
+			InputColor[1] = StickColor[i][1];
+			InputColor[2] = StickColor[i][2];
 
-			if (gControllers[0].ButtonHeld & GlobalUShortA)
+			if (Controllers[0].ButtonHeld & GlobalUShortA)
 			{
 				InputColor[3] = 255;
 			}
@@ -324,8 +324,8 @@ void drawInputDisplay()
 			{
 				InputColor[3] = 32;
 			}
-			AnalogInput[0] = ControllerInputX + (stickCoord[i][0] * 6);
-			AnalogInput[1] = ControllerInputY + (stickCoord[i][1] * 5);
+			AnalogInput[0] = ControllerInputX + (StickCoord[i][0] * 6);
+			AnalogInput[1] = ControllerInputY + (StickCoord[i][1] * 5);
 
 			GraphPtr = FillRect1ColorF(GraphPtr,
 				AnalogInput[0] + 1 , AnalogInput[1] + 1, AnalogInput[0]+6, AnalogInput[1]+5, //x1, y1, x2, y2
@@ -336,13 +336,13 @@ void drawInputDisplay()
 	} }
 
 
-	InputColor[0] = stickColor[4][0];
-	InputColor[1] = stickColor[4][1];
-	InputColor[2] = stickColor[4][2];
+	InputColor[0] = StickColor[4][0];
+	InputColor[1] = StickColor[4][1];
+	InputColor[2] = StickColor[4][2];
 	InputColor[3] = 255;
 	
-	AnalogInput[0] = ControllerInputX + ((stickCoord[4][0] * 6) + (gControllers[0].AnalogX / 127.0f * 6));
-	AnalogInput[1] = ControllerInputY + ((stickCoord[4][1] * 5) + (gControllers[0].AnalogY / -127.0f * 5));
+	AnalogInput[0] = ControllerInputX + ((StickCoord[4][0] * 6) + (Controllers[0].AnalogX / 127.0f * 6));
+	AnalogInput[1] = ControllerInputY + ((StickCoord[4][1] * 5) + (Controllers[0].AnalogY / -127.0f * 5));
 
 	GraphPtr = FillRect1ColorF(GraphPtr,
 		AnalogInput[0] + 1 , AnalogInput[1] + 1, AnalogInput[0]+6, AnalogInput[1]+5, //x1, y1, x2, y2
@@ -352,54 +352,54 @@ void drawInputDisplay()
 
 
 
-void rotateCamera(float inputAngle)
+void RotateCamera(float inputAngle)
 {
 	
 	FlyCamDirection -= (inputAngle / 360.0) * 65535.0;
 	FlyCamRadian = (((float)FlyCamDirection / 65535) * 360) * 0.0174533;
 
 	/*
-	FlyCamLook[0][0] = GlobalCamera[0]->lookat_pos[0] - GlobalCamera[0]->camera_pos[0];
-	FlyCamLook[1][0] = GlobalCamera[0]->lookat_pos[2] - GlobalCamera[0]->camera_pos[2];
+	FlyCamLook[0][0] = GlobalCamera[0]->LookatPos[0] - GlobalCamera[0]->CameraPos[0];
+	FlyCamLook[1][0] = GlobalCamera[0]->LookatPos[2] - GlobalCamera[0]->CameraPos[2];
 
 	FlyCamLook[0][1] = FlyCamLook[0][0] * cosF(FlyCamRadian) - FlyCamLook[1][0] * sinF(FlyCamRadian);
 	FlyCamLook[1][1] = FlyCamLook[0][0] * sinF(FlyCamRadian) + FlyCamLook[1][0] * cosF(FlyCamRadian);
 
-	GlobalCamera[0]->lookat_pos[0] = GlobalCamera[0]->camera_pos[0] + FlyCamLook[0][1];
-	GlobalCamera[0]->lookat_pos[2] = GlobalCamera[0]->camera_pos[2] + FlyCamLook[1][1] + 0.01;
+	GlobalCamera[0]->LookatPos[0] = GlobalCamera[0]->CameraPos[0] + FlyCamLook[0][1];
+	GlobalCamera[0]->LookatPos[2] = GlobalCamera[0]->CameraPos[2] + FlyCamLook[1][1] + 0.01;
 	*/
-	GlobalCamera[0]->lookat_pos[0] = (float)(GlobalCamera[0]->camera_pos[0] + 80 * sinF(FlyCamRadian));
-	GlobalCamera[0]->lookat_pos[2] = (float)(GlobalCamera[0]->camera_pos[2] + 80 * cosF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + 80 * sinF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + 80 * cosF(FlyCamRadian));
 
 	
 }
 
 
-void moveCamera(int inputDistance)
+void MoveCamera(int inputDistance)
 {
 	FlyCamRadian = (((float)FlyCamDirection / 65535) * 360) * 0.0174533;
 
-	GlobalCamera[0]->camera_pos[0] = (float)(GlobalCamera[0]->camera_pos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->camera_pos[2] = (float)(GlobalCamera[0]->camera_pos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->CameraPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + inputDistance * sinF(FlyCamRadian));
+	GlobalCamera[0]->CameraPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + inputDistance * cosF(FlyCamRadian));
 
-	GlobalCamera[0]->lookat_pos[0] = (float)(GlobalCamera[0]->lookat_pos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->lookat_pos[2] = (float)(GlobalCamera[0]->lookat_pos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosF(FlyCamRadian));
 }
 
 
 
 
-void strafeCamera(int inputDistance)
+void StrafeCamera(int inputDistance)
 {
 	FlyCamRadian = ((((float)FlyCamDirection / 65535) * 360) + 90) * 0.0174533;
 
-	GlobalCamera[0]->camera_pos[0] = (float)(GlobalCamera[0]->camera_pos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->camera_pos[2] = (float)(GlobalCamera[0]->camera_pos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->CameraPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + inputDistance * sinF(FlyCamRadian));
+	GlobalCamera[0]->CameraPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + inputDistance * cosF(FlyCamRadian));
 
-	GlobalCamera[0]->lookat_pos[0] = (float)(GlobalCamera[0]->lookat_pos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->lookat_pos[2] = (float)(GlobalCamera[0]->lookat_pos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosF(FlyCamRadian));
 }
-void moveCameraTilt(int inputDistance, int tilt)
+void MoveCameraTilt(int inputDistance, int tilt)
 {
 	FlyCamRadian = (((float)FlyCamDirection / 65535) * 360) * 0.0174533 + tilt;
 	if (tilt > 0)
@@ -415,73 +415,73 @@ void moveCameraTilt(int inputDistance, int tilt)
 
 
 	FlyCamRadian = (int)FlyCamRadian * -0.0174533;
-	GlobalCamera[0]->lookat_pos[0] = (float)(GlobalCamera[0]->lookat_pos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->lookat_pos[2] = (float)(GlobalCamera[0]->lookat_pos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosF(FlyCamRadian));
 }
 
 //SaveGame.ModSettings.PracticeMode is > 0 then
-void practiceHack()
+void PracticeHack()
 {
 	
-	GlobalCharA = (char)((gControllers[0].ButtonHeld >> 8) & 0x0F);  // D-pad
-	GlobalCharB = (char)((gControllers[0].ButtonHeld & 0xF0) >> 4);  // L/R
-	GlobalCharC = (char)((gControllers[0].ButtonHeld >> 12) & 0x0F);  // A/B
-	GlobalCharD = (char)(gControllers[0].ButtonHeld & 0x0F);  // C-pad
-	if (SaveGame.GameSettings.GameMode == 3)
+	GlobalCharA = (char)((Controllers[0].ButtonHeld >> 8) & 0x0F);  // D-pad
+	GlobalCharB = (char)((Controllers[0].ButtonHeld & 0xF0) >> 4);  // L/R
+	GlobalCharC = (char)((Controllers[0].ButtonHeld >> 12) & 0x0F);  // A/B
+	GlobalCharD = (char)(Controllers[0].ButtonHeld & 0x0F);  // C-pad
+	if (SaveGame.GameSettings.GameType == 3)
 	{
 		
 		if (SplitTimerToggle > 0x00)
 		{
-			splitFunc();
+			SplitFunc();
 
 		}
 		if (GlobalCharD == 0x02)
 		{
-			GlobalPlayer[0].position[1] = GlobalPlayer[0].position[1] + 3;
-			GlobalPlayer[0].velocity[1] = 0;
+			GlobalPlayer[0].Position[1] = GlobalPlayer[0].Position[1] + 3;
+			GlobalPlayer[0].Velocity[1] = 0;
 			GraphPtr = FillRect1ColorF(GraphPtr, 23, 43, 120, 53, 0, 0,0, 175);
-			loadFont();
-			printString(5,25, "FLYING");
+			LoadFont();
+			PrintString(5,25, "FLYING");
 		}
 		switch(GlobalController[0]->ButtonPressed)
 		{
 			case(BTN_DLEFT):
 			{
-				SaveStateCourseID = ((HotSwapID * 0x10) + g_courseID + 1);
-				saveState();
+				SaveStateCourseID = ((HotSwapID * 0x10) + CourseID + 1);
+				SaveState();
 				break;
 			}
 			case(BTN_DRIGHT):
 			{
-				if (SaveStateCourseID == ((HotSwapID * 0x10) + g_courseID + 1))
+				if (SaveStateCourseID == ((HotSwapID * 0x10) + CourseID + 1))
 				{
-					loadState();
+					LoadState();
 				}
 				break;
 			}
 			case(BTN_DUP):
 			{
 				g_gameLapPlayer1 = 0x00;
-				GlobalHud[0]->goalsw = 0x00;
-				GlobalHud[0]->lapcnt = 0x00;				
-				GlobalHud[0]->item = 0;
-				GlobalHud[0]->sp_item = 0;
-				g_gameTimer = 90;
-				GlobalPlayer[0].item = 0;
-				ok_ForceRoulette = 1;
+				GlobalHud[0]->Goalsw = 0x00;
+				GlobalHud[0]->Lapcnt = 0x00;				
+				GlobalHud[0]->Item = 0;
+				GlobalHud[0]->SPItem = 0;
+				GameTimer = 90;
+				GlobalPlayer[0].Item = 0;
+				OKForceRoulette = 1;
 				RouletteStart(0,14);
-				ok_ForceRoulette = 0;
+				OKForceRoulette = 0;
 				break;
 			}
 			case(BTN_DDOWN):
 			{
 				{
 				short* PositionArray;
-				PositionArray = (short*)GetRealAddress(PathTable[g_courseID][0]);
-				GlobalPlayer[0].position[0] = (float)PositionArray[0];
-				GlobalPlayer[0].position[1] = (float)PositionArray[1];
-				GlobalPlayer[0].position[2] = (float)PositionArray[2];
-				GlobalPlayer[0].direction[1] = 0x8000;
+				PositionArray = (short*)GetRealAddress(PathTable[CourseID][0]);
+				GlobalPlayer[0].Position[0] = (float)PositionArray[0];
+				GlobalPlayer[0].Position[1] = (float)PositionArray[1];
+				GlobalPlayer[0].Position[2] = (float)PositionArray[2];
+				GlobalPlayer[0].Direction[1] = 0x8000;
 				}
 				break;
 			}
@@ -495,9 +495,9 @@ void practiceHack()
 
 	if (MapModeCheck == 1)
 	{
-		printMap(MiniMapMode);
+		PrintMap(MiniMapMode);
 
-		if (g_startingIndicator >= 3)
+		if (StartingIndicator >= 3)
 		{
 			g_GameLapTable[0] = 1;
 			{ int ThisPlayer; for (ThisPlayer = 1; ThisPlayer < 8; ThisPlayer++)
@@ -530,14 +530,14 @@ void practiceHack()
 			{
 				case 0:
 				{
-					//map
+					//Map
 
 					switch(GlobalController[0]->ButtonHeld)
 					{
 
 						case BTN_DRIGHT :
 						{
-							g_mapX[0]++;
+							MapX[0]++;
 							break;
 						}
 
@@ -545,19 +545,19 @@ void practiceHack()
 						case BTN_DLEFT :
 						{
 
-							g_mapX[0]--;
+							MapX[0]--;
 							break;
 						}
 
 						case BTN_DUP :
 						{
-							g_mapY[0]--;
+							MapY[0]--;
 							break;
 						}
 
 						case BTN_DDOWN :
 						{
-							g_mapY[0]++;
+							MapY[0]++;
 							break;
 						}
 					}
@@ -569,13 +569,13 @@ void practiceHack()
 
 				case 1:
 				{
-					//start
+					//Start
 					switch(GlobalController[0]->ButtonHeld)
 					{
 
 						case BTN_DRIGHT :
 						{
-							g_startX++;
+							StartX++;
 							break;
 						}
 
@@ -583,19 +583,19 @@ void practiceHack()
 						case BTN_DLEFT :
 						{
 
-							g_startX--;
+							StartX--;
 							break;
 						}
 
 						case BTN_DUP :
 						{
-							g_startY--;
+							StartY--;
 							break;
 						}
 
 						case BTN_DDOWN :
 						{
-							g_startY++;
+							StartY++;
 							break;
 						}
 					}
@@ -609,13 +609,13 @@ void practiceHack()
 
 				case 2:
 				{
-					//scale
+					//Scale
 					switch(GlobalController[0]->ButtonHeld)
 					{
 
 						case BTN_DRIGHT :
 						{
-							g_mapScale = g_mapScale + .001;
+							MapScale = MapScale + .001;
 							break;
 						}
 
@@ -623,19 +623,19 @@ void practiceHack()
 						case BTN_DLEFT :
 						{
 
-							g_mapScale = g_mapScale - .001;
+							MapScale = MapScale - .001;
 							break;
 						}
 
 						case BTN_DUP :
 						{
-							g_mapScale = g_mapScale + .0001;
+							MapScale = MapScale + .0001;
 							break;
 						}
 
 						case BTN_DDOWN :
 						{
-							g_mapScale = g_mapScale - .0001;
+							MapScale = MapScale - .0001;
 							break;
 						}
 					}
@@ -692,44 +692,44 @@ void RunFlyCam()
 {
 	if ((GlobalController[0]->ButtonPressed & BTN_CLEFT) == BTN_CLEFT)
 	{
-		FlyCamDirection = GlobalCamera[0]->camera_direction[1];
-		FlyCamSectionCheck = GlobalScreen[0]->camera_point;
-		FlyCamViewCheck = GlobalScreen[0]->flag;
+		FlyCamDirection = GlobalCamera[0]->CameraDirection[1];
+		FlyCamSectionCheck = GlobalScreen[0]->CameraPoint;
+		FlyCamViewCheck = GlobalScreen[0]->Flag;
 		if (FlyCamToggle == 0)
 		{
 			s16 *hudCoords;
 			s16 *camBuf;
-			s16 *backup;
+			s16 *Backup;
 			int i;
 
 			FlyCamToggle = 1;
-			GlobalFloatC = GlobalPlayer[0].offsetsize;
-			GlobalPlayer[0].offsetsize = 0.001;
+			GlobalFloatC = GlobalPlayer[0].Offsetsize;
+			GlobalPlayer[0].Offsetsize = 0.001;
 
 			hudCoords = &GlobalHud[0]->my;
 			camBuf = (s16 *) &ok_FreeCam;
-			backup = (s16 *) &ok_FreeCamBackup;
+			Backup = (s16 *) &ok_FreeCamBackup;
 			for (i = 0; i < 16; i++) {
-				backup[i] = hudCoords[i];
+				Backup[i] = hudCoords[i];
 				hudCoords[i] = camBuf[i];
 			}
-			FlyCamBackupPosition[0] = GlobalPlayer[0].position[0];
-			FlyCamBackupPosition[1] = GlobalPlayer[0].position[1];
-			FlyCamBackupPosition[2] = GlobalPlayer[0].position[2];
+			FlyCamBackupPosition[0] = GlobalPlayer[0].Position[0];
+			FlyCamBackupPosition[1] = GlobalPlayer[0].Position[1];
+			FlyCamBackupPosition[2] = GlobalPlayer[0].Position[2];
 			
 		}
 		else
 		{
 			s16 *hudCoords;
-			s16 *backup;
+			s16 *Backup;
 			int i;
 
 			FlyCamToggle = 0;
-			GlobalPlayer[0].offsetsize = GlobalFloatC;
+			GlobalPlayer[0].Offsetsize = GlobalFloatC;
 			hudCoords = &GlobalHud[0]->my;
-			backup = (s16 *) &ok_FreeCamBackup;
+			Backup = (s16 *) &ok_FreeCamBackup;
 			for (i = 0; i < 16; i++) {
-				hudCoords[i] = backup[i];
+				hudCoords[i] = Backup[i];
 			}
 		}
 		
@@ -737,19 +737,19 @@ void RunFlyCam()
 
 	if (FlyCamToggle > 0)
 	{
-		GlobalScreen[0]->posx = 160;
-		GlobalScreen[0]->posy = 120;
-		GlobalScreen[0]->width = 320;
-		GlobalScreen[0]->height = 240;
-		GlobalScreen[0]->screen_aspect = 320.0f/ 240.0f;
+		GlobalScreen[0]->Posx = 160;
+		GlobalScreen[0]->Posy = 120;
+		GlobalScreen[0]->Width = 320;
+		GlobalScreen[0]->Height = 240;
+		GlobalScreen[0]->ScreenAspect = 320.0f/ 240.0f;
 
 		if ((GlobalController[0]->ButtonHeld & BTN_L) == BTN_L)
 		{
-			loadFont();
-			printStringNumber(5,25, "SECTION-", FlyCamSectionCheck);
-			printStringNumber(5,35, "VIEW-", FlyCamViewCheck);
-			printStringNumber(5,45, "SPEED-", FlyCamSpeed);
-			printFloat(0,75,(float)(FlyCamSpeed * (float)((float)GlobalController[0]->AnalogY / 100)));
+			LoadFont();
+			PrintStringNumber(5,25, "SECTION-", FlyCamSectionCheck);
+			PrintStringNumber(5,35, "VIEW-", FlyCamViewCheck);
+			PrintStringNumber(5,45, "SPEED-", FlyCamSpeed);
+			PrintFloat(0,75,(float)(FlyCamSpeed * (float)((float)GlobalController[0]->AnalogY / 100)));
 			
 			switch(GlobalController[0]->ButtonPressed)
 			{
@@ -787,9 +787,9 @@ void RunFlyCam()
 		}	
 		else
 		{	
-			GlobalPlayer[0].position[0] = FlyCamBackupPosition[0];
-			GlobalPlayer[0].position[1] = FlyCamBackupPosition[1];
-			GlobalPlayer[0].position[2] = FlyCamBackupPosition[2];
+			GlobalPlayer[0].Position[0] = FlyCamBackupPosition[0];
+			GlobalPlayer[0].Position[1] = FlyCamBackupPosition[1];
+			GlobalPlayer[0].Position[2] = FlyCamBackupPosition[2];
 			switch(GlobalController[0]->ButtonPressed)
 			{
 				case BTN_DLEFT:
@@ -811,55 +811,55 @@ void RunFlyCam()
 			{
 				case BTN_DUP:
 				{
-					GlobalCamera[0]->lookat_pos[1] += (FlyCamSpeed);
+					GlobalCamera[0]->LookatPos[1] += (FlyCamSpeed);
 					break;
 				}
 				case BTN_DDOWN:
 				{
-					GlobalCamera[0]->lookat_pos[1] -= (FlyCamSpeed);
+					GlobalCamera[0]->LookatPos[1] -= (FlyCamSpeed);
 					break;
 				}
 			}
 			if ((GlobalController[0]->AnalogHeld & BTN_DRIGHT) == BTN_DRIGHT)
 			{
-				rotateCamera((float)(FlyCamSpeed * 0.15 * (float)((float)GlobalController[0]->AnalogX / 100)));
+				RotateCamera((float)(FlyCamSpeed * 0.15 * (float)((float)GlobalController[0]->AnalogX / 100)));
 			}
 			else if ((GlobalController[0]->AnalogHeld & BTN_DLEFT) == BTN_DLEFT)
 			{
-				rotateCamera((float)(FlyCamSpeed * 0.15 * (float)((float)GlobalController[0]->AnalogX / 100)));
+				RotateCamera((float)(FlyCamSpeed * 0.15 * (float)((float)GlobalController[0]->AnalogX / 100)));
 			}
 			
 			if (FlyCamPilot == 1)
 			{
-				moveCamera(FlyCamSpeed);
+				MoveCamera(FlyCamSpeed);
 			}
 			else
 			{
 				if ((GlobalController[0]->ButtonHeld & BTN_A) == BTN_A)
 				{
-					moveCamera(2 * FlyCamSpeed);
+					MoveCamera(2 * FlyCamSpeed);
 				}
 				if ((GlobalController[0]->ButtonHeld & BTN_B) == BTN_B)
 				{
-					moveCamera(-2 * FlyCamSpeed);
+					MoveCamera(-2 * FlyCamSpeed);
 				}
                 if ((GlobalController[0]->ButtonHeld & BTN_R) == BTN_R)
 				{
-					strafeCamera(2 * FlyCamSpeed);
+					StrafeCamera(2 * FlyCamSpeed);
 				}
 			}				
 			if (((GlobalController[0]->AnalogHeld & BTN_DDOWN) == BTN_DDOWN) || ((GlobalController[0]->AnalogHeld & BTN_DUP) == BTN_DUP))
 			{					
-				GlobalCamera[0]->lookat_pos[1] += (float)(FlyCamSpeed * 0.4 * (float)((float)GlobalController[0]->AnalogY / 100));
-				GlobalCamera[0]->camera_pos[1] += (float)(FlyCamSpeed * 0.4 * (float)((float)GlobalController[0]->AnalogY / 100));
+				GlobalCamera[0]->LookatPos[1] += (float)(FlyCamSpeed * 0.4 * (float)((float)GlobalController[0]->AnalogY / 100));
+				GlobalCamera[0]->CameraPos[1] += (float)(FlyCamSpeed * 0.4 * (float)((float)GlobalController[0]->AnalogY / 100));
 			}
 
 		}
 	}
 
-	if(g_ScreenFlip == 1)
+	if(ScreenFlip == 1)
 	{
-		GlobalUShortA=(ushort)FlyCamDirection;
+		GlobalUShortA=(Ushort)FlyCamDirection;
 		if(GlobalUShortA< DEG1 * 45)     FlyCamViewCheck=2;          
 		else if(GlobalUShortA<DEG1 * 135)     FlyCamViewCheck=3;          
 		else if(GlobalUShortA<DEG1 * 225)     FlyCamViewCheck=0;          
@@ -868,7 +868,7 @@ void RunFlyCam()
 	}
 	else
 	{
-		GlobalUShortA=(ushort)FlyCamDirection;
+		GlobalUShortA=(Ushort)FlyCamDirection;
 		if(GlobalUShortA<DEG1 * 45)     FlyCamViewCheck=2;          
 		else if(GlobalUShortA<DEG1 * 135)     FlyCamViewCheck=1;          
 		else if(GlobalUShortA<DEG1 * 225)     FlyCamViewCheck=0;          
@@ -890,6 +890,6 @@ void FlyCamInit()
 {
 	{ int Pass; for (Pass = 0; Pass < 20; Pass++)
 	{
-		*(uint*)(&ok_FreeCam + Pass) = 0xFF00FF00;
+		*(Uint*)(&ok_FreeCam + Pass) = 0xFF00FF00;
 	} }
 }

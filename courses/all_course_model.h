@@ -7,7 +7,7 @@
 /** WARNING!!!
  * This header file has the sizes of the vertex array's hard coded.
  * If those arrays ever have their sizes changed that MUST be reflected
- * in this file or problems will arise in other parts of the code
+ * in this file or problems will arise in other parts of the Code
  **/
 
 extern CourseVtx d_course_big_donut_vertex[0x48D];

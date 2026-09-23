@@ -1,13 +1,13 @@
 /**
- * @file textures.c
+ * @file Textures.c
  * @brief Texture data.
- * start in ram 0x801978D0
+ * Start in ram 0x801978D0
  * look like link to menu_item
  */
 #include "textures.h"
 
 /**
- * @brief MenuTexture of a tiny font texture of number 0
+ * @brief MenuTexture of a tiny font Texture of Number 0
  *
  */
 MenuTexture D_02000000[2] = {
@@ -16,7 +16,7 @@ MenuTexture D_02000000[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 1
+ * @brief MenuTexture of a tiny font Texture of Number 1
  *
  */
 MenuTexture D_02000028[2] = {
@@ -25,7 +25,7 @@ MenuTexture D_02000028[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 2
+ * @brief MenuTexture of a tiny font Texture of Number 2
  *
  */
 MenuTexture D_02000050[2] = {
@@ -34,7 +34,7 @@ MenuTexture D_02000050[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 3
+ * @brief MenuTexture of a tiny font Texture of Number 3
  *
  */
 MenuTexture D_02000078[2] = {
@@ -43,7 +43,7 @@ MenuTexture D_02000078[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 4
+ * @brief MenuTexture of a tiny font Texture of Number 4
  *
  */
 MenuTexture D_020000A0[2] = {
@@ -52,7 +52,7 @@ MenuTexture D_020000A0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 5
+ * @brief MenuTexture of a tiny font Texture of Number 5
  *
  */
 MenuTexture D_020000C8[2] = {
@@ -61,7 +61,7 @@ MenuTexture D_020000C8[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 6
+ * @brief MenuTexture of a tiny font Texture of Number 6
  *
  */
 MenuTexture D_020000F0[2] = {
@@ -70,7 +70,7 @@ MenuTexture D_020000F0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 7
+ * @brief MenuTexture of a tiny font Texture of Number 7
  *
  */
 MenuTexture D_02000118[2] = {
@@ -79,7 +79,7 @@ MenuTexture D_02000118[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 8
+ * @brief MenuTexture of a tiny font Texture of Number 8
  *
  */
 MenuTexture D_02000140[2] = {
@@ -88,7 +88,7 @@ MenuTexture D_02000140[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of number 9
+ * @brief MenuTexture of a tiny font Texture of Number 9
  *
  */
 MenuTexture D_02000168[2] = {
@@ -97,7 +97,7 @@ MenuTexture D_02000168[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter A
+ * @brief MenuTexture of a tiny font Texture of Letter A
  *
  */
 MenuTexture D_02000190[2] = {
@@ -106,7 +106,7 @@ MenuTexture D_02000190[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter B
+ * @brief MenuTexture of a tiny font Texture of Letter B
  *
  */
 MenuTexture D_020001B8[2] = {
@@ -115,7 +115,7 @@ MenuTexture D_020001B8[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter C
+ * @brief MenuTexture of a tiny font Texture of Letter C
  *
  */
 MenuTexture D_020001E0[2] = {
@@ -124,7 +124,7 @@ MenuTexture D_020001E0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter D
+ * @brief MenuTexture of a tiny font Texture of Letter D
  *
  */
 MenuTexture D_02000208[2] = {
@@ -133,7 +133,7 @@ MenuTexture D_02000208[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter E
+ * @brief MenuTexture of a tiny font Texture of Letter E
  *
  */
 MenuTexture D_02000230[2] = {
@@ -142,7 +142,7 @@ MenuTexture D_02000230[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter F
+ * @brief MenuTexture of a tiny font Texture of Letter F
  *
  */
 MenuTexture D_02000258[2] = {
@@ -151,7 +151,7 @@ MenuTexture D_02000258[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter G
+ * @brief MenuTexture of a tiny font Texture of Letter G
  *
  */
 MenuTexture D_02000280[2] = {
@@ -160,7 +160,7 @@ MenuTexture D_02000280[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter H
+ * @brief MenuTexture of a tiny font Texture of Letter H
  *
  */
 MenuTexture D_020002A8[2] = {
@@ -169,7 +169,7 @@ MenuTexture D_020002A8[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter I
+ * @brief MenuTexture of a tiny font Texture of Letter I
  *
  */
 MenuTexture D_020002D0[2] = {
@@ -178,7 +178,7 @@ MenuTexture D_020002D0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter J
+ * @brief MenuTexture of a tiny font Texture of Letter J
  *
  */
 MenuTexture D_020002F8[2] = {
@@ -187,7 +187,7 @@ MenuTexture D_020002F8[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter K
+ * @brief MenuTexture of a tiny font Texture of Letter K
  *
  */
 MenuTexture D_02000320[2] = {
@@ -196,7 +196,7 @@ MenuTexture D_02000320[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter L
+ * @brief MenuTexture of a tiny font Texture of Letter L
  *
  */
 MenuTexture D_02000348[2] = {
@@ -205,7 +205,7 @@ MenuTexture D_02000348[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter M
+ * @brief MenuTexture of a tiny font Texture of Letter M
  *
  */
 MenuTexture D_02000370[2] = {
@@ -214,7 +214,7 @@ MenuTexture D_02000370[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter N
+ * @brief MenuTexture of a tiny font Texture of Letter N
  *
  */
 MenuTexture D_02000398[2] = {
@@ -223,7 +223,7 @@ MenuTexture D_02000398[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter O
+ * @brief MenuTexture of a tiny font Texture of Letter O
  *
  */
 MenuTexture D_020003C0[2] = {
@@ -232,7 +232,7 @@ MenuTexture D_020003C0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter P
+ * @brief MenuTexture of a tiny font Texture of Letter P
  *
  */
 MenuTexture D_020003E8[2] = {
@@ -241,7 +241,7 @@ MenuTexture D_020003E8[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter Q
+ * @brief MenuTexture of a tiny font Texture of Letter Q
  *
  */
 MenuTexture D_02000410[2] = {
@@ -250,7 +250,7 @@ MenuTexture D_02000410[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter R
+ * @brief MenuTexture of a tiny font Texture of Letter R
  *
  */
 MenuTexture D_02000438[2] = {
@@ -259,7 +259,7 @@ MenuTexture D_02000438[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter S
+ * @brief MenuTexture of a tiny font Texture of Letter S
  *
  */
 MenuTexture D_02000460[2] = {
@@ -268,7 +268,7 @@ MenuTexture D_02000460[2] = {
 };
 
 /**
- * @brief  MenuTexture of a tiny font texture of letter T
+ * @brief  MenuTexture of a tiny font Texture of Letter T
  *
  */
 MenuTexture D_02000488[2] = {
@@ -277,7 +277,7 @@ MenuTexture D_02000488[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter U
+ * @brief MenuTexture of a tiny font Texture of Letter U
  *
  */
 MenuTexture D_020004B0[2] = {
@@ -286,7 +286,7 @@ MenuTexture D_020004B0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter V
+ * @brief MenuTexture of a tiny font Texture of Letter V
  *
  */
 MenuTexture D_020004D8[2] = {
@@ -295,7 +295,7 @@ MenuTexture D_020004D8[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter W
+ * @brief MenuTexture of a tiny font Texture of Letter W
  *
  */
 MenuTexture D_02000500[2] = {
@@ -304,7 +304,7 @@ MenuTexture D_02000500[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter X
+ * @brief MenuTexture of a tiny font Texture of Letter X
  *
  */
 MenuTexture D_02000528[2] = {
@@ -313,7 +313,7 @@ MenuTexture D_02000528[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter Y
+ * @brief MenuTexture of a tiny font Texture of Letter Y
  *
  */
 MenuTexture D_02000550[2] = {
@@ -322,7 +322,7 @@ MenuTexture D_02000550[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of letter Z
+ * @brief MenuTexture of a tiny font Texture of Letter Z
  *
  */
 MenuTexture D_02000578[2] = {
@@ -331,7 +331,7 @@ MenuTexture D_02000578[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of '!'
+ * @brief MenuTexture of a tiny font Texture of '!'
  *
  */
 MenuTexture D_020005A0[2] = {
@@ -340,7 +340,7 @@ MenuTexture D_020005A0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of '"'
+ * @brief MenuTexture of a tiny font Texture of '"'
  *
  */
 MenuTexture D_020005C8[2] = {
@@ -349,7 +349,7 @@ MenuTexture D_020005C8[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of '#'
+ * @brief MenuTexture of a tiny font Texture of '#'
  *
  */
 MenuTexture D_020005F0[2] = {
@@ -358,7 +358,7 @@ MenuTexture D_020005F0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of "'"
+ * @brief MenuTexture of a tiny font Texture of "'"
  *
  */
 MenuTexture D_02000618[2] = {
@@ -367,7 +367,7 @@ MenuTexture D_02000618[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of '*'
+ * @brief MenuTexture of a tiny font Texture of '*'
  *
  */
 MenuTexture D_02000640[2] = {
@@ -376,7 +376,7 @@ MenuTexture D_02000640[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of '+'
+ * @brief MenuTexture of a tiny font Texture of '+'
  *
  */
 MenuTexture D_02000668[2] = {
@@ -385,7 +385,7 @@ MenuTexture D_02000668[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000690[2] = {
@@ -394,7 +394,7 @@ MenuTexture D_02000690[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of '-'
+ * @brief MenuTexture of a tiny font Texture of '-'
  *
  */
 MenuTexture D_020006B8[2] = {
@@ -403,7 +403,7 @@ MenuTexture D_020006B8[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of ','
+ * @brief MenuTexture of a tiny font Texture of ','
  *
  */
 MenuTexture D_020006E0[2] = {
@@ -412,7 +412,7 @@ MenuTexture D_020006E0[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of '/'
+ * @brief MenuTexture of a tiny font Texture of '/'
  *
  */
 MenuTexture D_02000708[2] = {
@@ -421,7 +421,7 @@ MenuTexture D_02000708[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of ';'
+ * @brief MenuTexture of a tiny font Texture of ';'
  *
  */
 MenuTexture D_02000730[2] = {
@@ -430,7 +430,7 @@ MenuTexture D_02000730[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000758[2] = {
@@ -439,7 +439,7 @@ MenuTexture D_02000758[2] = {
 };
 
 /**
- * @brief MenuTexture of a tiny font texture of '?'
+ * @brief MenuTexture of a tiny font Texture of '?'
  *
  */
 MenuTexture D_02000780[2] = {
@@ -448,7 +448,7 @@ MenuTexture D_02000780[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020007A8[2] = {
@@ -457,7 +457,7 @@ MenuTexture D_020007A8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020007D0[2] = {
@@ -466,7 +466,7 @@ MenuTexture D_020007D0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020007F8[2] = {
@@ -475,7 +475,7 @@ MenuTexture D_020007F8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000820[2] = {
@@ -484,7 +484,7 @@ MenuTexture D_02000820[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000848[2] = {
@@ -493,7 +493,7 @@ MenuTexture D_02000848[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000870[2] = {
@@ -502,7 +502,7 @@ MenuTexture D_02000870[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000898[2] = {
@@ -511,7 +511,7 @@ MenuTexture D_02000898[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020008C0[2] = {
@@ -520,7 +520,7 @@ MenuTexture D_020008C0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020008E8[2] = {
@@ -529,7 +529,7 @@ MenuTexture D_020008E8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000910[2] = {
@@ -538,7 +538,7 @@ MenuTexture D_02000910[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000938[2] = {
@@ -547,7 +547,7 @@ MenuTexture D_02000938[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000960[2] = {
@@ -556,7 +556,7 @@ MenuTexture D_02000960[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000988[2] = {
@@ -565,7 +565,7 @@ MenuTexture D_02000988[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020009B0[2] = {
@@ -574,7 +574,7 @@ MenuTexture D_020009B0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020009D8[2] = {
@@ -583,7 +583,7 @@ MenuTexture D_020009D8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000A00[2] = {
@@ -592,7 +592,7 @@ MenuTexture D_02000A00[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000A28[2] = {
@@ -601,7 +601,7 @@ MenuTexture D_02000A28[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000A50[2] = {
@@ -610,7 +610,7 @@ MenuTexture D_02000A50[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000A78[2] = {
@@ -619,7 +619,7 @@ MenuTexture D_02000A78[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000AA0[2] = {
@@ -628,7 +628,7 @@ MenuTexture D_02000AA0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000AC8[2] = {
@@ -637,7 +637,7 @@ MenuTexture D_02000AC8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000AF0[2] = {
@@ -646,7 +646,7 @@ MenuTexture D_02000AF0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000B18[2] = {
@@ -655,7 +655,7 @@ MenuTexture D_02000B18[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000B40[2] = {
@@ -664,7 +664,7 @@ MenuTexture D_02000B40[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000B68[2] = {
@@ -673,7 +673,7 @@ MenuTexture D_02000B68[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000B90[2] = {
@@ -682,7 +682,7 @@ MenuTexture D_02000B90[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000BB8[2] = {
@@ -691,7 +691,7 @@ MenuTexture D_02000BB8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000BE0[2] = {
@@ -700,7 +700,7 @@ MenuTexture D_02000BE0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000C08[2] = {
@@ -709,7 +709,7 @@ MenuTexture D_02000C08[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000C30[2] = {
@@ -718,7 +718,7 @@ MenuTexture D_02000C30[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000C58[2] = {
@@ -727,7 +727,7 @@ MenuTexture D_02000C58[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000C80[2] = {
@@ -736,7 +736,7 @@ MenuTexture D_02000C80[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000CA8[2] = {
@@ -745,7 +745,7 @@ MenuTexture D_02000CA8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000CD0[2] = {
@@ -754,7 +754,7 @@ MenuTexture D_02000CD0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000CF8[2] = {
@@ -763,7 +763,7 @@ MenuTexture D_02000CF8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000D20[2] = {
@@ -772,7 +772,7 @@ MenuTexture D_02000D20[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000D48[2] = {
@@ -781,7 +781,7 @@ MenuTexture D_02000D48[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000D70[2] = {
@@ -790,7 +790,7 @@ MenuTexture D_02000D70[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000D98[2] = {
@@ -799,7 +799,7 @@ MenuTexture D_02000D98[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000DC0[2] = {
@@ -808,7 +808,7 @@ MenuTexture D_02000DC0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000DE8[2] = {
@@ -817,7 +817,7 @@ MenuTexture D_02000DE8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000E10[2] = {
@@ -826,7 +826,7 @@ MenuTexture D_02000E10[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000E38[2] = {
@@ -835,7 +835,7 @@ MenuTexture D_02000E38[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000E60[2] = {
@@ -844,7 +844,7 @@ MenuTexture D_02000E60[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000E88[2] = {
@@ -853,7 +853,7 @@ MenuTexture D_02000E88[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000EB0[2] = {
@@ -862,7 +862,7 @@ MenuTexture D_02000EB0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000ED8[2] = {
@@ -871,7 +871,7 @@ MenuTexture D_02000ED8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000F00[2] = {
@@ -880,7 +880,7 @@ MenuTexture D_02000F00[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000F28[2] = {
@@ -889,7 +889,7 @@ MenuTexture D_02000F28[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000F50[2] = {
@@ -898,7 +898,7 @@ MenuTexture D_02000F50[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000F78[2] = {
@@ -907,7 +907,7 @@ MenuTexture D_02000F78[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000FA0[2] = {
@@ -916,7 +916,7 @@ MenuTexture D_02000FA0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000FC8[2] = {
@@ -925,7 +925,7 @@ MenuTexture D_02000FC8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02000FF0[2] = {
@@ -934,7 +934,7 @@ MenuTexture D_02000FF0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001018[2] = {
@@ -943,7 +943,7 @@ MenuTexture D_02001018[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001040[2] = {
@@ -952,7 +952,7 @@ MenuTexture D_02001040[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001068[2] = {
@@ -961,7 +961,7 @@ MenuTexture D_02001068[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001090[2] = {
@@ -970,7 +970,7 @@ MenuTexture D_02001090[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020010B8[2] = {
@@ -979,7 +979,7 @@ MenuTexture D_020010B8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020010E0[2] = {
@@ -988,7 +988,7 @@ MenuTexture D_020010E0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001108[2] = {
@@ -997,7 +997,7 @@ MenuTexture D_02001108[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001130[2] = {
@@ -1006,7 +1006,7 @@ MenuTexture D_02001130[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001158[2] = {
@@ -1015,7 +1015,7 @@ MenuTexture D_02001158[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001180[2] = {
@@ -1024,7 +1024,7 @@ MenuTexture D_02001180[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020011A8[2] = {
@@ -1033,7 +1033,7 @@ MenuTexture D_020011A8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020011D0[2] = {
@@ -1042,7 +1042,7 @@ MenuTexture D_020011D0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020011F8[2] = {
@@ -1051,7 +1051,7 @@ MenuTexture D_020011F8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001220[2] = {
@@ -1060,7 +1060,7 @@ MenuTexture D_02001220[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001248[2] = {
@@ -1069,7 +1069,7 @@ MenuTexture D_02001248[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001270[2] = {
@@ -1078,7 +1078,7 @@ MenuTexture D_02001270[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001298[2] = {
@@ -1087,7 +1087,7 @@ MenuTexture D_02001298[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020012C0[2] = {
@@ -1096,7 +1096,7 @@ MenuTexture D_020012C0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020012E8[2] = {
@@ -1105,7 +1105,7 @@ MenuTexture D_020012E8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001310[2] = {
@@ -1114,7 +1114,7 @@ MenuTexture D_02001310[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001338[2] = {
@@ -1123,7 +1123,7 @@ MenuTexture D_02001338[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001360[2] = {
@@ -1132,7 +1132,7 @@ MenuTexture D_02001360[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001388[2] = {
@@ -1141,7 +1141,7 @@ MenuTexture D_02001388[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020013B0[2] = {
@@ -1150,7 +1150,7 @@ MenuTexture D_020013B0[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020013D8[2] = {
@@ -1159,7 +1159,7 @@ MenuTexture D_020013D8[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001400[2] = {
@@ -1168,7 +1168,7 @@ MenuTexture D_02001400[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001428[2] = {
@@ -1177,7 +1177,7 @@ MenuTexture D_02001428[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001450[2] = {
@@ -1186,7 +1186,7 @@ MenuTexture D_02001450[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001478[2] = {
@@ -1195,7 +1195,7 @@ MenuTexture D_02001478[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020014A0[2] = {
@@ -1229,7 +1229,7 @@ MenuTexture D_0200157C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020015A4[2] = {
@@ -1238,7 +1238,7 @@ MenuTexture D_020015A4[2] = {
 };
 
 /**
- * @brief MenuTexture of select record ?
+ * @brief MenuTexture of Select record ?
  *
  */
 MenuTexture D_020015CC[5] = {
@@ -1250,7 +1250,7 @@ MenuTexture D_020015CC[5] = {
 };
 
 /**
- * @brief MenuTexture of select record ?
+ * @brief MenuTexture of Select record ?
  *
  */
 MenuTexture D_02001630[2] = {
@@ -1259,7 +1259,7 @@ MenuTexture D_02001630[2] = {
 };
 
 /**
- * @brief MenuTexture of select record ?
+ * @brief MenuTexture of Select record ?
  *
  */
 MenuTexture D_02001658[5] = {
@@ -1271,7 +1271,7 @@ MenuTexture D_02001658[5] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 0
+ * @brief MenuTexture of a small font Texture of Number 0
  *
  */
 MenuTexture D_020016BC[2] = {
@@ -1280,7 +1280,7 @@ MenuTexture D_020016BC[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 1
+ * @brief MenuTexture of a small font Texture of Number 1
  *
  */
 MenuTexture D_020016E4[2] = {
@@ -1289,7 +1289,7 @@ MenuTexture D_020016E4[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 2
+ * @brief MenuTexture of a small font Texture of Number 2
  *
  */
 MenuTexture D_0200170C[2] = {
@@ -1298,7 +1298,7 @@ MenuTexture D_0200170C[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 3
+ * @brief MenuTexture of a small font Texture of Number 3
  *
  */
 MenuTexture D_02001734[2] = {
@@ -1307,7 +1307,7 @@ MenuTexture D_02001734[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 4
+ * @brief MenuTexture of a small font Texture of Number 4
  *
  */
 MenuTexture D_0200175C[2] = {
@@ -1316,7 +1316,7 @@ MenuTexture D_0200175C[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 5
+ * @brief MenuTexture of a small font Texture of Number 5
  *
  */
 MenuTexture D_02001784[2] = {
@@ -1325,7 +1325,7 @@ MenuTexture D_02001784[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 6
+ * @brief MenuTexture of a small font Texture of Number 6
  *
  */
 MenuTexture D_020017AC[2] = {
@@ -1334,7 +1334,7 @@ MenuTexture D_020017AC[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 7
+ * @brief MenuTexture of a small font Texture of Number 7
  *
  */
 MenuTexture D_020017D4[2] = {
@@ -1343,7 +1343,7 @@ MenuTexture D_020017D4[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 8
+ * @brief MenuTexture of a small font Texture of Number 8
  *
  */
 MenuTexture D_020017FC[2] = {
@@ -1352,7 +1352,7 @@ MenuTexture D_020017FC[2] = {
 };
 
 /**
- * @brief MenuTexture of a small font texture of number 9
+ * @brief MenuTexture of a small font Texture of Number 9
  *
  */
 MenuTexture D_02001824[2] = {
@@ -1361,7 +1361,7 @@ MenuTexture D_02001824[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200184C[2] = {
@@ -1370,7 +1370,7 @@ MenuTexture D_0200184C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001874[2] = {
@@ -1433,7 +1433,7 @@ MenuTexture D_02001964[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_0200198C[2] = {
@@ -1442,7 +1442,7 @@ MkAnimation D_0200198C[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_0200199C[2] = {
@@ -1451,7 +1451,7 @@ MkAnimation D_0200199C[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020019AC[2] = {
@@ -1460,7 +1460,7 @@ MkAnimation D_020019AC[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020019BC[2] = {
@@ -1469,7 +1469,7 @@ MkAnimation D_020019BC[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020019CC[2] = {
@@ -1478,7 +1478,7 @@ MkAnimation D_020019CC[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020019DC[2] = {
@@ -1562,7 +1562,7 @@ MenuTexture D_02001B04[2] = {
  * @brief MenuTexture of Course Preview Mario Raceway
  *
  */
-MenuTexture seg2_mario_raceway_preview_texture[2] = {
+MenuTexture Seg2MarioRacewayPreviewTexture[2] = {
     { 0, gTextureCoursePreviewMarioRaceway, 128, 78, 0, 0, 0x3157, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -1739,26 +1739,26 @@ MenuTexture D_02001E24[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001E4C[3] = {
-    { seg2_mario_raceway_preview_texture, 0x0000003c },
-    { seg2_mario_raceway_preview_texture, 0x0000003c },
+    { Seg2MarioRacewayPreviewTexture, 0x0000003c },
+    { Seg2MarioRacewayPreviewTexture, 0x0000003c },
     { NULL, 0x00000000 },
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001E64[2] = {
-    { seg2_mario_raceway_preview_texture, 0x0000003c },
+    { Seg2MarioRacewayPreviewTexture, 0x0000003c },
     { NULL, 0x00000000 },
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001E74[2] = {
@@ -1767,7 +1767,7 @@ MkAnimation D_02001E74[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001E84[2] = {
@@ -1776,7 +1776,7 @@ MkAnimation D_02001E84[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001E94[2] = {
@@ -1785,7 +1785,7 @@ MkAnimation D_02001E94[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001EA4[2] = {
@@ -1794,7 +1794,7 @@ MkAnimation D_02001EA4[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001EB4[2] = {
@@ -1803,7 +1803,7 @@ MkAnimation D_02001EB4[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001EC4[2] = {
@@ -1812,7 +1812,7 @@ MkAnimation D_02001EC4[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001ED4[2] = {
@@ -1821,7 +1821,7 @@ MkAnimation D_02001ED4[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001EE4[2] = {
@@ -1835,7 +1835,7 @@ MkAnimation D_02001EF4[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F04[2] = {
@@ -1844,7 +1844,7 @@ MkAnimation D_02001F04[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F14[2] = {
@@ -1853,7 +1853,7 @@ MkAnimation D_02001F14[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F24[2] = {
@@ -1862,7 +1862,7 @@ MkAnimation D_02001F24[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F34[2] = {
@@ -1871,7 +1871,7 @@ MkAnimation D_02001F34[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F44[2] = {
@@ -1880,7 +1880,7 @@ MkAnimation D_02001F44[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F54[2] = {
@@ -1889,7 +1889,7 @@ MkAnimation D_02001F54[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F64[2] = {
@@ -1898,7 +1898,7 @@ MkAnimation D_02001F64[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F74[2] = {
@@ -1907,7 +1907,7 @@ MkAnimation D_02001F74[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F84[2] = {
@@ -1916,7 +1916,7 @@ MkAnimation D_02001F84[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_02001F94[2] = {
@@ -1925,7 +1925,7 @@ MkAnimation D_02001F94[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02001FA4[2] = {
@@ -1988,7 +1988,7 @@ MenuTexture D_02002094[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020020BC[2] = {
@@ -1997,7 +1997,7 @@ MkAnimation D_020020BC[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020020CC[2] = {
@@ -2006,7 +2006,7 @@ MkAnimation D_020020CC[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020020DC[2] = {
@@ -2015,7 +2015,7 @@ MkAnimation D_020020DC[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020020EC[2] = {
@@ -2024,7 +2024,7 @@ MkAnimation D_020020EC[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_020020FC[2] = {
@@ -2033,7 +2033,7 @@ MkAnimation D_020020FC[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  *
  */
 MkAnimation D_0200210C[2] = {
@@ -2042,412 +2042,412 @@ MkAnimation D_0200210C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterA[2] = {
+MenuTexture Seg2TextureFontLetterA[2] = {
     { 5, font_letter_A, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterB[2] = {
+MenuTexture Seg2TextureFontLetterB[2] = {
     { 5, font_letter_B, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterC[2] = {
+MenuTexture Seg2TextureFontLetterC[2] = {
     { 5, font_letter_C, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterD[2] = {
+MenuTexture Seg2TextureFontLetterD[2] = {
     { 5, font_letter_D, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterE[2] = {
+MenuTexture Seg2TextureFontLetterE[2] = {
     { 5, font_letter_E, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterF[2] = {
+MenuTexture Seg2TextureFontLetterF[2] = {
     { 5, font_letter_F, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterG[2] = {
+MenuTexture Seg2TextureFontLetterG[2] = {
     { 5, font_letter_G, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterH[2] = {
+MenuTexture Seg2TextureFontLetterH[2] = {
     { 5, font_letter_H, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterI[2] = {
+MenuTexture Seg2TextureFontLetterI[2] = {
     { 5, font_letter_I, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterJ[2] = {
+MenuTexture Seg2TextureFontLetterJ[2] = {
     { 5, font_letter_J, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterK[2] = {
+MenuTexture Seg2TextureFontLetterK[2] = {
     { 5, font_letter_K, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterL[2] = {
+MenuTexture Seg2TextureFontLetterL[2] = {
     { 5, font_letter_L, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterM[2] = {
+MenuTexture Seg2TextureFontLetterM[2] = {
     { 5, font_letter_M, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterN[2] = {
+MenuTexture Seg2TextureFontLetterN[2] = {
     { 5, font_letter_N, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterO[2] = {
+MenuTexture Seg2TextureFontLetterO[2] = {
     { 5, font_letter_O, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterP[2] = {
+MenuTexture Seg2TextureFontLetterP[2] = {
     { 5, font_letter_P, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterQ[2] = {
+MenuTexture Seg2TextureFontLetterQ[2] = {
     { 5, font_letter_Q, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterR[2] = {
+MenuTexture Seg2TextureFontLetterR[2] = {
     { 5, font_letter_R, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterS[2] = {
+MenuTexture Seg2TextureFontLetterS[2] = {
     { 5, font_letter_S, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterT[2] = {
+MenuTexture Seg2TextureFontLetterT[2] = {
     { 5, font_letter_T, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterU[2] = {
+MenuTexture Seg2TextureFontLetterU[2] = {
     { 5, font_letter_U, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterV[2] = {
+MenuTexture Seg2TextureFontLetterV[2] = {
     { 5, font_letter_V, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterW[2] = {
+MenuTexture Seg2TextureFontLetterW[2] = {
     { 5, font_letter_W, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterX[2] = {
+MenuTexture Seg2TextureFontLetterX[2] = {
     { 5, font_letter_X, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterY[2] = {
+MenuTexture Seg2TextureFontLetterY[2] = {
     { 5, font_letter_Y, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontLetterZ[2] = {
+MenuTexture Seg2TextureFontLetterZ[2] = {
     { 5, font_letter_Z, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontExclamationMark[2] = {
+MenuTexture Seg2TextureFontExclamationMark[2] = {
     { 5, font_exclamation_mark, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontMinus[2] = {
+MenuTexture Seg2TextureFontMinus[2] = {
     { 5, font_minus, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontInterogationMark[2] = {
+MenuTexture Seg2TextureFontInterogationMark[2] = {
     { 5, font_interogation_mark, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontSimpleQuote[2] = {
+MenuTexture Seg2TextureFontSimpleQuote[2] = {
     { 5, font_simple_quote, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontDoubleQuote[2] = {
+MenuTexture Seg2TextureFontDoubleQuote[2] = {
     { 5, font_double_quote, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontPlus[2] = {
+MenuTexture Seg2TextureFontPlus[2] = {
     { 5, font_plus, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontDot[2] = {
+MenuTexture Seg2TextureFontDot[2] = {
     { 5, font_dot, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontFourDote[2] = {
+MenuTexture Seg2TextureFontFourDote[2] = {
     { 5, font_four_dote, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontCC[2] = {
+MenuTexture Seg2TextureFontCC[2] = {
     { 5, font_cc, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberZero[2] = {
+MenuTexture Seg2TextureFontNumberZero[2] = {
     { 5, font_number_zero, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberOne[2] = {
+MenuTexture Seg2TextureFontNumberOne[2] = {
     { 5, font_number_one, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberTwo[2] = {
+MenuTexture Seg2TextureFontNumberTwo[2] = {
     { 5, font_number_two, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberThree[2] = {
+MenuTexture Seg2TextureFontNumberThree[2] = {
     { 5, font_number_three, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberFour[2] = {
+MenuTexture Seg2TextureFontNumberFour[2] = {
     { 5, font_number_four, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberFive[2] = {
+MenuTexture Seg2TextureFontNumberFive[2] = {
     { 5, font_number_five, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberSix[2] = {
+MenuTexture Seg2TextureFontNumberSix[2] = {
     { 5, font_number_six, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberSeven[2] = {
+MenuTexture Seg2TextureFontNumberSeven[2] = {
     { 5, font_number_seven, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberEight[2] = {
+MenuTexture Seg2TextureFontNumberEight[2] = {
     { 5, font_number_eight, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontNumberNine[2] = {
+MenuTexture Seg2TextureFontNumberNine[2] = {
     { 5, font_number_nine, 26, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002824[2] = {
@@ -2456,7 +2456,7 @@ MenuTexture D_02002824[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200284C[2] = {
@@ -2465,7 +2465,7 @@ MenuTexture D_0200284C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002874[2] = {
@@ -2474,7 +2474,7 @@ MenuTexture D_02002874[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200289C[2] = {
@@ -2483,7 +2483,7 @@ MenuTexture D_0200289C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020028C4[2] = {
@@ -2492,7 +2492,7 @@ MenuTexture D_020028C4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020028EC[2] = {
@@ -2501,7 +2501,7 @@ MenuTexture D_020028EC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002914[2] = {
@@ -2510,7 +2510,7 @@ MenuTexture D_02002914[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200293C[2] = {
@@ -2519,7 +2519,7 @@ MenuTexture D_0200293C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002964[2] = {
@@ -2528,7 +2528,7 @@ MenuTexture D_02002964[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200298C[2] = {
@@ -2537,7 +2537,7 @@ MenuTexture D_0200298C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020029B4[2] = {
@@ -2546,7 +2546,7 @@ MenuTexture D_020029B4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020029DC[2] = {
@@ -2555,7 +2555,7 @@ MenuTexture D_020029DC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002A04[2] = {
@@ -2564,7 +2564,7 @@ MenuTexture D_02002A04[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002A2C[2] = {
@@ -2573,7 +2573,7 @@ MenuTexture D_02002A2C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002A54[2] = {
@@ -2582,7 +2582,7 @@ MenuTexture D_02002A54[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002A7C[2] = {
@@ -2591,7 +2591,7 @@ MenuTexture D_02002A7C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002AA4[2] = {
@@ -2600,7 +2600,7 @@ MenuTexture D_02002AA4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002ACC[2] = {
@@ -2609,7 +2609,7 @@ MenuTexture D_02002ACC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002AF4[2] = {
@@ -2618,7 +2618,7 @@ MenuTexture D_02002AF4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002B1C[2] = {
@@ -2627,7 +2627,7 @@ MenuTexture D_02002B1C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002B44[2] = {
@@ -2636,7 +2636,7 @@ MenuTexture D_02002B44[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002B6C[2] = {
@@ -2645,7 +2645,7 @@ MenuTexture D_02002B6C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002B94[2] = {
@@ -2654,7 +2654,7 @@ MenuTexture D_02002B94[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002BBC[2] = {
@@ -2663,7 +2663,7 @@ MenuTexture D_02002BBC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002BE4[2] = {
@@ -2672,7 +2672,7 @@ MenuTexture D_02002BE4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002C0C[2] = {
@@ -2681,7 +2681,7 @@ MenuTexture D_02002C0C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002C34[2] = {
@@ -2690,7 +2690,7 @@ MenuTexture D_02002C34[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002C5C[2] = {
@@ -2699,7 +2699,7 @@ MenuTexture D_02002C5C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002C84[2] = {
@@ -2708,7 +2708,7 @@ MenuTexture D_02002C84[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002CAC[2] = {
@@ -2717,7 +2717,7 @@ MenuTexture D_02002CAC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002CD4[2] = {
@@ -2726,7 +2726,7 @@ MenuTexture D_02002CD4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002CFC[2] = {
@@ -2735,7 +2735,7 @@ MenuTexture D_02002CFC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002D24[2] = {
@@ -2744,7 +2744,7 @@ MenuTexture D_02002D24[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002D4C[2] = {
@@ -2753,7 +2753,7 @@ MenuTexture D_02002D4C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002D74[2] = {
@@ -2762,7 +2762,7 @@ MenuTexture D_02002D74[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002D9C[2] = {
@@ -2771,7 +2771,7 @@ MenuTexture D_02002D9C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002DC4[2] = {
@@ -2780,7 +2780,7 @@ MenuTexture D_02002DC4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002DEC[2] = {
@@ -2789,7 +2789,7 @@ MenuTexture D_02002DEC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002E14[2] = {
@@ -2798,7 +2798,7 @@ MenuTexture D_02002E14[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002E3C[2] = {
@@ -2807,7 +2807,7 @@ MenuTexture D_02002E3C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002E64[2] = {
@@ -2816,7 +2816,7 @@ MenuTexture D_02002E64[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002E8C[2] = {
@@ -2825,7 +2825,7 @@ MenuTexture D_02002E8C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002EB4[2] = {
@@ -2834,7 +2834,7 @@ MenuTexture D_02002EB4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002EDC[2] = {
@@ -2843,7 +2843,7 @@ MenuTexture D_02002EDC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002F04[2] = {
@@ -2852,7 +2852,7 @@ MenuTexture D_02002F04[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002F2C[2] = {
@@ -2861,7 +2861,7 @@ MenuTexture D_02002F2C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002F54[2] = {
@@ -2870,7 +2870,7 @@ MenuTexture D_02002F54[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002F7C[2] = {
@@ -2879,7 +2879,7 @@ MenuTexture D_02002F7C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002FA4[2] = {
@@ -2888,7 +2888,7 @@ MenuTexture D_02002FA4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002FCC[2] = {
@@ -2897,7 +2897,7 @@ MenuTexture D_02002FCC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02002FF4[2] = {
@@ -2906,7 +2906,7 @@ MenuTexture D_02002FF4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200301C[2] = {
@@ -2915,7 +2915,7 @@ MenuTexture D_0200301C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003044[2] = {
@@ -2924,7 +2924,7 @@ MenuTexture D_02003044[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200306C[2] = {
@@ -2933,7 +2933,7 @@ MenuTexture D_0200306C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003094[2] = {
@@ -2942,7 +2942,7 @@ MenuTexture D_02003094[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020030BC[2] = {
@@ -2951,7 +2951,7 @@ MenuTexture D_020030BC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020030E4[2] = {
@@ -2960,7 +2960,7 @@ MenuTexture D_020030E4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200310C[2] = {
@@ -2969,7 +2969,7 @@ MenuTexture D_0200310C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003134[2] = {
@@ -2978,7 +2978,7 @@ MenuTexture D_02003134[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200315C[2] = {
@@ -2987,7 +2987,7 @@ MenuTexture D_0200315C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003184[2] = {
@@ -2996,7 +2996,7 @@ MenuTexture D_02003184[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020031AC[2] = {
@@ -3005,7 +3005,7 @@ MenuTexture D_020031AC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020031D4[2] = {
@@ -3014,7 +3014,7 @@ MenuTexture D_020031D4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020031FC[2] = {
@@ -3023,7 +3023,7 @@ MenuTexture D_020031FC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003224[2] = {
@@ -3032,7 +3032,7 @@ MenuTexture D_02003224[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200324C[2] = {
@@ -3041,7 +3041,7 @@ MenuTexture D_0200324C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003274[2] = {
@@ -3050,7 +3050,7 @@ MenuTexture D_02003274[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200329C[2] = {
@@ -3059,7 +3059,7 @@ MenuTexture D_0200329C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020032C4[2] = {
@@ -3068,7 +3068,7 @@ MenuTexture D_020032C4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020032EC[2] = {
@@ -3077,7 +3077,7 @@ MenuTexture D_020032EC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003314[2] = {
@@ -3086,7 +3086,7 @@ MenuTexture D_02003314[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200333C[2] = {
@@ -3095,7 +3095,7 @@ MenuTexture D_0200333C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003364[2] = {
@@ -3104,7 +3104,7 @@ MenuTexture D_02003364[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200338C[2] = {
@@ -3113,7 +3113,7 @@ MenuTexture D_0200338C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020033B4[2] = {
@@ -3122,7 +3122,7 @@ MenuTexture D_020033B4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020033DC[2] = {
@@ -3131,7 +3131,7 @@ MenuTexture D_020033DC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003404[2] = {
@@ -3140,7 +3140,7 @@ MenuTexture D_02003404[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200342C[2] = {
@@ -3149,7 +3149,7 @@ MenuTexture D_0200342C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003454[2] = {
@@ -3158,7 +3158,7 @@ MenuTexture D_02003454[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200347C[2] = {
@@ -3167,7 +3167,7 @@ MenuTexture D_0200347C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020034A4[2] = {
@@ -3176,7 +3176,7 @@ MenuTexture D_020034A4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020034CC[2] = {
@@ -3185,7 +3185,7 @@ MenuTexture D_020034CC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020034F4[2] = {
@@ -3194,7 +3194,7 @@ MenuTexture D_020034F4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200351C[2] = {
@@ -3203,7 +3203,7 @@ MenuTexture D_0200351C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003544[2] = {
@@ -3212,7 +3212,7 @@ MenuTexture D_02003544[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200356C[2] = {
@@ -3221,7 +3221,7 @@ MenuTexture D_0200356C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003594[2] = {
@@ -3230,7 +3230,7 @@ MenuTexture D_02003594[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020035BC[2] = {
@@ -3239,7 +3239,7 @@ MenuTexture D_020035BC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020035E4[2] = {
@@ -3248,7 +3248,7 @@ MenuTexture D_020035E4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200360C[2] = {
@@ -3257,7 +3257,7 @@ MenuTexture D_0200360C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003634[2] = {
@@ -3266,7 +3266,7 @@ MenuTexture D_02003634[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200365C[2] = {
@@ -3275,7 +3275,7 @@ MenuTexture D_0200365C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003684[2] = {
@@ -3284,7 +3284,7 @@ MenuTexture D_02003684[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020036AC[2] = {
@@ -3293,7 +3293,7 @@ MenuTexture D_020036AC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020036D4[2] = {
@@ -3302,7 +3302,7 @@ MenuTexture D_020036D4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020036FC[2] = {
@@ -3311,7 +3311,7 @@ MenuTexture D_020036FC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003724[2] = {
@@ -3320,7 +3320,7 @@ MenuTexture D_02003724[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200374C[2] = {
@@ -3329,7 +3329,7 @@ MenuTexture D_0200374C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003774[2] = {
@@ -3338,7 +3338,7 @@ MenuTexture D_02003774[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200379C[2] = {
@@ -3347,7 +3347,7 @@ MenuTexture D_0200379C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020037C4[2] = {
@@ -3356,7 +3356,7 @@ MenuTexture D_020037C4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020037EC[2] = {
@@ -3365,7 +3365,7 @@ MenuTexture D_020037EC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003814[2] = {
@@ -3374,7 +3374,7 @@ MenuTexture D_02003814[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200383C[2] = {
@@ -3383,7 +3383,7 @@ MenuTexture D_0200383C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003864[2] = {
@@ -3392,7 +3392,7 @@ MenuTexture D_02003864[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200388C[2] = {
@@ -3401,7 +3401,7 @@ MenuTexture D_0200388C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020038B4[2] = {
@@ -3410,7 +3410,7 @@ MenuTexture D_020038B4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020038DC[2] = {
@@ -3419,7 +3419,7 @@ MenuTexture D_020038DC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003904[2] = {
@@ -3428,7 +3428,7 @@ MenuTexture D_02003904[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200392C[2] = {
@@ -3437,7 +3437,7 @@ MenuTexture D_0200392C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003954[2] = {
@@ -3446,7 +3446,7 @@ MenuTexture D_02003954[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200397C[2] = {
@@ -3455,7 +3455,7 @@ MenuTexture D_0200397C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020039A4[2] = {
@@ -3464,7 +3464,7 @@ MenuTexture D_020039A4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020039CC[2] = {
@@ -3473,7 +3473,7 @@ MenuTexture D_020039CC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020039F4[2] = {
@@ -3482,7 +3482,7 @@ MenuTexture D_020039F4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003A1C[2] = {
@@ -3491,7 +3491,7 @@ MenuTexture D_02003A1C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003A44[2] = {
@@ -3500,7 +3500,7 @@ MenuTexture D_02003A44[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003A6C[2] = {
@@ -3509,7 +3509,7 @@ MenuTexture D_02003A6C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003A94[2] = {
@@ -3518,7 +3518,7 @@ MenuTexture D_02003A94[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003ABC[2] = {
@@ -3527,7 +3527,7 @@ MenuTexture D_02003ABC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003AE4[2] = {
@@ -3536,7 +3536,7 @@ MenuTexture D_02003AE4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003B0C[2] = {
@@ -3545,7 +3545,7 @@ MenuTexture D_02003B0C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003B34[2] = {
@@ -3554,7 +3554,7 @@ MenuTexture D_02003B34[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003B5C[2] = {
@@ -3563,7 +3563,7 @@ MenuTexture D_02003B5C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003B84[2] = {
@@ -3572,7 +3572,7 @@ MenuTexture D_02003B84[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003BAC[2] = {
@@ -3581,7 +3581,7 @@ MenuTexture D_02003BAC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003BD4[2] = {
@@ -3590,7 +3590,7 @@ MenuTexture D_02003BD4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003BFC[2] = {
@@ -3599,7 +3599,7 @@ MenuTexture D_02003BFC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003C24[2] = {
@@ -3608,7 +3608,7 @@ MenuTexture D_02003C24[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003C4C[2] = {
@@ -3617,7 +3617,7 @@ MenuTexture D_02003C4C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003C74[2] = {
@@ -3626,7 +3626,7 @@ MenuTexture D_02003C74[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003C9C[2] = {
@@ -3635,7 +3635,7 @@ MenuTexture D_02003C9C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003CC4[2] = {
@@ -3644,7 +3644,7 @@ MenuTexture D_02003CC4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003CEC[2] = {
@@ -3653,7 +3653,7 @@ MenuTexture D_02003CEC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003D14[2] = {
@@ -3662,7 +3662,7 @@ MenuTexture D_02003D14[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003D3C[2] = {
@@ -3671,7 +3671,7 @@ MenuTexture D_02003D3C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003D64[2] = {
@@ -3680,7 +3680,7 @@ MenuTexture D_02003D64[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003D8C[2] = {
@@ -3689,7 +3689,7 @@ MenuTexture D_02003D8C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003DB4[2] = {
@@ -3698,7 +3698,7 @@ MenuTexture D_02003DB4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003DDC[2] = {
@@ -3707,7 +3707,7 @@ MenuTexture D_02003DDC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003E04[2] = {
@@ -3716,7 +3716,7 @@ MenuTexture D_02003E04[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003E2C[2] = {
@@ -3725,7 +3725,7 @@ MenuTexture D_02003E2C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003E54[2] = {
@@ -3734,7 +3734,7 @@ MenuTexture D_02003E54[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003E7C[2] = {
@@ -3743,7 +3743,7 @@ MenuTexture D_02003E7C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003EA4[2] = {
@@ -3752,7 +3752,7 @@ MenuTexture D_02003EA4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003ECC[2] = {
@@ -3761,7 +3761,7 @@ MenuTexture D_02003ECC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003EF4[2] = {
@@ -3770,7 +3770,7 @@ MenuTexture D_02003EF4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003F1C[2] = {
@@ -3779,7 +3779,7 @@ MenuTexture D_02003F1C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003F44[2] = {
@@ -3788,7 +3788,7 @@ MenuTexture D_02003F44[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003F6C[2] = {
@@ -3797,7 +3797,7 @@ MenuTexture D_02003F6C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003F94[2] = {
@@ -3806,7 +3806,7 @@ MenuTexture D_02003F94[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003FBC[2] = {
@@ -3815,7 +3815,7 @@ MenuTexture D_02003FBC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02003FE4[2] = {
@@ -3824,7 +3824,7 @@ MenuTexture D_02003FE4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200400C[2] = {
@@ -3833,7 +3833,7 @@ MenuTexture D_0200400C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004034[2] = {
@@ -3842,7 +3842,7 @@ MenuTexture D_02004034[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200405C[2] = {
@@ -3851,7 +3851,7 @@ MenuTexture D_0200405C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004084[2] = {
@@ -3860,7 +3860,7 @@ MenuTexture D_02004084[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020040AC[2] = {
@@ -3869,7 +3869,7 @@ MenuTexture D_020040AC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020040D4[2] = {
@@ -3878,7 +3878,7 @@ MenuTexture D_020040D4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020040FC[2] = {
@@ -3887,7 +3887,7 @@ MenuTexture D_020040FC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004124[2] = {
@@ -3896,7 +3896,7 @@ MenuTexture D_02004124[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200414C[2] = {
@@ -3905,7 +3905,7 @@ MenuTexture D_0200414C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004174[2] = {
@@ -3914,7 +3914,7 @@ MenuTexture D_02004174[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200419C[2] = {
@@ -3923,7 +3923,7 @@ MenuTexture D_0200419C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020041C4[2] = {
@@ -3932,7 +3932,7 @@ MenuTexture D_020041C4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020041EC[2] = {
@@ -3941,7 +3941,7 @@ MenuTexture D_020041EC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004214[2] = {
@@ -3950,7 +3950,7 @@ MenuTexture D_02004214[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200423C[2] = {
@@ -3959,7 +3959,7 @@ MenuTexture D_0200423C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004264[2] = {
@@ -3968,7 +3968,7 @@ MenuTexture D_02004264[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200428C[2] = {
@@ -3977,7 +3977,7 @@ MenuTexture D_0200428C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020042B4[2] = {
@@ -3986,7 +3986,7 @@ MenuTexture D_020042B4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020042DC[2] = {
@@ -3995,7 +3995,7 @@ MenuTexture D_020042DC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004304[2] = {
@@ -4004,7 +4004,7 @@ MenuTexture D_02004304[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200432C[2] = {
@@ -4013,7 +4013,7 @@ MenuTexture D_0200432C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004354[2] = {
@@ -4022,7 +4022,7 @@ MenuTexture D_02004354[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200437C[2] = {
@@ -4031,7 +4031,7 @@ MenuTexture D_0200437C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020043A4[2] = {
@@ -4040,7 +4040,7 @@ MenuTexture D_020043A4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020043CC[2] = {
@@ -4049,7 +4049,7 @@ MenuTexture D_020043CC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020043F4[2] = {
@@ -4058,7 +4058,7 @@ MenuTexture D_020043F4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200441C[2] = {
@@ -4067,7 +4067,7 @@ MenuTexture D_0200441C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004444[2] = {
@@ -4076,7 +4076,7 @@ MenuTexture D_02004444[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200446C[2] = {
@@ -4085,7 +4085,7 @@ MenuTexture D_0200446C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004494[2] = {
@@ -4094,7 +4094,7 @@ MenuTexture D_02004494[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020044BC[2] = {
@@ -4103,7 +4103,7 @@ MenuTexture D_020044BC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020044E4[2] = {
@@ -4112,7 +4112,7 @@ MenuTexture D_020044E4[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200450C[2] = {
@@ -4121,16 +4121,16 @@ MenuTexture D_0200450C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
-MenuTexture seg2_textureFontComma[2] = {
+MenuTexture Seg2TextureFontComma[2] = {
     { 5, font_comma, 16, 16, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200455C[2] = {
@@ -4139,18 +4139,18 @@ MenuTexture D_0200455C[2] = {
 };
 
 /**
- * @brief unknown empty MenuTexture
+ * @brief Unknown empty MenuTexture
  *
  */
-MenuTexture seg2_textureFontEmpty[1] = {
+MenuTexture Seg2TextureFontEmpty[1] = {
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief MenuTexture for the blue sky background
+ * @brief MenuTexture for the Blue sky background
  *
  */
-MenuTexture seg2_blue_sky_background_texture[2] = {
+MenuTexture Seg2BlueSkyBackgroundTexture[2] = {
     { 0, background_blue_sky, 320, 240, 0, 0, 0xcd60, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4159,7 +4159,7 @@ MenuTexture seg2_blue_sky_background_texture[2] = {
  * @brief MenuTexture for the sunset background
  *
  */
-MenuTexture seg2_sunset_background_texture[2] = {
+MenuTexture Seg2SunsetBackgroundTexture[2] = {
     { 0, background_sunset, 320, 240, 0, 0, 0x93c4, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4168,16 +4168,16 @@ MenuTexture seg2_sunset_background_texture[2] = {
  * @brief MenuTexture for copyright
  *
  */
-MenuTexture seg2_copyright_1996_texture[2] = {
+MenuTexture Seg2Copyright1996Texture[2] = {
     { 1, copyright_1996, 124, 17, 98, 199, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief MenuTexture for press start
+ * @brief MenuTexture for press Start
  *
  */
-MenuTexture seg2_push_start_button_texture[2] = {
+MenuTexture Seg2PushStartButtonTexture[2] = {
     { 1, push_start_button, 159, 16, 81, 179, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4192,19 +4192,19 @@ MenuTexture D_02004638[2] = {
 };
 
 /**
- * @brief MenuTexture for the game select menu
+ * @brief MenuTexture for the game Select menu
  *
  */
-MenuTexture seg2_game_select_texture[2] = {
+MenuTexture Seg2GameSelectTexture[2] = {
     { 0, texture_game_select, 200, 32, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
 
 /**
- * @brief MenuTexture for the first colone one player
+ * @brief MenuTexture for the first colone one Player
  *
  */
-MenuTexture seg2_menu_1p_column[4] = {
+MenuTexture Seg2Menu1PColumn[4] = {
     { 1, texture_menu_1p_game, 64, 54, 0, 0, 0x0, 0 },
     { 1, texture_mode_mario_gp, 64, 18, 0, 65, 0x0, 0 },
     { 1, texture_mode_time_trials, 64, 18, 0, 83, 0x0, 0 },
@@ -4212,10 +4212,10 @@ MenuTexture seg2_menu_1p_column[4] = {
 };
 
 /**
- * @brief MenuTexture for the first colone two player
+ * @brief MenuTexture for the first colone two Player
  *
  */
-MenuTexture seg2_menu_2p_column[5] = {
+MenuTexture Seg2Menu2PColumn[5] = {
     { 1, texture_menu_2p_game, 64, 54, 0, 0, 0x0, 0 },
     { 1, texture_mode_mario_gp, 64, 18, 0, 65, 0x0, 0 },
     { 1, texture_mode_vs, 64, 18, 0, 83, 0x0, 0 },
@@ -4224,10 +4224,10 @@ MenuTexture seg2_menu_2p_column[5] = {
 };
 
 /**
- * @brief MenuTexture for the first colone three player
+ * @brief MenuTexture for the first colone three Player
  *
  */
-MenuTexture seg2_menu_3p_column[4] = {
+MenuTexture Seg2Menu3PColumn[4] = {
     { 1, texture_menu_3p_game, 64, 54, 0, 0, 0x0, 0 },
     { 1, texture_mode_vs, 64, 18, 0, 65, 0x0, 0 },
     { 1, texture_mode_battle, 64, 18, 0, 83, 0x0, 0 },
@@ -4235,10 +4235,10 @@ MenuTexture seg2_menu_3p_column[4] = {
 };
 
 /**
- * @brief MenuTexture for the first colone four player
+ * @brief MenuTexture for the first colone four Player
  *
  */
-MenuTexture seg2_menu_4p_column[4] = {
+MenuTexture Seg2Menu4PColumn[4] = {
     { 1, texture_menu_4p_game, 64, 54, 0, 0, 0x0, 0 },
     { 1, texture_mode_vs, 64, 18, 0, 65, 0x0, 0 },
     { 1, texture_mode_battle, 64, 18, 0, 83, 0x0, 0 },
@@ -4246,7 +4246,7 @@ MenuTexture seg2_menu_4p_column[4] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_020047DC[2] = {
@@ -4255,7 +4255,7 @@ MenuTexture D_020047DC[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004804[2] = {
@@ -4264,7 +4264,7 @@ MenuTexture D_02004804[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200482C[2] = {
@@ -4273,7 +4273,7 @@ MenuTexture D_0200482C[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_02004854[2] = {
@@ -4282,7 +4282,7 @@ MenuTexture D_02004854[2] = {
 };
 
 /**
- * @brief unknown MenuTexture
+ * @brief Unknown MenuTexture
  *
  */
 MenuTexture D_0200487C[2] = {
@@ -4294,7 +4294,7 @@ MenuTexture D_0200487C[2] = {
  * @brief MenuTexture for Menu L Option
  *
  */
-MenuTexture gTextureMenuLOption[2] = {
+MenuTexture TextureMenuLOption[2] = {
     { 1, texture_l_option, 58, 19, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4303,7 +4303,7 @@ MenuTexture gTextureMenuLOption[2] = {
  * @brief MenuTexture for Menu R Option
  *
  */
-MenuTexture seg2_textureMenuRData[2] = {
+MenuTexture Seg2TextureMenuRData[2] = {
     { 1, texture_r_data, 58, 19, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4312,7 +4312,7 @@ MenuTexture seg2_textureMenuRData[2] = {
  * @brief MenuTexture for Menu 50cc
  *
  */
-MenuTexture seg2_50_CC_texture[2] = {
+MenuTexture Seg250CCTexture[2] = {
     { 1, texture_50cc, 64, 18, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4321,7 +4321,7 @@ MenuTexture seg2_50_CC_texture[2] = {
  * @brief MenuTexture for Menu 100cc
  *
  */
-MenuTexture seg2_100_CC_texture[2] = {
+MenuTexture Seg2100CCTexture[2] = {
     { 1, texture_100cc, 64, 18, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4330,7 +4330,7 @@ MenuTexture seg2_100_CC_texture[2] = {
  * @brief MenuTexture for Menu 150cc
  *
  */
-MenuTexture seg2_150_CC_texture[2] = {
+MenuTexture Seg2150CCTexture[2] = {
     { 1, texture_150cc, 64, 18, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4339,7 +4339,7 @@ MenuTexture seg2_150_CC_texture[2] = {
  * @brief MenuTexture for Menu Extra
  *
  */
-MenuTexture seg2_extra_CC_texture[2] = {
+MenuTexture Seg2ExtraCCTexture[2] = {
     { 1, texture_extra, 64, 18, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4348,7 +4348,7 @@ MenuTexture seg2_extra_CC_texture[2] = {
  * @brief MenuTextures for Menu Without Item
  *
  */
-MenuTexture seg2_menu_no_item_texture[2] = {
+MenuTexture Seg2MenuNoItemTexture[2] = {
     { 1, gTextureMenuWithoutItem, 64, 18, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4384,7 +4384,7 @@ MenuTexture D_02004A0C[2] = {
  * @brief MenuTextures for Menu Data
  *
  */
-MenuTexture seg2_data_texture[2] = {
+MenuTexture Seg2DataTexture[2] = {
     { 1, texture_data, 64, 18, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4393,7 +4393,7 @@ MenuTexture seg2_data_texture[2] = {
  * @brief MenuTextures P1 Border ?
  *
  */
-MenuTexture seg2_P1_border_texture[3] = {
+MenuTexture Seg2P1BorderTexture[3] = {
     { 3, gTexture7E56E4, 64, 64, 0, 0, 0x116c, 0 },
     { 4, gTextureP1BorderBlue, 64, 64, 0, 0, 0x0000, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
@@ -4403,7 +4403,7 @@ MenuTexture seg2_P1_border_texture[3] = {
  * @brief MenuTextures P2 Border ?
  *
  */
-MenuTexture seg2_P2_border_texture[3] = {
+MenuTexture Seg2P2BorderTexture[3] = {
     { 3, gTexture7E56E4, 64, 64, 0, 0, 0x116c, 0 },
     { 4, gTextureP2BorderRed, 64, 64, 0, 0, 0x0000, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
@@ -4413,7 +4413,7 @@ MenuTexture seg2_P2_border_texture[3] = {
  * @brief MenuTextures P3 Border ?
  *
  */
-MenuTexture seg2_P3_border_texture[3] = {
+MenuTexture Seg2P3BorderTexture[3] = {
     { 3, gTexture7E56E4, 64, 64, 0, 0, 0x116c, 0 },
     { 4, gTextureP3BorderOrange, 64, 64, 0, 0, 0x0000, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
@@ -4423,7 +4423,7 @@ MenuTexture seg2_P3_border_texture[3] = {
  * @brief MenuTextures P4 Border ?
  *
  */
-MenuTexture seg2_P4_border_texture[3] = {
+MenuTexture Seg2P4BorderTexture[3] = {
     { 3, gTexture7E56E4, 64, 64, 0, 0, 0x116c, 0 },
     { 4, gTextureP4BorderGreen, 64, 64, 0, 0, 0x0000, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
@@ -4451,7 +4451,7 @@ MenuTexture D_02004B74[2] = {
  * @brief MenuTextures for Menu Select
  *
  */
-MenuTexture seg2_menu_select_texture[2] = {
+MenuTexture Seg2MenuSelectTexture[2] = {
     { 0, gTextureMapSelect, 190, 32, 65, 18, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4460,7 +4460,7 @@ MenuTexture seg2_menu_select_texture[2] = {
  * @brief MenuTextures for Menu Mushroom Cup
  *
  */
-MenuTexture seg2_mushroom_cup_texture[2] = {
+MenuTexture Seg2MushroomCupTexture[2] = {
     { 1, gTextureMenuMushroomCup, 65, 40, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4469,7 +4469,7 @@ MenuTexture seg2_mushroom_cup_texture[2] = {
  * @brief MenuTextures for Menu Flower Cup
  *
  */
-MenuTexture seg2_flower_cup_texture[2] = {
+MenuTexture Seg2FlowerCupTexture[2] = {
     { 1, gTextureMenuFlowerCup, 65, 40, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4478,7 +4478,7 @@ MenuTexture seg2_flower_cup_texture[2] = {
  * @brief MenuTextures for Menu Star Cup
  *
  */
-MenuTexture seg2_star_cup_texture[2] = {
+MenuTexture Seg2StarCupTexture[2] = {
     { 1, gTextureMenuStarCup, 65, 40, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4487,7 +4487,7 @@ MenuTexture seg2_star_cup_texture[2] = {
  * @brief MenuTextures for Menu Special Cup
  *
  */
-MenuTexture seg2_special_cup_texture[2] = {
+MenuTexture Seg2SpecialCupTexture[2] = {
     { 1, gTextureMenuSpecialCup, 65, 40, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4496,7 +4496,7 @@ MenuTexture seg2_special_cup_texture[2] = {
  * @brief MenuTextures for the course preview mario raceway
  *
  */
-MenuTexture seg2_mario_raceway_preview_small_texture[2] = {
+MenuTexture Seg2MarioRacewayPreviewSmallTexture[2] = {
     { 0, gTextureCoursePreviewMarioRaceway, 128, 78, 23, 112, 0x1e3d, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4505,7 +4505,7 @@ MenuTexture seg2_mario_raceway_preview_small_texture[2] = {
  * @brief MenuTexture title for mushroom cup
  *
  */
-MenuTexture seg2_mushroom_cup_title_texture[5] = {
+MenuTexture Seg2MushroomCupTitleTexture[5] = {
     { 1, gTextureTitleLuigiRaceway, 140, 18, 157, 112, 0x0, 0 },
     { 1, gTextureTitleMooMooFarm, 140, 18, 157, 136, 0x0, 0 },
     { 1, gTextureTitleKoopaTroopaBeach, 140, 18, 157, 160, 0x0, 0 },
@@ -4517,7 +4517,7 @@ MenuTexture seg2_mushroom_cup_title_texture[5] = {
  * @brief MenuTexture title for flower cup
  *
  */
-MenuTexture seg2_flower_cup_title_texture[5] = {
+MenuTexture Seg2FlowerCupTitleTexture[5] = {
     { 1, gTextureTitleToadsTurnpike, 140, 18, 157, 112, 0x0, 0 },
     { 1, gTextureTitleFrappeSnowland, 140, 18, 157, 136, 0x0, 0 },
     { 1, gTextureTitleChocoMountain, 140, 18, 157, 160, 0x0, 0 },
@@ -4526,10 +4526,10 @@ MenuTexture seg2_flower_cup_title_texture[5] = {
 };
 
 /**
- * @brief MenuTexture title for star cup
+ * @brief MenuTexture title for Star cup
  *
  */
-MenuTexture seg2_star_cup_title_texture[5] = {
+MenuTexture Seg2StarCupTitleTexture[5] = {
     { 1, gTextureTitleWarioStadium, 140, 18, 157, 112, 0x0, 0 },
     { 1, gTextureTitleSherbetLand, 140, 18, 157, 136, 0x0, 0 },
     { 1, gTextureTitleRoyalRaceway, 140, 18, 157, 160, 0x0, 0 },
@@ -4541,7 +4541,7 @@ MenuTexture seg2_star_cup_title_texture[5] = {
  * @brief MenuTexture title for special cup
  *
  */
-MenuTexture seg2_special_cup_title_texture[5] = {
+MenuTexture Seg2SpecialCupTitleTexture[5] = {
     { 1, gTextureTitleDKsJungleParkway, 140, 18, 157, 112, 0x0, 0 },
     { 1, gTextureTitleYoshiValley, 140, 18, 157, 136, 0x0, 0 },
     { 1, gTextureTitleBansheeBoardwalk, 140, 18, 157, 160, 0x0, 0 },
@@ -4550,10 +4550,10 @@ MenuTexture seg2_special_cup_title_texture[5] = {
 };
 
 /**
- * @brief MenuTextures title for battle mode
+ * @brief MenuTextures title for battle Mode
  *
  */
-MenuTexture seg2_battle_title_texture[5] = {
+MenuTexture Seg2BattleTitleTexture[5] = {
     { 1, gTextureTitleBigDonut, 140, 18, 157, 112, 0x0, 0 },
     { 1, gTextureTitleBlockFort, 140, 18, 157, 136, 0x0, 0 },
     { 1, gTextureTitleDoubleDeck, 140, 18, 157, 160, 0x0, 0 },
@@ -4574,7 +4574,7 @@ MenuTexture D_02004E80[2] = {
  * @brief MenuTextures title Mario Raceway
  *
  */
-MenuTexture seg2_mario_raceway_title_texture[2] = {
+MenuTexture Seg2MarioRacewayTitleTexture[2] = {
     { 1, gTextureTitleMarioRaceway, 140, 18, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -4583,7 +4583,7 @@ MenuTexture seg2_mario_raceway_title_texture[2] = {
  * @brief MenuTextures title Choco Mountain
  *
  */
-MenuTexture seg2_choco_mountain_title_texture[2] = {
+MenuTexture Seg2ChocoMountainTitleTexture[2] = {
     { 1, gTextureTitleChocoMountain, 140, 18, 0, 0, 0x0, 0 },
     { 0, NULL, 0, 0, 0, 0, 0, 0 },
 };
@@ -5976,7 +5976,7 @@ MenuTexture D_020066E0[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Mario face ?
  */
 MkAnimation D_02006708[2] = {
@@ -5985,7 +5985,7 @@ MkAnimation D_02006708[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Mario face ?
  */
 MkAnimation D_02006718[12] = {
@@ -5995,7 +5995,7 @@ MkAnimation D_02006718[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Mario face ?
  */
 MkAnimation D_02006778[2] = {
@@ -6004,7 +6004,7 @@ MkAnimation D_02006778[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Mario face ?
  */
 MkAnimation D_02006788[11] = {
@@ -6014,7 +6014,7 @@ MkAnimation D_02006788[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Mario face ?
  */
 MkAnimation D_020067E0[11] = {
@@ -6024,7 +6024,7 @@ MkAnimation D_020067E0[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Mario face ?
  */
 MkAnimation D_02006838[21] = {
@@ -6037,7 +6037,7 @@ MkAnimation D_02006838[21] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Mario face ?
  */
 MkAnimation D_020068E0[2] = {
@@ -6046,7 +6046,7 @@ MkAnimation D_020068E0[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Luigi face ?
  */
 MkAnimation D_020068F0[2] = {
@@ -6055,7 +6055,7 @@ MkAnimation D_020068F0[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Luigi face ?
  */
 MkAnimation D_02006900[12] = {
@@ -6065,7 +6065,7 @@ MkAnimation D_02006900[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Luigi face ?
  */
 MkAnimation D_02006960[2] = {
@@ -6074,7 +6074,7 @@ MkAnimation D_02006960[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Luigi face ?
  */
 MkAnimation D_02006970[11] = {
@@ -6084,7 +6084,7 @@ MkAnimation D_02006970[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Luigi face ?
  */
 MkAnimation D_020069C8[11] = {
@@ -6094,7 +6094,7 @@ MkAnimation D_020069C8[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Luigi face ?
  */
 MkAnimation D_02006A20[21] = {
@@ -6107,7 +6107,7 @@ MkAnimation D_02006A20[21] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Luigi face ?
  */
 MkAnimation D_02006AC8[2] = {
@@ -6116,7 +6116,7 @@ MkAnimation D_02006AC8[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Bowser face ?
  */
 MkAnimation D_02006AD8[2] = {
@@ -6125,7 +6125,7 @@ MkAnimation D_02006AD8[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Bowser face ?
  */
 MkAnimation D_02006AE8[12] = {
@@ -6135,7 +6135,7 @@ MkAnimation D_02006AE8[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Bowser face ?
  */
 MkAnimation D_02006B48[2] = {
@@ -6144,7 +6144,7 @@ MkAnimation D_02006B48[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Bowser face ?
  */
 MkAnimation D_02006B58[11] = {
@@ -6154,7 +6154,7 @@ MkAnimation D_02006B58[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Bowser face ?
  */
 MkAnimation D_02006BB0[11] = {
@@ -6164,7 +6164,7 @@ MkAnimation D_02006BB0[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Bowser face ?
  */
 MkAnimation D_02006C08[21] = {
@@ -6177,7 +6177,7 @@ MkAnimation D_02006C08[21] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Bowser face ?
  */
 MkAnimation D_02006CB0[2] = {
@@ -6186,7 +6186,7 @@ MkAnimation D_02006CB0[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Peach face ?
  */
 MkAnimation D_02006CC0[2] = {
@@ -6195,7 +6195,7 @@ MkAnimation D_02006CC0[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Peach face ?
  */
 MkAnimation D_02006CD0[12] = {
@@ -6205,7 +6205,7 @@ MkAnimation D_02006CD0[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Peach face ?
  */
 MkAnimation D_02006D30[2] = {
@@ -6214,7 +6214,7 @@ MkAnimation D_02006D30[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Peach face ?
  */
 MkAnimation D_02006D40[11] = {
@@ -6224,7 +6224,7 @@ MkAnimation D_02006D40[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Peach face ?
  */
 MkAnimation D_02006D98[11] = {
@@ -6234,7 +6234,7 @@ MkAnimation D_02006D98[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Peach face ?
  */
 MkAnimation D_02006DF0[21] = {
@@ -6247,7 +6247,7 @@ MkAnimation D_02006DF0[21] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Peach face ?
  */
 MkAnimation D_02006E98[2] = {
@@ -6256,7 +6256,7 @@ MkAnimation D_02006E98[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Toad face ?
  */
 MkAnimation D_02006EA8[2] = {
@@ -6265,7 +6265,7 @@ MkAnimation D_02006EA8[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Toad face ?
  */
 MkAnimation D_02006EB8[12] = {
@@ -6275,7 +6275,7 @@ MkAnimation D_02006EB8[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Toad face ?
  */
 MkAnimation D_02006F18[2] = {
@@ -6284,7 +6284,7 @@ MkAnimation D_02006F18[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Toad face ?
  */
 MkAnimation D_02006F28[11] = {
@@ -6294,7 +6294,7 @@ MkAnimation D_02006F28[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Toad face ?
  */
 MkAnimation D_02006F80[11] = {
@@ -6304,7 +6304,7 @@ MkAnimation D_02006F80[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Toad face ?
  */
 MkAnimation D_02006FD8[21] = {
@@ -6317,7 +6317,7 @@ MkAnimation D_02006FD8[21] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Toad face ?
  */
 MkAnimation D_02007080[2] = {
@@ -6326,7 +6326,7 @@ MkAnimation D_02007080[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Yoshi face ?
  */
 MkAnimation D_02007090[2] = {
@@ -6335,7 +6335,7 @@ MkAnimation D_02007090[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Yoshi face ?
  */
 MkAnimation D_020070A0[12] = {
@@ -6345,7 +6345,7 @@ MkAnimation D_020070A0[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Yoshi face ?
  */
 MkAnimation D_02007100[2] = {
@@ -6354,7 +6354,7 @@ MkAnimation D_02007100[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Yoshi face ?
  */
 MkAnimation D_02007110[12] = {
@@ -6364,7 +6364,7 @@ MkAnimation D_02007110[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Yoshi face ?
  */
 MkAnimation D_02007170[11] = {
@@ -6374,7 +6374,7 @@ MkAnimation D_02007170[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Yoshi face ?
  */
 MkAnimation D_020071C8[21] = {
@@ -6387,7 +6387,7 @@ MkAnimation D_020071C8[21] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Yoshi face ?
  */
 MkAnimation D_02007270[2] = {
@@ -6396,7 +6396,7 @@ MkAnimation D_02007270[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * DK face ?
  */
 MkAnimation D_02007280[2] = {
@@ -6405,7 +6405,7 @@ MkAnimation D_02007280[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * DK face ?
  */
 MkAnimation D_02007290[12] = {
@@ -6415,7 +6415,7 @@ MkAnimation D_02007290[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * DK face ?
  */
 MkAnimation D_020072F0[2] = {
@@ -6424,7 +6424,7 @@ MkAnimation D_020072F0[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * DK face ?
  */
 MkAnimation D_02007300[11] = {
@@ -6434,7 +6434,7 @@ MkAnimation D_02007300[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * DK face ?
  */
 MkAnimation D_02007358[11] = {
@@ -6444,7 +6444,7 @@ MkAnimation D_02007358[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * DK face ?
  */
 MkAnimation D_020073B0[21] = {
@@ -6457,7 +6457,7 @@ MkAnimation D_020073B0[21] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * DK face ?
  */
 MkAnimation D_02007458[2] = {
@@ -6466,7 +6466,7 @@ MkAnimation D_02007458[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Wario face ?
  */
 MkAnimation D_02007468[2] = {
@@ -6475,7 +6475,7 @@ MkAnimation D_02007468[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Wario face ?
  */
 MkAnimation D_02007478[12] = {
@@ -6485,7 +6485,7 @@ MkAnimation D_02007478[12] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Wario face ?
  */
 MkAnimation D_020074D8[2] = {
@@ -6494,7 +6494,7 @@ MkAnimation D_020074D8[2] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Wario face ?
  */
 MkAnimation D_020074E8[11] = {
@@ -6504,7 +6504,7 @@ MkAnimation D_020074E8[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Wario face ?
  */
 MkAnimation D_02007540[11] = {
@@ -6514,7 +6514,7 @@ MkAnimation D_02007540[11] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Wario face ?
  */
 MkAnimation D_02007598[21] = {
@@ -6527,7 +6527,7 @@ MkAnimation D_02007598[21] = {
 };
 
 /**
- * @brief unknown MkAnimation
+ * @brief Unknown MkAnimation
  * Wario face ?
  */
 MkAnimation D_02007640[2] = {

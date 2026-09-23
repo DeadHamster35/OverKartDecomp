@@ -26,7 +26,7 @@ extern u8 gTextureSignPinkArrow[];
 extern u8 gTextureWaves0[];
 extern u8 gTexture683844[];
 
-const course_texture dks_jungle_parkway_textures[] = {
+const CourseTexture dks_jungle_parkway_textures[] = {
     { gTexture648508, 0x01FE, 0x1000, 0x0 },
     { gTexture6684F8, 0x010D, 0x0800, 0x0 },
     { gTextureWoodBridgeSlats, 0x0DAB, 0x1000, 0x0 },

@@ -10,7 +10,7 @@ course:
   cpu_behaviour_ptr: D_0D0090B8
   cpu_maximum_separation: 35.0f
   cpu_minimum_separation: 0.0f
-  distance_limmit_ptr: dist_limmit_pat_NORMAL
+  distance_limmit_ptr: DistLimmitPatNORMAL
   cpu_steering_sensitivity: 53
   bomb_kart_spawns: # 7 bomb kart spawn locations
     - [0x0000, 0x0000, 0.8333333, -1533.0, -682.0, -103.0, 0.0]

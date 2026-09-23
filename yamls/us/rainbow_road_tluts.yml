@@ -10,7 +10,7 @@
     - '#include <defines.h>'
 gTLUTRainbowRoadNeonPeach:
   symbol: gTLUTRainbowRoadNeonPeach
-  type: texture
+  type: Texture
   ctype: u16
   width: 16
   height: 16
@@ -18,7 +18,7 @@ gTLUTRainbowRoadNeonPeach:
   format: rgba16
 gTLUTRainbowRoadNeonLuigi:
   symbol: gTLUTRainbowRoadNeonLuigi
-  type: texture
+  type: Texture
   ctype: u16
   width: 16
   height: 16
@@ -26,7 +26,7 @@ gTLUTRainbowRoadNeonLuigi:
   format: rgba16
 gTLUTRainbowRoadNeonDonkeyKong:
   symbol: gTLUTRainbowRoadNeonDonkeyKong
-  type: texture
+  type: Texture
   ctype: u16
   width: 16
   height: 16
@@ -34,7 +34,7 @@ gTLUTRainbowRoadNeonDonkeyKong:
   format: rgba16
 gTLUTRainbowRoadNeonYoshi:
   symbol: gTLUTRainbowRoadNeonYoshi
-  type: texture
+  type: Texture
   ctype: u16
   width: 16
   height: 16
@@ -42,7 +42,7 @@ gTLUTRainbowRoadNeonYoshi:
   format: rgba16
 gTLUTRainbowRoadNeonBowser:
   symbol: gTLUTRainbowRoadNeonBowser
-  type: texture
+  type: Texture
   ctype: u16
   width: 16
   height: 16
@@ -50,7 +50,7 @@ gTLUTRainbowRoadNeonBowser:
   format: rgba16
 gTLUTRainbowRoadNeonWario:
   symbol: gTLUTRainbowRoadNeonWario
-  type: texture
+  type: Texture
   ctype: u16
   width: 16
   height: 16
@@ -58,7 +58,7 @@ gTLUTRainbowRoadNeonWario:
   format: rgba16
 gTLUTRainbowRoadNeonToad:
   symbol: gTLUTRainbowRoadNeonToad
-  type: texture
+  type: Texture
   ctype: u16
   width: 16
   height: 16

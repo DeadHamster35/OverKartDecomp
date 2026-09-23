@@ -10,7 +10,7 @@ course:
   cpu_behaviour_ptr: D_0D009260
   cpu_maximum_separation: 50.0f
   cpu_minimum_separation: 0.3f
-  distance_limmit_ptr: dist_limmit_pat_NORMAL
+  distance_limmit_ptr: DistLimmitPatNORMAL
   cpu_steering_sensitivity: 53
   bomb_kart_spawns: # 7 bomb kart spawn locations
     - [0x0032, 0x0003, 0.8333333, 0.0, 0.0, 0.0, 0.0]
@@ -30,15 +30,15 @@ course:
 
   # Course path
   path_table:
-    [d_course_kalimari_desert_track_path, "&nullPath", "&nullPath", "&nullPath"]
+    [d_course_kalimari_desert_track_path, "&NullPath", "&NullPath", "&NullPath"]
 
   # Unused except in podium ceremony
   path_table_unknown:
     [
       d_course_kalimari_desert_unknown_path,
-      "&nullPath",
-      "&nullPath",
-      "&nullPath",
+      "&NullPath",
+      "&NullPath",
+      "&NullPath",
     ]
 
   sky_colors: [195, 231, 255, 255, 192, 0]

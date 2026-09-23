@@ -8,9 +8,9 @@ char MenuOverflow; START BOOST
 */
 
 
-void fastAI()
+void FastAI()
 {
-     switch(g_raceClass)
+     switch(RaceClass)
      {
           case 0x00:
           {
@@ -29,72 +29,72 @@ void fastAI()
           }
      }
 
-     if ((g_startingIndicator < 0x03) && (GlobalCharC == 0x00))
+     if ((StartingIndicator < 0x03) && (GlobalCharC == 0x00))
      {
           GlobalCharC = 0x01;
      }
-     if ((g_startingIndicator == 0x03) && (GlobalCharC == 0x01))
+     if ((StartingIndicator == 0x03) && (GlobalCharC == 0x01))
      {
           GlobalCharC = 0x00;
-          switch(g_playerCount)
+          switch(PlayerCount)
           {
                case 0x01 :
                {
-                    GlobalPlayer[1].weapon |= USE_MUSHROOM;
-                    GlobalPlayer[2].weapon |= USE_MUSHROOM;
-                    GlobalPlayer[3].weapon |= USE_MUSHROOM;
+                    GlobalPlayer[1].Weapon |= USE_MUSHROOM;
+                    GlobalPlayer[2].Weapon |= USE_MUSHROOM;
+                    GlobalPlayer[3].Weapon |= USE_MUSHROOM;
                     break;
                }
                case 0x02 :
                {
-                    GlobalPlayer[1].weapon |= USE_MUSHROOM;
+                    GlobalPlayer[1].Weapon |= USE_MUSHROOM;
                     break;
                }
                case 0x03 :
                {
-                    GlobalPlayer[1].weapon |= USE_MUSHROOM;
-                    GlobalPlayer[2].weapon |= USE_MUSHROOM;
+                    GlobalPlayer[1].Weapon |= USE_MUSHROOM;
+                    GlobalPlayer[2].Weapon |= USE_MUSHROOM;
                     break;
                }
                case 0x04 :
                {
-                    GlobalPlayer[1].weapon |= USE_MUSHROOM;
-                    GlobalPlayer[2].weapon |= USE_MUSHROOM;
-                    GlobalPlayer[3].weapon |= USE_MUSHROOM;
+                    GlobalPlayer[1].Weapon |= USE_MUSHROOM;
+                    GlobalPlayer[2].Weapon |= USE_MUSHROOM;
+                    GlobalPlayer[3].Weapon |= USE_MUSHROOM;
                     break;
                }
           }
      }
-     if (g_gameTimer > 5.0)
+     if (GameTimer > 5.0)
      {
-          switch(g_playerCount)
+          switch(PlayerCount)
           {
                case 0x01 :
                {
-                    GlobalPlayer[1].acc_maxcount = GlobalFloatA;
-                    GlobalPlayer[2].acc_maxcount = GlobalFloatA;
-                    GlobalPlayer[3].acc_maxcount = GlobalFloatA;
+                    GlobalPlayer[1].AccMaxcount = GlobalFloatA;
+                    GlobalPlayer[2].AccMaxcount = GlobalFloatA;
+                    GlobalPlayer[3].AccMaxcount = GlobalFloatA;
 
                     break;
                }
                case 0x02 :
                {
-                    GlobalPlayer[1].acc_maxcount = GlobalFloatA;
+                    GlobalPlayer[1].AccMaxcount = GlobalFloatA;
 
                     break;
                }
                case 0x03 :
                {
-                    GlobalPlayer[1].acc_maxcount = GlobalFloatA;
-                    GlobalPlayer[2].acc_maxcount = GlobalFloatA;
+                    GlobalPlayer[1].AccMaxcount = GlobalFloatA;
+                    GlobalPlayer[2].AccMaxcount = GlobalFloatA;
 
                     break;
                }
                case 0x04 :
                {
-                    GlobalPlayer[1].acc_maxcount = GlobalFloatA;
-                    GlobalPlayer[2].acc_maxcount = GlobalFloatA;
-                    GlobalPlayer[3].acc_maxcount = GlobalFloatA;
+                    GlobalPlayer[1].AccMaxcount = GlobalFloatA;
+                    GlobalPlayer[2].AccMaxcount = GlobalFloatA;
+                    GlobalPlayer[3].AccMaxcount = GlobalFloatA;
 
                     break;
                }
@@ -110,28 +110,28 @@ short SpeedMin[4] = {25, 35, 45, 40};
 char RubberChar[8];
 void RubberBandMan(int EnemyID, Player* EnemyKart)
 {
-     if (scrollLock)
+     if (ScrollLock)
      {
           short ThisIndex = (short)g_playerPathPointTable[EnemyID];
-          short TargetIndex = (short)g_playerPathPointTable[g_EnemyTargetPlayer];
+          short TargetIndex = (short)g_playerPathPointTable[EnemyTargetPlayer];
 
-          if (EnemyKart->speed < SPEED_KM(SpeedMin[g_raceClass]))
+          if (EnemyKart->Speed < SPEED_KM(SpeedMin[RaceClass]))
           {
                AccelOn(EnemyKart);
                RubberChar[EnemyID] = 0;
                return;
           }
 
-          if (g_GameLapTable[EnemyID] < g_GameLapTable[g_EnemyTargetPlayer])
+          if (g_GameLapTable[EnemyID] < g_GameLapTable[EnemyTargetPlayer])
           {
                AccelOn(EnemyKart);
                RubberChar[EnemyID] = 1;
                return;
           }
 
-          if (g_GameLapTable[EnemyID] == g_GameLapTable[g_EnemyTargetPlayer])
+          if (g_GameLapTable[EnemyID] == g_GameLapTable[EnemyTargetPlayer])
           {
-               if (ThisIndex < TargetIndex + RubberCheck[g_raceClass])
+               if (ThisIndex < TargetIndex + RubberCheck[RaceClass])
                {
                     AccelOn(EnemyKart);
                     RubberChar[EnemyID] = 2;
@@ -145,9 +145,9 @@ void RubberBandMan(int EnemyID, Player* EnemyKart)
                }
           }
 
-          if (g_GameLapTable[EnemyID] > g_GameLapTable[g_EnemyTargetPlayer])
+          if (g_GameLapTable[EnemyID] > g_GameLapTable[EnemyTargetPlayer])
           {
-               if (ThisIndex < RubberCheck[g_raceClass])
+               if (ThisIndex < RubberCheck[RaceClass])
                {
                     AccelOn(EnemyKart);
                     RubberChar[EnemyID] = 4;
@@ -167,14 +167,14 @@ short DifficultyCurve[4] = {0,5,10,8};
 void SetAIDifficulty(int Difficulty)
 {
      int ThisPlayer;
-     for (ThisPlayer = g_playerCount; ThisPlayer < 8; ThisPlayer++)
+     for (ThisPlayer = PlayerCount; ThisPlayer < 8; ThisPlayer++)
      {
-          GlobalPlayer[ThisPlayer].acc_maxcount += DifficultyCurve[Difficulty];
+          GlobalPlayer[ThisPlayer].AccMaxcount += DifficultyCurve[Difficulty];
      }
 }
 
 
-void aiSetup()
+void AISetup()
 {
     int ThisPlayer;
     switch (SaveGame.GameSettings.AIMode)
@@ -204,21 +204,21 @@ void aiSetup()
         }
 
 	}
-    if ((g_startingIndicator >= 3) && (g_startingIndicator < 7))
+    if ((StartingIndicator >= 3) && (StartingIndicator < 7))
     {
         for (ThisPlayer = SaveGame.GameSettings.AIMode; ThisPlayer < 4; ThisPlayer++)
         {
             if (*GlobalLap[ThisPlayer] < 3)
             {
-                GlobalPlayer[ThisPlayer].flag |= EXISTS;
-                GlobalPlayer[ThisPlayer].flag |= IS_CPU_PLAYER;
+                GlobalPlayer[ThisPlayer].Flag |= EXISTS;
+                GlobalPlayer[ThisPlayer].Flag |= IS_CPU_PLAYER;
             }
         }
 
 
 
 
-        g_EnemyTargetPlayer = 0;
+        EnemyTargetPlayer = 0;
 
 
 

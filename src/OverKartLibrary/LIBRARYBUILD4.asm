@@ -1,18 +1,18 @@
 /*
-These are default functions that overwrite existing game code calls.
+These are default functions that overwrite existing game Code calls.
 If the defined functions have not been made in an external codebase, it will use the default.
 */
 
-.ifndef gameCode
-.definelabel gameCode, gameCodeDefault
+.ifndef GameCode
+.definelabel GameCode, GameCodeDefault
 .endif
 
-.ifndef titleMenu
-.definelabel titleMenu, titleMenuDefault
+.ifndef TitleMenu
+.definelabel TitleMenu, TitleMenuDefault
 .endif
 
-.ifndef title2
-.definelabel title2, title2Default
+.ifndef Title2
+.definelabel Title2, title2Default
 .endif
 
 .ifndef MapStartup
@@ -49,8 +49,8 @@ If the defined functions have not been made in an external codebase, it will use
 .endif
 
 
-.ifndef allRun
-.definelabel allRun, allRunDefault
+.ifndef AllRun
+.definelabel AllRun, AllRunDefault
 .endif
 
 
@@ -69,11 +69,11 @@ If the defined functions have not been made in an external codebase, it will use
 .endif
 
 .ifndef KWKumo_Alloc_Hook
-.definelabel KWKumo_Alloc_Hook, KWKumo_Alloc_Hook_Default
+.definelabel KWKumo_Alloc_Hook, KWKumoAllocHookDefault
 .endif
 
 .ifndef KWChart_Kumo_Hook
-.definelabel KWChart_Kumo_Hook, KWChart_Kumo_Hook_Default
+.definelabel KWChart_Kumo_Hook, KWChartKumoHookDefault
 .endif
 
 .ifndef BalloonCheck

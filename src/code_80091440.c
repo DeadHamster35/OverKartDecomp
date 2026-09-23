@@ -6,57 +6,57 @@
 #include "math_util.h"
 #include "collision.h"
 
-void inc_camerapoint(void) {
-    camera_point = gPlayerOneCopy->point + 7;
-    if ((s32) point_number < camera_point) {
-        camera_point -= point_number;
+void IncCamerapoint(void) {
+    CameraPoint = PlayerOneCopy->Point + 7;
+    if ((s32) PointNumber < CameraPoint) {
+        CameraPoint -= PointNumber;
     }
 }
 
-UNUSED void finish_camera(void) {
+UNUSED void FinishCamera(void) {
     UNUSED Vec3f sp64 = { 0.0f, -20.0f, 150.0f };
     UNUSED Vec3f sp58 = { 0.0f, -6.0f, 4.0f };
     uintptr_t segment = SEGMENT_NUMBER2(D_8015F718[0]);
-    uintptr_t offset = SEGMENT_OFFSET(D_8015F718[0]);
-    Camera* camera = &cameras[0];
-    struct ActorSpawnData* sp48 = (struct ActorSpawnData*) VIRTUAL_TO_PHYSICAL2(SegmentTable[segment] + offset);
+    uintptr_t Offset = SEGMENT_OFFSET(D_8015F718[0]);
+    Camera* Camera = &Cameras[0];
+    struct ActorSpawnData* sp48 = (struct ActorSpawnData*) VIRTUAL_TO_PHYSICAL2(SegmentTable[segment] + Offset);
     struct ActorSpawnData* tempData;
 
-    s16 temp3 = (s16) camera_point;
-    s16 temp2 = (s16) gPlayerOneCopy->point;
+    s16 temp3 = (s16) CameraPoint;
+    s16 temp2 = (s16) PlayerOneCopy->Point;
     s16 temp;
     f32 sp38;
     f32 sp34;
     f32 sp30;
-    camera->up_vector[0] = 0;
-    camera->up_vector[1] = 1;
-    camera->up_vector[2] = 0;
+    Camera->UpVector[0] = 0;
+    Camera->UpVector[1] = 1;
+    Camera->UpVector[2] = 0;
 
     if (1) {} // waa?
 
     temp = temp2 - temp3;
     if (temp == 7) {
-        inc_camerapoint();
+        IncCamerapoint();
     } else if (temp < 14) {
-        temp += (s16) point_number;
+        temp += (s16) PointNumber;
         if (temp == 7) {
-            inc_camerapoint();
+            IncCamerapoint();
         }
     }
-    tempData = sp48 + camera_point;
+    tempData = sp48 + CameraPoint;
 
-    camera->camera_pos[0] = (f32) (tempData->pos[0] + 10);
-    camera->camera_pos[1] = (f32) (tempData->pos[1] + 7);
-    camera->camera_pos[2] = (f32) (tempData->pos[2] - 20);
-    camera->lookat_pos[0] = gPlayerOneCopy->position[0];
+    Camera->CameraPos[0] = (f32) (tempData->pos[0] + 10);
+    Camera->CameraPos[1] = (f32) (tempData->pos[1] + 7);
+    Camera->CameraPos[2] = (f32) (tempData->pos[2] - 20);
+    Camera->LookatPos[0] = PlayerOneCopy->Position[0];
 
-    camera->lookat_pos[1] = gPlayerOneCopy->position[1];
-    camera->lookat_pos[2] = gPlayerOneCopy->position[2];
-    CheckBump(&camera->bump, 20.0f, camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2]);
-    sp38 = camera->lookat_pos[0] - camera->camera_pos[0];
-    sp34 = camera->lookat_pos[1] - camera->camera_pos[1];
-    sp30 = camera->lookat_pos[2] - camera->camera_pos[2];
-    camera->camera_direction[1] = Atan2t(sp38, sp30);
-    camera->camera_direction[0] = Atan2t(sqrtf((sp38 * sp38) + (sp30 * sp30)), sp34);
-    camera->camera_direction[2] = 0;
+    Camera->LookatPos[1] = PlayerOneCopy->Position[1];
+    Camera->LookatPos[2] = PlayerOneCopy->Position[2];
+    CheckBump(&Camera->Bump, 20.0f, Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2]);
+    sp38 = Camera->LookatPos[0] - Camera->CameraPos[0];
+    sp34 = Camera->LookatPos[1] - Camera->CameraPos[1];
+    sp30 = Camera->LookatPos[2] - Camera->CameraPos[2];
+    Camera->CameraDirection[1] = Atan2t(sp38, sp30);
+    Camera->CameraDirection[0] = Atan2t(sqrtf((sp38 * sp38) + (sp30 * sp30)), sp34);
+    Camera->CameraDirection[2] = 0;
 }

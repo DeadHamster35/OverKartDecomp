@@ -14,11 +14,11 @@ void DisplayFlagGateCheck(Camera* LocalCamera)
         if (OverKartHeader.FogStart > 0)
 		{
 			g_fogToggleBanshee = 1;
-			g_fogR = (uint)OverKartHeader.FogRGBA[0];
-			g_fogG = (uint)OverKartHeader.FogRGBA[1];
-			g_fogB = (uint)OverKartHeader.FogRGBA[2];
+			g_fogR = (Uint)OverKartHeader.FogRGBA[0];
+			g_fogG = (Uint)OverKartHeader.FogRGBA[1];
+			g_fogB = (Uint)OverKartHeader.FogRGBA[2];
 			gDPSetCycleType(GraphPtrOffset++, G_CYC_2CYCLE);
-			gDPSetFogColor(GraphPtrOffset++, (uint)OverKartHeader.FogRGBA[0], (uint)OverKartHeader.FogRGBA[1], (uint)OverKartHeader.FogRGBA[2], (uint)OverKartHeader.FogRGBA[3]);
+			gDPSetFogColor(GraphPtrOffset++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], (Uint)OverKartHeader.FogRGBA[3]);
 			gSPFogPosition(GraphPtrOffset++, OverKartHeader.FogStart, OverKartHeader.FogStop);
 			gDPSetRenderMode(GraphPtrOffset++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE);
 			gSPSetGeometryMode(GraphPtrOffset++, (G_FOG | G_SHADING_SMOOTH));
@@ -27,16 +27,16 @@ void DisplayFlagGateCheck(Camera* LocalCamera)
 		if (SprintFinishArmed)
 		{
 			float SavedBanner[3];
-			SavedBanner[0] = g_goalBannerPos[0];
-			SavedBanner[1] = g_goalBannerPos[1];
-			SavedBanner[2] = g_goalBannerPos[2];
-			g_goalBannerPos[0] = SprintStartBanner[0];
-			g_goalBannerPos[1] = SprintStartBanner[1];
-			g_goalBannerPos[2] = SprintStartBanner[2];
+			SavedBanner[0] = GoalBannerPos[0];
+			SavedBanner[1] = GoalBannerPos[1];
+			SavedBanner[2] = GoalBannerPos[2];
+			GoalBannerPos[0] = SprintStartBanner[0];
+			GoalBannerPos[1] = SprintStartBanner[1];
+			GoalBannerPos[2] = SprintStartBanner[2];
 			DisplayFlagGate(LocalCamera);
-			g_goalBannerPos[0] = SavedBanner[0];
-			g_goalBannerPos[1] = SavedBanner[1];
-			g_goalBannerPos[2] = SavedBanner[2];
+			GoalBannerPos[0] = SavedBanner[0];
+			GoalBannerPos[1] = SavedBanner[1];
+			GoalBannerPos[2] = SavedBanner[2];
 		}
         gSPClearGeometryMode(GraphPtrOffset++, (G_FOG));
         
@@ -44,10 +44,10 @@ void DisplayFlagGateCheck(Camera* LocalCamera)
 }
 
 #define	PHYS_TO_K1(x)	((u32)(x)|0xA0000000)	/* physical to kseg1 */
-#define IO_READ(addr)       (*(vu32 *)PHYS_TO_K1(addr))
+#define IO_READ(Addr)       (*(vu32 *)PHYS_TO_K1(Addr))
 void DetectEmulator(void)
 {
-	uint buff;
+	Uint buff;
 
 
 	if (IO_READ(0xA4100010) == 0)
@@ -60,118 +60,118 @@ void DetectEmulator(void)
 
 	// Fallback, harder emulator check.
 	// The VI has an interesting quirk where its values are mirrored every 0x40 bytes
-	// It's unlikely that emulators handle this, so we'll write to the VI_TEST_ADDR register and readback 0x40 bytes from its address
+	// It's unlikely that emulators handle this, so we'll write to the VI_TEST_ADDR register and readback 0x40 bytes from its Address
 	// If they don't match, we probably have an emulator
-	buff = (*(uint*)0xA4400038);
-	(*(uint*)0xA4400038) = 0x6ABCDEF9;
-	if ((*(uint*)0xA4400038) != (*(u32*)0xA4400078))
+	buff = (*(Uint*)0xA4400038);
+	(*(Uint*)0xA4400038) = 0x6ABCDEF9;
+	if ((*(Uint*)0xA4400038) != (*(u32*)0xA4400078))
 	{
-		(*(uint*)0xA4400038) = buff;
+		(*(Uint*)0xA4400038) = buff;
 		EmulatorPlatform = 1;
 		CartridgeStatus = 2;
 		return;
 	}
 
-	(*(uint*)0xA4400038) = buff;
+	(*(Uint*)0xA4400038) = buff;
 	EmulatorPlatform = 0;
 	CartridgeStatus = 3;
 	return;
 }
 
 
-void runDMA(void)
+void RunDMA(void)
 {
-	DMA((u8 *) (uintptr_t) *targetAddress, (u8 *) (uintptr_t) *sourceAddress, (size_t) dataLength);
+	DMA((u8 *) (uintptr_t) *TargetAddress, (u8 *) (uintptr_t) *SourceAddress, (size_t) DataLength);
 }
 
-void DMA_Base729A30Bypass(int input, int length, long output)
+void DMABase729A30Bypass(int Input, int Length, long Output)
 {
 	
 
-	DMA_Base729A30(input, length, output);
+	DMABase729A30(Input, Length, Output);
 	return;
 	
 	// To-Do
 	// This doesn't work
 	// figure out how to make it work
-	// there's other functions using 729A30 magic number
+	// there's other functions using 729A30 magic Number
 	// get out your wizard kit potter.
 
 
-	//used for loading preview textures.
+	//Used for loading preview Textures.
 	if (HotSwapID == 0)
 	{
-		if ((input & 0x0A000000) == 0x0A000000)
+		if ((Input & 0x0A000000) == 0x0A000000)
 		{
-			DMA_Base729A30(input, length, output);
+			DMABase729A30(Input, Length, Output);
 		}
 	}
 	else
 	{
-		if ((input & 0x0A000000) == 0x0A000000)
+		if ((Input & 0x0A000000) == 0x0A000000)
 		{
-			DMA_Base729A30(input, length, output);
+			DMABase729A30(Input, Length, Output);
 		}
 		else
 		{
-			DMA((u8 *) (uintptr_t) output, (u8 *) (uintptr_t) input, (size_t) length);
+			DMA((u8 *) (uintptr_t) Output, (u8 *) (uintptr_t) Input, (size_t) Length);
 		}
 	}
 }
 
-void runRAM(void)
+void RunRAM(void)
 {
-	ramCopy(*targetAddress, *sourceAddress, dataLength);
+	ramCopy(*TargetAddress, *SourceAddress, DataLength);
 }
-int runMIO(void)
+int RunMIO(void)
 {
-	return (int) decodeMIO0((u8 *) (uintptr_t) *sourceAddress, (u8 *) (uintptr_t) *targetAddress);
+	return (int) decodeMIO0((u8 *) (uintptr_t) *SourceAddress, (u8 *) (uintptr_t) *TargetAddress);
 }
-void runTKM(void)
+void RunTKM(void)
 {
-	decodeTKMK(*sourceAddress, tkmPoint, *targetAddress, 0xBE);
-}
-
-void loadEEPROM(uint Destination)
-{
-	osEepromLongRead(&gSIEventMesgQueue, 0, (u8 *) (uintptr_t) Destination, 512);
-}
-void saveEEPROM(uint Source)
-{
-	osEepromLongWrite(&gSIEventMesgQueue, 0, (u8 *) (uintptr_t) Source, 512);
+	decodeTKMK(*SourceAddress, TkmPoint, *TargetAddress, 0xBE);
 }
 
+void LoadEEPROM(Uint Destination)
+{
+	osEepromLongRead(&SIEventMesgQueue, 0, (u8 *) (uintptr_t) Destination, 512);
+}
+void SaveEEPROM(Uint Source)
+{
+	osEepromLongWrite(&SIEventMesgQueue, 0, (u8 *) (uintptr_t) Source, 512);
+}
 
 
-ushort GetRGBA16(int R, int G, int B, int A)
+
+Ushort GetRGBA16(int R, int G, int B, int A)
 {
 	return (R & 0x1F)<<11 | (G & 0x1F)<<6 | (B & 0x1F)<<1 | (A & 0x01);
 }
 
-uint GetRGB32(int R, int G, int B)
+Uint GetRGB32(int R, int G, int B)
 {
 	return ( (R << 16) | (G << 8) | (B));
 }
 
 void SetFontColor(int FontR, int FontG, int FontB, int ShadowR, int ShadowG, int ShadowB)
 {
-	ushort *ColorValues = (ushort*)&g_DebugTextPalette;
+	Ushort *ColorValues = (Ushort*)&g_DebugTextPalette;
 	ColorValues[0] = 0; //0000 transparent
 	ColorValues[1] = GetRGBA16(FontR,FontG,FontB,1);
 	ColorValues[2] = GetRGBA16(ShadowR,ShadowG,ShadowB,1);
 	ColorValues[3] = 1; //0001 black
 }
 
-void SetFontColorPalette(uint Address, int FontR, int FontG, int FontB, int ShadowR, int ShadowG, int ShadowB)
+void SetFontColorPalette(Uint Address, int FontR, int FontG, int FontB, int ShadowR, int ShadowG, int ShadowB)
 {
-	ushort *ColorValues = (ushort*)Address;
+	Ushort *ColorValues = (Ushort*)Address;
 	ColorValues[0] = 0; //0000 transparent
 	ColorValues[1] = GetRGBA16(FontR,FontG,FontB,1);
 	ColorValues[2] = GetRGBA16(ShadowR,ShadowG,ShadowB,1);
 	ColorValues[3] = 1; //0001 black
 }
 
-void LoadFontF3D(uint Address)
+void LoadFontF3D(Uint Address)
 {
 	gSPDisplayList(GraphPtrOffset++, 0x0D008108);
 	gSPDisplayList(GraphPtrOffset++, Address);
@@ -180,89 +180,89 @@ void LoadFontF3D(uint Address)
 
 void SetupFontF3D(void)
 {
-	SetFontColorPalette((uint)&RedTextPalette, 31, 11, 11, 14, 5, 5);
-	SetFontColorPalette((uint)&BlueTextPalette, 11, 11, 31, 5, 5, 14);
-	SetFontColorPalette((uint)&GreenTextPalette, 11, 31, 11, 5, 14, 5);
-	SetFontColorPalette((uint)&WhiteTextPalette, 30, 30, 30, 14, 14, 14);
+	SetFontColorPalette((Uint)&RedTextPalette, 31, 11, 11, 14, 5, 5);
+	SetFontColorPalette((Uint)&BlueTextPalette, 11, 11, 31, 5, 5, 14);
+	SetFontColorPalette((Uint)&GreenTextPalette, 11, 31, 11, 5, 14, 5);
+	SetFontColorPalette((Uint)&WhiteTextPalette, 30, 30, 30, 14, 14, 14);
 
-	*sourceAddress = GetRealAddress((int) (uintptr_t) D_0D008080);
-	dataLength = 0xB8;
+	*SourceAddress = GetRealAddress((int) (uintptr_t) D_0D008080);
+	DataLength = 0xB8;
 
-	*targetAddress = (uint)&RedPaletteF3D;
-	runRAM();
-	*targetAddress = (uint)&BluePaletteF3D;
-	runRAM();
-	*targetAddress = (uint)&GreenPaletteF3D;
-	runRAM();
-	*targetAddress = (uint)&WhitePaletteF3D;
-	runRAM();
+	*TargetAddress = (Uint)&RedPaletteF3D;
+	RunRAM();
+	*TargetAddress = (Uint)&BluePaletteF3D;
+	RunRAM();
+	*TargetAddress = (Uint)&GreenPaletteF3D;
+	RunRAM();
+	*TargetAddress = (Uint)&WhitePaletteF3D;
+	RunRAM();
 
-	*(uint *)((uint)&RedPaletteF3D + 0x14) = (uint)&RedTextPalette;
-	*(uint *)((uint)&BluePaletteF3D + 0x14) = (uint)&BlueTextPalette;
-	*(uint *)((uint)&GreenPaletteF3D + 0x14) = (uint)&GreenTextPalette;
-	*(uint *)((uint)&WhitePaletteF3D + 0x14) = (uint)&WhiteTextPalette;
+	*(Uint *)((Uint)&RedPaletteF3D + 0x14) = (Uint)&RedTextPalette;
+	*(Uint *)((Uint)&BluePaletteF3D + 0x14) = (Uint)&BlueTextPalette;
+	*(Uint *)((Uint)&GreenPaletteF3D + 0x14) = (Uint)&GreenTextPalette;
+	*(Uint *)((Uint)&WhitePaletteF3D + 0x14) = (Uint)&WhiteTextPalette;
 }
 
 
-int LoadOKData (uint SourceInput, uint SizeData)
+int LoadOKData (Uint SourceInput, Uint SizeData)
 {
-	*sourceAddress = SourceInput;
-	*targetAddress = ObjectMemoryPointer;
-	dataLength = SizeData;
+	*SourceAddress = SourceInput;
+	*TargetAddress = ObjectMemoryPointer;
+	DataLength = SizeData;
 	GlobalShortA = 16 - (SizeData % 16);
 	ObjectMemoryPointer = ObjectMemoryPointer + SizeData + GlobalShortA;
-	runDMA();
+	RunDMA();
 	CheckCourseMemoryHighWater();
-	return *targetAddress;
+	return *TargetAddress;
 }
 
-int LoadDataBypass(uint RomStart, uint RomEnd)
+int LoadDataBypass(Uint RomStart, Uint RomEnd)
 {
-	if (g_gameMode == GAMEMODE_GP)
+	if (GameMode == GAMEMODE_GP)
 	{
-		if ((gpCourseIndex > asm_CupCount) && (HotSwapID > 0))
+		if ((GPCourseIndex > AsmCupCount) && (HotSwapID > 0))
 		{
 			HotSwapGP = HotSwapID;
 			HotSwapID = 0;
 		}
 	}
 	
-	*sourceAddress = RomStart;	
-	dataLength = RomEnd - RomStart  ;
+	*SourceAddress = RomStart;	
+	DataLength = RomEnd - RomStart  ;
 	GlobalShortA = 64 - ((RomEnd - RomStart) % 64);
-	dataLength += GlobalShortA;
-	LastMemoryPointer -= dataLength;
-	*targetAddress = LastMemoryPointer;
-	runDMA();
+	DataLength += GlobalShortA;
+	LastMemoryPointer -= DataLength;
+	*TargetAddress = LastMemoryPointer;
+	RunDMA();
 	return LastMemoryPointer;
 }
 
-int LoadPressDataBypass(uint RomStart, uint RomEnd)
+int LoadPressDataBypass(Uint RomStart, Uint RomEnd)
 {
-	if (g_gameMode == GAMEMODE_GP)
+	if (GameMode == GAMEMODE_GP)
 	{
-		if ((gpCourseIndex > asm_CupCount) && (HotSwapID > 0))
+		if ((GPCourseIndex > AsmCupCount) && (HotSwapID > 0))
 		{
 			HotSwapGP = HotSwapID;
 			HotSwapID = 0;
 		}
 	}
-	*sourceAddress = RomStart;	
-	dataLength = RomEnd - RomStart;		
-	GlobalShortA = 64 - (dataLength % 64);
-	dataLength += GlobalShortA;
-	*targetAddress = FreeMemoryPointer;
-	runDMA();
+	*SourceAddress = RomStart;	
+	DataLength = RomEnd - RomStart;		
+	GlobalShortA = 64 - (DataLength % 64);
+	DataLength += GlobalShortA;
+	*TargetAddress = FreeMemoryPointer;
+	RunDMA();
 
 	
-	dataLength = *(uint*)(*targetAddress + 4);  //size of decompressed data stored in MIO0 header.	
-	GlobalShortA = 64 - (dataLength % 64);
-	dataLength += GlobalShortA;
-	LastMemoryPointer -= dataLength;
+	DataLength = *(Uint*)(*TargetAddress + 4);  //Size of decompressed data stored in MIO0 header.	
+	GlobalShortA = 64 - (DataLength % 64);
+	DataLength += GlobalShortA;
+	LastMemoryPointer -= DataLength;
 
-	*sourceAddress = FreeMemoryPointer;
-	*targetAddress = LastMemoryPointer;	
-	runMIO();
+	*SourceAddress = FreeMemoryPointer;
+	*TargetAddress = LastMemoryPointer;	
+	RunMIO();
 
 
 	GlobalShortA = 64 - ((RomEnd - RomStart) % 64);
@@ -270,7 +270,7 @@ int LoadPressDataBypass(uint RomStart, uint RomEnd)
 	return LastMemoryPointer;
 }
 
-void MakeVertex(Vtx *vtx, int n, short x, short y, short z, short tx, short ty, uchar r, uchar g, uchar b, uchar a)
+void MakeVertex(Vtx *vtx, int n, short x, short y, short z, short tx, short ty, Uchar r, Uchar g, Uchar b, Uchar a)
 {
 	vtx[n].v.ob[0] = x;
 	vtx[n].v.ob[1] = y;
@@ -289,17 +289,17 @@ void MakeVertex(Vtx *vtx, int n, short x, short y, short z, short tx, short ty, 
 
 /* Get Status Timer */
 
-uint getStarTimer(uchar playerID)
+Uint GetStarTimer(Uchar PlayerID)
 {
-    return (int)g_gameTimer-g_StarUseCounter[playerID];
+    return (int)GameTimer-StarUseCounter[PlayerID];
 }
 
-uint getBooTimer(uchar playerID)
+Uint GetBooTimer(Uchar PlayerID)
 {
-    return (int)g_gameTimer-g_GhostUseCounter[playerID];
+    return (int)GameTimer-GhostUseCounter[PlayerID];
 }
 
-//Returns custom course number
+//Returns custom course Number
 short CustomLevelID(void)
 {
     if (HotSwapID == 0)
@@ -308,19 +308,19 @@ short CustomLevelID(void)
     }
     else
     {
-		switch (g_cupSelect)
+		switch (CupSelect)
 		{
 		case 0:
-			return (g_courseSelect + (16 * (HotSwapID-1)));
+			return (CourseSelect + (16 * (HotSwapID-1)));
 			break;
 		case 1:
-			return ((g_courseSelect+4) + (16 * (HotSwapID-1)));
+			return ((CourseSelect+4) + (16 * (HotSwapID-1)));
 			break;
 		case 2:
-			return ((g_courseSelect+8) + (16 * (HotSwapID-1)));
+			return ((CourseSelect+8) + (16 * (HotSwapID-1)));
 			break;
 		case 3:
-			return ((g_courseSelect+12) + (16 * (HotSwapID-1)));
+			return ((CourseSelect+12) + (16 * (HotSwapID-1)));
 			break;
 		default:
 			return -1;
@@ -333,35 +333,35 @@ short CustomLevelID(void)
 
 
 
-void loadBigFont(void)
+void LoadBigFont(void)
 {
 #if AMPEDUP_FONT == 1
-	*sourceAddress = (int)(&AmpedUpFont);
-	dataLength = (int)(&AmpedUpFontEnd) - (int)(&AmpedUpFont);
+	*SourceAddress = (int)(&AmpedUpFont);
+	DataLength = (int)(&AmpedUpFontEnd) - (int)(&AmpedUpFont);
 #else
-	*sourceAddress = (int)(&LibraryFont);
-	dataLength = (int)(&LibraryFontEnd) - (int)(&LibraryFont);
+	*SourceAddress = (int)(&LibraryFont);
+	DataLength = (int)(&LibraryFontEnd) - (int)(&LibraryFont);
 #endif
-	dataLength = (dataLength + 15) & ~15;
-	*targetAddress = (int)(&ok_FreeSpace);
-	runDMA();
-	*sourceAddress = (int)(&ok_FreeSpace);
-	*targetAddress = (int)(&nicefont);
-	runMIO();
+	DataLength = (DataLength + 15) & ~15;
+	*TargetAddress = (int)(&ok_FreeSpace);
+	RunDMA();
+	*SourceAddress = (int)(&ok_FreeSpace);
+	*TargetAddress = (int)(&nicefont);
+	RunMIO();
 }
 
-void ShiftVertColor(uint address,uint counter,uint v_buff,char alpha,char red,char green,char blue)
+void ShiftVertColor(Uint Address,Uint Counter,Uint v_buff,char Alpha,char red,char Green,char Blue)
 {
-	uint number= SegmentNumber(address);
-	uint offset= SegmentOffset(address);
-	Vtx_t  *vt=(Vtx_t *)GetRealAddress(SegmentTable[number]+offset);
-	uint i;
-	for(i=0;i<counter;i++)
+	Uint Number= SegmentNumber(Address);
+	Uint Offset= SegmentOffset(Address);
+	Vtx_t  *vt=(Vtx_t *)GetRealAddress(SegmentTable[Number]+Offset);
+	Uint i;
+	for(i=0;i<Counter;i++)
 	{
 		vt->cn[0]+=red;
-		vt->cn[1]+=green;
-		vt->cn[2]+=blue;		
-		vt->cn[3]+=alpha;
+		vt->cn[1]+=Green;
+		vt->cn[2]+=Blue;		
+		vt->cn[3]+=Alpha;
 		++vt;
 	}	
 }
@@ -396,7 +396,7 @@ int GetIntLength(int Input)
 	if (Input < 1000000000) return 9;
 	return 0;
 }
-void printDecimal(int X, int Y, float Value, int Length)
+void PrintDecimal(int X, int Y, float Value, int Length)
 {
 	int PrintOffset = 0;
 	int PrintLength = 10;
@@ -409,30 +409,30 @@ void printDecimal(int X, int Y, float Value, int Length)
 	}
 	
 
-	wholeNumber = (int) Value;
-	decimalNumber = (int) ((Value - wholeNumber) * PrintLength);
-	if (decimalNumber > (float)((Value - wholeNumber) * PrintLength))
+	WholeNumber = (int) Value;
+	DecimalNumber = (int) ((Value - WholeNumber) * PrintLength);
+	if (DecimalNumber > (float)((Value - WholeNumber) * PrintLength))
 	{
-		decimalNumber--;
+		DecimalNumber--;
 	}
 
-	PrintOffset = 8 * GetIntLength(wholeNumber);
+	PrintOffset = 8 * GetIntLength(WholeNumber);
 
 	if (Value < 0)
 	{
      	X -= 8;
 		PrintOffset += 8;
-		decimalNumber *= -1;
+		DecimalNumber *= -1;
 	}
-	printStringNumber(X,Y,"",wholeNumber);
-	printString((X + PrintOffset + 10), Y, ".");		
+	PrintStringNumber(X,Y,"",WholeNumber);
+	PrintString((X + PrintOffset + 10), Y, ".");		
 	PrintOffset += 8;
-	if ((decimalNumber < (PrintLength / 10)) && (decimalNumber != 0))
+	if ((DecimalNumber < (PrintLength / 10)) && (DecimalNumber != 0))
 	{
-		printStringNumber((X+PrintOffset),Y,"",0);
+		PrintStringNumber((X+PrintOffset),Y,"",0);
 		PrintOffset += 8;
 	}
-	printStringNumber((X+PrintOffset),Y,"",decimalNumber);
+	PrintStringNumber((X+PrintOffset),Y,"",DecimalNumber);
      
 }
 
@@ -440,7 +440,7 @@ void printDecimal(int X, int Y, float Value, int Length)
 
 
 #define Rad2Deg(Rad) (Rad * 180 / M_PI)
-ushort CalcVerticalDirection(Vector Origin,Vector Target)
+Ushort CalcVerticalDirection(Vector Origin,Vector Target)
 {
 	float ux,uy,uz,dist;
 	
@@ -456,8 +456,8 @@ ushort CalcVerticalDirection(Vector Origin,Vector Target)
 
 void MakeAlignVectorX(Vector Input, short RotX)
 {
-    float sine  = sinT(RotX);
-       float cosine = cosT(RotX);
+    float sine  = SinT(RotX);
+       float cosine = CosT(RotX);
     float v0=Input[0];
     float v1=Input[1];
     float v2=Input[2];
@@ -470,8 +470,8 @@ void MakeAlignVectorX(Vector Input, short RotX)
 
 void MakeAlignVectorZ(Vector Input, short RotZ)
 {
-    float sine  = sinT(RotZ);
-       float cosine = cosT(RotZ);
+    float sine  = SinT(RotZ);
+       float cosine = CosT(RotZ);
     float v0=Input[0];
     float v1=Input[1];
     float v2=Input[2];
@@ -481,9 +481,9 @@ void MakeAlignVectorZ(Vector Input, short RotZ)
     Input[2]=v2;
 }
 
-void printFloat(int X, int Y, float Value)
+void PrintFloat(int X, int Y, float Value)
 {
-	printDecimal(X,Y,Value,2);	
+	PrintDecimal(X,Y,Value,2);	
 }
 
 void ResetObject(void)
@@ -507,9 +507,9 @@ void ResetObject(void)
 	    int thisLoop;
 	for (thisLoop = 0; thisLoop < 3; thisLoop++)
 	{
-		objectPosition[thisLoop] = 0;
-		objectAngle[thisLoop] = 0;
-		objectVelocity[thisLoop] = 0;
+		ObjectPosition[thisLoop] = 0;
+		ObjectAngle[thisLoop] = 0;
+		ObjectVelocity[thisLoop] = 0;
 	}
 	}
 }
@@ -517,15 +517,15 @@ void ResetObject(void)
 
 
 
-char* printHex(char *buf, int num, int nDigits) {
-    //print hex number into buffer.
-    //will zero-pad to specified number of digits.
-    //will truncate numbers larger than specified length.
-    //returns pointer to null terminator.
+char* PrintHex(char *buf, int num, int nDigits) {
+    //print Hex Number into Buffer.
+    //will zero-pad to specified Number of digits.
+    //will truncate numbers larger than specified Length.
+    //returns Pointer to Null terminator.
     char *bufEnd = &buf[nDigits];
     *bufEnd = 0;
     while(nDigits--) {
-        buf[nDigits] = hex[num & 0xF];
+        buf[nDigits] = Hex[num & 0xF];
         num >>= 4;
     }
     return bufEnd;
@@ -535,48 +535,48 @@ char* printHex(char *buf, int num, int nDigits) {
 char CharacterConvert[9] = 	{-1,0,1,6,3,2,4,5,7};
 char CharacterUnconvert[9] = 	{-1,0,1,4,3,5,6,2,7};
 
-//WaveDir = Address to a stored ushort for the calculation
-//WaveSpeed = Additional value (degree)
-void RunWaveSpeed(ushort *WaveDir,short WaveSpeed)
+//WaveDir = Address to a stored Ushort for the calculation
+//WaveSpeed = Additional Value (degree)
+void RunWaveSpeed(Ushort *WaveDir,short WaveSpeed)
 {
-	*(ushort*)WaveDir += WaveSpeed;
+	*(Ushort*)WaveDir += WaveSpeed;
 }
 
 //WaveXScale = Width of the wave - horizontally
-//WaveYThin = Higher value means less distance between waves (degree) - vertically
+//WaveYThin = Higher Value means less Distance between waves (degree) - vertically
 //WaveDir = Variable that gets calculated by RunWaveSpeed
-void SpriteDrawWave(int cx,int cy,ushort *addr,int sizex,int sizey,float WaveXScale,short WaveYThin,ushort WaveDir)
+void SpriteDrawWave(int cx,int cy,Ushort *Addr,int sizex,int sizey,float WaveXScale,short WaveYThin,Ushort WaveDir)
 {
-	short angle;
+	short Angle;
 	short angstep = WaveYThin;
 	int intsx = cx - sizex / 2;
 	int sy = cy - sizey / 2;
 
 	int	sx;
-	ushort *tmpaddr;
+	Ushort *tmpaddr;
 
-	angle = WaveDir;
-	tmpaddr = addr;
+	Angle = WaveDir;
+	tmpaddr = Addr;
 
 	{
 	    int i;
 	for (i = 0; i < sizey; i++)
 	{
 		KWLoadTextureBlockRGBA16B(tmpaddr+sizex*i,sizex,1);
-		sx = (int)(intsx + (WaveXScale) * sinT(angle+angstep*i));
+		sx = (int)(intsx + (WaveXScale) * SinT(Angle+angstep*i));
 		SPRDrawClip(sx,sy,sizex,1,1);
 		sy++;
 	}
 	}
 }
 
-ushort custom_check_bump_2(Bump* bump, float radius, float px, float py, float pz, float lastx, float lasty, float lastz)
+Ushort CustomCheckBump2(Bump* Bump, float Radius, float px, float py, float pz, float lastx, float lasty, float lastz)
 {
-	ushort tmp = CheckBump2(bump, radius, px, py, pz, lastx, lasty, lastz);
+	Ushort tmp = CheckBump2(Bump, Radius, px, py, pz, lastx, lasty, lastz);
 	
 	if (tmp != 0)
 	{
-		InteractLavaFloor(bump, bump->last_zx, tmp);
+		InteractLavaFloor(Bump, Bump->LastZX, tmp);
 	}
 	return tmp;
 }

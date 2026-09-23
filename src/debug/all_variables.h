@@ -7,7 +7,7 @@
 
 // #include <actors_extended.h> does not work
 #include <actors.h>
-#include <camera.h>
+#include <Camera.h>
 #include <camera_junk.h>
 #include <ceremony_and_credits.h>
 #include <code_800029B0.h>
@@ -36,7 +36,7 @@
 #include <buffers.h>
 #include <render_objects.h>
 #include <kart_dma.h>
-#include <main.h>
+#include <Main.h>
 #include <math_util_2.h>
 #include <math_util.h>
 #include <memory.h>
@@ -47,7 +47,7 @@
 #include <skybox_and_splitscreen.h>
 #include <spawn_players.h>
 #include <replays.h>
-#include <textures.h>
+#include <Textures.h>
 
 #include <actor_types.h>
 #include <common_structs.h>

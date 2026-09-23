@@ -22,8 +22,8 @@ extern long bannerN;
 extern long bannerU;
 extern long previewN;
 extern long previewU;
-extern ushort* LapCounterTextures;
-extern ushort* LapCounterPalette;
+extern Ushort* LapCounterTextures;
+extern Ushort* LapCounterPalette;
 
 extern long LogoROM;
 extern long RCIconMap;

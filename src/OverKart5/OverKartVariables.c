@@ -8,21 +8,21 @@
 
 SaveData SaveGame;
 
-char* gameMode = (char*)&SaveGame.GameSettings;
-char* renderMode = (char*)&SaveGame.RenderSettings;
-char* battleMode = (char*)&SaveGame.BattleSettings;
-char* cheatMode = (char*)&SaveGame.CheatSettings;
-char* mapMode = (char*)&SaveGame.LevelSettings;
+char* GameType = (char*)&SaveGame.GameSettings;
+char* RenderMode = (char*)&SaveGame.RenderSettings;
+char* BattleMode = (char*)&SaveGame.BattleSettings;
+char* CheatMode = (char*)&SaveGame.CheatSettings;
+char* LevelSettingsMode = (char*)&SaveGame.LevelSettings;
 int LoadedProgress;
 
 
 short LastMenuID = 0;
-uint ROptionPressed = 0;
+Uint ROptionPressed = 0;
 short MapModeCheck = 0;
 
 
-uint PrintLog[99];
-uint PrintCount;
+Uint PrintLog[99];
+Uint PrintCount;
 
 float AnalogInput[2];
 
@@ -47,40 +47,40 @@ short FlyCamSpeed = 5;
 
 
 
-short colors[][3] = {
-	{  0, 192, 255}, //A: blue
-	{  0, 255,   0}, //B: green
+short InputColors[][3] = {
+	{  0, 192, 255}, //A: Blue
+	{  0, 255,   0}, //B: Green
 	{255, 255, 255}, //Z: white
 	{255,   0,   0}, //Start: red
 	{192, 192, 192}, {192, 192, 192}, //up, down
-	{192, 192, 192}, {192, 192, 192}, //left, right
-	{  0,   0,   0}, {  0,   0,   0}, //unused
+	{192, 192, 192}, {192, 192, 192}, //Left, Right
+	{  0,   0,   0}, {  0,   0,   0}, //Unused
 	{255, 255, 255}, {255, 255, 255}, //L, R
 	{255, 255,   0}, {255, 255,   0}, //C up, down
-	{255, 255,   0}, {255, 255,   0}  //C left, right
+	{255, 255,   0}, {255, 255,   0}  //C Left, Right
 };
-short coords[][2] = {
+short Coords[][2] = {
 	{3, 1}, //A
 	{3, 2}, //B
 	{5, 1}, //Z
-	{3, 0}, //start
+	{3, 0}, //Start
 	{1, 0}, {1, 2}, {0, 1}, {2, 1}, //d-pad
-	{0, 0}, {0, 0}, //unused
+	{0, 0}, {0, 0}, //Unused
 	{4, 0}, //L
 	{6, 0}, //R
 	{5, 0}, //C up
 	{5, 2}, //C down
-	{4, 1}, //C left
-	{6, 1}  //C right
+	{4, 1}, //C Left
+	{6, 1}  //C Right
 };
-short stickColor[][3] = {
+short StickColor[][3] = {
 	{192, 192, 192},
 	{192, 192, 192},
 	{192, 192, 192},
 	{192, 192, 192},
 	{255, 255, 255}
 };
-short stickCoord[][2] = {
+short StickCoord[][2] = {
 	{1, 0}, //U
 	{1, 2}, //D
 	{0, 1}, //L
@@ -95,14 +95,14 @@ short ControllerInputY = 215;
 
 
 // Variables Draw3DRacer
-short baseTurn, addTurn = 0;
+short BaseTurn, AddTurn = 0;
 //
 //
 
 
 
 int SaveStateCourseID;
-int pageLimit[] = {8,9,6,5,3};  // GAME - RENDER - MAP - CUP EDITOR  -  BATTLE
+int PageLimit[] = {8,9,6,5,3};  // GAME - RENDER - MAP - CUP EDITOR  -  BATTLE
 
 OKPanel RacePanel, BattlePanel, RenderPanel, MapPanel;
 OKOption OKGameOptions[8];
@@ -111,15 +111,15 @@ OKOption OKMapOptions[6];
 
 OKMenu GameOKMenu;
 
-uint StartLogoRAM, BackdropRAM, Splash3DRAM, MenuIconsRAM;
-int battleLimits[] = {2,2,2};
-int battleChar[][3] = {{7,3,6}, {3,2,0},{3,2,0}};
+Uint StartLogoRAM, BackdropRAM, Splash3DRAM, MenuIconsRAM;
+int BattleLimits[] = {2,2,2};
+int BattleChar[][3] = {{7,3,6}, {3,2,0},{3,2,0}};
 
 
-char *menuNames[] = {"Game Options", "Render Options","Map Options", "Cup Editor"};
-int menuChar[] = {12,14,11,10};
+char *MenuNames[] = {"Game Options", "Render Options","Map Options", "Cup Editor"};
+int MenuChar[] = {12,14,11,10};
 
-char *gameOptions[] = {
+char *GameOptionNames[] = {
 	"Game Mode",
 	"Racer Stats",
 	"GP Always Advance",
@@ -130,7 +130,7 @@ char *gameOptions[] = {
 	"Flycam Mode"
 };
 
-char *gameParameters[][4] = {
+char *GameParameters[][4] = {
 	{"Default", "Red Coin", "Gold Coin", "Practice"},
 	{"Classic", "Equal", "Enhanced", ""},
 	{"Off" , "On", "", ""},
@@ -141,7 +141,7 @@ char *gameParameters[][4] = {
 	{"Off" , "On", "", ""}
 };
 
-int gameLimits[] = {
+int GameLimits[] = {
 	3,
 	2,
 	2,
@@ -151,7 +151,7 @@ int gameLimits[] = {
 	2,
 	2
 };
-int gameChar[][4] = {
+int GameChar[][4] = {
 	{7,8,9,8},
 	{7,5,8,0},
 	{3,2,0,0},
@@ -163,11 +163,11 @@ int gameChar[][4] = {
 };
 
 
-char *battleOptions[] = {"Game Mode", "Team Battle", "Flycam"};
-char *battleParameters[][3] = {{"Default", "CTF", "Soccer"}, {"Off" , "On"}, {"Off" , "On"}};
+char *BattleOptionNames[] = {"Game Mode", "Team Battle", "Flycam"};
+char *BattleParameters[][3] = {{"Default", "CTF", "Soccer"}, {"Off" , "On"}, {"Off" , "On"}};
 
 
-char *renderOptions[] = {
+char *RenderOptionNames[] = {
 	"Audio Mode",
 	"Widescreen",
 	"Anti-Alias",
@@ -179,7 +179,7 @@ char *renderOptions[] = {
 	"Input Disp.",
 	"Detail Disp."
 };
-char *renderParameters[][3] = {
+char *RenderParameters[][3] = {
 	{"USA", "JP", ""},
 	{"Off" , "On", ""},
 	{"Off" , "On", ""},
@@ -192,7 +192,7 @@ char *renderParameters[][3] = {
 	{"Off" , "On", "Shortcut"}
 };
 
-int renderLimits[] = {
+int RenderLimits[] = {
 	2,
 	2,
 	2,
@@ -204,7 +204,7 @@ int renderLimits[] = {
 	2,
 	3
 };
-int renderChar[][3] = {
+int RenderChar[][3] = {
 	{3,2,0},
 	{3,2,0},
 	{3,2,0},
@@ -218,7 +218,7 @@ int renderChar[][3] = {
 };
 
 
-char *mapOptions[] = {
+char *MapOptions[] = {
 	"X Scale",
 	"Y Scale",
 	"Z Scale",
@@ -226,7 +226,7 @@ char *mapOptions[] = {
 	"Y Mirror",
 	"Z Mirror"
 };
-char *mapParameters[][7] = {
+char *MapParameters[][7] = {
 	{"0.0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0"},
 	{"0.0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0"},
 	{"0.0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0"},
@@ -235,7 +235,7 @@ char *mapParameters[][7] = {
 	{"Off" , "On","","","","",""}
 };
 
-int mapLimits[] = {
+int MapLimits[] = {
 	7,
 	7,
 	7,
@@ -243,7 +243,7 @@ int mapLimits[] = {
 	2,
 	2
 };
-int mapChar[][7] = {
+int MapChar[][7] = {
 	{3,3,3,3,3,3,3},
 	{3,3,3,3,3,3,3},
 	{3,3,3,3,3,3,3},
@@ -255,13 +255,13 @@ int mapChar[][7] = {
 
 
 //InputDisplay Variables
-char *names[] = {
+char *Names[] = {
 	"A", "B", "Z", "S",
 	"U", "D", "L", "R", // draw d-pad
-	"", "", //unused bits
+	"", "", //Unused bits
 	"L", "R",
 	"U", "D", "L", "R" //C buttons
 };
-char *stickNames[] = {
+char *StickNames[] = {
 	"U", "D", "L", "R","S"
 };

@@ -23,51 +23,51 @@ extern OKOption OKMapOptions[];
 extern OKOption OKRenderOptions[];
 
 
-extern uint StartLogoRAM, BackdropRAM, Splash3DRAM, MenuIconsRAM;
-/* Host menu decompress dest after OKHeaderEND. Not ok_FreeSpace (DMA source). */
+extern Uint StartLogoRAM, BackdropRAM, Splash3DRAM, MenuIconsRAM;
+/* Host menu decompress dest after OKHeaderEND. Not ok_FreeSpace (DMA Source). */
 extern int ok5_MenuStorage;
 extern int ok5_MenuStorageEnd;
 
-extern char* gameMode;
-extern char* renderMode;
-extern char* battleMode;
-extern char* cheatMode;
-extern char* mapMode;
+extern char* GameType;
+extern char* RenderMode;
+extern char* BattleMode;
+extern char* CheatMode;
+extern char* LevelSettingsMode;
 
 extern int LoadedProgress;
 
 
 extern short LastMenuID;
-extern uint ROptionPressed;
+extern Uint ROptionPressed;
 extern short MapModeCheck;
 
-extern uint CartridgeStatus;
-extern uint PrintLog[];
-extern uint PrintCount;
+extern Uint CartridgeStatus;
+extern Uint PrintLog[];
+extern Uint PrintCount;
 
-extern char *menuNames[];
-extern int menuChar[];
+extern char *MenuNames[];
+extern int MenuChar[];
 
-extern char *gameOptions[];
-extern char *gameParameters[][4];
-extern int gameLimits[];
-extern int mapLimits[];
-extern int gameChar[][4];
-extern int mapChar[][7];
-extern int battleLimits[];
-extern int battleChar[][3];
+extern char *GameOptionNames[];
+extern char *GameParameters[][4];
+extern int GameLimits[];
+extern int MapLimits[];
+extern int GameChar[][4];
+extern int MapChar[][7];
+extern int BattleLimits[];
+extern int BattleChar[][3];
 
 
-extern char *renderOptions[];
-extern char *renderParameters[][3];
-extern char *mapParameters[][7];
-extern char *battleOptions[];
-extern char *mapOptions[];
-extern char *battleParameters[][3];
-extern int renderLimits[];
-extern int renderChar[][3];
+extern char *RenderOptionNames[];
+extern char *RenderParameters[][3];
+extern char *MapParameters[][7];
+extern char *BattleOptionNames[];
+extern char *MapOptions[];
+extern char *BattleParameters[][3];
+extern int RenderLimits[];
+extern int RenderChar[][3];
 extern int SaveStateCourseID;
-extern int pageLimit[];
+extern int PageLimit[];
 
 extern float AnalogInput[2];
 
@@ -91,17 +91,17 @@ extern short FlyCamSpeed;
 
 
 //InputDisplay Variables
-extern char *names[];
-extern short colors[][3];
-extern short coords[][2];
-extern char *stickNames[];
-extern short stickColor[][3];
-extern short stickCoord[][2];
+extern char *Names[];
+extern short InputColors[][3];
+extern short Coords[][2];
+extern char *StickNames[];
+extern short StickColor[][3];
+extern short StickCoord[][2];
 extern short ControllerInputX, ControllerInputY;
 
 
 // Variables Draw3DRacer
-extern short baseTurn, addTurn;
+extern short BaseTurn, AddTurn;
 
 //OKCustom Objects
 

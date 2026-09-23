@@ -2,50 +2,50 @@
 
 /**
  * @brief Updates the piranha plant actor.
- * Actor used in Mario Raceway and Royal Raceway.
+ * Actor Used in Mario Raceway and Royal Raceway.
  *
- * @param arg0
+ * @Param arg0
  */
-void pakkun_strategy(PakkunObject* arg0) {
-    if ((arg0->flag & HIDEOBJ) == 0) {
-        if ((arg0->flag & FLYINGOBJ) != 0) {
-            arg0->position[1] += 4.0f;
-            if (arg0->position[1] > 800.0f) {
-                arg0->flag |= HIDEOBJ;
+void PakkunStrategy(PakkunObject* arg0) {
+    if ((arg0->Flag & HIDEOBJ) == 0) {
+        if ((arg0->Flag & FLYINGOBJ) != 0) {
+            arg0->Position[1] += 4.0f;
+            if (arg0->Position[1] > 800.0f) {
+                arg0->Flag |= HIDEOBJ;
             }
         } else {
-            // This has to be an unrolled loop
-            if (arg0->visibilityStates[0] == 1) {
-                arg0->timers[0]++;
-                if (arg0->timers[0] > 60) {
-                    arg0->timers[0] = 6;
+            // This has to be an unrolled Loop
+            if (arg0->VisibilityStates[0] == 1) {
+                arg0->Timers[0]++;
+                if (arg0->Timers[0] > 60) {
+                    arg0->Timers[0] = 6;
                 }
             } else {
-                arg0->timers[0] = 0;
+                arg0->Timers[0] = 0;
             }
-            if (arg0->visibilityStates[1] == 1) {
-                arg0->timers[1]++;
-                if (arg0->timers[1] > 60) {
-                    arg0->timers[1] = 6;
+            if (arg0->VisibilityStates[1] == 1) {
+                arg0->Timers[1]++;
+                if (arg0->Timers[1] > 60) {
+                    arg0->Timers[1] = 6;
                 }
             } else {
-                arg0->timers[1] = 0;
+                arg0->Timers[1] = 0;
             }
-            if (arg0->visibilityStates[2] == 1) {
-                arg0->timers[2]++;
-                if (arg0->timers[2] > 60) {
-                    arg0->timers[2] = 6;
+            if (arg0->VisibilityStates[2] == 1) {
+                arg0->Timers[2]++;
+                if (arg0->Timers[2] > 60) {
+                    arg0->Timers[2] = 6;
                 }
             } else {
-                arg0->timers[2] = 0;
+                arg0->Timers[2] = 0;
             }
-            if (arg0->visibilityStates[3] == 1) {
-                arg0->timers[3]++;
-                if (arg0->timers[3] > 60) {
-                    arg0->timers[3] = 6;
+            if (arg0->VisibilityStates[3] == 1) {
+                arg0->Timers[3]++;
+                if (arg0->Timers[3] > 60) {
+                    arg0->Timers[3] = 6;
                 }
             } else {
-                arg0->timers[3] = 0;
+                arg0->Timers[3] = 0;
             }
         }
     }

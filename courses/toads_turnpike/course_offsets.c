@@ -24,7 +24,7 @@ extern u8 gTextureRoad5[];
 extern u8 gTextureSignToadRed[];
 extern u8 gTexture668228[];
 
-const course_texture toads_turnpike_textures[] = {
+const CourseTexture toads_turnpike_textures[] = {
     { gTexture645134, 0x052C, 0x0800, 0x0 },
     { gTexture64FE68, 0x0258, 0x1000, 0x0 },
     { gTexture6607C0, 0x0105, 0x0800, 0x0 },

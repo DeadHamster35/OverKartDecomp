@@ -8,7 +8,7 @@
 // needs to be a union (or array...?) to go into rodata as a const
 // terrible for endianness... Best guess as to what this is for..
 union GameModePack {
-    u8 modes[4];
+    u8 Modes[4];
     s32 word;
 };
 
@@ -25,11 +25,11 @@ enum MenuFadeTypes {
 };
 
 /**
- * @brief Options for menuScreenA
+ * @brief Options for MenuScreenA
  */
 enum SubMenuSelectionType {
     SUB_MENU_NONE,
-    SUB_MENU_DATA, // 0x01, value repurposed in map select
+    SUB_MENU_DATA, // 0x01, Value repurposed in Map Select
     SUB_MENU_MAP_SELECT_CUP = 0x01,
     SUB_MENU_MAP_SELECT_COURSE,
     SUB_MENU_MAP_SELECT_OK,
@@ -86,7 +86,7 @@ enum SubMenuSelectionType {
 };
 
 /**
- * @brief Options for menuScreenB
+ * @brief Options for MenuScreenB
  */
 enum MainMenuSelectionType {
     MAIN_MENU_NONE,
@@ -96,22 +96,22 @@ enum MainMenuSelectionType {
     MAIN_MENU_MODE_SELECT,            // Mario GP - T. Trials - VS - Battle
     MAIN_MENU_MODE_SUB_SELECT,        // CC Selection and T.Trials options (Begin, Data)
     MAIN_MENU_OK_SELECT,              // OK option after selecting a submode
-    MAIN_MENU_OK_SELECT_GO_BACK,      // OK option after going back from player select
+    MAIN_MENU_OK_SELECT_GO_BACK,      // OK option after going back from Player Select
     MAIN_MENU_MODE_SUB_SELECT_GO_BACK // Used in T.Trials after going back to Data option from course data
 };
 
 /**
- * @brief Options for menuScreenC
+ * @brief Options for MenuScreenC
  */
 enum PlayerSelectMenuSelectionTypes {
     PLAYER_SELECT_MENU_NONE,
     PLAYER_SELECT_MENU_MAIN,
     PLAYER_SELECT_MENU_OK,        // OK option after selecting characters
-    PLAYER_SELECT_MENU_OK_GO_BACK // OK option after going back from map select
+    PLAYER_SELECT_MENU_OK_GO_BACK // OK option after going back from Map Select
 };
 
 /**
- * @brief Options for title_mode
+ * @brief Options for TitleMode
  */
 enum DebugMenuSelectionTypes {
     DEBUG_MENU_NONE,
@@ -126,7 +126,7 @@ enum DebugMenuSelectionTypes {
 };
 
 /**
- * @brief Options for gControllerPakMenuSelection
+ * @brief Options for ControllerPakMenuSelection
  */
 enum ControllerPakMenuSelectionTypes {
     CONTROLLER_PAK_MENU_NONE,
@@ -143,7 +143,7 @@ enum ControllerPakMenuSelectionTypes {
 };
 
 /**
- * @brief Options for gCourseRecordsMenuSelection
+ * @brief Options for CourseRecordsMenuSelection
  */
 enum CourseRecordsMenuSelectionTypes {
     COURSE_RECORDS_MENU_MIN,
@@ -154,7 +154,7 @@ enum CourseRecordsMenuSelectionTypes {
 };
 
 /**
- * @brief Options for gCourseRecordsSubMenuSelection
+ * @brief Options for CourseRecordsSubMenuSelection
  */
 enum CourseRecordsSubMenuSelectionTypes {
     COURSE_RECORDS_SUB_MENU_MIN,
@@ -164,7 +164,7 @@ enum CourseRecordsSubMenuSelectionTypes {
 };
 
 /**
- * @brief Options for gDebugGotoScene
+ * @brief Options for DebugGotoScene
  */
 enum DebugGotoSceneTypes {
     DEBUG_GOTO_RACING,
@@ -179,7 +179,7 @@ enum DebugGotoSceneTypes {
 enum FadeModeSelectionTypes { FADE_MODE_NONE, FADE_MODE_MAIN, FADE_MODE_LOGO };
 
 /**
- * @brief Options for gControllerPakScrollDirection
+ * @brief Options for ControllerPakScrollDirection
  */
 enum ControllerPakScrollDirectionTypes {
     CONTROLLER_PAK_SCROLL_DIR_NONE,
@@ -189,74 +189,74 @@ enum ControllerPakScrollDirectionTypes {
 
 /* functions */
 void UpdateController(void);
-void optionController(struct Controller*, u16);
-void taselController(struct Controller*, u16);
-void dselController(struct Controller*, u16);
-void nintenLogoControler(struct Controller*, u16);
-void cpControler(struct Controller*, u16);
+void OptionController(struct Controller*, u16);
+void TaselController(struct Controller*, u16);
+void DselController(struct Controller*, u16);
+void NintenLogoControler(struct Controller*, u16);
+void CpControler(struct Controller*, u16);
 void TitleController(struct Controller*, u16);
-void gsel_popup_data(void);
+void GselPopupData(void);
 void GSelController(struct Controller*, u16);
-bool psel_check(s32);
+bool PselCheck(s32);
 void PSelController(struct Controller*, u16);
 void MSelController(struct Controller*, u16);
-void k_var_init(s32);
+void KVarInit(s32);
 void FlashCounterReset(void);
-void Setting_SoundOutMode(void);
+void SettingSoundOutMode(void);
 bool FadeChecker(void);
 
 /* data */
-extern s32 logo_cam_z;
-extern f32 logo_scale_z;
-extern f32 logo_rot_x;
-extern f32 logo_rot_y;
-extern f32 logo_rot_z;
-extern f32 logo_pos_x;
-extern f32 logo_pos_y;
-extern f32 logo_pos_z;
+extern s32 LogoCamZ;
+extern f32 LogoScaleZ;
+extern f32 LogoRotX;
+extern f32 LogoRotY;
+extern f32 LogoRotZ;
+extern f32 LogoPosX;
+extern f32 LogoPosY;
+extern f32 LogoPosZ;
 
 extern s32 KBGNumberNext;
 
-extern s8 g_player1Character[4];
-extern s8 gCharacterGridIsSelected[4];
-extern s8 menuScreenA;
-extern s8 menuScreenB;
-extern s8 menuScreenC;
-extern s8 title_mode;
-extern s8 gControllerPakMenuSelection;
-extern s8 gScreenModeListIndex;
-extern u8 sound_output;
-extern s8 g_menuMultiplayerSelection;
-extern s8 vs_result_cursor;
-extern s8 ta_result_cursor;
-extern s8 bt_result_cursor;
-extern s8 gTimeTrialDataCourseIndex;
-extern s8 gCourseRecordsMenuSelection;
-extern s8 gCourseRecordsSubMenuSelection;
-extern s8 gDebugGotoScene;
-extern s8 g_InGameTT;
-extern s8 g_InGame;
-extern s32 titleDemo;
-extern s32 title_counter2;
-extern s8 demo_play_flag;
-extern s8 g_cupSelect;
-extern s8 g_courseSelect;
-extern s8 fb_clear_flg;
+extern s8 Player1Character[4];
+extern s8 CharacterGridIsSelected[4];
+extern s8 MenuScreenA;
+extern s8 MenuScreenB;
+extern s8 MenuScreenC;
+extern s8 TitleMode;
+extern s8 ControllerPakMenuSelection;
+extern s8 ScreenModeListIndex;
+extern u8 SoundOutput;
+extern s8 MenuMultiplayerSelection;
+extern s8 VSResultCursor;
+extern s8 TaResultCursor;
+extern s8 BtResultCursor;
+extern s8 TimeTrialDataCourseIndex;
+extern s8 CourseRecordsMenuSelection;
+extern s8 CourseRecordsSubMenuSelection;
+extern s8 DebugGotoScene;
+extern s8 InGameTT;
+extern s8 InGame;
+extern s32 TitleDemo;
+extern s32 TitleCounter2;
+extern s8 DemoPlayFlag;
+extern s8 CupSelect;
+extern s8 CourseSelect;
+extern s8 FBClearFlg;
 
 extern s32 KBGNumber; // D_800E86A0
 extern s32 KBGChange;
-extern s8 g_CharacterSelections[];
+extern s8 CharacterSelections[];
 
-extern s8 gGameModeMenuColumn[];
-extern s8 gGameModeSubMenuColumn[4][3];
-extern s8 gNextDemoId;
-extern s8 gControllerPakSelectedTableRow;
-extern s8 gControllerPakVisibleTableRows[];
-extern s8 gControllerPakScrollDirection;
+extern s8 GameModeMenuColumn[];
+extern s8 GameModeSubMenuColumn[4][3];
+extern s8 NextDemoId;
+extern s8 ControllerPakSelectedTableRow;
+extern s8 ControllerPakVisibleTableRows[];
+extern s8 ControllerPakScrollDirection;
 
-extern const s8 gPlayerModeSelection[];
-extern const s32 gGameModePlayerSelection[][3];
-extern s16 gCupCourseOrder[NUM_CUPS][NUM_COURSES_PER_CUP];
+extern const s8 PlayerModeSelection[];
+extern const s32 GameModePlayerSelection[][3];
+extern s16 CupCourseOrder[NUM_CUPS][NUM_COURSES_PER_CUP];
 
 // end of menus.c variables
 

@@ -1,11 +1,11 @@
 #define GET_PATH_LENGTH(pathPoint)               \
     for (i = 0;; i++) {                          \
-        if ((u16) pathPoint[i].pointx == 0x8000) { \
+        if ((u16) pathPoint[i].Pointx == 0x8000) { \
             break;                               \
         }                                        \
     }
 
-void area_bunkatu_SL(void) {
+void AreaBunkatuSL(void) {
     s32 i;
     Path2D* temp;
     CenterPathStruct* pathPoint =
@@ -14,12 +14,12 @@ void area_bunkatu_SL(void) {
 
     GET_PATH_LENGTH(pathPoint)
 
-    temp = center_line_EX;
-    g_CourseObstacle = area_bunkatu_SL_SHIP_sub(temp, pathPoint, i - 1);
+    temp = CenterLineEX;
+    CourseObstacle = AreaBunkatuSLSHIPSub(temp, pathPoint, i - 1);
     D_80162EB0 = CheckHight(temp[0].x, 2000.0f, temp[0].z);
 }
 
-void area_bunkatu_SHIP(void) {
+void AreaBunkatuSHIP(void) {
     CenterPathStruct* pathPoint;
     s32 i;
 
@@ -29,35 +29,35 @@ void area_bunkatu_SHIP(void) {
 
     GET_PATH_LENGTH(pathPoint)
 
-    g_CourseObstacle = area_bunkatu_SL_SHIP_sub(center_line_EX, pathPoint, i - 1);
+    CourseObstacle = AreaBunkatuSLSHIPSub(CenterLineEX, pathPoint, i - 1);
     D_80162EB2 = -40;
 }
 
-void obj_init_highway_sub(VehicleStuff* vehicle) {
+void ObjInitHighwaySub(VehicleStuff* vehicle) {
     f32 origXPos;
     UNUSED f32 pad;
     f32 origZPos;
 
-    origXPos = vehicle->position[0];
-    origZPos = vehicle->position[2];
-    if (highway_gyakusou_flg == false) {
-        hanyou_soukou_sub_BP(vehicle->position, (s16*) &vehicle->pathPointIndex, vehicle->speed,
-                      vehicle->someMultiplierTheSequel, 0, 3);
-        vehicle->rotation[0] = 0;
-        vehicle->rotation[1] = -DEGREES(180);
-        vehicle->rotation[2] = 0;
+    origXPos = vehicle->Position[0];
+    origZPos = vehicle->Position[2];
+    if (HighwayGyakusouFlg == false) {
+        HanyouSoukouSubBP(vehicle->Position, (s16*) &vehicle->PathPointIndex, vehicle->Speed,
+                      vehicle->SomeMultiplierTheSequel, 0, 3);
+        vehicle->Rotation[0] = 0;
+        vehicle->Rotation[1] = -DEGREES(180);
+        vehicle->Rotation[2] = 0;
     } else {
-        hanyou_gyaku_soukou_sub_BP(vehicle->position, (s16*) &vehicle->pathPointIndex, vehicle->speed,
-                      vehicle->someMultiplierTheSequel, 0);
-        vehicle->rotation[0] = 0;
-        vehicle->rotation[1] = 0;
-        vehicle->rotation[2] = 0;
+        HanyouGyakuSoukouSubBP(vehicle->Position, (s16*) &vehicle->PathPointIndex, vehicle->Speed,
+                      vehicle->SomeMultiplierTheSequel, 0);
+        vehicle->Rotation[0] = 0;
+        vehicle->Rotation[1] = 0;
+        vehicle->Rotation[2] = 0;
     }
-    vehicle->velocity[0] = vehicle->position[0] - origXPos;
-    vehicle->velocity[2] = vehicle->position[2] - origZPos;
+    vehicle->Velocity[0] = vehicle->Position[0] - origXPos;
+    vehicle->Velocity[2] = vehicle->Position[2] - origZPos;
 }
 
-void ogawa_hanyou_object_init(void) {
+void OgawaHanyouObjectInit(void) {
     s16 trainCarYRot;
     UNUSED Vec3f pad;
     TrainCarStuff* tempLocomotive;
@@ -76,46 +76,46 @@ void ogawa_hanyou_object_init(void) {
     f32 origZPos;
 
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-    switch (g_courseID) {
+    switch (CourseID) {
         case COURSE_KALAMARI_DESERT:
             for (loopIndex = 0; loopIndex < NUM_TRAINS; loopIndex++) {
-                tempLocomotive = &SL[loopIndex].locomotive;
-                origXPos = tempLocomotive->position[0];
-                origZPos = tempLocomotive->position[2];
-                trainCarYRot = hanyou_soukou_sub_EX(
-                    tempLocomotive->position, (s16*) &tempLocomotive->pathPointIndex, SL[loopIndex].speed);
-                tempLocomotive->velocity[0] = tempLocomotive->position[0] - origXPos;
-                tempLocomotive->velocity[2] = tempLocomotive->position[2] - origZPos;
+                tempLocomotive = &SL[loopIndex].Locomotive;
+                origXPos = tempLocomotive->Position[0];
+                origZPos = tempLocomotive->Position[2];
+                trainCarYRot = HanyouSoukouSubEX(
+                    tempLocomotive->Position, (s16*) &tempLocomotive->PathPointIndex, SL[loopIndex].Speed);
+                tempLocomotive->Velocity[0] = tempLocomotive->Position[0] - origXPos;
+                tempLocomotive->Velocity[2] = tempLocomotive->Position[2] - origZPos;
                 SetSVector(trainCarRot, 0, trainCarYRot, 0);
-                tempLocomotive->actorIndex = addObjectBuffer(tempLocomotive->position, trainCarRot,
-                                                                     tempLocomotive->velocity, ACTOR_TRAIN_ENGINE);
+                tempLocomotive->ActorIndex = AddObjectBuffer(tempLocomotive->Position, trainCarRot,
+                                                                     tempLocomotive->Velocity, ACTOR_TRAIN_ENGINE);
 
-                tempTender = &SL[loopIndex].tender;
-                if (tempTender->isActive == 1) {
-                    origXPos = tempTender->position[0];
-                    origZPos = tempTender->position[2];
-                    trainCarYRot = hanyou_soukou_sub_EX(
-                        tempTender->position, (s16*) &tempTender->pathPointIndex, SL[loopIndex].speed);
-                    tempTender->velocity[0] = tempTender->position[0] - origXPos;
-                    tempTender->velocity[2] = tempTender->position[2] - origZPos;
+                tempTender = &SL[loopIndex].Tender;
+                if (tempTender->IsActive == 1) {
+                    origXPos = tempTender->Position[0];
+                    origZPos = tempTender->Position[2];
+                    trainCarYRot = HanyouSoukouSubEX(
+                        tempTender->Position, (s16*) &tempTender->PathPointIndex, SL[loopIndex].Speed);
+                    tempTender->Velocity[0] = tempTender->Position[0] - origXPos;
+                    tempTender->Velocity[2] = tempTender->Position[2] - origZPos;
                     SetSVector(trainCarRot, 0, trainCarYRot, 0);
-                    tempTender->actorIndex = addObjectBuffer(tempTender->position, trainCarRot,
-                                                                     tempTender->velocity, ACTOR_TRAIN_TENDER);
+                    tempTender->ActorIndex = AddObjectBuffer(tempTender->Position, trainCarRot,
+                                                                     tempTender->Velocity, ACTOR_TRAIN_TENDER);
                 }
 
                 for (loopIndex2 = 0; loopIndex2 < NUM_PASSENGER_CAR_ENTRIES; loopIndex2++) {
-                    tempPassengerCar = &SL[loopIndex].passengerCars[loopIndex2];
-                    if (tempPassengerCar->isActive == 1) {
-                        origXPos = tempPassengerCar->position[0];
-                        origZPos = tempPassengerCar->position[2];
-                        trainCarYRot = hanyou_soukou_sub_EX(tempPassengerCar->position,
-                                                                     (s16*) &tempPassengerCar->pathPointIndex,
-                                                                     SL[loopIndex].speed);
-                        tempPassengerCar->velocity[0] = tempPassengerCar->position[0] - origXPos;
-                        tempPassengerCar->velocity[2] = tempPassengerCar->position[2] - origZPos;
+                    tempPassengerCar = &SL[loopIndex].PassengerCars[loopIndex2];
+                    if (tempPassengerCar->IsActive == 1) {
+                        origXPos = tempPassengerCar->Position[0];
+                        origZPos = tempPassengerCar->Position[2];
+                        trainCarYRot = HanyouSoukouSubEX(tempPassengerCar->Position,
+                                                                     (s16*) &tempPassengerCar->PathPointIndex,
+                                                                     SL[loopIndex].Speed);
+                        tempPassengerCar->Velocity[0] = tempPassengerCar->Position[0] - origXPos;
+                        tempPassengerCar->Velocity[2] = tempPassengerCar->Position[2] - origZPos;
                         SetSVector(trainCarRot, 0, trainCarYRot, 0);
-                        tempPassengerCar->actorIndex =
-                            addObjectBuffer(tempPassengerCar->position, trainCarRot, tempPassengerCar->velocity,
+                        tempPassengerCar->ActorIndex =
+                            AddObjectBuffer(tempPassengerCar->Position, trainCarRot, tempPassengerCar->Velocity,
                                                     ACTOR_TRAIN_PASSENGER_CAR);
                     }
                 }
@@ -123,47 +123,47 @@ void ogawa_hanyou_object_init(void) {
             break;
         case COURSE_DK_JUNGLE:
             for (loopIndex = 0; loopIndex < NUM_ACTIVE_PADDLE_BOATS; loopIndex++) {
-                tempPaddleWheelBoat = &ship[loopIndex];
-                if (tempPaddleWheelBoat->isActive == 1) {
-                    origXPos = tempPaddleWheelBoat->position[0];
-                    origZPos = tempPaddleWheelBoat->position[2];
-                    tempPaddleWheelBoat->rotY = hanyou_soukou_sub_EX(
-                        tempPaddleWheelBoat->position, (s16*) &tempPaddleWheelBoat->pathPointIndex,
-                        tempPaddleWheelBoat->speed);
-                    tempPaddleWheelBoat->velocity[0] = tempPaddleWheelBoat->position[0] - origXPos;
-                    tempPaddleWheelBoat->velocity[2] = tempPaddleWheelBoat->position[2] - origZPos;
-                    SetSVector(paddleWheelBoatRot, 0, tempPaddleWheelBoat->rotY, 0);
-                    tempPaddleWheelBoat->actorIndex =
-                        addObjectBuffer(tempPaddleWheelBoat->position, paddleWheelBoatRot,
-                                                tempPaddleWheelBoat->velocity, ACTOR_PADDLE_BOAT);
+                tempPaddleWheelBoat = &Ship[loopIndex];
+                if (tempPaddleWheelBoat->IsActive == 1) {
+                    origXPos = tempPaddleWheelBoat->Position[0];
+                    origZPos = tempPaddleWheelBoat->Position[2];
+                    tempPaddleWheelBoat->RotY = HanyouSoukouSubEX(
+                        tempPaddleWheelBoat->Position, (s16*) &tempPaddleWheelBoat->PathPointIndex,
+                        tempPaddleWheelBoat->Speed);
+                    tempPaddleWheelBoat->Velocity[0] = tempPaddleWheelBoat->Position[0] - origXPos;
+                    tempPaddleWheelBoat->Velocity[2] = tempPaddleWheelBoat->Position[2] - origZPos;
+                    SetSVector(paddleWheelBoatRot, 0, tempPaddleWheelBoat->RotY, 0);
+                    tempPaddleWheelBoat->ActorIndex =
+                        AddObjectBuffer(tempPaddleWheelBoat->Position, paddleWheelBoatRot,
+                                                tempPaddleWheelBoat->Velocity, ACTOR_PADDLE_BOAT);
                 }
             }
             break;
         case COURSE_TOADS_TURNPIKE:
             for (loopIndex = 0; loopIndex < NUM_RACE_BOX_TRUCKS; loopIndex++) {
                 tempBoxTruck = &TRUCK[loopIndex];
-                obj_init_highway_sub(tempBoxTruck);
-                tempBoxTruck->actorIndex = addObjectBuffer(tempBoxTruck->position, tempBoxTruck->rotation,
-                                                                   tempBoxTruck->velocity, ACTOR_BOX_TRUCK);
+                ObjInitHighwaySub(tempBoxTruck);
+                tempBoxTruck->ActorIndex = AddObjectBuffer(tempBoxTruck->Position, tempBoxTruck->Rotation,
+                                                                   tempBoxTruck->Velocity, ACTOR_BOX_TRUCK);
             }
             for (loopIndex = 0; loopIndex < NUM_RACE_SCHOOL_BUSES; loopIndex++) {
-                tempSchoolBus = &bus[loopIndex];
-                obj_init_highway_sub(tempSchoolBus);
-                tempSchoolBus->actorIndex = addObjectBuffer(tempSchoolBus->position, tempSchoolBus->rotation,
-                                                                    tempSchoolBus->velocity, ACTOR_SCHOOL_BUS);
+                tempSchoolBus = &Bus[loopIndex];
+                ObjInitHighwaySub(tempSchoolBus);
+                tempSchoolBus->ActorIndex = AddObjectBuffer(tempSchoolBus->Position, tempSchoolBus->Rotation,
+                                                                    tempSchoolBus->Velocity, ACTOR_SCHOOL_BUS);
             }
             for (loopIndex = 0; loopIndex < NUM_RACE_TANKER_TRUCKS; loopIndex++) {
-                tempTankerTruck = &tanklorry[loopIndex];
-                obj_init_highway_sub(tempTankerTruck);
-                tempTankerTruck->actorIndex =
-                    addObjectBuffer(tempTankerTruck->position, tempTankerTruck->rotation,
-                                            tempTankerTruck->velocity, ACTOR_TANKER_TRUCK);
+                tempTankerTruck = &Tanklorry[loopIndex];
+                ObjInitHighwaySub(tempTankerTruck);
+                tempTankerTruck->ActorIndex =
+                    AddObjectBuffer(tempTankerTruck->Position, tempTankerTruck->Rotation,
+                                            tempTankerTruck->Velocity, ACTOR_TANKER_TRUCK);
             }
             for (loopIndex = 0; loopIndex < NUM_RACE_CARS; loopIndex++) {
-                tempCar = &rv_car[loopIndex];
-                obj_init_highway_sub(tempCar);
-                tempCar->actorIndex =
-                    addObjectBuffer(tempCar->position, tempCar->rotation, tempCar->velocity, ACTOR_CAR);
+                tempCar = &RvCar[loopIndex];
+                ObjInitHighwaySub(tempCar);
+                tempCar->ActorIndex =
+                    AddObjectBuffer(tempCar->Position, tempCar->Rotation, tempCar->Velocity, ACTOR_CAR);
             }
             break;
     }
@@ -172,23 +172,23 @@ void ogawa_hanyou_object_init(void) {
 #endif
 }
 
-void clear_SL_tab(TrainCarStuff* trainCar, Path2D* posXZ, u16 pathPoint) {
-    trainCar->position[0] = (f32) posXZ->x;
-    trainCar->position[1] = (f32) D_80162EB0;
-    trainCar->position[2] = (f32) posXZ->z;
-    trainCar->actorIndex = -1;
-    trainCar->pathPointIndex = pathPoint;
-    trainCar->isActive = 0;
-    trainCar->velocity[0] = 0.0f;
-    trainCar->velocity[1] = 0.0f;
-    trainCar->velocity[2] = 0.0f;
+void ClearSLTab(TrainCarStuff* trainCar, Path2D* posXZ, u16 pathPoint) {
+    trainCar->Position[0] = (f32) posXZ->x;
+    trainCar->Position[1] = (f32) D_80162EB0;
+    trainCar->Position[2] = (f32) posXZ->z;
+    trainCar->ActorIndex = -1;
+    trainCar->PathPointIndex = pathPoint;
+    trainCar->IsActive = 0;
+    trainCar->Velocity[0] = 0.0f;
+    trainCar->Velocity[1] = 0.0f;
+    trainCar->Velocity[2] = 0.0f;
 }
 
 /**
  * Set pathPoint spawn locations for each rolling stock
  * The railroad has 465 path
  */
-void init_SL(void) {
+void InitSL(void) {
     u16 pathPointOffset;
     TrainCarStuff* ptr1;
     Path2D* pos;
@@ -197,85 +197,85 @@ void init_SL(void) {
 
     for (i = 0; i < NUM_TRAINS; i++) {
         // outputs 160 or 392 depending on the train.
-        // Wraps the value around to always output a valid pathPoint.
-        pathPointOffset = (((i * g_CourseObstacle) / NUM_TRAINS) + 160) % g_CourseObstacle;
+        // Wraps the Value around to always Output a valid pathPoint.
+        pathPointOffset = (((i * CourseObstacle) / NUM_TRAINS) + 160) % CourseObstacle;
 
-        // 120.0f is about the maximum usable value
-        SL[i].speed = 5.0f;
+        // 120.0f is about the maximum usable Value
+        SL[i].Speed = 5.0f;
         for (j = 0; j < NUM_PASSENGER_CAR_ENTRIES; j++) {
             pathPointOffset += 4;
-            ptr1 = &SL[i].passengerCars[j];
-            pos = &center_line_EX[pathPointOffset];
-            clear_SL_tab(ptr1, pos, pathPointOffset);
+            ptr1 = &SL[i].PassengerCars[j];
+            pos = &CenterLineEX[pathPointOffset];
+            ClearSLTab(ptr1, pos, pathPointOffset);
         }
-        // Smaller offset for the tender
+        // Smaller Offset for the Tender
         pathPointOffset += 3;
-        ptr1 = &SL[i].tender;
-        pos = &center_line_EX[pathPointOffset];
-        clear_SL_tab(ptr1, pos, pathPointOffset);
+        ptr1 = &SL[i].Tender;
+        pos = &CenterLineEX[pathPointOffset];
+        ClearSLTab(ptr1, pos, pathPointOffset);
 
         pathPointOffset += 4;
-        ptr1 = &SL[i].locomotive;
-        pos = &center_line_EX[pathPointOffset];
-        clear_SL_tab(ptr1, pos, pathPointOffset);
+        ptr1 = &SL[i].Locomotive;
+        pos = &CenterLineEX[pathPointOffset];
+        ClearSLTab(ptr1, pos, pathPointOffset);
 
-        // Only use locomotive unless overwritten below.
-        SL[i].numCars = LOCOMOTIVE_ONLY;
+        // Only use Locomotive unless overwritten below.
+        SL[i].NumCars = LOCOMOTIVE_ONLY;
     }
 
-    // Spawn all rolling stock in single player mode.
-    switch (g_ScreenSplitB) {
-        case SCREEN_MODE_1P: // single player
+    // Spawn all rolling stock in single Player Mode.
+    switch (ScreenSplitB) {
+        case SCREEN_MODE_1P: // single Player
             for (i = 0; i < NUM_TRAINS; i++) {
-                SL[i].tender.isActive = 1;
+                SL[i].Tender.IsActive = 1;
 
                 // clang-format off
                 // Same line required for matching...
-                for (j = 0; j < NUM_PASSENGER_CAR_ENTRIES; j++) { SL[i].passengerCars[j].isActive = 1; }
+                for (j = 0; j < NUM_PASSENGER_CAR_ENTRIES; j++) { SL[i].PassengerCars[j].IsActive = 1; }
                 // clang-format on
 
-                SL[i].numCars = NUM_TENDERS + NUM_PASSENGER_CAR_ENTRIES;
+                SL[i].NumCars = NUM_TENDERS + NUM_PASSENGER_CAR_ENTRIES;
             }
             break;
 
-        // Spawn locomotive, tender, and one passenger car in versus 2/3 player mode.
+        // Spawn Locomotive, Tender, and one passenger car in versus 2/3 Player Mode.
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL: // multiplayer fall-through
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            if (g_gameMode != GRAND_PRIX) {
+            if (GameMode != GRAND_PRIX) {
                 for (i = 0; i < NUM_TRAINS; i++) {
-                    SL[i].tender.isActive = 1;
-                    SL[i].passengerCars[4].isActive = 1;
-                    SL[i].numCars = NUM_TENDERS + NUM_2P_PASSENGER_CARS;
+                    SL[i].Tender.IsActive = 1;
+                    SL[i].PassengerCars[4].IsActive = 1;
+                    SL[i].NumCars = NUM_TENDERS + NUM_2P_PASSENGER_CARS;
                 }
             }
             break;
     }
 
-    gTrainSmokeTimer = 0;
+    TrainSmokeTimer = 0;
 }
 /**
  * @brief sync the train components vehicle with the actor
  *
- * @param trainCar
- * @param orientationY
+ * @Param trainCar
+ * @Param orientationY
  */
-void put_object_buf_SL(TrainCarStuff* trainCar, s16 orientationY) {
+void PutObjectBufSL(TrainCarStuff* trainCar, s16 orientationY) {
     struct TrainCar* trainCarActor;
 
-    trainCarActor = (struct TrainCar*) &g_SimpleObjectArray[trainCar->actorIndex];
-    trainCarActor->position[0] = trainCar->position[0];
-    trainCarActor->position[1] = trainCar->position[1];
-    trainCarActor->position[2] = trainCar->position[2];
-    if (g_ScreenFlip != 0) {
-        trainCarActor->angle[1] = -orientationY;
+    trainCarActor = (struct TrainCar*) &SimpleObjectArray[trainCar->ActorIndex];
+    trainCarActor->Position[0] = trainCar->Position[0];
+    trainCarActor->Position[1] = trainCar->Position[1];
+    trainCarActor->Position[2] = trainCar->Position[2];
+    if (ScreenFlip != 0) {
+        trainCarActor->Angle[1] = -orientationY;
     } else {
-        trainCarActor->angle[1] = orientationY;
+        trainCarActor->Angle[1] = orientationY;
     }
-    trainCarActor->velocity[0] = trainCar->velocity[0];
-    trainCarActor->velocity[2] = trainCar->velocity[2];
+    trainCarActor->Velocity[0] = trainCar->Velocity[0];
+    trainCarActor->Velocity[2] = trainCar->Velocity[2];
 }
 
-void move_SL(void) {
+void MoveSL(void) {
     UNUSED s32 pad[3];
     f32 temp_f20;
     TrainCarStuff* car;
@@ -286,72 +286,72 @@ void move_SL(void) {
     s32 j;
     Vec3f smokePos;
 
-    gTrainSmokeTimer += 1;
+    TrainSmokeTimer += 1;
 
     for (i = 0; i < NUM_TRAINS; i++) {
-        oldPathPointIndex = (u16) SL[i].locomotive.pathPointIndex;
+        oldPathPointIndex = (u16) SL[i].Locomotive.PathPointIndex;
 
-        temp_f20 = SL[i].locomotive.position[0];
-        temp_f22 = SL[i].locomotive.position[2];
+        temp_f20 = SL[i].Locomotive.Position[0];
+        temp_f22 = SL[i].Locomotive.Position[2];
 
-        orientationYUpdate = hanyou_soukou_sub_EX(
-            SL[i].locomotive.position, (s16*) &SL[i].locomotive.pathPointIndex, SL[i].speed);
+        orientationYUpdate = HanyouSoukouSubEX(
+            SL[i].Locomotive.Position, (s16*) &SL[i].Locomotive.PathPointIndex, SL[i].Speed);
 
-        SL[i].locomotive.velocity[0] = SL[i].locomotive.position[0] - temp_f20;
-        SL[i].locomotive.velocity[2] = SL[i].locomotive.position[2] - temp_f22;
+        SL[i].Locomotive.Velocity[0] = SL[i].Locomotive.Position[0] - temp_f20;
+        SL[i].Locomotive.Velocity[2] = SL[i].Locomotive.Position[2] - temp_f22;
 
-        put_object_buf_SL(&SL[i].locomotive, orientationYUpdate);
+        PutObjectBufSL(&SL[i].Locomotive, orientationYUpdate);
 
-        if ((oldPathPointIndex != SL[i].locomotive.pathPointIndex) &&
-            ((SL[i].locomotive.pathPointIndex == 0x00BE) ||
-             (SL[i].locomotive.pathPointIndex == 0x0140))) { // play crossing bell sound
-            NAEnmTrgStart(SL[i].locomotive.position, SL[i].locomotive.velocity,
+        if ((oldPathPointIndex != SL[i].Locomotive.PathPointIndex) &&
+            ((SL[i].Locomotive.PathPointIndex == 0x00BE) ||
+             (SL[i].Locomotive.PathPointIndex == 0x0140))) { // play crossing bell Sound
+            NAEnmTrgStart(SL[i].Locomotive.Position, SL[i].Locomotive.Velocity,
                           SOUND_ARG_LOAD(0x19, 0x01, 0x80, 0x0E));
-        } else if (MakeRandomLimmit(100) == 0) { // play train whistle sound
-            NAEnmTrgStart(SL[i].locomotive.position, SL[i].locomotive.velocity,
+        } else if (MakeRandomLimmit(100) == 0) { // play train whistle Sound
+            NAEnmTrgStart(SL[i].Locomotive.Position, SL[i].Locomotive.Velocity,
                           SOUND_ARG_LOAD(0x19, 0x01, 0x80, 0x0D));
         }
 
-        SL[i].someFlags = check_player_near(
-            SL[i].locomotive.position, TRAIN_SMOKE_RENDER_DISTANCE, SL[i].someFlags);
-        // Renders locomotive smoke on all screens if any player is within range.
-        if ((((s16) gTrainSmokeTimer % 5) == 0) && (SL[i].someFlags != 0)) {
-            smokePos[0] = SL[i].locomotive.position[0];
-            smokePos[1] = (f32) ((f64) SL[i].locomotive.position[1] + 65.0);
-            smokePos[2] = (f32) ((f64) SL[i].locomotive.position[2] + 25.0);
-            oga_guruguru_sub(smokePos, SL[i].locomotive.position, orientationYUpdate);
-            kwget_train_smoke(i, smokePos, 1.1f);
+        SL[i].SomeFlags = CheckPlayerNear(
+            SL[i].Locomotive.Position, TRAIN_SMOKE_RENDER_DISTANCE, SL[i].SomeFlags);
+        // Renders Locomotive smoke on all screens if any Player is within range.
+        if ((((s16) TrainSmokeTimer % 5) == 0) && (SL[i].SomeFlags != 0)) {
+            smokePos[0] = SL[i].Locomotive.Position[0];
+            smokePos[1] = (f32) ((f64) SL[i].Locomotive.Position[1] + 65.0);
+            smokePos[2] = (f32) ((f64) SL[i].Locomotive.Position[2] + 25.0);
+            OgaGuruguruSub(smokePos, SL[i].Locomotive.Position, orientationYUpdate);
+            KwgetTrainSmoke(i, smokePos, 1.1f);
         }
 
-        car = &SL[i].tender;
+        car = &SL[i].Tender;
 
-        if (car->isActive == 1) {
-            temp_f20 = car->position[0];
-            temp_f22 = car->position[2];
+        if (car->IsActive == 1) {
+            temp_f20 = car->Position[0];
+            temp_f22 = car->Position[2];
             orientationYUpdate =
-                hanyou_soukou_sub_EX(car->position, (s16*) &car->pathPointIndex, SL[i].speed);
-            car->velocity[0] = car->position[0] - temp_f20;
-            car->velocity[2] = car->position[2] - temp_f22;
-            put_object_buf_SL(car, orientationYUpdate);
+                HanyouSoukouSubEX(car->Position, (s16*) &car->PathPointIndex, SL[i].Speed);
+            car->Velocity[0] = car->Position[0] - temp_f20;
+            car->Velocity[2] = car->Position[2] - temp_f22;
+            PutObjectBufSL(car, orientationYUpdate);
         }
 
         for (j = 0; j < NUM_PASSENGER_CAR_ENTRIES; j++) {
-            car = &SL[i].passengerCars[j];
-            if (car->isActive == 1) {
-                temp_f20 = car->position[0];
-                temp_f22 = car->position[2];
+            car = &SL[i].PassengerCars[j];
+            if (car->IsActive == 1) {
+                temp_f20 = car->Position[0];
+                temp_f22 = car->Position[2];
 
                 orientationYUpdate =
-                    hanyou_soukou_sub_EX(car->position, (s16*) &car->pathPointIndex, SL[i].speed);
-                car->velocity[0] = car->position[0] - temp_f20;
-                car->velocity[2] = car->position[2] - temp_f22;
-                put_object_buf_SL(car, orientationYUpdate);
+                    HanyouSoukouSubEX(car->Position, (s16*) &car->PathPointIndex, SL[i].Speed);
+                car->Velocity[0] = car->Position[0] - temp_f20;
+                car->Velocity[2] = car->Position[2] - temp_f22;
+                PutObjectBufSL(car, orientationYUpdate);
             }
         }
     }
 }
 
-void hit_check_SL(s32 playerId, Player* player) {
+void HitCheckSL(s32 PlayerId, Player* Player) {
     TrainCarStuff* trainCar;
     f32 playerPosX;
     f32 playerPosZ;
@@ -360,42 +360,42 @@ void hit_check_SL(s32 playerId, Player* player) {
     s32 trainIndex;
     s32 passengerCarIndex;
 
-    if (tenuki_flg[playerId] != true) {
-        if (!(player->slip_flag & EXPLODE)) {
-            playerPosX = player->position[0];
-            playerPosZ = player->position[2];
+    if (TenukiFlg[PlayerId] != true) {
+        if (!(Player->SlipFlag & EXPLODE)) {
+            playerPosX = Player->Position[0];
+            playerPosZ = Player->Position[2];
             for (trainIndex = 0; trainIndex < NUM_TRAINS; trainIndex++) {
-                trainCar = &SL[trainIndex].locomotive;
-                x_dist = playerPosX - trainCar->position[0];
-                z_dist = playerPosZ - trainCar->position[2];
+                trainCar = &SL[trainIndex].Locomotive;
+                x_dist = playerPosX - trainCar->Position[0];
+                z_dist = playerPosZ - trainCar->Position[2];
                 if ((x_dist > -100.0) && (x_dist < 100.0)) {
                     if ((z_dist > -100.0) && (z_dist < 100.0)) {
-                        if (oga_hit_check(trainCar->position[0], trainCar->position[2], trainCar->velocity[0],
-                                                    trainCar->velocity[2], 60.0f, 20.0f, playerPosX, playerPosZ) == 1) {
-                            player->weapon |= HIT_BOMB;
+                        if (OgaHitCheck(trainCar->Position[0], trainCar->Position[2], trainCar->Velocity[0],
+                                                    trainCar->Velocity[2], 60.0f, 20.0f, playerPosX, playerPosZ) == 1) {
+                            Player->Weapon |= HIT_BOMB;
                         }
-                        trainCar = &SL[trainIndex].tender;
-                        if (trainCar->isActive == 1) {
-                            if (oga_hit_check(trainCar->position[0], trainCar->position[2],
-                                                        trainCar->velocity[0], trainCar->velocity[2], 30.0f, 20.0f,
+                        trainCar = &SL[trainIndex].Tender;
+                        if (trainCar->IsActive == 1) {
+                            if (OgaHitCheck(trainCar->Position[0], trainCar->Position[2],
+                                                        trainCar->Velocity[0], trainCar->Velocity[2], 30.0f, 20.0f,
                                                         playerPosX, playerPosZ) == 1) {
-                                player->weapon |= HIT_BOMB;
+                                Player->Weapon |= HIT_BOMB;
                             }
                         }
                     }
                 }
 
                 for (passengerCarIndex = 0; passengerCarIndex < NUM_PASSENGER_CAR_ENTRIES; passengerCarIndex++) {
-                    trainCar = &SL[trainIndex].passengerCars[passengerCarIndex];
-                    x_dist = playerPosX - trainCar->position[0];
-                    z_dist = playerPosZ - trainCar->position[2];
-                    if (trainCar->isActive == 1) {
+                    trainCar = &SL[trainIndex].PassengerCars[passengerCarIndex];
+                    x_dist = playerPosX - trainCar->Position[0];
+                    z_dist = playerPosZ - trainCar->Position[2];
+                    if (trainCar->IsActive == 1) {
                         if ((x_dist > -100.0) && (x_dist < 100.0)) {
                             if ((z_dist > -100.0) && (z_dist < 100.0)) {
-                                if (oga_hit_check(trainCar->position[0], trainCar->position[2],
-                                                            trainCar->velocity[0], trainCar->velocity[2], 30.0f, 20.0f,
+                                if (OgaHitCheck(trainCar->Position[0], trainCar->Position[2],
+                                                            trainCar->Velocity[0], trainCar->Velocity[2], 30.0f, 20.0f,
                                                             playerPosX, playerPosZ) == 1) {
-                                    player->weapon |= HIT_BOMB;
+                                    Player->Weapon |= HIT_BOMB;
                                 }
                             }
                         }
@@ -408,93 +408,93 @@ void hit_check_SL(s32 playerId, Player* player) {
 
 /**
  * Appears to check if the train is close to the crossing.
- * Implements fumikiri_counter as a counter
+ * Implements FumikiriCounter as a Counter
  */
-void fumikiri_move(void) {
+void FumikiriMove(void) {
     f32 temp_f16;
     f32 temp_f18;
     f32 temp_f12;
     s32 i;
-    fumikiri_mode[0] = 0;
-    fumikiri_mode[1] = 0;
+    FumikiriMode[0] = 0;
+    FumikiriMode[1] = 0;
 
     for (i = 0; i < NUM_TRAINS; i++) {
-        temp_f16 = SL[i].locomotive.pathPointIndex / ((f32) g_CourseObstacle);
+        temp_f16 = SL[i].Locomotive.PathPointIndex / ((f32) CourseObstacle);
         temp_f18 = 0.72017354f;
         temp_f12 = 0.42299348f;
 
         if (((temp_f12 - 0.1) < temp_f16) &&
-            (temp_f16 < ((((f64) SL[i].numCars) * 0.01) + (temp_f12 + 0.01)))) {
+            (temp_f16 < ((((f64) SL[i].NumCars) * 0.01) + (temp_f12 + 0.01)))) {
 
-            fumikiri_mode[0] = 1;
+            FumikiriMode[0] = 1;
         }
         if (((temp_f18 - 0.1) < temp_f16) &&
-            (temp_f16 < ((((f64) SL[i].numCars) * 0.01) + (temp_f18 + 0.01)))) {
+            (temp_f16 < ((((f64) SL[i].NumCars) * 0.01) + (temp_f18 + 0.01)))) {
 
-            fumikiri_mode[1] = 1;
+            FumikiriMode[1] = 1;
         }
     }
 
     for (i = 0; i < NUM_CROSSINGS; i++) {
-        if (fumikiri_mode[i] == 1) {
-            fumikiri_counter[i] += 1;
+        if (FumikiriMode[i] == 1) {
+            FumikiriCounter[i] += 1;
         } else {
-            fumikiri_counter[i] = 0;
+            FumikiriCounter[i] = 0;
         }
     }
 }
 
-void fumikiri_wait_check(s32 playerId) {
-    fumikiri_stop_flg[playerId] = 0;
-    if (g_courseID == COURSE_KALAMARI_DESERT) {
-        if ((!(tenuki_flg[playerId] != false)) ||
-            (check_player_near(gPlayers[playerId].position, TRAIN_CROSSING_AI_DISTANCE, 0))) {
+void FumikiriWaitCheck(s32 PlayerId) {
+    FumikiriStopFlg[PlayerId] = 0;
+    if (CourseID == COURSE_KALAMARI_DESERT) {
+        if ((!(TenukiFlg[PlayerId] != false)) ||
+            (CheckPlayerNear(GamePlayers[PlayerId].Position, TRAIN_CROSSING_AI_DISTANCE, 0))) {
 
-            if ((fumikiri_mode[1] == 1) && ((fumikiri_counter[1]) > FRAMES_SINCE_CROSSING_ACTIVATED)) {
+            if ((FumikiriMode[1] == 1) && ((FumikiriCounter[1]) > FRAMES_SINCE_CROSSING_ACTIVATED)) {
 
                 if ((OGAArea > 176) && (OGAArea < 182)) {
-                    fumikiri_stop_flg[playerId] = 1;
+                    FumikiriStopFlg[PlayerId] = 1;
                 }
             }
-            if ((fumikiri_mode[0] == 1) && ((fumikiri_counter[0]) > FRAMES_SINCE_CROSSING_ACTIVATED)) {
+            if ((FumikiriMode[0] == 1) && ((FumikiriCounter[0]) > FRAMES_SINCE_CROSSING_ACTIVATED)) {
                 if ((OGAArea >= 306) && (OGAArea < 310)) {
-                    fumikiri_stop_flg[playerId] = 1;
+                    FumikiriStopFlg[PlayerId] = 1;
                 }
             }
         }
     }
 }
 
-void init_SHIP(void) {
+void InitSHIP(void) {
     PaddleBoatStuff* paddleBoat;
     s32 i;
     Path2D* temp_a2;
     u16 temp;
     for (i = 0; i < NUM_ACTIVE_PADDLE_BOATS; i++) {
         temp = i * 0xB4;
-        paddleBoat = &ship[i];
-        temp_a2 = &center_line_EX[temp];
-        paddleBoat->position[0] = temp_a2->x;
-        paddleBoat->position[1] = D_80162EB2;
-        paddleBoat->position[2] = temp_a2->z;
-        paddleBoat->pathPointIndex = i * 0xB4;
-        paddleBoat->actorIndex = -1;
+        paddleBoat = &Ship[i];
+        temp_a2 = &CenterLineEX[temp];
+        paddleBoat->Position[0] = temp_a2->x;
+        paddleBoat->Position[1] = D_80162EB2;
+        paddleBoat->Position[2] = temp_a2->z;
+        paddleBoat->PathPointIndex = i * 0xB4;
+        paddleBoat->ActorIndex = -1;
 
-        if (g_menuMultiplayerSelection >= 3) {
-            paddleBoat->isActive = 0;
+        if (MenuMultiplayerSelection >= 3) {
+            paddleBoat->IsActive = 0;
         } else {
-            paddleBoat->isActive = 1;
+            paddleBoat->IsActive = 1;
         }
-        paddleBoat->velocity[0] = 0.0f;
-        paddleBoat->velocity[1] = 0.0f;
-        paddleBoat->velocity[2] = 0.0f;
-        paddleBoat->speed = 1.6666666f;
-        paddleBoat->rotY = 0;
+        paddleBoat->Velocity[0] = 0.0f;
+        paddleBoat->Velocity[1] = 0.0f;
+        paddleBoat->Velocity[2] = 0.0f;
+        paddleBoat->Speed = 1.6666666f;
+        paddleBoat->RotY = 0;
     }
-    gFerrySmokeTimer = 0;
+    FerrySmokeTimer = 0;
 }
 
-void move_SHIP(void) {
+void MoveSHIP(void) {
     PaddleBoatStuff* paddleBoat;
     Path2D* pathPoint;
     s32 i;
@@ -509,93 +509,93 @@ void move_SHIP(void) {
     Vec3f sp88;
     UNUSED s32 pad;
     Vec3f smokePos;
-    UNUSED s32 pad2;
-    gFerrySmokeTimer += 1;
+    UNUSED s32 Pad2;
+    FerrySmokeTimer += 1;
     for (i = 0; i < NUM_ACTIVE_PADDLE_BOATS; i++) {
-        paddleBoat = &ship[i];
-        if (paddleBoat->isActive == 1) {
-            temp_f26 = paddleBoat->position[0];
-            temp_f28 = paddleBoat->position[1];
-            temp_f30 = paddleBoat->position[2];
-            hanyou_soukou_sub_EX(paddleBoat->position, (s16*) &paddleBoat->pathPointIndex, paddleBoat->speed);
-            paddleBoat->someFlags = check_player_near(paddleBoat->position, BOAT_SMOKE_RENDER_DISTANCE,
-                                                                      paddleBoat->someFlags);
-            if ((((s16) gFerrySmokeTimer % 10) == 0) && (paddleBoat->someFlags != 0)) {
-                smokePos[0] = (f32) ((f64) paddleBoat->position[0] - 30.0);
-                smokePos[1] = (f32) ((f64) paddleBoat->position[1] + 180.0);
-                smokePos[2] = (f32) ((f64) paddleBoat->position[2] + 45.0);
-                oga_guruguru_sub(smokePos, paddleBoat->position, paddleBoat->rotY);
-                kwget_ship_smoke(i, smokePos, 1.1f);
-                smokePos[0] = (f32) ((f64) paddleBoat->position[0] + 30.0);
-                smokePos[1] = (f32) ((f64) paddleBoat->position[1] + 180.0);
-                smokePos[2] = (f32) ((f64) paddleBoat->position[2] + 45.0);
-                oga_guruguru_sub(smokePos, paddleBoat->position, paddleBoat->rotY);
-                kwget_ship_smoke(i, smokePos, 1.1f);
+        paddleBoat = &Ship[i];
+        if (paddleBoat->IsActive == 1) {
+            temp_f26 = paddleBoat->Position[0];
+            temp_f28 = paddleBoat->Position[1];
+            temp_f30 = paddleBoat->Position[2];
+            HanyouSoukouSubEX(paddleBoat->Position, (s16*) &paddleBoat->PathPointIndex, paddleBoat->Speed);
+            paddleBoat->SomeFlags = CheckPlayerNear(paddleBoat->Position, BOAT_SMOKE_RENDER_DISTANCE,
+                                                                      paddleBoat->SomeFlags);
+            if ((((s16) FerrySmokeTimer % 10) == 0) && (paddleBoat->SomeFlags != 0)) {
+                smokePos[0] = (f32) ((f64) paddleBoat->Position[0] - 30.0);
+                smokePos[1] = (f32) ((f64) paddleBoat->Position[1] + 180.0);
+                smokePos[2] = (f32) ((f64) paddleBoat->Position[2] + 45.0);
+                OgaGuruguruSub(smokePos, paddleBoat->Position, paddleBoat->RotY);
+                KwgetShipSmoke(i, smokePos, 1.1f);
+                smokePos[0] = (f32) ((f64) paddleBoat->Position[0] + 30.0);
+                smokePos[1] = (f32) ((f64) paddleBoat->Position[1] + 180.0);
+                smokePos[2] = (f32) ((f64) paddleBoat->Position[2] + 45.0);
+                OgaGuruguruSub(smokePos, paddleBoat->Position, paddleBoat->RotY);
+                KwgetShipSmoke(i, smokePos, 1.1f);
             }
             if (MakeRandomLimmit(100) == 0) {
                 if (MakeRandomLimmit(2) == 0) {
-                    NAEnmTrgStart(paddleBoat->position, paddleBoat->velocity, SOUND_ARG_LOAD(0x19, 0x01, 0x80, 0x47));
+                    NAEnmTrgStart(paddleBoat->Position, paddleBoat->Velocity, SOUND_ARG_LOAD(0x19, 0x01, 0x80, 0x47));
                 } else {
-                    NAEnmTrgStart(paddleBoat->position, paddleBoat->velocity, SOUND_ARG_LOAD(0x19, 0x01, 0x80, 0x48));
+                    NAEnmTrgStart(paddleBoat->Position, paddleBoat->Velocity, SOUND_ARG_LOAD(0x19, 0x01, 0x80, 0x48));
                 }
             }
             sp94[0] = temp_f26;
             sp94[1] = temp_f28;
             sp94[2] = temp_f30;
-            pathPoint = &center_line_EX[(paddleBoat->pathPointIndex + 5) % g_CourseObstacle];
+            pathPoint = &CenterLineEX[(paddleBoat->PathPointIndex + 5) % CourseObstacle];
             sp88[0] = (f32) pathPoint->x;
             sp88[1] = (f32) D_80162EB0;
             sp88[2] = (f32) pathPoint->z;
-            temp_a1 = oga_calc_direction(sp94, sp88);
-            temp = temp_a1 - paddleBoat->rotY;
+            temp_a1 = OgaCalcDirection(sp94, sp88);
+            temp = temp_a1 - paddleBoat->RotY;
             var_v1 = temp;
             if (var_v1 < 0) {
                 var_v1 = -var_v1;
             }
             if (var_v1 >= 0x1771) {
-                if (paddleBoat->speed > 0.2) {
-                    paddleBoat->speed -= 0.04;
+                if (paddleBoat->Speed > 0.2) {
+                    paddleBoat->Speed -= 0.04;
                 }
                 if (var_v1 >= 0x3D) {
                     var_v1 = 0x003C;
                 }
             } else {
-                if (paddleBoat->speed < 2.0) {
-                    paddleBoat->speed += 0.02;
+                if (paddleBoat->Speed < 2.0) {
+                    paddleBoat->Speed += 0.02;
                 }
                 if (var_v1 >= 0x1F) {
                     var_v1 = 0x001E;
                 }
             }
             if (temp >= 0x8000) {
-                paddleBoat->rotY -= var_v1;
+                paddleBoat->RotY -= var_v1;
             } else if (temp > 0) {
-                paddleBoat->rotY += var_v1;
+                paddleBoat->RotY += var_v1;
             } else if (temp < -0x7FFF) {
-                paddleBoat->rotY += var_v1;
+                paddleBoat->RotY += var_v1;
             } else if (temp < 0) {
-                paddleBoat->rotY -= var_v1;
+                paddleBoat->RotY -= var_v1;
             }
-            paddleBoat->velocity[0] = paddleBoat->position[0] - temp_f26;
-            paddleBoat->velocity[1] = paddleBoat->position[1] - temp_f28;
-            paddleBoat->velocity[2] = paddleBoat->position[2] - temp_f30;
-            paddleBoatActor = &g_SimpleObjectArray[paddleBoat->actorIndex];
-            paddleBoatActor->position[0] = paddleBoat->position[0];
-            paddleBoatActor->position[1] = paddleBoat->position[1];
-            paddleBoatActor->position[2] = paddleBoat->position[2];
-            if (g_ScreenFlip != 0) {
-                paddleBoatActor->angle[1] = -paddleBoat->rotY;
+            paddleBoat->Velocity[0] = paddleBoat->Position[0] - temp_f26;
+            paddleBoat->Velocity[1] = paddleBoat->Position[1] - temp_f28;
+            paddleBoat->Velocity[2] = paddleBoat->Position[2] - temp_f30;
+            paddleBoatActor = &SimpleObjectArray[paddleBoat->ActorIndex];
+            paddleBoatActor->Position[0] = paddleBoat->Position[0];
+            paddleBoatActor->Position[1] = paddleBoat->Position[1];
+            paddleBoatActor->Position[2] = paddleBoat->Position[2];
+            if (ScreenFlip != 0) {
+                paddleBoatActor->Angle[1] = -paddleBoat->RotY;
             } else {
-                paddleBoatActor->angle[1] = paddleBoat->rotY;
+                paddleBoatActor->Angle[1] = paddleBoat->RotY;
             }
-            paddleBoatActor->velocity[0] = paddleBoat->velocity[0];
-            paddleBoatActor->velocity[1] = paddleBoat->velocity[1];
-            paddleBoatActor->velocity[2] = paddleBoat->velocity[2];
+            paddleBoatActor->Velocity[0] = paddleBoat->Velocity[0];
+            paddleBoatActor->Velocity[1] = paddleBoat->Velocity[1];
+            paddleBoatActor->Velocity[2] = paddleBoat->Velocity[2];
         }
     }
 }
 
-void hit_check_SHIP(Player* player) {
+void HitCheckSHIP(Player* Player) {
     s32 someIndex;
     PaddleBoatStuff* tempPaddleWheelBoat;
     f32 x_diff;
@@ -605,23 +605,23 @@ void hit_check_SHIP(Player* player) {
     f32 playerZ;
     f32 playerY;
 
-    if (!((player->slip_flag & EXPLODE)) && (!(player->slip_flag & THROW_EXPLODE))) {
-        playerX = player->position[0];
-        playerY = player->position[1];
-        playerZ = player->position[2];
+    if (!((Player->SlipFlag & EXPLODE)) && (!(Player->SlipFlag & THROW_EXPLODE))) {
+        playerX = Player->Position[0];
+        playerY = Player->Position[1];
+        playerZ = Player->Position[2];
         for (someIndex = 0; someIndex < NUM_ACTIVE_PADDLE_BOATS; someIndex++) {
-            tempPaddleWheelBoat = &ship[someIndex];
-            if (tempPaddleWheelBoat->isActive == 1) {
-                x_diff = playerX - tempPaddleWheelBoat->position[0];
-                y_diff = playerY - tempPaddleWheelBoat->position[1];
-                z_diff = playerZ - tempPaddleWheelBoat->position[2];
+            tempPaddleWheelBoat = &Ship[someIndex];
+            if (tempPaddleWheelBoat->IsActive == 1) {
+                x_diff = playerX - tempPaddleWheelBoat->Position[0];
+                y_diff = playerY - tempPaddleWheelBoat->Position[1];
+                z_diff = playerZ - tempPaddleWheelBoat->Position[2];
                 if ((x_diff > -300.0) && (x_diff < 300.0)) {
                     if ((z_diff > -300.0) && (z_diff < 300.0)) {
-                        if ((oga_hit_check(tempPaddleWheelBoat->position[0], tempPaddleWheelBoat->position[2],
-                                                     tempPaddleWheelBoat->velocity[0], tempPaddleWheelBoat->velocity[2],
+                        if ((OgaHitCheck(tempPaddleWheelBoat->Position[0], tempPaddleWheelBoat->Position[2],
+                                                     tempPaddleWheelBoat->Velocity[0], tempPaddleWheelBoat->Velocity[2],
                                                      200.0f, 60.0f, playerX, playerZ) == 1) &&
                             (y_diff < 60.0)) {
-                            player->weapon |= HIT_BOAT;
+                            Player->Weapon |= HIT_BOAT;
                         }
                     }
                 }
@@ -630,58 +630,58 @@ void hit_check_SHIP(Player* player) {
     }
 }
 
-void init_HIGHWAY_CAR_sub(f32 speedA, f32 speedB, s32 numVehicles, s32 arg3, VehicleStuff* vehicleList,
+void InitHIGHWAYCARSub(f32 speedA, f32 speedB, s32 numVehicles, s32 Arg3, VehicleStuff* vehicleList,
                                        CenterPathStruct* pathPointList) {
     VehicleStuff* veh;
     CenterPathStruct* temp_v0;
     s32 i;
     u16 pathPointOffset;
-    s32 numPathPoints = g_courseTotalPathPoints[0];
+    s32 numPathPoints = CourseTotalPathPoints[0];
     for (i = 0; i < numVehicles; i++) {
-        pathPointOffset = (((i * numPathPoints) / numVehicles) + arg3) % numPathPoints;
+        pathPointOffset = (((i * numPathPoints) / numVehicles) + Arg3) % numPathPoints;
         veh = &vehicleList[i];
         temp_v0 = &pathPointList[pathPointOffset];
-        veh->position[0] = (f32) temp_v0->pointx;
-        veh->position[1] = (f32) temp_v0->pointy;
-        veh->position[2] = (f32) temp_v0->pointz;
-        veh->actorIndex = -1;
-        veh->pathPointIndex = pathPointOffset;
-        veh->unused = 0;
-        veh->velocity[0] = 0.0f;
-        veh->velocity[1] = 0.0f;
-        veh->velocity[2] = 0.0f;
-        veh->someFlags = 0;
-        veh->someFlagsTheSequel = 0;
-        if (g_gameMode == TIME_TRIALS) {
-            veh->someType = (i % 3);
+        veh->Position[0] = (f32) temp_v0->Pointx;
+        veh->Position[1] = (f32) temp_v0->Pointy;
+        veh->Position[2] = (f32) temp_v0->Pointz;
+        veh->ActorIndex = -1;
+        veh->PathPointIndex = pathPointOffset;
+        veh->Unused = 0;
+        veh->Velocity[0] = 0.0f;
+        veh->Velocity[1] = 0.0f;
+        veh->Velocity[2] = 0.0f;
+        veh->SomeFlags = 0;
+        veh->SomeFlagsTheSequel = 0;
+        if (GameMode == TIME_TRIALS) {
+            veh->SomeType = (i % 3);
         } else {
-            veh->someType = MakeRandomLimmit(3);
+            veh->SomeType = MakeRandomLimmit(3);
         }
-        veh->someMultiplierTheSequel = (f32) ((f64) (f32) (veh->someType - 1) * 0.6);
-        if (((g_raceClass > CC_50) || (g_gameMode == TIME_TRIALS)) && (veh->someType == 2)) {
-            veh->speed = speedA;
+        veh->SomeMultiplierTheSequel = (f32) ((f64) (f32) (veh->SomeType - 1) * 0.6);
+        if (((RaceClass > CC_50) || (GameMode == TIME_TRIALS)) && (veh->SomeType == 2)) {
+            veh->Speed = speedA;
         } else {
-            veh->speed = speedB;
+            veh->Speed = speedB;
         }
-        veh->rotation[0] = 0;
-        veh->rotation[2] = 0;
-        if (highway_gyakusou_flg == false) {
-            veh->rotation[1] = hanyou_soukou_sub_BP(veh->position, (s16*) &veh->pathPointIndex, veh->speed,
-                                             veh->someMultiplierTheSequel, 0, 3);
+        veh->Rotation[0] = 0;
+        veh->Rotation[2] = 0;
+        if (HighwayGyakusouFlg == false) {
+            veh->Rotation[1] = HanyouSoukouSubBP(veh->Position, (s16*) &veh->PathPointIndex, veh->Speed,
+                                             veh->SomeMultiplierTheSequel, 0, 3);
         } else {
-            veh->rotation[1] =
-                hanyou_gyaku_soukou_sub_BP(veh->position, (s16*) &veh->pathPointIndex, veh->speed, veh->someMultiplierTheSequel, 0);
+            veh->Rotation[1] =
+                HanyouGyakuSoukouSubBP(veh->Position, (s16*) &veh->PathPointIndex, veh->Speed, veh->SomeMultiplierTheSequel, 0);
         }
     }
-    sVehicleSoundRenderCounter = 10;
+    SVehicleSoundRenderCounter = 10;
 }
 
-f32 shasen_chk_sub(s16 someType, s16 pathPointIndex) {
+f32 ShasenChkSub(s16 SomeType, s16 PathPointIndex) {
     f32 var_f2;
 
     var_f2 = 0.0f;
-    if (pathPointIndex < 0x28A) {
-        switch (someType) {
+    if (PathPointIndex < 0x28A) {
+        switch (SomeType) {
             case 0:
                 var_f2 = -0.7f;
                 break;
@@ -694,7 +694,7 @@ f32 shasen_chk_sub(s16 someType, s16 pathPointIndex) {
                 break;
         }
     } else {
-        switch (someType) {
+        switch (SomeType) {
             case 0:
             case 1:
                 var_f2 = -0.5f;
@@ -709,7 +709,7 @@ f32 shasen_chk_sub(s16 someType, s16 pathPointIndex) {
     return var_f2;
 }
 
-void move_HIGHWAY_CAR_sub(VehicleStuff* vehicle) {
+void MoveHIGHWAYCARSub(VehicleStuff* vehicle) {
     f32 temp_f0_2;
     f32 temp_f0_3;
     f32 sp5C;
@@ -722,61 +722,61 @@ void move_HIGHWAY_CAR_sub(VehicleStuff* vehicle) {
     Vec3f sp34;
     Object* vehicleActor;
 
-    sp5C = vehicle->position[0];
-    sp58 = vehicle->position[1];
-    sp54 = vehicle->position[2];
+    sp5C = vehicle->Position[0];
+    sp58 = vehicle->Position[1];
+    sp54 = vehicle->Position[2];
     sp40[0] = sp58;
     sp40[1] = 0.0f;
     sp40[2] = 0.0f;
-    temp_f0_2 = shasen_chk_sub(vehicle->someType, vehicle->pathPointIndex);
-    if (vehicle->someMultiplierTheSequel < temp_f0_2) {
-        vehicle->someMultiplierTheSequel = vehicle->someMultiplierTheSequel + 0.06;
-        if (temp_f0_2 < vehicle->someMultiplierTheSequel) {
-            vehicle->someMultiplierTheSequel = temp_f0_2;
+    temp_f0_2 = ShasenChkSub(vehicle->SomeType, vehicle->PathPointIndex);
+    if (vehicle->SomeMultiplierTheSequel < temp_f0_2) {
+        vehicle->SomeMultiplierTheSequel = vehicle->SomeMultiplierTheSequel + 0.06;
+        if (temp_f0_2 < vehicle->SomeMultiplierTheSequel) {
+            vehicle->SomeMultiplierTheSequel = temp_f0_2;
         }
     }
-    if (temp_f0_2 < vehicle->someMultiplierTheSequel) {
-        vehicle->someMultiplierTheSequel = vehicle->someMultiplierTheSequel - 0.06;
-        if (vehicle->someMultiplierTheSequel < temp_f0_2) {
-            vehicle->someMultiplierTheSequel = temp_f0_2;
+    if (temp_f0_2 < vehicle->SomeMultiplierTheSequel) {
+        vehicle->SomeMultiplierTheSequel = vehicle->SomeMultiplierTheSequel - 0.06;
+        if (vehicle->SomeMultiplierTheSequel < temp_f0_2) {
+            vehicle->SomeMultiplierTheSequel = temp_f0_2;
         }
     }
-    if (highway_gyakusou_flg == false) {
-        var_a1 = hanyou_soukou_sub_BP(vehicle->position, (s16*) &vehicle->pathPointIndex, vehicle->speed,
-                               vehicle->someMultiplierTheSequel, 0, 3);
+    if (HighwayGyakusouFlg == false) {
+        var_a1 = HanyouSoukouSubBP(vehicle->Position, (s16*) &vehicle->PathPointIndex, vehicle->Speed,
+                               vehicle->SomeMultiplierTheSequel, 0, 3);
     } else {
-        var_a1 = hanyou_gyaku_soukou_sub_BP(vehicle->position, (s16*) &vehicle->pathPointIndex, vehicle->speed,
-                               vehicle->someMultiplierTheSequel, 0);
+        var_a1 = HanyouGyakuSoukouSubBP(vehicle->Position, (s16*) &vehicle->PathPointIndex, vehicle->Speed,
+                               vehicle->SomeMultiplierTheSequel, 0);
     }
-    ChaseDir(&vehicle->rotation[1], var_a1, 100);
-    temp_f0_3 = vehicle->position[0] - sp5C;
-    temp_f2_2 = vehicle->position[2] - sp54;
-    sp34[0] = vehicle->position[1];
+    ChaseDir(&vehicle->Rotation[1], var_a1, 100);
+    temp_f0_3 = vehicle->Position[0] - sp5C;
+    temp_f2_2 = vehicle->Position[2] - sp54;
+    sp34[0] = vehicle->Position[1];
     sp34[1] = 0.0f;
     sp34[2] = sqrtf((temp_f0_3 * temp_f0_3) + (temp_f2_2 * temp_f2_2));
     thing = CalcDirection(sp40, sp34);
-    ChaseDir(&vehicle->rotation[0], -thing, 100);
-    vehicle->velocity[0] = vehicle->position[0] - sp5C;
-    vehicle->velocity[1] = vehicle->position[1] - sp58;
-    vehicle->velocity[2] = vehicle->position[2] - sp54;
-    vehicleActor = &g_SimpleObjectArray[vehicle->actorIndex];
-    vehicleActor->position[0] = vehicle->position[0];
-    vehicleActor->position[1] = vehicle->position[1];
-    vehicleActor->position[2] = vehicle->position[2];
-    vehicleActor->angle[0] = vehicle->rotation[0];
-    if (g_ScreenFlip != 0) {
-        vehicleActor->angle[1] = -vehicle->rotation[1];
+    ChaseDir(&vehicle->Rotation[0], -thing, 100);
+    vehicle->Velocity[0] = vehicle->Position[0] - sp5C;
+    vehicle->Velocity[1] = vehicle->Position[1] - sp58;
+    vehicle->Velocity[2] = vehicle->Position[2] - sp54;
+    vehicleActor = &SimpleObjectArray[vehicle->ActorIndex];
+    vehicleActor->Position[0] = vehicle->Position[0];
+    vehicleActor->Position[1] = vehicle->Position[1];
+    vehicleActor->Position[2] = vehicle->Position[2];
+    vehicleActor->Angle[0] = vehicle->Rotation[0];
+    if (ScreenFlip != 0) {
+        vehicleActor->Angle[1] = -vehicle->Rotation[1];
     } else {
-        vehicleActor->angle[1] = vehicle->rotation[1];
+        vehicleActor->Angle[1] = vehicle->Rotation[1];
     }
-    vehicleActor->angle[2] = vehicle->rotation[2];
-    vehicleActor->velocity[0] = vehicle->velocity[0];
-    vehicleActor->velocity[1] = vehicle->velocity[1];
-    vehicleActor->velocity[2] = vehicle->velocity[2];
+    vehicleActor->Angle[2] = vehicle->Rotation[2];
+    vehicleActor->Velocity[0] = vehicle->Velocity[0];
+    vehicleActor->Velocity[1] = vehicle->Velocity[1];
+    vehicleActor->Velocity[2] = vehicle->Velocity[2];
 }
 
-void hit_check_HIGHWAY_CAR_sub(s32 playerId, Player* player, VehicleStuff* vehicle, f32 distanceX, f32 distanceY,
-                                 s32 vehicleCount, u32 soundBits) {
+void HitCheckHIGHWAYCARSub(s32 PlayerId, Player* Player, VehicleStuff* vehicle, f32 distanceX, f32 distanceY,
+                                 s32 vehicleCount, u32 SoundBits) {
     f32 deltaX;
     f32 deltaZ;
     f32 deltaY;
@@ -787,85 +787,85 @@ void hit_check_HIGHWAY_CAR_sub(s32 playerId, Player* player, VehicleStuff* vehic
     f32 playerY;
     f32 playerZ;
 
-    if (((tenuki_flg[playerId] != true) || ((((player->flag & IS_PLAYER) != 0)) && !(player->flag & IS_CPU_PLAYER))) &&
-        !(player->slip_flag & EXPLODE)) {
+    if (((TenukiFlg[PlayerId] != true) || ((((Player->Flag & IS_PLAYER) != 0)) && !(Player->Flag & IS_CPU_PLAYER))) &&
+        !(Player->SlipFlag & EXPLODE)) {
 
-        playerX = player->position[0];
-        playerY = player->position[1];
-        playerZ = player->position[2];
+        playerX = Player->Position[0];
+        playerY = Player->Position[1];
+        playerZ = Player->Position[2];
 
         for (i = 0; i < vehicleCount; i++) {
-            deltaX = playerX - vehicle->position[0];
-            deltaY = playerY - vehicle->position[1];
-            deltaZ = playerZ - vehicle->position[2];
+            deltaX = playerX - vehicle->Position[0];
+            deltaY = playerY - vehicle->Position[1];
+            deltaZ = playerZ - vehicle->Position[2];
 
             if (((deltaX) > -100.0) && ((deltaX) < 100.0)) {
                 if ((deltaY > -20.0) && (deltaY < 20.0)) {
                     if (((deltaZ) > -100.0) && ((deltaZ) < 100.0)) {
-                        if (oga_hit_check(vehicle->position[0], vehicle->position[2], vehicle->velocity[0],
-                                                    vehicle->velocity[2], distanceX, distanceY, playerX,
+                        if (OgaHitCheck(vehicle->Position[0], vehicle->Position[2], vehicle->Velocity[0],
+                                                    vehicle->Velocity[2], distanceX, distanceY, playerX,
                                                     playerZ) == (s32) 1) {
-                            player->weapon |= HIT_BOMB;
+                            Player->Weapon |= HIT_BOMB;
                         }
                     }
                 }
             }
 
-            // Human player specific interactions
-            if ((player->flag & IS_PLAYER) && !(player->flag & IS_CPU_PLAYER)) {
+            // Human Player specific interactions
+            if ((Player->Flag & IS_PLAYER) && !(Player->Flag & IS_CPU_PLAYER)) {
                 if (((deltaX) > -300.0) && ((deltaX) < 300.0) && ((deltaY > -20.0)) && (deltaY < 20.0) &&
                     (((deltaZ) > -300.0)) && ((deltaZ) < 300.0)) {
-                    if ((sVehicleSoundRenderCounter > 0) && (vehicle->someFlags == 0)) {
-                        sVehicleSoundRenderCounter--;
-                        vehicle->someFlags |= (RENDER_VEHICLE << playerId);
-                        NaSceneLevelStart(vehicle->position, vehicle->velocity, soundBits);
+                    if ((SVehicleSoundRenderCounter > 0) && (vehicle->SomeFlags == 0)) {
+                        SVehicleSoundRenderCounter--;
+                        vehicle->SomeFlags |= (RENDER_VEHICLE << PlayerId);
+                        NaSceneLevelStart(vehicle->Position, vehicle->Velocity, SoundBits);
                     }
                 } else {
-                    if (vehicle->someFlags != 0) {
-                        vehicle->someFlags &= ~(RENDER_VEHICLE << playerId);
-                        if (vehicle->someFlags == 0) {
-                            sVehicleSoundRenderCounter++;
-                            NaSceneLevelStop(vehicle->position, soundBits);
+                    if (vehicle->SomeFlags != 0) {
+                        vehicle->SomeFlags &= ~(RENDER_VEHICLE << PlayerId);
+                        if (vehicle->SomeFlags == 0) {
+                            SVehicleSoundRenderCounter++;
+                            NaSceneLevelStop(vehicle->Position, SoundBits);
                         }
                     }
                 }
 
                 if (((deltaX) > -200.0) && ((deltaX) < 200.0) && ((deltaY > -20.0)) && (deltaY < 20.0) &&
                     (((deltaZ) > -200.0)) && ((deltaZ) < 200.0)) {
-                    if (!(vehicle->someFlagsTheSequel & ((1 << playerId)))) {
+                    if (!(vehicle->SomeFlagsTheSequel & ((1 << PlayerId)))) {
 
                         bool shouldInteract = false;
-                        u16 path = g_courseTotalPathPoints[0];
+                        u16 path = CourseTotalPathPoints[0];
                         s32 t1;
                         s32 t2;
 
-                        switch (highway_gyakusou_flg) {
+                        switch (HighwayGyakusouFlg) {
                             case false:
-                                t1 = exist_area_chk(vehicle->pathPointIndex,
-                                                            gNearestPathPointByPlayerId[playerId], 10, 0, path);
-                                if ((g_wrongwayFlagPlayer1[playerId] == 0) && (t1 > 0) &&
-                                    (player->speed < vehicle->speed)) {
+                                t1 = ExistAreaChk(vehicle->PathPointIndex,
+                                                            NearestPathPointByPlayerId[PlayerId], 10, 0, path);
+                                if ((WrongwayFlagPlayer1[PlayerId] == 0) && (t1 > 0) &&
+                                    (Player->Speed < vehicle->Speed)) {
                                     shouldInteract = true;
                                 }
-                                if ((g_wrongwayFlagPlayer1[playerId] == 1) && (t1 > 0)) {
+                                if ((WrongwayFlagPlayer1[PlayerId] == 1) && (t1 > 0)) {
                                     shouldInteract = true;
                                 }
                                 break;
                             case true:
-                                t2 = exist_area_chk(vehicle->pathPointIndex,
-                                                            gNearestPathPointByPlayerId[playerId], 0, 10, path);
+                                t2 = ExistAreaChk(vehicle->PathPointIndex,
+                                                            NearestPathPointByPlayerId[PlayerId], 0, 10, path);
                                 if (t2 > 0) {
                                     if (MakeRandomLimmit(2) == 0) {
-                                        // temp_v1_2 = g_wrongwayFlagPlayer1[playerId];
-                                        if (g_wrongwayFlagPlayer1[playerId] == 0) {
+                                        // temp_v1_2 = WrongwayFlagPlayer1[PlayerId];
+                                        if (WrongwayFlagPlayer1[PlayerId] == 0) {
                                             shouldInteract = true;
                                         }
-                                        if ((g_wrongwayFlagPlayer1[playerId] == 1) &&
-                                            (player->speed < vehicle->speed)) {
+                                        if ((WrongwayFlagPlayer1[PlayerId] == 1) &&
+                                            (Player->Speed < vehicle->Speed)) {
                                             shouldInteract = true;
                                         }
                                     } else {
-                                        vehicle->someFlagsTheSequel |= ((1 << playerId));
+                                        vehicle->SomeFlagsTheSequel |= ((1 << PlayerId));
                                     }
                                 }
                                 break;
@@ -874,7 +874,7 @@ void hit_check_HIGHWAY_CAR_sub(s32 playerId, Player* player, VehicleStuff* vehic
 
                             u32 soundBits2 = SOUND_ARG_LOAD(0x19, 0x01, 0x70, 0x3B);
 
-                            switch (soundBits) {
+                            switch (SoundBits) {
                                 case SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x05):
                                     soundBits2 = SOUND_ARG_LOAD(0x19, 0x01, 0x70, 0x3B);
                                     if (MakeRandomLimmit(4) == 0) {
@@ -903,13 +903,13 @@ void hit_check_HIGHWAY_CAR_sub(s32 playerId, Player* player, VehicleStuff* vehic
                                     }
                                     break;
                             }
-                            vehicle->someFlagsTheSequel |= ((1 << playerId));
-                            NAEnmTrgStart(vehicle->position, vehicle->velocity, soundBits2);
+                            vehicle->SomeFlagsTheSequel |= ((1 << PlayerId));
+                            NAEnmTrgStart(vehicle->Position, vehicle->Velocity, soundBits2);
                         }
                     }
                 } else {
-                    if (vehicle->someFlagsTheSequel & ((1 << playerId))) {
-                        vehicle->someFlagsTheSequel &= ~((1 << playerId));
+                    if (vehicle->SomeFlagsTheSequel & ((1 << PlayerId))) {
+                        vehicle->SomeFlagsTheSequel &= ~((1 << PlayerId));
                     }
                 }
             }
@@ -918,9 +918,9 @@ void hit_check_HIGHWAY_CAR_sub(s32 playerId, Player* player, VehicleStuff* vehic
     }
 }
 
-f32 avoid_HIGHWAY_sub(s16 someType, f32 arg1, s16 pathIndex) {
-    if (pathIndex < 0x28A) {
-        switch (someType) {
+f32 AvoidHIGHWAYSub(s16 SomeType, f32 arg1, s16 PathIndex) {
+    if (PathIndex < 0x28A) {
+        switch (SomeType) {
             case 0:
                 if (arg1 < 0.0) {
                     arg1 = 0.0f;
@@ -942,7 +942,7 @@ f32 avoid_HIGHWAY_sub(s16 someType, f32 arg1, s16 pathIndex) {
                 break;
         }
     } else {
-        switch (someType) {
+        switch (SomeType) {
             case 0:
             case 1:
                 arg1 = 0.5f;
@@ -957,7 +957,7 @@ f32 avoid_HIGHWAY_sub(s16 someType, f32 arg1, s16 pathIndex) {
     return arg1;
 }
 
-void avoid_HIGHWAY_CAR_sub(s32 playerId, s32 vehicleCount, VehicleStuff* vehicle) {
+void AvoidHIGHWAYCARSub(s32 PlayerId, s32 vehicleCount, VehicleStuff* vehicle) {
     UNUSED s32 var_v1;
     s32 pathPointOffset;
     s32 var_s2;
@@ -965,14 +965,14 @@ void avoid_HIGHWAY_CAR_sub(s32 playerId, s32 vehicleCount, VehicleStuff* vehicle
     u16 vehiclePathPoint;
     UNUSED VehicleStuff* tempVehicle;
 
-    pathPointCount = g_courseTotalPathPoints[0];
-    if (!(gPlayers[playerId].speed < 1.6666666666666667)) {
+    pathPointCount = CourseTotalPathPoints[0];
+    if (!(GamePlayers[PlayerId].Speed < 1.6666666666666667)) {
         for (var_s2 = 0; var_s2 < vehicleCount; var_s2++, vehicle++) {
-            vehiclePathPoint = vehicle->pathPointIndex;
+            vehiclePathPoint = vehicle->PathPointIndex;
             for (pathPointOffset = 0; pathPointOffset < 0x18; pathPointOffset += 3) {
                 if (((OGAArea + pathPointOffset) % pathPointCount) == vehiclePathPoint) {
-                    LaneData[playerId].lane_target = avoid_HIGHWAY_sub(
-                        vehicle->someType, zure_data[playerId], vehiclePathPoint);
+                    LaneData[PlayerId].LaneTarget = AvoidHIGHWAYSub(
+                        vehicle->SomeType, ZureData[PlayerId], vehiclePathPoint);
                     return;
                 }
             }
@@ -980,112 +980,112 @@ void avoid_HIGHWAY_CAR_sub(s32 playerId, s32 vehicleCount, VehicleStuff* vehicle
     }
 }
 
-void init_TRUCK(void) {
-    f32 a = ((g_raceClass * 90.0) / 216.0f) + 4.583333333333333;
-    f32 b = ((g_raceClass * 90.0) / 216.0f) + 2.9166666666666665;
+void InitTRUCK(void) {
+    f32 a = ((RaceClass * 90.0) / 216.0f) + 4.583333333333333;
+    f32 b = ((RaceClass * 90.0) / 216.0f) + 2.9166666666666665;
     s32 numTrucks = NUM_RACE_BOX_TRUCKS;
-    if (g_gameMode == TIME_TRIALS) {
+    if (GameMode == TIME_TRIALS) {
         numTrucks = NUM_TIME_TRIAL_BOX_TRUCKS;
     }
-    init_HIGHWAY_CAR_sub(a, b, numTrucks, 0, TRUCK, &CenterPathBP[0][0]);
+    InitHIGHWAYCARSub(a, b, numTrucks, 0, TRUCK, &CenterPathBP[0][0]);
 }
 
-void move_TRUCK(void) {
+void MoveTRUCK(void) {
     s32 loopIndex;
     for (loopIndex = 0; loopIndex < NUM_RACE_BOX_TRUCKS; loopIndex++) {
-        move_HIGHWAY_CAR_sub(&TRUCK[loopIndex]);
+        MoveHIGHWAYCARSub(&TRUCK[loopIndex]);
     }
 }
 
-void hit_check_TRUCK(s32 playerId, Player* player) {
-    hit_check_HIGHWAY_CAR_sub(playerId, player, TRUCK, 55.0f, 12.5f, NUM_RACE_BOX_TRUCKS,
+void HitCheckTRUCK(s32 PlayerId, Player* Player) {
+    HitCheckHIGHWAYCARSub(PlayerId, Player, TRUCK, 55.0f, 12.5f, NUM_RACE_BOX_TRUCKS,
                                 SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x03));
 }
 
-void avoid_TRUCK(s32 playerId) {
-    avoid_HIGHWAY_CAR_sub(playerId, NUM_RACE_BOX_TRUCKS, TRUCK);
+void AvoidTRUCK(s32 PlayerId) {
+    AvoidHIGHWAYCARSub(PlayerId, NUM_RACE_BOX_TRUCKS, TRUCK);
 }
 
-void init_BUS(void) {
+void InitBUS(void) {
     s32 numBusses;
-    f32 a = ((g_raceClass * 90.0) / 216.0f) + 4.583333333333333;
-    f32 b = ((g_raceClass * 90.0) / 216.0f) + 2.9166666666666665;
+    f32 a = ((RaceClass * 90.0) / 216.0f) + 4.583333333333333;
+    f32 b = ((RaceClass * 90.0) / 216.0f) + 2.9166666666666665;
 
     numBusses = NUM_RACE_SCHOOL_BUSES;
-    if (g_gameMode == TIME_TRIALS) {
+    if (GameMode == TIME_TRIALS) {
         numBusses = NUM_TIME_TRIAL_SCHOOL_BUSES;
     }
-    init_HIGHWAY_CAR_sub(a, b, numBusses, 75, bus, &CenterPathBP[0][0]);
+    InitHIGHWAYCARSub(a, b, numBusses, 75, Bus, &CenterPathBP[0][0]);
 }
 
-void move_BUS(void) {
+void MoveBUS(void) {
     s32 loopIndex;
     for (loopIndex = 0; loopIndex < NUM_RACE_SCHOOL_BUSES; loopIndex++) {
-        move_HIGHWAY_CAR_sub(&bus[loopIndex]);
+        MoveHIGHWAYCARSub(&Bus[loopIndex]);
     }
 }
 
-void hit_check_BUS(s32 playerId, Player* player) {
-    hit_check_HIGHWAY_CAR_sub(playerId, player, bus, 70.0f, 12.5f, NUM_RACE_SCHOOL_BUSES,
+void HitCheckBUS(s32 PlayerId, Player* Player) {
+    HitCheckHIGHWAYCARSub(PlayerId, Player, Bus, 70.0f, 12.5f, NUM_RACE_SCHOOL_BUSES,
                                 SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x02));
 }
 
-void avoid_BUS(s32 playerId) {
-    avoid_HIGHWAY_CAR_sub(playerId, NUM_RACE_SCHOOL_BUSES, bus);
+void AvoidBUS(s32 PlayerId) {
+    AvoidHIGHWAYCARSub(PlayerId, NUM_RACE_SCHOOL_BUSES, Bus);
 }
 
-void init_TANK(void) {
+void InitTANK(void) {
     s32 numTrucks;
-    f32 a = ((g_raceClass * 90.0) / 216.0f) + 4.583333333333333;
-    f32 b = ((g_raceClass * 90.0) / 216.0f) + 2.9166666666666665;
+    f32 a = ((RaceClass * 90.0) / 216.0f) + 4.583333333333333;
+    f32 b = ((RaceClass * 90.0) / 216.0f) + 2.9166666666666665;
 
     numTrucks = NUM_RACE_TANKER_TRUCKS;
-    if (g_gameMode == TIME_TRIALS) {
+    if (GameMode == TIME_TRIALS) {
         numTrucks = NUM_TIME_TRIAL_TANKER_TRUCKS;
     }
-    init_HIGHWAY_CAR_sub(a, b, numTrucks, 50, tanklorry, &CenterPathBP[0][0]);
+    InitHIGHWAYCARSub(a, b, numTrucks, 50, Tanklorry, &CenterPathBP[0][0]);
 }
 
-void move_TANK(void) {
+void MoveTANK(void) {
     s32 loopIndex;
     for (loopIndex = 0; loopIndex < NUM_RACE_TANKER_TRUCKS; loopIndex++) {
-        move_HIGHWAY_CAR_sub(&tanklorry[loopIndex]);
+        MoveHIGHWAYCARSub(&Tanklorry[loopIndex]);
     }
 }
 
-void hit_check_TANK(s32 playerId, Player* player) {
-    hit_check_HIGHWAY_CAR_sub(playerId, player, tanklorry, 55.0f, 12.5f, NUM_RACE_TANKER_TRUCKS,
+void HitCheckTANK(s32 PlayerId, Player* Player) {
+    HitCheckHIGHWAYCARSub(PlayerId, Player, Tanklorry, 55.0f, 12.5f, NUM_RACE_TANKER_TRUCKS,
                                 SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x04));
 }
 
-void avoid_TANK(s32 playerId) {
-    avoid_HIGHWAY_CAR_sub(playerId, NUM_RACE_TANKER_TRUCKS, tanklorry);
+void AvoidTANK(s32 PlayerId) {
+    AvoidHIGHWAYCARSub(PlayerId, NUM_RACE_TANKER_TRUCKS, Tanklorry);
 }
 
-void init_RV(void) {
-    s32 numCars;
-    f32 a = ((g_raceClass * 90.0) / 216.0f) + 4.583333333333333;
-    f32 b = ((g_raceClass * 90.0) / 216.0f) + 2.9166666666666665;
+void InitRV(void) {
+    s32 NumCars;
+    f32 a = ((RaceClass * 90.0) / 216.0f) + 4.583333333333333;
+    f32 b = ((RaceClass * 90.0) / 216.0f) + 2.9166666666666665;
 
-    numCars = NUM_RACE_CARS;
-    if (g_gameMode == TIME_TRIALS) {
-        numCars = NUM_TIME_TRIAL_CARS;
+    NumCars = NUM_RACE_CARS;
+    if (GameMode == TIME_TRIALS) {
+        NumCars = NUM_TIME_TRIAL_CARS;
     }
-    init_HIGHWAY_CAR_sub(a, b, numCars, 25, rv_car, &CenterPathBP[0][0]);
+    InitHIGHWAYCARSub(a, b, NumCars, 25, RvCar, &CenterPathBP[0][0]);
 }
 
-void move_RV(void) {
+void MoveRV(void) {
     s32 loopIndex;
     for (loopIndex = 0; loopIndex < NUM_RACE_CARS; loopIndex++) {
-        move_HIGHWAY_CAR_sub(&rv_car[loopIndex]);
+        MoveHIGHWAYCARSub(&RvCar[loopIndex]);
     }
 }
 
-void hit_check_RV(s32 playerId, Player* player) {
-    hit_check_HIGHWAY_CAR_sub(playerId, player, rv_car, 11.5f, 8.5f, NUM_RACE_CARS,
+void HitCheckRV(s32 PlayerId, Player* Player) {
+    HitCheckHIGHWAYCARSub(PlayerId, Player, RvCar, 11.5f, 8.5f, NUM_RACE_CARS,
                                 SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x05));
 }
 
-void avoid_RV(s32 playerId) {
-    avoid_HIGHWAY_CAR_sub(playerId, NUM_RACE_CARS, rv_car);
+void AvoidRV(s32 PlayerId) {
+    AvoidHIGHWAYCARSub(PlayerId, NUM_RACE_CARS, RvCar);
 }

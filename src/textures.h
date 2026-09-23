@@ -4,28 +4,28 @@
 #include <PR/ultratypes.h>
 
 /**
- * @brief struct for a texture use in menu mainly
+ * @brief struct for a Texture use in menu mainly
  *
  */
 typedef struct {
-    /* 0x00 */ s16 type;
-    /* 0x04 */ u64* textureData; // This should be interpreted as a segmented address
-    /* 0x08 */ u16 width;
-    /* 0x0A */ u16 height;
+    /* 0x00 */ s16 Type;
+    /* 0x04 */ u64* TextureData; // This should be interpreted as a segmented Address
+    /* 0x08 */ u16 Width;
+    /* 0x0A */ u16 Height;
     /* 0x0C */ u16 dX;
     /* 0x0E */ u16 dY;
-    /* 0x10 */ u16 size; // This size is NOT equal to width*height. Its likely the size of the compressed texture
-    /* 0x12 */ s16 unused2;
-} MenuTexture; // size = 0x14
+    /* 0x10 */ u16 Size; // This Size is NOT equal to Width*Height. Its likely the Size of the compressed Texture
+    /* 0x12 */ s16 Unused2;
+} MenuTexture; // Size = 0x14
 
 /**
  * @brief struct for an animation
  *
  */
 typedef struct {
-    /* 0x00 */ MenuTexture* mk64Texture; // This should be interpreted as a segmented address
-    /* 0x04 */ s32 frame_length;
-} MkAnimation; // size = 0x8
+    /* 0x00 */ MenuTexture* Mk64Texture; // This should be interpreted as a segmented Address
+    /* 0x04 */ s32 FrameLength;
+} MkAnimation; // Size = 0x8
 
 extern MenuTexture D_02000000[2];
 extern MenuTexture D_02000028[2];
@@ -199,7 +199,7 @@ extern MenuTexture D_02001A8C[2];
 extern MenuTexture D_02001AB4[2];
 extern MenuTexture D_02001ADC[2];
 extern MenuTexture D_02001B04[2];
-extern MenuTexture seg2_mario_raceway_preview_texture[2];
+extern MenuTexture Seg2MarioRacewayPreviewTexture[2];
 extern MenuTexture D_02001B54[2];
 extern MenuTexture D_02001B7C[2];
 extern MenuTexture D_02001BA4[2];
@@ -253,51 +253,51 @@ extern MkAnimation D_020020DC[2];
 extern MkAnimation D_020020EC[2];
 extern MkAnimation D_020020FC[2];
 extern MkAnimation D_0200210C[2];
-extern MenuTexture seg2_textureFontLetterA[2];
-extern MenuTexture seg2_textureFontLetterB[2];
-extern MenuTexture seg2_textureFontLetterC[2];
-extern MenuTexture seg2_textureFontLetterD[2];
-extern MenuTexture seg2_textureFontLetterE[2];
-extern MenuTexture seg2_textureFontLetterF[2];
-extern MenuTexture seg2_textureFontLetterG[2];
-extern MenuTexture seg2_textureFontLetterH[2];
-extern MenuTexture seg2_textureFontLetterI[2];
-extern MenuTexture seg2_textureFontLetterJ[2];
-extern MenuTexture seg2_textureFontLetterK[2];
-extern MenuTexture seg2_textureFontLetterL[2];
-extern MenuTexture seg2_textureFontLetterM[2];
-extern MenuTexture seg2_textureFontLetterN[2];
-extern MenuTexture seg2_textureFontLetterO[2];
-extern MenuTexture seg2_textureFontLetterP[2];
-extern MenuTexture seg2_textureFontLetterQ[2];
-extern MenuTexture seg2_textureFontLetterR[2];
-extern MenuTexture seg2_textureFontLetterS[2];
-extern MenuTexture seg2_textureFontLetterT[2];
-extern MenuTexture seg2_textureFontLetterU[2];
-extern MenuTexture seg2_textureFontLetterV[2];
-extern MenuTexture seg2_textureFontLetterW[2];
-extern MenuTexture seg2_textureFontLetterX[2];
-extern MenuTexture seg2_textureFontLetterY[2];
-extern MenuTexture seg2_textureFontLetterZ[2];
-extern MenuTexture seg2_textureFontExclamationMark[2];
-extern MenuTexture seg2_textureFontMinus[2];
-extern MenuTexture seg2_textureFontInterogationMark[2];
-extern MenuTexture seg2_textureFontSimpleQuote[2];
-extern MenuTexture seg2_textureFontDoubleQuote[2];
-extern MenuTexture seg2_textureFontPlus[2];
-extern MenuTexture seg2_textureFontDot[2];
-extern MenuTexture seg2_textureFontFourDote[2];
-extern MenuTexture seg2_textureFontCC[2];
-extern MenuTexture seg2_textureFontNumberZero[2];
-extern MenuTexture seg2_textureFontNumberOne[2];
-extern MenuTexture seg2_textureFontNumberTwo[2];
-extern MenuTexture seg2_textureFontNumberThree[2];
-extern MenuTexture seg2_textureFontNumberFour[2];
-extern MenuTexture seg2_textureFontNumberFive[2];
-extern MenuTexture seg2_textureFontNumberSix[2];
-extern MenuTexture seg2_textureFontNumberSeven[2];
-extern MenuTexture seg2_textureFontNumberEight[2];
-extern MenuTexture seg2_textureFontNumberNine[2];
+extern MenuTexture Seg2TextureFontLetterA[2];
+extern MenuTexture Seg2TextureFontLetterB[2];
+extern MenuTexture Seg2TextureFontLetterC[2];
+extern MenuTexture Seg2TextureFontLetterD[2];
+extern MenuTexture Seg2TextureFontLetterE[2];
+extern MenuTexture Seg2TextureFontLetterF[2];
+extern MenuTexture Seg2TextureFontLetterG[2];
+extern MenuTexture Seg2TextureFontLetterH[2];
+extern MenuTexture Seg2TextureFontLetterI[2];
+extern MenuTexture Seg2TextureFontLetterJ[2];
+extern MenuTexture Seg2TextureFontLetterK[2];
+extern MenuTexture Seg2TextureFontLetterL[2];
+extern MenuTexture Seg2TextureFontLetterM[2];
+extern MenuTexture Seg2TextureFontLetterN[2];
+extern MenuTexture Seg2TextureFontLetterO[2];
+extern MenuTexture Seg2TextureFontLetterP[2];
+extern MenuTexture Seg2TextureFontLetterQ[2];
+extern MenuTexture Seg2TextureFontLetterR[2];
+extern MenuTexture Seg2TextureFontLetterS[2];
+extern MenuTexture Seg2TextureFontLetterT[2];
+extern MenuTexture Seg2TextureFontLetterU[2];
+extern MenuTexture Seg2TextureFontLetterV[2];
+extern MenuTexture Seg2TextureFontLetterW[2];
+extern MenuTexture Seg2TextureFontLetterX[2];
+extern MenuTexture Seg2TextureFontLetterY[2];
+extern MenuTexture Seg2TextureFontLetterZ[2];
+extern MenuTexture Seg2TextureFontExclamationMark[2];
+extern MenuTexture Seg2TextureFontMinus[2];
+extern MenuTexture Seg2TextureFontInterogationMark[2];
+extern MenuTexture Seg2TextureFontSimpleQuote[2];
+extern MenuTexture Seg2TextureFontDoubleQuote[2];
+extern MenuTexture Seg2TextureFontPlus[2];
+extern MenuTexture Seg2TextureFontDot[2];
+extern MenuTexture Seg2TextureFontFourDote[2];
+extern MenuTexture Seg2TextureFontCC[2];
+extern MenuTexture Seg2TextureFontNumberZero[2];
+extern MenuTexture Seg2TextureFontNumberOne[2];
+extern MenuTexture Seg2TextureFontNumberTwo[2];
+extern MenuTexture Seg2TextureFontNumberThree[2];
+extern MenuTexture Seg2TextureFontNumberFour[2];
+extern MenuTexture Seg2TextureFontNumberFive[2];
+extern MenuTexture Seg2TextureFontNumberSix[2];
+extern MenuTexture Seg2TextureFontNumberSeven[2];
+extern MenuTexture Seg2TextureFontNumberEight[2];
+extern MenuTexture Seg2TextureFontNumberNine[2];
 extern MenuTexture D_02002824[2];
 extern MenuTexture D_0200284C[2];
 extern MenuTexture D_02002874[2];
@@ -484,55 +484,55 @@ extern MenuTexture D_02004494[2];
 extern MenuTexture D_020044BC[2];
 extern MenuTexture D_020044E4[2];
 extern MenuTexture D_0200450C[2];
-extern MenuTexture seg2_textureFontComma[2];
+extern MenuTexture Seg2TextureFontComma[2];
 extern MenuTexture D_0200455C[2];
-extern MenuTexture seg2_textureFontEmpty[1];
-extern MenuTexture seg2_blue_sky_background_texture[2];
-extern MenuTexture seg2_sunset_background_texture[2];
-extern MenuTexture seg2_copyright_1996_texture[2];
-extern MenuTexture seg2_push_start_button_texture[2];
+extern MenuTexture Seg2TextureFontEmpty[1];
+extern MenuTexture Seg2BlueSkyBackgroundTexture[2];
+extern MenuTexture Seg2SunsetBackgroundTexture[2];
+extern MenuTexture Seg2Copyright1996Texture[2];
+extern MenuTexture Seg2PushStartButtonTexture[2];
 extern MenuTexture D_02004638[2];
-extern MenuTexture seg2_game_select_texture[2];
-extern MenuTexture seg2_menu_1p_column[4];
-extern MenuTexture seg2_menu_2p_column[5];
-extern MenuTexture seg2_menu_3p_column[4];
-extern MenuTexture seg2_menu_4p_column[4];
+extern MenuTexture Seg2GameSelectTexture[2];
+extern MenuTexture Seg2Menu1PColumn[4];
+extern MenuTexture Seg2Menu2PColumn[5];
+extern MenuTexture Seg2Menu3PColumn[4];
+extern MenuTexture Seg2Menu4PColumn[4];
 extern MenuTexture D_020047DC[2];
 extern MenuTexture D_02004804[2];
 extern MenuTexture D_0200482C[2];
 extern MenuTexture D_02004854[2];
 extern MenuTexture D_0200487C[2];
-extern MenuTexture gTextureMenuLOption[2];
-extern MenuTexture seg2_textureMenuRData[2];
-extern MenuTexture seg2_50_CC_texture[2];
-extern MenuTexture seg2_100_CC_texture[2];
-extern MenuTexture seg2_150_CC_texture[2];
-extern MenuTexture seg2_extra_CC_texture[2];
-extern MenuTexture seg2_menu_no_item_texture[2];
+extern MenuTexture TextureMenuLOption[2];
+extern MenuTexture Seg2TextureMenuRData[2];
+extern MenuTexture Seg250CCTexture[2];
+extern MenuTexture Seg2100CCTexture[2];
+extern MenuTexture Seg2150CCTexture[2];
+extern MenuTexture Seg2ExtraCCTexture[2];
+extern MenuTexture Seg2MenuNoItemTexture[2];
 extern MenuTexture D_020049BC[2];
 extern MenuTexture D_020049E4[2];
 extern MenuTexture D_02004A0C[2];
-extern MenuTexture seg2_data_texture[2];
-extern MenuTexture seg2_P1_border_texture[3];
-extern MenuTexture seg2_P2_border_texture[3];
-extern MenuTexture seg2_P3_border_texture[3];
-extern MenuTexture seg2_P4_border_texture[3];
+extern MenuTexture Seg2DataTexture[2];
+extern MenuTexture Seg2P1BorderTexture[3];
+extern MenuTexture Seg2P2BorderTexture[3];
+extern MenuTexture Seg2P3BorderTexture[3];
+extern MenuTexture Seg2P4BorderTexture[3];
 extern MenuTexture D_02004B4C[2];
 extern MenuTexture D_02004B74[2];
-extern MenuTexture seg2_menu_select_texture[2];
-extern MenuTexture seg2_mushroom_cup_texture[2];
-extern MenuTexture seg2_flower_cup_texture[2];
-extern MenuTexture seg2_star_cup_texture[2];
-extern MenuTexture seg2_special_cup_texture[2];
-extern MenuTexture seg2_mario_raceway_preview_small_texture[2];
-extern MenuTexture seg2_mushroom_cup_title_texture[5];
-extern MenuTexture seg2_flower_cup_title_texture[5];
-extern MenuTexture seg2_star_cup_title_texture[5];
-extern MenuTexture seg2_special_cup_title_texture[5];
-extern MenuTexture seg2_battle_title_texture[5];
+extern MenuTexture Seg2MenuSelectTexture[2];
+extern MenuTexture Seg2MushroomCupTexture[2];
+extern MenuTexture Seg2FlowerCupTexture[2];
+extern MenuTexture Seg2StarCupTexture[2];
+extern MenuTexture Seg2SpecialCupTexture[2];
+extern MenuTexture Seg2MarioRacewayPreviewSmallTexture[2];
+extern MenuTexture Seg2MushroomCupTitleTexture[5];
+extern MenuTexture Seg2FlowerCupTitleTexture[5];
+extern MenuTexture Seg2StarCupTitleTexture[5];
+extern MenuTexture Seg2SpecialCupTitleTexture[5];
+extern MenuTexture Seg2BattleTitleTexture[5];
 extern MenuTexture D_02004E80[2];
-extern MenuTexture seg2_mario_raceway_title_texture[2];
-extern MenuTexture seg2_choco_mountain_title_texture[2];
+extern MenuTexture Seg2MarioRacewayTitleTexture[2];
+extern MenuTexture Seg2ChocoMountainTitleTexture[2];
 extern MenuTexture D_02004EF8[2];
 extern MenuTexture D_02004F20[2];
 extern MenuTexture D_02004F48[2];

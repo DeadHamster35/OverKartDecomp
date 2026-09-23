@@ -73,22 +73,22 @@ void SetViewport(Screen* arg0) {
     s32 uly;
     s32 lrx;
     s32 lry;
-    s32 screenWidth = arg0->width * 2;
-    s32 screenHeight = arg0->height * 2;
-    s32 screenStartX = arg0->posx * 4;
-    s32 screenStartY = arg0->posy * 4;
+    s32 screenWidth = arg0->Width * 2;
+    s32 screenHeight = arg0->Height * 2;
+    s32 screenStartX = arg0->Posx * 4;
+    s32 screenStartY = arg0->Posy * 4;
 
-    arg0->viewport.vp.vscale[0] = screenWidth;
-    arg0->viewport.vp.vscale[1] = screenHeight;
-    arg0->viewport.vp.vscale[2] = 511;
-    arg0->viewport.vp.vscale[3] = 0;
+    arg0->IsInViewport.vp.vscale[0] = screenWidth;
+    arg0->IsInViewport.vp.vscale[1] = screenHeight;
+    arg0->IsInViewport.vp.vscale[2] = 511;
+    arg0->IsInViewport.vp.vscale[3] = 0;
 
-    arg0->viewport.vp.vtrans[0] = screenStartX;
-    arg0->viewport.vp.vtrans[1] = screenStartY;
-    arg0->viewport.vp.vtrans[2] = 511;
-    arg0->viewport.vp.vtrans[3] = 0;
+    arg0->IsInViewport.vp.vtrans[0] = screenStartX;
+    arg0->IsInViewport.vp.vtrans[1] = screenStartY;
+    arg0->IsInViewport.vp.vtrans[2] = 511;
+    arg0->IsInViewport.vp.vtrans[3] = 0;
 
-    gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&arg0->viewport));
+    gSPViewport(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&arg0->IsInViewport));
 
     screenWidth /= 4;
     screenHeight /= 4;
@@ -108,30 +108,30 @@ void SetViewport(Screen* arg0) {
     ulx = 0;
     uly = 0;
 
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, ulx, uly, lrx, lry);
+    gDPSetScissor(DisplayListHead++, G_SC_NON_INTERLACE, ulx, uly, lrx, lry);
 }
 
 UNUSED void func_802A38AC(void) {
 }
 
-void fadeout_sequence(void) {
+void FadeoutSequence(void) {
     InitRDP();
-    g_ClearFramebuffer();
+    ClearFramebuffer();
 
-    gDPFullSync(gDisplayListHead++);
-    gSPEndDisplayList(gDisplayListHead++);
+    gDPFullSync(DisplayListHead++);
+    gSPEndDisplayList(DisplayListHead++);
 
-    if (g_fadeOutCounter != 0) {
-        g_fadeOutCounter--;
+    if (FadeOutCounter != 0) {
+        FadeOutCounter--;
         return;
     }
-    g_NewSequenceMode = next_sequence_mode;
-    gGamestate = 255;
-    g_fadeOutFlag = 0;
-    g_fadeOutCounter = 0;
+    NewSequenceMode = NextSequenceMode;
+    GameState = 255;
+    FadeOutFlag = 0;
+    FadeOutCounter = 0;
     KBGChange = FADE_MODE_MAIN;
 
-    switch (next_sequence_mode) {
+    switch (NextSequenceMode) {
         case START_MENU_FROM_QUIT:
             if (KBGNumber != LOGO_INTRO_MENU) {
                 KBGNumber = START_MENU;
@@ -150,10 +150,10 @@ void fadeout_sequence(void) {
 }
 
 void ClearZBuffer2(Screen* arg0) {
-    s32 ulx = arg0->posx - (arg0->width / 2);
-    s32 uly = arg0->posy - (arg0->height / 2);
-    s32 lrx = arg0->posx + (arg0->width / 2);
-    s32 lry = arg0->posy + (arg0->height / 2);
+    s32 ulx = arg0->Posx - (arg0->Width / 2);
+    s32 uly = arg0->Posy - (arg0->Height / 2);
+    s32 lrx = arg0->Posx + (arg0->Width / 2);
+    s32 lry = arg0->Posy + (arg0->Height / 2);
 
     if (ulx < 0) {
         ulx = 0;
@@ -174,63 +174,63 @@ void ClearZBuffer2(Screen* arg0) {
         lry = uly + 2;
     }
 
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
-    gDPSetDepthImage(gDisplayListHead++, gPhysicalZBuffer);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gPhysicalZBuffer);
-    gDPSetFillColor(gDisplayListHead++, 0xFFFCFFFC);
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, ulx, uly, lrx, lry);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetCycleType(DisplayListHead++, G_CYC_FILL);
+    gDPSetDepthImage(DisplayListHead++, PhysicalZBuffer);
+    gDPSetColorImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, PhysicalZBuffer);
+    gDPSetFillColor(DisplayListHead++, 0xFFFCFFFC);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetScissor(DisplayListHead++, G_SC_NON_INTERLACE, ulx, uly, lrx, lry);
 
-    gDPFillRectangle(gDisplayListHead++, ulx, uly, lrx - 1, lry - 1);
+    gDPFillRectangle(DisplayListHead++, ulx, uly, lrx - 1, lry - 1);
 
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
-                     VIRTUAL_TO_PHYSICAL(g_CfbPtrs[draw_frame])); // 0x1FFFFFFF
-    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
-    gDPSetDepthSource(gDisplayListHead++, G_ZS_PIXEL);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetColorImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
+                     VIRTUAL_TO_PHYSICAL(CfbPtrs[DrawFrame])); // 0x1FFFFFFF
+    gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
+    gDPSetDepthSource(DisplayListHead++, G_ZS_PIXEL);
 }
 
 /**
- * Initialize the z-buffer for the current frame.
+ * Initialize the z-Buffer for the Current frame.
  */
 void ClearZBuffer(void) {
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
-    gDPSetDepthImage(gDisplayListHead++, gPhysicalZBuffer);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, gPhysicalZBuffer);
-    gDPSetFillColor(gDisplayListHead++, 0xFFFCFFFC);
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    gDPFillRectangle(gDisplayListHead++, 0, 0, 319, 239);
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
-                     VIRTUAL_TO_PHYSICAL(g_CfbPtrs[draw_frame]));
-    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
-    gDPSetDepthSource(gDisplayListHead++, G_ZS_PIXEL);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetCycleType(DisplayListHead++, G_CYC_FILL);
+    gDPSetDepthImage(DisplayListHead++, PhysicalZBuffer);
+    gDPSetColorImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH, PhysicalZBuffer);
+    gDPSetFillColor(DisplayListHead++, 0xFFFCFFFC);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetScissor(DisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPFillRectangle(DisplayListHead++, 0, 0, 319, 239);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetColorImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
+                     VIRTUAL_TO_PHYSICAL(CfbPtrs[DrawFrame]));
+    gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
+    gDPSetDepthSource(DisplayListHead++, G_ZS_PIXEL);
 }
 
 /**
  * Sets the initial RDP (Reality Display Processor) rendering settings.
  **/
 void InitRDP(void) {
-    gDPPipeSync(gDisplayListHead++);
-    gDPPipelineMode(gDisplayListHead++, G_PM_1PRIMITIVE);
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    gDPSetCombineMode(gDisplayListHead++, G_CC_SHADE, G_CC_SHADE);
-    gDPSetTextureLOD(gDisplayListHead++, G_TL_TILE);
-    gDPSetTextureLUT(gDisplayListHead++, G_TT_NONE);
-    gDPSetTextureDetail(gDisplayListHead++, G_TD_CLAMP);
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gDPSetTextureFilter(gDisplayListHead++, G_TF_BILERP);
-    gDPSetTextureConvert(gDisplayListHead++, G_TC_FILT);
-    gDPSetCombineKey(gDisplayListHead++, G_CK_NONE);
-    gDPSetAlphaCompare(gDisplayListHead++, G_AC_NONE);
-    gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
-    gDPSetBlendMask(gDisplayListHead++, 0xFF);
-    gDPSetColorDither(gDisplayListHead++, G_CD_DISABLE);
-    gDPPipeSync(gDisplayListHead++);
-    gSPClipRatio(gDisplayListHead++, FRUSTRATIO_1);
+    gDPPipeSync(DisplayListHead++);
+    gDPPipelineMode(DisplayListHead++, G_PM_1PRIMITIVE);
+    gDPSetScissor(DisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPSetCombineMode(DisplayListHead++, G_CC_SHADE, G_CC_SHADE);
+    gDPSetTextureLOD(DisplayListHead++, G_TL_TILE);
+    gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
+    gDPSetTextureDetail(DisplayListHead++, G_TD_CLAMP);
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gDPSetTextureFilter(DisplayListHead++, G_TF_BILERP);
+    gDPSetTextureConvert(DisplayListHead++, G_TC_FILT);
+    gDPSetCombineKey(DisplayListHead++, G_CK_NONE);
+    gDPSetAlphaCompare(DisplayListHead++, G_AC_NONE);
+    gDPSetRenderMode(DisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gDPSetBlendMask(DisplayListHead++, 0xFF);
+    gDPSetColorDither(DisplayListHead++, G_CD_DISABLE);
+    gDPPipeSync(DisplayListHead++);
+    gSPClipRatio(DisplayListHead++, FRUSTRATIO_1);
 }
 
 UNUSED void func_802A40A4(void) {
@@ -250,69 +250,69 @@ UNUSED void func_802A40D4(void) {
 UNUSED void func_802A40DC(void) {
 }
 
-UNUSED s32 initRSP_full(void) {
-    gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_800DC5EC->viewport));
-    gSPClearGeometryMode(gDisplayListHead++, G_CLEAR_ALL_MODES);
-    gSPSetGeometryMode(gDisplayListHead++,
+UNUSED s32 InitRSPFull(void) {
+    gSPViewport(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_800DC5EC->IsInViewport));
+    gSPClearGeometryMode(DisplayListHead++, G_CLEAR_ALL_MODES);
+    gSPSetGeometryMode(DisplayListHead++,
                        G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH | G_CLIPPING);
 }
 
 void InitRSP(void) {
-    gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_802B8880));
-    gSPClearGeometryMode(gDisplayListHead++, G_CLEAR_ALL_MODES);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPViewport(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_802B8880));
+    gSPClearGeometryMode(DisplayListHead++, G_CLEAR_ALL_MODES);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 }
 
 /**
  * Tells the RDP which of the three framebuffers it shall draw to.
  */
-void g_ClearFramebuffer(void) {
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
-                     VIRTUAL_TO_PHYSICAL(g_CfbPtrs[draw_frame]));
-    gDPSetFillColor(gDisplayListHead++, GPACK_RGBA5551(D_800DC5D0, D_800DC5D4, D_800DC5D8, 1) << 0x10 |
+void ClearFramebuffer(void) {
+    gDPSetColorImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
+                     VIRTUAL_TO_PHYSICAL(CfbPtrs[DrawFrame]));
+    gDPSetFillColor(DisplayListHead++, GPACK_RGBA5551(D_800DC5D0, D_800DC5D4, D_800DC5D8, 1) << 0x10 |
                                             GPACK_RGBA5551(D_800DC5D0, D_800DC5D4, D_800DC5D8, 1));
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    gDPFillRectangle(gDisplayListHead++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetScissor(DisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPFillRectangle(DisplayListHead++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
 }
 
-void make_border(void) {
+void MakeBorder(void) {
 
-    if (g_ScreenSplitA == SCREEN_MODE_1P) {
+    if (ScreenSplitA == SCREEN_MODE_1P) {
         return;
     }
-    if (g_ClearCFBFlag != 0) {
+    if (ClearCFBFlag != 0) {
         return;
     }
 
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
-    gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
-                     VIRTUAL_TO_PHYSICAL(g_CfbPtrs[draw_frame]));
-    gDPSetFillColor(gDisplayListHead++, 0x00010001);
-    gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_802B8880));
-    gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    gDPPipeSync(gDisplayListHead++);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetCycleType(DisplayListHead++, G_CYC_FILL);
+    gDPSetColorImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
+                     VIRTUAL_TO_PHYSICAL(CfbPtrs[DrawFrame]));
+    gDPSetFillColor(DisplayListHead++, 0x00010001);
+    gSPViewport(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_802B8880));
+    gDPSetScissor(DisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    gDPPipeSync(DisplayListHead++);
 
-    switch (g_ScreenSplitA) {
+    switch (ScreenSplitA) {
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            gDPFillRectangle(gDisplayListHead++, 159, 0, 161, 239);
+            gDPFillRectangle(DisplayListHead++, 159, 0, 161, 239);
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
-            gDPFillRectangle(gDisplayListHead++, 0, 119, 319, 121);
+            gDPFillRectangle(DisplayListHead++, 0, 119, 319, 121);
             break;
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            gDPFillRectangle(gDisplayListHead++, 159, 0, 161, 239);
-            gDPFillRectangle(gDisplayListHead++, 0, 119, 319, 121);
+            gDPFillRectangle(DisplayListHead++, 159, 0, 161, 239);
+            gDPFillRectangle(DisplayListHead++, 0, 119, 319, 121);
             break;
     }
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
 }
 /**
- * @note that the second half of the s16 value is truncated (unused). So if you want red, put 255. But the original
+ * @Note that the second half of the s16 Value is truncated (Unused). So if you want red, put 255. But the original
  * programmers might have put something like `42,239`, in bytes: b1010010011111111 The extra bits are skipped and the
  * game only reads `11111111` (255)
  */
@@ -336,12 +336,12 @@ UNUSED Gfx D_802B8A90[] = {
     gsSPEndDisplayList(),
 };
 
-struct Skybox g_skyColorTopTable[] = {
+struct Skybox SkyColorTopTable[] = {
 #include "assets/course_metadata/sSkyColors.inc.c"
 
 };
 
-// struct Skybox g_skyColorTopTable[] = {
+// struct Skybox SkyColorTopTable[] = {
 //     {128, 4280, 6136, 216, 7144, 32248},
 //     {255, 255, 255, 255, 255, 255},
 //     {48, 1544, 49528, 0, 0, 0},
@@ -365,119 +365,119 @@ struct Skybox g_skyColorTopTable[] = {
 //     {238, 144, 255, 255, 224, 240},
 // };
 
-struct Skybox g_skyColorBotTable[] = {
+struct Skybox SkyColorBotTable[] = {
 #include "assets/course_metadata/sSkyColors2.inc.c"
 };
 
-void initial_background(Vtx* skybox) {
+void InitialBackground(Vtx* skybox) {
     s32 i;
 
-    if (g_skyToggle != 0) {
+    if (SkyToggle != 0) {
 
-        if (fog_red < 0) {
-            fog_red = 0;
+        if (FogRed < 0) {
+            FogRed = 0;
         }
 
-        if (fog_blue < 0) {
-            fog_blue = 0;
+        if (FogBlue < 0) {
+            FogBlue = 0;
         }
 
-        if (fog_green < 0) {
-            fog_green = 0;
+        if (FogGreen < 0) {
+            FogGreen = 0;
         }
 
-        if (fog_red > 255) {
-            fog_red = 255;
+        if (FogRed > 255) {
+            FogRed = 255;
         }
 
-        if (fog_blue > 255) {
-            fog_blue = 255;
+        if (FogBlue > 255) {
+            FogBlue = 255;
         }
 
-        if (fog_green > 255) {
-            fog_green = 255;
+        if (FogGreen > 255) {
+            FogGreen = 255;
         }
 
         for (i = 0; i < 8; i++) {
 
-            skybox[i].v.cn[0] = (s16) fog_red;
-            skybox[i].v.cn[1] = (s16) fog_blue;
-            skybox[i].v.cn[2] = (s16) fog_green;
+            skybox[i].v.cn[0] = (s16) FogRed;
+            skybox[i].v.cn[1] = (s16) FogBlue;
+            skybox[i].v.cn[2] = (s16) FogGreen;
         }
         return;
     }
 
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-    skybox[0].v.cn[0] = g_skyColorTopTable[g_courseID].topRed;
-    skybox[0].v.cn[1] = g_skyColorTopTable[g_courseID].topGreen;
-    skybox[0].v.cn[2] = g_skyColorTopTable[g_courseID].topBlue;
+    skybox[0].v.cn[0] = SkyColorTopTable[CourseID].topRed;
+    skybox[0].v.cn[1] = SkyColorTopTable[CourseID].topGreen;
+    skybox[0].v.cn[2] = SkyColorTopTable[CourseID].topBlue;
 
-    skybox[1].v.cn[0] = g_skyColorTopTable[g_courseID].bottomRed;
-    skybox[1].v.cn[1] = g_skyColorTopTable[g_courseID].bottomGreen;
-    skybox[1].v.cn[2] = g_skyColorTopTable[g_courseID].bottomBlue;
+    skybox[1].v.cn[0] = SkyColorTopTable[CourseID].bottomRed;
+    skybox[1].v.cn[1] = SkyColorTopTable[CourseID].bottomGreen;
+    skybox[1].v.cn[2] = SkyColorTopTable[CourseID].bottomBlue;
 
-    skybox[2].v.cn[0] = g_skyColorTopTable[g_courseID].bottomRed;
-    skybox[2].v.cn[1] = g_skyColorTopTable[g_courseID].bottomGreen;
-    skybox[2].v.cn[2] = g_skyColorTopTable[g_courseID].bottomBlue;
+    skybox[2].v.cn[0] = SkyColorTopTable[CourseID].bottomRed;
+    skybox[2].v.cn[1] = SkyColorTopTable[CourseID].bottomGreen;
+    skybox[2].v.cn[2] = SkyColorTopTable[CourseID].bottomBlue;
 
-    skybox[3].v.cn[0] = g_skyColorTopTable[g_courseID].topRed;
-    skybox[3].v.cn[1] = g_skyColorTopTable[g_courseID].topGreen;
-    skybox[3].v.cn[2] = g_skyColorTopTable[g_courseID].topBlue;
+    skybox[3].v.cn[0] = SkyColorTopTable[CourseID].topRed;
+    skybox[3].v.cn[1] = SkyColorTopTable[CourseID].topGreen;
+    skybox[3].v.cn[2] = SkyColorTopTable[CourseID].topBlue;
 
-    skybox[4].v.cn[0] = g_skyColorBotTable[g_courseID].topRed;
-    skybox[4].v.cn[1] = g_skyColorBotTable[g_courseID].topGreen;
-    skybox[4].v.cn[2] = g_skyColorBotTable[g_courseID].topBlue;
+    skybox[4].v.cn[0] = SkyColorBotTable[CourseID].topRed;
+    skybox[4].v.cn[1] = SkyColorBotTable[CourseID].topGreen;
+    skybox[4].v.cn[2] = SkyColorBotTable[CourseID].topBlue;
 
-    skybox[5].v.cn[0] = g_skyColorBotTable[g_courseID].bottomRed;
-    skybox[5].v.cn[1] = g_skyColorBotTable[g_courseID].bottomGreen;
-    skybox[5].v.cn[2] = g_skyColorBotTable[g_courseID].bottomBlue;
+    skybox[5].v.cn[0] = SkyColorBotTable[CourseID].bottomRed;
+    skybox[5].v.cn[1] = SkyColorBotTable[CourseID].bottomGreen;
+    skybox[5].v.cn[2] = SkyColorBotTable[CourseID].bottomBlue;
 
-    skybox[6].v.cn[0] = g_skyColorBotTable[g_courseID].bottomRed;
-    skybox[6].v.cn[1] = g_skyColorBotTable[g_courseID].bottomGreen;
-    skybox[6].v.cn[2] = g_skyColorBotTable[g_courseID].bottomBlue;
+    skybox[6].v.cn[0] = SkyColorBotTable[CourseID].bottomRed;
+    skybox[6].v.cn[1] = SkyColorBotTable[CourseID].bottomGreen;
+    skybox[6].v.cn[2] = SkyColorBotTable[CourseID].bottomBlue;
 
-    skybox[7].v.cn[0] = g_skyColorBotTable[g_courseID].topRed;
-    skybox[7].v.cn[1] = g_skyColorBotTable[g_courseID].topGreen;
-    skybox[7].v.cn[2] = g_skyColorBotTable[g_courseID].topBlue;
+    skybox[7].v.cn[0] = SkyColorBotTable[CourseID].topRed;
+    skybox[7].v.cn[1] = SkyColorBotTable[CourseID].topGreen;
+    skybox[7].v.cn[2] = SkyColorBotTable[CourseID].topBlue;
 #else
 
 #endif
 }
 
 // Almost identical to end of DisplayBackground
-void display_background2(Vtx* arg0, UNUSED Screen* arg1, UNUSED s32 arg2, UNUSED s32 arg3,
+void DisplayBackground2(Vtx* arg0, UNUSED Screen* arg1, UNUSED s32 Arg2, UNUSED s32 Arg3,
                    UNUSED f32* arg4) {
 
     InitRDP();
-    if (g_courseID != COURSE_RAINBOW_ROAD) {
+    if (CourseID != COURSE_RAINBOW_ROAD) {
 
-        gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
-        gSPClearGeometryMode(gDisplayListHead++, G_ZBUFFER | G_LIGHTING);
-        guOrtho(&gDynamicP->mtxScreen, 0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, 0.0f, 5.0f, 1.0f);
-        gSPPerspNormalize(gDisplayListHead++, 0xFFFF);
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxScreen),
+        gDPSetRenderMode(DisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
+        gSPClearGeometryMode(DisplayListHead++, G_ZBUFFER | G_LIGHTING);
+        guOrtho(&DynamicP->MTXScreen, 0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, 0.0f, 5.0f, 1.0f);
+        gSPPerspNormalize(DisplayListHead++, 0xFFFF);
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXScreen),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_0D008E98), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPVertex(gDisplayListHead++, &arg0[4], 4, 0);
-        gSP2Triangles(gDisplayListHead++, 0, 3, 1, 0, 1, 3, 2, 0);
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_0D008E98), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+        gSPVertex(DisplayListHead++, &arg0[4], 4, 0);
+        gSP2Triangles(DisplayListHead++, 0, 3, 1, 0, 1, 3, 2, 0);
     }
 }
 
 /**
- * @brief Sets skybox horizon. Some coordinate transformations which can affect game physics and display of player
+ * @brief Sets skybox Horizon. Some coordinate transformations which can affect game physics and display of Player
  * sprite
- * @param skybox player skybox
- * @param arg1 something camera related
- * @param arg2 unused
- * @param arg3 unused
- * @parma arg4 unused
+ * @Param skybox Player skybox
+ * @Param arg1 something Camera related
+ * @Param Arg2 Unused
+ * @Param Arg3 Unused
+ * @parma arg4 Unused
  */
-void DisplayBackground(Vtx* skybox, Screen* arg1, UNUSED s32 arg2, UNUSED s32 arg3, UNUSED f32* arg4) {
-    Camera* camera = arg1->camera;
+void DisplayBackground(Vtx* skybox, Screen* arg1, UNUSED s32 Arg2, UNUSED s32 Arg3, UNUSED f32* arg4) {
+    Camera* Camera = arg1->Camera;
     s16 horizonRow;
     f32 homogFactor;
     UNUSED s32 pad[2];
-    UNUSED u16 pad2;
+    UNUSED u16 Pad2;
     u16 sp128;
     Mat4 projMtx;
     Mat4 lookAtMtx;
@@ -485,14 +485,14 @@ void DisplayBackground(Vtx* skybox, Screen* arg1, UNUSED s32 arg2, UNUSED s32 ar
     Vec3f horizonPoint;
     f32 homogScale;
 
-    initial_background(skybox);
+    InitialBackground(skybox);
 
-    // horizonPoint is an apparently arbitrary point on the horizon (technically, where y = 0). Used for skybox horizon
+    // horizonPoint is an apparently arbitrary Point on the Horizon (technically, where y = 0). Used for skybox Horizon
     horizonPoint[0] = 0.0f;
     horizonPoint[1] = 0.0f;
     horizonPoint[2] = 30000.0f;
-    MakeGuPerspective(projMtx, &sp128, camera->screen_view_angle, g_aspectRatio, screen_near_point, g_farClip, 1.0f);
-    MakeGuLookAt(lookAtMtx, camera->camera_pos, camera->lookat_pos);
+    MakeGuPerspective(projMtx, &sp128, Camera->ScreenViewAngle, AspectRatio, ScreenNearPoint, FarClip, 1.0f);
+    MakeGuLookAt(lookAtMtx, Camera->CameraPos, Camera->LookatPos);
     MultiAffineMtx(lookAndProjMtx, projMtx, lookAtMtx);
 
     /* math would have been simpler if horizonPoint had an additional homogenous coordinate set to 1. Recreated here in
@@ -511,7 +511,7 @@ void DisplayBackground(Vtx* skybox, Screen* arg1, UNUSED s32 arg2, UNUSED s32 ar
     horizonPoint[1] *= 120.0f; // SCREEN_HEIGHT / 2
 
     horizonRow = 120 - (s16) horizonPoint[1];
-    arg1->horizon = horizonRow;
+    arg1->Horizon = horizonRow;
 
     skybox[1].v.ob[1] = horizonRow;
     skybox[2].v.ob[1] = horizonRow;
@@ -520,47 +520,47 @@ void DisplayBackground(Vtx* skybox, Screen* arg1, UNUSED s32 arg2, UNUSED s32 ar
 
     // this section reders the skybox. Unclear if it does anything else
     InitRDP();
-    gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
-    gSPClearGeometryMode(gDisplayListHead++, G_ZBUFFER | G_LIGHTING);
-    guOrtho(&gDynamicP->mtxScreen, 0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, 0.0f, 5.0f, 1.0f);
-    gSPPerspNormalize(gDisplayListHead++, 0xFFFF);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxScreen),
+    gDPSetRenderMode(DisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gSPClearGeometryMode(DisplayListHead++, G_ZBUFFER | G_LIGHTING);
+    guOrtho(&DynamicP->MTXScreen, 0.0f, SCREEN_WIDTH, 0.0f, SCREEN_HEIGHT, 0.0f, 5.0f, 1.0f);
+    gSPPerspNormalize(DisplayListHead++, 0xFFFF);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXScreen),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_0D008E98), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPVertex(gDisplayListHead++, &skybox[0], 4, 0);
-    gSP2Triangles(gDisplayListHead++, 0, 3, 1, 0, 1, 3, 2, 0);
-    if (g_courseID == COURSE_RAINBOW_ROAD) {
-        gSPVertex(gDisplayListHead++, &skybox[4], 4, 0);
-        gSP2Triangles(gDisplayListHead++, 0, 3, 1, 0, 1, 3, 2, 0);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_0D008E98), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPVertex(DisplayListHead++, &skybox[0], 4, 0);
+    gSP2Triangles(DisplayListHead++, 0, 3, 1, 0, 1, 3, 2, 0);
+    if (CourseID == COURSE_RAINBOW_ROAD) {
+        gSPVertex(DisplayListHead++, &skybox[4], 4, 0);
+        gSP2Triangles(DisplayListHead++, 0, 3, 1, 0, 1, 3, 2, 0);
     }
 }
 
-void initital_perspective(void) {
-    if (gGamestate != 4) {
-        g_farClip = 6800.0f;
-        screen_near_point = 3.0f;
+void InititalPerspective(void) {
+    if (GameState != 4) {
+        FarClip = 6800.0f;
+        ScreenNearPoint = 3.0f;
     } else {
-        switch (g_courseID) {
+        switch (CourseID) {
             case COURSE_BOWSER_CASTLE:
             case COURSE_BANSHEE_BOARDWALK:
             case COURSE_RAINBOW_ROAD:
             case COURSE_BLOCK_FORT:
             case COURSE_SKYSCRAPER:
-                g_farClip = 2700.0f;
-                screen_near_point = 2.0f;
+                FarClip = 2700.0f;
+                ScreenNearPoint = 2.0f;
                 break;
             case COURSE_CHOCO_MOUNTAIN:
             case COURSE_DOUBLE_DECK:
-                g_farClip = 1500.0f;
-                screen_near_point = 2.0f;
+                FarClip = 1500.0f;
+                ScreenNearPoint = 2.0f;
                 break;
             case COURSE_KOOPA_BEACH:
-                g_farClip = 5000.0f;
-                screen_near_point = 1.0f;
+                FarClip = 5000.0f;
+                ScreenNearPoint = 1.0f;
                 break;
             case COURSE_WARIO_STADIUM:
-                g_farClip = 4800.0f;
-                screen_near_point = 10.0f;
+                FarClip = 4800.0f;
+                ScreenNearPoint = 10.0f;
                 break;
             case COURSE_MARIO_RACEWAY:
             case COURSE_YOSHI_VALLEY:
@@ -571,220 +571,220 @@ void initital_perspective(void) {
             case COURSE_TOADS_TURNPIKE:
             case COURSE_SHERBET_LAND:
             case COURSE_DK_JUNGLE:
-                g_farClip = 4500.0f;
-                screen_near_point = 9.0f;
+                FarClip = 4500.0f;
+                ScreenNearPoint = 9.0f;
                 break;
             case COURSE_KALAMARI_DESERT:
-                g_farClip = 7000.0f;
-                screen_near_point = 10.0f;
+                FarClip = 7000.0f;
+                ScreenNearPoint = 10.0f;
                 break;
             default:
-                g_farClip = 6800.0f;
-                screen_near_point = 3.0f;
+                FarClip = 6800.0f;
+                ScreenNearPoint = 3.0f;
                 break;
         }
     }
-    switch (g_ScreenSplitB) { /* switch 1; irregular */
+    switch (ScreenSplitB) { /* switch 1; irregular */
         case SCREEN_MODE_1P:        /* switch 1 */
-            g_aspectRatio = 1.33333334f;
+            AspectRatio = 1.33333334f;
             return;
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL: /* switch 1 */
-            g_aspectRatio = 0.66666667f;
+            AspectRatio = 0.66666667f;
             return;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL: /* switch 1 */
-            g_aspectRatio = 2.66666667f;
+            AspectRatio = 2.66666667f;
             return;
         case SCREEN_MODE_3P_4P_SPLITSCREEN: /* switch 1 */
-            g_aspectRatio = 1.33333334f;
+            AspectRatio = 1.33333334f;
             return;
     }
 }
 
-void setup_perspective(void) {
-    switch (g_ScreenSplitA) {
+void SetupPerspective(void) {
+    switch (ScreenSplitA) {
         case SCREEN_MODE_1P:
-            make_view_ang(gPlayerOne, &gCameraZoom[0]);
+            MakeViewAng(PlayerOne, &CameraZoom[0]);
             break;
 
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            make_view_ang(gPlayerOne, &gCameraZoom[0]);
-            make_view_ang(gPlayerTwo, &gCameraZoom[1]);
+            MakeViewAng(PlayerOne, &CameraZoom[0]);
+            MakeViewAng(PlayerTwo, &CameraZoom[1]);
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
-            make_view_ang(gPlayerOne, &gCameraZoom[0]);
-            make_view_ang(gPlayerTwo, &gCameraZoom[1]);
+            MakeViewAng(PlayerOne, &CameraZoom[0]);
+            MakeViewAng(PlayerTwo, &CameraZoom[1]);
             break;
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            make_view_ang(gPlayerOne, &gCameraZoom[0]);
-            make_view_ang(gPlayerTwo, &gCameraZoom[1]);
-            make_view_ang(gPlayerThree, &gCameraZoom[2]);
-            make_view_ang(gPlayerFour, &gCameraZoom[3]);
+            MakeViewAng(PlayerOne, &CameraZoom[0]);
+            MakeViewAng(PlayerTwo, &CameraZoom[1]);
+            MakeViewAng(PlayerThree, &CameraZoom[2]);
+            MakeViewAng(PlayerFour, &CameraZoom[3]);
             break;
     }
 }
-// player 2 vertical
-void initial_draw_right(void) {
+// Player 2 vertical
+void InitialDrawRight(void) {
 
     InitRDP();
     SetViewport(D_800DC5F0);
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
 
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
     ClearZBuffer2(D_800DC5F0);
-    if (gBackgroundFlag != 0) {
-        DisplayBackground((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[1]);
-        kwdisplay_kumo(2);
-        display_background2((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[1]);
-        kawanoDrawAfterSky(2);
+    if (BackgroundFlag != 0) {
+        DisplayBackground((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[1]);
+        KwdisplayKumo(2);
+        DisplayBackground2((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[1]);
+        KawanoDrawAfterSky(2);
     }
 }
-// player 1 vertical
-void initial_draw_left(void) {
+// Player 1 vertical
+void InitialDrawLeft(void) {
 
     InitRDP();
     SetViewport(D_800DC5EC);
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
     ClearZBuffer2(D_800DC5EC);
-    if (gBackgroundFlag != 0) {
-        DisplayBackground((Vtx*) sSkyboxP1, D_800DC5EC, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[0]);
-        kwdisplay_kumo(1);
-        display_background2((Vtx*) sSkyboxP1, D_800DC5EC, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[0]);
-        kawanoDrawAfterSky(1);
+    if (BackgroundFlag != 0) {
+        DisplayBackground((Vtx*) sSkyboxP1, D_800DC5EC, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[0]);
+        KwdisplayKumo(1);
+        DisplayBackground2((Vtx*) sSkyboxP1, D_800DC5EC, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[0]);
+        KawanoDrawAfterSky(1);
     }
 }
-// player 1 horizontal
-void initial_draw_up(void) {
+// Player 1 horizontal
+void InitialDrawUp(void) {
 
     InitRDP();
     ClearZBuffer2(D_800DC5EC);
     SetViewport(D_800DC5EC);
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
-    if (gBackgroundFlag != 0) {
-        DisplayBackground((Vtx*) sSkyboxP1, D_800DC5EC, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[0]);
-        kwdisplay_kumo(3);
-        display_background2((Vtx*) sSkyboxP1, D_800DC5EC, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[0]);
-        kawanoDrawAfterSky(3);
+    if (BackgroundFlag != 0) {
+        DisplayBackground((Vtx*) sSkyboxP1, D_800DC5EC, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[0]);
+        KwdisplayKumo(3);
+        DisplayBackground2((Vtx*) sSkyboxP1, D_800DC5EC, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[0]);
+        KawanoDrawAfterSky(3);
     }
 }
-// player 2 horizontal
-void initial_draw_down(void) {
+// Player 2 horizontal
+void InitialDrawDown(void) {
 
     InitRDP();
     ClearZBuffer2(D_800DC5F0);
     SetViewport(D_800DC5F0);
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
-    if (gBackgroundFlag != 0) {
-        DisplayBackground((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[1]);
-        kwdisplay_kumo(4);
-        display_background2((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[1]);
-        kawanoDrawAfterSky(4);
+    if (BackgroundFlag != 0) {
+        DisplayBackground((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[1]);
+        KwdisplayKumo(4);
+        DisplayBackground2((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[1]);
+        KawanoDrawAfterSky(4);
     }
 }
-// player 1 solo
+// Player 1 solo
 void InitialDrawCommon(void) {
 
     StoreSegments();
     InitRDP();
     SetViewport(D_800DC5EC);
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
     ClearZBuffer();
-    g_ClearFramebuffer();
-    if (gBackgroundFlag != 0) {
-        DisplayBackground((Vtx*) sSkyboxP1, D_800DC5EC, 0x140, 0xF0, &gCameraZoom[0]);
-        if (gGamestate != CREDITS_SEQUENCE) {
-            kwdisplay_kumo(0);
+    ClearFramebuffer();
+    if (BackgroundFlag != 0) {
+        DisplayBackground((Vtx*) sSkyboxP1, D_800DC5EC, 0x140, 0xF0, &CameraZoom[0]);
+        if (GameState != CREDITS_SEQUENCE) {
+            KwdisplayKumo(0);
         }
-        display_background2((Vtx*) sSkyboxP1, D_800DC5EC, 0x140, 0xF0, &gCameraZoom[0]);
-        kawanoDrawAfterSky(0);
+        DisplayBackground2((Vtx*) sSkyboxP1, D_800DC5EC, 0x140, 0xF0, &CameraZoom[0]);
+        KawanoDrawAfterSky(0);
     }
 }
-// player 1 3p 4p
-void initial_draw_up_left(void) {
+// Player 1 3p 4p
+void InitialDrawUpLeft(void) {
 
     InitRDP();
     ClearZBuffer2(D_800DC5EC);
     SetViewport(D_800DC5EC);
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
-    if (gBackgroundFlag != 0) {
-        DisplayBackground((Vtx*) sSkyboxP1, D_800DC5EC, 0x140, 0xF0, &gCameraZoom[0]);
-        kwdisplay_kumo(8);
-        display_background2((Vtx*) sSkyboxP1, D_800DC5EC, 0x140, 0xF0, &gCameraZoom[0]);
-        kawanoDrawAfterSky(8);
+    if (BackgroundFlag != 0) {
+        DisplayBackground((Vtx*) sSkyboxP1, D_800DC5EC, 0x140, 0xF0, &CameraZoom[0]);
+        KwdisplayKumo(8);
+        DisplayBackground2((Vtx*) sSkyboxP1, D_800DC5EC, 0x140, 0xF0, &CameraZoom[0]);
+        KawanoDrawAfterSky(8);
     }
 }
-// player 2 3p 4p
-void initial_draw_up_right(void) {
+// Player 2 3p 4p
+void InitialDrawUpRight(void) {
 
     InitRDP();
     ClearZBuffer2(D_800DC5F0);
     SetViewport(D_800DC5F0);
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
-    if (gBackgroundFlag != 0) {
-        DisplayBackground((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[1]);
-        kwdisplay_kumo(9);
-        display_background2((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[1]);
-        kawanoDrawAfterSky(9);
+    if (BackgroundFlag != 0) {
+        DisplayBackground((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[1]);
+        KwdisplayKumo(9);
+        DisplayBackground2((Vtx*) sSkyboxP2, D_800DC5F0, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[1]);
+        KawanoDrawAfterSky(9);
     }
 }
-// player 3 3p4p
-void initial_draw_down_left(void) {
+// Player 3 3p4p
+void InitialDrawDownLeft(void) {
 
     InitRDP();
     ClearZBuffer2(D_800DC5F4);
     SetViewport(D_800DC5F4);
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
-    if (gBackgroundFlag != 0) {
-        DisplayBackground((Vtx*) sSkyboxP3, D_800DC5F4, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[2]);
-        kwdisplay_kumo(10);
-        display_background2((Vtx*) sSkyboxP3, D_800DC5F4, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[2]);
-        kawanoDrawAfterSky(10);
+    if (BackgroundFlag != 0) {
+        DisplayBackground((Vtx*) sSkyboxP3, D_800DC5F4, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[2]);
+        KwdisplayKumo(10);
+        DisplayBackground2((Vtx*) sSkyboxP3, D_800DC5F4, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[2]);
+        KawanoDrawAfterSky(10);
     }
 }
 
-// player 4 3p 4p
-void initial_draw_down_right(void) {
+// Player 4 3p 4p
+void InitialDrawDownRight(void) {
 
     InitRDP();
 
-    gSPClearGeometryMode(gDisplayListHead++, 0xFFFFFFFF);
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
+    gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH | G_CLIPPING);
 
-    if (g_playerCount == 3) {
+    if (PlayerCount == 3) {
 
-        gDPPipeSync(gDisplayListHead++);
+        gDPPipeSync(DisplayListHead++);
         ClearZBuffer2(D_800DC5F8);
-        gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
-        gDPSetColorImage(gDisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
-                         VIRTUAL_TO_PHYSICAL(g_CfbPtrs[draw_frame]));
-        gDPSetFillColor(gDisplayListHead++, 0x00010001);
-        gDPPipeSync(gDisplayListHead++);
-        gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 160, 120, SCREEN_WIDTH, SCREEN_HEIGHT);
-        gDPFillRectangle(gDisplayListHead++, 160, 120, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
-        gDPPipeSync(gDisplayListHead++);
-        gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
+        gDPSetCycleType(DisplayListHead++, G_CYC_FILL);
+        gDPSetColorImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, SCREEN_WIDTH,
+                         VIRTUAL_TO_PHYSICAL(CfbPtrs[DrawFrame]));
+        gDPSetFillColor(DisplayListHead++, 0x00010001);
+        gDPPipeSync(DisplayListHead++);
+        gDPSetScissor(DisplayListHead++, G_SC_NON_INTERLACE, 160, 120, SCREEN_WIDTH, SCREEN_HEIGHT);
+        gDPFillRectangle(DisplayListHead++, 160, 120, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
+        gDPPipeSync(DisplayListHead++);
+        gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
 
         SetViewport(D_800DC5F8);
 
@@ -792,730 +792,730 @@ void initial_draw_down_right(void) {
         SetViewport(D_800DC5F8);
         ClearZBuffer2(D_800DC5F8);
 
-        if (gBackgroundFlag != 0) {
-            DisplayBackground(sSkyboxP4, D_800DC5F8, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[3]);
-            kwdisplay_kumo(11);
-            display_background2(sSkyboxP4, D_800DC5F8, SCREEN_WIDTH, SCREEN_HEIGHT, &gCameraZoom[3]);
-            kawanoDrawAfterSky(11);
+        if (BackgroundFlag != 0) {
+            DisplayBackground(sSkyboxP4, D_800DC5F8, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[3]);
+            KwdisplayKumo(11);
+            DisplayBackground2(sSkyboxP4, D_800DC5F8, SCREEN_WIDTH, SCREEN_HEIGHT, &CameraZoom[3]);
+            KawanoDrawAfterSky(11);
         }
     }
 }
 
-void draw_full_screen(void) {
-    Camera* camera = &cameras[0];
+void DrawFullScreen(void) {
+    Camera* Camera = &Cameras[0];
     UNUSED s32 pad[4];
     u16 perspNorm;
-    UNUSED s32 pad2[2];
+    UNUSED s32 Pad2[2];
 #ifdef VERSION_EU
     f32 sp9C;
 #endif
-    UNUSED s32 pad3;
-    Mat4 matrix;
+    UNUSED s32 Pad3;
+    Mat4 Matrix;
 
 #ifdef VERSION_EU
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
     InitialDrawCommon();
     InitRDP();
     SetViewport(D_800DC5EC);
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH);
-    gDPSetRenderMode(gDisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH);
+    gDPSetRenderMode(DisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[0]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[0]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
-    guLookAt(&gDynamicP->mtxLookAt[0], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
-    if (g_fadeOutCounter2 == 0) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+    guLookAt(&DynamicP->MTXLookAt[0], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
+    if (FadeOutCounter2 == 0) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5EC);
-    if (g_fadeOutCounter2 == 1) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+    DisplayMap(D_800DC5EC);
+    if (FadeOutCounter2 == 1) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5EC);
-    kwdisplay3D(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
+    DisplayCourseObject(D_800DC5EC);
+    Kwdisplay3D(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
     KartCheckFuncA();
     DisplayMap2(D_800DC5EC, PLAYER_ONE);
     KartCheckFuncA2();
-    display_object2(D_800DC5EC);
-    kwdisplay3D_after(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
-    kwdisplay2D_init();
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5EC);
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
+    Kwdisplay2DInit();
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
-    if ((two_d_flag != 0) && (FlyCamToggle == 0)) {
+    KawanoDraw2(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
+    if ((TwoDFlag != 0) && (FlyCamToggle == 0)) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_1P_PLAYER_ONE);
     }
 }
 
-void draw_left_screen(void) {
-    Camera* camera = &cameras[0];
+void DrawLeftScreen(void) {
+    Camera* Camera = &Cameras[0];
     UNUSED s32 pad[2];
     u16 perspNorm;
-    Mat4 matrix;
+    Mat4 Matrix;
 #ifdef VERSION_EU
     f32 sp9C;
 #else
     UNUSED f32 sp9C;
 #endif
 
-    initial_draw_left();
+    InitialDrawLeft();
 #ifdef VERSION_EU
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
     InitRDP();
     SetViewport(D_800DC5EC);
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[0]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[0]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    guLookAt(&gDynamicP->mtxLookAt[0], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
+    guLookAt(&DynamicP->MTXLookAt[0], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
 
-    if (g_fadeOutCounter2 == 0) {
+    if (FadeOutCounter2 == 0) {
 
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5EC);
-    if (g_fadeOutCounter2 == 1) {
+    DisplayMap(D_800DC5EC);
+    if (FadeOutCounter2 == 1) {
 
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
 
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5EC);
-    kwdisplay3D(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
+    DisplayCourseObject(D_800DC5EC);
+    Kwdisplay3D(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
     KartCheckFuncA();
     DisplayMap2(D_800DC5EC, PLAYER_ONE);
     KartCheckFuncA2();
-    display_object2(D_800DC5EC);
-    kwdisplay3D_after(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
-    kwdisplay2D_init();
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5EC);
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
+    Kwdisplay2DInit();
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
-    if (two_d_flag != 0) {
+    KawanoDraw2(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
+    if (TwoDFlag != 0) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_ONE);
     }
-    g_ScreenCounter += 1;
+    ScreenCounter += 1;
 }
 
-void draw_right_screen(void) {
-    Camera* camera = &cameras[1];
+void DrawRightScreen(void) {
+    Camera* Camera = &Cameras[1];
     UNUSED s32 pad[2];
     u16 perspNorm;
-    Mat4 matrix;
+    Mat4 Matrix;
 #ifdef VERSION_EU
     f32 sp9C;
 #else
     UNUSED f32 sp9C;
 #endif
 
-    initial_draw_right();
+    InitialDrawRight();
     InitRDP();
     SetViewport(D_800DC5F0);
 #ifdef VERSION_EU
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[1], &perspNorm, gCameraZoom[1], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[1], &perspNorm, CameraZoom[1], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[1], &perspNorm, gCameraZoom[1], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[1], &perspNorm, CameraZoom[1], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[1]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[1]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    guLookAt(&gDynamicP->mtxLookAt[1], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
+    guLookAt(&DynamicP->MTXLookAt[1], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
 
-    if (g_fadeOutCounter2 == 0) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+    if (FadeOutCounter2 == 0) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5F0);
-    if (g_fadeOutCounter2 == 1) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+    DisplayMap(D_800DC5F0);
+    if (FadeOutCounter2 == 1) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5F0);
-    kwdisplay3D(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
+    DisplayCourseObject(D_800DC5F0);
+    Kwdisplay3D(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
     KartCheckFuncB();
     DisplayMap2(D_800DC5F0, PLAYER_TWO);
     KartCheckFuncB2();
-    display_object2(D_800DC5F0);
-    kwdisplay2D_init();
-    kwdisplay3D_after(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5F0);
+    Kwdisplay2DInit();
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
-    if (two_d_flag != 0) {
+    KawanoDraw2(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
+    if (TwoDFlag != 0) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_2P_HORIZONTAL_PLAYER_TWO);
     }
-    g_ScreenCounter += 1;
+    ScreenCounter += 1;
 }
 
-void draw_up_screen(void) {
-    Camera* camera = &cameras[0];
+void DrawUpScreen(void) {
+    Camera* Camera = &Cameras[0];
     UNUSED s32 pad[2];
     u16 perspNorm;
-    Mat4 matrix;
+    Mat4 Matrix;
 #ifdef VERSION_EU
     f32 sp9C;
 #endif
 
-    initial_draw_up();
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH);
+    InitialDrawUp();
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH);
     InitRDP();
     SetViewport(D_800DC5EC);
 #ifdef VERSION_EU
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[0]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[0]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    guLookAt(&gDynamicP->mtxLookAt[0], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
+    guLookAt(&DynamicP->MTXLookAt[0], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
 
-    if (g_fadeOutCounter2 == 0) {
+    if (FadeOutCounter2 == 0) {
 
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5EC);
-    if (g_fadeOutCounter2 == 1) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+    DisplayMap(D_800DC5EC);
+    if (FadeOutCounter2 == 1) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5EC);
-    kwdisplay3D(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
+    DisplayCourseObject(D_800DC5EC);
+    Kwdisplay3D(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
     KartCheckFuncA();
     DisplayMap2(D_800DC5EC, PLAYER_ONE);
     KartCheckFuncA2();
-    display_object2(D_800DC5EC);
-    kwdisplay3D_after(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
-    kwdisplay2D_init();
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5EC);
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
+    Kwdisplay2DInit();
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
-    if (two_d_flag != 0) {
+    KawanoDraw2(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
+    if (TwoDFlag != 0) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_ONE);
     }
-    g_ScreenCounter += 1;
+    ScreenCounter += 1;
 }
 
-void draw_down_screen(void) {
-    Camera* camera = &cameras[1];
+void DrawDownScreen(void) {
+    Camera* Camera = &Cameras[1];
     UNUSED s32 pad[2];
     u16 perspNorm;
-    Mat4 matrix;
+    Mat4 Matrix;
 #ifdef VERSION_EU
     f32 sp9C;
 #endif
 
-    initial_draw_down();
-    gSPSetGeometryMode(gDisplayListHead++, G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH);
+    InitialDrawDown();
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH);
     InitRDP();
     SetViewport(D_800DC5F0);
 #ifdef VERSION_EU
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[1], &perspNorm, gCameraZoom[1], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[1], &perspNorm, CameraZoom[1], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[1], &perspNorm, gCameraZoom[1], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[1], &perspNorm, CameraZoom[1], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[1]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[1]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    guLookAt(&gDynamicP->mtxLookAt[1], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
+    guLookAt(&DynamicP->MTXLookAt[1], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
 
-    if (g_fadeOutCounter2 == 0) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+    if (FadeOutCounter2 == 0) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5F0);
-    if (g_fadeOutCounter2 == 1) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+    DisplayMap(D_800DC5F0);
+    if (FadeOutCounter2 == 1) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5F0);
-    kwdisplay3D(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
+    DisplayCourseObject(D_800DC5F0);
+    Kwdisplay3D(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
     KartCheckFuncB();
     DisplayMap2(D_800DC5F0, PLAYER_TWO);
     KartCheckFuncB2();
-    display_object2(D_800DC5F0);
-    kwdisplay3D_after(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
-    kwdisplay2D_init();
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5F0);
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
+    Kwdisplay2DInit();
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
-    if (two_d_flag != 0) {
+    KawanoDraw2(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
+    if (TwoDFlag != 0) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_2P_VERTICAL_PLAYER_TWO);
     }
-    g_ScreenCounter += 1;
+    ScreenCounter += 1;
 }
 
-void draw_up_left_screen(void) {
-    Camera* camera = camera1;
+void DrawUpLeftScreen(void) {
+    Camera* Camera = Camera1;
     UNUSED s32 pad[2];
     u16 perspNorm;
-    Mat4 matrix;
+    Mat4 Matrix;
 #ifdef VERSION_EU
     f32 sp9C;
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
 
-    initial_draw_up_left();
+    InitialDrawUpLeft();
     InitRDP();
     SetViewport(D_800DC5EC);
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[0]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[0]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    guLookAt(&gDynamicP->mtxLookAt[0], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
+    guLookAt(&DynamicP->MTXLookAt[0], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
 
-    if (g_fadeOutCounter2 == 0) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+    if (FadeOutCounter2 == 0) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5EC);
-    if (g_fadeOutCounter2 == 1) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+    DisplayMap(D_800DC5EC);
+    if (FadeOutCounter2 == 1) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5EC);
-    kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
+    DisplayCourseObject(D_800DC5EC);
+    Kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
     KartCheckFuncA();
     DisplayMap2(D_800DC5EC, PLAYER_ONE);
     KartCheckFuncA2();
-    display_object2(D_800DC5EC);
-    kwdisplay3D_after(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
-    kwdisplay2D_init();
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5EC);
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
+    Kwdisplay2DInit();
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
-    if (two_d_flag != 0) {
+    KawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
+    if (TwoDFlag != 0) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_ONE);
     }
-    g_ScreenCounter += 1;
+    ScreenCounter += 1;
 }
 
-void draw_up_right_screen(void) {
-    Camera* camera = camera2;
+void DrawUpRightScreen(void) {
+    Camera* Camera = Camera2;
     UNUSED s32 pad[2];
     u16 perspNorm;
-    Mat4 matrix;
+    Mat4 Matrix;
 #ifdef VERSION_EU
     f32 sp9C;
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
 
-    initial_draw_up_right();
+    InitialDrawUpRight();
     InitRDP();
     SetViewport(D_800DC5F0);
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[1], &perspNorm, gCameraZoom[1], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[1], &perspNorm, CameraZoom[1], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[1], &perspNorm, gCameraZoom[1], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[1], &perspNorm, CameraZoom[1], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[1]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[1]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
-    guLookAt(&gDynamicP->mtxLookAt[1], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
-    if (g_fadeOutCounter2 == 0) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+    guLookAt(&DynamicP->MTXLookAt[1], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
+    if (FadeOutCounter2 == 0) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5F0);
-    if (g_fadeOutCounter2 == 1) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[1]),
+    DisplayMap(D_800DC5F0);
+    if (FadeOutCounter2 == 1) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[1]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5F0);
-    kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
+    DisplayCourseObject(D_800DC5F0);
+    Kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
     KartCheckFuncB();
     DisplayMap2(D_800DC5F0, PLAYER_TWO);
     KartCheckFuncB2();
-    display_object2(D_800DC5F0);
-    kwdisplay3D_after(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
-    kwdisplay2D_init();
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5F0);
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
+    Kwdisplay2DInit();
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
-    if (two_d_flag != 0) {
+    KawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
+    if (TwoDFlag != 0) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_TWO);
     }
-    g_ScreenCounter += 1;
+    ScreenCounter += 1;
 }
 
-void draw_down_left_screen(void) {
-    Camera* camera = camera3;
+void DrawDownLeftScreen(void) {
+    Camera* Camera = Camera3;
     UNUSED s32 pad[2];
     u16 perspNorm;
-    Mat4 matrix;
+    Mat4 Matrix;
 #ifdef VERSION_EU
     f32 sp9C;
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
 
-    initial_draw_down_left();
+    InitialDrawDownLeft();
     InitRDP();
     SetViewport(D_800DC5F4);
 
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[2], &perspNorm, gCameraZoom[2], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[2], &perspNorm, CameraZoom[2], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[2], &perspNorm, gCameraZoom[2], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[2], &perspNorm, CameraZoom[2], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[2]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[2]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    guLookAt(&gDynamicP->mtxLookAt[2], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
-    if (g_fadeOutCounter2 == 0) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[2]),
+    guLookAt(&DynamicP->MTXLookAt[2], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
+    if (FadeOutCounter2 == 0) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[2]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
 
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[2]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[2]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5F4);
-    if (g_fadeOutCounter2 == 1) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[2]),
+    DisplayMap(D_800DC5F4);
+    if (FadeOutCounter2 == 1) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[2]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5F4);
-    kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
+    DisplayCourseObject(D_800DC5F4);
+    Kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
     KartCheckFuncC();
     DisplayMap2(D_800DC5F4, PLAYER_THREE);
     KartCheckFuncC2();
-    display_object2(D_800DC5F4);
-    kwdisplay3D_after(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
-    kwdisplay2D_init();
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5F4);
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
+    Kwdisplay2DInit();
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
-    if (two_d_flag != 0) {
+    KawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
+    if (TwoDFlag != 0) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_THREE);
     }
-    g_ScreenCounter += 1;
+    ScreenCounter += 1;
 }
 
-void draw_down_right_screen(void) {
-    Camera* camera = camera4;
+void DrawDownRightScreen(void) {
+    Camera* Camera = Camera4;
     UNUSED s32 pad[2];
     u16 perspNorm;
-    Mat4 matrix;
+    Mat4 Matrix;
 #ifdef VERSION_EU
     f32 sp9C;
-    sp9C = g_aspectRatio * 1.2f;
+    sp9C = AspectRatio * 1.2f;
 #endif
 
-    initial_draw_down_right();
-    if (g_playerCount == 3) {
-        kawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
-        if (two_d_flag != 0) {
+    InitialDrawDownRight();
+    if (PlayerCount == 3) {
+        KawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
+        if (TwoDFlag != 0) {
             KWDisplay2DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
         }
-        g_ScreenCounter += 1;
+        ScreenCounter += 1;
         return;
     }
 
     InitRDP();
     SetViewport(D_800DC5F8);
 
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
 #ifdef VERSION_EU
-    guPerspective(&gDynamicP->mtxPersp[3], &perspNorm, gCameraZoom[3], sp9C, screen_near_point, g_farClip, 1.0f);
+    guPerspective(&DynamicP->MTXPersp[3], &perspNorm, CameraZoom[3], sp9C, ScreenNearPoint, FarClip, 1.0f);
 #else
-    guPerspective(&gDynamicP->mtxPersp[3], &perspNorm, gCameraZoom[3], g_aspectRatio, screen_near_point, g_farClip,
+    guPerspective(&DynamicP->MTXPersp[3], &perspNorm, CameraZoom[3], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
 #endif
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[3]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[3]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    guLookAt(&gDynamicP->mtxLookAt[3], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
-    if (g_fadeOutCounter2 == 0) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[3]),
+    guLookAt(&DynamicP->MTXLookAt[3], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
+    if (FadeOutCounter2 == 0) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[3]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     } else {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[3]),
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[3]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     }
-    display_map(D_800DC5F8);
-    if (g_fadeOutCounter2 == 1) {
-        gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[3]),
+    DisplayMap(D_800DC5F8);
+    if (FadeOutCounter2 == 1) {
+        gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[3]),
                   G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-        LoadIdentAffineMtx(matrix);
-        SetMatrix(matrix, 0);
+        LoadIdentAffineMtx(Matrix);
+        SetMatrix(Matrix, 0);
     }
-    display_object(D_800DC5F8);
-    kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
+    DisplayCourseObject(D_800DC5F8);
+    Kwdisplay3D(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
     KartCheckFuncD();
     DisplayMap2(D_800DC5F8, PLAYER_FOUR);
     KartCheckFuncD2();
-    display_object2(D_800DC5F8);
-    kwdisplay3D_after(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
-    kwdisplay2D_init();
-    if (two_d_flag != 0) {
+    DisplayObject2(D_800DC5F8);
+    Kwdisplay3DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
+    Kwdisplay2DInit();
+    if (TwoDFlag != 0) {
         KWDisplay2D(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
     }
-    kawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
-    if (two_d_flag != 0) {
+    KawanoDraw2(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
+    if (TwoDFlag != 0) {
         KWDisplay2DAfter(RENDER_SCREEN_MODE_3P_4P_PLAYER_FOUR);
     }
-    g_ScreenCounter += 1;
+    ScreenCounter += 1;
 }
 
-void initial_screen_data(void) {
+void InitialScreenData(void) {
     Screen* wrapper = &D_8015F480[0];
-    Player* player = &gPlayers[0];
-    Camera* camera = &cameras[0];
-    struct Controller* controller = &gControllers[0];
+    Player* Player = &GamePlayers[0];
+    Camera* Camera = &Cameras[0];
+    struct Controller* controller = &Controllers[0];
 
-    // struct? size = 0x10. unk++ doesn't work cause s32 too small.
+    // struct? Size = 0x10. unk++ doesn't work cause s32 too small.
     s32* unk = &D_8015F790[0];
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        wrapper->cont = controller;
-        wrapper->camera = camera;
-        wrapper->kart = player;
-        wrapper->matrix = unk;
-        wrapper->width = 4;
-        wrapper->height = 4;
-        wrapper->camera_point = 1;
+        wrapper->Cont = controller;
+        wrapper->Camera = Camera;
+        wrapper->Kart = Player;
+        wrapper->Matrix = unk;
+        wrapper->Width = 4;
+        wrapper->Height = 4;
+        wrapper->CameraPoint = 1;
 
-        switch (g_ScreenSplitA) {
+        switch (ScreenSplitA) {
             case SCREEN_MODE_1P:
                 if (i == 0) {
-                    wrapper->posx = 160;
+                    wrapper->Posx = 160;
                 }
-                wrapper->posy = 120;
+                wrapper->Posy = 120;
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
                 if (i == 0) {
-                    wrapper->posx = 80;
-                    wrapper->posy = 120;
+                    wrapper->Posx = 80;
+                    wrapper->Posy = 120;
                 } else if (i == 1) {
-                    wrapper->posx = 240;
-                    wrapper->posy = 120;
+                    wrapper->Posx = 240;
+                    wrapper->Posy = 120;
                 }
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
                 if (i == 0) {
-                    wrapper->posx = 160;
-                    wrapper->posy = 60;
+                    wrapper->Posx = 160;
+                    wrapper->Posy = 60;
                 } else if (i == 1) {
-                    wrapper->posx = 160;
-                    wrapper->posy = 180;
+                    wrapper->Posx = 160;
+                    wrapper->Posy = 180;
                 }
                 break;
             case SCREEN_MODE_3P_4P_SPLITSCREEN:
                 if (i == 0) {
-                    wrapper->posx = 80;
-                    wrapper->posy = 60;
+                    wrapper->Posx = 80;
+                    wrapper->Posy = 60;
                 } else if (i == 1) {
-                    wrapper->posx = 240;
-                    wrapper->posy = 60;
+                    wrapper->Posx = 240;
+                    wrapper->Posy = 60;
                 } else if (i == 2) {
-                    wrapper->posx = 80;
-                    wrapper->posy = 180;
+                    wrapper->Posx = 80;
+                    wrapper->Posy = 180;
                 } else {
-                    wrapper->posx = 240;
-                    wrapper->posy = 180;
+                    wrapper->Posx = 240;
+                    wrapper->Posy = 180;
                 }
                 break;
         }
-        player++;
-        camera++;
+        Player++;
+        Camera++;
         wrapper++;
         unk += 0x10;
     }
 }
 
-void GetFramebuffer(s32 arg0, s32 arg1, s32 width, s32 height, u16* source, u16* target) {
+void GetFramebuffer(s32 arg0, s32 arg1, s32 Width, s32 Height, u16* Source, u16* Target) {
     s32 var_v1;
     s32 var_a1;
     s32 targetIndex;
     s32 sourceIndex;
 
     targetIndex = 0;
-    for (var_v1 = 0; var_v1 < height; var_v1++) {
+    for (var_v1 = 0; var_v1 < Height; var_v1++) {
         sourceIndex = ((arg1 + var_v1) * 320) + arg0;
-        for (var_a1 = 0; var_a1 < width; var_a1++, targetIndex++, sourceIndex++) {
-            target[targetIndex] = source[sourceIndex];
+        for (var_a1 = 0; var_a1 < Width; var_a1++, targetIndex++, sourceIndex++) {
+            Target[targetIndex] = Source[sourceIndex];
         }
     }
 }
 
-void take_snapshot15(void) {
+void TakeSnapshot15(void) {
     s16 temp_v0;
 
-    if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+    if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
         D_800DC5DC = 0;
     } else {
         D_800DC5DC = 128;
     }
     D_800DC5E0 = 0;
-    temp_v0 = (s16) g_DispFrame - 1;
+    temp_v0 = (s16) DispFrame - 1;
     if (temp_v0 < 0) {
         temp_v0 = 2;
     } else if (temp_v0 > 2) {
         temp_v0 = 0;
     }
-    GetFramebuffer(D_800DC5DC, D_800DC5E0, 64, 32, (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+    GetFramebuffer(D_800DC5DC, D_800DC5E0, 64, 32, (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0x8800));
-    GetFramebuffer(D_800DC5DC + 64, D_800DC5E0, 64, 32, (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+    GetFramebuffer(D_800DC5DC + 64, D_800DC5E0, 64, 32, (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0x9800));
-    GetFramebuffer(D_800DC5DC, D_800DC5E0 + 32, 64, 32, (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+    GetFramebuffer(D_800DC5DC, D_800DC5E0 + 32, 64, 32, (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0xA800));
     GetFramebuffer(D_800DC5DC + 64, D_800DC5E0 + 32, 64, 32,
-                     (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+                     (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0xB800));
-    GetFramebuffer(D_800DC5DC, D_800DC5E0 + 64, 64, 32, (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+    GetFramebuffer(D_800DC5DC, D_800DC5E0 + 64, 64, 32, (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0xC800));
     GetFramebuffer(D_800DC5DC + 64, D_800DC5E0 + 64, 64, 32,
-                     (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+                     (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0xD800));
 }
 
-void take_snapshot9(void) {
+void TakeSnapshot9(void) {
     s16 temp_v0;
 
-    if (g_ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
+    if (ScreenSplitA == SCREEN_MODE_3P_4P_SPLITSCREEN) {
         D_800DC5DC = 0;
     } else {
         D_800DC5DC = 128;
     }
     D_800DC5E0 = 0;
-    temp_v0 = (s16) g_DispFrame - 1;
+    temp_v0 = (s16) DispFrame - 1;
     if (temp_v0 < 0) {
         temp_v0 = 2;
     } else if (temp_v0 > 2) {
         temp_v0 = 0;
     }
-    GetFramebuffer(D_800DC5DC, D_800DC5E0, 0x40, 0x20, (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+    GetFramebuffer(D_800DC5DC, D_800DC5E0, 0x40, 0x20, (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0xF800));
     GetFramebuffer(D_800DC5DC + 0x40, D_800DC5E0, 0x40, 0x20,
-                     (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+                     (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0x10800));
     GetFramebuffer(D_800DC5DC, D_800DC5E0 + 0x20, 0x40, 0x20,
-                     (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+                     (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0x11800));
     GetFramebuffer(D_800DC5DC + 0x40, D_800DC5E0 + 0x20, 0x40, 0x20,
-                     (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+                     (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0x12800));
     GetFramebuffer(D_800DC5DC, D_800DC5E0 + 0x40, 0x40, 0x20,
-                     (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+                     (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0x13800));
     GetFramebuffer(D_800DC5DC + 0x40, D_800DC5E0 + 0x40, 0x40, 0x20,
-                     (u16*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[temp_v0]),
+                     (u16*) PHYSICAL_TO_VIRTUAL(CfbPtrs[temp_v0]),
                      (u16*) PHYSICAL_TO_VIRTUAL(SegmentTable[5] + 0x14800));
 }

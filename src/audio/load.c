@@ -14,99 +14,99 @@
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
 struct SequencePlayer SeqPlayer[SEQUENCE_PLAYERS];
-struct SequenceChannel gSequenceChannels[SEQUENCE_CHANNELS];
-struct SequenceChannelLayer gSequenceLayers[SEQUENCE_LAYERS];
-struct SequenceChannel gSequenceChannelNone;
+struct SequenceChannel SequenceChannels[SEQUENCE_CHANNELS];
+struct SequenceChannelLayer SequenceLayers[SEQUENCE_LAYERS];
+struct SequenceChannel SequenceChannelNone;
 // D_803B5F5C
-struct AudioListItem gLayerFreeList;
-struct NotePool gNoteFreeLists;
-OSMesgQueue gCurrAudioFrameDmaQueue;
-OSMesg gCurrAudioFrameDmaMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
-OSIoMesg gCurrAudioFrameDmaIoMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
+struct AudioListItem LayerFreeList;
+struct NotePool NoteFreeLists;
+OSMesgQueue CurrAudioFrameDmaQueue;
+OSMesg CurrAudioFrameDmaMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
+OSIoMesg CurrAudioFrameDmaIoMesgBufs[AUDIO_FRAME_DMA_QUEUE_SIZE];
 OSMesgQueue D_803B6720;
 OSMesg D_803B6738;
 
 OSIoMesg D_803B6740;
-struct SharedDma sSampleDmas[0x70];
-u32 gSampleDmaNumListItems;
-u32 sSampleDmaListSize1;
+struct SharedDma SSampleDmas[0x70];
+u32 SampleDmaNumListItems;
+u32 SSampleDmaListSize1;
 s32 D_803B6E60;
-s32 load_bss_pad;
+s32 LoadBssPad;
 
-u8 sSampleDmaReuseQueue1[256]; // sSampleDmaReuseQueue1
-u8 sSampleDmaReuseQueue2[256]; // sSampleDmaReuseQueue2
-u8 sSampleDmaReuseQueueTail1;  // sSampleDmaReuseQueueTail1
-u8 sSampleDmaReuseQueueTail2;  // sSampleDmaReuseQueueTail2
-u8 sSampleDmaReuseQueueHead1;  // sSampleDmaReuseQueueHead1
-u8 sSampleDmaReuseQueueHead2;  // sSampleDmaReuseQueueHead2
+u8 SSampleDmaReuseQueue1[256]; // SSampleDmaReuseQueue1
+u8 SSampleDmaReuseQueue2[256]; // SSampleDmaReuseQueue2
+u8 SSampleDmaReuseQueueTail1;  // SSampleDmaReuseQueueTail1
+u8 SSampleDmaReuseQueueTail2;  // SSampleDmaReuseQueueTail2
+u8 SSampleDmaReuseQueueHead1;  // SSampleDmaReuseQueueHead1
+u8 SSampleDmaReuseQueueHead2;  // SSampleDmaReuseQueueHead2
 
-ALSeqFile* g_MUSTablePointer;
-ALSeqFile* gAlCtlHeader;
-ALSeqFile* gAlTbl;
-u8* gAlBankSets;
-u16 gSequenceCount;
-struct CtlEntry* g_sfxPointer;
-struct AudioBufferParametersEU gAudioBufferParameters;
+ALSeqFile* MUSTablePointer;
+ALSeqFile* AlCtlHeader;
+ALSeqFile* AlTbl;
+u8* AlBankSets;
+u16 SequenceCount;
+struct CtlEntry* SFXPointer;
+struct AudioBufferParametersEU AudioBufferParameters;
 u32 D_803B70A8;
-s32 gMaxAudioCmds;
-s32 gMaxSimultaneousNotes;
-s16 gTempoInternalToExternal;
-s8 gAudioLibSoundMode;
+s32 MaxAudioCmds;
+s32 MaxSimultaneousNotes;
+s16 TempoInternalToExternal;
+s8 AudioLibSoundMode;
 // If we take SM64 as gospel, these should be in data.c, but that doesn't match
-volatile s32 gAudioFrameCount;
-s32 gCurrAudioFrameDmaCount;
+volatile s32 AudioFrameCount;
+s32 CurrAudioFrameDmaCount;
 
 /**
  * Given that (almost) all of these are format strings, it is highly likely
- * that they are meant to be used in some sort of printf variant. But I don't
+ * that they are meant to be Used in some sort of printf Variant. But I don't
  * care to try and figure out which function gets which string(s)
  * So I've place them all here instead.
  **/
-char loadAudioString00[] = "Romcopy %x -> %x ,size %x\n";
-char loadAudioString01[] = "Romcopyend\n";
-char loadAudioString02[] = "CAUTION:WAVE CACHE FULL %d";
-char loadAudioString03[] = "LOAD  Rom :%x -> Ram :%x  Len:%x\n";
-char loadAudioString04[] = "BASE %x %x\n";
-char loadAudioString05[] = "LOAD %x %x %x\n";
-char loadAudioString06[] = "INSTTOP    %x\n";
-char loadAudioString07[] = "INSTMAP[0] %x\n";
-char loadAudioString08[] = "already flags %d\n";
-char loadAudioString09[] = "already flags %d\n";
-char loadAudioString10[] = "ERR:SLOW BANK DMA BUSY\n";
-char loadAudioString11[] = "ERR:SLOW DMA BUSY\n";
-char loadAudioString12[] = "Check %d  bank %d\n";
-char loadAudioString13[] = "Cache Check\n";
-char loadAudioString14[] = "NO BANK ERROR\n";
-char loadAudioString15[] = "BANK %d LOADING START\n";
-char loadAudioString16[] = "BANK %d LOAD MISS (NO MEMORY)!\n";
-char loadAudioString17[] = "BANK %d ALREADY CACHED\n";
-char loadAudioString18[] = "BANK LOAD MISS! FOR %d\n";
-char loadAudioString19[] = "Seq %d Loading Start\n";
-char loadAudioString20[] = "Heap Overflow Error\n";
-char loadAudioString21[] = "SEQ  %d ALREADY CACHED\n";
-char loadAudioString22[] = "Ok,one bank slow load Start \n";
-char loadAudioString23[] = "Sorry,too many %d bank is none.fast load Start \n";
-char loadAudioString24[] = "Seq %d:Default Load Id is %d\n";
-char loadAudioString25[] = "Seq Loading Start\n";
-char loadAudioString26[] = "Error:Before Sequence-SlowDma remain.\n";
-char loadAudioString27[] = "      Cancel Seq Start.\n";
-char loadAudioString28[] = "SEQ  %d ALREADY CACHED\n";
-char loadAudioString29[] = "Clear Workarea %x -%x size %x \n";
-char loadAudioString30[] = "AudioHeap is %x\n";
-char loadAudioString31[] = "Heap reset.Synth Change %x \n";
-char loadAudioString32[] = "Heap %x %x %x\n";
-char loadAudioString33[] = "Main Heap Initialize.\n";
-char loadAudioString34[] = "---------- Init Completed. ------------\n";
-char loadAudioString35[] = " Syndrv    :[%6d]\n";
-char loadAudioString36[] = " Seqdrv    :[%6d]\n";
-char loadAudioString37[] = " audiodata :[%6d]\n";
-char loadAudioString38[] = "---------------------------------------\n";
+char LoadAudioString00[] = "Romcopy %x -> %x ,size %x\n";
+char LoadAudioString01[] = "Romcopyend\n";
+char LoadAudioString02[] = "CAUTION:WAVE CACHE FULL %d";
+char LoadAudioString03[] = "LOAD  Rom :%x -> Ram :%x  Len:%x\n";
+char LoadAudioString04[] = "BASE %x %x\n";
+char LoadAudioString05[] = "LOAD %x %x %x\n";
+char LoadAudioString06[] = "INSTTOP    %x\n";
+char LoadAudioString07[] = "INSTMAP[0] %x\n";
+char LoadAudioString08[] = "already flags %d\n";
+char LoadAudioString09[] = "already flags %d\n";
+char LoadAudioString10[] = "ERR:SLOW BANK DMA BUSY\n";
+char LoadAudioString11[] = "ERR:SLOW DMA BUSY\n";
+char LoadAudioString12[] = "Check %d  bank %d\n";
+char LoadAudioString13[] = "Cache Check\n";
+char LoadAudioString14[] = "NO BANK ERROR\n";
+char LoadAudioString15[] = "BANK %d LOADING START\n";
+char LoadAudioString16[] = "BANK %d LOAD MISS (NO MEMORY)!\n";
+char LoadAudioString17[] = "BANK %d ALREADY CACHED\n";
+char LoadAudioString18[] = "BANK LOAD MISS! FOR %d\n";
+char LoadAudioString19[] = "Seq %d Loading Start\n";
+char LoadAudioString20[] = "Heap Overflow Error\n";
+char LoadAudioString21[] = "SEQ  %d ALREADY CACHED\n";
+char LoadAudioString22[] = "Ok,one bank slow load Start \n";
+char LoadAudioString23[] = "Sorry,too many %d bank is none.fast load Start \n";
+char LoadAudioString24[] = "Seq %d:Default Load Id is %d\n";
+char LoadAudioString25[] = "Seq Loading Start\n";
+char LoadAudioString26[] = "Error:Before Sequence-SlowDma remain.\n";
+char LoadAudioString27[] = "      Cancel Seq Start.\n";
+char LoadAudioString28[] = "SEQ  %d ALREADY CACHED\n";
+char LoadAudioString29[] = "Clear Workarea %x -%x size %x \n";
+char LoadAudioString30[] = "AudioHeap is %x\n";
+char LoadAudioString31[] = "Heap reset.Synth Change %x \n";
+char LoadAudioString32[] = "Heap %x %x %x\n";
+char LoadAudioString33[] = "Main Heap Initialize.\n";
+char LoadAudioString34[] = "---------- Init Completed. ------------\n";
+char LoadAudioString35[] = " Syndrv    :[%6d]\n";
+char LoadAudioString36[] = " Seqdrv    :[%6d]\n";
+char LoadAudioString37[] = " audiodata :[%6d]\n";
+char LoadAudioString38[] = "---------------------------------------\n";
 
 /**
  * Performs an immediate DMA copy
  */
 void EmemLoad(u8* devAddr, void* vAddr, size_t nbytes) {
-    // eu_stubbed_printf_3("Romcopy %x -> %x ,size %x\n", devAddr, vAddr, nbytes);
+    // eu_stubbed_printf_3("Romcopy %x -> %x ,Size %x\n", devAddr, vAddr, nbytes);
     osInvalDCache(vAddr, nbytes);
     osPiStartDma(&D_803B6740, OS_MESG_PRI_HIGH, OS_READ, (uintptr_t) devAddr, vAddr, nbytes, &D_803B6720);
     osRecvMesg(&D_803B6720, NULL, OS_MESG_BLOCK);
@@ -114,48 +114,48 @@ void EmemLoad(u8* devAddr, void* vAddr, size_t nbytes) {
 }
 
 /**
- * Performs an asynchronus (normal priority) DMA copy
+ * Performs an asynchronus (normal Priority) DMA copy
  */
-void Nas_FastRomCopy(uintptr_t devAddr, void* vAddr, size_t nbytes, OSMesgQueue* queue, OSIoMesg* mesg) {
+void NasFastRomCopy(uintptr_t devAddr, void* vAddr, size_t nbytes, OSMesgQueue* Queue, OSIoMesg* mesg) {
     osInvalDCache(vAddr, nbytes);
-    osPiStartDma(mesg, OS_MESG_PRI_NORMAL, OS_READ, devAddr, vAddr, nbytes, queue);
+    osPiStartDma(mesg, OS_MESG_PRI_NORMAL, OS_READ, devAddr, vAddr, nbytes, Queue);
 }
 
 /**
- * Performs a partial asynchronous (normal priority) DMA copy. This is limited
+ * Performs a partial asynchronous (normal Priority) DMA copy. This is limited
  * to 0x1000 bytes transfer at once.
  */
-void Nas_SlowRomCopy(uintptr_t* devAddr, u8** vAddr, ssize_t* remaining, OSMesgQueue* queue,
+void NasSlowRomCopy(uintptr_t* devAddr, u8** vAddr, ssize_t* remaining, OSMesgQueue* Queue,
                                   OSIoMesg* mesg) {
     ssize_t transfer = (*remaining >= 0x1000 ? 0x1000 : *remaining);
     *remaining -= transfer;
     osInvalDCache(*vAddr, transfer);
-    osPiStartDma(mesg, OS_MESG_PRI_NORMAL, OS_READ, *devAddr, *vAddr, transfer, queue);
+    osPiStartDma(mesg, OS_MESG_PRI_NORMAL, OS_READ, *devAddr, *vAddr, transfer, Queue);
     *devAddr += transfer;
     *vAddr += transfer;
 }
 
-void Nas_SlowRomCopy4096() {
+void NasSlowRomCopy4096() {
     u32 i;
 
-    for (i = 0; i < sSampleDmaListSize1; i++) {
-        struct SharedDma* temp = &sSampleDmas[i];
+    for (i = 0; i < SSampleDmaListSize1; i++) {
+        struct SharedDma* temp = &SSampleDmas[i];
         if (temp->ttl != 0) {
             temp->ttl--;
             if (temp->ttl == 0) {
-                temp->reuseIndex = sSampleDmaReuseQueueHead1;
-                sSampleDmaReuseQueue1[sSampleDmaReuseQueueHead1++] = (u8) i;
+                temp->ReuseIndex = SSampleDmaReuseQueueHead1;
+                SSampleDmaReuseQueue1[SSampleDmaReuseQueueHead1++] = (u8) i;
             }
         }
     }
 
-    for (i = sSampleDmaListSize1; i < gSampleDmaNumListItems; i++) {
-        struct SharedDma* temp = &sSampleDmas[i];
+    for (i = SSampleDmaListSize1; i < SampleDmaNumListItems; i++) {
+        struct SharedDma* temp = &SSampleDmas[i];
         if (temp->ttl != 0) {
             temp->ttl--;
             if (temp->ttl == 0) {
-                temp->reuseIndex = sSampleDmaReuseQueueHead2;
-                sSampleDmaReuseQueue2[sSampleDmaReuseQueueHead2++] = (u8) i;
+                temp->ReuseIndex = SSampleDmaReuseQueueHead2;
+                SSampleDmaReuseQueue2[SSampleDmaReuseQueueHead2++] = (u8) i;
             }
         }
     }
@@ -163,7 +163,7 @@ void Nas_SlowRomCopy4096() {
     D_803B6E60 = 0;
 }
 
-void* Nas_WaveDmaFrameWork(uintptr_t devAddr, u32 size, s32 arg2, u8* dmaIndexRef) {
+void* NasWaveDmaFrameWork(uintptr_t devAddr, u32 Size, s32 Arg2, u8* dmaIndexRef) {
     s32 hasDma = false;
     struct SharedDma* dma;
     uintptr_t dmaDevAddr;
@@ -173,183 +173,183 @@ void* Nas_WaveDmaFrameWork(uintptr_t devAddr, u32 size, s32 arg2, u8* dmaIndexRe
     ssize_t bufferPos;
     UNUSED u32 pad;
 
-    if (arg2 != 0 || *dmaIndexRef >= sSampleDmaListSize1) {
-        for (i = sSampleDmaListSize1; i < gSampleDmaNumListItems; i++) {
-            dma = &sSampleDmas[i];
-            bufferPos = devAddr - dma->source;
-            if (0 <= bufferPos && (size_t) bufferPos <= dma->bufSize - size) {
+    if (Arg2 != 0 || *dmaIndexRef >= SSampleDmaListSize1) {
+        for (i = SSampleDmaListSize1; i < SampleDmaNumListItems; i++) {
+            dma = &SSampleDmas[i];
+            bufferPos = devAddr - dma->Source;
+            if (0 <= bufferPos && (size_t) bufferPos <= dma->BufSize - Size) {
                 // We already have a DMA request for this memory range.
-                if (dma->ttl == 0 && sSampleDmaReuseQueueTail2 != sSampleDmaReuseQueueHead2) {
-                    // Move the DMA out of the reuse queue, by swapping it with the
+                if (dma->ttl == 0 && SSampleDmaReuseQueueTail2 != SSampleDmaReuseQueueHead2) {
+                    // Move the DMA out of the reuse Queue, by swapping it with the
                     // tail, and then incrementing the tail.
-                    if (dma->reuseIndex != sSampleDmaReuseQueueTail2) {
-                        sSampleDmaReuseQueue2[dma->reuseIndex] = sSampleDmaReuseQueue2[sSampleDmaReuseQueueTail2];
-                        sSampleDmas[sSampleDmaReuseQueue2[sSampleDmaReuseQueueTail2]].reuseIndex = dma->reuseIndex;
+                    if (dma->ReuseIndex != SSampleDmaReuseQueueTail2) {
+                        SSampleDmaReuseQueue2[dma->ReuseIndex] = SSampleDmaReuseQueue2[SSampleDmaReuseQueueTail2];
+                        SSampleDmas[SSampleDmaReuseQueue2[SSampleDmaReuseQueueTail2]].ReuseIndex = dma->ReuseIndex;
                     }
-                    sSampleDmaReuseQueueTail2++;
+                    SSampleDmaReuseQueueTail2++;
                 }
                 dma->ttl = 60;
                 *dmaIndexRef = (u8) i;
-                return &dma->buffer[(devAddr - dma->source)];
+                return &dma->Buffer[(devAddr - dma->Source)];
             }
         }
 
-        if ((sSampleDmaReuseQueueTail2 != sSampleDmaReuseQueueHead2) && (arg2 != 0)) {
-            // Allocate a DMA from reuse queue 2. This queue can be empty, since
+        if ((SSampleDmaReuseQueueTail2 != SSampleDmaReuseQueueHead2) && (Arg2 != 0)) {
+            // Allocate a DMA from reuse Queue 2. This Queue can be empty, since
             // TTL 60 is pretty large.
-            dmaIndex = sSampleDmaReuseQueue2[sSampleDmaReuseQueueTail2++];
-            dma = &sSampleDmas[dmaIndex];
+            dmaIndex = SSampleDmaReuseQueue2[SSampleDmaReuseQueueTail2++];
+            dma = &SSampleDmas[dmaIndex];
             hasDma = true;
         }
     } else {
-        dma = &sSampleDmas[*dmaIndexRef];
-        for (i = 0; i < sSampleDmaListSize1; dma = &sSampleDmas[i++]) {
-            bufferPos = devAddr - dma->source;
-            if (0 <= bufferPos && (size_t) bufferPos <= dma->bufSize - size) {
+        dma = &SSampleDmas[*dmaIndexRef];
+        for (i = 0; i < SSampleDmaListSize1; dma = &SSampleDmas[i++]) {
+            bufferPos = devAddr - dma->Source;
+            if (0 <= bufferPos && (size_t) bufferPos <= dma->BufSize - Size) {
                 // We already have DMA for this memory range.
                 if (dma->ttl == 0) {
-                    // Move the DMA out of the reuse queue, by swapping it with the
+                    // Move the DMA out of the reuse Queue, by swapping it with the
                     // tail, and then incrementing the tail.
-                    if (dma->reuseIndex != sSampleDmaReuseQueueTail1) {
+                    if (dma->ReuseIndex != SSampleDmaReuseQueueTail1) {
                         if (1) {}
-                        sSampleDmaReuseQueue1[dma->reuseIndex] = sSampleDmaReuseQueue1[sSampleDmaReuseQueueTail1];
-                        sSampleDmas[sSampleDmaReuseQueue1[sSampleDmaReuseQueueTail1]].reuseIndex = dma->reuseIndex;
+                        SSampleDmaReuseQueue1[dma->ReuseIndex] = SSampleDmaReuseQueue1[SSampleDmaReuseQueueTail1];
+                        SSampleDmas[SSampleDmaReuseQueue1[SSampleDmaReuseQueueTail1]].ReuseIndex = dma->ReuseIndex;
                     }
-                    sSampleDmaReuseQueueTail1++;
+                    SSampleDmaReuseQueueTail1++;
                 }
                 dma->ttl = 2;
-                return dma->buffer + (devAddr - dma->source);
+                return dma->Buffer + (devAddr - dma->Source);
             }
         }
     }
 
     if (!hasDma) {
-        // Allocate a DMA from reuse queue 1. This queue will hopefully never
+        // Allocate a DMA from reuse Queue 1. This Queue will hopefully never
         // be empty, since TTL 2 is so small.
-        dmaIndex = sSampleDmaReuseQueue1[sSampleDmaReuseQueueTail1++];
-        dma = &sSampleDmas[dmaIndex];
+        dmaIndex = SSampleDmaReuseQueue1[SSampleDmaReuseQueueTail1++];
+        dma = &SSampleDmas[dmaIndex];
         hasDma = true;
     }
 
-    transfer = dma->bufSize;
+    transfer = dma->BufSize;
     dmaDevAddr = devAddr & ~0xF;
     dma->ttl = 2;
-    dma->source = dmaDevAddr;
-    dma->sizeUnused = transfer;
-    osPiStartDma(&gCurrAudioFrameDmaIoMesgBufs[gCurrAudioFrameDmaCount++], OS_MESG_PRI_NORMAL, OS_READ, dmaDevAddr,
-                 dma->buffer, transfer, &gCurrAudioFrameDmaQueue);
+    dma->Source = dmaDevAddr;
+    dma->SizeUnused = transfer;
+    osPiStartDma(&CurrAudioFrameDmaIoMesgBufs[CurrAudioFrameDmaCount++], OS_MESG_PRI_NORMAL, OS_READ, dmaDevAddr,
+                 dma->Buffer, transfer, &CurrAudioFrameDmaQueue);
     *dmaIndexRef = dmaIndex;
-    return (devAddr - dmaDevAddr) + dma->buffer;
+    return (devAddr - dmaDevAddr) + dma->Buffer;
 }
 
 // init_sample_dma_buffers
-void Nas_WaveDmaCallBack(UNUSED s32 arg0) {
+void NasWaveDmaCallBack(UNUSED s32 arg0) {
     s32 i;
 #define j i
 
     D_803B70A8 = 0x5A0;
 
-    for (i = 0; i < gMaxSimultaneousNotes * 3 * gAudioBufferParameters.presetUnk4; i++) {
-        sSampleDmas[gSampleDmaNumListItems].buffer = Nas_HeapAlloc(&gNotesAndBuffersPool, D_803B70A8);
-        if (sSampleDmas[gSampleDmaNumListItems].buffer == NULL) {
+    for (i = 0; i < MaxSimultaneousNotes * 3 * AudioBufferParameters.PresetUnk4; i++) {
+        SSampleDmas[SampleDmaNumListItems].Buffer = NasHeapAlloc(&NotesAndBuffersPool, D_803B70A8);
+        if (SSampleDmas[SampleDmaNumListItems].Buffer == NULL) {
             break;
         }
-        sSampleDmas[gSampleDmaNumListItems].bufSize = D_803B70A8;
-        sSampleDmas[gSampleDmaNumListItems].source = 0;
-        sSampleDmas[gSampleDmaNumListItems].sizeUnused = 0;
-        sSampleDmas[gSampleDmaNumListItems].unused2 = 0;
-        sSampleDmas[gSampleDmaNumListItems].ttl = 0;
-        gSampleDmaNumListItems++;
+        SSampleDmas[SampleDmaNumListItems].BufSize = D_803B70A8;
+        SSampleDmas[SampleDmaNumListItems].Source = 0;
+        SSampleDmas[SampleDmaNumListItems].SizeUnused = 0;
+        SSampleDmas[SampleDmaNumListItems].Unused2 = 0;
+        SSampleDmas[SampleDmaNumListItems].ttl = 0;
+        SampleDmaNumListItems++;
     }
 
-    for (i = 0; (u32) i < gSampleDmaNumListItems; i++) {
-        sSampleDmaReuseQueue1[i] = (u8) i;
-        sSampleDmas[i].reuseIndex = (u8) i;
+    for (i = 0; (u32) i < SampleDmaNumListItems; i++) {
+        SSampleDmaReuseQueue1[i] = (u8) i;
+        SSampleDmas[i].ReuseIndex = (u8) i;
     }
 
-    for (j = gSampleDmaNumListItems; j < 0x100; j++) {
-        sSampleDmaReuseQueue1[j] = 0;
+    for (j = SampleDmaNumListItems; j < 0x100; j++) {
+        SSampleDmaReuseQueue1[j] = 0;
     }
 
-    sSampleDmaReuseQueueTail1 = 0;
-    sSampleDmaReuseQueueHead1 = (u8) gSampleDmaNumListItems;
-    sSampleDmaListSize1 = gSampleDmaNumListItems;
+    SSampleDmaReuseQueueTail1 = 0;
+    SSampleDmaReuseQueueHead1 = (u8) SampleDmaNumListItems;
+    SSampleDmaListSize1 = SampleDmaNumListItems;
 
     D_803B70A8 = 0x180;
-    for (i = 0; i < gMaxSimultaneousNotes; i++) {
-        sSampleDmas[gSampleDmaNumListItems].buffer = Nas_HeapAlloc(&gNotesAndBuffersPool, D_803B70A8);
-        if (sSampleDmas[gSampleDmaNumListItems].buffer == NULL) {
+    for (i = 0; i < MaxSimultaneousNotes; i++) {
+        SSampleDmas[SampleDmaNumListItems].Buffer = NasHeapAlloc(&NotesAndBuffersPool, D_803B70A8);
+        if (SSampleDmas[SampleDmaNumListItems].Buffer == NULL) {
             break;
         }
-        sSampleDmas[gSampleDmaNumListItems].bufSize = D_803B70A8;
-        sSampleDmas[gSampleDmaNumListItems].source = 0;
-        sSampleDmas[gSampleDmaNumListItems].sizeUnused = 0;
-        sSampleDmas[gSampleDmaNumListItems].unused2 = 0;
-        sSampleDmas[gSampleDmaNumListItems].ttl = 0;
-        gSampleDmaNumListItems++;
+        SSampleDmas[SampleDmaNumListItems].BufSize = D_803B70A8;
+        SSampleDmas[SampleDmaNumListItems].Source = 0;
+        SSampleDmas[SampleDmaNumListItems].SizeUnused = 0;
+        SSampleDmas[SampleDmaNumListItems].Unused2 = 0;
+        SSampleDmas[SampleDmaNumListItems].ttl = 0;
+        SampleDmaNumListItems++;
     }
 
-    for (i = sSampleDmaListSize1; (u32) i < gSampleDmaNumListItems; i++) {
-        sSampleDmaReuseQueue2[i - sSampleDmaListSize1] = (u8) i;
-        sSampleDmas[i].reuseIndex = (u8) (i - sSampleDmaListSize1);
+    for (i = SSampleDmaListSize1; (u32) i < SampleDmaNumListItems; i++) {
+        SSampleDmaReuseQueue2[i - SSampleDmaListSize1] = (u8) i;
+        SSampleDmas[i].ReuseIndex = (u8) (i - SSampleDmaListSize1);
     }
 
     // This probably meant to touch the range size1..size2 as well... but it
     // doesn't matter, since these values are never read anyway.
-    for (j = gSampleDmaNumListItems; j < 0x100; j++) {
-        sSampleDmaReuseQueue2[j] = sSampleDmaListSize1;
+    for (j = SampleDmaNumListItems; j < 0x100; j++) {
+        SSampleDmaReuseQueue2[j] = SSampleDmaListSize1;
     }
 
-    sSampleDmaReuseQueueTail2 = 0;
-    sSampleDmaReuseQueueHead2 = gSampleDmaNumListItems - sSampleDmaListSize1;
+    SSampleDmaReuseQueueTail2 = 0;
+    SSampleDmaReuseQueueHead2 = SampleDmaNumListItems - SSampleDmaListSize1;
 #undef j
 }
 
-// Similar to Nas_smzWaveTouch, but not really
-s32 Nas_WaveDmaNew(struct AudioBankSample* sample) {
-    // struct AudioBankSample *sample = sound->sample;
+// Similar to NasSmzWaveTouch, but not really
+s32 NasWaveDmaNew(struct AudioBankSample* Sample) {
+    // struct AudioBankSample *Sample = Sound->Sample;
     UNUSED u8* mem;
 
-    if (sample == (void*) NULL) {
+    if (Sample == (void*) NULL) {
         return -1;
     }
 
-    if (sample->loaded == 1) {
-        // temp_a1 = sound->sampleAddr // unk10;
-        mem = Nas_HeapAlloc(&gNotesAndBuffersPool, sample->sampleSize);
+    if (Sample->Loaded == 1) {
+        // temp_a1 = Sound->SampleAddr // unk10;
+        mem = NasHeapAlloc(&NotesAndBuffersPool, Sample->SampleSize);
         // temp_a1_2 = temp_v0;
         if (mem == (void*) NULL) {
             return -1;
         }
-        EmemLoad(sample->sampleAddr, mem, sample->sampleSize);
-        sample->loaded = 0x81;
-        sample->sampleAddr = mem; // sound->unk4
+        EmemLoad(Sample->SampleAddr, mem, Sample->SampleSize);
+        Sample->Loaded = 0x81;
+        Sample->SampleAddr = mem; // Sound->unk4
     }
 }
 
-s32 Nas_LoadVoice(s32 bankId, s32 instId, s32 arg2) {
+s32 NasLoadVoice(s32 BankId, s32 instId, s32 Arg2) {
     struct Instrument* instr;
     struct Drum* drum;
 
     if (instId < 0x7F) {
-        instr = ProgToVp(bankId, instId);
+        instr = ProgToVp(BankId, instId);
         if (instr == NULL) {
             return -1;
         }
-        if (instr->normalRangeLo != 0) {
-            Nas_WaveDmaNew(instr->lowNotesSound.sample);
+        if (instr->NormalRangeLo != 0) {
+            NasWaveDmaNew(instr->LowNotesSound.Sample);
         }
-        Nas_WaveDmaNew(instr->normalNotesSound.sample);
-        if (instr->normalRangeHi != 0x7F) {
-            Nas_WaveDmaNew(instr->highNotesSound.sample);
+        NasWaveDmaNew(instr->NormalNotesSound.Sample);
+        if (instr->NormalRangeHi != 0x7F) {
+            NasWaveDmaNew(instr->HighNotesSound.Sample);
         }
         //! @bug missing return
     } else if (instId == 0x7F) {
-        drum = PercToPp(bankId, arg2);
+        drum = PercToPp(BankId, Arg2);
         if (drum == NULL) {
             return -1;
         }
-        Nas_WaveDmaNew(drum->sound.sample);
+        NasWaveDmaNew(drum->Sound.Sample);
         return 0;
     }
 #ifdef AVOID_UB
@@ -360,7 +360,7 @@ s32 Nas_LoadVoice(s32 bankId, s32 instId, s32 arg2) {
 // This appears to be a modified version of alSeqFileNew
 // from src/os/alBankNew.c
 // Or maybe its patch_seq_file from SM64's load_sh.c?
-void Nas_BankHeaderInit(ALSeqFile* f, u8* base) {
+void NasBankHeaderInit(ALSeqFile* f, u8* base) {
 #define PATCH(SRC, BASE, TYPE) SRC = (TYPE) ((uintptr_t) SRC + (uintptr_t) BASE)
     int i;
     u8* wut = base;
@@ -372,33 +372,33 @@ void Nas_BankHeaderInit(ALSeqFile* f, u8* base) {
 #undef PATCH
 }
 
-void Nas_smzWaveTouch(struct AudioBankSound* sound, u8* memBase, u8* offsetBase) {
-    struct AudioBankSample* sample;
+void NasSmzWaveTouch(struct AudioBankSound* Sound, u8* memBase, u8* offsetBase) {
+    struct AudioBankSample* Sample;
     void* patched;
     u8* mem;
 
 #define PATCH(x, base) (patched = (void*) ((uintptr_t) (x) + (uintptr_t) base))
 
-    if (sound->sample != NULL) {
-        sample = sound->sample = (struct AudioBankSample*) PATCH(sound->sample, memBase);
-        if (sample->loaded == 0) {
-            sample->sampleAddr = (u8*) PATCH(sample->sampleAddr, offsetBase);
-            sample->loop = (struct AdpcmLoop*) PATCH(sample->loop, memBase);
-            sample->book = (struct AdpcmBook*) PATCH(sample->book, memBase);
-            sample->loaded = 1;
-        } else if (sample->loaded == 0x80) {
-            PATCH(sample->sampleAddr, offsetBase);
-            mem = Nas_HeapAlloc(&gNotesAndBuffersPool, sample->sampleSize);
+    if (Sound->Sample != NULL) {
+        Sample = Sound->Sample = (struct AudioBankSample*) PATCH(Sound->Sample, memBase);
+        if (Sample->Loaded == 0) {
+            Sample->SampleAddr = (u8*) PATCH(Sample->SampleAddr, offsetBase);
+            Sample->Loop = (struct AdpcmLoop*) PATCH(Sample->Loop, memBase);
+            Sample->Book = (struct AdpcmBook*) PATCH(Sample->Book, memBase);
+            Sample->Loaded = 1;
+        } else if (Sample->Loaded == 0x80) {
+            PATCH(Sample->SampleAddr, offsetBase);
+            mem = NasHeapAlloc(&NotesAndBuffersPool, Sample->SampleSize);
             if (mem == NULL) {
-                sample->sampleAddr = (u8*) patched;
-                sample->loaded = 1;
+                Sample->SampleAddr = (u8*) patched;
+                Sample->Loaded = 1;
             } else {
-                EmemLoad((u8*) patched, mem, sample->sampleSize);
-                sample->loaded = 0x81;
-                sample->sampleAddr = mem;
+                EmemLoad((u8*) patched, mem, Sample->SampleSize);
+                Sample->Loaded = 0x81;
+                Sample->SampleAddr = mem;
             }
-            sample->loop = (struct AdpcmLoop*) PATCH(sample->loop, memBase);
-            sample->book = (struct AdpcmBook*) PATCH(sample->book, memBase);
+            Sample->Loop = (struct AdpcmLoop*) PATCH(Sample->Loop, memBase);
+            Sample->Book = (struct AdpcmBook*) PATCH(Sample->Book, memBase);
         }
     }
 
@@ -406,29 +406,29 @@ void Nas_smzWaveTouch(struct AudioBankSound* sound, u8* memBase, u8* offsetBase)
 }
 
 // There does not appear to an SM64 counterpart to this function
-void Nas_smzBnkOfsToAdd(s32 bankId) {
+void NasSmzBnkOfsToAdd(s32 BankId) {
     u8* var_a1;
 
-    if (gAlTbl->seqArray[bankId].len == 0) {
-        var_a1 = gAlTbl->seqArray[(s32) gAlTbl->seqArray[bankId].offset].offset;
+    if (AlTbl->seqArray[BankId].len == 0) {
+        var_a1 = AlTbl->seqArray[(s32) AlTbl->seqArray[BankId].offset].offset;
     } else {
-        var_a1 = gAlTbl->seqArray[bankId].offset;
+        var_a1 = AlTbl->seqArray[BankId].offset;
     }
-    // wtf is up with the `g_sfxPointer[bankId].instruments - 1` stuff?
-    Nas_smzBnkOfsToAdd_Inner((struct AudioBank*) (g_sfxPointer[bankId].instruments - 1), var_a1,
-                     g_sfxPointer[bankId].numInstruments, g_sfxPointer[bankId].numDrums);
-    g_sfxPointer[bankId].drums = (struct Drum**) *(g_sfxPointer[bankId].instruments - 1);
+    // wtf is up with the `SFXPointer[BankId].Instruments - 1` stuff?
+    NasSmzBnkOfsToAddInner((struct AudioBank*) (SFXPointer[BankId].Instruments - 1), var_a1,
+                     SFXPointer[BankId].NumInstruments, SFXPointer[BankId].NumDrums);
+    SFXPointer[BankId].Drums = (struct Drum**) *(SFXPointer[BankId].Instruments - 1);
 }
 
-void Nas_smzBnkOfsToAdd_Inner(struct AudioBank* mem, u8* offset, u32 numInstruments, u32 numDrums) {
-    struct Instrument* instrument;
+void NasSmzBnkOfsToAddInner(struct AudioBank* mem, u8* Offset, u32 NumInstruments, u32 NumDrums) {
+    struct Instrument* Instrument;
     struct Instrument** itInstrs;
     struct Instrument** end;
     struct AudioBank* temp;
     u32 i;
     void* patched;
     struct Drum* drum;
-    struct Drum** drums;
+    struct Drum** Drums;
     u32 numDrums2;
 
 #define BASE_OFFSET_REAL(x, base) (void*) ((uintptr_t) (x) + (uintptr_t) base)
@@ -437,20 +437,20 @@ void Nas_smzBnkOfsToAdd_Inner(struct AudioBank* mem, u8* offset, u32 numInstrume
 
 #define BASE_OFFSET(x, base) BASE_OFFSET_REAL(base, x)
 
-    drums = mem->drums;
-    numDrums2 = numDrums;
-    if (drums != NULL && numDrums2 > 0) {
-        mem->drums = PATCH(drums, mem);
+    Drums = mem->Drums;
+    numDrums2 = NumDrums;
+    if (Drums != NULL && numDrums2 > 0) {
+        mem->Drums = PATCH(Drums, mem);
         for (i = 0; i < numDrums2; i++) {
-            patched = mem->drums[i];
+            patched = mem->Drums[i];
             if (patched != NULL) {
                 drum = PATCH(patched, mem);
-                mem->drums[i] = drum;
-                if (drum->loaded == 0) {
-                    Nas_smzWaveTouch(&drum->sound, (u8*) mem, offset);
-                    patched = drum->envelope;
-                    drum->envelope = BASE_OFFSET(mem, patched);
-                    drum->loaded = 1;
+                mem->Drums[i] = drum;
+                if (drum->Loaded == 0) {
+                    NasSmzWaveTouch(&drum->Sound, (u8*) mem, Offset);
+                    patched = drum->Envelope;
+                    drum->Envelope = BASE_OFFSET(mem, patched);
+                    drum->Loaded = 1;
                 }
             }
         }
@@ -458,25 +458,25 @@ void Nas_smzBnkOfsToAdd_Inner(struct AudioBank* mem, u8* offset, u32 numInstrume
 
     //! Doesn't affect EU, but required for US/JP
     temp = &*mem;
-    if (numInstruments > 0) {
+    if (NumInstruments > 0) {
         //! Doesn't affect EU, but required for US/JP
         struct Instrument** tempInst;
-        itInstrs = temp->instruments;
-        tempInst = temp->instruments;
-        end = numInstruments + tempInst;
+        itInstrs = temp->Instruments;
+        tempInst = temp->Instruments;
+        end = NumInstruments + tempInst;
 
         do {
             if (*itInstrs != NULL) {
                 *itInstrs = BASE_OFFSET(*itInstrs, mem);
-                instrument = *itInstrs;
+                Instrument = *itInstrs;
 
-                if (instrument->loaded == 0) {
-                    Nas_smzWaveTouch(&instrument->lowNotesSound, (u8*) mem, offset);
-                    Nas_smzWaveTouch(&instrument->normalNotesSound, (u8*) mem, offset);
-                    Nas_smzWaveTouch(&instrument->highNotesSound, (u8*) mem, offset);
-                    patched = instrument->envelope;
-                    instrument->envelope = BASE_OFFSET(mem, patched);
-                    instrument->loaded = 1;
+                if (Instrument->Loaded == 0) {
+                    NasSmzWaveTouch(&Instrument->LowNotesSound, (u8*) mem, Offset);
+                    NasSmzWaveTouch(&Instrument->NormalNotesSound, (u8*) mem, Offset);
+                    NasSmzWaveTouch(&Instrument->HighNotesSound, (u8*) mem, Offset);
+                    patched = Instrument->Envelope;
+                    Instrument->Envelope = BASE_OFFSET(mem, patched);
+                    Instrument->Loaded = 1;
                 }
             }
             itInstrs++;
@@ -488,136 +488,136 @@ void Nas_smzBnkOfsToAdd_Inner(struct AudioBank* mem, u8* offset, u32 numInstrume
 #undef BASE_OFFSET
 }
 
-struct AudioBank* Nas_MyBankLoad(s32 bankId, s32 arg1) {
+struct AudioBank* NasMyBankLoad(s32 BankId, s32 arg1) {
     s32 alloc;
     UNUSED s32 stackPadding0[9];
     struct AudioBank* ret;
     u8* ctlData;
 
-    alloc = gAlCtlHeader->seqArray[bankId].len + 0xf;
+    alloc = AlCtlHeader->seqArray[BankId].len + 0xf;
     alloc = ALIGN16(alloc);
     alloc -= 0x10;
-    ctlData = gAlCtlHeader->seqArray[bankId].offset;
-    ret = Nas_SzAutoDivide(&gBankLoadedPool, 1, alloc, arg1, bankId);
+    ctlData = AlCtlHeader->seqArray[BankId].offset;
+    ret = NasSzAutoDivide(&BankLoadedPool, 1, alloc, arg1, BankId);
     if (ret == NULL) {
         return NULL;
     }
     EmemLoad(ctlData + 0x10, ret, (u32) alloc);
-    g_sfxPointer[bankId].instruments = ret->instruments;
-    Nas_smzBnkOfsToAdd(bankId);
-    if (gBankLoadStatus[bankId] != 5) {
-        gBankLoadStatus[bankId] = 2;
+    SFXPointer[BankId].Instruments = ret->Instruments;
+    NasSmzBnkOfsToAdd(BankId);
+    if (BankLoadStatus[BankId] != 5) {
+        BankLoadStatus[BankId] = 2;
     }
     return ret;
 }
 
-struct AudioBank* Nas_MyBankSlowLoad(s32 bankId, s32 arg1, struct SequencePlayer* seqPlayer) {
+struct AudioBank* NasMyBankSlowLoad(s32 BankId, s32 arg1, struct SequencePlayer* seqPlayer) {
     size_t alloc;
     UNUSED s32 stackPadding0[9];
     struct AudioBank* ret;
     u8* ctlData;
     UNUSED s32 stackPadding1[2];
 
-    alloc = gAlCtlHeader->seqArray[bankId].len + 0xF;
+    alloc = AlCtlHeader->seqArray[BankId].len + 0xF;
     alloc = ALIGN16(alloc);
     alloc -= 0x10;
-    ctlData = gAlCtlHeader->seqArray[bankId].offset;
-    ret = Nas_SzAutoDivide(&gBankLoadedPool, 1, alloc, arg1, bankId);
+    ctlData = AlCtlHeader->seqArray[BankId].offset;
+    ret = NasSzAutoDivide(&BankLoadedPool, 1, alloc, arg1, BankId);
     if (ret == NULL) {
         return NULL;
     }
-    seqPlayer->loadingBankId = bankId;
-    g_sfxPointer[bankId].instruments = ret->instruments;
-    g_sfxPointer[bankId].drums = NULL;
-    seqPlayer->bankDmaCurrMemAddr = (u8*) ret;
-    seqPlayer->bankDmaCurrDevAddr = (uintptr_t) (ctlData + 0x10);
-    seqPlayer->bankDmaRemaining = alloc;
+    seqPlayer->LoadingBankId = BankId;
+    SFXPointer[BankId].Instruments = ret->Instruments;
+    SFXPointer[BankId].Drums = NULL;
+    seqPlayer->BankDmaCurrMemAddr = (u8*) ret;
+    seqPlayer->BankDmaCurrDevAddr = (uintptr_t) (ctlData + 0x10);
+    seqPlayer->BankDmaRemaining = alloc;
     if (1) {}
-    osCreateMesgQueue(&seqPlayer->bankDmaMesgQueue, &seqPlayer->bankDmaMesg, 1);
-    seqPlayer->bankDmaInProgress = true;
-    Nas_SlowRomCopy(&seqPlayer->bankDmaCurrDevAddr, &seqPlayer->bankDmaCurrMemAddr,
-                                 &seqPlayer->bankDmaRemaining, &seqPlayer->bankDmaMesgQueue, &seqPlayer->bankDmaIoMesg);
-    if (gBankLoadStatus[bankId] != 5) {
-        gBankLoadStatus[bankId] = 1;
+    osCreateMesgQueue(&seqPlayer->BankDmaMesgQueue, &seqPlayer->BankDmaMesg, 1);
+    seqPlayer->BankDmaInProgress = true;
+    NasSlowRomCopy(&seqPlayer->BankDmaCurrDevAddr, &seqPlayer->BankDmaCurrMemAddr,
+                                 &seqPlayer->BankDmaRemaining, &seqPlayer->BankDmaMesgQueue, &seqPlayer->BankDmaIoMesg);
+    if (BankLoadStatus[BankId] != 5) {
+        BankLoadStatus[BankId] = 1;
     }
     return ret;
 }
 
-void* Nas_MySeqLoad(s32 seqId, s32 arg1) {
+void* NasMySeqLoad(s32 SEQId, s32 arg1) {
     s32 seqLength;
     void* ptr;
-    u8* seqData;
+    u8* SEQData;
 
-    seqLength = g_MUSTablePointer->seqArray[seqId].len;
+    seqLength = MUSTablePointer->seqArray[SEQId].len;
     seqLength = ALIGN16(seqLength);
-    seqData = g_MUSTablePointer->seqArray[seqId].offset;
-    ptr = Nas_SzAutoDivide(&gSeqLoadedPool, 1, seqLength, arg1, seqId);
+    SEQData = MUSTablePointer->seqArray[SEQId].offset;
+    ptr = NasSzAutoDivide(&SeqLoadedPool, 1, seqLength, arg1, SEQId);
     if (ptr == NULL) {
         return NULL;
     }
 
-    EmemLoad(seqData, ptr, seqLength);
-    if (gSeqLoadStatus[seqId] != 5) {
-        gSeqLoadStatus[seqId] = 2;
+    EmemLoad(SEQData, ptr, seqLength);
+    if (SeqLoadStatus[SEQId] != 5) {
+        SeqLoadStatus[SEQId] = 2;
     }
     return ptr;
 }
 
-void* Nas_MySeqLoadSlow(s32 seqId, s32 arg1, struct SequencePlayer* seqPlayer) {
+void* NasMySeqLoadSlow(s32 SEQId, s32 arg1, struct SequencePlayer* seqPlayer) {
     s32 seqLength;
     void* ptr;
-    u8* seqData;
+    u8* SEQData;
     OSMesgQueue* mesgQueue;
 
-    seqLength = g_MUSTablePointer->seqArray[seqId].len;
+    seqLength = MUSTablePointer->seqArray[SEQId].len;
     seqLength = ALIGN16(seqLength);
-    seqData = g_MUSTablePointer->seqArray[seqId].offset;
-    ptr = Nas_SzAutoDivide(&gSeqLoadedPool, 1, seqLength, arg1, seqId);
+    SEQData = MUSTablePointer->seqArray[SEQId].offset;
+    ptr = NasSzAutoDivide(&SeqLoadedPool, 1, seqLength, arg1, SEQId);
     if (ptr == NULL) {
         return NULL;
     }
     if (seqLength < 0x41) {
-        EmemLoad(seqData, ptr, (u32) seqLength);
+        EmemLoad(SEQData, ptr, (u32) seqLength);
         if (1) {}
-        if (gSeqLoadStatus[seqId] != 5) {
-            gSeqLoadStatus[seqId] = 2;
+        if (SeqLoadStatus[SEQId] != 5) {
+            SeqLoadStatus[SEQId] = 2;
         }
     } else {
-        EmemLoad(seqData, ptr, 0x00000040U);
-        mesgQueue = &seqPlayer->seqDmaMesgQueue;
-        osCreateMesgQueue(mesgQueue, &seqPlayer->seqDmaMesg, 1);
-        seqPlayer->seqDmaInProgress = true;
-        Nas_FastRomCopy((uintptr_t) (seqData + 0x40), (u8*) ptr + 0x40, seqLength - 0x40, mesgQueue,
-                             &seqPlayer->seqDmaIoMesg);
-        if (gSeqLoadStatus[seqId] != 5) {
-            gSeqLoadStatus[seqId] = 1;
+        EmemLoad(SEQData, ptr, 0x00000040U);
+        mesgQueue = &seqPlayer->SEQDmaMesgQueue;
+        osCreateMesgQueue(mesgQueue, &seqPlayer->SEQDmaMesg, 1);
+        seqPlayer->SEQDmaInProgress = true;
+        NasFastRomCopy((uintptr_t) (SEQData + 0x40), (u8*) ptr + 0x40, seqLength - 0x40, mesgQueue,
+                             &seqPlayer->SEQDmaIoMesg);
+        if (SeqLoadStatus[SEQId] != 5) {
+            SeqLoadStatus[SEQId] = 1;
         }
     }
     return ptr;
 }
 
-u8 Nas_CountBankInSeq(u32 seqId, s32* nonNullCount, s32* nullCount) {
+u8 NasCountBankInSeq(u32 SEQId, s32* nonNullCount, s32* nullCount) {
     void* temp;
-    u32 bankId;
-    u16 offset;
+    u32 BankId;
+    u16 Offset;
     u8 i;
     u8 ret;
 
     *nullCount = 0;
     *nonNullCount = 0;
-    offset = ((u16*) gAlBankSets)[seqId];
-    for (i = gAlBankSets[offset++], ret = 0; i != 0; i--) {
-        bankId = gAlBankSets[offset++];
+    Offset = ((u16*) AlBankSets)[SEQId];
+    for (i = AlBankSets[Offset++], ret = 0; i != 0; i--) {
+        BankId = AlBankSets[Offset++];
 
-        if (IS_BANK_LOAD_COMPLETE(bankId) == true) {
-            temp = Nas_SzHeapAlloc(1, 2, bankId);
+        if (IS_BANK_LOAD_COMPLETE(BankId) == true) {
+            temp = NasSzHeapAlloc(1, 2, BankId);
         } else {
             temp = NULL;
         }
 
         if (temp == NULL) {
             (*nullCount)++;
-            ret = bankId;
+            ret = BankId;
         } else {
             (*nonNullCount)++;
         }
@@ -626,120 +626,120 @@ u8 Nas_CountBankInSeq(u32 seqId, s32* nonNullCount, s32* nullCount) {
     return ret;
 }
 
-struct AudioBank* Nas_PreLoadBank(s32 seqId, u8* outDefaultBank) {
+struct AudioBank* NasPreLoadBank(s32 SEQId, u8* outDefaultBank) {
     void* ret;
-    u32 bankId;
-    u16 offset;
+    u32 BankId;
+    u16 Offset;
     u8 i;
 
-    offset = ((u16*) gAlBankSets)[seqId];
-    for (i = gAlBankSets[offset++]; i != 0; i--) {
-        bankId = gAlBankSets[offset++];
+    Offset = ((u16*) AlBankSets)[SEQId];
+    for (i = AlBankSets[Offset++]; i != 0; i--) {
+        BankId = AlBankSets[Offset++];
 
-        if (IS_BANK_LOAD_COMPLETE(bankId) == true) {
-            ret = Nas_SzHeapAlloc(1, 2, bankId);
+        if (IS_BANK_LOAD_COMPLETE(BankId) == true) {
+            ret = NasSzHeapAlloc(1, 2, BankId);
         } else {
             ret = NULL;
         }
 
         if (ret == NULL) {
-            ret = Nas_MyBankLoad(bankId, 2);
+            ret = NasMyBankLoad(BankId, 2);
         }
     }
-    *outDefaultBank = bankId;
+    *outDefaultBank = BankId;
     return ret;
 }
 
-void Nas_PreLoadSeq(u32 seqId, u8 preloadMask) {
+void NasPreLoadSeq(u32 SEQId, u8 preloadMask) {
     void* sequenceData;
     u8 temp;
 
-    if (seqId >= gSequenceCount) {
+    if (SEQId >= SequenceCount) {
         return;
     }
 
-    if (g_MUSTablePointer->seqArray[seqId].len == 0) {
-        seqId = (u32) g_MUSTablePointer->seqArray[seqId].offset;
+    if (MUSTablePointer->seqArray[SEQId].len == 0) {
+        SEQId = (u32) MUSTablePointer->seqArray[SEQId].offset;
     }
 
-    gAudioLoadLock = AUDIO_LOCK_LOADING;
+    AudioLoadLock = AUDIO_LOCK_LOADING;
     if (preloadMask & PRELOAD_BANKS) {
-        Nas_PreLoadBank(seqId, &temp);
+        NasPreLoadBank(SEQId, &temp);
     }
 
     if (preloadMask & PRELOAD_SEQUENCE) {
         //! @bug should be IS_SEQ_LOAD_COMPLETE
-        if (IS_BANK_LOAD_COMPLETE(seqId) == true) {
-            sequenceData = Nas_SzHeapAlloc(0, 2, seqId);
+        if (IS_BANK_LOAD_COMPLETE(SEQId) == true) {
+            sequenceData = NasSzHeapAlloc(0, 2, SEQId);
         } else {
             sequenceData = NULL;
         }
-        if (sequenceData == NULL && Nas_MySeqLoad(seqId, 2) == NULL) {
-            gAudioLoadLock = AUDIO_LOCK_NOT_LOADING;
+        if (sequenceData == NULL && NasMySeqLoad(SEQId, 2) == NULL) {
+            AudioLoadLock = AUDIO_LOCK_NOT_LOADING;
             return;
         }
     }
 
-    gAudioLoadLock = AUDIO_LOCK_NOT_LOADING;
+    AudioLoadLock = AUDIO_LOCK_NOT_LOADING;
 }
 
-void Nas_StartMySeq(u32 player, u32 seqId, s32 loadAsync) {
+void NasStartMySeq(u32 Player, u32 SEQId, s32 loadAsync) {
     if (!loadAsync) {
-        gAudioLoadLock = AUDIO_LOCK_LOADING;
+        AudioLoadLock = AUDIO_LOCK_LOADING;
     }
-    Nas_StartMySeq_Inner(player, seqId, loadAsync);
+    NasStartMySeqInner(Player, SEQId, loadAsync);
     if (!loadAsync) {
-        gAudioLoadLock = AUDIO_LOCK_NOT_LOADING;
+        AudioLoadLock = AUDIO_LOCK_NOT_LOADING;
     }
 }
 
-void Nas_StartMySeq_Inner(u32 player, u32 seqId, s32 loadAsync) {
+void NasStartMySeqInner(u32 Player, u32 SEQId, s32 loadAsync) {
     void* sequenceData;
-    struct SequencePlayer* seqPlayer = &SeqPlayer[player];
-    UNUSED u32 padding[2];
+    struct SequencePlayer* seqPlayer = &SeqPlayer[Player];
+    UNUSED u32 Padding[2];
 
-    if (seqId >= gSequenceCount) {
+    if (SEQId >= SequenceCount) {
         return;
     }
 
-    if (g_MUSTablePointer->seqArray[seqId].len == 0) {
-        seqId = (u32) g_MUSTablePointer->seqArray[seqId].offset;
+    if (MUSTablePointer->seqArray[SEQId].len == 0) {
+        SEQId = (u32) MUSTablePointer->seqArray[SEQId].offset;
     }
 
-    Nas_GetNewSubTrack(seqPlayer);
+    NasGetNewSubTrack(seqPlayer);
     if (loadAsync) {
         s32 numMissingBanks = 0;
-        s32 dummy = 0;
-        s32 bankId = Nas_CountBankInSeq(seqId, &dummy, &numMissingBanks);
+        s32 Dummy = 0;
+        s32 BankId = NasCountBankInSeq(SEQId, &Dummy, &numMissingBanks);
         if (numMissingBanks == 1) {
-            if (Nas_MyBankSlowLoad(bankId, 2, seqPlayer) == NULL) {
+            if (NasMyBankSlowLoad(BankId, 2, seqPlayer) == NULL) {
                 return;
             }
             /**
              * @bug This should set the last bank (i.e. the first in the JSON)
-             * as default, not the missing one. This code path never gets
+             * as default, not the missing one. This Code path never gets
              * taken, though -- all sequence loading is synchronous.
              */
-            seqPlayer->defaultBank[0] = bankId;
+            seqPlayer->DefaultBank[0] = BankId;
         } else {
-            if (Nas_PreLoadBank(seqId, &seqPlayer->defaultBank[0]) == NULL) {
+            if (NasPreLoadBank(SEQId, &seqPlayer->DefaultBank[0]) == NULL) {
                 return;
             }
         }
-    } else if (Nas_PreLoadBank(seqId, &seqPlayer->defaultBank[0]) == NULL) {
+    } else if (NasPreLoadBank(SEQId, &seqPlayer->DefaultBank[0]) == NULL) {
         return;
     }
 
-    seqPlayer->seqId = seqId;
-    sequenceData = Nas_SzHeapAlloc(0, 2, seqId);
+    seqPlayer->SEQId = SEQId;
+    sequenceData = NasSzHeapAlloc(0, 2, SEQId);
     if (sequenceData == NULL) {
-        if (seqPlayer->seqDmaInProgress) {
+        if (seqPlayer->SEQDmaInProgress) {
             return;
         }
         if (loadAsync) {
-            sequenceData = Nas_MySeqLoadSlow(seqId, 2, seqPlayer);
+            sequenceData = NasMySeqLoadSlow(SEQId, 2, seqPlayer);
         } else {
-            sequenceData = Nas_MySeqLoad(seqId, 2);
+            sequenceData = NasMySeqLoad(SEQId, 2);
         }
 
         if (sequenceData == NULL) {
@@ -747,12 +747,12 @@ void Nas_StartMySeq_Inner(u32 player, u32 seqId, s32 loadAsync) {
         }
     }
 
-    Nas_SubVoiceSet(player);
-    seqPlayer->scriptState.depth = 0;
-    seqPlayer->delay = 0;
-    seqPlayer->enabled = true;
-    seqPlayer->seqData = sequenceData;
-    seqPlayer->scriptState.pc = sequenceData;
+    NasSubVoiceSet(Player);
+    seqPlayer->ScriptState.Depth = 0;
+    seqPlayer->Delay = 0;
+    seqPlayer->Enabled = true;
+    seqPlayer->SEQData = sequenceData;
+    seqPlayer->ScriptState.pc = sequenceData;
 }
 
 extern u8 _audio_banksSegmentRomStart;
@@ -762,129 +762,129 @@ extern u8 _sequencesSegmentRomStart;
 /**
  * There is some wild bullshit going on in this function
  *  It is an unholy cross between SM64's EU and Shindou
- *  verions of this function, with the for loop towards
- *  the bottom resembling stuff from Nas_MyBankSlowLoad
+ *  verions of this function, with the for Loop towards
+ *  the bottom resembling stuff from NasMyBankSlowLoad
  */
-void Nas_InitAudio(void) {
+void NasInitAudio(void) {
     s32 i;
     UNUSED s32 pad[6];
     s32 j, k;
     s32 ctlSeqCount;
     u32 buf[2];
     UNUSED s32 lim2, lim3;
-    s32 size;
+    s32 Size;
     u64* ptr64;
-    UNUSED s32 pad2;
+    UNUSED s32 Pad2;
     UNUSED s32 one = 1;
     void* data;
 
-    gAudioLoadLock = 0;
+    AudioLoadLock = 0;
 
-    for (i = 0; i < gAudioHeapSize / 8; i++) {
-        ((u64*) gAudioHeap)[i] = 0;
+    for (i = 0; i < AudioHeapSize / 8; i++) {
+        ((u64*) AudioHeap)[i] = 0;
     }
 
 #ifdef TARGET_N64
-    // It seems boot.s doesn't clear the .bss area for audio, so do it here.
-    ptr64 = (u64*) ((u8*) gGfxSPTaskOutputBuffer + sizeof(gGfxSPTaskOutputBuffer));
-    for (k = ((uintptr_t) &gAudioGlobalsEndMarker - (uintptr_t) ((u64 *)((u8 *) gGfxSPTaskOutputBuffer + sizeof(gGfxSPTaskOutputBuffer))) ) / 8; k >= 0; k--) {
+    // It seems boot.s doesn't clear the .bss Area for audio, so do it here.
+    ptr64 = (u64*) ((u8*) GfxSPTaskOutputBuffer + sizeof(GfxSPTaskOutputBuffer));
+    for (k = ((uintptr_t) &AudioGlobalsEndMarker - (uintptr_t) ((u64 *)((u8 *) GfxSPTaskOutputBuffer + sizeof(GfxSPTaskOutputBuffer))) ) / 8; k >= 0; k--) {
         *ptr64++ = 0;
     }
 #endif
 
 #ifdef VERSION_EU
     D_803B7178 = 20.03042f;
-    gRefreshRate = 50;
+    RefreshRate = 50;
 #else // US
     switch (osTvType) {
         case TV_TYPE_PAL:
             D_803B7178 = 20.03042f;
-            gRefreshRate = 50;
+            RefreshRate = 50;
             break;
         case TV_TYPE_MPAL:
             D_803B7178 = 16.546f;
-            gRefreshRate = 60;
+            RefreshRate = 60;
             break;
         case TV_TYPE_NTSC:
         default:
             D_803B7178 = 16.713f;
-            gRefreshRate = 60;
+            RefreshRate = 60;
             break;
     }
 #endif
-    port_eu_init();
+    PortEUInit();
     if (k) {} // fake
     for (i = 0; i < NUMAIBUFFERS; i++) {
-        gAiBufferLengths[i] = 0xa0;
+        AiBufferLengths[i] = 0xa0;
     }
 
-    gAudioTaskIndex = gAudioFrameCount = 0;
-    gCurrAiBufferIndex = 0;
-    gAudioLibSoundMode = 0;
-    gAudioTask = NULL;
-    gAudioTasks[0].task.t.data_size = 0;
-    gAudioTasks[1].task.t.data_size = 0;
+    AudioTaskIndex = AudioFrameCount = 0;
+    CurrAiBufferIndex = 0;
+    AudioLibSoundMode = 0;
+    AudioTask = NULL;
+    AudioTasks[0].Task.t.data_size = 0;
+    AudioTasks[1].Task.t.data_size = 0;
     osCreateMesgQueue(&D_803B6720, &D_803B6738, 1);
-    osCreateMesgQueue(&gCurrAudioFrameDmaQueue, gCurrAudioFrameDmaMesgBufs, ARRAY_COUNT(gCurrAudioFrameDmaMesgBufs));
-    gCurrAudioFrameDmaCount = 0;
-    gSampleDmaNumListItems = 0;
+    osCreateMesgQueue(&CurrAudioFrameDmaQueue, CurrAudioFrameDmaMesgBufs, ARRAY_COUNT(CurrAudioFrameDmaMesgBufs));
+    CurrAudioFrameDmaCount = 0;
+    SampleDmaNumListItems = 0;
 
-    Nas_SzCustomClear(gAudioInitPoolSize);
+    NasSzCustomClear(AudioInitPoolSize);
 
     for (i = 0; i < NUMAIBUFFERS; i++) {
-        gAiBuffers[i] = Nas_HeapAlloc(&gAudioInitPool, AIBUFFER_LEN);
+        AiBuffers[i] = NasHeapAlloc(&AudioInitPool, AIBUFFER_LEN);
 
         for (j = 0; j < (s32) (AIBUFFER_LEN / sizeof(s16)); j++) {
-            gAiBuffers[i][j] = 0;
+            AiBuffers[i][j] = 0;
         }
     }
 
-    gAudioResetPresetIdToLoad = 0;
-    gAudioResetStatus = one;
-    Nas_DelayDown();
+    AudioResetPresetIdToLoad = 0;
+    AudioResetStatus = one;
+    NasDelayDown();
 
     // Load headers for sounds and sequences
-    g_MUSTablePointer = (ALSeqFile*) buf;
+    MUSTablePointer = (ALSeqFile*) buf;
     data = &_sequencesSegmentRomStart;
-    EmemLoad(data, g_MUSTablePointer, 0x10);
-    gSequenceCount = g_MUSTablePointer->seqCount;
-    size = gSequenceCount * sizeof(ALSeqData) + 4;
-    size = ALIGN16(size);
-    g_MUSTablePointer = Nas_HeapAlloc(&gAudioInitPool, size);
-    EmemLoad(data, g_MUSTablePointer, size);
-    Nas_BankHeaderInit(g_MUSTablePointer, data);
+    EmemLoad(data, MUSTablePointer, 0x10);
+    SequenceCount = MUSTablePointer->seqCount;
+    Size = SequenceCount * sizeof(ALSeqData) + 4;
+    Size = ALIGN16(Size);
+    MUSTablePointer = NasHeapAlloc(&AudioInitPool, Size);
+    EmemLoad(data, MUSTablePointer, Size);
+    NasBankHeaderInit(MUSTablePointer, data);
 
-    // Load header for CTL (instrument metadata)
-    gAlCtlHeader = (ALSeqFile*) buf;
+    // Load header for CTL (Instrument metadata)
+    AlCtlHeader = (ALSeqFile*) buf;
     data = &_audio_banksSegmentRomStart;
-    EmemLoad(data, gAlCtlHeader, 0x10);
-    ctlSeqCount = gAlCtlHeader->seqCount;
-    size = ALIGN16(ctlSeqCount * sizeof(ALSeqData) + 4);
-    gAlCtlHeader = Nas_HeapAlloc(&gAudioInitPool, size);
-    EmemLoad(data, gAlCtlHeader, size);
-    Nas_BankHeaderInit(gAlCtlHeader, data);
-    g_sfxPointer = Nas_HeapAlloc(&gAudioInitPool, ctlSeqCount * sizeof(struct CtlEntry));
+    EmemLoad(data, AlCtlHeader, 0x10);
+    ctlSeqCount = AlCtlHeader->seqCount;
+    Size = ALIGN16(ctlSeqCount * sizeof(ALSeqData) + 4);
+    AlCtlHeader = NasHeapAlloc(&AudioInitPool, Size);
+    EmemLoad(data, AlCtlHeader, Size);
+    NasBankHeaderInit(AlCtlHeader, data);
+    SFXPointer = NasHeapAlloc(&AudioInitPool, ctlSeqCount * sizeof(struct CtlEntry));
     for (i = 0; i < ctlSeqCount; i++) {
-        EmemLoad(gAlCtlHeader->seqArray[i].offset, buf, 0x10);
-        g_sfxPointer[i].numInstruments = buf[0];
-        g_sfxPointer[i].numDrums = buf[1];
+        EmemLoad(AlCtlHeader->seqArray[i].offset, buf, 0x10);
+        SFXPointer[i].NumInstruments = buf[0];
+        SFXPointer[i].NumDrums = buf[1];
     }
 
-    // Load header for TBL (raw sound data)
-    gAlTbl = (ALSeqFile*) buf;
+    // Load header for TBL (raw Sound data)
+    AlTbl = (ALSeqFile*) buf;
     data = &_audio_tablesSegmentRomStart;
-    EmemLoad(data, gAlTbl, 0x10);
-    size = gAlTbl->seqCount * sizeof(ALSeqData) + 4;
-    size = ALIGN16(size);
-    gAlTbl = Nas_HeapAlloc(&gAudioInitPool, size);
-    EmemLoad(data, gAlTbl, size);
-    Nas_BankHeaderInit(gAlTbl, data);
+    EmemLoad(data, AlTbl, 0x10);
+    Size = AlTbl->seqCount * sizeof(ALSeqData) + 4;
+    Size = ALIGN16(Size);
+    AlTbl = NasHeapAlloc(&AudioInitPool, Size);
+    EmemLoad(data, AlTbl, Size);
+    NasBankHeaderInit(AlTbl, data);
 
     // Load bank sets for each sequence
-    gAlBankSets = Nas_HeapAlloc(&gAudioInitPool, 0x100);
-    EmemLoad((u8 *) &_instrument_setsSegmentRomStart, gAlBankSets, 0x100);
+    AlBankSets = NasHeapAlloc(&AudioInitPool, 0x100);
+    EmemLoad((u8 *) &_instrument_setsSegmentRomStart, AlBankSets, 0x100);
 
-    Nas_HeapInit(&gUnkPool1.pool, Nas_HeapAlloc(&gAudioInitPool, (u32) D_800EA5D8), (u32) D_800EA5D8);
-    Nas_SubVolumeSet();
-    gAudioLoadLock = 0x76557364;
+    NasHeapInit(&UnkPool1.Pool, NasHeapAlloc(&AudioInitPool, (u32) D_800EA5D8), (u32) D_800EA5D8);
+    NasSubVolumeSet();
+    AudioLoadLock = 0x76557364;
 }

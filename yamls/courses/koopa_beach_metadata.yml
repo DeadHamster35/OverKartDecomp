@@ -10,7 +10,7 @@ course:
   cpu_behaviour_ptr: D_0D009158
   cpu_maximum_separation: 50.0f
   cpu_minimum_separation: 0.5f
-  distance_limmit_ptr: dist_limmit_pat_NORMAL
+  distance_limmit_ptr: DistLimmitPatNORMAL
   cpu_steering_sensitivity: 53
   bomb_kart_spawns: # 7 bomb kart spawn locations
     - [0x003c, 0x0001, 0.8333333, 0.0, 0.0, 0.0, 0.0]
@@ -33,17 +33,17 @@ course:
     [
       d_course_koopa_troopa_beach_track_path,
       "d_course_koopa_troopa_beach_track_path_2",
-      "&nullPath",
-      "&nullPath",
+      "&NullPath",
+      "&NullPath",
     ]
 
   # Unused except in podium ceremony
   path_table_unknown:
     [
       d_course_koopa_troopa_beach_unknown_path,
-      "&nullPath",
-      "&nullPath",
-      "&nullPath",
+      "&NullPath",
+      "&NullPath",
+      "&NullPath",
     ]
 
   sky_colors: [48, 1688, 54136, 216, 7144, 32248]

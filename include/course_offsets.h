@@ -4,10 +4,10 @@
 #include <PR/ultratypes.h>
 
 typedef struct {
-    u8* addr;      // segmented address texture file
-    u32 file_size; // compressed file size
-    u32 data_size; // uncompressed texture size
-    u32 padding;   // always zero
-} course_texture;
+    u8* Addr;      // segmented Address Texture file
+    u32 FileSize; // compressed file Size
+    u32 DataSize; // uncompressed Texture Size
+    u32 Padding;   // always zero
+} CourseTexture;
 
 #endif // COURSE_OFFSETS_H

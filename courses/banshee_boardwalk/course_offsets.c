@@ -27,7 +27,7 @@ extern u8 gTextureSignWoodRedArrow[];
 extern u8 gTexture68D940[];
 extern u8 gTexture685AC0[];
 
-const course_texture banshee_boardwalk_textures[] = {
+const CourseTexture banshee_boardwalk_textures[] = {
     { gTexture6447C4, 0x0106, 0x0800, 0x0 },
     { gTexture676FB0, 0x0525, 0x0800, 0x0 },
     { gTexture643B3C, 0x0798, 0x0800, 0x0 },

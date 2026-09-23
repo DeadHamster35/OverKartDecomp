@@ -25,7 +25,7 @@ extern u8 gTexture668608[];
 extern u8 gTexture67B75C[];
 extern u8 gTexture6835F0[];
 
-const course_texture skyscraper_textures[] = {
+const CourseTexture skyscraper_textures[] = {
     { gTexture6457D8, 0x0160, 0x0800, 0x0 },
     { gTexture6462C0, 0x01B9, 0x0800, 0x0 },
     { gTexture6864E8, 0x0807, 0x1000, 0x0 },

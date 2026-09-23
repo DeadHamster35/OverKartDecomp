@@ -15,19 +15,19 @@
 
 #pragma intrinsic(sqrtf)
 
-UNUSED void kw_setflag(s32* arg0, s32 arg1) {
+UNUSED void KWSetflag(s32* arg0, s32 arg1) {
     *arg0 = (s32) (*arg0 | arg1);
 }
 
-UNUSED void kw_clrflag(s32* arg0, s32 arg1) {
+UNUSED void KWClrflag(s32* arg0, s32 arg1) {
     *arg0 = (s32) (*arg0 & ~arg1);
 }
 
-UNUSED void kw_eorflag(s32* arg0, s32 arg1) {
+UNUSED void KWEorflag(s32* arg0, s32 arg1) {
     *arg0 = (s32) (*arg0 ^ arg1);
 }
 
-UNUSED bool kw_bitcheckflag(s32* arg0, s32 arg1) {
+UNUSED bool KWBitcheckflag(s32* arg0, s32 arg1) {
     bool phi_v1;
 
     phi_v1 = false;
@@ -37,7 +37,7 @@ UNUSED bool kw_bitcheckflag(s32* arg0, s32 arg1) {
     return phi_v1;
 }
 
-UNUSED s32 kw_bitoffcheckflag(s32* arg0, s32 arg1) {
+UNUSED s32 KWBitoffcheckflag(s32* arg0, s32 arg1) {
     s32 phi_v1;
 
     phi_v1 = 0;
@@ -47,99 +47,99 @@ UNUSED s32 kw_bitoffcheckflag(s32* arg0, s32 arg1) {
     return phi_v1;
 }
 
-void kwcopy_fval(Vec3f dest, Vec3f arg1) {
+void KwcopyFval(Vec3f dest, Vec3f arg1) {
     dest[0] = arg1[0];
     dest[1] = arg1[1];
     dest[2] = arg1[2];
 }
 
-s32 kwadd_fval(f32* value, f32 target, f32 step) {
+s32 KwaddFval(f32* Value, f32 Target, f32 step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
-        *value += step;
-        if (target <= *value) {
-            *value = target;
+    if (*Value < Target) {
+        *Value += step;
+        if (Target <= *Value) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-s32 kwsub_fval(f32* value, f32 target, f32 step) {
+s32 KwsubFval(f32* Value, f32 Target, f32 step) {
     s32 targetReached = 0;
 
-    if (target < *value) {
-        *value -= step;
-        if (*value <= target) {
-            *value = target;
+    if (Target < *Value) {
+        *Value -= step;
+        if (*Value <= Target) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-s32 kwadd_ival(s32* value, s32 target, s32 step) {
+s32 KwaddIval(s32* Value, s32 Target, s32 step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
-        *value = *value + step;
+    if (*Value < Target) {
+        *Value = *Value + step;
         targetReached = 0;
-        if (*value >= target) {
-            *value = target;
+        if (*Value >= Target) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-s32 kwsub_ival(s32* value, s32 target, s32 step) {
+s32 KwsubIval(s32* Value, s32 Target, s32 step) {
     s32 targetReached = 0;
 
-    if (target < *value) {
-        *value = *value - step;
+    if (Target < *Value) {
+        *Value = *Value - step;
         ;
-        if (target >= *value) {
-            *value = target;
+        if (Target >= *Value) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-s32 kwadd_sval(s16* value, s16 target, s16 step) {
+s32 KwaddSval(s16* Value, s16 Target, s16 step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
-        *value = *value + step;
-        if (*value >= target) {
-            *value = target;
+    if (*Value < Target) {
+        *Value = *Value + step;
+        if (*Value >= Target) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-s32 kwadd_usval(u16* value, u16 target, u16 step) {
+s32 KwaddUsval(u16* Value, u16 Target, u16 step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
-        *value += step;
-        if (*value >= target) {
-            *value = target;
+    if (*Value < Target) {
+        *Value += step;
+        if (*Value >= Target) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-s32 kwsub_sval(s16* value, s16 target, s16 step) {
+s32 KwsubSval(s16* Value, s16 Target, s16 step) {
     s32 targetReached = 0;
 
-    if (target < *value) {
-        *value -= step;
-        if (target >= *value) {
-            *value = target;
+    if (Target < *Value) {
+        *Value -= step;
+        if (Target >= *Value) {
+            *Value = Target;
             targetReached = 1;
         }
     }
@@ -147,201 +147,201 @@ s32 kwsub_sval(s16* value, s16 target, s16 step) {
 }
 
 // wtf is up with the argument types for this one?
-s32 kwsub_usval(u16* value, s32 target, s32 step) {
+s32 KwsubUsval(u16* Value, s32 Target, s32 step) {
     s32 targetReached = 0;
-    s32 temp = *value;
+    s32 temp = *Value;
 
-    if (target < temp) {
+    if (Target < temp) {
         temp -= step;
-        if (target >= temp) {
-            temp = target;
+        if (Target >= temp) {
+            temp = Target;
             targetReached = 1;
         }
-        *value = temp;
+        *Value = temp;
     }
     return targetReached;
 }
 
-UNUSED s32 kwadd_fvar(f32* value, f32 target, f32* step) {
+UNUSED s32 KwaddFvar(f32* Value, f32 Target, f32* step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
-        *value += *step;
-        if (target <= *value) {
-            *value = target;
-            targetReached = 1;
-        }
-    }
-    return targetReached;
-}
-
-UNUSED s32 kwsub_fvar(f32* value, f32 target, f32* step) {
-    s32 targetReached = 0;
-
-    if (target < *value) {
-        *value -= *step;
-        if (*value <= target) {
-            *value = target;
+    if (*Value < Target) {
+        *Value += *step;
+        if (Target <= *Value) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-UNUSED s32 kwadd_ivar(s32* value, s32 target, s32* step) {
+UNUSED s32 KwsubFvar(f32* Value, f32 Target, f32* step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
-        *value += *step;
-        if (*value >= target) {
-            *value = target;
+    if (Target < *Value) {
+        *Value -= *step;
+        if (*Value <= Target) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-UNUSED s32 kwsub_ivar(s32* value, s32 target, s32* step) {
+UNUSED s32 KwaddIvar(s32* Value, s32 Target, s32* step) {
     s32 targetReached = 0;
 
-    if (target < *value) {
-        *value -= *step;
-        if (target >= *value) {
-            *value = target;
+    if (*Value < Target) {
+        *Value += *step;
+        if (*Value >= Target) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-UNUSED s32 kwadd_svar(s16* value, s16 target, s16* step) {
+UNUSED s32 KwsubIvar(s32* Value, s32 Target, s32* step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
-        *value += *step;
-        if (*value >= target) {
-            *value = target;
+    if (Target < *Value) {
+        *Value -= *step;
+        if (Target >= *Value) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-UNUSED s32 kwsub_svar(s16* value, s16 target, s16* step) {
+UNUSED s32 KwaddSvar(s16* Value, s16 Target, s16* step) {
     s32 targetReached = 0;
 
-    if (target < *value) {
-        *value -= *step;
-        if (target >= *value) {
-            *value = target;
+    if (*Value < Target) {
+        *Value += *step;
+        if (*Value >= Target) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-s32 KWChaseSVal(s16* value, s16 target, s16 step) {
+UNUSED s32 KwsubSvar(s16* Value, s16 Target, s16* step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
+    if (Target < *Value) {
+        *Value -= *step;
+        if (Target >= *Value) {
+            *Value = Target;
+            targetReached = 1;
+        }
+    }
+    return targetReached;
+}
+
+s32 KWChaseSVal(s16* Value, s16 Target, s16 step) {
+    s32 targetReached = 0;
+
+    if (*Value < Target) {
         if (step >= 0) {
-            *value += step;
+            *Value += step;
         } else {
-            *value -= step;
+            *Value -= step;
         }
-        if (*value >= target) {
-            *value = target;
+        if (*Value >= Target) {
+            *Value = Target;
             targetReached = 1;
         }
-    } else if (target < *value) {
+    } else if (Target < *Value) {
         if (step >= 0) {
-            *value -= step;
+            *Value -= step;
         } else {
-            *value += step;
+            *Value += step;
         }
-        if (target >= *value) {
-            *value = target;
+        if (Target >= *Value) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-UNUSED s32 KWChaseIVal(s32* value, s32 target, s32 step) {
+UNUSED s32 KWChaseIVal(s32* Value, s32 Target, s32 step) {
     s32 temp_v0;
     s32 targetReached;
 
-    temp_v0 = *value;
+    temp_v0 = *Value;
     targetReached = 0;
-    if (temp_v0 < target) {
+    if (temp_v0 < Target) {
         if (step >= 0) {
-            *value = (s32) (temp_v0 + step);
+            *Value = (s32) (temp_v0 + step);
         } else {
-            *value = (s32) (temp_v0 - step);
+            *Value = (s32) (temp_v0 - step);
         }
-        if (*value >= target) {
-            *value = target;
+        if (*Value >= Target) {
+            *Value = Target;
             targetReached = 1;
         }
 
-    } else if (target < temp_v0) {
+    } else if (Target < temp_v0) {
         if (step >= 0) {
-            *value = (s32) (temp_v0 - step);
+            *Value = (s32) (temp_v0 - step);
         } else {
-            *value = (s32) (temp_v0 + step);
+            *Value = (s32) (temp_v0 + step);
         }
-        if (target >= *value) {
-            *value = target;
+        if (Target >= *Value) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-s32 KWChaseFVal(f32* value, f32 target, f32 step) {
+s32 KWChaseFVal(f32* Value, f32 Target, f32 step) {
     s32 targetReached = 0;
 
-    if (*value < target) {
+    if (*Value < Target) {
         if (step >= 0.0f) {
-            *value += step;
+            *Value += step;
         } else {
-            *value -= step;
+            *Value -= step;
         }
-        if (target <= *value) {
-            *value = target;
+        if (Target <= *Value) {
+            *Value = Target;
             targetReached = 1;
         }
-    } else if (target < *value) {
+    } else if (Target < *Value) {
         if (step >= 0.0f) {
-            *value -= step;
+            *Value -= step;
         } else {
-            *value += step;
+            *Value += step;
         }
-        if (*value <= target) {
-            *value = target;
+        if (*Value <= Target) {
+            *Value = Target;
             targetReached = 1;
         }
     }
     return targetReached;
 }
 
-void kwoufuku_sval(s16* arg0, s16 arg1, s16 arg2, s16* arg3) {
-    *arg0 += *arg3;
-    if (*arg3 >= 0) {
-        if (*arg0 >= arg2) {
-            *arg0 = arg2;
-            *arg3 = -*arg3;
+void KwoufukuSval(s16* arg0, s16 arg1, s16 Arg2, s16* Arg3) {
+    *arg0 += *Arg3;
+    if (*Arg3 >= 0) {
+        if (*arg0 >= Arg2) {
+            *arg0 = Arg2;
+            *Arg3 = -*Arg3;
         }
     } else if (arg1 >= *arg0) {
         *arg0 = arg1;
-        *arg3 = -*arg3;
+        *Arg3 = -*Arg3;
     }
 }
 
-Vec3f* vec3f_set_xyz(Vec3f arg0, f32 arg1, f32 arg2, f32 arg3) {
+Vec3f* Vec3FSetXYZ(Vec3f arg0, f32 arg1, f32 Arg2, f32 Arg3) {
     arg0[0] = arg1;
-    arg0[1] = arg2;
-    arg0[2] = arg3;
+    arg0[1] = Arg2;
+    arg0[2] = Arg3;
     return (Vec3f*) &arg0;
 }
 
@@ -354,59 +354,59 @@ Vec3f* NormalizeFVector(Vec3f dest) {
     return (Vec3f*) &dest;
 }
 
-Vec3f* CrossProduct(Vec3f dest, Vec3f arg1, Vec3f arg2) {
+Vec3f* CrossProduct(Vec3f dest, Vec3f arg1, Vec3f Arg2) {
 
-    dest[0] = (arg1[1] * arg2[2]) - (arg2[1] * arg1[2]);
-    dest[1] = (arg1[2] * arg2[0]) - (arg2[2] * arg1[0]);
-    dest[2] = (arg1[0] * arg2[1]) - (arg2[0] * arg1[1]);
+    dest[0] = (arg1[1] * Arg2[2]) - (Arg2[1] * arg1[2]);
+    dest[1] = (arg1[2] * Arg2[0]) - (Arg2[2] * arg1[0]);
+    dest[2] = (arg1[0] * Arg2[1]) - (Arg2[0] * arg1[1]);
 
     return (Vec3f*) &dest;
 }
 
-UNUSED s32 KWCheckRadiusXZ(f32 x1, f32 y1, f32 x2, f32 y2, f32 distance) {
+UNUSED s32 KWCheckRadiusXZ(f32 x1, f32 y1, f32 x2, f32 y2, f32 Distance) {
     f32 x;
     f32 y;
     s32 ret = 0;
 
     x = x2 - x1;
     y = y2 - y1;
-    if (((x * x) + (y * y)) <= (distance * distance)) {
+    if (((x * x) + (y * y)) <= (Distance * Distance)) {
         ret = 1;
     }
     return ret;
 }
 
-s32 kwset_velyztoangx(f32 arg0, f32 arg1) {
+s32 KwsetVelyztoangx(f32 arg0, f32 arg1) {
     return -Atan2t(arg0, arg1) & 0xFFFF;
 }
 
-UNUSED s32 kwset_velxztoangy(f32 arg0, f32 arg1) {
+UNUSED s32 KwsetVelxztoangy(f32 arg0, f32 arg1) {
     return Atan2t(arg1, arg0);
 }
 
-UNUSED s32 kwset_velxytoangz(f32 arg0, f32 arg1) {
+UNUSED s32 KwsetVelxytoangz(f32 arg0, f32 arg1) {
     return Atan2t(arg1, arg0);
 }
 
-f32 kwrotate2D_x(f32 x, f32 z, u16 angle) {
+f32 Kwrotate2DX(f32 x, f32 z, u16 Angle) {
     f32 cosAngle;
 
-    cosAngle = cosT(angle);
-    return (cosAngle * x) - (sinT(angle) * z);
+    cosAngle = CosT(Angle);
+    return (cosAngle * x) - (SinT(Angle) * z);
 }
 
-f32 kwrotate2D_y(f32 x, f32 z, u16 angle) {
+f32 Kwrotate2DY(f32 x, f32 z, u16 Angle) {
     f32 sinAngle;
 
-    sinAngle = sinT(angle);
-    return (cosT(angle) * z) + (sinAngle * x);
+    sinAngle = SinT(Angle);
+    return (CosT(Angle) * z) + (sinAngle * x);
 }
 
-s32 kwcalc_destangley(f32 x1, f32 x2, f32 y1, f32 y2) {
+s32 KwcalcDestangley(f32 x1, f32 x2, f32 y1, f32 y2) {
     return Atan2t(x2 - x1, y2 - y1);
 }
 
-u16 kwchase_angle(u16 angle1, u16 angle2) {
+u16 KwchaseAngle(u16 angle1, u16 angle2) {
     u16 out_angle;
 
     if ((angle1 >> 8) != (angle2 >> 8)) {
@@ -434,44 +434,44 @@ u16 kwchase_angle(u16 angle1, u16 angle2) {
     return out_angle;
 }
 
-s32 KWLookCamera(f32 arg0, f32 arg1, Vec3f arg2) {
-    return Atan2t(arg0 - arg2[0], arg1 - arg2[2]);
+s32 KWLookCamera(f32 arg0, f32 arg1, Vec3f Arg2) {
+    return Atan2t(arg0 - Arg2[0], arg1 - Arg2[2]);
 }
 
-s32 KWLookCameraPitch(f32 arg0, f32 arg1, Vec3f arg2) {
-    return Atan2t(arg0 - arg2[1], arg1 - arg2[2]);
+s32 KWLookCameraPitch(f32 arg0, f32 arg1, Vec3f Arg2) {
+    return Atan2t(arg0 - Arg2[1], arg1 - Arg2[2]);
 }
 
-s32 kwcalc_bump(Collision* arg0, Vec3f arg1) {
+s32 KwcalcBump(Collision* arg0, Vec3f arg1) {
     s32 ret = 0;
 
     CheckBump(arg0, 10.0f, arg1[0], arg1[1], arg1[2]);
-    if (arg0->flag_zx == 1) {
+    if (arg0->FlagZX == 1) {
         ret = 1;
     }
     return ret;
 }
 
-bool kwvischeck_camera_xz(Vec3f arg0, Camera* arg1, u16 arg2) {
+bool KwvischeckCameraXz(Vec3f arg0, Camera* arg1, u16 Arg2) {
     u16 temp_t9;
     s32 ret;
 
     ret = false;
-    temp_t9 = (kwcalc_destangley(arg1->camera_pos[0], arg0[0], arg1->camera_pos[2], arg0[2]) + (arg2 / 2)) - arg1->camera_direction[1];
-    if ((temp_t9 >= 0) && (arg2 >= temp_t9)) {
+    temp_t9 = (KwcalcDestangley(arg1->CameraPos[0], arg0[0], arg1->CameraPos[2], arg0[2]) + (Arg2 / 2)) - arg1->CameraDirection[1];
+    if ((temp_t9 >= 0) && (Arg2 >= temp_t9)) {
         ret = true;
     }
     return ret;
 }
 
-void kwcalc_lightvector(void) {
+void KwcalcLightvector(void) {
     Vec3f pos;
     Vec3f vec;
 
     pos[0] = 0.0f;
     pos[1] = 0.0f;
     pos[2] = 120.0f;
-    kwrotate_yx(vec, pos, (s16*) D_80165834);
+    KwrotateYx(vec, pos, (s16*) D_80165834);
     D_80165840[0] = vec[0];
     D_80165840[1] = vec[1];
     D_80165840[2] = vec[2];
@@ -480,7 +480,7 @@ void kwcalc_lightvector(void) {
 UNUSED void func_80041A70(void) {
 }
 
-void translate2D_mat(Mat4 arg0, s32 x, s32 y) {
+void Translate2DMat(Mat4 arg0, s32 x, s32 y) {
     arg0[0][0] = 1.0f;
     arg0[1][1] = 1.0f;
     arg0[2][2] = 1.0f;
@@ -506,9 +506,9 @@ void translate2D_mat(Mat4 arg0, s32 x, s32 y) {
      */
 }
 
-void Zrotate2D_mat(Mat4 dest, u16 angle) {
-    f32 sin_theta = sinT(angle);
-    f32 cos_theta = cosT(angle);
+void Zrotate2DMat(Mat4 dest, u16 Angle) {
+    f32 sin_theta = SinT(Angle);
+    f32 cos_theta = CosT(Angle);
 
     dest[0][0] = cos_theta;
     dest[1][0] = -sin_theta;
@@ -528,7 +528,7 @@ void Zrotate2D_mat(Mat4 dest, u16 angle) {
     dest[3][3] = 1.0f;
 }
 
-void scale2D_mat(Mat4 dest, f32 scale) {
+void Scale2DMat(Mat4 dest, f32 Scale) {
     dest[1][0] = 0.0f;
     dest[2][0] = 0.0f;
     dest[3][0] = 0.0f;
@@ -543,22 +543,22 @@ void scale2D_mat(Mat4 dest, f32 scale) {
     dest[2][3] = 0.0f;
     dest[2][2] = 1.0f;
     dest[3][3] = 1.0f;
-    dest[0][0] = scale;
-    dest[1][1] = scale;
+    dest[0][0] = Scale;
+    dest[1][1] = Scale;
 }
 
-UNUSED void Zrotatescale2D_mat(Mat4 dest, u16 angle, f32 scale) {
-    f32 sin_theta = sinT(angle);
-    f32 cos_theta = cosT(angle) * scale;
+UNUSED void Zrotatescale2DMat(Mat4 dest, u16 Angle, f32 Scale) {
+    f32 sin_theta = SinT(Angle);
+    f32 cos_theta = CosT(Angle) * Scale;
 
     dest[2][0] = 0.0f;
     dest[0][0] = cos_theta;
     dest[1][1] = cos_theta;
     dest[2][1] = 0.0f;
-    dest[1][0] = -sin_theta * scale;
+    dest[1][0] = -sin_theta * Scale;
     dest[0][2] = 0.0f;
     dest[1][2] = 0.0f;
-    dest[0][1] = sin_theta * scale;
+    dest[0][1] = sin_theta * Scale;
     dest[3][2] = 0.0f;
     dest[0][3] = 0.0f;
     dest[1][3] = 0.0f;
@@ -570,24 +570,24 @@ UNUSED void Zrotatescale2D_mat(Mat4 dest, u16 angle, f32 scale) {
 }
 
 /**
- * @brief arg1 and arg2 are s32's into floats?!?
+ * @brief arg1 and Arg2 are s32's into floats?!?
  *
- * @param dest
- * @param x
- * @param y
- * @param angle
- * @param scale
+ * @Param dest
+ * @Param x
+ * @Param y
+ * @Param Angle
+ * @Param Scale
  */
-void createaffine2D(Mat4 dest, s32 x, s32 y, u16 angle, f32 scale) {
-    f32 sin_theta = sinT(angle);
-    f32 cos_theta = cosT(angle) * scale;
+void Createaffine2D(Mat4 dest, s32 x, s32 y, u16 Angle, f32 Scale) {
+    f32 sin_theta = SinT(Angle);
+    f32 cos_theta = CosT(Angle) * Scale;
 
     dest[2][0] = 0.0f;
     dest[0][0] = cos_theta;
-    dest[1][0] = (-sin_theta) * scale;
+    dest[1][0] = (-sin_theta) * Scale;
     dest[3][0] = (f32) x;
     dest[1][1] = cos_theta;
-    dest[0][1] = sin_theta * scale;
+    dest[0][1] = sin_theta * Scale;
     dest[2][1] = 0.0f;
     dest[3][1] = (f32) y;
     dest[0][2] = 0.0f;
@@ -600,108 +600,108 @@ void createaffine2D(Mat4 dest, s32 x, s32 y, u16 angle, f32 scale) {
     dest[2][3] = 0.0f;
 }
 
-// Likely D_801658**[index] = 1; * denotes wildcard
-void kwswitch_demo2pgp(void) {
+// Likely D_801658**[Index] = 1; * denotes wildcard
+void KwswitchDemo2Pgp(void) {
     D_801658FE = 1;
 }
 
 void guOrtho(Mtx*, f32, f32, f32, f32, f32, f32, f32); /* extern */
 extern s8 D_801658FE;
 
-void kwset_projection2D_matrix(void) {
+void KwsetProjection2DMatrix(void) {
     guOrtho(&D_80183D60, 0.0f, 320.0f, 240.0f, 0.0f, -1.0f, 1.0f, 1.0f);
-    switch (g_ScreenSplitA) {
+    switch (ScreenSplitA) {
         case SCREEN_MODE_1P:
-            guOrtho(&gDynamicP->mtxOrtho, 0.0f, 320.0f, 240.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+            guOrtho(&DynamicP->MTXOrtho, 0.0f, 320.0f, 240.0f, 0.0f, -1.0f, 1.0f, 1.0f);
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            guOrtho(&gDynamicP->mtxOrtho, 0.0f, 160.0f, 120.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+            guOrtho(&DynamicP->MTXOrtho, 0.0f, 160.0f, 120.0f, 0.0f, -1.0f, 1.0f, 1.0f);
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
             if (D_801658FE == 0) {
-                guOrtho(&gDynamicP->mtxOrtho, 0.0f, 320.0f, 120.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+                guOrtho(&DynamicP->MTXOrtho, 0.0f, 320.0f, 120.0f, 0.0f, -1.0f, 1.0f, 1.0f);
             } else {
-                guOrtho(&gDynamicP->mtxOrtho, 0.0f, 320.0f, 240.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+                guOrtho(&DynamicP->MTXOrtho, 0.0f, 320.0f, 240.0f, 0.0f, -1.0f, 1.0f, 1.0f);
             }
             break;
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            guOrtho(&gDynamicP->mtxOrtho, 0.0f, 320.0f, 240.0f, 0.0f, -1.0f, 1.0f, 1.0f);
+            guOrtho(&DynamicP->MTXOrtho, 0.0f, 320.0f, 240.0f, 0.0f, -1.0f, 1.0f, 1.0f);
             break;
     }
 }
 
 void KW2DMatrixInit(void) {
-    gDPSetTexturePersp(gDisplayListHead++, G_TP_PERSP);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxOrtho),
+    gDPSetTexturePersp(DisplayListHead++, G_TP_PERSP);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXOrtho),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 }
 
 // void Affine2Mtx(Mtx*, Mat4);
 
-UNUSED void kwtranslate2D(s32 x, s32 y) {
-    Mat4 matrix;
+UNUSED void Kwtranslate2D(s32 x, s32 y) {
+    Mat4 Matrix;
 
-    translate2D_mat(matrix, x, y);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
+    Translate2DMat(Matrix, x, y);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
 
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-UNUSED void kwZrotate2D(u16 angle_z) {
-    Mat4 matrix;
+UNUSED void KWZrotate2D(u16 AngleZ) {
+    Mat4 Matrix;
 
-    Zrotate2D_mat(matrix, angle_z);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
+    Zrotate2DMat(Matrix, AngleZ);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
 
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-UNUSED void kwscale2D(f32 scale) {
-    Mat4 matrix;
+UNUSED void Kwscale2D(f32 Scale) {
+    Mat4 Matrix;
 
-    scale2D_mat(matrix, scale);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
+    Scale2DMat(Matrix, Scale);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
 
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-UNUSED void kwZrotatescale2D(u16 angle, f32 scale) {
-    Mat4 matrix;
+UNUSED void KWZrotatescale2D(u16 Angle, f32 Scale) {
+    Mat4 Matrix;
 
-    Zrotatescale2D_mat(matrix, angle, scale);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
+    Zrotatescale2DMat(Matrix, Angle, Scale);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
 
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-UNUSED void kwscaletranslate2D(s32 x, s32 y, f32 scale) {
-    Mat4 matrix;
+UNUSED void Kwscaletranslate2D(s32 x, s32 y, f32 Scale) {
+    Mat4 Matrix;
 
-    translate2D_mat(matrix, x, y);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
+    Translate2DMat(Matrix, x, y);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
 
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
-    scale2D_mat(matrix, scale);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    Scale2DMat(Matrix, Scale);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
 }
 
-void kwcreateaffine2D(s32 x, s32 y, u16 angle, f32 scale) {
-    Mat4 matrix;
-    createaffine2D(matrix, x, y, angle, scale);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+void Kwcreateaffine2D(s32 x, s32 y, u16 Angle, f32 Scale) {
+    Mat4 Matrix;
+    Createaffine2D(Matrix, x, y, Angle, Scale);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-UNUSED void func_800423F0(Mat4 arg0, u16 arg1, u16 arg2, u16 arg3) {
+UNUSED void func_800423F0(Mat4 arg0, u16 arg1, u16 Arg2, u16 Arg3) {
     f32 sp3C;
     f32 temp_f20;
     f32 sp34;
@@ -709,12 +709,12 @@ UNUSED void func_800423F0(Mat4 arg0, u16 arg1, u16 arg2, u16 arg3) {
     f32 sp2C;
     f32 temp_f0;
 
-    sp3C = sinT(arg1);
-    temp_f20 = cosT(arg1);
-    sp34 = sinT(arg2);
-    sp30 = cosT(arg2);
-    sp2C = sinT(arg3);
-    temp_f0 = cosT(arg3);
+    sp3C = SinT(arg1);
+    temp_f20 = CosT(arg1);
+    sp34 = SinT(Arg2);
+    sp30 = CosT(Arg2);
+    sp2C = SinT(Arg3);
+    temp_f0 = CosT(Arg3);
 
     arg0[0][0] = (f32) (sp30 * temp_f0 + (sp3C * sp34 * sp2C));
     arg0[1][0] = (f32) ((-sp30 * sp2C) + (sp3C * sp34 * temp_f0));
@@ -734,11 +734,11 @@ UNUSED void func_800423F0(Mat4 arg0, u16 arg1, u16 arg2, u16 arg3) {
     arg0[3][3] = 1.0f;
 }
 
-UNUSED void kwrotate_mtx_yx(Mat4 arg0, u16 arg1, u16 arg2) {
-    f32 sp2C = sinT(arg1);
-    f32 sp28 = cosT(arg1);
-    f32 sin_theta_y = sinT(arg2);
-    f32 cos_theta_y = cosT(arg2);
+UNUSED void KwrotateMTXYx(Mat4 arg0, u16 arg1, u16 Arg2) {
+    f32 sp2C = SinT(arg1);
+    f32 sp28 = CosT(arg1);
+    f32 sin_theta_y = SinT(Arg2);
+    f32 cos_theta_y = CosT(Arg2);
 
     arg0[1][0] = sp2C * sin_theta_y;
     arg0[2][0] = sp28 * sin_theta_y;
@@ -751,14 +751,14 @@ UNUSED void kwrotate_mtx_yx(Mat4 arg0, u16 arg1, u16 arg2) {
     arg0[2][2] = sp28 * cos_theta_y;
 }
 
-void kwcreate_modeling_matrix(Mat4 transformMatrix, Vec3f translationVector, Vec3su rotationVector,
+void KwcreateModelingMatrix(Mat4 transformMatrix, Vec3f translationVector, Vec3su rotationVector,
                                     f32 scalingFactor) {
-    f32 sinX = sinT(rotationVector[0]);
-    f32 cosX = cosT(rotationVector[0]);
-    f32 sinY = sinT(rotationVector[1]);
-    f32 cosY = cosT(rotationVector[1]);
-    f32 sinZ = sinT(rotationVector[2]);
-    f32 cosZ = cosT(rotationVector[2]);
+    f32 sinX = SinT(rotationVector[0]);
+    f32 cosX = CosT(rotationVector[0]);
+    f32 sinY = SinT(rotationVector[1]);
+    f32 cosY = CosT(rotationVector[1]);
+    f32 sinZ = SinT(rotationVector[2]);
+    f32 cosZ = CosT(rotationVector[2]);
 
     transformMatrix[0][0] = ((cosY * cosZ) + (sinX * sinY * sinZ)) * scalingFactor;
     transformMatrix[1][0] = ((-cosY * sinZ) + (sinX * sinY * cosZ)) * scalingFactor;
@@ -778,18 +778,18 @@ void kwcreate_modeling_matrix(Mat4 transformMatrix, Vec3f translationVector, Vec
     transformMatrix[3][3] = 1.0f;
 }
 
-void kwcreate_board_matrix(Mat4 transformMatrix, Vec3f vec1, Vec3f vec2, f32 scale) {
-    transformMatrix[0][0] = scale;
+void KwcreateBoardMatrix(Mat4 transformMatrix, Vec3f vec1, Vec3f vec2, f32 Scale) {
+    transformMatrix[0][0] = Scale;
     transformMatrix[1][0] = 0.0f;
     transformMatrix[2][0] = 0.0f;
     transformMatrix[3][0] = vec1[0] - vec2[0];
     transformMatrix[0][1] = 0.0f;
-    transformMatrix[1][1] = -scale;
+    transformMatrix[1][1] = -Scale;
     transformMatrix[2][1] = 0.0f;
     transformMatrix[3][1] = vec1[1] - vec2[1];
     transformMatrix[0][2] = 0.0f;
     transformMatrix[1][2] = 0.0f;
-    transformMatrix[2][2] = -scale;
+    transformMatrix[2][2] = -Scale;
     transformMatrix[3][2] = vec1[2] - vec2[2];
     transformMatrix[0][3] = 0.0f;
     transformMatrix[1][3] = 0.0f;
@@ -799,39 +799,39 @@ void kwcreate_board_matrix(Mat4 transformMatrix, Vec3f vec1, Vec3f vec2, f32 sca
 
 /**
  * @brief Tried to put the definitions in the declares. However, sp3C wants to be at the top.
- * Something may be possible with some padding. Couldn't find a way though. So we get big mess.
+ * Something may be possible with some Padding. Couldn't find a way though. So we get big mess.
  *
- * @param arg0
- * @param arg1
+ * @Param arg0
+ * @Param arg1
  **/
 
-void kwcreate_modeling_matrix_anm(s32 objectIndex, Mat4 transformMatrix) {
+void KwcreateModelingMatrixAnm(s32 ObjectIndex, Mat4 transformMatrix) {
     f32 sinX;
-    AnmObject* object = &g_DynamicObjects[objectIndex];
+    AnmObject* object = &DynamicObjects[ObjectIndex];
     f32 sinY;
     f32 cosY;
     f32 sinZ;
     f32 cosZ;
     f32 cosX;
 
-    sinX = sinT(object->texang[0]);
-    cosX = cosT(object->texang[0]);
-    sinY = sinT(object->texang[1]);
-    cosY = cosT(object->texang[1]);
-    sinZ = sinT(object->texang[2]);
-    cosZ = cosT(object->texang[2]);
+    sinX = SinT(object->Texang[0]);
+    cosX = CosT(object->Texang[0]);
+    sinY = SinT(object->Texang[1]);
+    cosY = CosT(object->Texang[1]);
+    sinZ = SinT(object->Texang[2]);
+    cosZ = CosT(object->Texang[2]);
 
-    transformMatrix[0][0] = object->scale * ((cosY * cosZ) + (sinX * sinY * sinZ));
-    transformMatrix[1][0] = object->scale * ((-cosY * sinZ) + sinX * sinY * cosZ);
-    transformMatrix[2][0] = object->scale * (cosX * sinY);
+    transformMatrix[0][0] = object->Scale * ((cosY * cosZ) + (sinX * sinY * sinZ));
+    transformMatrix[1][0] = object->Scale * ((-cosY * sinZ) + sinX * sinY * cosZ);
+    transformMatrix[2][0] = object->Scale * (cosX * sinY);
     transformMatrix[3][0] = object->pos[0];
-    transformMatrix[0][1] = object->scale * (cosX * sinZ);
-    transformMatrix[1][1] = object->scale * (cosX * cosZ);
-    transformMatrix[2][1] = object->scale * -sinX;
+    transformMatrix[0][1] = object->Scale * (cosX * sinZ);
+    transformMatrix[1][1] = object->Scale * (cosX * cosZ);
+    transformMatrix[2][1] = object->Scale * -sinX;
     transformMatrix[3][1] = object->pos[1];
-    transformMatrix[0][2] = object->scale * ((-sinY * cosZ) + (sinX * cosY * sinZ));
-    transformMatrix[1][2] = object->scale * ((sinY * sinZ) + (sinX * cosY * cosZ));
-    transformMatrix[2][2] = object->scale * (cosX * cosY);
+    transformMatrix[0][2] = object->Scale * ((-sinY * cosZ) + (sinX * cosY * sinZ));
+    transformMatrix[1][2] = object->Scale * ((sinY * sinZ) + (sinX * cosY * cosZ));
+    transformMatrix[2][2] = object->Scale * (cosX * cosY);
     transformMatrix[3][2] = object->pos[2];
     transformMatrix[0][3] = 0.0f;
     transformMatrix[1][3] = 0.0f;
@@ -839,31 +839,31 @@ void kwcreate_modeling_matrix_anm(s32 objectIndex, Mat4 transformMatrix) {
     transformMatrix[3][3] = 1.0f;
 }
 
-UNUSED void kwscaling_matrix_x(Mat4 arg0, f32 arg1) {
+UNUSED void KwscalingMatrixX(Mat4 arg0, f32 arg1) {
     arg0[0][0] *= arg1;
     arg0[1][0] *= arg1;
     arg0[2][0] *= arg1;
 }
 
-UNUSED void kwscaling_matrix_y(Mat4 arg0, f32 arg1) {
+UNUSED void KwscalingMatrixY(Mat4 arg0, f32 arg1) {
     arg0[0][1] *= arg1;
     arg0[1][1] *= arg1;
     arg0[2][1] *= arg1;
 }
 
-UNUSED void kwscaling_matrix_z(Mat4 arg0, f32 arg1) {
+UNUSED void KwscalingMatrixZ(Mat4 arg0, f32 arg1) {
     arg0[0][2] *= arg1;
     arg0[1][2] *= arg1;
     arg0[2][2] *= arg1;
 }
 
-void kwcreate_rotation_matrix(Mat4 dest, Vec3f orientationVector, Vec3f positionVector, u16 rotationAngle,
+void KwcreateRotationMatrix(Mat4 dest, Vec3f orientationVector, Vec3f positionVector, u16 rotationAngle,
                           f32 scaleFactor) {
     Vec3f sp44;
     Vec3f sp38;
     Vec3f sp2C;
 
-    vec3f_set_xyz(sp44, sinT(rotationAngle), 0.0f, cosT(rotationAngle));
+    Vec3FSetXYZ(sp44, SinT(rotationAngle), 0.0f, CosT(rotationAngle));
     NormalizeFVector(orientationVector);
     CrossProduct(sp38, orientationVector, sp44);
     NormalizeFVector(sp38);
@@ -887,8 +887,8 @@ void kwcreate_rotation_matrix(Mat4 dest, Vec3f orientationVector, Vec3f position
     dest[3][3] = 1.0f;
 }
 
-// aplly to position a rotation and put in dest
-UNUSED void kwrotate_yxz(Vec3f dest, Vec3f pos, Vec3s rot) {
+// aplly to Position a Rotation and put in dest
+UNUSED void KwrotateYxz(Vec3f dest, Vec3f pos, Vec3s rot) {
     f32 sp74;
     f32 sp70;
     f32 sp6C;
@@ -905,13 +905,13 @@ UNUSED void kwrotate_yxz(Vec3f dest, Vec3f pos, Vec3s rot) {
     f32 sine3;
     f32 cosine3;
 
-    sine1 = sinT(rot[0]);
-    cosine1 = cosT(rot[0]);
-    sine2 = sinT(rot[1]);
-    cosine2 = cosT(rot[1]);
-    sine3 = sinT(rot[2]);
-    cosine3 = cosT(rot[2]);
-    // it's a matrix multiplication
+    sine1 = SinT(rot[0]);
+    cosine1 = CosT(rot[0]);
+    sine2 = SinT(rot[1]);
+    cosine2 = CosT(rot[1]);
+    sine3 = SinT(rot[2]);
+    cosine3 = CosT(rot[2]);
+    // it's a Matrix multiplication
     sp74 = pos[0] * ((cosine2 * cosine3) + ((sine1 * sine2) * sine3));
     temp_f4 = pos[1] * ((-cosine2 * sine3) + ((sine1 * sine2) * cosine3));
     temp_f8 = pos[2] * (cosine1 * sine2);
@@ -926,8 +926,8 @@ UNUSED void kwrotate_yxz(Vec3f dest, Vec3f pos, Vec3s rot) {
     dest[2] = sp6C + sp60 + sp54;
 }
 
-// apply to position a rotation x y only and put in dest
-void kwrotate_yx(Vec3f dest, Vec3f pos, Vec3s rot) {
+// apply to Position a Rotation x y only and put in dest
+void KwrotateYx(Vec3f dest, Vec3f pos, Vec3s rot) {
     f32 sp2C;
     f32 sp28;
     f32 sp24;
@@ -939,69 +939,69 @@ void kwrotate_yx(Vec3f dest, Vec3f pos, Vec3s rot) {
     sp2C = pos[0];
     sp28 = pos[1];
     sp24 = pos[2];
-    sine1 = sinT(rot[0]);
-    cosine1 = cosT(rot[0]);
-    sine2 = sinT(rot[1]);
-    cosine2 = cosT(rot[1]);
+    sine1 = SinT(rot[0]);
+    cosine1 = CosT(rot[0]);
+    sine2 = SinT(rot[1]);
+    cosine2 = CosT(rot[1]);
     dest[0] = (sp2C * cosine2) - (sp24 * sine2);
     dest[1] = (sp2C * sine1 * sine2) + (sp28 * cosine1) + (sp24 * sine1 * cosine2);
     dest[2] = ((sp2C * cosine1 * sine2) - (sp28 * sine1)) + (sp24 * cosine1 * cosine2);
 }
 
 /**
- * @brief set the matrix to a transformation matrix
+ * @brief set the Matrix to a transformation Matrix
  *
- * @param translate or position
- * @param orientation
- * @param scale
+ * @Param translate or Position
+ * @Param orientation
+ * @Param Scale
  */
-void KWCreateAffine3D(Vec3f translate, Vec3su orientation, f32 scale) {
-    Mat4 matrix;
+void KWCreateAffine3D(Vec3f translate, Vec3su orientation, f32 Scale) {
+    Mat4 Matrix;
 
-    kwcreate_modeling_matrix(matrix, translate, orientation, scale);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    KwcreateModelingMatrix(Matrix, translate, orientation, Scale);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-UNUSED void KWCreateAffine3D_Board(Vec3f pos1, Vec3f pos2, f32 scale) {
-    Mat4 matrix;
+UNUSED void KWCreateAffine3DBoard(Vec3f pos1, Vec3f pos2, f32 Scale) {
+    Mat4 Matrix;
 
-    kwcreate_board_matrix(matrix, pos1, pos2, scale);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    KwcreateBoardMatrix(Matrix, pos1, pos2, Scale);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-void KWCreateAffine3D_IceKage(Vec3f arg0, Vec3su arg1, f32 arg2) {
-    Mat4 matrix;
+void KWCreateAffine3DIceKage(Vec3f arg0, Vec3su arg1, f32 Arg2) {
+    Mat4 Matrix;
     Vec3su orientation;
 
     orientation[0] = arg1[0] + 0x8000; // change the sign
     orientation[1] = arg1[1] + 0x8000; // change the sign
     orientation[2] = arg1[2];
-    kwcreate_modeling_matrix(matrix, arg0, orientation, arg2);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
+    KwcreateModelingMatrix(Matrix, arg0, orientation, Arg2);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
 
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-void KWCreateAffine3D_Hole(Vec3f arg0, Vec3f arg1, f32 arg2) {
-    Mat4 matrix;
+void KWCreateAffine3DHole(Vec3f arg0, Vec3f arg1, f32 Arg2) {
+    Mat4 Matrix;
 
-    kwcreate_rotation_matrix(matrix, arg1, arg0, 0, arg2);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    KwcreateRotationMatrix(Matrix, arg1, arg0, 0, Arg2);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }
 
-void KWCreateAffine3D_Anm(s32 transformIndex) {
-    Mat4 matrix;
+void KWCreateAffine3DAnm(s32 transformIndex) {
+    Mat4 Matrix;
 
-    kwcreate_modeling_matrix_anm(transformIndex, matrix);
-    Affine2Mtx(&gDynamicP->mtxHud[modelingnum], matrix);
+    KwcreateModelingMatrixAnm(transformIndex, Matrix);
+    Affine2Mtx(&DynamicP->MTXHud[Modelingnum], Matrix);
 
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxHud[modelingnum++]),
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 }

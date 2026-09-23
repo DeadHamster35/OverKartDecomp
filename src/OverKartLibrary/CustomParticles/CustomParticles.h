@@ -1,8 +1,8 @@
 extern void InitialCustomParticleBuffer(void);
-extern short AddCustomParticleBuffer(Vector pos,SVector angle,Vector velo,float scale,short category,char filtermode);
+extern short AddCustomParticleBuffer(Vector pos,SVector Angle,Vector velo,float Scale,short Category,char filtermode);
 extern void DeleteCustomParticleBuffer(CustomParticle *particle);
 
-extern short ParticleCreate_Local(short category, int player, bool screen_share, short angle, Vector pos, float scale, float speed_forward, float speed_up, short rotationadd, ushort rndoffset, char filtermode, uchar anim_speed, uchar loopcount, uchar xflip, uint RGBA);
+extern short ParticleCreateLocal(short Category, int Player, bool screen_share, short Angle, Vector pos, float Scale, float speed_forward, float speed_up, short rotationadd, Ushort rndoffset, char filtermode, Uchar anim_speed, Uchar Loopcount, Uchar Xflip, Uint RGBA);
 
 extern void MoveCustomParticle(void);
-extern void DrawCustomParticle(int player);
+extern void DrawCustomParticle(int Player);

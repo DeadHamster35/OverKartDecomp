@@ -6,24 +6,24 @@
 #define SAMPLES_TO_OVERPRODUCE 0x10
 #define EXTRA_BUFFERED_AI_SAMPLES_TARGET 0x40
 
-void Nap_AudioSysProcess(struct EuAudioCmd*);
-void Nas_GroupFadeOut(s32 arg0, s32 fadeOutTime);
-void Nas_GroupFadeIn(s32 playerIndex, s32 fadeInTime);
-void Nap_AudioPortInit(void);
-void Nap_PortSet(s32, s32*);
-void Nap_SetF32(u32, f32);
-void Nap_SetS32(u32, u32);
-void Nap_SetS8(u32, s8);
-void Nap_SendStart(void);
-void Nap_AudioPortProcess(u32 arg0);
-void port_eu_init(void);
+void NapAudioSysProcess(struct EuAudioCmd*);
+void NasGroupFadeOut(s32 arg0, s32 fadeOutTime);
+void NasGroupFadeIn(s32 playerIndex, s32 fadeInTime);
+void NapAudioPortInit(void);
+void NapPortSet(s32, s32*);
+void NapSetF32(u32, f32);
+void NapSetS32(u32, u32);
+void NapSetS8(u32, s8);
+void NapSendStart(void);
+void NapAudioPortProcess(u32 arg0);
+void PortEUInit(void);
 
 extern OSMesgQueue D_801937C0;
 extern OSMesgQueue D_801937D8;
 extern OSMesgQueue D_801937F0;
 extern OSMesgQueue D_80193808;
 
-extern struct EuAudioCmd sAudioCmd[0x100];
+extern struct EuAudioCmd SAudioCmd[0x100];
 
 extern OSMesg D_80194020[];
 extern OSMesg D_80194028[];

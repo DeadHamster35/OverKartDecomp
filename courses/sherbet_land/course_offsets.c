@@ -13,7 +13,7 @@ extern u8 gTexture651984[];
 extern u8 gTexture651428[];
 extern u8 gTexture662924[];
 
-const course_texture sherbet_land_textures[] = {
+const CourseTexture sherbet_land_textures[] = {
     { gTexture643B3C, 0x0798, 0x0800, 0x0 }, { gTexture66D024, 0x04EA, 0x0800, 0x0 },
     { gTexture678118, 0x0314, 0x0800, 0x0 }, { gTextureSignWoodRedArrow, 0x04E1, 0x1000, 0x0 },
     { gTexture678CC8, 0x058E, 0x0800, 0x0 }, { gTexture67842C, 0x050E, 0x0800, 0x0 },

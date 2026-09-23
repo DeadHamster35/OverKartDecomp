@@ -3,20 +3,20 @@
 #include <common_structs.h>
 
 /*
- * Decomp Player padding bytes (sizeof still 0xDD8). Do not rename
- * hoot_flag / hamp_flag / litro_flag in include/common_structs.h.
+ * Decomp Player Padding bytes (sizeof still 0xDD8). Do not rename
+ * HootFlag / HampFlag / LitroFlag in include/common_structs.h.
  *
  * Offset | Decomp member        | Amped Up Library name (host only)
- * 0x0A   | char hoot_flag[2]    | ushort litro_flag
- * 0x12   | s16  hamp_flag       | short effect_timer
- * 0x32   | char litro_flag[2]   | short shellpathinghack
+ * 0x0A   | char HootFlag[2]    | Ushort LitroFlag
+ * 0x12   | s16  HampFlag       | short effect_timer
+ * 0x32   | char LitroFlag[2]   | short shellpathinghack
  *
- * Amped Up car->litro_flag is 0x0A, not decomp litro_flag at 0x32.
+ * Amped Up car->LitroFlag is 0x0A, not decomp LitroFlag at 0x32.
  * These macros are lvalues.
  */
 
-#define PlayerHootFlagU16(p) (*(u16 *) (p)->hoot_flag)
-#define PlayerHampFlag(p) ((p)->hamp_flag)
-#define PlayerLitroFlagS16(p) (*(s16 *) (p)->litro_flag)
+#define PlayerHootFlagU16(p) (*(u16 *) (p)->HootFlag)
+#define PlayerHampFlag(p) ((p)->HampFlag)
+#define PlayerLitroFlagS16(p) (*(s16 *) (p)->LitroFlag)
 
 #endif

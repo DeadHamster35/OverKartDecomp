@@ -10,7 +10,7 @@ course:
   cpu_behaviour_ptr: D_0D008F18
   cpu_maximum_separation: -1.0f
   cpu_minimum_separation: 0.1f
-  distance_limmit_ptr: dist_limmit_pat_NORMAL
+  distance_limmit_ptr: DistLimmitPatNORMAL
   cpu_steering_sensitivity: 53
   bomb_kart_spawns: # 7 bomb kart spawn locations
     - [0x0014, 0x0000, 1.0, 0.0, 0.0, 0.0, 0.0]
@@ -29,10 +29,10 @@ course:
   cpu_OffTrackTargetSpeed: [3.75f, 5.1666665f, 5.75f, 6.3333334f]
 
   # Course path
-  path_table: ["&nullPath", "&nullPath", "&nullPath", "&nullPath"]
+  path_table: ["&NullPath", "&NullPath", "&NullPath", "&NullPath"]
 
   # Unused except in podium ceremony
-  path_table_unknown: ["&nullPath", "&nullPath", "&nullPath", "&nullPath"]
+  path_table_unknown: ["&NullPath", "&NullPath", "&NullPath", "&NullPath"]
 
   sky_colors: [128, 4280, 6136, 216, 7144, 32248]
   sky_colors2: [216, 7144, 32248, 0, 0, 0]

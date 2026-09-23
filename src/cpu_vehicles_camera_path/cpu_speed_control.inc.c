@@ -1,58 +1,58 @@
-void enemy_tekagen_sub(s32 playerId, Player* player) {
+void EnemyTekagenSub(s32 PlayerId, Player* Player) {
     s16 temp_t1;
     s16 temp_t2;
     s32 var_v0;
 
-    temp_t1 = g_playerPathPointTotalTable[g_EnemyTargetPlayer];
-    temp_t2 = g_playerPathPointTotalTable[playerId];
+    temp_t1 = PlayerPathPointTotalTable[EnemyTargetPlayer];
+    temp_t2 = PlayerPathPointTotalTable[PlayerId];
 
-    if (gGPCurrentRaceRankByPlayerId[playerId] < 2) {
-        s16 val1 = gGPCurrentRaceRankByPlayerId[g_EnemyTargetPlayer];
+    if (GPCurrentRaceRankByPlayerId[PlayerId] < 2) {
+        s16 val1 = GPCurrentRaceRankByPlayerId[EnemyTargetPlayer];
         s16 val2 = temp_t2 - temp_t1;
 
         if (val2 > 400 && val1 >= 6) {
-            player->slip_flag &= ~SLIP_STREAM;
-            AccelOn(player);
-            g_rivalOvertakeAllowFlag[playerId] = 4;
+            Player->SlipFlag &= ~SLIP_STREAM;
+            AccelOn(Player);
+            RivalOvertakeAllowFlag[PlayerId] = 4;
             return;
         }
     } else {
-        player->slip_flag |= SLIP_STREAM;
-        AccelOn(player);
-        g_rivalOvertakeAllowFlag[playerId] = 3;
+        Player->SlipFlag |= SLIP_STREAM;
+        AccelOn(Player);
+        RivalOvertakeAllowFlag[PlayerId] = 3;
         return;
     }
 
-    switch (g_raceClass) { // WTF, FAKE ?
+    switch (RaceClass) { // WTF, FAKE ?
         case CC_EXTRA:
             break;
     }
 
-    switch (g_raceClass) {
+    switch (RaceClass) {
         case CC_50:
             var_v0 = 0;
-            if (playerId == enemy_rival_num[0]) {
+            if (PlayerId == EnemyRivalNum[0]) {
                 var_v0 = 0x14;
             }
             break;
 
         case CC_100:
             var_v0 = 8;
-            if (playerId == enemy_rival_num[0]) {
+            if (PlayerId == EnemyRivalNum[0]) {
                 var_v0 = 0x18;
             }
             break;
 
         case CC_150:
             var_v0 = 0x12;
-            if (playerId == enemy_rival_num[0]) {
+            if (PlayerId == EnemyRivalNum[0]) {
                 var_v0 = 0x24;
             }
             break;
 
         case CC_EXTRA:
             var_v0 = 8;
-            if (playerId == enemy_rival_num[0]) {
+            if (PlayerId == EnemyRivalNum[0]) {
                 var_v0 = 0x18;
             }
             break;
@@ -63,80 +63,80 @@ void enemy_tekagen_sub(s32 playerId, Player* player) {
     }
 
     if (temp_t2 < temp_t1) {
-        player->slip_flag |= SLIP_STREAM;
-        AccelOn(player);
-        g_rivalOvertakeAllowFlag[playerId] = 1;
+        Player->SlipFlag |= SLIP_STREAM;
+        AccelOn(Player);
+        RivalOvertakeAllowFlag[PlayerId] = 1;
     } else if (temp_t2 < (temp_t1 + var_v0 + 0x32)) {
-        player->slip_flag &= ~SLIP_STREAM;
-        AccelOn(player);
-        g_rivalOvertakeAllowFlag[playerId] = 3;
-    } else if (tenuki_flg[playerId] == false) {
-        player->slip_flag &= ~SLIP_STREAM;
-        AccelOn(player);
-        g_rivalOvertakeAllowFlag[playerId] = 2;
+        Player->SlipFlag &= ~SLIP_STREAM;
+        AccelOn(Player);
+        RivalOvertakeAllowFlag[PlayerId] = 3;
+    } else if (TenukiFlg[PlayerId] == false) {
+        Player->SlipFlag &= ~SLIP_STREAM;
+        AccelOn(Player);
+        RivalOvertakeAllowFlag[PlayerId] = 2;
     } else {
-        player->slip_flag &= ~SLIP_STREAM;
-        AccelOff(player, 1.0f);
-        g_rivalOvertakeAllowFlag[playerId] = -1;
+        Player->SlipFlag &= ~SLIP_STREAM;
+        AccelOff(Player, 1.0f);
+        RivalOvertakeAllowFlag[PlayerId] = -1;
     }
 }
 
-void oga_result_accel(s32 playerId, Player* player, f32 arg2) {
+void OgaResultAccel(s32 PlayerId, Player* Player, f32 Arg2) {
     f32 temp_f0;
     f32 dist;
     f32 temp_f2;
     s32 test;
 
-    temp_f0 = oga_hyousyou_mx[playerId] - player->position[0];
-    temp_f2 = oga_hyousyou_mz[playerId] - player->position[2];
+    temp_f0 = OgaHyousyouMx[PlayerId] - Player->Position[0];
+    temp_f2 = OgaHyousyouMz[PlayerId] - Player->Position[2];
     dist = (temp_f0 * temp_f0) + (temp_f2 * temp_f2);
-    if (playerId == 3) {
-        if ((dist < 25.0f) && (oga_near_hyousyou_flg[playerId] < 5)) {
-            oga_near_hyousyou_flg[playerId] = 4;
-            (arg2 < ((2.0 * 18.0) / 216.0)) ? result_accele_on(player, 1) : AccelOff(player, 1.0f);
-        } else if ((dist < 3600.0f) && (oga_near_hyousyou_flg[playerId] < 4)) {
-            oga_near_hyousyou_flg[playerId] = 3;
-            (arg2 < ((5.0 * 18.0) / 216.0)) ? result_accele_on(player, 1) : AccelOff(player, 5.0f);
+    if (PlayerId == 3) {
+        if ((dist < 25.0f) && (OgaNearHyousyouFlg[PlayerId] < 5)) {
+            OgaNearHyousyouFlg[PlayerId] = 4;
+            (Arg2 < ((2.0 * 18.0) / 216.0)) ? ResultAcceleOn(Player, 1) : AccelOff(Player, 1.0f);
+        } else if ((dist < 3600.0f) && (OgaNearHyousyouFlg[PlayerId] < 4)) {
+            OgaNearHyousyouFlg[PlayerId] = 3;
+            (Arg2 < ((5.0 * 18.0) / 216.0)) ? ResultAcceleOn(Player, 1) : AccelOff(Player, 5.0f);
         } else {
-            (arg2 < ((20.0 * 18.0) / 216.0)) ? result_accele_on(player, 10) : AccelOff(player, 1.0f);
+            (Arg2 < ((20.0 * 18.0) / 216.0)) ? ResultAcceleOn(Player, 10) : AccelOff(Player, 1.0f);
         }
     } else {
-        if ((dist < 25.0f) && (oga_near_hyousyou_flg[playerId] < 5)) {
-            oga_near_hyousyou_flg[playerId] = 4;
+        if ((dist < 25.0f) && (OgaNearHyousyouFlg[PlayerId] < 5)) {
+            OgaNearHyousyouFlg[PlayerId] = 4;
             test = 2;
-            (arg2 < ((test * 18.0) / 216.0)) ? result_accele_on(player, 1) : AccelOff(player, 1.0f);
-        } else if ((dist < 4900.0f) && (oga_near_hyousyou_flg[playerId] < 4)) {
-            oga_near_hyousyou_flg[playerId] = 3;
+            (Arg2 < ((test * 18.0) / 216.0)) ? ResultAcceleOn(Player, 1) : AccelOff(Player, 1.0f);
+        } else if ((dist < 4900.0f) && (OgaNearHyousyouFlg[PlayerId] < 4)) {
+            OgaNearHyousyouFlg[PlayerId] = 3;
             test = 5;
-            (arg2 < ((test * 18.0) / 216.0)) ? result_accele_on(player, 1) : AccelOff(player, 15.0f);
-        } else if ((dist < 22500.0f) && (oga_near_hyousyou_flg[playerId] < 3)) {
-            oga_near_hyousyou_flg[playerId] = 2;
+            (Arg2 < ((test * 18.0) / 216.0)) ? ResultAcceleOn(Player, 1) : AccelOff(Player, 15.0f);
+        } else if ((dist < 22500.0f) && (OgaNearHyousyouFlg[PlayerId] < 3)) {
+            OgaNearHyousyouFlg[PlayerId] = 2;
             test = 20;
-            (arg2 < ((test * 18.0) / 216.0)) ? result_accele_on(player, 5) : AccelOff(player, 1.0f);
-        } else if ((dist < 90000.0f) && (oga_near_hyousyou_flg[playerId] < 2)) {
-            oga_near_hyousyou_flg[playerId] = 1;
+            (Arg2 < ((test * 18.0) / 216.0)) ? ResultAcceleOn(Player, 5) : AccelOff(Player, 1.0f);
+        } else if ((dist < 90000.0f) && (OgaNearHyousyouFlg[PlayerId] < 2)) {
+            OgaNearHyousyouFlg[PlayerId] = 1;
             test = 30;
-            (arg2 < ((test * 18.0) / 216.0)) ? result_accele_on(player, 6) : AccelOff(player, 1.0f);
-        } else if (oga_near_hyousyou_flg[playerId] == 0) {
+            (Arg2 < ((test * 18.0) / 216.0)) ? ResultAcceleOn(Player, 6) : AccelOff(Player, 1.0f);
+        } else if (OgaNearHyousyouFlg[PlayerId] == 0) {
             test = 35;
-            (arg2 < (((test ^ 0) * 18.0) / 216.0)) ? result_accele_on(player, 2) : AccelOff(player, 1.0f);
+            (Arg2 < (((test ^ 0) * 18.0) / 216.0)) ? ResultAcceleOn(Player, 2) : AccelOff(Player, 1.0f);
         } else {
-            AccelOff(player, 1.0f);
+            AccelOff(Player, 1.0f);
         }
     }
 }
 
-void oga_accele(s32 playerId, f32 targetSpeed, Player* player) {
-    f32 speed;
+void OgaAccele(s32 PlayerId, f32 targetSpeed, Player* Player) {
+    f32 Speed;
 
-    speed = player->speed;
-    if (!(player->slip_flag & SPIN_L) && !(player->slip_flag & SPIN_R) &&
-        !(player->slip_flag & THUNDER_SPIN) && !(player->weapon & HIT_BOMB) &&
-        !(player->weapon & HIT_BOMB_THROW) && !(player->weapon & HIT_REDSHELL) &&
-        !(player->weapon & HIT_GREENSHELL)) {
-        if (g_courseID == COURSE_AWARD_CEREMONY) {
-            oga_result_accel(playerId, player, speed);
+    Speed = Player->Speed;
+    if (!(Player->SlipFlag & SPIN_L) && !(Player->SlipFlag & SPIN_R) &&
+        !(Player->SlipFlag & THUNDER_SPIN) && !(Player->Weapon & HIT_BOMB) &&
+        !(Player->Weapon & HIT_BOMB_THROW) && !(Player->Weapon & HIT_REDSHELL) &&
+        !(Player->Weapon & HIT_GREENSHELL)) {
+        if (CourseID == COURSE_AWARD_CEREMONY) {
+            OgaResultAccel(PlayerId, Player, Speed);
         }
-        RubberBandManDefault(playerId, player);
+        RubberBandManDefault(PlayerId, Player);
     }
 }

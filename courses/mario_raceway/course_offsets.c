@@ -33,7 +33,7 @@ extern u8 gTextureSignShellShot1[];
 extern u8 gTextureSignKoopaAir0[];
 extern u8 gTextureSignKoopaAir1[];
 
-const course_texture mario_raceway_textures[] = {
+const CourseTexture mario_raceway_textures[] = {
     { gTextureCheckerboardYellowPink, 0x0149, 0x0800, 0x0 },
     { gTexture64619C, 0x0124, 0x0800, 0x0 },
     { gTextureGrass1, 0x0125, 0x0800, 0x0 },

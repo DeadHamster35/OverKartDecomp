@@ -3193,8 +3193,8 @@ CenterPathStruct d_course_kalimari_desert_track_path[] = {
 /**
 The Cactus palette is really really strange. There's only 4x29 (116) entires as opposed to the usual 16x16 (256) that
 TLUTs have. So we do something a little strange. We extract 2 versions of the TLUT. gTLUTCactus is 16x16, meaning that
-is has some vertex data filling out the backend. This is the one used to extract/import the rest of the cow pictures
-gTLUTCactusImport is 4x29. Only used as an inc.c file.
+is has some vertex data filling out the backend. This is the one Used to extract/import the rest of the cow pictures
+gTLUTCactusImport is 4x29. Only Used as an inc.c file.
 **/
 u8 d_course_kalimari_desert_tree_tlut[] = {
 #include "assets/courses/kalimari_desert/gTLUTCactusImport.inc.c"
@@ -3212,7 +3212,7 @@ Vtx d_course_kalimari_desert_cactus_model1[] = {
     { { { 12, 0, 0 }, 0, { 1023, 1945 }, { 0xFF, 0xFE, 0xFE, 0xFF } } },
 };
 
-// Seems like this is supposed to be 8 entries long?
+// Seems like this is supposed to be 8 Entries long?
 Vtx d_course_kalimari_desert_cactus_model2[] = {
     { { { 6, 25, 0 }, 0, { 1024, -409 }, { 0xFF, 0xFE, 0xFE, 0xFF } } },
     { { { -6, 25, 0 }, 0, { 0, -409 }, { 0xFF, 0xFE, 0xFE, 0xFF } } },
@@ -3601,7 +3601,7 @@ u8 d_course_kalimari_desert_carriage_window[] = {
 #include "assets/courses/kalimari_desert/gTextureCarriageWindow.inc.c"
 };
 
-// 0x19E60 choo choo steam engine train model
+// 0x19E60 choo choo steam engine train Model
 // high resolution
 Vtx d_course_kalimari_desert_locomotive_model_lod2[] = {
     { { { 8, 2, 58 }, 0, { 2057, 2048 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },
@@ -4424,7 +4424,7 @@ Gfx d_course_kalimari_desert_dl_1C0F0[] = {
     gsSPEndDisplayList(),
 };
 
-// 0x1C100 Low resolution choo choo steam engine train model
+// 0x1C100 Low resolution choo choo steam engine train Model
 Vtx d_course_kalimari_desert_locomotive_model_lod1[] = {
     { { { 8, 2, 58 }, 0, { 2057, 2048 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },
     { { { 8, 16, 34 }, 0, { 2052, 0 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },
@@ -4976,7 +4976,7 @@ Gfx d_course_kalimari_desert_dl_1D670[] = {
     gsSPEndDisplayList(),
 };
 
-// 0x1D680 Very low resolution choo choo steam engine train model
+// 0x1D680 Very low resolution choo choo steam engine train Model
 Vtx d_course_kalimari_desert_locomotive_model_lod0[] = {
     { { { 8, 2, 58 }, 0, { 2057, 2048 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },
     { { { 8, 16, 34 }, 0, { 2052, 0 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },
@@ -5471,7 +5471,7 @@ Gfx d_course_kalimari_desert_dl_1E910[] = {
     gsSPEndDisplayList(),
 };
 
-// 0x1E928 Might be another lod model
+// 0x1E928 Might be another lod Model
 Vtx d_course_kalimari_desert_tender_model_lod2[] = {
     { { { -14, 12, -16 }, 0, { 0, 0 }, { 0x00, 0x00, 0x00, 0xFF } } },
     { { { -16, 12, -19 }, 0, { 0, 0 }, { 0x00, 0x00, 0x00, 0xFF } } },

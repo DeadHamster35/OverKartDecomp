@@ -3,41 +3,41 @@
 
 /* Function Prototypes */
 
-void check_col(Player*, Player*);
-void save_key_status(void);
+void CheckCol(Player*, Player*);
+void SaveKeyStatus(void);
 void LoadKeyStatus(void);
-void battle_end(void);
-void check_battle_status(void);
-void check_goalin_time(void);
+void BattleEnd(void);
+void CheckBattleStatus(void);
+void CheckGoalinTime(void);
 void CheckFinish(void);
-void finish_vs_zoom(void);
-void finish_zoom(void);
-void call_next_sequence(s32);
-void start_race_BGM(s32);
-void start_racing(void);
-f32 get_laptime(s32);
-void goalin_subroutin(s32);
-void check_kart_rap(void);
+void FinishVSZoom(void);
+void FinishZoom(void);
+void CallNextSequence(s32);
+void StartRaceBGM(s32);
+void StartRacing(void);
+f32 GetLaptime(s32);
+void GoalinSubroutin(s32);
+void CheckKartRap(void);
 void func_8028F3E8(void);
-void check_kart_rank(void);
-void enemy_control(void);
-void race_reset_check(void);
-void set_vp_scale(void);
-void zoom_out_screen(void);
-void zoom_in_screen(void);
-void check_pause(void);
-void start_fadeout(void);
-void check_title_demo(void);
-void race_control(void);
-void goto_title(void);
-void goto_gameselect(void);
+void CheckKartRank(void);
+void EnemyControl(void);
+void RaceResetCheck(void);
+void SetVpScale(void);
+void ZoomOutScreen(void);
+void ZoomInScreen(void);
+void CheckPause(void);
+void StartFadeout(void);
+void CheckTitleDemo(void);
+void RaceControl(void);
+void GotoTitle(void);
+void GotoGameselect(void);
 void GoToGameSelect(void);
-void goto_mapselect(void);
-void goto_racing(void);
-void collision_kart_to_kart(void);
-void pause_sequence(void);
+void GotoMapselect(void);
+void GotoRacing(void);
+void CollisionKartToKart(void);
+void PauseSequence(void);
 
-extern f32 rate_count_F[];
-extern s32 gGPCurrentRaceRankByPlayerId[]; // D_801643B8 (position for each player)
+extern f32 RateCountF[];
+extern s32 GPCurrentRaceRankByPlayerId[]; // D_801643B8 (Position for each Player)
 
 #endif

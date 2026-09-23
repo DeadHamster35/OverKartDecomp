@@ -1,10 +1,10 @@
 #include "MainInclude.h"
 
-uint GlobalAddressA, GlobalAddressB, GlobalAddressC, GlobalAddressD;
+Uint GlobalAddressA, GlobalAddressB, GlobalAddressC, GlobalAddressD;
 int GlobalIntA, GlobalIntB, GlobalIntC, GlobalIntD;
-int64     GlobalInt64;
-uint64    GlobalUInt64;
-uint GlobalUIntA, GlobalUIntB;
+Int64     GlobalInt64;
+Uint64    GlobalUInt64;
+Uint GlobalUIntA, GlobalUIntB;
 
 float GlobalFloatA, GlobalFloatB, GlobalFloatC, GlobalFloatD;
 char GlobalCharA,GlobalCharB,GlobalCharC,GlobalCharD,GlobalCharE,GlobalFrameChar;
@@ -15,45 +15,45 @@ bool GlobalBoolA, GlobalBoolB, GlobalBoolC, GlobalBoolD;
 short GlobalShortA, GlobalShortB;
 bool GlobalBoolA, GlobalBoolB, GlobalBoolC, GlobalBoolD;
 int LoopValue;
-uint GlobalFrameCount;
-uint ClockCycle[2], OldCycle[2];
-uint CycleCount[2];
+Uint GlobalFrameCount;
+Uint ClockCycle[2], OldCycle[2];
+Uint CycleCount[2];
 
 bool TempoBool, StopSwop;
 char ConsolePlatform, EmulatorPlatform;
-uint CartridgeStatus;
+Uint CartridgeStatus;
 
 bool SurfaceExplorerMode = false;
 bool CustomWaterHeight[8];
-short g_EchoStart = 0x19B;
-short g_EchoStop = 0x1B9;
+short EchoStart = 0x19B;
+short EchoStop = 0x1B9;
 short CloudCourseID, Snow3DCourseID;
-short asm_CupCount = 3;
-s32 ok_CheckSplashEnabled = 1;
-s32 ok_LakituIce = 0;
-s32 ok_ForceRoulette = 0;
-s8 ok_PSelSkipCursor[4] = { 0, 0, 0, 0 };
-s8 ok_PSelSkipPortrait[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
-s32 ok_PSelSkipAnime = 0;
-s32 ok_MusicIn3P4P = 0;
+short AsmCupCount = 3;
+s32 OKCheckSplashEnabled = 1;
+s32 OKLakituIce = 0;
+s32 OKForceRoulette = 0;
+s8 OKPSelSkipCursor[4] = { 0, 0, 0, 0 };
+s8 OKPSelSkipPortrait[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+s32 OKPSelSkipAnime = 0;
+s32 OKMusicIn3P4P = 0;
 char CloudCourseValue, Snow3DCourseValue, WeatherCourseValue, Toggle3DSnow;
 short BattleGametype;
 
 short MenuPosition [2];
-ushort PerspectiveValue;
+Ushort PerspectiveValue;
 
-int wholeNumber = 0;
-int decimalNumber = 0;
-int printOffsetA, printOffsetB, printOffsetC, printOffsetD = 0;
-int minutes = 0;
-int seconds = 0;
+int WholeNumber = 0;
+int DecimalNumber = 0;
+int PrintOffsetA, PrintOffsetB, PrintOffsetC, PrintOffsetD = 0;
+int Minutes = 0;
+int Seconds = 0;
 Object *GlobalObjectA, *GlobalObjectB;
 float ZeroVector[3] = {0.0, 0.0, 0.0};
 OKRAMHeader OverKartRAMHeader;
 
 short AnimationTimer = 0;
 short DynFPSModifier = 2;
-char ok_StaticTempoOnly = 1;
+char OKStaticTempoOnly = 1;
 
 Controller *GlobalController[8] = 
 {
@@ -85,26 +85,26 @@ Camera *GlobalCamera[4] =
 
 u16 *GlobalPath[8] =
 {
-     &gNearestPathPointByPlayerId[0],
-     &gNearestPathPointByPlayerId[1],
-     &gNearestPathPointByPlayerId[2],
-     &gNearestPathPointByPlayerId[3],
-     &gNearestPathPointByPlayerId[4],
-     &gNearestPathPointByPlayerId[5],
-     &gNearestPathPointByPlayerId[6],
-     &gNearestPathPointByPlayerId[7],
+     &NearestPathPointByPlayerId[0],
+     &NearestPathPointByPlayerId[1],
+     &NearestPathPointByPlayerId[2],
+     &NearestPathPointByPlayerId[3],
+     &NearestPathPointByPlayerId[4],
+     &NearestPathPointByPlayerId[5],
+     &NearestPathPointByPlayerId[6],
+     &NearestPathPointByPlayerId[7],
 };
 
 s32 *GlobalLap[8] =
 {
-     &gLapCountByPlayerId[0],
-     &gLapCountByPlayerId[1],
-     &gLapCountByPlayerId[2],
-     &gLapCountByPlayerId[3],
-     &gLapCountByPlayerId[4],
-     &gLapCountByPlayerId[5],
-     &gLapCountByPlayerId[6],
-     &gLapCountByPlayerId[7],
+     &LapCountByPlayerId[0],
+     &LapCountByPlayerId[1],
+     &LapCountByPlayerId[2],
+     &LapCountByPlayerId[3],
+     &LapCountByPlayerId[4],
+     &LapCountByPlayerId[5],
+     &LapCountByPlayerId[6],
+     &LapCountByPlayerId[7],
 };
 
 Hud *GlobalHud[4] =
@@ -117,27 +117,27 @@ Hud *GlobalHud[4] =
 
 char *GlobalLightning[8] =
 {
-     (char *) &g_lightningFlagPlayer1[0],
-     (char *) &g_lightningFlagPlayer1[1],
-     (char *) &g_lightningFlagPlayer1[2],
-     (char *) &g_lightningFlagPlayer1[3],
-     (char *) &g_lightningFlagPlayer1[4],
-     (char *) &g_lightningFlagPlayer1[5],
-     (char *) &g_lightningFlagPlayer1[6],
-     (char *) &g_lightningFlagPlayer1[7],
+     (char *) &LightningFlagPlayer1[0],
+     (char *) &LightningFlagPlayer1[1],
+     (char *) &LightningFlagPlayer1[2],
+     (char *) &LightningFlagPlayer1[3],
+     (char *) &LightningFlagPlayer1[4],
+     (char *) &LightningFlagPlayer1[5],
+     (char *) &LightningFlagPlayer1[6],
+     (char *) &LightningFlagPlayer1[7],
 };
 
 
 Playercolor *GlobalPlayercolor[8] =
 {
-     (Playercolor *) &g_colorPlayer0R[0],
-     (Playercolor *) &g_colorPlayer0R[1],
-     (Playercolor *) &g_colorPlayer0R[2],
-     (Playercolor *) &g_colorPlayer0R[3],
-     (Playercolor *) &g_colorPlayer0R[4],
-     (Playercolor *) &g_colorPlayer0R[5],
-     (Playercolor *) &g_colorPlayer0R[6],
-     (Playercolor *) &g_colorPlayer0R[7],
+     (Playercolor *) &ColorPlayer0R[0],
+     (Playercolor *) &ColorPlayer0R[1],
+     (Playercolor *) &ColorPlayer0R[2],
+     (Playercolor *) &ColorPlayer0R[3],
+     (Playercolor *) &ColorPlayer0R[4],
+     (Playercolor *) &ColorPlayer0R[5],
+     (Playercolor *) &ColorPlayer0R[6],
+     (Playercolor *) &ColorPlayer0R[7],
 };
 
 //MarioKart3D Variables
@@ -145,11 +145,11 @@ short CoinCount[8] = {0,0,0,0,0,0,0,0};
 short IFrames[8] = {0,0,0,0,0,0,0,0};
 float AffineMatrix[4][4];
 float AffineMatrix2[4][4];
-float objectPosition[3] = {0,0,0};
-Vector objectVector[5];
-float objectVelocity[3] = {0,0,0};
-short objectAngle[3] = {0,0,0};
-short objectIndex;
+float ObjectPosition[3] = {0,0,0};
+Vector ObjectVector[5];
+float ObjectVelocity[3] = {0,0,0};
+short ObjectAngle[3] = {0,0,0};
+short ObjectIndex;
 //
 //
 
@@ -187,20 +187,20 @@ struct PlayerTextureTable BackupPortraitTable[9];
 
 
 //SharedFunctions
-long dataLength = 0; //
-int *targetAddress = &ok_Target;
-int *sourceAddress = &ok_Source;
-int *tempPointer = &ok_Pointer;
-long *graphPointer = (long*)&GraphPtrOffset;
-int *tkmPoint = &ok_TKMSpace;
+long DataLength = 0; //
+int *TargetAddress = &ok_Target;
+int *SourceAddress = &ok_Source;
+int *TempPointer = &ok_Pointer;
+long *GraphPointer = (long*)&GraphPtrOffset;
+int *TkmPoint = &ok_TKMSpace;
 int RSPNumber;
 int RSPOffset;
-char *hex = "0123456789ABCDEF";
+char *Hex = "0123456789ABCDEF";
 
-ushort RedTextPalette[4];
-ushort BlueTextPalette[4];
-ushort GreenTextPalette[4];
-ushort WhiteTextPalette[4];
+Ushort RedTextPalette[4];
+Ushort BlueTextPalette[4];
+Ushort GreenTextPalette[4];
+Ushort WhiteTextPalette[4];
 
 char RedPaletteF3D[0xC0];
 char BluePaletteF3D[0xC0];
@@ -210,19 +210,19 @@ char WhitePaletteF3D[0xC0];
 //
 
 //Stock Names
-char *stockCourseNames[] = {"Mario Raceway", "Choco Mountain", "Bowser's Castle", "Banshee Boardwalk",
+char *StockCourseNames[] = {"Mario Raceway", "Choco Mountain", "Bowser's Castle", "Banshee Boardwalk",
                          "Yoshi Valley", "Frappe Snowland", "Koopa Troopa Beach", "Royal Raceway",
                          "Luigi Raceway", "Moo Moo Farm", "Toad's Turnpike","Kalimari Desert",
                          "Sherbet Land", "Rainbow Road", "Wario Stadium", "Block Fort",
                          "Skyscraper", "Double Deck", "D.K.'s Jungle Parkway", "Big Donut"};
-char *stockCharacterNames[] = {"MARIO", "LUIGI", "YOSHI", "TOAD", "D.K.", "WARIO", "PEACH", "BOWSER"};
-BalloonColor stockBalloonColors[] = 
+char *StockCharacterNames[] = {"MARIO", "LUIGI", "YOSHI", "TOAD", "D.K.", "WARIO", "PEACH", "BOWSER"};
+BalloonColor StockBalloonColors[] = 
 {
      {0x00, 0xC8, 0x01, 0x00}, {0x00, 0x00, 0x70, 0x01}, {0x00, 0x10, 0x79, 0x51}, {0x00, 0x00, 0x59, 0x70}, 
      {0x00, 0x70, 0x55, 0x00}, {0x00, 0x7A, 0x7E, 0x00}, {0x00, 0x77, 0x2C, 0x24}, {0x00, 0x30, 0x14, 0x58}
 };
 
-BalloonColor stockAdjustColors[] = 
+BalloonColor StockAdjustColors[] = 
 {
      {0x00, 0xDC, 0x00, 0x00}, {0x00, 0x08, 0x8C, 0x06}, {0x00, 0x00, 0x00, 0x51}, {0x00, 0x00, 0x00, 0x00}, 
      {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00}, {0x00, 0x00, 0x00, 0x00}
@@ -242,21 +242,21 @@ OKAIPath CPUPaths[8];
 //OKCustom Objects
 short CoinPositions[8][3]; //8 Coins XYZ
 
-short hsLabel, raceStatus, startupSwitch, courseSwapped = -1;
-bool scrollLock = false;
-int currentHeaderAddress = 0;
+short HsLabel, RaceStatus, StartupSwitch, CourseSwapped = -1;
+bool ScrollLock = false;
+int CurrentHeaderAddress = 0;
 
 short FireParticlePositions[8][3];
 
-ushort MenuBlink, AudioLanguage;
-short gpCourseIndex, HotSwapID, HotSwapGP, gpTimeCheck, courseValue = -1;
+Ushort MenuBlink, AudioLanguage;
+short GPCourseIndex, HotSwapID, HotSwapGP, GPTimeCheck, CourseValue = -1;
 short MenuAngle[4];
 
 char ButtonHolding[4];
 char ButtonTimer[4];
-ushort MenuButtonHeld[4];
+Ushort MenuButtonHeld[4];
 bool MenuToggle;
-float gpTotalTime = 0;
+float GPTotalTime[2] = { 0, 0 };
 
 
 int VersionNumber;
@@ -271,15 +271,15 @@ int ParameterIndex, MenuIndex, MenuCup, MenuOverflow;
 
 //CustomLevels
 int ScrollValues[32][2];
-//FaceStruct *CourseFaceStruct = (FaceStruct*)(&gFaceBuffer);
+//FaceStruct *CourseFaceStruct = (FaceStruct*)(&FaceBuffer);
 //
 //
 
-char *cupNames[] = {"Mushroom Cup","Flower Cup","Star Cup","Special Cup"};
-int cupChar[] = {12,10,8,11};
-char *courseNames[] = {"Mario Raceway", "Choco Mountain", "Bowser Castle", "Banshee Boardwalk","Yoshi Valley", "Frappe Snowland", "Koopa Troopa Beach", "Royal Raceway",
+char *CupNames[] = {"Mushroom Cup","Flower Cup","Star Cup","Special Cup"};
+int CupChar[] = {12,10,8,11};
+char *CourseNames[] = {"Mario Raceway", "Choco Mountain", "Bowser Castle", "Banshee Boardwalk","Yoshi Valley", "Frappe Snowland", "Koopa Troopa Beach", "Royal Raceway",
 "Luigi Raceway", "Moo Moo Farm", "Toad Turnpike","Kalimari Desert","Sherbet Land","Rainbow Road","Wario Stadium", "Block Fort", "Skyscraper", "Double Deck", "DK Jungle Parkway","Big Donut"};
-int courseChar[] = {13,14,13,17,12,15,18,13,13,12,13,15,11,12,13,10,10,11,17,9};
+int CourseChar[] = {13,14,13,17,12,15,18,13,13,12,13,15,11,12,13,10,10,11,17,9};
 
 Vector Origin = {0,0,0,};
 ObjectivePlayer       Objectives[4];
@@ -295,3 +295,6 @@ char      FlagCount, TeamMode;
 char      ScoreToWin, ObjectiveCount;
 short     SpawnTime, HitstunTime;
 short     TeamScore[2];
+
+SkyColor sGlobalSkyColor;
+SkyColor *GlobalSkyColorTop[20] = { &sGlobalSkyColor };

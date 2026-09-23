@@ -14,7 +14,7 @@ OSMesgQueue D_801937D8;
 OSMesgQueue D_801937F0;
 OSMesgQueue D_80193808;
 
-struct EuAudioCmd sAudioCmd[0x100];
+struct EuAudioCmd SAudioCmd[0x100];
 
 // Seems oversized by 1
 OSMesg D_80194020[2];
@@ -31,26 +31,26 @@ OSMesgQueue* D_800EA3AC = &D_801937D8;
 OSMesgQueue* D_800EA3B0 = &D_801937F0;
 OSMesgQueue* D_800EA3B4 = &D_80193808;
 
-char port_eu_unused_string0[] = "DAC:Lost 1 Frame.\n";
-char port_eu_unused_string1[] = "DMA: Request queue over.( %d )\n";
-char port_eu_unused_string2[] = "DMA [ %d lines] TIMEOUT\n";
-char port_eu_unused_string3[] = "Warning: WaveDmaQ contains %d msgs.\n";
-char port_eu_unused_string4[] = "Audio:now-max tasklen is %d / %d\n";
-char port_eu_unused_string5[] = "Audio:Warning:ABI Tasklist length over (%d)\n";
+char PortEUUnusedString0[] = "DAC:Lost 1 Frame.\n";
+char PortEUUnusedString1[] = "DMA: Request queue over.( %d )\n";
+char PortEUUnusedString2[] = "DMA [ %d lines] TIMEOUT\n";
+char PortEUUnusedString3[] = "Warning: WaveDmaQ contains %d msgs.\n";
+char PortEUUnusedString4[] = "Audio:now-max tasklen is %d / %d\n";
+char PortEUUnusedString5[] = "Audio:Warning:ABI Tasklist length over (%d)\n";
 
 s32 D_800EA484 = 128;
 
-char port_eu_unused_string6[] = "AudioSend: %d -> %d (%d)\n";
+char PortEUUnusedString6[] = "AudioSend: %d -> %d (%d)\n";
 
 s32 D_800EA4A4 = 0;
 
-char port_eu_unused_string7[] = "Undefined Port Command %d\n";
+char PortEUUnusedString7[] = "Undefined Port Command %d\n";
 
-struct SPTask* Nas_AudioMain(void) {
+struct SPTask* NasAudioMain(void) {
     u32 samplesRemainingInAI;
     s32 writtenCmds;
-    s32 index;
-    OSTask_t* task;
+    s32 Index;
+    OSTask_t* Task;
     s32 var_s0;
     s16* currAiBuffer;
     s32 oldDmaCount;
@@ -58,177 +58,177 @@ struct SPTask* Nas_AudioMain(void) {
     OSMesg sp54;
     s32 writtenCmdsCopy;
 
-    gAudioFrameCount++;
-    if ((gAudioFrameCount % gAudioBufferParameters.presetUnk4) != 0) {
+    AudioFrameCount++;
+    if ((AudioFrameCount % AudioBufferParameters.PresetUnk4) != 0) {
         return NULL;
     }
-    osSendMesg(D_800EA3A8, (OSMesg) gAudioFrameCount, OS_MESG_NOBLOCK);
+    osSendMesg(D_800EA3A8, (OSMesg) AudioFrameCount, OS_MESG_NOBLOCK);
 
-    gAudioTaskIndex ^= 1;
-    gCurrAiBufferIndex++;
-    gCurrAiBufferIndex %= NUMAIBUFFERS;
-    index = (gCurrAiBufferIndex + 1) % NUMAIBUFFERS;
+    AudioTaskIndex ^= 1;
+    CurrAiBufferIndex++;
+    CurrAiBufferIndex %= NUMAIBUFFERS;
+    Index = (CurrAiBufferIndex + 1) % NUMAIBUFFERS;
     samplesRemainingInAI = osAiGetLength() / 4;
 
-    if (gAiBufferLengths[index] != 0) {
-        osAiSetNextBuffer(gAiBuffers[index], gAiBufferLengths[index] * 4);
+    if (AiBufferLengths[Index] != 0) {
+        osAiSetNextBuffer(AiBuffers[Index], AiBufferLengths[Index] * 4);
     }
-    oldDmaCount = gCurrAudioFrameDmaCount;
-    for (var_s0 = 0; var_s0 < gCurrAudioFrameDmaCount; var_s0++) {
-        if (osRecvMesg(&gCurrAudioFrameDmaQueue, NULL, 0) == 0) {
+    oldDmaCount = CurrAudioFrameDmaCount;
+    for (var_s0 = 0; var_s0 < CurrAudioFrameDmaCount; var_s0++) {
+        if (osRecvMesg(&CurrAudioFrameDmaQueue, NULL, 0) == 0) {
             oldDmaCount -= 1;
         }
     }
     if (oldDmaCount != 0) {
         for (var_s0 = 0; var_s0 < oldDmaCount; var_s0++) {
-            osRecvMesg(&gCurrAudioFrameDmaQueue, NULL, 1);
+            osRecvMesg(&CurrAudioFrameDmaQueue, NULL, 1);
         }
     }
-    oldDmaCount = gCurrAudioFrameDmaQueue.validCount;
+    oldDmaCount = CurrAudioFrameDmaQueue.validCount;
     if (oldDmaCount != 0) {
         for (var_s0 = 0; var_s0 < oldDmaCount; var_s0++) {
-            osRecvMesg(&gCurrAudioFrameDmaQueue, NULL, 0);
+            osRecvMesg(&CurrAudioFrameDmaQueue, NULL, 0);
         }
     }
-    gCurrAudioFrameDmaCount = 0;
-    Nas_SlowRomCopy4096();
+    CurrAudioFrameDmaCount = 0;
+    NasSlowRomCopy4096();
     if (osRecvMesg(D_800EA3B0, &sp58, 0) != -1) {
-        gAudioResetPresetIdToLoad = (u8) (u32) sp58;
-        gAudioResetStatus = 5;
+        AudioResetPresetIdToLoad = (u8) (u32) sp58;
+        AudioResetStatus = 5;
     }
-    if (gAudioResetStatus != 0) {
-        if (Nas_DelayDown() == 0) {
-            if (gAudioResetStatus == 0) {
-                osSendMesg(D_800EA3B4, (OSMesg) (u32) gAudioResetPresetIdToLoad, OS_MESG_NOBLOCK);
+    if (AudioResetStatus != 0) {
+        if (NasDelayDown() == 0) {
+            if (AudioResetStatus == 0) {
+                osSendMesg(D_800EA3B4, (OSMesg) (u32) AudioResetPresetIdToLoad, OS_MESG_NOBLOCK);
             }
             return NULL;
         }
     }
 
-    gAudioTask = &gAudioTasks[gAudioTaskIndex];
-    gAudioCmd = gAudioCmdBuffers[gAudioTaskIndex];
-    index = gCurrAiBufferIndex;
-    currAiBuffer = gAiBuffers[index];
-    gAiBufferLengths[index] =
-        ((gAudioBufferParameters.samplesPerFrameTarget - samplesRemainingInAI + EXTRA_BUFFERED_AI_SAMPLES_TARGET) &
+    AudioTask = &AudioTasks[AudioTaskIndex];
+    AudioCmd = AudioCmdBuffers[AudioTaskIndex];
+    Index = CurrAiBufferIndex;
+    currAiBuffer = AiBuffers[Index];
+    AiBufferLengths[Index] =
+        ((AudioBufferParameters.SamplesPerFrameTarget - samplesRemainingInAI + EXTRA_BUFFERED_AI_SAMPLES_TARGET) &
          ~0xF) +
         SAMPLES_TO_OVERPRODUCE;
-    if (gAiBufferLengths[index] < gAudioBufferParameters.minAiBufferLength) {
-        gAiBufferLengths[index] = gAudioBufferParameters.minAiBufferLength;
+    if (AiBufferLengths[Index] < AudioBufferParameters.MinAiBufferLength) {
+        AiBufferLengths[Index] = AudioBufferParameters.MinAiBufferLength;
     }
-    if (gAiBufferLengths[index] > gAudioBufferParameters.maxAiBufferLength) {
-        gAiBufferLengths[index] = gAudioBufferParameters.maxAiBufferLength;
+    if (AiBufferLengths[Index] > AudioBufferParameters.MaxAiBufferLength) {
+        AiBufferLengths[Index] = AudioBufferParameters.MaxAiBufferLength;
     }
     if (osRecvMesg(D_800EA3AC, &sp54, 0) != -1) {
-        Nap_AudioPortProcess((u32) sp54);
+        NapAudioPortProcess((u32) sp54);
     }
-    gAudioCmd = Nas_smzAudioFrame((Acmd*) gAudioCmd, &writtenCmds, currAiBuffer, gAiBufferLengths[index]);
-    gAudioRandom = osGetCount() * (gAudioRandom + gAudioFrameCount);
-    gAudioRandom = gAudioRandom + gAiBuffers[index][gAudioFrameCount & 0xFF];
+    AudioCmd = NasSmzAudioFrame((Acmd*) AudioCmd, &writtenCmds, currAiBuffer, AiBufferLengths[Index]);
+    AudioRandom = osGetCount() * (AudioRandom + AudioFrameCount);
+    AudioRandom = AudioRandom + AiBuffers[Index][AudioFrameCount & 0xFF];
 
-    index = gAudioTaskIndex;
-    gAudioTask->msgqueue = NULL;
+    Index = AudioTaskIndex;
+    AudioTask->Msgqueue = NULL;
     // wtf?
     writtenCmdsCopy += 0;
-    gAudioTask->msg = NULL;
+    AudioTask->msg = NULL;
 
-    task = &gAudioTask->task.t;
-    task->type = M_AUDTASK;
-    task->flags = 0;
-    task->ucode_boot = rspF3DBootStart;
-    task->ucode_boot_size = (u8*) rspF3DBootEnd - (u8*) rspF3DBootStart;
-    task->ucode = rspAspMainStart;
-    task->ucode_data = rspAspMainDataStart;
-    task->ucode_size = 0x1000; // (This size is ignored (according to sm64))
-    task->ucode_data_size = (rspAspMainDataEnd - rspAspMainDataStart) * sizeof(u64);
-    task->dram_stack = NULL;
-    task->dram_stack_size = 0;
-    task->output_buff = NULL;
-    task->output_buff_size = NULL;
-    task->data_ptr = (u64*) gAudioCmdBuffers[index];
-    task->data_size = writtenCmds * sizeof(u64);
-    task->yield_data_ptr = NULL;
-    task->yield_data_size = 0;
+    Task = &AudioTask->Task.t;
+    Task->type = M_AUDTASK;
+    Task->flags = 0;
+    Task->ucode_boot = rspF3DBootStart;
+    Task->ucode_boot_size = (u8*) rspF3DBootEnd - (u8*) rspF3DBootStart;
+    Task->ucode = rspAspMainStart;
+    Task->ucode_data = rspAspMainDataStart;
+    Task->ucode_size = 0x1000; // (This Size is ignored (according to sm64))
+    Task->ucode_data_size = (rspAspMainDataEnd - rspAspMainDataStart) * sizeof(u64);
+    Task->dram_stack = NULL;
+    Task->dram_stack_size = 0;
+    Task->output_buff = NULL;
+    Task->output_buff_size = NULL;
+    Task->data_ptr = (u64*) AudioCmdBuffers[Index];
+    Task->data_size = writtenCmds * sizeof(u64);
+    Task->yield_data_ptr = NULL;
+    Task->yield_data_size = 0;
     writtenCmdsCopy = writtenCmds;
     if (D_800EA484 < writtenCmds) {
         D_800EA484 = writtenCmdsCopy;
     }
-    return gAudioTask;
+    return AudioTask;
 }
 
-void Nap_AudioSysProcess(struct EuAudioCmd* cmd) {
+void NapAudioSysProcess(struct EuAudioCmd* cmd) {
     s32 i;
 
     switch (cmd->u.s.op) {
         case 0x81:
-            Nas_PreLoadSeq(cmd->u.s.arg2, 3);
+            NasPreLoadSeq(cmd->u.s.Arg2, 3);
             break;
 
         case 0x82:
         case 0x88:
-            Nas_StartMySeq(cmd->u.s.bankId, cmd->u.s.arg2, cmd->u.s.arg3);
-            Nas_GroupFadeIn(cmd->u.s.bankId, cmd->u2.as_s32);
+            NasStartMySeq(cmd->u.s.BankId, cmd->u.s.Arg2, cmd->u.s.Arg3);
+            NasGroupFadeIn(cmd->u.s.BankId, cmd->u2.AsS32);
             break;
 
         case 0x83:
-            if (SeqPlayer[cmd->u.s.bankId].enabled != false) {
-                if (cmd->u2.as_s32 == 0) {
-                    Nas_GetNewSubTrack(&SeqPlayer[cmd->u.s.bankId]);
+            if (SeqPlayer[cmd->u.s.BankId].Enabled != false) {
+                if (cmd->u2.AsS32 == 0) {
+                    NasGetNewSubTrack(&SeqPlayer[cmd->u.s.BankId]);
                 } else {
-                    Nas_GroupFadeOut(cmd->u.s.bankId, cmd->u2.as_s32);
+                    NasGroupFadeOut(cmd->u.s.BankId, cmd->u2.AsS32);
                 }
             }
             break;
 
         case 0xf0:
-            gAudioLibSoundMode = cmd->u2.as_s32;
+            AudioLibSoundMode = cmd->u2.AsS32;
             break;
 
         case 0xf1:
             for (i = 0; i < 4; i++) {
-                SeqPlayer[i].muted = true;
-                SeqPlayer[i].recalculateVolume = true;
+                SeqPlayer[i].Muted = true;
+                SeqPlayer[i].RecalculateVolume = true;
             }
             break;
 
         case 0xf2:
             for (i = 0; i < 4; i++) {
-                SeqPlayer[i].muted = false;
-                SeqPlayer[i].recalculateVolume = true;
+                SeqPlayer[i].Muted = false;
+                SeqPlayer[i].RecalculateVolume = true;
             }
             break;
         case 0xF3:
-            Nas_LoadVoice(cmd->u.s.bankId, cmd->u.s.arg2, cmd->u.s.arg3);
+            NasLoadVoice(cmd->u.s.BankId, cmd->u.s.Arg2, cmd->u.s.Arg3);
             break;
     }
 }
 
-void Nas_GroupFadeOut(s32 arg0, s32 fadeOutTime) {
-    struct SequencePlayer* player;
+void NasGroupFadeOut(s32 arg0, s32 fadeOutTime) {
+    struct SequencePlayer* Player;
 
     if (fadeOutTime == 0) {
         fadeOutTime = 1;
     }
-    player = &SeqPlayer[arg0];
-    player->state = 2;
-    player->fadeRemainingFrames = fadeOutTime;
-    player->fadeVelocity = -(player->fadeVolume / fadeOutTime);
+    Player = &SeqPlayer[arg0];
+    Player->State = 2;
+    Player->FadeRemainingFrames = fadeOutTime;
+    Player->FadeVelocity = -(Player->FadeVolume / fadeOutTime);
 }
 
-void Nas_GroupFadeIn(s32 playerIndex, s32 fadeInTime) {
-    struct SequencePlayer* player;
+void NasGroupFadeIn(s32 playerIndex, s32 fadeInTime) {
+    struct SequencePlayer* Player;
 
     if (fadeInTime != 0) {
-        player = &SeqPlayer[playerIndex];
-        player->state = 1;
-        player->fadeTimerUnkEu = fadeInTime;
-        player->fadeRemainingFrames = fadeInTime;
-        player->fadeVolume = 0.0f;
-        player->fadeVelocity = 0.0f;
+        Player = &SeqPlayer[playerIndex];
+        Player->State = 1;
+        Player->FadeTimerUnkEu = fadeInTime;
+        Player->FadeRemainingFrames = fadeInTime;
+        Player->FadeVolume = 0.0f;
+        Player->FadeVelocity = 0.0f;
     }
 }
 
-void Nap_AudioPortInit(void) {
+void NapAudioPortInit(void) {
     D_800EA3A0[0] = 0;
     D_800EA3A4[0] = 0;
     osCreateMesgQueue(D_800EA3A8, D_80194020, 1);
@@ -237,28 +237,28 @@ void Nap_AudioPortInit(void) {
     osCreateMesgQueue(D_800EA3B4, D_8019403C, 1);
 }
 
-void Nap_PortSet(s32 arg0, s32* arg1) {
-    struct EuAudioCmd* cmd = &sAudioCmd[D_800EA3A0[0] & 0xff];
+void NapPortSet(s32 arg0, s32* arg1) {
+    struct EuAudioCmd* cmd = &SAudioCmd[D_800EA3A0[0] & 0xff];
     cmd->u.first = arg0;
-    cmd->u2.as_u32 = *arg1;
+    cmd->u2.AsU32 = *arg1;
     D_800EA3A0[0]++;
 }
 
-void Nap_SetF32(u32 arg0, f32 arg1) {
-    Nap_PortSet(arg0, (s32*) &arg1);
+void NapSetF32(u32 arg0, f32 arg1) {
+    NapPortSet(arg0, (s32*) &arg1);
 }
 
-void Nap_SetS32(u32 arg0, u32 arg1) {
-    Nap_PortSet(arg0, (s32*) &arg1);
+void NapSetS32(u32 arg0, u32 arg1) {
+    NapPortSet(arg0, (s32*) &arg1);
 }
 
-void Nap_SetS8(u32 arg0, s8 arg1) {
+void NapSetS8(u32 arg0, s8 arg1) {
     s32 sp34 = arg1 << 24;
-    Nap_PortSet(arg0, &sp34);
+    NapPortSet(arg0, &sp34);
 }
 
 //! @todo clenanup, something's weird with the variables. D_800EA4A4 is probably EuAudioCmd bc of the + 0x100
-void Nap_SendStart(void) {
+void NapSendStart(void) {
     s32 temp_t6;
     s32 test;
     OSMesg thing;
@@ -275,7 +275,7 @@ void Nap_SendStart(void) {
     D_800EA3A4[0] = D_800EA3A0[0];
 }
 
-void Nap_AudioPortProcess(u32 arg0) {
+void NapAudioPortProcess(u32 arg0) {
     struct EuAudioCmd* cmd;
     struct SequencePlayer* seqPlayer;
     struct SequenceChannel* chan;
@@ -286,66 +286,66 @@ void Nap_AudioPortProcess(u32 arg0) {
         if (i == end) {
             break;
         }
-        cmd = &sAudioCmd[i++ & 0xff];
+        cmd = &SAudioCmd[i++ & 0xff];
 
         if ((cmd->u.s.op & 0xf0) == 0xf0) {
-            Nap_AudioSysProcess(cmd);
+            NapAudioSysProcess(cmd);
             goto why;
         }
 
-        if (cmd->u.s.bankId < SEQUENCE_PLAYERS) {
-            seqPlayer = &SeqPlayer[cmd->u.s.bankId];
+        if (cmd->u.s.BankId < SEQUENCE_PLAYERS) {
+            seqPlayer = &SeqPlayer[cmd->u.s.BankId];
             if ((cmd->u.s.op & 0x80) != 0) {
-                Nap_AudioSysProcess(cmd);
+                NapAudioSysProcess(cmd);
             } else if ((cmd->u.s.op & 0x40) != 0) {
                 switch (cmd->u.s.op) {
                     case 0x41:
-                        seqPlayer->fadeVolumeScale = cmd->u2.as_f32;
-                        seqPlayer->recalculateVolume = true;
+                        seqPlayer->FadeVolumeScale = cmd->u2.AsF32;
+                        seqPlayer->RecalculateVolume = true;
                         break;
 
                     case 0x47:
-                        seqPlayer->tempo = cmd->u2.as_s32 * TATUMS_PER_BEAT;
+                        seqPlayer->Tempo = cmd->u2.AsS32 * TATUMS_PER_BEAT;
                         break;
 
                     case 0x48:
-                        seqPlayer->transposition = cmd->u2.as_s8;
+                        seqPlayer->Transposition = cmd->u2.AsS8;
                         break;
 
                     case 0x46:
-                        seqPlayer->seqVariationEu[cmd->u.s.arg3] = cmd->u2.as_s8;
+                        seqPlayer->SEQVariationEu[cmd->u.s.Arg3] = cmd->u2.AsS8;
                         break;
                 }
-            } else if (seqPlayer->enabled != false && cmd->u.s.arg2 < 0x10) {
-                chan = seqPlayer->channels[cmd->u.s.arg2];
+            } else if (seqPlayer->Enabled != false && cmd->u.s.Arg2 < 0x10) {
+                chan = seqPlayer->Channels[cmd->u.s.Arg2];
                 if (IS_SEQUENCE_CHANNEL_VALID(chan)) {
                     switch (cmd->u.s.op) {
                         case 1:
-                            chan->volumeScale = cmd->u2.as_f32;
-                            chan->changes.as_bitfields.volume = true;
+                            chan->volumeScale = cmd->u2.AsF32;
+                            chan->Changes.AsBitfields.Volume = true;
                             break;
                         case 2:
-                            chan->volume = cmd->u2.as_f32;
-                            chan->changes.as_bitfields.volume = true;
+                            chan->Volume = cmd->u2.AsF32;
+                            chan->Changes.AsBitfields.Volume = true;
                             break;
                         case 3:
-                            chan->newPan = cmd->u2.as_s8;
-                            chan->changes.as_bitfields.pan = true;
+                            chan->newPan = cmd->u2.AsS8;
+                            chan->Changes.AsBitfields.pan = true;
                             break;
                         case 4:
-                            chan->freqScale = cmd->u2.as_f32;
-                            chan->changes.as_bitfields.freqScale = true;
+                            chan->FreqScale = cmd->u2.AsF32;
+                            chan->Changes.AsBitfields.FreqScale = true;
                             break;
                         case 5:
-                            chan->reverbVol = cmd->u2.as_s8;
+                            chan->ReverbVol = cmd->u2.AsS8;
                             break;
                         case 6:
-                            if (cmd->u.s.arg3 < 8) {
-                                chan->soundScriptIO[cmd->u.s.arg3] = cmd->u2.as_s8;
+                            if (cmd->u.s.Arg3 < 8) {
+                                chan->soundScriptIO[cmd->u.s.Arg3] = cmd->u2.AsS8;
                             }
                             break;
                         case 8:
-                            chan->stopSomething2 = cmd->u2.as_s8;
+                            chan->stopSomething2 = cmd->u2.AsS8;
                     }
                 }
             }
@@ -356,6 +356,6 @@ void Nap_AudioPortProcess(u32 arg0) {
     }
 }
 
-void port_eu_init() {
-    Nap_AudioPortInit();
+void PortEUInit() {
+    NapAudioPortInit();
 }

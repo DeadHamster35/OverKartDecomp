@@ -1,12 +1,12 @@
 #include "../MainInclude.h"
 
-extern u8 _mainSegmentStart[];
-extern u8 _mainSegmentRomStart[];
+extern u8 _MainSegmentStart[];
+extern u8 _MainSegmentRomStart[];
 
 static long MainDataRom(void *ram)
 {
-     return (long) ((uintptr_t) _mainSegmentRomStart +
-                    ((uintptr_t) ram - (uintptr_t) _mainSegmentStart));
+     return (long) ((uintptr_t) _MainSegmentRomStart +
+                    ((uintptr_t) ram - (uintptr_t) _MainSegmentStart));
 }
 
 static void RestoreStockSpeedCap(void)
@@ -24,11 +24,11 @@ void SetEngine(int CharacterID, int ThisEngine)
      int ThisAccel;
      int ThisPower;
 
-     gTopSpeed50cc[CharacterID] = (float) EngineSpeed[0][ThisEngine];
-     gTopSpeed100cc[CharacterID] = (float) EngineSpeed[1][ThisEngine];
-     gTopSpeed150cc[CharacterID] = (float) EngineSpeed[2][ThisEngine];
-     gTopSpeedExtra[CharacterID] = (float) EngineSpeed[1][ThisEngine];
-     gTopSpeedBattle[CharacterID] = (float) EngineSpeed[3][ThisEngine];
+     TopSpeed50CC[CharacterID] = (float) EngineSpeed[0][ThisEngine];
+     TopSpeed100CC[CharacterID] = (float) EngineSpeed[1][ThisEngine];
+     TopSpeed150CC[CharacterID] = (float) EngineSpeed[2][ThisEngine];
+     TopSpeedExtra[CharacterID] = (float) EngineSpeed[1][ThisEngine];
+     TopSpeedBattle[CharacterID] = (float) EngineSpeed[3][ThisEngine];
      for (ThisAccel = 0; ThisAccel < 10; ThisAccel++)
      {
           gKartAccelerationTables[CharacterID][ThisAccel] =
@@ -52,48 +52,48 @@ void SetSteering(int CharacterID, int ThisSteering)
      gKartTurnSpeedReductionTable1[CharacterID] = ((float) (SteerValue[ThisSteering]) / 1000);
 }
 
-void dmaLoop(int loopCount)
+void DMALoop(int LoopCount)
 {
      {
          int currentPass;
-     for (currentPass = 0; currentPass < loopCount; currentPass++)
+     for (currentPass = 0; currentPass < LoopCount; currentPass++)
      {
-          runDMA();
-          *targetAddress = *targetAddress + dataLength;
+          RunDMA();
+          *TargetAddress = *TargetAddress + DataLength;
      }
      }
 }
 
 
-void RAMLoop(int loopCount)
+void RAMLoop(int LoopCount)
 {
      {
          int currentPass;
-     for (currentPass = 0; currentPass < loopCount; currentPass++)
+     for (currentPass = 0; currentPass < LoopCount; currentPass++)
      {
-          runRAM();
-          *targetAddress = *targetAddress + dataLength;
+          RunRAM();
+          *TargetAddress = *TargetAddress + DataLength;
      }
      }
 }
-void Unknown33Func(int mode)
+void Unknown33Func(int Mode)
 {
      
-     switch(mode)
+     switch(Mode)
      {
           case 0x00:
           {
-               *sourceAddress = MainDataRom(&D_800E2AD0);
-               *targetAddress = (int) &D_800E2AD0;
-               dataLength = 0x1E0;
-               runDMA();
+               *SourceAddress = MainDataRom(&D_800E2AD0);
+               *TargetAddress = (int) &D_800E2AD0;
+               DataLength = 0x1E0;
+               RunDMA();
                break;
           }
           case 0x01:
           {
-               *sourceAddress = (long)(&Unknown33) + 0x78;               
-               dataLength = 0x3C;
-               *targetAddress = (int) &D_800E2AD0;
+               *SourceAddress = (long)(&Unknown33) + 0x78;               
+               DataLength = 0x3C;
+               *TargetAddress = (int) &D_800E2AD0;
                RAMLoop(8);
                break;
           }
@@ -103,23 +103,23 @@ void Unknown33Func(int mode)
 
 
 
-void Unknown41Func(int mode)
+void Unknown41Func(int Mode)
 {
-     switch(mode)
+     switch(Mode)
      {
           case 0x00:
           {
-               *sourceAddress = MainDataRom(&D_800E2CB0);
-               *targetAddress = (int) &D_800E2CB0;
-               dataLength = 0x1E0;
-               runDMA();
+               *SourceAddress = MainDataRom(&D_800E2CB0);
+               *TargetAddress = (int) &D_800E2CB0;
+               DataLength = 0x1E0;
+               RunDMA();
                break;
           }
           case 0x01:
           {
-               *sourceAddress = (long)(&Unknown41) + 0x78;    
-               *targetAddress = (int) &D_800E2CB0;
-               dataLength = 0x3C;
+               *SourceAddress = (long)(&Unknown41) + 0x78;    
+               *TargetAddress = (int) &D_800E2CB0;
+               DataLength = 0x3C;
                RAMLoop(8);
                break;
           }
@@ -127,23 +127,23 @@ void Unknown41Func(int mode)
 }
 
 
-void AccelerationFunc(int mode)
+void AccelerationFunc(int Mode)
 {    
-     switch(mode)
+     switch(Mode)
      {
           case 0x00:
           {
-               *sourceAddress = MainDataRom(&gKartAccelerationMario);
-               *targetAddress = (int) &gKartAccelerationMario;
-               dataLength = 0x140;
-               runDMA();
+               *SourceAddress = MainDataRom(&gKartAccelerationMario);
+               *TargetAddress = (int) &gKartAccelerationMario;
+               DataLength = 0x140;
+               RunDMA();
                break;
           }
           case 0x01:
           {
-               *sourceAddress = (int)(&AccelerationTable) + 0x50;
-               dataLength = 0x28;
-               *targetAddress = (int) &gKartAccelerationMario;
+               *SourceAddress = (int)(&AccelerationTable) + 0x50;
+               DataLength = 0x28;
+               *TargetAddress = (int) &gKartAccelerationMario;
                RAMLoop(8);
                break;
           }
@@ -152,12 +152,12 @@ void AccelerationFunc(int mode)
 
 
 
-void equalStats(int mode)
+void EqualStats(int Mode)
 {
      int i;
 
      RestoreStockSpeedCap();
-     switch (mode)
+     switch (Mode)
      {
           case 0x00:
           {
@@ -179,10 +179,10 @@ void equalStats(int mode)
                     D_800E24E8[i] = stockPower100[i];
                     D_800E2508[i] = stockPower150[i];
                     D_800E2528[i] = stockPowerEx[i];
-                    gTopSpeed50cc[i] = stockCc50[i];
-                    gTopSpeed100cc[i] = stockCc100[i];
-                    gTopSpeed150cc[i] = stockCc150[i];
-                    gTopSpeedExtra[i] = stockCcEx[i];
+                    TopSpeed50CC[i] = stockCc50[i];
+                    TopSpeed100CC[i] = stockCc100[i];
+                    TopSpeed150CC[i] = stockCc150[i];
+                    TopSpeedExtra[i] = stockCcEx[i];
                     gKartTurnSpeedReductionTable0[i] = stockTurnA[i];
                     gKartTurnSpeedReductionTable1[i] = stockTurnA[i];
                     gKartTripleABoost[i] = stockTap[i];
@@ -198,10 +198,10 @@ void equalStats(int mode)
                     D_800E24E8[i] = 3943.0f;
                     D_800E2508[i] = 4199.0f;
                     D_800E2528[i] = 3943.0f;
-                    gTopSpeed50cc[i] = 294.0f;
-                    gTopSpeed100cc[i] = 314.0f;
-                    gTopSpeed150cc[i] = 324.0f;
-                    gTopSpeedExtra[i] = 314.0f;
+                    TopSpeed50CC[i] = 294.0f;
+                    TopSpeed100CC[i] = 314.0f;
+                    TopSpeed150CC[i] = 324.0f;
+                    TopSpeedExtra[i] = 314.0f;
                     gKartTurnSpeedReductionTable0[i] = 0.002f;
                     gKartTurnSpeedReductionTable1[i] = 0.002f;
                     gKartTripleABoost[i] = 3.0f;
@@ -210,12 +210,12 @@ void equalStats(int mode)
                break;
           }
      }
-     AccelerationFunc(mode);
-     Unknown33Func(mode);
-     Unknown41Func(mode);
+     AccelerationFunc(Mode);
+     Unknown33Func(Mode);
+     Unknown41Func(Mode);
 }
 
-void RandomStats(int mode)
+void RandomStats(int Mode)
 {
      GlobalShortA = MakeRandomLimmit(100);
      u11_Mario = 3364 + GlobalShortA;
@@ -434,11 +434,11 @@ void RandomStats(int mode)
 }
 
 
-void checkStats(int mode)
+void CheckStats(int Mode)
 {
-     if (mode != StatsID)
+     if (Mode != StatsID)
      {
-          equalStats(mode);
-          StatsID = mode;
+          EqualStats(Mode);
+          StatsID = Mode;
      }
 }

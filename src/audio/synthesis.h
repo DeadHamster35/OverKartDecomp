@@ -55,32 +55,32 @@ Shindou SM64
 #define MAX_UPDATES_PER_FRAME 5
 
 struct ReverbRingBufferItem {
-    /* 0x00 */ s16 numSamplesAfterDownsampling;
-    /* 0x02 */ s16 chunkLen; // never read
-    /* 0x04 */ s16* toDownsampleLeft;
-    /* 0x08 */ s16* toDownsampleRight; // data pointed to by left and right are adjacent in memory
-    /* 0x0C */ s32 startPos;           // start pos in ring buffer
-    /* 0x10 */ s16 lengthA;            // first length in ring buffer (from startPos, at most until end)
-    /* 0x12 */ s16 lengthB;            // second length in ring buffer (from pos 0)
-}; // size = 0x14
+    /* 0x00 */ s16 NumSamplesAfterDownsampling;
+    /* 0x02 */ s16 ChunkLen; // never read
+    /* 0x04 */ s16* ToDownsampleLeft;
+    /* 0x08 */ s16* ToDownsampleRight; // data pointed to by Left and Right are adjacent in memory
+    /* 0x0C */ s32 StartPos;           // Start pos in ring Buffer
+    /* 0x10 */ s16 LengthA;            // first Length in ring Buffer (from StartPos, at most until end)
+    /* 0x12 */ s16 LengthB;            // second Length in ring Buffer (from pos 0)
+}; // Size = 0x14
 
 struct SynthesisReverb {
     /* 0x00 */ u8 resampleFlags;
     /* 0x01 */ u8 useReverb;
     /* 0x02 */ u8 framesLeftToIgnore;
     /* 0x03 */ u8 curFrame;
-    /* 0x04 */ u8 downsampleRate;
-    /* 0x05 */                 // u8 compilerPadding;
-    /* 0x06 */ u16 windowSize; // same as bufSizePerChannel
-    /* 0x08 */ u16 reverbGain;
-    /* 0x0A */ u16 resampleRate;
+    /* 0x04 */ u8 DownsampleRate;
+    /* 0x05 */                 // u8 CompilerPadding;
+    /* 0x06 */ u16 WindowSize; // same as bufSizePerChannel
+    /* 0x08 */ u16 ReverbGain;
+    /* 0x0A */ u16 ResampleRate;
     /* 0x0C */ s32 nextRingBufferPos;
-    /* 0x10 */ s32 unkC; // never read
+    /* 0x10 */ s32 UnkC; // never read
     /* 0x14 */ s32 bufSizePerChannel;
     struct {
-        /* 0x18 */ s16* left;
-        /* 0x1C */ s16* right;
-    } ringBuffer;
+        /* 0x18 */ s16* Left;
+        /* 0x1C */ s16* Right;
+    } RingBuffer;
     /* 0x20 */ s16* resampleStateLeft;
     /* 0x24 */ s16* resampleStateRight;
     /* 0x28 */ s16* unk24; // never read
@@ -90,41 +90,41 @@ struct SynthesisReverb {
     /* 0xFC  */ s16* unkFC;
     /* 0x100 */ s16* unk100;
     /* 0x104 */ s16* unk104;
-}; // size = 0x108
+}; // Size = 0x108
 
 #define ALIGN(val, amnt) (((val) + (1 << amnt) - 1) & ~((1 << amnt) - 1))
 
-void Nas_CpuFX(s32 chunkLen, u32 updateIndex, s32 reverbIndex);
+void NasCpuFX(s32 ChunkLen, u32 updateIndex, s32 reverbIndex);
 Acmd* LoadAuxBuf(Acmd*, u16, u16, s32, s32);
 Acmd* SaveAuxBuf(Acmd*, u16, u16, s32, s32);
-void Nas_WaveTerminateProcess(s32 updateIndexStart, s32 noteIndex);
-void Nas_PushDrvReg(s32 updateIndex);
-Acmd* Nas_smzAudioFrame(Acmd*, s32*, s16*, s32);
-Acmd* Nas_LoadAuxBuffer(Acmd*, s32, s16, s16);
-Acmd* Nas_SaveAuxBuffer(Acmd*, s16, s16);
-Acmd* Nas_DriveRsp(s16*, s32, Acmd*, s32);
-Acmd* Nas_SynthMain(s32 noteIndex, struct NoteSubEu* noteSubEu, struct NoteSynthesisState* synthesisState,
+void NasWaveTerminateProcess(s32 updateIndexStart, s32 noteIndex);
+void NasPushDrvReg(s32 updateIndex);
+Acmd* NasSmzAudioFrame(Acmd*, s32*, s16*, s32);
+Acmd* NasLoadAuxBuffer(Acmd*, s32, s16, s16);
+Acmd* NasSaveAuxBuffer(Acmd*, s16, s16);
+Acmd* NasDriveRsp(s16*, s32, Acmd*, s32);
+Acmd* NasSynthMain(s32 noteIndex, struct NoteSubEu* NoteSubEu, struct NoteSynthesisState* SynthesisState,
                              s16* aiBuf, s32 inBuf, Acmd* cmd, s32 updateIndex);
-Acmd* Nas_Synth_WaveMemory(Acmd* acmd, struct NoteSubEu* noteSubEu, struct NoteSynthesisState* synthesisState,
+Acmd* NasSynthWaveMemory(Acmd* acmd, struct NoteSubEu* NoteSubEu, struct NoteSynthesisState* SynthesisState,
                         s32 nSamplesToLoad);
-Acmd* Nas_Synth_Resample(Acmd* acmd, struct NoteSynthesisState* synthesisState, s32 count, u16 pitch, u16 dmemIn,
+Acmd* NasSynthResample(Acmd* acmd, struct NoteSynthesisState* SynthesisState, s32 Count, u16 Pitch, u16 dmemIn,
                      u32 flags);
-Acmd* Nas_Synth_Envelope(Acmd* cmd, struct NoteSubEu* note, struct NoteSynthesisState* synthesisState, s32 nSamples,
+Acmd* NasSynthEnvelope(Acmd* cmd, struct NoteSubEu* Note, struct NoteSynthesisState* SynthesisState, s32 nSamples,
                     u16 inBuf, s32 headsetPanSettings, u32 flags);
-Acmd* Nas_Synth_Delay(Acmd* acmd, struct NoteSubEu* noteSubEu, struct NoteSynthesisState* note,
+Acmd* NasSynthDelay(Acmd* acmd, struct NoteSubEu* NoteSubEu, struct NoteSynthesisState* Note,
                                      s32 bufLen, s32 flags, s32 leftRight);
 
-extern struct SynthesisReverb gSynthesisReverbs[4];
+extern struct SynthesisReverb SynthesisReverbs[4];
 
 /*
 SO
-gLeftVolRampings is almost certainly gAudioSessionPool (D_803AFBC8) in disguise, but since
-synthesis' ro/data has already been broken out it'll be very hard to fix that.
+gLeftVolRampings is almost certainly AudioSessionPool (D_803AFBC8) in disguise, but since
+synthesis' ro/data has already been Broken out it'll be very hard to fix that.
 
 extern f32 gLeftVolRampings[3][1024];
 extern f32 gRightVolRampings[3][1024];
-extern f32 *gCurrentLeftVolRamping; // Points to any of the three left buffers above
-extern f32 *gCurrentRightVolRamping; // Points to any of the three right buffers above
+extern f32 *gCurrentLeftVolRamping; // Points to any of the three Left buffers above
+extern f32 *gCurrentRightVolRamping; // Points to any of the three Right buffers above
 */
 
 #endif // AUDIO_SYNTHESIS_H

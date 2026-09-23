@@ -3,21 +3,21 @@
 
 unsigned short CheckBump2Simple(Object *InputObject)
 {
-	return CheckBump2((Bump*)&InputObject->bump, InputObject->radius, InputObject->position[0], InputObject->position[1], InputObject->position[2], InputObject->position[0] - InputObject->velocity[0], InputObject->position[1] - InputObject->velocity[1], InputObject->position[2] - InputObject->velocity[2] );
+	return CheckBump2((Bump*)&InputObject->Bump, InputObject->Radius, InputObject->Position[0], InputObject->Position[1], InputObject->Position[2], InputObject->Position[0] - InputObject->Velocity[0], InputObject->Position[1] - InputObject->Velocity[1], InputObject->Position[2] - InputObject->Velocity[2] );
 }
 
 
-unsigned short CheckBump2Simple2(uint BumpAddress, float Radius, Vector InputPosition)
+unsigned short CheckBump2Simple2(Uint BumpAddress, float Radius, Vector InputPosition)
 {
 	return CheckBump2((Bump*)BumpAddress, Radius, InputPosition[0], InputPosition[1], InputPosition[2],  InputPosition[0], InputPosition[1], InputPosition[2] );
 }
-short MasterCreateObject(float localPosition[], short localRotation[], float localVelocity[], short localID, float radius)
+short MasterCreateObject(float localPosition[], short localRotation[], float localVelocity[], short localID, float Radius)
 {
-	GlobalShortA = addObjectBuffer(localPosition,localRotation,objectVelocity,localID);
+	GlobalShortA = AddObjectBuffer(localPosition,localRotation,ObjectVelocity,localID);
 	
-	GlobalAddressA = (long)(&g_SimpleObjectArray) + (GlobalShortA * 0x70);
-	g_SimpleObjectArray[GlobalShortA].flag = 0xC000;
-	g_SimpleObjectArray[GlobalShortA].radius = radius;
+	GlobalAddressA = (long)(&SimpleObjectArray) + (GlobalShortA * 0x70);
+	SimpleObjectArray[GlobalShortA].Flag = 0xC000;
+	SimpleObjectArray[GlobalShortA].Radius = Radius;
 	return GlobalShortA;
 }
 
@@ -26,80 +26,80 @@ short MasterCreateObject(float localPosition[], short localRotation[], float loc
 
 short CreateObjectRotation(float localPosition[], short localRotation[], short localID)
 {
-	objectVelocity[0] = 0;
-	objectVelocity[1] = 0;
-	objectVelocity[2] = 0;
+	ObjectVelocity[0] = 0;
+	ObjectVelocity[1] = 0;
+	ObjectVelocity[2] = 0;
 
-	GlobalShortA = MasterCreateObject(localPosition,localRotation,objectVelocity,localID, 5.0);
+	GlobalShortA = MasterCreateObject(localPosition,localRotation,ObjectVelocity,localID, 5.0);
 	
 	return GlobalShortA;
 }
 
 short CreateObjectRadius(float localPosition[], short localRotation[], short localID, float localRadius)
 {
-	objectVelocity[0] = 0;
-	objectVelocity[1] = 0;
-	objectVelocity[2] = 0;
-	GlobalShortA = MasterCreateObject(localPosition,localRotation,objectVelocity,localID, localRadius);
+	ObjectVelocity[0] = 0;
+	ObjectVelocity[1] = 0;
+	ObjectVelocity[2] = 0;
+	GlobalShortA = MasterCreateObject(localPosition,localRotation,ObjectVelocity,localID, localRadius);
 	
 	return GlobalShortA;
 }
 
 short CreateObject(float localPosition[], short localID)
 {
-	objectAngle[0] = 0;
-	objectAngle[1] = 0;
-	objectAngle[2] = 0;
+	ObjectAngle[0] = 0;
+	ObjectAngle[1] = 0;
+	ObjectAngle[2] = 0;
 
-	objectVelocity[0] = 0;
-	objectVelocity[1] = 0;
-	objectVelocity[2] = 0;
+	ObjectVelocity[0] = 0;
+	ObjectVelocity[1] = 0;
+	ObjectVelocity[2] = 0;
 
-	return MasterCreateObject(localPosition,objectAngle,objectVelocity,localID, 5.0);
+	return MasterCreateObject(localPosition,ObjectAngle,ObjectVelocity,localID, 5.0);
 }
 
 short CreateObjectSimple(int XPosition, int YPosition, int ZPosition, int localRotation, int localID)
 {
 	
-	objectPosition[0] = (float)XPosition;
-	objectPosition[1] = (float)YPosition;
-	objectPosition[2] = (float)ZPosition;
-	objectAngle[0] = 0;
-	objectAngle[1] = (short)localRotation;
-	objectAngle[2] = 0;
-	objectVelocity[0] = 0;
-	objectVelocity[1] = 0;
-	objectVelocity[2] = 0;
+	ObjectPosition[0] = (float)XPosition;
+	ObjectPosition[1] = (float)YPosition;
+	ObjectPosition[2] = (float)ZPosition;
+	ObjectAngle[0] = 0;
+	ObjectAngle[1] = (short)localRotation;
+	ObjectAngle[2] = 0;
+	ObjectVelocity[0] = 0;
+	ObjectVelocity[1] = 0;
+	ObjectVelocity[2] = 0;
 
-	return MasterCreateObject(objectPosition,objectAngle,objectVelocity,localID, 5.0);
+	return MasterCreateObject(ObjectPosition,ObjectAngle,ObjectVelocity,localID, 5.0);
 }
 
 void UpdateObjectVelocity(Object* InputObject)
 {
-	InputObject->position[0] += InputObject->velocity[0];
-	InputObject->position[1] += InputObject->velocity[1];
-	InputObject->position[2] += InputObject->velocity[2];
+	InputObject->Position[0] += InputObject->Velocity[0];
+	InputObject->Position[1] += InputObject->Velocity[1];
+	InputObject->Position[2] += InputObject->Velocity[2];
 }
 void UpdateObjectAngle(Object* InputObject, short InputAngle[])
 {
-	InputObject->angle[0] += InputAngle[0];
-	InputObject->angle[1] += InputAngle[1];
-	InputObject->angle[2] += InputAngle[2];
+	InputObject->Angle[0] += InputAngle[0];
+	InputObject->Angle[1] += InputAngle[1];
+	InputObject->Angle[2] += InputAngle[2];
 }
 
 
 
 void UpdateObjectGravity(Object* InputObject)
 {
-	InputObject->velocity[1] -= 0.5;
+	InputObject->Velocity[1] -= 0.5;
 	/*
-	if (InputObject->velocity[1] > -2)
+	if (InputObject->Velocity[1] > -2)
 	{
-		InputObject->velocity[1] -= 0.5;
+		InputObject->Velocity[1] -= 0.5;
 	}
 	else
 	{
-		InputObject->velocity[1] = -2;
+		InputObject->Velocity[1] = -2;
 	}
 	*/
 }
@@ -108,28 +108,28 @@ void UpdateObjectGravity(Object* InputObject)
 void ManualBump(Bump* BumpData, Vector Position )
 {
 	float dist;
-	dist = BumpData->distance_zx;
-	if ((BumpData->distance_zx < 0) && (BumpData->flag_zx == TRUE))     
+	dist = BumpData->DistanceZX;
+	if ((BumpData->DistanceZX < 0) && (BumpData->FlagZX == TRUE))     
 	{
-		Position[0] -= BumpData->bump_zx[0] * dist;
-		Position[1] -= BumpData->bump_zx[1] * dist;
-		Position[2] -= BumpData->bump_zx[2] * dist;
+		Position[0] -= BumpData->BumpZX[0] * dist;
+		Position[1] -= BumpData->BumpZX[1] * dist;
+		Position[2] -= BumpData->BumpZX[2] * dist;
 	}
 	
-	dist = BumpData->distance_xy;
-	if ((BumpData->distance_xy < 0) && (BumpData->flag_xy == TRUE))
+	dist = BumpData->DistanceXY;
+	if ((BumpData->DistanceXY < 0) && (BumpData->FlagXY == TRUE))
 	{
-		Position[0] -= BumpData->bump_xy[0] * dist;
-		Position[1] -= BumpData->bump_xy[1] * dist;
-		Position[2] -= BumpData->bump_xy[2] * dist;
+		Position[0] -= BumpData->BumpXY[0] * dist;
+		Position[1] -= BumpData->BumpXY[1] * dist;
+		Position[2] -= BumpData->BumpXY[2] * dist;
 	}
 	
-	dist = BumpData->distance_yz;
-	if ((BumpData->distance_yz < 0) && (BumpData->flag_yz == TRUE))
+	dist = BumpData->DistanceYZ;
+	if ((BumpData->DistanceYZ < 0) && (BumpData->FlagYZ == TRUE))
 	{
-		Position[0] -= BumpData->bump_yz[0] * dist;
-		Position[1] -= BumpData->bump_yz[1] * dist;
-		Position[2] -= BumpData->bump_yz[2] * dist;
+		Position[0] -= BumpData->BumpYZ[0] * dist;
+		Position[1] -= BumpData->BumpYZ[1] * dist;
+		Position[2] -= BumpData->BumpYZ[2] * dist;
 	}
 }
 void ManualBounce(Vector BumpDistance, Vector Velocity)
@@ -167,77 +167,77 @@ void UpdateObjectBump(Object* InputObject)
 	
 void UpdateObjectFriction(Object* InputObject, float Friction)
 {
-	InputObject->velocity[0] -= Friction;
-	InputObject->velocity[1] -= Friction;
-	InputObject->velocity[2] -= Friction;
+	InputObject->Velocity[0] -= Friction;
+	InputObject->Velocity[1] -= Friction;
+	InputObject->Velocity[2] -= Friction;
 }
 
 void UpdateObjectFrictionScale(Object* InputObject, float FrictionScale)
 {
-	InputObject->velocity[0] *= (1.0 - (FrictionScale / 30));
-	InputObject->velocity[1] *= (1.0 - (FrictionScale / 30));
-	InputObject->velocity[2] *= (1.0 - (FrictionScale / 30));
+	InputObject->Velocity[0] *= (1.0 - (FrictionScale / 30));
+	InputObject->Velocity[1] *= (1.0 - (FrictionScale / 30));
+	InputObject->Velocity[2] *= (1.0 - (FrictionScale / 30));
 }
 
 void PakkunStrategyOverride(Object* PiranhaPlant)
 {
     PakkunObject *Pakkun = (PakkunObject*)(PiranhaPlant);
-    if(PiranhaPlant->flag&HIDEOBJ)
+    if(PiranhaPlant->Flag&HIDEOBJ)
     {
         return;
     }
-    if(PiranhaPlant->flag&FLYINGOBJ)
+    if(PiranhaPlant->Flag&FLYINGOBJ)
     {
-        PiranhaPlant->position[1]+=4.0f;
-        if(PiranhaPlant->position[1]>800.0f)
+        PiranhaPlant->Position[1]+=4.0f;
+        if(PiranhaPlant->Position[1]>800.0f)
         {
-            PiranhaPlant->flag|=HIDEOBJ;
+            PiranhaPlant->Flag|=HIDEOBJ;
             return;
         }
     }
 
-	Pakkun->timers[0] ++;
-	if (Pakkun->timers[0] > 60)
+	Pakkun->Timers[0] ++;
+	if (Pakkun->Timers[0] > 60)
 	{
-		Pakkun->timers[0] = 0;
+		Pakkun->Timers[0] = 0;
 	}
 	
 }
 
 /*
 
-set_itembox_object(uint address)
+set_itembox_object(Uint Address)
 {
-      uint number= SEGMENT_NUMBER(address);
-      uint offset= SEGMENT_OFFSET(address);
-      ITEMBOXOBJ *itembox =(ITEMBOXOBJ *)OS_PHYSICAL_TO_K0(segmentTable[number]+offset);
+      Uint Number= SEGMENT_NUMBER(Address);
+      Uint Offset= SEGMENT_OFFSET(Address);
+      ITEMBOXOBJ *itembox =(ITEMBOXOBJ *)OS_PHYSICAL_TO_K0(segmentTable[Number]+Offset);
       OBJECT *obj;
-      FVector position;
-      FVector velocity;
-      SVector angle;
-      short   count;
+      FVector Position;
+      FVector Velocity;
+      SVector Angle;
+      short   Count;
 
       if(game_mode==TIMEATTACK)        return;
       if(!item_set_flag)        return;
 
-      set_fvector(velocity,0,0,0);
-      //set_svector(angle,0,0,0);
-      while(itembox->position[0]!=-32768)
+      set_fvector(Velocity,0,0,0);
+      //set_svector(Angle,0,0,0);
+      while(itembox->Position[0]!=-32768)
       {
- //     if(screen_flip)	 position[0]*=-1.0f;
+ //     if(screen_flip)	 Position[0]*=-1.0f;
 
-      position[0]=((float)itembox->position[0])*flip_value;
-      position[1]=(float)itembox->position[1];
-      position[2]=(float)itembox->position[2];
-  //    position[1]=check_hight(position[0],position[1],position[2]);
+      Position[0]=((float)itembox->Position[0])*flip_value;
+      Position[1]=(float)itembox->Position[1];
+      Position[2]=(float)itembox->Position[2];
+  //    Position[1]=check_hight(Position[0],Position[1],Position[2]);
 
-      angle[0]=make_random();
-      angle[1]=make_random();
-      angle[2]=make_random();
-      count=add_object_buffer(position,angle,velocity,IBOX);
-      object_buffer[count].fparam=check_hight(position[0],position[1]+10,position[2]);
-      object_buffer[count].velocity[0]=position[1];
-      object_buffer[count].position[1]=object_buffer[count].fparam-20.0f;
+      Angle[0]=make_random();
+      Angle[1]=make_random();
+      Angle[2]=make_random();
+      Count=add_object_buffer(Position,Angle,Velocity,IBOX);
+      object_buffer[Count].Fparam=check_hight(Position[0],Position[1]+10,Position[2]);
+      object_buffer[Count].Velocity[0]=Position[1];
+      object_buffer[Count].Position[1]=object_buffer[Count].Fparam-20.0f;
       ++itembox;
       }
 }

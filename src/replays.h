@@ -4,38 +4,38 @@
 #include <PR/os.h>
 #include <common_structs.h>
 
-void norm_data_control(void);
+void NormDataControl(void);
 void DMAROMGhost(void);
-void replay_ghost(void);
-void read_ghost(void);
-void check_romghost(void);
-s32 make_press_ghost(void);
-void make_melt_ghost(void);
-void swap_ghostbuffer(void);
-void initial_ghost(void);
-void replayread_key_data(void);
-void romread_key_data(void);
-void read_key_data(void);
+void ReplayGhost(void);
+void ReadGhost(void);
+void CheckRomghost(void);
+s32 MakePressGhost(void);
+void MakeMeltGhost(void);
+void SwapGhostbuffer(void);
+void InitialGhost(void);
+void ReplayreadKeyData(void);
+void RomreadKeyData(void);
+void ReadKeyData(void);
 void func_8000599C(void);
-void kill_ghost(Player*);
-void replay_data_control(void);
-void key_data_control(void);
+void KillGhost(Player*);
+void ReplayDataControl(void);
+void KeyDataControl(void);
 
 // mi0decode
 
-extern s32 encpass2(s32 input, s32, s32);
+extern s32 encpass2(s32 Input, s32, s32);
 extern s32 encpass1(void*, s32, s32);
 
-extern s32 read_pointer;
-extern s32 write_pointer;
-extern u16 ghost_status;
-extern u16 romghost_status;
-extern u16 replayghost_status;
+extern s32 ReadPointer;
+extern s32 WritePointer;
+extern u16 GhostStatus;
+extern u16 RomghostStatus;
+extern u16 ReplayghostStatus;
 extern s32 D_80162E00;
-extern s32 ghost_kart;
-extern s32 romghost_kart;
-extern s32 replayghost_kart;
-extern s32 ghost_write;
-extern s32 lost_ghost;
+extern s32 GhostKart;
+extern s32 RomghostKart;
+extern s32 ReplayghostKart;
+extern s32 GhostWrite;
+extern s32 LostGhost;
 
 #endif /* STAFF_GHOSTS_H */

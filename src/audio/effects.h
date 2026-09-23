@@ -34,14 +34,14 @@
 #define BSWAP16(x) (((x) & 0xff) << 8 | (((x) >> 8) & 0xff))
 #endif
 
-void Nas_ChLookUse(struct SequenceChannel* seqChannel, s32 recalculateVolume);
-void Nas_AllocationOnRequest(struct SequencePlayer* seqPlayer);
-f32 Nas_ChannelInit(struct Portamento* p);
-s16 Nas_CallWaveProcess_Sub(struct VibratoState* vib);
-f32 Nas_MainCtrl(struct VibratoState* vib);
-void Nas_SweepCalculator(struct Note* note);
-void Nas_ModTableRead(struct Note* note);
-void Nas_Modulator(struct AdsrState* adsr, struct AdsrEnvelope* envelope, s16* volOut);
-f32 Nas_ChannelModulation(struct AdsrState* adsr);
+void NasChLookUse(struct SequenceChannel* SEQChannel, s32 RecalculateVolume);
+void NasAllocationOnRequest(struct SequencePlayer* seqPlayer);
+f32 NasChannelInit(struct Portamento* p);
+s16 NasCallWaveProcessSub(struct VibratoState* vib);
+f32 NasMainCtrl(struct VibratoState* vib);
+void NasSweepCalculator(struct Note* Note);
+void NasModTableRead(struct Note* Note);
+void NasModulator(struct AdsrState* Adsr, struct AdsrEnvelope* Envelope, s16* volOut);
+f32 NasChannelModulation(struct AdsrState* Adsr);
 
 #endif /* AUDIO_EFFECTS_H */

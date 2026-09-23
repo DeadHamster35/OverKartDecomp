@@ -4,18 +4,18 @@
 #include "math_util.h"
 #include "animation.h"
 #include "memory.h"
-#include <main.h>
+#include <Main.h>
 #include <PR/gbi.h>
 #include "code_80057C60.h"
 
-Vec3s shapepos_offset;
-s16 shapepos_flag;
-s16 push_flag;
-s16 pushcount;
+Vec3s ShapeposOffset;
+s16 ShapeposFlag;
+s16 PushFlag;
+s16 Pushcount;
 
 void SetSkeletonMatrix(Mtx* dest, Mat4 src) {
 #ifdef AVOID_UB
-    // Avoid type-casting which is technically UB by calling the equivalent
+    // Avoid Type-casting which is technically UB by calling the equivalent
     // guMtxF2L function. This helps little-endian systems, as well.
     guMtxF2L(src, dest);
 #else
@@ -33,15 +33,15 @@ void SetSkeletonMatrix(Mtx* dest, Mat4 src) {
 #endif
 }
 
-void CreateJointAffineMtx(Mat4 dest, Vec3f pos, Vec3s angle) {
-    register f32 sx = sinT(angle[0]);
-    register f32 cx = cosT(angle[0]);
+void CreateJointAffineMtx(Mat4 dest, Vec3f pos, Vec3s Angle) {
+    register f32 sx = SinT(Angle[0]);
+    register f32 cx = CosT(Angle[0]);
 
-    register f32 sy = sinT(angle[1]);
-    register f32 cy = cosT(angle[1]);
+    register f32 sy = SinT(Angle[1]);
+    register f32 cy = CosT(Angle[1]);
 
-    register f32 sz = sinT(angle[2]);
-    register f32 cz = cosT(angle[2]);
+    register f32 sz = SinT(Angle[2]);
+    register f32 cz = CosT(Angle[2]);
 
     dest[0][0] = cy * cz;
     dest[0][1] = cy * sz;
@@ -64,90 +64,90 @@ void CreateJointAffineMtx(Mat4 dest, Vec3f pos, Vec3s angle) {
     dest[3][3] = 1.0f;
 }
 
-void hmsdraw_joint(Armature* arg0, s16* arg1, AnimationLimbVector arg2, s32 timeCycle) {
+void HmsdrawJoint(Armature* arg0, s16* arg1, AnimationLimbVector Arg2, s32 timeCycle) {
     Vec3f pos;
-    Vec3s angle;
+    Vec3s Angle;
     Mat4 modelMatrix;
     s32 i;
     s32 some_offset;
-    Gfx* model;
+    Gfx* Model;
     Gfx* virtualModel;
-    virtualModel = arg0->model;
-    if (shapepos_flag == 0) {
+    virtualModel = arg0->Model;
+    if (ShapeposFlag == 0) {
         for (i = 0; i < 3; i++) {
-            pos[i] = shapepos_offset[i] + arg0->pos[i];
+            pos[i] = ShapeposOffset[i] + arg0->pos[i];
         }
-        shapepos_flag += 1;
+        ShapeposFlag += 1;
     } else {
         for (i = 0; i < 3; i++) {
             pos[i] = arg0->pos[i];
         }
     }
     for (i = 0; i < 3; i++) {
-        if (timeCycle < arg2[i].animation_length) {
+        if (timeCycle < Arg2[i].AnimationLength) {
             some_offset = timeCycle;
         } else {
             some_offset = 0;
         }
-        angle[i] = arg1[arg2[i].indexCycle + some_offset];
+        Angle[i] = arg1[Arg2[i].IndexCycle + some_offset];
     }
 
-    CreateJointAffineMtx(modelMatrix, pos, angle);
-    SetSkeletonMatrix(&gDynamicP->mtxHud[modelingnum], modelMatrix);
-    pushcount += 1;
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL2(&gDynamicP->mtxHud[modelingnum++]),
+    CreateJointAffineMtx(modelMatrix, pos, Angle);
+    SetSkeletonMatrix(&DynamicP->MTXHud[Modelingnum], modelMatrix);
+    Pushcount += 1;
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL2(&DynamicP->MTXHud[Modelingnum++]),
               G_MTX_PUSH | G_MTX_MUL | G_MTX_MODELVIEW);
     if (virtualModel != NULL) {
-        model = SegmentToVirtual(virtualModel);
-        gSPDisplayList(gDisplayListHead++, model);
+        Model = SegmentToVirtual(virtualModel);
+        gSPDisplayList(DisplayListHead++, Model);
     }
 }
 
-void draw_skeleton_entry(Armature* animation, Animation* arg1, s16 timeCycle) {
+void DrawSkeletonEntry(Armature* animation, Animation* arg1, s16 timeCycle) {
     UNUSED u32* temp;
-    s16* angle_array;
+    s16* AngleArray;
     s32 some_offset;
     AnimationLimbVector* animation_cycle_list;
     s32 animation_type;
     s32 someIndex;
 
-    angle_array = SegmentToVirtual(arg1->angle_array);
-    animation_cycle_list = SegmentToVirtual(arg1->animation_cycle_spec_vector);
-    pushcount = 0;
-    shapepos_flag = 0;
+    AngleArray = SegmentToVirtual(arg1->AngleArray);
+    animation_cycle_list = SegmentToVirtual(arg1->AnimationCycleSpecVector);
+    Pushcount = 0;
+    ShapeposFlag = 0;
     for (someIndex = 0; someIndex < 3; someIndex++) {
-        if (timeCycle < (*animation_cycle_list)[someIndex].animation_length) {
+        if (timeCycle < (*animation_cycle_list)[someIndex].AnimationLength) {
             some_offset = timeCycle;
         } else {
             some_offset = 0;
         }
-        shapepos_offset[someIndex] = angle_array[(*animation_cycle_list)[someIndex].indexCycle + some_offset];
+        ShapeposOffset[someIndex] = AngleArray[(*animation_cycle_list)[someIndex].IndexCycle + some_offset];
     }
     animation_cycle_list++;
-    push_flag = 0;
+    PushFlag = 0;
     do {
-        animation_type = animation->type;
+        animation_type = animation->Type;
         switch (animation_type) { /* irregular */
             case STOP_ANIMATION:
                 break;
             case DISABLE_AUTOMATIC_POP_MATRIX:
-                push_flag = 1;
+                PushFlag = 1;
                 break;
             case POP_MATRIX:
-                gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-                pushcount -= 1;
+                gSPPopMatrix(DisplayListHead++, G_MTX_MODELVIEW);
+                Pushcount -= 1;
                 break;
             case RENDER_MODEL_OR_ADD_POS:
-                if (push_flag == 0) {
-                    gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-                    pushcount -= 1;
+                if (PushFlag == 0) {
+                    gSPPopMatrix(DisplayListHead++, G_MTX_MODELVIEW);
+                    Pushcount -= 1;
                 }
-                hmsdraw_joint(animation, angle_array, *animation_cycle_list, (s32) timeCycle);
-                push_flag = 0;
+                HmsdrawJoint(animation, AngleArray, *animation_cycle_list, (s32) timeCycle);
+                PushFlag = 0;
                 animation_cycle_list++;
                 break;
         }
-        animation = (Armature*) ((u32*) animation + animation->size);
+        animation = (Armature*) ((u32*) animation + animation->Size);
     } while (animation_type != STOP_ANIMATION);
 }
 
@@ -158,22 +158,22 @@ s16 DrawLocalSkeletonShape(Armature* virtualArmature, Animation** virtualListAni
     Animation** listAnimation;
 
     armature = SegmentToVirtual(virtualArmature);
-    listAnimation = SegmentToVirtual(virtualListAnimation);      // Convert the array's address
-    animation = SegmentToVirtual(listAnimation[animationIndex]); // Convert an array element's address
-    if (timeCycle >= animation->animation_length) {
+    listAnimation = SegmentToVirtual(virtualListAnimation);      // Convert the array's Address
+    animation = SegmentToVirtual(listAnimation[animationIndex]); // Convert an array element's Address
+    if (timeCycle >= animation->AnimationLength) {
         timeCycle = 0;
     }
-    draw_skeleton_entry(armature, animation, timeCycle);
+    DrawSkeletonEntry(armature, animation, timeCycle);
     timeCycle++;
-    if (timeCycle >= animation->animation_length) {
+    if (timeCycle >= animation->AnimationLength) {
         timeCycle = 0;
     }
     return timeCycle;
 }
 
-s16 check_skelanime_end(Animation** addr, s16 offset) {
-    Animation** item = SegmentToVirtual(addr);
-    Animation* temp = (Animation*) SegmentToVirtual((void*) item[offset]);
+s16 CheckSkelanimeEnd(Animation** Addr, s16 Offset) {
+    Animation** Item = SegmentToVirtual(Addr);
+    Animation* temp = (Animation*) SegmentToVirtual((void*) Item[Offset]);
 
-    return temp->animation_length - 1;
+    return temp->AnimationLength - 1;
 }

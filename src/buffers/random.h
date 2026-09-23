@@ -3,7 +3,7 @@
 
 #include <ultra64.h>
 
-extern u16 g_RNG;
-extern u8 randomSeedPadding[];
+extern u16 RNG;
+extern u8 RandomSeedPadding[];
 
 #endif // RANDOM_H

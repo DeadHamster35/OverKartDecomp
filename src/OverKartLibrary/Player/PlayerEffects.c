@@ -6,79 +6,79 @@
 
 // VISUALS //
 
-void SetAnimMusicNote(char playerID)
+void SetAnimMusicNote(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].talk |= MUSIC_NOTE;
+	GlobalPlayer[(int)PlayerID].Talk |= MUSIC_NOTE;
 }
 
-void SetAnimCrash(char playerID)
+void SetAnimCrash(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].talk |= CRASH;
+	GlobalPlayer[(int)PlayerID].Talk |= CRASH;
 }
 
-void SetAnimPoomp(char playerID)
+void SetAnimPoomp(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].talk |= POOMP;
+	GlobalPlayer[(int)PlayerID].Talk |= POOMP;
 }
 
-void SetAnimBoing(char playerID)
+void SetAnimBoing(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].talk |= BOING;
+	GlobalPlayer[(int)PlayerID].Talk |= BOING;
 }
 
-void SetAnimExplosion(char playerID)
+void SetAnimExplosion(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].talk |= FLASH;
+	GlobalPlayer[(int)PlayerID].Talk |= FLASH;
 }
 
-void SetAnimBonkStars(char playerID)
+void SetAnimBonkStars(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].handling_flag |= TROPHYJUMP_STARS;
+	GlobalPlayer[(int)PlayerID].HandlingFlag |= TROPHYJUMP_STARS;
 }
 
-void SetAnimLandingDust(char playerID)
+void SetAnimLandingDust(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].handling_flag |= LANDING_DUST;
+	GlobalPlayer[(int)PlayerID].HandlingFlag |= LANDING_DUST;
 }
 
-void SetAnimBooSmoke(char playerID)
+void SetAnimBooSmoke(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].handling_flag |= BOO_SMOKE_EFFECT;
+	GlobalPlayer[(int)PlayerID].HandlingFlag |= BOO_SMOKE_EFFECT;
 }
 
-void SetAnimWaterDrip(char playerID, bool active)
+void SetAnimWaterDrip(char PlayerID, bool Active)
 {
-	if (active)
+	if (Active)
 	{
-		GlobalPlayer[(int)playerID].jugemu_flag |= WATER_EFFECT;
+		GlobalPlayer[(int)PlayerID].JugemuFlag |= WATER_EFFECT;
 		return;
 	}
-	if ((!active) && ((GlobalPlayer[(int)playerID].jugemu_flag & WATER_EFFECT) != 0))
+	if ((!Active) && ((GlobalPlayer[(int)PlayerID].JugemuFlag & WATER_EFFECT) != 0))
 	{
-		GlobalPlayer[(int)playerID].jugemu_flag ^= WATER_EFFECT;
-		return;
-	}
-}
-
-void SetAnimSmoking(char playerID, bool active)
-{
-	if (active)
-	{
-		GlobalPlayer[(int)playerID].jugemu_flag |= LAVA_EFFECT;
-		return;
-	}
-	if ((!active) && ((GlobalPlayer[(int)playerID].jugemu_flag & LAVA_EFFECT) != 0))
-	{
-		GlobalPlayer[(int)playerID].jugemu_flag ^= LAVA_EFFECT;
+		GlobalPlayer[(int)PlayerID].JugemuFlag ^= WATER_EFFECT;
 		return;
 	}
 }
 
-void DisableOutline(char playerID) // Fixes custom characters black outlines
+void SetAnimSmoking(char PlayerID, bool Active)
 {
-	if ((unsigned char)GlobalPlayer[(int)playerID].erase == 0xFF)
+	if (Active)
 	{
-		GlobalPlayer[(int)playerID].erase = 0x30;
+		GlobalPlayer[(int)PlayerID].JugemuFlag |= LAVA_EFFECT;
+		return;
+	}
+	if ((!Active) && ((GlobalPlayer[(int)PlayerID].JugemuFlag & LAVA_EFFECT) != 0))
+	{
+		GlobalPlayer[(int)PlayerID].JugemuFlag ^= LAVA_EFFECT;
+		return;
+	}
+}
+
+void DisableOutline(char PlayerID) // Fixes custom characters black outlines
+{
+	if ((unsigned char)GlobalPlayer[(int)PlayerID].Erase == 0xFF)
+	{
+		GlobalPlayer[(int)PlayerID].Erase = 0x30;
 	}
 }
 
@@ -86,225 +86,225 @@ void DisableOutline(char playerID) // Fixes custom characters black outlines
 
 // GAMEPLAY // 
 
-void SetMapObjectHit(char playerID)
+void SetMapObjectHit(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].weapon |= HIT_BOMB;
+	GlobalPlayer[(int)PlayerID].Weapon |= HIT_BOMB;
 }
 
-void SetMushroomBoost(char playerID)
+void SetMushroomBoost(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].weapon |= USE_MUSHROOM;
+	GlobalPlayer[(int)PlayerID].Weapon |= USE_MUSHROOM;
 }
 
-void SetLightningHit(char playerID)
+void SetLightningHit(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].weapon |= HIT_LIGHTNING;
+	GlobalPlayer[(int)PlayerID].Weapon |= HIT_LIGHTNING;
 }
 
-void SetShrunken(char playerID, bool active)
+void SetShrunken(char PlayerID, bool Active)
 {
-	if (active)
+	if (Active)
 	{
-		GlobalPlayer[(int)playerID].slip_flag |= IS_LIGHTNING_HIT;
-		GlobalPlayer[(int)playerID].thunder_timer = 0x00FF;
+		GlobalPlayer[(int)PlayerID].SlipFlag |= IS_LIGHTNING_HIT;
+		GlobalPlayer[(int)PlayerID].ThunderTimer = 0x00FF;
 	}
-	if (!active)
+	if (!Active)
 	{
-		GlobalPlayer[(int)playerID].slip_flag |= IS_UNSQUISHED;
-		GlobalPlayer[(int)playerID].thunder_timer = 0x01CC;
+		GlobalPlayer[(int)PlayerID].SlipFlag |= IS_UNSQUISHED;
+		GlobalPlayer[(int)PlayerID].ThunderTimer = 0x01CC;
 	}
 }
 
-void SetStarMan(char playerID, bool active)
+void SetStarMan(char PlayerID, bool Active)
 {
-	if (active)
+	if (Active)
 	{
-		if ((GlobalPlayer[(int)playerID].slip_flag & IS_STAR) == 0)
+		if ((GlobalPlayer[(int)PlayerID].SlipFlag & IS_STAR) == 0)
 		{
-			NAEnmTrgStart(GlobalPlayer[(int)playerID].position,GlobalPlayer[(int)playerID].velocity,0x0100ff2c);
+			NAEnmTrgStart(GlobalPlayer[(int)PlayerID].Position,GlobalPlayer[(int)PlayerID].Velocity,0x0100ff2c);
 		}
-		GlobalPlayer[(int)playerID].slip_flag |= IS_STAR;
-		g_StarUseCounter[(int)playerID]  = 0xFFFF;
+		GlobalPlayer[(int)PlayerID].SlipFlag |= IS_STAR;
+		StarUseCounter[(int)PlayerID]  = 0xFFFF;
 	}
-	if (!active)
+	if (!Active)
 	{
-		g_StarUseCounter[(int)playerID]  = 0;
-		ResetStar((void*)&GlobalPlayer[(int)playerID], playerID);
-		NAEnmTrgStop(GlobalPlayer[(int)playerID].position,0x0100ff2c);
+		StarUseCounter[(int)PlayerID]  = 0;
+		ResetStar((void*)&GlobalPlayer[(int)PlayerID], PlayerID);
+		NAEnmTrgStop(GlobalPlayer[(int)PlayerID].Position,0x0100ff2c);
 	}
 
 }
 
-void SetGhostEffect(char playerID, bool active, int UseCount)
+void SetGhostEffect(char PlayerID, bool Active, int UseCount)
 {
 
-	if (active)
+	if (Active)
 	{
 		
-		g_GhostUseCounter[(int)playerID]  = UseCount;
-		g_GhostUseTimer[(int)playerID] = 30;
-		if ((GlobalPlayer[(int)playerID].slip_flag & IS_BOO) == 0)
+		GhostUseCounter[(int)PlayerID]  = UseCount;
+		GhostUseTimer[(int)PlayerID] = 30;
+		if ((GlobalPlayer[(int)PlayerID].SlipFlag & IS_BOO) == 0)
 		{
-			SetVSGhost((void*)&GlobalPlayer[(int)playerID], playerID);
+			SetVSGhost((void*)&GlobalPlayer[(int)PlayerID], PlayerID);
 		}
 	}
-	if ((!active))
+	if ((!Active))
 	{
-		g_GhostUseCounter[(int)playerID]  = 0;
-		g_GhostUseTimer[(int)playerID]  = -1;
-		ResetVSGhost((void*)&GlobalPlayer[(int)playerID], playerID);
+		GhostUseCounter[(int)PlayerID]  = 0;
+		GhostUseTimer[(int)PlayerID]  = -1;
+		ResetVSGhost((void*)&GlobalPlayer[(int)PlayerID], PlayerID);
 	}
 
 }
 
-void SetBooTranslucent(char playerID)
+void SetBooTranslucent(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].weapon |= USE_BOO;
+	GlobalPlayer[(int)PlayerID].Weapon |= USE_BOO;
 }
 
-void SetBecomeBomb(char playerID, bool active)
+void SetBecomeBomb(char PlayerID, bool Active)
 {
-	if (active)
+	if (Active)
 	{
-		GlobalPlayer[(int)playerID].weapon |= PRESS_BECOME_BOMB;
+		GlobalPlayer[(int)PlayerID].Weapon |= PRESS_BECOME_BOMB;
 	}
-	if ((!active) && ((GlobalPlayer[(int)playerID].flag & IS_BOMB) != 0))
+	if ((!Active) && ((GlobalPlayer[(int)PlayerID].Flag & IS_BOMB) != 0))
 	{
-		GlobalPlayer[(int)playerID].flag ^= IS_BOMB;
-	}
-}
-
-
-
-void SetFlattened(char playerID, bool active)
-{
-	if (active)
-	{
-		GlobalPlayer[(int)playerID].weapon |= PRESS_SQUISH;
-	}
-	if ((!active) && ((GlobalPlayer[(int)playerID].weapon & PRESS_SQUISH) != 0))
-	{
-		GlobalPlayer[(int)playerID].weapon ^= PRESS_SQUISH;
+		GlobalPlayer[(int)PlayerID].Flag ^= IS_BOMB;
 	}
 }
 
-void SetSpinOutSaveable(char playerID)
+
+
+void SetFlattened(char PlayerID, bool Active)
 {
-	GlobalPlayer[(int)playerID].weapon |= HIT_BANANA;
+	if (Active)
+	{
+		GlobalPlayer[(int)PlayerID].Weapon |= PRESS_SQUISH;
+	}
+	if ((!Active) && ((GlobalPlayer[(int)PlayerID].Weapon & PRESS_SQUISH) != 0))
+	{
+		GlobalPlayer[(int)PlayerID].Weapon ^= PRESS_SQUISH;
+	}
 }
 
-void SetSpinOut(char playerID)
+void SetSpinOutSaveable(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].weapon |= HIT_CRITTER;
+	GlobalPlayer[(int)PlayerID].Weapon |= HIT_BANANA;
 }
 
-void SetFailedStart(char playerID)
+void SetSpinOut(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].weapon |= PRESS_STARTSPIN;
+	GlobalPlayer[(int)PlayerID].Weapon |= HIT_CRITTER;
 }
 
-void SetGreenShellHit(char playerID)
+void SetFailedStart(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].weapon |= HIT_GREENSHELL;
+	GlobalPlayer[(int)PlayerID].Weapon |= PRESS_STARTSPIN;
 }
 
-void SetRedShellHit(char playerID)
+void SetGreenShellHit(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].weapon |= HIT_REDSHELL;
+	GlobalPlayer[(int)PlayerID].Weapon |= HIT_GREENSHELL;
 }
 
-void SetBonk(char playerID)
+void SetRedShellHit(char PlayerID)
 {
-	GlobalPlayer[(int)playerID].slip_flag |= IS_BONKING;
+	GlobalPlayer[(int)PlayerID].Weapon |= HIT_REDSHELL;
+}
+
+void SetBonk(char PlayerID)
+{
+	GlobalPlayer[(int)PlayerID].SlipFlag |= IS_BONKING;
 }
 
 
 
-void ChangeMaxSpeed(char playerID, float SpeedGain)
+void ChangeMaxSpeed(char PlayerID, float SpeedGain)
 {
-	GlobalPlayer[(int)playerID].acc_maxcount += (float)SpeedGain;
+	GlobalPlayer[(int)PlayerID].AccMaxcount += (float)SpeedGain;
 }
 
 
-void SetCamShiftUp(char playerID, float shift)
+void SetCamShiftUp(char PlayerID, float shift)
 {
-	if (!(GlobalPlayer[(int)playerID].flag & IS_PLAYER))
+	if (!(GlobalPlayer[(int)PlayerID].Flag & IS_PLAYER))
 	{
 		return;
 	}
-	GlobalCamera[(int)playerID]->camera_vector[1] = 9 + shift;
+	GlobalCamera[(int)PlayerID]->CameraVector[1] = 9 + shift;
 }
 
-void ChangePlayerSize(char playerID, float ScaleFactor)
+void ChangePlayerSize(char PlayerID, float ScaleFactor)
 {
-	if(((GlobalPlayer[(int)playerID].kart) == 5) || ((GlobalPlayer[(int)playerID].kart) == 7))
+	if(((GlobalPlayer[(int)PlayerID].Kart) == 5) || ((GlobalPlayer[(int)PlayerID].Kart) == 7))
 	{
-		GlobalPlayer[(int)playerID].radius = 6 * (float)ScaleFactor;
+		GlobalPlayer[(int)PlayerID].Radius = 6 * (float)ScaleFactor;
 	}
 	else
 	{
-		GlobalPlayer[(int)playerID].radius = 5.5 * (float)ScaleFactor;
+		GlobalPlayer[(int)PlayerID].Radius = 5.5 * (float)ScaleFactor;
 	}
-	GlobalPlayer[(int)playerID].offsetsize = (float)ScaleFactor;
+	GlobalPlayer[(int)PlayerID].Offsetsize = (float)ScaleFactor;
 
-	if (playerID <= 3)
+	if (PlayerID <= 3)
 	{
-		GlobalCamera[(int)playerID]->camera_vector[1] = 9 * (float)ScaleFactor;
+		GlobalCamera[(int)PlayerID]->CameraVector[1] = 9 * (float)ScaleFactor;
 	}
 }
 
-void SetPlayerColor(char playerID, int Colors, int AdjColor, float speed)
+void SetPlayerColor(char PlayerID, int Colors, int AdjColor, float Speed)
 {
-	MakeBodyColor((void*)&GlobalPlayer[(int)playerID], playerID, Colors, speed);
-	MakeBodyColorAdjust((void*)&GlobalPlayer[(int)playerID], playerID, AdjColor, speed);
+	MakeBodyColor((void*)&GlobalPlayer[(int)PlayerID], PlayerID, Colors, Speed);
+	MakeBodyColorAdjust((void*)&GlobalPlayer[(int)PlayerID], PlayerID, AdjColor, Speed);
 }
 
-void SetPlayerEcho(char playerID, char echo)
+void SetPlayerEcho(char PlayerID, char echo)
 {
-	if (!(GlobalPlayer[(int)playerID].flag&IS_PLAYER))
+	if (!(GlobalPlayer[(int)PlayerID].Flag&IS_PLAYER))
 	{
 		return;
 	}	
-	GlobalAddressA = (long)(&g_playerEcho) + (0x3C * playerID);
+	GlobalAddressA = (long)(&g_playerEcho) + (0x3C * PlayerID);
 	*(char*)GlobalAddressA = echo;
 }
 
-void playrandmCharacterSFX(char playerID)
+void PlayrandmCharacterSFX(char PlayerID)
 {
-	if ((g_RNG <= 0x3333))
+	if ((RNG <= 0x3333))
 	{
-    	NAPlyVoiceStart(playerID, 0x29008008 + (GlobalPlayer[(int)playerID].kart * 0x10));  //voice char lucky sfx
+    	NAPlyVoiceStart(PlayerID, 0x29008008 + (GlobalPlayer[(int)PlayerID].Kart * 0x10));  //voice char lucky sfx
     	return;
     }
-	if (g_RNG <= 0x7777)
+	if (RNG <= 0x7777)
 	{
-    	NAPlyVoiceStart(playerID, 0x2900800D + (GlobalPlayer[(int)playerID].kart * 0x10));   //voice char yahho sfx
+    	NAPlyVoiceStart(PlayerID, 0x2900800D + (GlobalPlayer[(int)PlayerID].Kart * 0x10));   //voice char yahho sfx
     	return;
 	}
-	if (g_RNG <= 0x9999)
+	if (RNG <= 0x9999)
 	{
-    	NAPlyVoiceStart(playerID, 0x29008001 + (GlobalPlayer[(int)playerID].kart * 0x10));   //voice char gogo sfx
+    	NAPlyVoiceStart(PlayerID, 0x29008001 + (GlobalPlayer[(int)PlayerID].Kart * 0x10));   //voice char gogo sfx
     	return;
 	}
-	NAPlyVoiceStart(playerID, 0x2900800C + (GlobalPlayer[(int)playerID].kart * 0x10));   //voice char jump sfx    
+	NAPlyVoiceStart(PlayerID, 0x2900800C + (GlobalPlayer[(int)PlayerID].Kart * 0x10));   //voice char Jump sfx    
 }
 
 
-void ProStickAngleHook(Player *car, Controller *cont, char number)
+void ProStickAngleHook(Player *car, Controller *Cont, char Number)
 {
-    if(car->talk&0x2 && (!(car->slip_flag&IS_DRIFTING) || ((car->slip_flag&IS_JUMPING) && (car->slip_flag&IS_DRIFTING))))
+    if(car->Talk&0x2 && (!(car->SlipFlag&IS_DRIFTING) || ((car->SlipFlag&IS_JUMPING) && (car->SlipFlag&IS_DRIFTING))))
     {
-        ProStickAngle(car,cont,number);
+        ProStickAngle(car,Cont,Number);
     }
     else
     {
-        if (!(car->slip_flag&IS_IN_AIR))
+        if (!(car->SlipFlag&IS_IN_AIR))
         {
-            ProStickAngle(car,cont,number);
+            ProStickAngle(car,Cont,Number);
         }
-        else if(car->slip_flag&IS_JUMPING && car->bump.distance_zx <= 5)
+        else if(car->SlipFlag&IS_JUMPING && car->Bump.DistanceZX <= 5)
         {
-            ProStickAngle(car,cont,number);
+            ProStickAngle(car,Cont,Number);
         }
     }
 }
@@ -449,8 +449,8 @@ void  MasterStatus(int PlayerID, short StatusID)
 		}
 		case StateLoseUnusedItem:
 		{
-			if (GlobalPlayer[PlayerID].flag&IS_PLAYER)
-				g_DynamicObjects[ItemBoxAllocPtr[PlayerID]].output = 0;
+			if (GlobalPlayer[PlayerID].Flag&IS_PLAYER)
+				DynamicObjects[ItemBoxAllocPtr[PlayerID]].Output = 0;
 			break;
 		}
 

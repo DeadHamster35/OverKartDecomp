@@ -23,7 +23,7 @@ extern u8 gTexture682D20[];
 extern u8 gTexture682F1C[];
 extern u8 gTexture683118[];
 
-const course_texture wario_stadium_textures[] = {
+const CourseTexture wario_stadium_textures[] = {
     { gTexture67F15C, 0x02F1, 0x0800, 0x0 },
     { gTexture67F450, 0x0194, 0x0800, 0x0 },
     { gTextureSignWarioFace, 0x0825, 0x1000, 0x0 },

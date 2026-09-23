@@ -9,10 +9,10 @@ extern void DrawCheat3D(int CurrentPlayer);
 
 void DrawPerScreen(Camera* LocalCamera)
 {
-	if (scrollLock)
+	if (ScrollLock)
 	{
 		#if OverKartBuild
-			int CurrentPlayer = LocalCamera - cameras;
+			int CurrentPlayer = LocalCamera - Cameras;
 			DrawCheat3D(CurrentPlayer);
 		#endif
 
@@ -22,9 +22,9 @@ void DrawPerScreen(Camera* LocalCamera)
 		}
 
 
-		if (g_gameMode == GAMEMODE_BATTLE)
+		if (GameMode == GAMEMODE_BATTLE)
 		{
-			switch(SaveGame.BattleSettings.GameMode)
+			switch(SaveGame.BattleSettings.GameType)
 			{
 				case BTL_BATTLE:
 				{
@@ -56,16 +56,16 @@ void DrawPerScreen(Camera* LocalCamera)
 
 
 
-void loadCoin(void)
+void LoadCoin(void)
 {
 
-	*sourceAddress = (int)(&RCSpriteROM);
-	*targetAddress = (int)(&ok_FreeSpace);
-	dataLength = 0x204;
-	runDMA();
-	*sourceAddress = (int)(&ok_FreeSpace);
-	*targetAddress = (int)(&ok_RedCoinSprite);
-	runMIO();
+	*SourceAddress = (int)(&RCSpriteROM);
+	*TargetAddress = (int)(&ok_FreeSpace);
+	DataLength = 0x204;
+	RunDMA();
+	*SourceAddress = (int)(&ok_FreeSpace);
+	*TargetAddress = (int)(&ok_RedCoinSprite);
+	RunMIO();
 
 }
 
@@ -74,17 +74,17 @@ void DropCoins(int PlayerIndex)
 	int ThisCoin;
 
 	IFrames[PlayerIndex] = 90;
-	objectPosition[0] = GlobalPlayer[PlayerIndex].position[0];
-	objectPosition[1] = GlobalPlayer[PlayerIndex].position[1];
-	objectPosition[2] = GlobalPlayer[PlayerIndex].position[2];
+	ObjectPosition[0] = GlobalPlayer[PlayerIndex].Position[0];
+	ObjectPosition[1] = GlobalPlayer[PlayerIndex].Position[1];
+	ObjectPosition[2] = GlobalPlayer[PlayerIndex].Position[2];
 
 	for (ThisCoin = 0; ThisCoin < CoinCount[PlayerIndex]; ThisCoin++)
 	{
-		objectVelocity[0] = -2 + (MakeRandomLimmit(4));
-		objectVelocity[1] = 4;
-		objectVelocity[2] = -2 + (MakeRandomLimmit(4));
-		MakeAlignVector(objectVelocity,(GlobalPlayer[PlayerIndex].direction[1]));
-		MasterCreateObject(objectPosition, objectAngle, objectVelocity, 48, 3.0); //motion coin
+		ObjectVelocity[0] = -2 + (MakeRandomLimmit(4));
+		ObjectVelocity[1] = 4;
+		ObjectVelocity[2] = -2 + (MakeRandomLimmit(4));
+		MakeAlignVector(ObjectVelocity,(GlobalPlayer[PlayerIndex].Direction[1]));
+		MasterCreateObject(ObjectPosition, ObjectAngle, ObjectVelocity, 48, 3.0); //motion coin
 		ChangeMaxSpeed(PlayerIndex, -3);
 	}
 	CoinCount[PlayerIndex] = 0;
@@ -94,11 +94,11 @@ void DropCoins(int PlayerIndex)
 
 void CheckHit(int PlayerIndex, int HitType)
 {
-	if (SaveGame.GameSettings.GameMode == 2)
+	if (SaveGame.GameSettings.GameType == 2)
 	{
 		DropCoins(PlayerIndex);
 	}
-	if (g_gameMode == GAMEMODE_BATTLE)
+	if (GameMode == GAMEMODE_BATTLE)
 	{
 		DropFlag(PlayerIndex);
 	}
@@ -193,18 +193,18 @@ char BalancedItemSetD[] =
 
 void ItemboxCollideCheck(Player* Car, Object* Target)
 {
-	int PlayerID = Car - gPlayers;
+	int PlayerID = Car - GamePlayers;
 	if (CollisionSphere(Car, Target))
 	{
-		Target->sparam = 3;
-		Target->flag = EXISTOBJ;
-		Target->counter = 0;
+		Target->Sparam = 3;
+		Target->Flag = EXISTOBJ;
+		Target->Counter = 0;
 
-		if (Car->flag & IS_PLAYER)
+		if (Car->Flag & IS_PLAYER)
 		{
-			if (Target->bump.dummy != 0)
+			if (Target->Bump.Dummy != 0)
 			{
-				RouletteStart(PlayerID, Target->bump.dummy);
+				RouletteStart(PlayerID, Target->Bump.Dummy);
 			}
 			else
 			{
@@ -229,7 +229,7 @@ void ItemboxCollideCheck(Player* Car, Object* Target)
 
 					case IM_BALANCE:
 					{
-						switch (Car->rank)
+						switch (Car->Rank)
 						{
 							case 0:
 							{
@@ -267,10 +267,10 @@ void ItemboxCollideCheck(Player* Car, Object* Target)
 	}
 	else
 	{
-		if (Target->sparam == 0)
+		if (Target->Sparam == 0)
 		{
-			Target->sparam = 1;
-			Target->flag = EXISTOBJ;
+			Target->Sparam = 1;
+			Target->Flag = EXISTOBJ;
 		}
 	}
 
@@ -278,23 +278,23 @@ void ItemboxCollideCheck(Player* Car, Object* Target)
 
 
 
-void Draw3DRacer(uint ModelAddress, uint Player)
+void Draw3DRacer(Uint ModelAddress, Uint Player)
 {
 
 	if (SaveGame.RenderSettings.SplitMode == 0)
 	{
-		/* spriteKillA/B/C/D were SMC of init_render_player / try_rendering_player. Batch 6. */
+		/* spriteKillA/B/C/D were SMC of InitRenderPlayer / TryRenderingPlayer. Batch 6. */
 	}
 	else
 	{
-		objectPosition[0] = GlobalPlayer[Player].direction[0];
-		objectPosition[1] =  GlobalPlayer[Player].direction[1] +  GlobalPlayer[Player].sterrangle;
-		objectPosition[2] = GlobalPlayer[Player].direction[2];
-		objectAngle[2] = baseTurn + addTurn;
-		objectAngle[0] = 0x3FFF - GlobalPlayer[0].kartroll * 2;
-		objectAngle[1] = GlobalPlayer[0].angle_z[0] * -2;
+		ObjectPosition[0] = GlobalPlayer[Player].Direction[0];
+		ObjectPosition[1] =  GlobalPlayer[Player].Direction[1] +  GlobalPlayer[Player].Sterrangle;
+		ObjectPosition[2] = GlobalPlayer[Player].Direction[2];
+		ObjectAngle[2] = BaseTurn + AddTurn;
+		ObjectAngle[0] = 0x3FFF - GlobalPlayer[0].Kartroll * 2;
+		ObjectAngle[1] = GlobalPlayer[0].AngleZ[0] * -2;
 
-		DrawGeometryScale(GlobalPlayer[Player].position,objectAngle,ModelAddress, 0.08);
+		DrawGeometryScale(GlobalPlayer[Player].Position,ObjectAngle,ModelAddress, 0.08);
 	}
 
 
@@ -304,24 +304,24 @@ void Draw3DRacer(uint ModelAddress, uint Player)
 void DisplayObject(void *Car, Object *InputObject)
 {
 
-	switch (InputObject->category)
+	switch (InputObject->Category)
 	{
 		case (47):
 		{
 
 			GlobalAddressB = (long)RedCoin_GFX;
-			objectPosition[0] = InputObject->position[0];
-			objectPosition[1] = InputObject->position[1];
-			objectPosition[2] = InputObject->position[2];
+			ObjectPosition[0] = InputObject->Position[0];
+			ObjectPosition[1] = InputObject->Position[1];
+			ObjectPosition[2] = InputObject->Position[2];
 
 
-			InputObject->angle[1] += DEG1 * 3;
-			objectAngle[0] = InputObject->angle[0];
-			objectAngle[1] = InputObject->angle[1];
-			objectAngle[2] = InputObject->angle[2];
+			InputObject->Angle[1] += DEG1 * 3;
+			ObjectAngle[0] = InputObject->Angle[0];
+			ObjectAngle[1] = InputObject->Angle[1];
+			ObjectAngle[2] = InputObject->Angle[2];
 
 
-			DrawRedCoin(objectPosition,objectAngle,GlobalAddressB, 0.10f);
+			DrawRedCoin(ObjectPosition,ObjectAngle,GlobalAddressB, 0.10f);
 			break;
 		}
 		case 48:
@@ -333,40 +333,40 @@ void DisplayObject(void *Car, Object *InputObject)
 			UpdateObjectFrictionScale(InputObject,0.5);
 			UpdateObjectBump(InputObject);
 
-			if(InputObject->bump.distance_zx < 0)
+			if(InputObject->Bump.DistanceZX < 0)
 			{
-				InputObject->velocity[1] = 0;
+				InputObject->Velocity[1] = 0;
 			}
 
-			objectPosition[0] = InputObject->position[0];
-			objectPosition[1] = InputObject->position[1] - 5.0f;
-			objectPosition[2] = InputObject->position[2];
+			ObjectPosition[0] = InputObject->Position[0];
+			ObjectPosition[1] = InputObject->Position[1] - 5.0f;
+			ObjectPosition[2] = InputObject->Position[2];
 
 
-			InputObject->angle[1] += DEG1 * 3;
-			objectAngle[0] = InputObject->angle[0];
-			objectAngle[1] = InputObject->angle[1];
-			objectAngle[2] = InputObject->angle[2];
+			InputObject->Angle[1] += DEG1 * 3;
+			ObjectAngle[0] = InputObject->Angle[0];
+			ObjectAngle[1] = InputObject->Angle[1];
+			ObjectAngle[2] = InputObject->Angle[2];
 
 
-			DrawGeometryScale(objectPosition,objectAngle,GlobalAddressB, 0.125f);
+			DrawGeometryScale(ObjectPosition,ObjectAngle,GlobalAddressB, 0.125f);
 			break;
 		}
 		case 49:
 		{
 			GlobalAddressB = (long)GoldCoin_GFX;
-			objectPosition[0] = InputObject->position[0];
-			objectPosition[1] = InputObject->position[1] - 5.0f;
-			objectPosition[2] = InputObject->position[2];
+			ObjectPosition[0] = InputObject->Position[0];
+			ObjectPosition[1] = InputObject->Position[1] - 5.0f;
+			ObjectPosition[2] = InputObject->Position[2];
 
 
-			InputObject->angle[1] += DEG1 * 3;
-			objectAngle[0] = InputObject->angle[0];
-			objectAngle[1] = InputObject->angle[1];
-			objectAngle[2] = InputObject->angle[2];
+			InputObject->Angle[1] += DEG1 * 3;
+			ObjectAngle[0] = InputObject->Angle[0];
+			ObjectAngle[1] = InputObject->Angle[1];
+			ObjectAngle[2] = InputObject->Angle[2];
 
 
-			DrawGeometryScale(objectPosition,objectAngle,GlobalAddressB, 0.125f);
+			DrawGeometryScale(ObjectPosition,ObjectAngle,GlobalAddressB, 0.125f);
 			break;
 		}
 	}
@@ -375,22 +375,22 @@ void DisplayObject(void *Car, Object *InputObject)
 
 int RedCoinCollide(Player *Car, Object *Coin)
 {
-	int PlayerID = Car - gPlayers;
-	if (TestCollideSphere(Car->position,Car->radius,Coin->position,6.0))
+	int PlayerID = Car - GamePlayers;
+	if (TestCollideSphere(Car->Position,Car->Radius,Coin->Position,6.0))
 	{
-		deleteObjectBuffer(Coin);
+		DeleteObjectBuffer(Coin);
 		NAPlyTrgStart(PlayerID, 0x49008017);  //coin sfx
 		CoinCount[PlayerID]++;
 		if (CoinCount[PlayerID] != 8)
 		{
-			playrandmCharacterSFX(PlayerID);
+			PlayrandmCharacterSFX(PlayerID);
 		}
 		SetAnimMusicNote(PlayerID);
 	}
 	if (CoinCount[PlayerID] == 8)
 	{
 		SetStar(Car,PlayerID);
-		NAPlyTrgStart(PlayerID, 0x1900F103);  //goal in sfx
+		NAPlyTrgStart(PlayerID, 0x1900F103);  //Goal in sfx
 		CoinCount[PlayerID]++;
 	}
 
@@ -400,17 +400,17 @@ int RedCoinCollide(Player *Car, Object *Coin)
 
 int GoldCoinCollide(Player *Car, Object *Coin)
 {
-	int PlayerID = Car - gPlayers;
+	int PlayerID = Car - GamePlayers;
 	if (IFrames[PlayerID] == 0)
 	{
 		if (CoinCount[PlayerID] < 10)
 		{
-			if (TestCollideSphere(Car->position,Car->radius,Coin->position,7.0))
+			if (TestCollideSphere(Car->Position,Car->Radius,Coin->Position,7.0))
 			{
-				deleteObjectBuffer(Coin);
+				DeleteObjectBuffer(Coin);
 				NAPlyTrgStart(PlayerID, 0x49008017);  //coin sfx
 				CoinCount[PlayerID]++;
-				playrandmCharacterSFX(PlayerID);
+				PlayrandmCharacterSFX(PlayerID);
 
 				SetAnimMusicNote(PlayerID);
 				ChangeMaxSpeed(PlayerID, 3);
@@ -423,7 +423,7 @@ int GoldCoinCollide(Player *Car, Object *Coin)
 
 void CollideObject(Player *Car, Object *Target)
 {
-	switch (Target->category)
+	switch (Target->Category)
 	{
 		case 12:
 		{
@@ -456,18 +456,18 @@ void RedCoinChallenge(long CoinOffset)
 	int currentCoin;
 
 	GlobalShortD = 1;
-	if (g_ScreenFlip == 1)
+	if (ScreenFlip == 1)
 	{
 		GlobalShortD = -1;
 	}
 	for (currentCoin = 0; currentCoin < 8; currentCoin++)
 	{
-		objectPosition[0] = (float)*(short*)(CoinOffset);
-		objectPosition[1] = (float)*(short*)(CoinOffset + 2);
-		objectPosition[2] = (float)*(short*)(CoinOffset + 4);
+		ObjectPosition[0] = (float)*(short*)(CoinOffset);
+		ObjectPosition[1] = (float)*(short*)(CoinOffset + 2);
+		ObjectPosition[2] = (float)*(short*)(CoinOffset + 4);
 
-		objectPosition[0] = objectPosition[0] * GlobalShortD;
-		CreateObject(objectPosition,47);
+		ObjectPosition[0] = ObjectPosition[0] * GlobalShortD;
+		CreateObject(ObjectPosition,47);
 		CoinOffset += 8;
 	}
 }
@@ -479,7 +479,7 @@ void PlaceSIBox(long BoxOffset)
 	Marker *BoxArray = (Marker*)(BoxOffset);
 
 	GlobalShortD = 1;
-	if (g_ScreenFlip == 1)
+	if (ScreenFlip == 1)
 	{
 		GlobalShortD = -1;
 	}
@@ -489,35 +489,35 @@ void PlaceSIBox(long BoxOffset)
 		{
 			return;
 		}
-		objectPosition[0] = (float)BoxArray[CurrentBox].Position[0];
-		objectPosition[1] = (float)BoxArray[CurrentBox].Position[1];
-		objectPosition[2] = (float)BoxArray[CurrentBox].Position[2];
+		ObjectPosition[0] = (float)BoxArray[CurrentBox].Position[0];
+		ObjectPosition[1] = (float)BoxArray[CurrentBox].Position[1];
+		ObjectPosition[2] = (float)BoxArray[CurrentBox].Position[2];
 
-		objectPosition[0] = objectPosition[0] * GlobalShortD;
-		CreateObject(objectPosition,43);
+		ObjectPosition[0] = ObjectPosition[0] * GlobalShortD;
+		CreateObject(ObjectPosition,43);
 	}
 }
 
 
-void GoldCoinChallenge(uint PathOffset, int CoinCount)
+void GoldCoinChallenge(Uint PathOffset, int CoinCount)
 {
 	int currentCoin;
 	Marker* Path = (Marker*)(PathOffset);
 
 	GlobalShortD = 1;
-	if (g_ScreenFlip == 1)
+	if (ScreenFlip == 1)
 	{
 		GlobalShortD = -1;
 	}
 	GlobalIntB = (g_pathLength / CoinCount);
-	objectAngle[0] = 0;
-	objectAngle[1] = 0;
-	objectAngle[2] = 0;
+	ObjectAngle[0] = 0;
+	ObjectAngle[1] = 0;
+	ObjectAngle[2] = 0;
 	for (currentCoin = 0; currentCoin < CoinCount; currentCoin++)
 	{
-		objectPosition[0] = (float)Path[currentCoin * GlobalIntB].Position[0];
-		objectPosition[1] = (float)Path[currentCoin * GlobalIntB].Position[1] + 5;
-		objectPosition[2] = (float)Path[currentCoin * GlobalIntB].Position[2];
-		MasterCreateObject(objectPosition, objectAngle, objectVelocity, 49, 2.0);  //static coin
+		ObjectPosition[0] = (float)Path[currentCoin * GlobalIntB].Position[0];
+		ObjectPosition[1] = (float)Path[currentCoin * GlobalIntB].Position[1] + 5;
+		ObjectPosition[2] = (float)Path[currentCoin * GlobalIntB].Position[2];
+		MasterCreateObject(ObjectPosition, ObjectAngle, ObjectVelocity, 49, 2.0);  //static coin
 	}
 }

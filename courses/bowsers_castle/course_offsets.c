@@ -31,7 +31,7 @@ extern u8 gTexture673990[];
 extern u8 gTexture67A370[];
 extern u8 gTexture67A91C[];
 
-const course_texture bowsers_castle_textures[] = {
+const CourseTexture bowsers_castle_textures[] = {
     { gTexture64313C, 0x01B8, 0x0800, 0x0 },
     { gTexture6528DC, 0x0278, 0x0800, 0x0 },
     { gTexture66ED38, 0x010E, 0x0800, 0x0 },

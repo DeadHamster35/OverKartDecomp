@@ -3,129 +3,129 @@
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //SeqID: ID of song
 //Interp: Framecount
-void MusSeqStart(uchar Group, ushort SeqID, uchar Interp)
+void MusSeqStart(Uchar Group, Ushort SeqID, Uchar Interp)
 {
-	NAISeqFlagEntry(0x00000000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | (ushort)SeqID );
+	NAISeqFlagEntry(0x00000000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | (Ushort)SeqID );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //Interp: Framecount
-void MusSeqStop(uchar Group, uchar Interp)
+void MusSeqStop(Uchar Group, Uchar Interp)
 {
-	NAISeqFlagEntry(0x100000ff | ((uchar)Group << 24) | ((uchar)Interp << 16) );
+	NAISeqFlagEntry(0x100000ff | ((Uchar)Group << 24) | ((Uchar)Interp << 16) );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //Volume: Max: 255 - Default: 127 - Half: 75 - Zero: 0
 //Interp: Framecount
-void MusSeqVolumeChange(uchar Group, uchar Volume, uchar Interp)
+void MusSeqVolumeChange(Uchar Group, Uchar Volume, Uchar Interp)
 {
-	NAISeqFlagEntry(0x40000000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | (uchar)Volume );
+	NAISeqFlagEntry(0x40000000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | (Uchar)Volume );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //Interp: Framecount
-void MusSeqVolumeRecover(uchar Group, uchar Interp)
+void MusSeqVolumeRecover(Uchar Group, Uchar Interp)
 {
-	NAISeqFlagEntry(0x4000007f | ((uchar)Group << 24) | ((uchar)Interp << 16) );
+	NAISeqFlagEntry(0x4000007f | ((Uchar)Group << 24) | ((Uchar)Interp << 16) );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //Pitch: Double: 2000 - Default: 1000 - Half: 500 - Zero: 0
 //Interp: Framecount
-void MusSeqPitchChange(uchar Group, ushort Pitch, uchar Interp)
+void MusSeqPitchChange(Uchar Group, Ushort Pitch, Uchar Interp)
 {
-	NAISeqFlagEntry(0x50000000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | (ushort)Pitch );
+	NAISeqFlagEntry(0x50000000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | (Ushort)Pitch );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //Interp: Framecount
-void MusSeqPitchRecover(uchar Group, uchar Interp)
+void MusSeqPitchRecover(Uchar Group, Uchar Interp)
 {
-	NAISeqFlagEntry(0x50000000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | 1000 );
+	NAISeqFlagEntry(0x50000000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | 1000 );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //Tempo: Song-dependent - e.g. Title: 0x1A40 / 0x30 = 0x8C (dec.140)
 //Interp: Framecount
-void MusSeqTempoDirect(uchar Group, ushort Tempo, uchar Interp)
+void MusSeqTempoDirect(Uchar Group, Ushort Tempo, Uchar Interp)
 {
-	NAISeqFlagEntry(0xB0000000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | (ushort)Tempo );
+	NAISeqFlagEntry(0xB0000000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | (Ushort)Tempo );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //TempoAdd: 1: 0x30
 //Interp: Framecount
-void MusSeqTempoAdd(uchar Group, ushort TempoAdd, uchar Interp)
+void MusSeqTempoAdd(Uchar Group, Ushort TempoAdd, Uchar Interp)
 {
-	NAISeqFlagEntry(0xB0001000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | (ushort)TempoAdd );
+	NAISeqFlagEntry(0xB0001000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | (Ushort)TempoAdd );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //TempoSub: 1: 0x30
 //Interp: Framecount
-void MusSeqTempoSub(uchar Group, ushort TempoSub, uchar Interp)
+void MusSeqTempoSub(Uchar Group, Ushort TempoSub, Uchar Interp)
 {
-	NAISeqFlagEntry(0xB0002000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | (ushort)TempoSub );
+	NAISeqFlagEntry(0xB0002000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | (Ushort)TempoSub );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //TempoPercent: 200: 200%; 100: 100%; 50: 50%
 //Interp: Framecount
-void MusSeqTempoPercent(uchar Group, ushort TempoPercent, uchar Interp)
+void MusSeqTempoPercent(Uchar Group, Ushort TempoPercent, Uchar Interp)
 {
-	NAISeqFlagEntry(0xB0003000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | (ushort)TempoPercent );
+	NAISeqFlagEntry(0xB0003000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | (Ushort)TempoPercent );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //Interp: Framecount
-void MusSeqTempoRecover(uchar Group, uchar Interp)
+void MusSeqTempoRecover(Uchar Group, Uchar Interp)
 {
-	NAISeqFlagEntry(0xB0004000 | ((uchar)Group << 24) | ((uchar)Interp << 16) );
+	NAISeqFlagEntry(0xB0004000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) );
 }
 
 //Disable: Prevent new sequence: 1 - Allow new sequence: 0
 void MusSeqPreventNext(bool Disable)
 {
-	NAISeqFlagEntry(0xe0000100 | (ushort)Disable );
+	NAISeqFlagEntry(0xe0000100 | (Ushort)Disable );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
 //SeqID: ID of song
 //Interp: Framecount
-void MusSeqSetNext(uchar Group, ushort SeqID, uchar Interp)
+void MusSeqSetNext(Uchar Group, Ushort SeqID, Uchar Interp)
 {
-	NAISeqFlagEntry(0x20000000 | ((uchar)Group << 24) | ((uchar)Interp << 16) | (ushort)SeqID );
+	NAISeqFlagEntry(0x20000000 | ((Uchar)Group << 24) | ((Uchar)Interp << 16) | (Ushort)SeqID );
 }
 
 //SoundMode: Wide: 0 - Headphone: 1 - Stereo: 2 - Mono: 3
-void MusSeqSoundMode(uchar SoundMode)
+void MusSeqSoundMode(Uchar SoundMode)
 {
-	NAISeqFlagEntry(0xe0000000 | (uchar)SoundMode );
+	NAISeqFlagEntry(0xe0000000 | (Uchar)SoundMode );
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
-short MusSeqGetCurrentID(uchar Group)
+short MusSeqGetCurrentID(Uchar Group)
 {
 	return (short)NAIGetPlayingSeqFlag(Group);
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
-int MusSeqGetLoopCounter(uchar Group)
+int MusSeqGetLoopCounter(Uchar Group)
 {
 	return SeqPlayer[(int)Group].Loopcount;
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
-void MusSeqLoopImmediately(uchar Group)
+void MusSeqLoopImmediately(Uchar Group)
 {
 	SeqPlayer[(int)Group].Loopcount = 0;
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
-//Channel: 0-15 seperate sequence channels
+//Channel: 0-15 seperate sequence Channels
 //Mute: 0: Unmuted - 1: Muted
-void MusChanMute(uchar Group, uchar Channel, uchar Mute)
+void MusChanMute(Uchar Group, Uchar Channel, Uchar Mute)
 {
 	if (Mute == 0)
 	{
@@ -138,31 +138,31 @@ void MusChanMute(uchar Group, uchar Channel, uchar Mute)
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
-//Channel: 0-15 seperate sequence channels
-float MusChanGetVolume(uchar Group, uchar Channel)
+//Channel: 0-15 seperate sequence Channels
+float MusChanGetVolume(Uchar Group, Uchar Channel)
 {
 	return SeqPlayer[(int)Group].Channel[(int)Channel]->VolumeTarget;
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
-//Channel: 0-15 seperate sequence channels
+//Channel: 0-15 seperate sequence Channels
 //Volume: float
-void MusChanSetVolume(uchar Group, uchar Channel, float Volume)
+void MusChanSetVolume(Uchar Group, Uchar Channel, float Volume)
 {
 	SeqPlayer[(int)Group].Channel[(int)Channel]->VolumeTarget = Volume;
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
-//Channel: 0-15 seperate sequence channels
-float MusChanGetPitch(uchar Group, uchar Channel)
+//Channel: 0-15 seperate sequence Channels
+float MusChanGetPitch(Uchar Group, Uchar Channel)
 {
 	return SeqPlayer[(int)Group].Channel[(int)Channel]->Pitch;
 }
 
 //Group: BGM: 0 - Fanfare: 1 - SFX: 2
-//Channel: 0-15 seperate sequence channels
+//Channel: 0-15 seperate sequence Channels
 //Pitch: float
-void MusChanSetPitch(uchar Group, uchar Channel, float Pitch)
+void MusChanSetPitch(Uchar Group, Uchar Channel, float Pitch)
 {
 	SeqPlayer[(int)Group].Channel[(int)Channel]->Pitch = Pitch;
 }

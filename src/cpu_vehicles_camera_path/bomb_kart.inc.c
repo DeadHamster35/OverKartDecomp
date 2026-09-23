@@ -1,7 +1,7 @@
-void init_BOM(void) {
+void InitBOM(void) {
     UNUSED Collision* var_s2;
-    f32 startingXPos;
-    f32 startingZPos;
+    f32 StartingXPos;
+    f32 StartingZPos;
     f32 startingYPos;
     s32 var_s3;
     CenterPathStruct* temp_v0;
@@ -9,54 +9,54 @@ void init_BOM(void) {
     BombKartSpawn* bombKartSpawn;
 
     for (var_s3 = 0; var_s3 < NUM_BOMB_KARTS_VERSUS; var_s3++) {
-        bombKartSpawn = &g_BombTable[g_courseID][var_s3];
-        switch (g_courseID) {
+        bombKartSpawn = &BombTable[CourseID][var_s3];
+        switch (CourseID) {
             case COURSE_YOSHI_VALLEY:
-                startingXPos = bombKartSpawn->startingXPos;
-                startingZPos = bombKartSpawn->startingZPos;
-                startingYPos = CheckHight(startingXPos, 2000.0f, startingZPos);
+                StartingXPos = bombKartSpawn->StartingXPos;
+                StartingZPos = bombKartSpawn->StartingZPos;
+                startingYPos = CheckHight(StartingXPos, 2000.0f, StartingZPos);
                 break;
             case COURSE_AWARD_CEREMONY:
-                temp_v0 = &CenterPathBP[3][bombKartSpawn->pathPointIndex];
-                startingXPos = temp_v0->pointx;
-                startingYPos = temp_v0->pointy;
-                startingZPos = temp_v0->pointz;
+                temp_v0 = &CenterPathBP[3][bombKartSpawn->PathPointIndex];
+                StartingXPos = temp_v0->Pointx;
+                startingYPos = temp_v0->Pointy;
+                StartingZPos = temp_v0->Pointz;
                 break;
             default:
-                temp_v0 = &CenterPathBP[0][bombKartSpawn->pathPointIndex];
-                startingXPos = temp_v0->pointx;
-                startingYPos = temp_v0->pointy;
-                startingZPos = temp_v0->pointz;
+                temp_v0 = &CenterPathBP[0][bombKartSpawn->PathPointIndex];
+                StartingXPos = temp_v0->Pointx;
+                startingYPos = temp_v0->Pointy;
+                StartingZPos = temp_v0->Pointz;
                 break;
         }
-        bom[var_s3].bombPos[0] = startingXPos;
-        bom[var_s3].bombPos[1] = startingYPos;
-        bom[var_s3].bombPos[2] = startingZPos;
-        bom[var_s3].wheel1Pos[0] = startingXPos;
-        bom[var_s3].wheel1Pos[1] = startingYPos;
-        bom[var_s3].wheel1Pos[2] = startingZPos;
-        bom[var_s3].wheel2Pos[0] = startingXPos;
-        bom[var_s3].wheel2Pos[1] = startingYPos;
-        bom[var_s3].wheel2Pos[2] = startingZPos;
-        bom[var_s3].wheel3Pos[0] = startingXPos;
-        bom[var_s3].wheel3Pos[1] = startingYPos;
-        bom[var_s3].wheel3Pos[2] = startingZPos;
-        bom[var_s3].wheel4Pos[0] = startingXPos;
-        bom[var_s3].wheel4Pos[1] = startingYPos;
-        bom[var_s3].wheel4Pos[2] = startingZPos;
-        bom[var_s3].pathPointIndex = bombKartSpawn->pathPointIndex;
-        bom[var_s3].unk_3C = bombKartSpawn->unk_04;
-        bom[var_s3].bounceTimer = 0;
-        bom[var_s3].circleTimer = 0;
-        bom[var_s3].state = bombKartSpawn->startingState;
-        bom[var_s3].unk_4A = 0;
-        bom[var_s3].unk_4C = 1;
-        bom[var_s3].yPos = startingYPos;
-        CheckBump(&bom_bump[var_s3], 2.0f, startingXPos, startingYPos, startingZPos);
+        Bom[var_s3].BombPos[0] = StartingXPos;
+        Bom[var_s3].BombPos[1] = startingYPos;
+        Bom[var_s3].BombPos[2] = StartingZPos;
+        Bom[var_s3].Wheel1Pos[0] = StartingXPos;
+        Bom[var_s3].Wheel1Pos[1] = startingYPos;
+        Bom[var_s3].Wheel1Pos[2] = StartingZPos;
+        Bom[var_s3].Wheel2Pos[0] = StartingXPos;
+        Bom[var_s3].Wheel2Pos[1] = startingYPos;
+        Bom[var_s3].Wheel2Pos[2] = StartingZPos;
+        Bom[var_s3].Wheel3Pos[0] = StartingXPos;
+        Bom[var_s3].Wheel3Pos[1] = startingYPos;
+        Bom[var_s3].Wheel3Pos[2] = StartingZPos;
+        Bom[var_s3].Wheel4Pos[0] = StartingXPos;
+        Bom[var_s3].Wheel4Pos[1] = startingYPos;
+        Bom[var_s3].Wheel4Pos[2] = StartingZPos;
+        Bom[var_s3].PathPointIndex = bombKartSpawn->PathPointIndex;
+        Bom[var_s3].unk_3C = bombKartSpawn->unk_04;
+        Bom[var_s3].BounceTimer = 0;
+        Bom[var_s3].CircleTimer = 0;
+        Bom[var_s3].State = bombKartSpawn->StartingState;
+        Bom[var_s3].Unk4A = 0;
+        Bom[var_s3].Unk4C = 1;
+        Bom[var_s3].YPos = startingYPos;
+        CheckBump(&BomBump[var_s3], 2.0f, StartingXPos, startingYPos, StartingZPos);
     }
 }
 
-void move_BOM(s32 bombKartId) {
+void MoveBOM(s32 bombKartId) {
     UNUSED s32 stackPadding0;
     f32 sp118;
     f32 var_f18;
@@ -111,53 +111,53 @@ void move_BOM(s32 bombKartId) {
     Collision* temp_a0_4;
     Player* var_v0;
 
-    bombKart = &bom[bombKartId];
+    bombKart = &Bom[bombKartId];
 
-    sp7E = bombKart->state;
+    sp7E = bombKart->State;
 
     if (sp7E == 0) {
         return;
     }
 
-    if (((bombKart->unk_4A != 1) || (g_courseID == COURSE_AWARD_CEREMONY))) {
-        var_f22 = bombKart->bombPos[0];
-        var_f20 = bombKart->bombPos[1];
-        var_f24 = bombKart->bombPos[2];
-        spCA = bombKart->pathPointIndex;
+    if (((bombKart->Unk4A != 1) || (CourseID == COURSE_AWARD_CEREMONY))) {
+        var_f22 = bombKart->BombPos[0];
+        var_f20 = bombKart->BombPos[1];
+        var_f24 = bombKart->BombPos[2];
+        spCA = bombKart->PathPointIndex;
         spC4 = bombKart->unk_3C;
-        spC2 = bombKart->someRot;
-        sp7C = bombKart->bounceTimer;
-        var_s1 = bombKart->circleTimer;
+        spC2 = bombKart->SomeRot;
+        sp7C = bombKart->BounceTimer;
+        var_s1 = bombKart->CircleTimer;
         if ((sp7E != 0) && (sp7E != 4)) {
             if (1) {}
-            if (g_courseID == COURSE_AWARD_CEREMONY) {
-                if (oga_nopoint_demo_trg == 1) {
-                    var_v0 = gPlayerFour;
-                    temp_f0 = var_f22 - var_v0->position[0];
-                    temp_f2 = var_f20 - var_v0->position[1];
-                    temp_f12 = var_f24 - var_v0->position[2];
+            if (CourseID == COURSE_AWARD_CEREMONY) {
+                if (OgaNopointDemoTrg == 1) {
+                    var_v0 = PlayerFour;
+                    temp_f0 = var_f22 - var_v0->Position[0];
+                    temp_f2 = var_f20 - var_v0->Position[1];
+                    temp_f12 = var_f24 - var_v0->Position[2];
                     if ((((temp_f0 * temp_f0) + (temp_f2 * temp_f2)) + (temp_f12 * temp_f12)) < 25.0f) {
                         var_s1 = 0;
                         sp7E = 4;
-                        var_v0->weapon |= HIT_BOMB;
-                        var_v0->flag &= ~NO_CONTROLS;
+                        var_v0->Weapon |= HIT_BOMB;
+                        var_v0->Flag &= ~NO_CONTROLS;
                     }
                 }
             } else {
 
-                for (var_a0 = 0; var_a0 < g_menuMultiplayerSelection; var_a0++) {
-                    var_v0 = &gPlayers[var_a0];
-                    if (!(var_v0->slip_flag & TERESA)) {
-                        temp_f0 = var_f22 - var_v0->position[0];
-                        temp_f2 = var_f20 - var_v0->position[1];
-                        temp_f12 = var_f24 - var_v0->position[2];
+                for (var_a0 = 0; var_a0 < MenuMultiplayerSelection; var_a0++) {
+                    var_v0 = &GamePlayers[var_a0];
+                    if (!(var_v0->SlipFlag & TERESA)) {
+                        temp_f0 = var_f22 - var_v0->Position[0];
+                        temp_f2 = var_f20 - var_v0->Position[1];
+                        temp_f12 = var_f24 - var_v0->Position[2];
                         if ((((temp_f0 * temp_f0) + (temp_f2 * temp_f2)) + (temp_f12 * temp_f12)) < 25.0f) {
                             sp7E = 4;
                             var_s1 = 0;
-                            if (g_courseID == COURSE_FRAPPE_SNOWLAND) {
-                                var_v0->weapon |= HIT_BOMB_THROW;
+                            if (CourseID == COURSE_FRAPPE_SNOWLAND) {
+                                var_v0->Weapon |= HIT_BOMB_THROW;
                             } else {
-                                var_v0->weapon |= HIT_BOMB;
+                                var_v0->Weapon |= HIT_BOMB;
                             }
                         }
                     }
@@ -168,77 +168,77 @@ void move_BOM(s32 bombKartId) {
             case 1:
                 var_s1 = (var_s1 + 356) % 360;
                 temp_t6 = (var_s1 * 0xFFFF) / 360;
-                sp118 = cosT(temp_t6) * 25.0;
-                temp_f0_3 = sinT(temp_t6) * 25.0;
+                sp118 = CosT(temp_t6) * 25.0;
+                temp_f0_3 = SinT(temp_t6) * 25.0;
                 temp_v0_2 = &CenterPathBP[0][spCA];
-                var_f22 = temp_v0_2->pointx + sp118;
-                var_f20 = bombKart->yPos + 3.5f;
-                var_f24 = temp_v0_2->pointz + temp_f0_3;
-                object1[0] = var_f22;
-                object1[1] = var_f20;
-                object1[2] = var_f24;
+                var_f22 = temp_v0_2->Pointx + sp118;
+                var_f20 = bombKart->YPos + 3.5f;
+                var_f24 = temp_v0_2->Pointz + temp_f0_3;
+                Object1[0] = var_f22;
+                Object1[1] = var_f20;
+                Object1[2] = var_f24;
                 temp_t7 = (((var_s1 + 1) % 360) * 0xFFFF) / 360;
-                sp118 = cosT(temp_t7) * 25.0;
-                temp_f0_3 = sinT(temp_t7) * 25.0;
-                object2[0] = temp_v0_2->pointx + sp118;
-                object2[1] = temp_v0_2->pointy;
-                object2[2] = temp_v0_2->pointz + temp_f0_3;
-                spC2 = (CalcDirection(object1, object2) * 0xFFFF) / 65520;
+                sp118 = CosT(temp_t7) * 25.0;
+                temp_f0_3 = SinT(temp_t7) * 25.0;
+                Object2[0] = temp_v0_2->Pointx + sp118;
+                Object2[1] = temp_v0_2->Pointy;
+                Object2[2] = temp_v0_2->Pointz + temp_f0_3;
+                spC2 = (CalcDirection(Object1, Object2) * 0xFFFF) / 65520;
                 break;
             case 2:
                 var_s1 = (var_s1 + 4) % 360;
                 temp_t6 = (var_s1 * 0xFFFF) / 360;
-                sp118 = cosT(temp_t6) * 25.0;
-                temp_f0_3 = sinT(temp_t6) * 25.0;
+                sp118 = CosT(temp_t6) * 25.0;
+                temp_f0_3 = SinT(temp_t6) * 25.0;
                 temp_v0_2 = &CenterPathBP[0][spCA];
-                var_f22 = temp_v0_2->pointx + sp118;
-                var_f20 = bombKart->yPos + 3.5f;
-                var_f24 = temp_v0_2->pointz + temp_f0_3;
-                object1[0] = var_f22;
-                object1[1] = var_f20;
-                object1[2] = var_f24;
+                var_f22 = temp_v0_2->Pointx + sp118;
+                var_f20 = bombKart->YPos + 3.5f;
+                var_f24 = temp_v0_2->Pointz + temp_f0_3;
+                Object1[0] = var_f22;
+                Object1[1] = var_f20;
+                Object1[2] = var_f24;
                 temp_t7 = (((var_s1 + 1) % 360) * 0xFFFF) / 360;
-                sp118 = cosT(temp_t7) * 25.0;
-                temp_f0_3 = sinT(temp_t7) * 25.0;
-                object2[0] = temp_v0_2->pointx + sp118;
-                object2[1] = temp_v0_2->pointy;
-                object2[2] = temp_v0_2->pointz + temp_f0_3;
-                spC2 = (CalcDirection(object1, object2) * 0xFFFF) / 65520;
+                sp118 = CosT(temp_t7) * 25.0;
+                temp_f0_3 = SinT(temp_t7) * 25.0;
+                Object2[0] = temp_v0_2->Pointx + sp118;
+                Object2[1] = temp_v0_2->Pointy;
+                Object2[2] = temp_v0_2->Pointz + temp_f0_3;
+                spC2 = (CalcDirection(Object1, Object2) * 0xFFFF) / 65520;
                 break;
             case 3:
-                var_f20 = bombKart->yPos + 3.5f;
+                var_f20 = bombKart->YPos + 3.5f;
                 spC2 = 0;
                 break;
 
             case 5:
-                if ((oga_hyousyou_demo_trg == 0) || (gNearestPathPointByPlayerId[3] < 5)) {
+                if ((OgaHyousyouDemoTrg == 0) || (NearestPathPointByPlayerId[3] < 5)) {
                     break;
                 } else {
-                    spCA = get_oga_area_BP(var_f22, var_f20, var_f24, spCA, 3);
-                    if ((spCA < 0) || (g_courseTotalPathPoints[3] < spCA)) {
+                    spCA = GetOgaAreaBP(var_f22, var_f20, var_f24, spCA, 3);
+                    if ((spCA < 0) || (CourseTotalPathPoints[3] < spCA)) {
                         spCA = 0;
                     }
                     if (((s32) spCA) < 0x1A) {
-                        temp_v0_2 = &CenterPathBP[3][(spCA + 1) % g_courseTotalPathPoints[3]];
-                        object1[0] = temp_v0_2->pointx;
-                        object1[1] = temp_v0_2->pointy;
-                        object1[2] = temp_v0_2->pointz;
-                        temp_v0_4 = &CenterPathBP[3][(spCA + 2) % g_courseTotalPathPoints[3]];
-                        object2[0] = temp_v0_4->pointx;
-                        object2[1] = temp_v0_4->pointy;
-                        object2[2] = temp_v0_4->pointz;
-                        spC2 = (CalcDirection(object1, object2) * 0xFFFF) / 65520;
+                        temp_v0_2 = &CenterPathBP[3][(spCA + 1) % CourseTotalPathPoints[3]];
+                        Object1[0] = temp_v0_2->Pointx;
+                        Object1[1] = temp_v0_2->Pointy;
+                        Object1[2] = temp_v0_2->Pointz;
+                        temp_v0_4 = &CenterPathBP[3][(spCA + 2) % CourseTotalPathPoints[3]];
+                        Object2[0] = temp_v0_4->Pointx;
+                        Object2[1] = temp_v0_4->Pointy;
+                        Object2[2] = temp_v0_4->Pointz;
+                        spC2 = (CalcDirection(Object1, Object2) * 0xFFFF) / 65520;
                     } else {
-                        object1[0] = var_f22;
-                        object1[1] = var_f20;
-                        object1[2] = var_f24;
-                        object2[0] = -2409.197f;
-                        object2[1] = 0.0f;
-                        object2[2] = -355.254f;
-                        spC2 = (CalcDirection(object1, object2) * 0xFFFF) / 65520;
+                        Object1[0] = var_f22;
+                        Object1[1] = var_f20;
+                        Object1[2] = var_f24;
+                        Object2[0] = -2409.197f;
+                        Object2[1] = 0.0f;
+                        Object2[2] = -355.254f;
+                        spC2 = (CalcDirection(Object1, Object2) * 0xFFFF) / 65520;
                     }
-                    temp_f14 = ((object1[0] + object2[0]) * 0.5f) - var_f22;
-                    temp_f16 = ((object1[2] + object2[2]) * 0.5f) - var_f24;
+                    temp_f14 = ((Object1[0] + Object2[0]) * 0.5f) - var_f22;
+                    temp_f16 = ((Object1[2] + Object2[2]) * 0.5f) - var_f24;
                     temp_f0_4 = sqrtf((temp_f14 * temp_f14) + (temp_f16 * temp_f16));
                     if (temp_f0_4 > 0.01f) {
                         var_f22 += (bombKart->unk_3C * temp_f14) / temp_f0_4;
@@ -247,25 +247,25 @@ void move_BOM(s32 bombKartId) {
                         var_f22 += temp_f14 / 5.0f;
                         var_f24 += temp_f16 / 5.0f;
                     }
-                    temp_a0_4 = &bom_bump[bombKartId];
-                    var_f20 = CalcHeight(var_f22, 2000.0f, var_f24, temp_a0_4->last_zx) + 3.5f;
+                    temp_a0_4 = &BomBump[bombKartId];
+                    var_f20 = CalcHeight(var_f22, 2000.0f, var_f24, temp_a0_4->LastZX) + 3.5f;
                     if (var_f20 < (-1000.0)) {
-                        var_f20 = bombKart->bombPos[1];
+                        var_f20 = bombKart->BombPos[1];
                     }
                     CheckBump(temp_a0_4, 10.0f, var_f22, var_f20, var_f24);
                 }
                 break;
             case 4:
                 temp_v0_2 = &CenterPathBP[0][spCA];
-                object1[0] = temp_v0_2->pointx;
-                object1[1] = temp_v0_2->pointy;
-                object1[2] = temp_v0_2->pointz;
-                temp_v0_4 = &CenterPathBP[0][(spCA + 1) % g_courseTotalPathPoints[0]];
-                object2[0] = temp_v0_4->pointx;
-                object2[1] = temp_v0_4->pointy;
-                object2[2] = temp_v0_4->pointz;
+                Object1[0] = temp_v0_2->Pointx;
+                Object1[1] = temp_v0_2->Pointy;
+                Object1[2] = temp_v0_2->Pointz;
+                temp_v0_4 = &CenterPathBP[0][(spCA + 1) % CourseTotalPathPoints[0]];
+                Object2[0] = temp_v0_4->Pointx;
+                Object2[1] = temp_v0_4->Pointy;
+                Object2[2] = temp_v0_4->Pointz;
                 var_f20 += 3.0f - (var_s1 * 0.3f);
-                spC2 = (CalcDirection(object1, object2) * 0xFFFF) / 65520;
+                spC2 = (CalcDirection(Object1, Object2) * 0xFFFF) / 65520;
                 break;
             default:
                 break;
@@ -273,8 +273,8 @@ void move_BOM(s32 bombKartId) {
 
         if (sp7E == 4) {
             sp108 = 2.0f * var_s1;
-            sp118 = cosT(0xFFFF - spC2) * var_s1;
-            var_f18 = sinT(0xFFFF - spC2) * var_s1;
+            sp118 = CosT(0xFFFF - spC2) * var_s1;
+            var_f18 = SinT(0xFFFF - spC2) * var_s1;
             var_s1++;
             temp_f2_4 = (var_f20 - 2.3f) + (sp108 / 3.0f);
             spAC = temp_f2_4;
@@ -285,8 +285,8 @@ void move_BOM(s32 bombKartId) {
                 sp7E = 0;
             }
         } else {
-            sp118 = cosT(0xFFFF - spC2) * 1.5f;
-            var_f18 = sinT(0xFFFF - spC2) * 1.5f;
+            sp118 = CosT(0xFFFF - spC2) * 1.5f;
+            var_f18 = SinT(0xFFFF - spC2) * 1.5f;
             temp_f16_2 = var_f20 - 2.3f;
             temp_f12_3 = (sp7C % 3) * 0.15f;
             temp_f14_2 = temp_f16_2 - temp_f12_3;
@@ -295,30 +295,30 @@ void move_BOM(s32 bombKartId) {
             sp94 = temp_f14_2;
             spA0 = temp_f12_4;
             sp88 = temp_f12_4;
-            var_f20 += sinT((sp7C * 0x13FFEC) / 360);
+            var_f20 += SinT((sp7C * 0x13FFEC) / 360);
             sp7C = (sp7C + 1) % 18;
         }
         bombKart2 = bombKart;
-        bombKart2->wheel1Pos[0] = (sp118 - var_f18) + var_f22;
-        bombKart2->wheel1Pos[1] = spAC;
-        bombKart2->wheel1Pos[2] = (var_f18 + sp118) + var_f24;
-        bombKart2->wheel2Pos[0] = (var_f18 + sp118) + var_f22;
-        bombKart2->wheel2Pos[1] = spA0;
-        bombKart2->wheel2Pos[2] = (var_f18 - sp118) + var_f24;
-        bombKart2->wheel3Pos[0] = ((-sp118) - var_f18) + var_f22;
-        bombKart2->wheel3Pos[1] = sp94;
-        bombKart2->wheel3Pos[2] = ((-var_f18) + sp118) + var_f24;
-        bombKart2->wheel4Pos[0] = ((-sp118) + var_f18) + var_f22;
-        bombKart2->wheel4Pos[1] = sp88;
-        bombKart2->wheel4Pos[2] = ((-var_f18) - sp118) + var_f24;
-        bombKart2->bombPos[0] = var_f22;
-        bombKart2->bombPos[1] = var_f20;
-        bombKart2->bombPos[2] = var_f24;
-        bombKart2->pathPointIndex = spCA;
+        bombKart2->Wheel1Pos[0] = (sp118 - var_f18) + var_f22;
+        bombKart2->Wheel1Pos[1] = spAC;
+        bombKart2->Wheel1Pos[2] = (var_f18 + sp118) + var_f24;
+        bombKart2->Wheel2Pos[0] = (var_f18 + sp118) + var_f22;
+        bombKart2->Wheel2Pos[1] = spA0;
+        bombKart2->Wheel2Pos[2] = (var_f18 - sp118) + var_f24;
+        bombKart2->Wheel3Pos[0] = ((-sp118) - var_f18) + var_f22;
+        bombKart2->Wheel3Pos[1] = sp94;
+        bombKart2->Wheel3Pos[2] = ((-var_f18) + sp118) + var_f24;
+        bombKart2->Wheel4Pos[0] = ((-sp118) + var_f18) + var_f22;
+        bombKart2->Wheel4Pos[1] = sp88;
+        bombKart2->Wheel4Pos[2] = ((-var_f18) - sp118) + var_f24;
+        bombKart2->BombPos[0] = var_f22;
+        bombKart2->BombPos[1] = var_f20;
+        bombKart2->BombPos[2] = var_f24;
+        bombKart2->PathPointIndex = spCA;
         bombKart2->unk_3C = spC4;
-        bombKart2->someRot = spC2;
-        bombKart2->state = sp7E;
-        bombKart2->bounceTimer = sp7C;
-        bombKart2->circleTimer = var_s1;
+        bombKart2->SomeRot = spC2;
+        bombKart2->State = sp7E;
+        bombKart2->BounceTimer = sp7C;
+        bombKart2->CircleTimer = var_s1;
     }
 }

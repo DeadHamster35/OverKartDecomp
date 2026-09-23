@@ -27,7 +27,7 @@
 #define KWMODE_BL_FLASH	2
 #define KWMODE_PT_FLASH	3
 
-// Particle frame modes
+// Particle frame Modes
 #define FRAME_1			0
 #define FRAME_2			1
 #define FRAME_4			2
@@ -58,44 +58,44 @@
 
 typedef struct CustomParticle{
 
-	short		flag;	
-	uchar		category, counter;
+	short		Flag;	
+	Uchar		Category, Counter;
 
-	ushort 		renderdistance;
-	uchar		xflip, owner;
+	Ushort 		Renderdistance;
+	Uchar		Xflip, Owner;
 
-	float   	fparam;
-	float 		scale;
+	float   	Fparam;
+	float 		Scale;
 
-	Vector 		position;
-	Vector		velocity;
-	uchar		loopcount, loopcountmax;
+	Vector 		Position;
+	Vector		Velocity;
+	Uchar		Loopcount, loopcountmax;
 
-	USVector	angle;
+	USVector	Angle;
 
-	uchar		drawmode, movemode, draw_counter, cparam;
-	uchar		colR, colG, colB, colA;
-	uchar		onscreen, anim_speed, anim_counter, anim_maxframe;
+	Uchar		Drawmode, movemode, draw_counter, cparam;
+	Uchar		ColR, colG, colB, colA;
+	Uchar		Onscreen, anim_speed, anim_counter, anim_maxframe;
 
-	uchar		param1, param2;
-	short		sparam1;
+	Uchar		Param1, param2;
+	short		Sparam1;
 
 } CustomParticle;
 
 
 // Externals for Particle Files
-extern ushort ParticlePopIA16[];
-extern ushort ParticleMudSplatIA16[];
-extern ushort ParticleSparkleIA16[];
-extern ushort ParticleSmokePuffIA16[];
-extern ushort ParticlePuffIA16[];
-extern ushort ParticleExplosionRGBA16[];
-extern ushort ParticleApplePieceRGBA16[];
-extern ushort ParticleBubblePopIA16[];
-extern ushort ParticlePebbleIA16[];
-extern ushort ParticleBubbleIA16[];
-extern ushort ParticleSplatterIA16[];
-extern ushort ParticleDirtIA16[];
+extern Ushort ParticlePopIA16[];
+extern Ushort ParticleMudSplatIA16[];
+extern Ushort ParticleSparkleIA16[];
+extern Ushort ParticleSmokePuffIA16[];
+extern Ushort ParticlePuffIA16[];
+extern Ushort ParticleExplosionRGBA16[];
+extern Ushort ParticleApplePieceRGBA16[];
+extern Ushort ParticleBubblePopIA16[];
+extern Ushort ParticlePebbleIA16[];
+extern Ushort ParticleBubbleIA16[];
+extern Ushort ParticleSplatterIA16[];
+extern Ushort ParticleDirtIA16[];
 
 
 

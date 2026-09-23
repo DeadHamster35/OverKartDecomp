@@ -8,20 +8,20 @@
 #define	SegmentNumber(a)	(((unsigned int)(a) << 4) >> 28)
 #define	SegmentAddress(num, off)	(((num) << 24) + (off))
 
-#define gs_Nin_LoadTextureImage(timg,fmt,siz,width,height,tmem,tt)	\
+#define gs_Nin_LoadTextureImage(timg,fmt,siz,Width,Height,tmem,tt)	\
 	gsDPSetTextureImage(fmt,siz,1,timg),	\
 	gsDPTileSync(),	\
 	gsDPSetTile(fmt,siz,0,tmem,tt,0,0,0,0,0,0,0),	\
 	gsDPLoadSync(),	\
-	gsDPLoadBlock(tt,0,0,width*height-1,CALC_DXT(width,siz##_BYTES))
+	gsDPLoadBlock(tt,0,0,Width*Height-1,CALC_DXT(Width,siz##_BYTES))
 
-#define gs_Nin_SetUpTileDescrip(fmt,siz,width,height,tmem,tt,cs,ms,ss,ct,mt,st)	\
+#define gs_Nin_SetUpTileDescrip(fmt,siz,Width,Height,tmem,tt,cs,ms,ss,ct,mt,st)	\
 	gsDPTileSync(),	\
-	gsDPSetTile(fmt,siz,((((width)*siz##_LINE_BYTES)+7)>>3),tmem,tt,0,ct,mt,st,cs,ms,ss),	\
-	gsDPSetTileSize(tt,0,0,(width-1)<<G_TEXTURE_IMAGE_FRAC,(height-1)<<G_TEXTURE_IMAGE_FRAC)
+	gsDPSetTile(fmt,siz,((((Width)*siz##_LINE_BYTES)+7)>>3),tmem,tt,0,ct,mt,st,cs,ms,ss),	\
+	gsDPSetTileSize(tt,0,0,(Width-1)<<G_TEXTURE_IMAGE_FRAC,(Height-1)<<G_TEXTURE_IMAGE_FRAC)
 
 
-#define gsDPLoadTextureBlockMM32(timg, fmt, siz, width, height, texels,        \
+#define gsDPLoadTextureBlockMM32(timg, fmt, siz, Width, Height, texels,        \
                 pal, cms, cmt, masks, maskt, shifts, shiftt)            \
         gsDPTileSync(),                                                 \
         gsDPSetTextureImage(fmt, siz, 1, timg),                         \
@@ -29,7 +29,7 @@
                 shiftt, cms, masks, shifts),                            \
         gsDPLoadSync(),                                                 \
         gsDPLoadBlock(G_TX_LOADTILE, 0, 0, texels-1,0x0),               \
-        gsDPSetTile(fmt, siz, ((((width) * siz##_BYTES)+7)>>3), 0,    \
+        gsDPSetTile(fmt, siz, ((((Width) * siz##_BYTES)+7)>>3), 0,    \
                 1, pal, cmt, maskt, 0, cms, masks,                      \
                 0),                                                     \
         gsDPSetTileSize(1, 0, 0,                                        \
@@ -67,20 +67,20 @@
                 (1-1) << G_TEXTURE_IMAGE_FRAC)
 
 
-#define g_Nin_LoadTextureImage(timg,fmt,siz,width,height,tmem,tt)	\
+#define g_Nin_LoadTextureImage(timg,fmt,siz,Width,Height,tmem,tt)	\
 	gDPSetTextureImage(GraphPtrOffset++, fmt,siz,1,timg);	\
 	gDPTileSync(GraphPtrOffset++);	\
 	gDPSetTile(GraphPtrOffset++, fmt,siz,0,tmem,tt,0,0,0,0,0,0,0);	\
 	gDPLoadSync(GraphPtrOffset++);	\
-	gDPLoadBlock(GraphPtrOffset++, tt,0,0,width*height-1,CALC_DXT(width,siz##_BYTES));
+	gDPLoadBlock(GraphPtrOffset++, tt,0,0,Width*Height-1,CALC_DXT(Width,siz##_BYTES));
 
-#define g_Nin_SetUpTileDescrip(fmt,siz,width,height,tmem,tt,cs,ms,ss,ct,mt,st)	\
+#define g_Nin_SetUpTileDescrip(fmt,siz,Width,Height,tmem,tt,cs,ms,ss,ct,mt,st)	\
 	gDPTileSync(GraphPtrOffset++);	\
-	gDPSetTile(GraphPtrOffset++, fmt,siz,((((width)*siz##_LINE_BYTES)+7)>>3),tmem,tt,0,ct,mt,st,cs,ms,ss);	\
-	gDPSetTileSize(GraphPtrOffset++, tt,0,0,(width-1)<<G_TEXTURE_IMAGE_FRAC,(height-1)<<G_TEXTURE_IMAGE_FRAC);
+	gDPSetTile(GraphPtrOffset++, fmt,siz,((((Width)*siz##_LINE_BYTES)+7)>>3),tmem,tt,0,ct,mt,st,cs,ms,ss);	\
+	gDPSetTileSize(GraphPtrOffset++, tt,0,0,(Width-1)<<G_TEXTURE_IMAGE_FRAC,(Height-1)<<G_TEXTURE_IMAGE_FRAC);
 
 
-#define gDPLoadTextureBlockMM32(timg, fmt, siz, width, height, texels,        \
+#define gDPLoadTextureBlockMM32(timg, fmt, siz, Width, Height, texels,        \
                 pal, cms, cmt, masks, maskt, shifts, shiftt)            \
         gDPTileSync(GraphPtrOffset++);                                             \
         gDPSetTextureImage(GraphPtrOffset++, fmt, siz, 1, timg);                         \
@@ -88,7 +88,7 @@
                 shiftt, cms, masks, shifts);                           \
         gDPLoadSync();                                                 \
         gDPLoadBlock(G_TX_LOADTILE, 0, 0, texels-1,0x0);               \
-        gDPSetTile(GraphPtrOffset++, fmt, siz, ((((width) * siz##_BYTES)+7)>>3), 0,    \
+        gDPSetTile(GraphPtrOffset++, fmt, siz, ((((Width) * siz##_BYTES)+7)>>3), 0,    \
                 1, pal, cmt, maskt, 0, cms, masks,                      \
                 0);                                                     \
         gDPSetTileSize(GraphPtrOffset++, 1, 0, 0,                                        \
@@ -128,8 +128,8 @@
 
 #define     PhysToK0(x)	((unsigned int)(x)|0x80000000)
 #define     K0_TO_PHYS(x) ((unsigned int)(x)&0x1FFFFFFF)
-#define     cup_NTSC ((unsigned int) gCupCourseOrder)
-#define     cup_PAL ((unsigned int) gCupCourseOrder)
+#define     cup_NTSC ((unsigned int) CupCourseOrder)
+#define     cup_PAL ((unsigned int) CupCourseOrder)
 #define     MaxPowerConvert(a)  ((a * a) / 25)
 #define     MaxPowerBase(a)     Sqrtf(a * 25)
 #define     JR_RA 0

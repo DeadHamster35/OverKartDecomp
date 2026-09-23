@@ -4,7 +4,7 @@
 extern void PlayCustomSound(void);
 extern void MapDelayInit(void);
 extern void SetLevelSounds(void);
-extern void PlayStarMusicHook(uchar playerID);
-extern void StopStarMusicHook(uchar playerID);
-extern void PlayFinalLapMusicHook(uchar playerID);
+extern void PlayStarMusicHook(Uchar PlayerID);
+extern void StopStarMusicHook(Uchar PlayerID);
+extern void PlayFinalLapMusicHook(Uchar PlayerID);
 #endif

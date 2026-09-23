@@ -1,11 +1,11 @@
 /*
  * @file Replays
- * Handles 3 types of time trial replays:
- * 1. Post time trial replays, which a player can watch after a time trial
- * 2. Player ghosts, which were driven by a player and can be raced against
- * 3. Staff ghosts, which can be unlocked on the raceway tracks with a fast enough time
- * All 3 use the same system for storing / replaying the inputs to reproduce a time trial
- * See replayread_key_data for additional technical details
+ * Handles 3 types of Time trial replays:
+ * 1. Post Time trial replays, which a Player can Watch after a Time trial
+ * 2. Player ghosts, which were driven by a Player and can be raced against
+ * 3. Staff ghosts, which can be unlocked on the raceway tracks with a fast enough Time
+ * All 3 use the same system for storing / replaying the inputs to reproduce a Time trial
+ * See ReplayreadKeyData for additional technical details
  */
 
 #include <ultra64.h>
@@ -27,11 +27,11 @@
 #include "kart_dma.h"
 #include "OverKartHooks.h"
 
-extern s32 encpass2(s32 input, s32, s32);
+extern s32 encpass2(s32 Input, s32, s32);
 extern s32 encpass1(void*, s32, s32);
 
-u8* sReplayGhostBuffer;
-s16 sReplayGhostBufferSize;
+u8* SReplayGhostBuffer;
+s16 SReplayGhostBufferSize;
 s16 D_80162D86;
 
 static u16 sPlayerGhostButtonsPrev;
@@ -53,29 +53,29 @@ static s16 sPlayerInputIdx;
 static u32* sPlayerInputs;
 
 static u16 sPrevCourseId;
-u32 map;
-s32 read_pointer;
-s32 write_pointer;
-s32 replay_pointer;
-u16 ghost_status;
-u16 romghost_status;
-u16 replayghost_status;
-s32 ghost_success;
-s32 ghost_kart; // ghost kart id?
-s32 romghost_kart;
-s32 replayghost_kart;
+u32 Map;
+s32 ReadPointer;
+s32 WritePointer;
+s32 ReplayPointer;
+u16 GhostStatus;
+u16 RomghostStatus;
+u16 ReplayghostStatus;
+s32 GhostSuccess;
+s32 GhostKart; // ghost Kart id?
+s32 RomghostKart;
+s32 ReplayghostKart;
 UNUSED static s32 sUnusedReplayCounter;
-s32 ghost_write;
+s32 GhostWrite;
 UNUSED static s32 bUnusedCourseGhostDisabled;
-s32 lost_ghost;
+s32 LostGhost;
 s32 D_80162DFC;
 
 s32 D_80162E00;
 
-u32* keystock1 = (u32*) &D_802BFB80.arraySize8[0][2][3];
-u32* keystock2 = (u32*) &D_802BFB80.arraySize8[1][1][3];
+u32* Keystock1 = (u32*) &D_802BFB80.arraySize8[0][2][3];
+u32* Keystock2 = (u32*) &D_802BFB80.arraySize8[1][1][3];
 
-extern s32 gLapCountByPlayerId[];
+extern s32 LapCountByPlayerId[];
 
 extern StaffGhost* d_mario_raceway_staff_ghost;
 extern StaffGhost* d_royal_raceway_staff_ghost;
@@ -84,26 +84,26 @@ extern StaffGhost* d_luigi_raceway_staff_ghost;
 void DMAROMGhost(void) {
     sCourseGhostReplay = (u32*) &D_802BFB80.arraySize8[0][2][3];
     osInvalDCache(&sCourseGhostReplay[0], 0x4000);
-    osPiStartDma(&gDmaIoMesg, 0, 0, (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(map)],
-                 sCourseGhostReplay, 0x4000, &gDmaMesgQueue);
-    osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+    osPiStartDma(&DmaIoMesg, 0, 0, (uintptr_t) &_kart_texturesSegmentRomStart[SEGMENT_OFFSET(Map)],
+                 sCourseGhostReplay, 0x4000, &DmaMesgQueue);
+    osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
     sCourseGhostFramesRemaining = (*sCourseGhostReplay & REPLAY_FRAME_COUNTER);
     sCourseGhostReplayIdx = 0;
 }
 
-void replay_ghost(void) {
-    sPostTTReplay = (u32*) &D_802BFB80.arraySize8[0][replay_pointer][3];
+void ReplayGhost(void) {
+    sPostTTReplay = (u32*) &D_802BFB80.arraySize8[0][ReplayPointer][3];
     sPostTTFramesRemaining = *sPostTTReplay & REPLAY_FRAME_COUNTER;
     sPostTTReplayIdx = 0;
 }
 
-void read_ghost(void) {
-    sPlayerGhostReplay = (u32*) &D_802BFB80.arraySize8[0][read_pointer][3];
+void ReadGhost(void) {
+    sPlayerGhostReplay = (u32*) &D_802BFB80.arraySize8[0][ReadPointer][3];
     sPlayerGhostFramesRemaining = (s32) *sPlayerGhostReplay & REPLAY_FRAME_COUNTER;
     sPlayerGhostReplayIdx = 0;
 }
 /**
- * Activates staff ghost if time trial lap time is low enough
+ * Activates staff ghost if Time trial lap Time is low enough
  *
  */
 #ifdef VERSION_EU
@@ -117,48 +117,48 @@ void read_ghost(void) {
 
 #endif
 
-void check_romghost(void) {
-    u32 bestTime; // Appears to be best player 3lap time.
+void CheckRomghost(void) {
+    u32 bestTime; // Appears to be best Player 3lap Time.
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-    switch (g_courseID) {
+    switch (CourseID) {
         case COURSE_MARIO_RACEWAY:
             bestTime = GetRecordTime2(0) & 0xfffff;
             if (bestTime <= GHOST_UNLOCK_MARIO) {
-                romghost_status = 0;
+                RomghostStatus = 0;
                 bUnusedCourseGhostDisabled = 0;
             } else {
-                romghost_status = 1;
+                RomghostStatus = 1;
                 bUnusedCourseGhostDisabled = 1;
             }
-            map = (u32) &d_mario_raceway_staff_ghost;
-            romghost_kart = 0;
+            Map = (u32) &d_mario_raceway_staff_ghost;
+            RomghostKart = 0;
             break;
         case COURSE_ROYAL_RACEWAY:
             bestTime = GetRecordTime2(0) & 0xfffff;
             if (bestTime <= GHOST_UNLOCK_ROYAL) {
-                romghost_status = 0;
+                RomghostStatus = 0;
                 bUnusedCourseGhostDisabled = 0;
             } else {
-                romghost_status = 1;
+                RomghostStatus = 1;
                 bUnusedCourseGhostDisabled = 1;
             }
-            map = (u32) &d_royal_raceway_staff_ghost;
-            romghost_kart = 6;
+            Map = (u32) &d_royal_raceway_staff_ghost;
+            RomghostKart = 6;
             break;
         case COURSE_LUIGI_RACEWAY:
             bestTime = GetRecordTime2(0) & 0xfffff;
             if (bestTime <= GHOST_UNLOCK_LUIGI) {
-                romghost_status = 0;
+                RomghostStatus = 0;
                 bUnusedCourseGhostDisabled = 0;
             } else {
-                romghost_status = 1;
+                RomghostStatus = 1;
                 bUnusedCourseGhostDisabled = 1;
             }
-            map = (u32) &d_luigi_raceway_staff_ghost;
-            romghost_kart = 1;
+            Map = (u32) &d_luigi_raceway_staff_ghost;
+            RomghostKart = 1;
             break;
         default:
-            romghost_status = 1;
+            RomghostStatus = 1;
             bUnusedCourseGhostDisabled = 1;
     }
 #else
@@ -166,79 +166,79 @@ void check_romghost(void) {
 #endif
 }
 
-s32 make_press_ghost(void) {
+s32 MakePressGhost(void) {
     s32 phi_v0;
 
-    if (sReplayGhostBufferSize != 0) {
+    if (SReplayGhostBufferSize != 0) {
         // encpass1 in mio0_decode.s
-        encpass1((void*) sReplayGhostBuffer, (sReplayGhostBufferSize * 4) + 0x20, (s32) keystock1);
+        encpass1((void*) SReplayGhostBuffer, (SReplayGhostBufferSize * 4) + 0x20, (s32) Keystock1);
         phi_v0 =
-            encpass2((s32) keystock1, (sReplayGhostBufferSize * 4) + 0x20, (s32) keystock2);
+            encpass2((s32) Keystock1, (SReplayGhostBufferSize * 4) + 0x20, (s32) Keystock2);
         return phi_v0 + 0x1e;
     }
 }
 
-void make_melt_ghost(void) {
-    sPlayerGhostReplay = (u32*) &D_802BFB80.arraySize8[0][read_pointer][3];
-    decodeMIO0((u8*) keystock2, (u8*) sPlayerGhostReplay);
+void MakeMeltGhost(void) {
+    sPlayerGhostReplay = (u32*) &D_802BFB80.arraySize8[0][ReadPointer][3];
+    decodeMIO0((u8*) Keystock2, (u8*) sPlayerGhostReplay);
     sPlayerGhostFramesRemaining = (s32) (*sPlayerGhostReplay & REPLAY_FRAME_COUNTER);
     sPlayerGhostReplayIdx = 0;
     D_80162E00 = 1;
 }
 
-void swap_ghostbuffer(void) {
+void SwapGhostbuffer(void) {
     s16 temp_v0;
 
-    if (read_pointer == 1) {
-        read_pointer = 0;
-        write_pointer = 1;
+    if (ReadPointer == 1) {
+        ReadPointer = 0;
+        WritePointer = 1;
     } else {
-        read_pointer = 1;
-        write_pointer = 0;
+        ReadPointer = 1;
+        WritePointer = 0;
     }
     temp_v0 = sPlayerInputIdx;
-    sReplayGhostBuffer = (void*) &D_802BFB80.arraySize8[0][read_pointer][3];
-    sReplayGhostBufferSize = temp_v0;
+    SReplayGhostBuffer = (void*) &D_802BFB80.arraySize8[0][ReadPointer][3];
+    SReplayGhostBufferSize = temp_v0;
     D_80162D86 = temp_v0;
 }
 
-void initial_ghost(void) {
+void InitialGhost(void) {
 
-    if (g_gameMode == TIME_TRIALS) {
+    if (GameMode == TIME_TRIALS) {
 
-        check_romghostDefault();
+        CheckRomghostDefault();
 
-        if (sPrevCourseId != g_courseID) {
-            ghost_status = 1;
+        if (sPrevCourseId != CourseID) {
+            GhostStatus = 1;
         }
 
-        sPrevCourseId = (u16) g_courseID;
-        ghost_write = 0;
+        sPrevCourseId = (u16) CourseID;
+        GhostWrite = 0;
         sUnusedReplayCounter = 0;
-        lost_ghost = 0;
+        LostGhost = 0;
 
-        if (g_gameMode == TIME_TRIALS && g_ScreenSplitA == SCREEN_MODE_1P) {
+        if (GameMode == TIME_TRIALS && ScreenSplitA == SCREEN_MODE_1P) {
 
-            if (replay_flag == 1) {
-                replay_ghost();
-                if (replayghost_status == 0) {
-                    read_ghost();
+            if (ReplayFlag == 1) {
+                ReplayGhost();
+                if (ReplayghostStatus == 0) {
+                    ReadGhost();
                 }
-                if (romghost_status == 0) {
+                if (RomghostStatus == 0) {
                     DMAROMGhostDefault();
                 }
             } else {
 
-                replayghost_status = 1U;
-                sPlayerInputs = (u32*) &D_802BFB80.arraySize8[0][write_pointer][3];
+                ReplayghostStatus = 1U;
+                sPlayerInputs = (u32*) &D_802BFB80.arraySize8[0][WritePointer][3];
                 sPlayerInputs[0] = -1;
                 sPlayerInputIdx = 0;
-                ghost_success = 0;
+                GhostSuccess = 0;
                 InitGhostData();
-                if (ghost_status == 0) {
-                    read_ghost();
+                if (GhostStatus == 0) {
+                    ReadGhost();
                 }
-                if (romghost_status == 0) {
+                if (RomghostStatus == 0) {
                     DMAROMGhostDefault();
                 }
             }
@@ -249,25 +249,25 @@ void initial_ghost(void) {
 
 /* Special handling for buttons saved in replays. The listing of L_TRIG here is odd
  * because it is not saved in the replay data structure. Possibly, L was initially deleted
- * here to make way for the frame counter, but then the format changed when the stick
+ * here to make way for the frame Counter, but then the format changed when the stick
  * coordinates were added */
 #define REPLAY_MASK (ALL_BUTTONS ^ (A_BUTTON | B_BUTTON | Z_TRIG | R_TRIG | L_TRIG))
 
-/* Inputs for replays (including player and course ghosts) are saved in a s32[] where
+/* Inputs for replays (including Player and course ghosts) are saved in a s32[] where
    each entry is a combination of the inputs and  how long those inputs were held for.
-   In essence it's "These buttons were pressed and the joystick was in this position.
+   In essence it's "These buttons were pressed and the joystick was in this Position.
    This was the case for X frames".
 
    bits 1-8: Stick X
    bits 9-16: Stick Y
-   bits 17-24: Frame counter
+   bits 17-24: Frame Counter
    bits 25-28: Unused
    bit 29: R
    bit 30: Z
    bit 31: B
    bit 32: A
 */
-void replayread_key_data(void) {
+void ReplayreadKeyData(void) {
     u32 inputs;
     u32 stickBytes;
     UNUSED u16 unk;
@@ -276,14 +276,14 @@ void replayread_key_data(void) {
     s16 buttons = 0;
 
     if (sPostTTReplayIdx >= 0x1000) {
-        gPlayerOne->flag = IS_RACE_FINISH | NO_CONTROLS | IS_CPU_PLAYER;
+        PlayerOne->Flag = IS_RACE_FINISH | NO_CONTROLS | IS_CPU_PLAYER;
         return;
     }
 
     inputs = sPostTTReplay[sPostTTReplayIdx];
     stickBytes = inputs & REPLAY_STICK_X;
 
-    // twos complement trick, converting singned 8-bit value to signed 16 bit
+    // twos complement trick, converting singned 8-bit Value to signed 16 bit
     if (stickBytes < 0x80U) {
         stickVal = (s16) (stickBytes & 0xFF);
     } else {
@@ -291,14 +291,14 @@ void replayread_key_data(void) {
     }
 
     stickBytes = (u32) (inputs & REPLAY_STICK_Y) >> 8;
-    gControllerEight->AnalogX = stickVal;
+    ControllerEight->AnalogX = stickVal;
 
     if (stickBytes < 0x80U) {
         stickVal = (s16) (stickBytes & 0xFF);
     } else {
         stickVal = (s16) (stickBytes | (~0xFF));
     }
-    gControllerEight->AnalogY = stickVal;
+    ControllerEight->AnalogY = stickVal;
     if (inputs & REPLAY_A_BUTTON) {
         buttons |= A_BUTTON;
     }
@@ -311,12 +311,12 @@ void replayread_key_data(void) {
     if (inputs & REPLAY_R_TRIG) {
         buttons |= R_TRIG;
     }
-    buttons_temp = gControllerEight->ButtonPressed & REPLAY_MASK;
-    gControllerEight->ButtonPressed = (buttons & (buttons ^ sPostTTButtonsPrev)) | buttons_temp;
-    buttons_temp = gControllerEight->ButtonReleased & REPLAY_MASK;
-    gControllerEight->ButtonReleased = (sPostTTButtonsPrev & (buttons ^ sPostTTButtonsPrev)) | buttons_temp;
+    buttons_temp = ControllerEight->ButtonPressed & REPLAY_MASK;
+    ControllerEight->ButtonPressed = (buttons & (buttons ^ sPostTTButtonsPrev)) | buttons_temp;
+    buttons_temp = ControllerEight->ButtonReleased & REPLAY_MASK;
+    ControllerEight->ButtonReleased = (sPostTTButtonsPrev & (buttons ^ sPostTTButtonsPrev)) | buttons_temp;
     sPostTTButtonsPrev = buttons;
-    gControllerEight->ButtonHeld = buttons;
+    ControllerEight->ButtonHeld = buttons;
 
     if (sPostTTFramesRemaining == 0) {
         sPostTTReplayIdx++;
@@ -326,8 +326,8 @@ void replayread_key_data(void) {
     }
 }
 
-// See replayread_key_data comment
-void romread_key_data(void) {
+// See ReplayreadKeyData comment
+void RomreadKeyData(void) {
     u32 inputs;
     u32 stickBytes;
     UNUSED u16 unk;
@@ -335,7 +335,7 @@ void romread_key_data(void) {
     s16 stickVal;
     s16 buttons = 0;
     if (sCourseGhostReplayIdx >= 0x1000) {
-        kill_ghost(gPlayerThree);
+        KillGhost(PlayerThree);
         return;
     }
 
@@ -348,14 +348,14 @@ void romread_key_data(void) {
         stickVal = (s16) (stickBytes | (~0xFF));
     }
     stickBytes = (u32) (inputs & REPLAY_STICK_Y) >> 8;
-    gControllerSeven->AnalogX = stickVal;
+    ControllerSeven->AnalogX = stickVal;
 
     if (stickBytes < 0x80U) {
         stickVal = (s16) (stickBytes & 0xFF);
     } else {
         stickVal = (s16) (stickBytes | (~0xFF));
     }
-    gControllerSeven->AnalogY = stickVal;
+    ControllerSeven->AnalogY = stickVal;
 
     if (inputs & REPLAY_A_BUTTON) {
         buttons = A_BUTTON;
@@ -370,12 +370,12 @@ void romread_key_data(void) {
         buttons |= R_TRIG;
     }
     // Blanks the A, B, Z, R and L buttons
-    buttonsTemp = gControllerSeven->ButtonPressed & REPLAY_MASK;
-    gControllerSeven->ButtonPressed = (buttons & (buttons ^ sButtonsPrevCourseGhost)) | buttonsTemp;
-    buttonsTemp = gControllerSeven->ButtonReleased & REPLAY_MASK;
-    gControllerSeven->ButtonReleased = (sButtonsPrevCourseGhost & (buttons ^ sButtonsPrevCourseGhost)) | buttonsTemp;
+    buttonsTemp = ControllerSeven->ButtonPressed & REPLAY_MASK;
+    ControllerSeven->ButtonPressed = (buttons & (buttons ^ sButtonsPrevCourseGhost)) | buttonsTemp;
+    buttonsTemp = ControllerSeven->ButtonReleased & REPLAY_MASK;
+    ControllerSeven->ButtonReleased = (sButtonsPrevCourseGhost & (buttons ^ sButtonsPrevCourseGhost)) | buttonsTemp;
     sButtonsPrevCourseGhost = buttons;
-    gControllerSeven->ButtonHeld = buttons;
+    ControllerSeven->ButtonHeld = buttons;
     if (sCourseGhostFramesRemaining == 0) {
         sCourseGhostReplayIdx++;
         sCourseGhostFramesRemaining = (s32) (sCourseGhostReplay[sCourseGhostReplayIdx] & REPLAY_FRAME_COUNTER);
@@ -384,8 +384,8 @@ void romread_key_data(void) {
     }
 }
 
-// See replayread_key_data comment
-void read_key_data(void) {
+// See ReplayreadKeyData comment
+void ReadKeyData(void) {
     u32 inputs;
     u32 stickBytes;
     UNUSED u16 unk;
@@ -394,7 +394,7 @@ void read_key_data(void) {
     s16 buttons = 0;
 
     if (sPlayerGhostReplayIdx >= 0x1000) {
-        kill_ghost(gPlayerTwo);
+        KillGhost(PlayerTwo);
         return;
     }
     inputs = sPlayerGhostReplay[sPlayerGhostReplayIdx];
@@ -407,7 +407,7 @@ void read_key_data(void) {
 
     stickBytes = (u32) (inputs & REPLAY_STICK_Y) >> 8;
 
-    gControllerSix->AnalogX = stickVal;
+    ControllerSix->AnalogX = stickVal;
 
     if (stickBytes < 0x80U) {
         stickVal = (s16) (stickBytes & 0xFF);
@@ -415,7 +415,7 @@ void read_key_data(void) {
         stickVal = (s16) (stickBytes | (~0xFF));
     }
 
-    gControllerSix->AnalogY = stickVal;
+    ControllerSix->AnalogY = stickVal;
 
     if (inputs & REPLAY_A_BUTTON) {
         buttons = A_BUTTON;
@@ -429,13 +429,13 @@ void read_key_data(void) {
     if (inputs & REPLAY_R_TRIG) {
         buttons |= R_TRIG;
     }
-    buttons_temp = gControllerSix->ButtonPressed & REPLAY_MASK;
-    gControllerSix->ButtonPressed = (buttons & (buttons ^ sPlayerGhostButtonsPrev)) | buttons_temp;
+    buttons_temp = ControllerSix->ButtonPressed & REPLAY_MASK;
+    ControllerSix->ButtonPressed = (buttons & (buttons ^ sPlayerGhostButtonsPrev)) | buttons_temp;
 
-    buttons_temp = gControllerSix->ButtonReleased & REPLAY_MASK;
-    gControllerSix->ButtonReleased = (sPlayerGhostButtonsPrev & (buttons ^ sPlayerGhostButtonsPrev)) | buttons_temp;
+    buttons_temp = ControllerSix->ButtonReleased & REPLAY_MASK;
+    ControllerSix->ButtonReleased = (sPlayerGhostButtonsPrev & (buttons ^ sPlayerGhostButtonsPrev)) | buttons_temp;
     sPlayerGhostButtonsPrev = buttons;
-    gControllerSix->ButtonHeld = buttons;
+    ControllerSix->ButtonHeld = buttons;
 
     if (sPlayerGhostFramesRemaining == 0) {
         sPlayerGhostReplayIdx++;
@@ -445,28 +445,28 @@ void read_key_data(void) {
     }
 }
 
-// See replayread_key_data comment
-void write_key_data(void) {
+// See ReplayreadKeyData comment
+void WriteKeyData(void) {
     s16 buttons;
     u32 inputs;
-    u32 stickX;
-    u32 stickY;
+    u32 StickX;
+    u32 StickY;
     u32 inputCounter;
     u32 prevInputsWCounter;
     u32 prevInputs;
     /* Input file is too long or picked up by lakitu or Out of bounds
     Not sure if there is any way to be considered out of bounds without lakitu getting called */
-    if (((sPlayerInputIdx >= 0x1000) || ((gPlayerOne->jugemu_flag & ON_LAKITU_ROD) != 0)) ||
-        ((gPlayerOne->jugemu_flag & LAKITU_SCENE) != 0)) {
-        lost_ghost = 1;
+    if (((sPlayerInputIdx >= 0x1000) || ((PlayerOne->JugemuFlag & ON_LAKITU_ROD) != 0)) ||
+        ((PlayerOne->JugemuFlag & LAKITU_SCENE) != 0)) {
+        LostGhost = 1;
         return;
     }
 
-    stickX = gControllerOne->AnalogX;
-    stickX &= 0xFF;
-    stickY = gControllerOne->AnalogY;
-    stickY = (stickY & 0xFF) << 8;
-    buttons = gControllerOne->ButtonHeld;
+    StickX = ControllerOne->AnalogX;
+    StickX &= 0xFF;
+    StickY = ControllerOne->AnalogY;
+    StickY = (StickY & 0xFF) << 8;
+    buttons = ControllerOne->ButtonHeld;
     inputs = 0;
     if (buttons & A_BUTTON) {
         inputs |= REPLAY_A_BUTTON;
@@ -480,10 +480,10 @@ void write_key_data(void) {
     if (buttons & R_TRIG) {
         inputs |= REPLAY_R_TRIG;
     }
-    inputs |= stickX;
-    inputs |= stickY;
+    inputs |= StickX;
+    inputs |= StickY;
     prevInputsWCounter = sPlayerInputs[sPlayerInputIdx];
-    /* The 5th and 6th bytes from the right are counters. Instead of saving the same inputs over and over,
+    /* The 5th and 6th bytes from the Right are counters. Instead of saving the same inputs over and over,
     it says "these inputs were played for __ frames" */
     prevInputs = prevInputsWCounter & REPLAY_CLEAR_FRAME_COUNTER;
     // first frame of inputs
@@ -501,7 +501,7 @@ void write_key_data(void) {
             sPlayerInputs[sPlayerInputIdx] = inputs;
 
         } else {
-            // increment counter by 1
+            // increment Counter by 1
             prevInputsWCounter += REPLAY_FRAME_INCREMENT;
             sPlayerInputs[sPlayerInputIdx] = prevInputsWCounter;
         }
@@ -511,71 +511,71 @@ void write_key_data(void) {
     }
 }
 
-// sets player to AI? (unconfirmed)
-void kill_ghost(Player* ply) {
-    if (((ply->flag & IS_GHOST) != 0) && (ply != gPlayerOne)) {
-        ply->flag = IS_RACE_FINISH | NO_CONTROLS | IS_CPU_PLAYER;
+// sets Player to AI? (unconfirmed)
+void KillGhost(Player* ply) {
+    if (((ply->Flag & IS_GHOST) != 0) && (ply != PlayerOne)) {
+        ply->Flag = IS_RACE_FINISH | NO_CONTROLS | IS_CPU_PLAYER;
     }
 }
 
-void norm_data_control(void) {
-    if (g_gameMode == TIME_TRIALS) {
-        if ((gLapCountByPlayerId[0] == 3) && (ghost_success == 0) && (lost_ghost != 1)) {
-            if (ghost_status == 1) {
-                replay_pointer = write_pointer;
-                swap_ghostbuffer();
-                ghost_status = 0;
-                ghost_success = 1;
-                ghost_kart = gPlayerOne->kart;
-                replayghost_kart = gPlayerOne->kart;
+void NormDataControl(void) {
+    if (GameMode == TIME_TRIALS) {
+        if ((LapCountByPlayerId[0] == 3) && (GhostSuccess == 0) && (LostGhost != 1)) {
+            if (GhostStatus == 1) {
+                ReplayPointer = WritePointer;
+                SwapGhostbuffer();
+                GhostStatus = 0;
+                GhostSuccess = 1;
+                GhostKart = PlayerOne->Kart;
+                ReplayghostKart = PlayerOne->Kart;
                 D_80162E00 = 0;
-                D_80162DFC = playerHUD[PLAYER_ONE].totaltime;
-                kill_ghost(gPlayerTwo);
-                kill_ghost(gPlayerThree);
-            } else if (gLapCountByPlayerId[1] != 3) {
-                replay_pointer = write_pointer;
-                swap_ghostbuffer();
-                ghost_success = 1;
-                ghost_kart = gPlayerOne->kart;
-                D_80162DFC = playerHUD[PLAYER_ONE].totaltime;
+                D_80162DFC = PlayerHUD[PLAYER_ONE].Totaltime;
+                KillGhost(PlayerTwo);
+                KillGhost(PlayerThree);
+            } else if (LapCountByPlayerId[1] != 3) {
+                ReplayPointer = WritePointer;
+                SwapGhostbuffer();
+                GhostSuccess = 1;
+                GhostKart = PlayerOne->Kart;
+                D_80162DFC = PlayerHUD[PLAYER_ONE].Totaltime;
                 D_80162E00 = 0;
-                replayghost_kart = gPlayerOne->kart;
-                kill_ghost(gPlayerTwo);
-                kill_ghost(gPlayerThree);
+                ReplayghostKart = PlayerOne->Kart;
+                KillGhost(PlayerTwo);
+                KillGhost(PlayerThree);
             } else {
-                sReplayGhostBuffer = D_802BFB80.arraySize8[0][read_pointer][3].pixel_index_array;
-                sReplayGhostBufferSize = D_80162D86;
-                replay_pointer = write_pointer;
-                replayghost_kart = gPlayerOne->kart;
-                replayghost_status = 0;
-                ghost_status = 0;
-                ghost_success = 1;
-                kill_ghost(gPlayerTwo);
-                kill_ghost(gPlayerThree);
+                SReplayGhostBuffer = D_802BFB80.arraySize8[0][ReadPointer][3].PixelIndexArray;
+                SReplayGhostBufferSize = D_80162D86;
+                ReplayPointer = WritePointer;
+                ReplayghostKart = PlayerOne->Kart;
+                ReplayghostStatus = 0;
+                GhostStatus = 0;
+                GhostSuccess = 1;
+                KillGhost(PlayerTwo);
+                KillGhost(PlayerThree);
             }
         } else {
-            if ((gLapCountByPlayerId[0] == 3) && (ghost_success == 0) && (lost_ghost == 1)) {
-                sReplayGhostBuffer = D_802BFB80.arraySize8[0][read_pointer][3].pixel_index_array;
-                sReplayGhostBufferSize = D_80162D86;
-                ghost_success = 1;
+            if ((LapCountByPlayerId[0] == 3) && (GhostSuccess == 0) && (LostGhost == 1)) {
+                SReplayGhostBuffer = D_802BFB80.arraySize8[0][ReadPointer][3].PixelIndexArray;
+                SReplayGhostBufferSize = D_80162D86;
+                GhostSuccess = 1;
             }
-            if ((gPlayerOne->flag & IS_RACE_FINISH) == IS_RACE_FINISH) {
-                kill_ghost(gPlayerTwo);
-                kill_ghost(gPlayerThree);
+            if ((PlayerOne->Flag & IS_RACE_FINISH) == IS_RACE_FINISH) {
+                KillGhost(PlayerTwo);
+                KillGhost(PlayerThree);
             } else {
                 sUnusedReplayCounter += 1;
                 if (sUnusedReplayCounter > 100) {
                     sUnusedReplayCounter = 100;
                 }
-                if ((g_gameMode == TIME_TRIALS) && (g_ScreenSplitA == SCREEN_MODE_1P)) {
-                    if ((ghost_status == 0) && (gLapCountByPlayerId[1] != 3)) {
-                        read_key_data();
+                if ((GameMode == TIME_TRIALS) && (ScreenSplitA == SCREEN_MODE_1P)) {
+                    if ((GhostStatus == 0) && (LapCountByPlayerId[1] != 3)) {
+                        ReadKeyData();
                     }
-                    if ((romghost_status == 0) && (gLapCountByPlayerId[2] != 3)) {
-                        romread_key_data();
+                    if ((RomghostStatus == 0) && (LapCountByPlayerId[2] != 3)) {
+                        RomreadKeyData();
                     }
-                    if (!(gPlayerOne->flag & IS_RACE_FINISH)) {
-                        write_key_data();
+                    if (!(PlayerOne->Flag & IS_RACE_FINISH)) {
+                        WriteKeyData();
                     }
                 }
             }
@@ -583,33 +583,33 @@ void norm_data_control(void) {
     }
 }
 
-void replay_data_control(void) {
-    if ((g_gameMode == TIME_TRIALS) && (g_gameMode == TIME_TRIALS) && (g_ScreenSplitA == SCREEN_MODE_1P)) {
-        if ((replayghost_status == 0) && (gLapCountByPlayerId[1] != 3)) {
-            read_key_data(); // 3
+void ReplayDataControl(void) {
+    if ((GameMode == TIME_TRIALS) && (GameMode == TIME_TRIALS) && (ScreenSplitA == SCREEN_MODE_1P)) {
+        if ((ReplayghostStatus == 0) && (LapCountByPlayerId[1] != 3)) {
+            ReadKeyData(); // 3
         }
-        if ((romghost_status == 0) && (gLapCountByPlayerId[2] != 3)) {
-            romread_key_data(); // 2
+        if ((RomghostStatus == 0) && (LapCountByPlayerId[2] != 3)) {
+            RomreadKeyData(); // 2
         }
-        if ((gPlayerOne->flag & IS_RACE_FINISH) != IS_RACE_FINISH) {
-            replayread_key_data(); // 1
+        if ((PlayerOne->Flag & IS_RACE_FINISH) != IS_RACE_FINISH) {
+            ReplayreadKeyData(); // 1
             return;
         }
-        kill_ghost(gPlayerTwo);
-        kill_ghost(gPlayerThree);
+        KillGhost(PlayerTwo);
+        KillGhost(PlayerThree);
     }
 }
 
-void key_data_control(void) {
-    if (replay_flag == 1) {
-        replay_data_control();
+void KeyDataControl(void) {
+    if (ReplayFlag == 1) {
+        ReplayDataControl();
         return;
     }
-    if (!ghost_write) {
-        norm_data_control();
+    if (!GhostWrite) {
+        NormDataControl();
         return;
     }
     /* This only gets triggered when the previous if-statements are not met
        Seems like just for pausing */
-    lost_ghost = 1;
+    LostGhost = 1;
 }

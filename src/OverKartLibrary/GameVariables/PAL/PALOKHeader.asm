@@ -1,9 +1,9 @@
 ;;These are new custom RAM values
 ;;0x80400000 - 0x804FFFFF is restricted for OverKart64 functions and data.
 ;;0x80500000 - 0x805FFFFF is reserved for Custom Course Assembly and data.
-;;0X80600000 - 0X80780000 should be safe for any other custom code.
+;;0X80600000 - 0X80780000 should be safe for any other custom Code.
 ;;The end of RAM is course data, from 0x80800000 backwards.
-;;This varies based on the size of data for the current course. Be cautious!
+;;This varies based on the Size of data for the Current course. Be cautious!
 
 .definelabel ok_ItemChance1, 0x80415000
 .definelabel ok_ItemChance2, 0x80415004

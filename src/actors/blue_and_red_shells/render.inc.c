@@ -4,23 +4,23 @@
 /**
  * @brief Render the red shell actor
  *
- * @param camera
- * @param matrix
- * @param shell
+ * @Param Camera
+ * @Param Matrix
+ * @Param shell
  */
-void display_rshell(Camera* camera, Mat4 matrix, struct ShellActor* shell) {
-    gDPLoadTLUT_pal256(gDisplayListHead++, &gTLUTRedShell); // set texture
-    display_shell(camera, matrix, shell);
+void DisplayRshell(Camera* Camera, Mat4 Matrix, struct ShellActor* shell) {
+    gDPLoadTLUT_pal256(DisplayListHead++, &TLUTRedShell); // set Texture
+    DisplayShell(Camera, Matrix, shell);
 }
 
 /**
- * @brief Render the blue shell actor
+ * @brief Render the Blue shell actor
  *
- * @param camera
- * @param matrix
- * @param shell
+ * @Param Camera
+ * @Param Matrix
+ * @Param shell
  */
-void display_tshell(Camera* camera, Mat4 matrix, struct ShellActor* shell) {
-    gDPLoadTLUT_pal256(gDisplayListHead++, common_tlut_blue_shell); // set texture
-    display_shell(camera, matrix, shell);
+void DisplayTshell(Camera* Camera, Mat4 Matrix, struct ShellActor* shell) {
+    gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_blue_shell); // set Texture
+    DisplayShell(Camera, Matrix, shell);
 }

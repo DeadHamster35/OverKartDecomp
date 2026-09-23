@@ -51,7 +51,7 @@ extern float friction_Wario; // 0x800E2684
 extern float friction_Peach; // 0x800E2688
 extern float friction_Bowser; // 0x800E268C
 
-//jump (drift & hit) / gravity
+//Jump (drift & hit) / Gravity
 extern float driftJump_Mario; // 0x800E36D0
 extern float driftJump_Luigi; // 0x800E36D4
 extern float driftJump_Yoshi; // 0x800E36D8
@@ -113,7 +113,7 @@ Fspeed 800E37D0
 Acc 800E37F0
 */
 
-//speed
+//Speed
 extern float maxSpeed_Mario; // 0x800E2690
 extern float maxSpeed_Luigi; // 0x800E2694
 extern float maxSpeed_Yoshi; // 0x800E2698
@@ -235,7 +235,7 @@ extern float acc10_Bowser; // 0x800E300C
 
 /* tripleTap_* → gKartTripleABoost in StockAliases.h */
 
-//grip 
+//Grip 
 extern float frontgrip50_Mario; // 0x800E2360
 extern float frontgrip50_Luigi; // 0x800E2364
 extern float frontgrip50_Yoshi; // 0x800E2368

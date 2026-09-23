@@ -19,7 +19,7 @@ void SlayerInit(void)
             }
             else
             {           
-                if (CustomObjectivePoints[ThisObj].GameMode == BATTLE_GAMETYPE)
+                if (CustomObjectivePoints[ThisObj].GameType == BATTLE_GAMETYPE)
                 {
                     switch (CustomObjectivePoints[ThisObj].Type)
                     {
@@ -44,11 +44,11 @@ void SlayerInit(void)
     {
         {
             int ThisPlayer;
-        for (ThisPlayer = 0; ThisPlayer < g_playerCount; ThisPlayer++)
+        for (ThisPlayer = 0; ThisPlayer < PlayerCount; ThisPlayer++)
         {
-            LocalPosition[0] = (short)GlobalPlayer[ThisPlayer].position[0];
-            LocalPosition[1] = (short)GlobalPlayer[ThisPlayer].position[1];
-            LocalPosition[2] = (short)GlobalPlayer[ThisPlayer].position[2];
+            LocalPosition[0] = (short)GlobalPlayer[ThisPlayer].Position[0];
+            LocalPosition[1] = (short)GlobalPlayer[ThisPlayer].Position[1];
+            LocalPosition[2] = (short)GlobalPlayer[ThisPlayer].Position[2];
             PlacePlayerSpawn(LocalPosition, ThisPlayer);
         }
         }        
@@ -58,9 +58,9 @@ void SlayerInit(void)
     
     {
         int ThisPlayer;
-    for (ThisPlayer = 0; ThisPlayer < g_playerCount; ThisPlayer++)
+    for (ThisPlayer = 0; ThisPlayer < PlayerCount; ThisPlayer++)
     {   
-        if ((g_playerCount > 2) && (TeamMode == 1))
+        if ((PlayerCount > 2) && (TeamMode == 1))
         {
             if (ThisPlayer < 2)
             {
@@ -80,7 +80,7 @@ void SlayerInit(void)
     
     {
         int ThisPlayer;
-    for (ThisPlayer = g_playerCount; ThisPlayer < 4; ThisPlayer++)
+    for (ThisPlayer = PlayerCount; ThisPlayer < 4; ThisPlayer++)
     {
         SpawnPoint[ThisPlayer][0] = -65535;
         SpawnPoint[ThisPlayer][1] = -65535;

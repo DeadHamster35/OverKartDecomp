@@ -2,23 +2,23 @@
 
 /**
  * @brief Updates the railroad crossing actor.
- * Actor used in Kalimari Desert.
- * Make the sound of the bell when the train is close.
+ * Actor Used in Kalimari Desert.
+ * Make the Sound of the bell when the train is close.
  *
- * @param crossing
+ * @Param crossing
  */
-void fumikiri_strategy(struct RailroadCrossing* crossing) {
+void FumikiriStrategy(struct RailroadCrossing* crossing) {
     // If train close?
-    if (fumikiri_mode[crossing->crossingId] != 0) {
+    if (FumikiriMode[crossing->CrossingId] != 0) {
         // Timer++
-        crossing->someTimer++;
-        // Reset timer
-        if (crossing->someTimer > 40) {
-            crossing->someTimer = 1;
+        crossing->SomeTimer++;
+        // Reset Timer
+        if (crossing->SomeTimer > 40) {
+            crossing->SomeTimer = 1;
         }
-        // Play Bell sound when timer hits 20 or 1.
-        if ((crossing->someTimer == 1) || (crossing->someTimer == 20)) {
-            NAEnmTrgStart(crossing->position, crossing->velocity, SOUND_ARG_LOAD(0x19, 0x01, 0x70, 0x16));
+        // Play Bell Sound when Timer hits 20 or 1.
+        if ((crossing->SomeTimer == 1) || (crossing->SomeTimer == 20)) {
+            NAEnmTrgStart(crossing->Position, crossing->Velocity, SOUND_ARG_LOAD(0x19, 0x01, 0x70, 0x16));
         }
     }
 }

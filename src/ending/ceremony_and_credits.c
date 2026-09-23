@@ -1,6 +1,6 @@
 /**
  * @file ceremony_and_credits.c
- * Implements cinematic camera for ceremony and credits scenes.
+ * Implements cinematic Camera for ceremony and credits scenes.
  * Camera moves via splines.
  */
 
@@ -25,55 +25,55 @@
 
 f32 D_802856B0 = 98.0f;
 f32 D_802856B4 = 12.0f;
-f32 gOrderedSizeSlidingBorders = 52.0f;
+f32 OrderedSizeSlidingBorders = 52.0f;
 f32 D_802856BC = 52.0f;
-f32 gSizeSlidingBorders = 0.0f;
+f32 SizeSlidingBorders = 0.0f;
 s32 D_802856C4 = 0;
 
-s32 D_802856C8[3] = { 0 }; // padding?
+s32 D_802856C8[3] = { 0 }; // Padding?
 
-s16 sCutsceneShot;
-s16 gCutsceneShotTimer;
+s16 SCutsceneShot;
+s16 CutsceneShotTimer;
 s32 D_802876D4;
 s32 D_802876D8;
-s32 D_802876DC; // fake/padding? Or D8 is array?
+s32 D_802876DC; // fake/Padding? Or D8 is array?
 
 CinematicCamera D_802876E0;
 struct struct_80283431 D_80287750[10];
 struct struct_80283430 D_80287818[32];
 struct struct_80283430 D_80287998[32];
-f32 sCutsceneSplineSegmentProgress;
-s16 sCutsceneSplineSegment;
+f32 SCutsceneSplineSegmentProgress;
+s16 SCutsceneSplineSegment;
 s16 D_80287B1E;
 s8 D_80287B20;
 
-void vec3f_set_dupe(Vec3f dest, f32 arg1, f32 arg2, f32 arg3) {
+void Vec3FSetDupe(Vec3f dest, f32 arg1, f32 Arg2, f32 Arg3) {
     dest[0] = arg1;
-    dest[1] = arg2;
-    dest[2] = arg3;
+    dest[1] = Arg2;
+    dest[2] = Arg3;
 }
 
-void vec3s_set_dupe(Vec3s dest, s16 arg1, s16 arg2, s16 arg3) {
+void Vec3SSetDupe(Vec3s dest, s16 arg1, s16 Arg2, s16 Arg3) {
     dest[0] = arg1;
-    dest[1] = arg2;
-    dest[2] = arg3;
+    dest[1] = Arg2;
+    dest[2] = Arg3;
 }
 
-void vec3f_clear(Vec3f arg0) {
+void Vec3FClear(Vec3f arg0) {
     arg0[0] = arg0[1] = arg0[2] = 0.0f;
 }
 
-void vec3s_clear(Vec3s arg0) {
+void Vec3SClear(Vec3s arg0) {
     arg0[0] = arg0[1] = arg0[2] = 0;
 }
 
-void vec3f_copy_return_dupe(Vec3f dest, Vec3f src) {
+void Vec3FCopyReturnDupe(Vec3f dest, Vec3f src) {
     dest[0] = src[0];
     dest[1] = src[1];
     dest[2] = src[2];
 }
 
-void vec3s_copy_dupe(Vec3s dest, Vec3s src) {
+void Vec3SCopyDupe(Vec3s dest, Vec3s src) {
     dest[0] = src[0];
     dest[1] = src[1];
     dest[2] = src[2];
@@ -85,30 +85,30 @@ void func_80282040(void) {
 void func_80282048(void) {
 }
 
-UNUSED void rotate_y_vec3f(Vec3f dest, Vec3f src, s16 angle) {
+UNUSED void RotateYVec3F(Vec3f dest, Vec3f src, s16 Angle) {
     Vec3f sp2C;
 
-    vec3f_copy_return_dupe(sp2C, src);
-    dest[0] = (sp2C[2] * sinT(angle)) + (sp2C[0] * cosT(angle));
+    Vec3FCopyReturnDupe(sp2C, src);
+    dest[0] = (sp2C[2] * SinT(Angle)) + (sp2C[0] * CosT(Angle));
     dest[1] = sp2C[1];
-    dest[2] = (sp2C[2] * cosT(angle)) - (sp2C[0] * sinT(angle));
+    dest[2] = (sp2C[2] * CosT(Angle)) - (sp2C[0] * SinT(Angle));
 }
 
-UNUSED void rotate_x_vec3f(Vec3f dest, Vec3f src, s16 angle) {
+UNUSED void RotateXVec3F(Vec3f dest, Vec3f src, s16 Angle) {
     Vec3f sp2C;
 
-    vec3f_copy_return_dupe(sp2C, src);
-    dest[2] = (sp2C[2] * cosT(angle)) - (sp2C[1] * sinT(angle));
-    dest[1] = (sp2C[2] * sinT(angle)) + (sp2C[1] * cosT(angle));
+    Vec3FCopyReturnDupe(sp2C, src);
+    dest[2] = (sp2C[2] * CosT(Angle)) - (sp2C[1] * SinT(Angle));
+    dest[1] = (sp2C[2] * SinT(Angle)) + (sp2C[1] * CosT(Angle));
     dest[0] = sp2C[0];
 }
 
 /**
- * Target f32 at given rate.
+ * Target f32 at given Rate.
  * Used for targeting playerTwo and playerThree.
  * Also targets the trophy.
  */
-s32 f32_lerp(f32* dest, f32 src, f32 lerp) {
+s32 F32Lerp(f32* dest, f32 src, f32 lerp) {
     if (lerp > 1.0f) {
         lerp = 1.0f;
     }
@@ -121,7 +121,7 @@ s32 f32_lerp(f32* dest, f32 src, f32 lerp) {
     return 1;
 }
 
-UNUSED bool ease_out_transition(s16* var, s16 dest, s16 speed_factor) {
+UNUSED bool EaseOutTransition(s16* var, s16 dest, s16 speed_factor) {
     s16 temp_v0 = *var;
 
     if (speed_factor == 0) {
@@ -140,7 +140,7 @@ UNUSED bool ease_out_transition(s16* var, s16 dest, s16 speed_factor) {
 }
 
 // Calculates fade in/out
-bool adjust_f32_value_transition(f32* var, f32 dest, f32 speed_factor) {
+bool AdjustF32ValueTransition(f32* var, f32 dest, f32 speed_factor) {
     f32 temp_f0 = dest - *var;
 
     if (speed_factor < 0.0f) {
@@ -169,8 +169,8 @@ bool adjust_f32_value_transition(f32* var, f32 dest, f32 speed_factor) {
     return true;
 }
 
-bool adjust_s16_value_transition(s16* var, s16 goal, s16 speed_factor) {
-    s16 temp_v0 = goal - *var;
+bool AdjustS16ValueTransition(s16* var, s16 Goal, s16 speed_factor) {
+    s16 temp_v0 = Goal - *var;
 
     if (speed_factor < 0) {
         speed_factor = speed_factor * -1;
@@ -178,37 +178,37 @@ bool adjust_s16_value_transition(s16* var, s16 goal, s16 speed_factor) {
     if (temp_v0 > 0) {
         temp_v0 -= speed_factor;
         if (temp_v0 >= 0) {
-            *var = goal - temp_v0;
+            *var = Goal - temp_v0;
         } else {
-            *var = goal;
+            *var = Goal;
         }
     } else {
         temp_v0 += speed_factor;
         if (temp_v0 <= 0) {
-            *var = goal - temp_v0;
+            *var = Goal - temp_v0;
         } else {
-            *var = goal;
+            *var = Goal;
         }
     }
 
-    if (goal == *var) {
+    if (Goal == *var) {
         return false;
     }
     return true;
 }
 
-void reset_spline(void) {
-    sCutsceneSplineSegment = 0;
-    sCutsceneSplineSegmentProgress = 0.0f;
+void ResetSpline(void) {
+    SCutsceneSplineSegment = 0;
+    SCutsceneSplineSegmentProgress = 0.0f;
     D_80287B1E = 0;
     D_80287B20 = 0;
 }
 
-void reset_spline_wrap(UNUSED CinematicCamera* arg0) {
-    reset_spline();
+void ResetSplineWrap(UNUSED CinematicCamera* arg0) {
+    ResetSpline();
 }
 
-void calculate_distance_angle_y_and_angle_y_to_xz(Vec3f vec1, Vec3f vec2, f32* distance, s16* angleYToXZ, s16* angleY) {
+void CalculateDistanceAngleYAndAngleYToXz(Vec3f vec1, Vec3f vec2, f32* Distance, s16* angleYToXZ, s16* angleY) {
     f32 xdist;
     f32 ydist;
     f32 zdist;
@@ -216,32 +216,32 @@ void calculate_distance_angle_y_and_angle_y_to_xz(Vec3f vec1, Vec3f vec2, f32* d
     xdist = vec2[0] - vec1[0];
     ydist = vec2[1] - vec1[1];
     zdist = vec2[2] - vec1[2];
-    *distance = sqrtf((xdist * xdist) + (ydist * ydist) + (zdist * zdist));
+    *Distance = sqrtf((xdist * xdist) + (ydist * ydist) + (zdist * zdist));
     *angleYToXZ = Atan2t(ydist, sqrtf((xdist * xdist) + (zdist * zdist)));
     *angleY = Atan2t(xdist, zdist);
 }
 
-void apply_distance_angle_y_and_angle_y_to_xz(Vec3f vec1, Vec3f vec2, f32 coef, s16 angleYToXZ, s16 angleY) {
-    vec2[0] = vec1[0] + (coef * cosT(angleYToXZ) * sinT(angleY));
-    vec2[1] = vec1[1] + (coef * sinT(angleYToXZ));
-    vec2[2] = vec1[2] + (coef * cosT(angleYToXZ) * cosT(angleY));
+void ApplyDistanceAngleYAndAngleYToXz(Vec3f vec1, Vec3f vec2, f32 coef, s16 angleYToXZ, s16 angleY) {
+    vec2[0] = vec1[0] + (coef * CosT(angleYToXZ) * SinT(angleY));
+    vec2[1] = vec1[1] + (coef * SinT(angleYToXZ));
+    vec2[2] = vec1[2] + (coef * CosT(angleYToXZ) * CosT(angleY));
 }
 
-UNUSED void aborting_cinematic_function(Vec3f arg0, Vec3f arg1, Vec3f arg2, Vec3s arg3) {
+UNUSED void AbortingCinematicFunction(Vec3f arg0, Vec3f arg1, Vec3f Arg2, Vec3s Arg3) {
     Vec3f sp3C;
     Vec3f sp30;
 
-    // What's up with this? Why do we copy arg1 to an unused local variable?
-    vec3f_copy_return_dupe(sp3C, arg1);
-    sp30[2] = -((arg2[2] * cosT(arg3[0])) - (arg2[1] * sinT(arg3[0])));
-    sp30[1] = (arg2[2] * sinT(arg3[0])) + (arg2[1] * cosT(arg3[0]));
-    sp30[0] = arg2[0];
-    arg0[0] = arg1[0] + (sp30[2] * sinT(arg3[1])) + (sp30[0] * cosT(arg3[1]));
+    // What's up with this? Why do we copy arg1 to an Unused local variable?
+    Vec3FCopyReturnDupe(sp3C, arg1);
+    sp30[2] = -((Arg2[2] * CosT(Arg3[0])) - (Arg2[1] * SinT(Arg3[0])));
+    sp30[1] = (Arg2[2] * SinT(Arg3[0])) + (Arg2[1] * CosT(Arg3[0]));
+    sp30[0] = Arg2[0];
+    arg0[0] = arg1[0] + (sp30[2] * SinT(Arg3[1])) + (sp30[0] * CosT(Arg3[1]));
     arg0[1] = arg1[1] + sp30[1];
-    arg0[2] = arg1[2] + (sp30[2] * cosT(arg3[1])) - (sp30[0] * sinT(arg3[1]));
+    arg0[2] = arg1[2] + (sp30[2] * CosT(Arg3[1])) - (sp30[0] * SinT(Arg3[1]));
 }
 
-void evaluate_cubic_spline(f32 arg0, Vec3f point, f32* arg2, f32 controlPoints1[], f32 controlPoints2[],
+void EvaluateCubicSpline(f32 arg0, Vec3f Point, f32* Arg2, f32 controlPoints1[], f32 controlPoints2[],
                            f32 controlPoints3[], f32 controlPoints4[]) {
     f32 B[4];
 
@@ -253,40 +253,40 @@ void evaluate_cubic_spline(f32 arg0, Vec3f point, f32* arg2, f32 controlPoints1[
     B[2] = ((((((-arg0) * arg0) * arg0) / 2.0f) + ((arg0 * arg0) / 2.0f)) + (arg0 / 2.0f)) + 0.16666667f;
     B[3] = ((arg0 * arg0) * arg0) / 6.0f;
 
-    point[0] =
+    Point[0] =
         B[0] * controlPoints1[0] + B[1] * controlPoints2[0] + B[2] * controlPoints3[0] + B[3] * controlPoints4[0];
-    point[1] =
+    Point[1] =
         B[0] * controlPoints1[1] + B[1] * controlPoints2[1] + B[2] * controlPoints3[1] + B[3] * controlPoints4[1];
-    point[2] =
+    Point[2] =
         B[0] * controlPoints1[2] + B[1] * controlPoints2[2] + B[2] * controlPoints3[2] + B[3] * controlPoints4[2];
-    *arg2 = B[0] * controlPoints1[3] + B[1] * controlPoints2[3] + B[2] * controlPoints3[3] + B[3] * controlPoints4[3];
+    *Arg2 = B[0] * controlPoints1[3] + B[1] * controlPoints2[3] + B[2] * controlPoints3[3] + B[3] * controlPoints4[3];
 }
 
 /**
- * Computes the point that is `progress` percent of the way through segment `splineSegment` of `spline`,
+ * Computes the Point that is `progress` percent of the way through segment `splineSegment` of `spline`,
  * and stores the result in `p`. `progress` and `splineSegment` are updated if `progress` becomes >= 1.0.
  *
- * When neither of the next two points' speeds == 0, the number of frames is between 1 and 255. Otherwise
+ * When neither of the Next two points' speeds == 0, the Number of frames is between 1 and 255. Otherwise
  * it's infinite.
  *
- * To calculate the number of frames it will take to progress through a spline segment:
- * If the next two speeds are the same and nonzero, it's 1.0 / firstSpeed.
+ * To calculate the Number of frames it will take to progress through a spline segment:
+ * If the Next two speeds are the same and nonzero, it's 1.0 / firstSpeed.
  *
  * s1 and s2 are short hand for first/secondSpeed. The progress at any frame n is defined by a recurrency relation:
  *      p(n+1) = (s2 - s1 + 1) * p(n) + s1
  * Which can be written as
  *      p(n) = (s2 * ((s2 - s1 + 1)^(n) - 1)) / (s2 - s1)
  *
- * Solving for the number of frames:
+ * Solving for the Number of frames:
  *      n = log(((s2 - s1) / s1) + 1) / log(s2 - s1 + 1)
  *
- * @return 1 if the point has reached the end of the spline, when `progress` reaches 1.0 or greater, and
- * the 4th CutsceneSplinePoint in the current segment away from spline[splineSegment] has an index of -1.
+ * @return 1 if the Point has reached the end of the spline, when `progress` reaches 1.0 or greater, and
+ * the 4th CutsceneSplinePoint in the Current segment away from spline[splineSegment] has an Index of -1.
  */
-s32 move_point_along_spline(Vec3f point, f32* arg1, struct struct_80283430 spline[], s16* splineSegment,
+s32 MovePointAlongSpline(Vec3f Point, f32* arg1, struct struct_80283430 spline[], s16* splineSegment,
                             f32* progress) {
-    s32 finished = 0;
-    Mat4 controlPoints;
+    s32 Finished = 0;
+    Mat4 ControlPoints;
     s32 i = 0;
     f32 u = *progress;
     f32 progressChange;
@@ -298,29 +298,29 @@ s32 move_point_along_spline(Vec3f point, f32* arg1, struct struct_80283430 splin
         u = 0;
     }
 
-    if ((spline[segment].unk0 == -1) || (spline[segment + 1].unk0 == -1) || (spline[segment + 2].unk0 == -1)) {
+    if ((spline[segment].Unk0 == -1) || (spline[segment + 1].Unk0 == -1) || (spline[segment + 2].Unk0 == -1)) {
         return 1;
     }
 
     for (i = 0; i < 4; i++) {
-        controlPoints[i][0] = spline[segment + i].unk6[0];
-        controlPoints[i][1] = spline[segment + i].unk6[1];
-        controlPoints[i][2] = spline[segment + i].unk6[2];
-        controlPoints[i][3] = spline[segment + i].unk4 * 256.0f;
+        ControlPoints[i][0] = spline[segment + i].unk6[0];
+        ControlPoints[i][1] = spline[segment + i].unk6[1];
+        ControlPoints[i][2] = spline[segment + i].unk6[2];
+        ControlPoints[i][3] = spline[segment + i].unk4 * 256.0f;
     }
 
-    evaluate_cubic_spline(u, point, arg1, controlPoints[0], controlPoints[1], controlPoints[2], controlPoints[3]);
+    EvaluateCubicSpline(u, Point, arg1, ControlPoints[0], ControlPoints[1], ControlPoints[2], ControlPoints[3]);
 
-    if (spline[*splineSegment + 1].unk2 != 0) {
-        firstSpeed = 1.0f / spline[*splineSegment + 1].unk2;
+    if (spline[*splineSegment + 1].Unk2 != 0) {
+        firstSpeed = 1.0f / spline[*splineSegment + 1].Unk2;
     }
 
-    if (spline[*splineSegment + 2].unk2 != 0) {
-        secondSpeed = 1.0f / spline[*splineSegment + 2].unk2;
+    if (spline[*splineSegment + 2].Unk2 != 0) {
+        secondSpeed = 1.0f / spline[*splineSegment + 2].Unk2;
     }
 
 #ifdef VERSION_EU
-    if (gGamestate == CREDITS_SEQUENCE) {
+    if (GameState == CREDITS_SEQUENCE) {
         firstSpeed *= 1.14999997f;
         secondSpeed *= 1.14999997f;
     }
@@ -329,19 +329,19 @@ s32 move_point_along_spline(Vec3f point, f32* arg1, struct struct_80283430 splin
     progressChange = (((secondSpeed - firstSpeed)) * *progress + firstSpeed);
     if (1 <= (*progress += progressChange)) {
         (*splineSegment)++;
-        if (spline[*splineSegment + 3].unk0 == -1) {
+        if (spline[*splineSegment + 3].Unk0 == -1) {
             *splineSegment = 0;
-            finished = 1;
+            Finished = 1;
         }
         (*progress)--;
     }
-    return finished;
+    return Finished;
 }
 
-void func_80282BE4(struct struct_80283430* arg0, s8 arg1, u8 arg2, s8 arg3, Vec3s arg4, s32 arg5) {
-    arg0->unk0 = arg1;
-    arg0->unk2 = arg2;
-    arg0->unk4 = arg3;
+void func_80282BE4(struct struct_80283430* arg0, s8 arg1, u8 Arg2, s8 Arg3, Vec3s arg4, s32 arg5) {
+    arg0->Unk0 = arg1;
+    arg0->Unk2 = Arg2;
+    arg0->unk4 = Arg3;
     if (arg5) {
         arg0->unk6[0] = -arg4[0];
     } else {
@@ -351,10 +351,10 @@ void func_80282BE4(struct struct_80283430* arg0, s8 arg1, u8 arg2, s8 arg3, Vec3
     arg0->unk6[2] = arg4[2];
 }
 
-void func_80282C40(struct struct_80283430* arg0, struct struct_80282C40* arg1, s32 arg2) {
+void func_80282C40(struct struct_80283430* arg0, struct struct_80282C40* arg1, s32 Arg2) {
     s32 i = 0;
     s32 j = 0;
-    func_80282BE4(&arg0[j], arg1[j].unk0, arg1[j].unk3, arg1[j].unk4, arg1[j].unk6, arg2);
+    func_80282BE4(&arg0[j], arg1[j].Unk0, arg1[j].Unk3, arg1[j].unk4, arg1[j].unk6, Arg2);
 
     j++;
     goto dummy_label_888430;
@@ -362,50 +362,50 @@ void func_80282C40(struct struct_80283430* arg0, struct struct_80282C40* arg1, s
         do {
 
         dummy_label_888430:;
-            func_80282BE4(&arg0[j], arg1[i].unk0, arg1[i].unk3, arg1[i].unk4, arg1[i].unk6, arg2);
+            func_80282BE4(&arg0[j], arg1[i].Unk0, arg1[i].Unk3, arg1[i].unk4, arg1[i].unk6, Arg2);
             j++;
             i++;
 
-        } while (arg1[i].unk0 != -1);
+        } while (arg1[i].Unk0 != -1);
         if (j + 3 <= 30) {
-            func_80282BE4(&arg0[j], arg1->unk0, arg1[i].unk3, arg1[i].unk4, arg1[i].unk6, arg2);
-            func_80282BE4(&arg0[j + 1], arg1->unk0, 0, arg1[i].unk4, arg1[i].unk6, arg2);
-            func_80282BE4(&arg0[j + 2], arg1->unk0, 0, arg1[i].unk4, arg1[i].unk6, arg2);
-            func_80282BE4(&arg0[j + 3], -1, 0, arg1[i].unk4, arg1[i].unk6, arg2);
+            func_80282BE4(&arg0[j], arg1->Unk0, arg1[i].Unk3, arg1[i].unk4, arg1[i].unk6, Arg2);
+            func_80282BE4(&arg0[j + 1], arg1->Unk0, 0, arg1[i].unk4, arg1[i].unk6, Arg2);
+            func_80282BE4(&arg0[j + 2], arg1->Unk0, 0, arg1[i].unk4, arg1[i].unk6, Arg2);
+            func_80282BE4(&arg0[j + 3], -1, 0, arg1[i].unk4, arg1[i].unk6, Arg2);
             break;
         }
     }
 }
 
-s32 move_cinematic_camera_along_spline(CinematicCamera* camera, struct struct_80286A04* arg1,
-                                       struct struct_80286A04* arg2, s32 arg3) {
+s32 MoveCinematicCameraAlongSpline(CinematicCamera* Camera, struct struct_80286A04* arg1,
+                                       struct struct_80286A04* Arg2, s32 Arg3) {
     s32 res;
 
-    cutscene_event(reset_spline_wrap, camera, 0, 0);
-    func_80282C40(D_80287818, (struct struct_80282C40*) arg1, arg3);
-    func_80282C40(D_80287998, (struct struct_80282C40*) arg2, arg3);
+    CutsceneEvent(ResetSplineWrap, Camera, 0, 0);
+    func_80282C40(D_80287818, (struct struct_80282C40*) arg1, Arg3);
+    func_80282C40(D_80287998, (struct struct_80282C40*) Arg2, Arg3);
 
     if (0) {}; // debug stub?
 
-    res = move_point_along_spline(camera->lookAt, &camera->unk18, D_80287818, &sCutsceneSplineSegment,
-                                  &sCutsceneSplineSegmentProgress) |
-          move_point_along_spline(camera->pos, &camera->unk18, D_80287998, &sCutsceneSplineSegment,
-                                  &sCutsceneSplineSegmentProgress);
+    res = MovePointAlongSpline(Camera->LookAt, &Camera->unk18, D_80287818, &SCutsceneSplineSegment,
+                                  &SCutsceneSplineSegmentProgress) |
+          MovePointAlongSpline(Camera->pos, &Camera->unk18, D_80287998, &SCutsceneSplineSegment,
+                                  &SCutsceneSplineSegmentProgress);
     return res;
 }
 
-void func_80282E58(CinematicCamera* camera, struct struct_80282C40* arg1, s32 arg2) {
-    func_80282C40(D_80287818, arg1, arg2);
-    move_point_along_spline(camera->lookAt, &camera->unk18, D_80287818, &sCutsceneSplineSegment,
-                            &sCutsceneSplineSegmentProgress);
+void func_80282E58(CinematicCamera* Camera, struct struct_80282C40* arg1, s32 Arg2) {
+    func_80282C40(D_80287818, arg1, Arg2);
+    MovePointAlongSpline(Camera->LookAt, &Camera->unk18, D_80287818, &SCutsceneSplineSegment,
+                            &SCutsceneSplineSegmentProgress);
 }
 
-void func_80282EAC(s32 arg0, CinematicCamera* arg1, s16 arg2, s16 arg3, s16 arg4) {
+void func_80282EAC(s32 arg0, CinematicCamera* arg1, s16 Arg2, s16 Arg3, s16 arg4) {
     if ((arg0 >= 0) && (arg0 < 3)) {
-        if (arg1->unk48[arg0] < arg2) {
-            arg1->unk48[arg0] = arg2;
-            arg1->unk5A[arg0] = arg3;
-            arg1->unk54[arg0] = arg4;
+        if (arg1->unk48[arg0] < Arg2) {
+            arg1->unk48[arg0] = Arg2;
+            arg1->Unk5A[arg0] = Arg3;
+            arg1->Unk54[arg0] = arg4;
         }
     }
 }
@@ -418,50 +418,50 @@ void func_80282F00(s16* arg0, s16 arg1) {
     *arg0 += arg1;
 }
 
-void func_80282F44(s32 arg0, CinematicCamera* arg1, Camera* camera) {
-    f32 distance;
+void func_80282F44(s32 arg0, CinematicCamera* arg1, Camera* Camera) {
+    f32 Distance;
     UNUSED s32 pad[2];
     s16 angleCam[2];
     Vec3f pos;
     Vec3f lookat;
 
-    vec3f_set_dupe(pos, camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2]);
-    vec3f_set_dupe(lookat, camera->lookat_pos[0], camera->lookat_pos[1], camera->lookat_pos[2]);
+    Vec3FSetDupe(pos, Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2]);
+    Vec3FSetDupe(lookat, Camera->LookatPos[0], Camera->LookatPos[1], Camera->LookatPos[2]);
     if ((arg0 == 0) || (arg0 == 1)) {
         if ((arg1->unk48[0] != 0) || (arg1->unk48[1] != 0)) {
-            calculate_distance_angle_y_and_angle_y_to_xz(pos, lookat, &distance, &angleCam[0], &angleCam[1]);
-            angleCam[arg0] += (((f32) arg1->unk48[arg0]) * sinT(arg1->unk4E[arg0]));
+            CalculateDistanceAngleYAndAngleYToXz(pos, lookat, &Distance, &angleCam[0], &angleCam[1]);
+            angleCam[arg0] += (((f32) arg1->unk48[arg0]) * SinT(arg1->Unk4E[arg0]));
             if ((angleCam[0] < 0x3800) && (angleCam[0] >= -0x37FF)) {
-                apply_distance_angle_y_and_angle_y_to_xz(pos, lookat, distance, angleCam[0], angleCam[1]);
+                ApplyDistanceAngleYAndAngleYToXz(pos, lookat, Distance, angleCam[0], angleCam[1]);
             }
-            func_80282F00(&arg1->unk4E[arg0], arg1->unk54[arg0]);
-            if (adjust_s16_value_transition(&arg1->unk48[arg0], 0, arg1->unk5A[arg0]) == false) {
-                arg1->unk4E[arg0] = 0;
+            func_80282F00(&arg1->Unk4E[arg0], arg1->Unk54[arg0]);
+            if (AdjustS16ValueTransition(&arg1->unk48[arg0], 0, arg1->Unk5A[arg0]) == false) {
+                arg1->Unk4E[arg0] = 0;
             }
         }
-        camera->lookat_pos[0] = lookat[0];
-        camera->lookat_pos[1] = lookat[1];
-        camera->lookat_pos[2] = lookat[2];
+        Camera->LookatPos[0] = lookat[0];
+        Camera->LookatPos[1] = lookat[1];
+        Camera->LookatPos[2] = lookat[2];
     }
 }
 
-void func_802830B4(CinematicCamera* arg0, s16 arg1, s16 arg2, s16 arg3) {
-    if (arg0->unk60 < arg1) {
-        arg0->unk60 = arg1;
-        arg0->unk6C = arg2;
-        arg0->unk68 = arg3;
+void func_802830B4(CinematicCamera* arg0, s16 arg1, s16 Arg2, s16 Arg3) {
+    if (arg0->Unk60 < arg1) {
+        arg0->Unk60 = arg1;
+        arg0->Unk6C = Arg2;
+        arg0->Unk68 = Arg3;
     }
 }
 
 void func_80283100(CinematicCamera* arg0, f32* arg1) {
-    if (arg0->unk60 != 0) {
-        arg0->unk6E = (cosT((u16) arg0->unk64) * arg0->unk60) / 256;
-        arg0->unk64 += arg0->unk68;
-        adjust_s16_value_transition(&arg0->unk60, 0, arg0->unk6C);
+    if (arg0->Unk60 != 0) {
+        arg0->Unk6E = (CosT((u16) arg0->Unk64) * arg0->Unk60) / 256;
+        arg0->Unk64 += arg0->Unk68;
+        AdjustS16ValueTransition(&arg0->Unk60, 0, arg0->Unk6C);
     } else {
-        arg0->unk64 = 0.0f;
+        arg0->Unk64 = 0.0f;
     }
-    *arg1 = arg0->unk20 + (f32) arg0->unk6E;
+    *arg1 = arg0->unk20 + (f32) arg0->Unk6E;
 }
 
 void func_80283240(s16 arg0) {
@@ -473,13 +473,13 @@ void func_80283240(s16 arg0) {
 }
 
 /**
- * Call the event while `start` <= gCutsceneShotTimer <= `end`
+ * Call the event while `Start` <= CutsceneShotTimer <= `end`
  * If `end` is -1, call for the rest of the shot.
  */
-s32 cutscene_event(CameraEvent event, CinematicCamera* camera, s16 start, s16 end) {
-    if (gCutsceneShotTimer >= start) {
-        if ((end == -1) || (end >= gCutsceneShotTimer)) {
-            event(camera);
+s32 CutsceneEvent(CameraEvent event, CinematicCamera* Camera, s16 Start, s16 end) {
+    if (CutsceneShotTimer >= Start) {
+        if ((end == -1) || (end >= CutsceneShotTimer)) {
+            event(Camera);
         }
     }
     return 0;
@@ -488,8 +488,8 @@ s32 cutscene_event(CameraEvent event, CinematicCamera* camera, s16 start, s16 en
 s32 func_80283330(s32 arg0) {
     if (arg0 != D_802876D8) {
         D_802876D8 = arg0;
-        sCutsceneShot = 0;
-        gCutsceneShotTimer = 0;
+        SCutsceneShot = 0;
+        CutsceneShotTimer = 0;
         D_802876D4 = 0;
     }
     return D_802876D8;
@@ -498,14 +498,14 @@ s32 func_80283330(s32 arg0) {
 extern s32 D_802876D8;
 
 //! @todo Does this match as a return of s8?
-s32 func_8028336C(UNUSED CinematicCamera* arg0, UNUSED Camera* camera) {
+s32 func_8028336C(UNUSED CinematicCamera* arg0, UNUSED Camera* Camera) {
     u8 sp20[] = { 2, 3, 4, 5, 5, 5, 5, 5 };
     if (D_802876D8 != 0) {
         return D_802876D8;
     }
-    switch (gGamestate) {
+    switch (GameState) {
         case ENDING:
-            D_802876D8 = sp20[resultstat.rank];
+            D_802876D8 = sp20[Resultstat.Rank];
             break;
 
         case CREDITS_SEQUENCE:
@@ -513,88 +513,88 @@ s32 func_8028336C(UNUSED CinematicCamera* arg0, UNUSED Camera* camera) {
             break;
     }
 
-    if (gGamestate == CREDITS_SEQUENCE) {
+    if (GameState == CREDITS_SEQUENCE) {
         func_80283330(6);
     }
     return D_802876D8;
 }
 
-s32 cinematic_stub(void) {
+s32 CinematicStub(void) {
     return 0;
 }
 
-void Grou_camdemo_init(void) {
+void GrouCamdemoInit(void) {
     s32 i;
-    CinematicCamera* camera = &D_802876E0;
+    CinematicCamera* Camera = &D_802876E0;
 
     D_802876D8 = 0;
-    camera->cutscene = 0;
+    Camera->Cutscene = 0;
     D_802856C4 = (s32) D_800DC5E4;
-    vec3f_clear(camera->lookAt);
-    vec3f_set_dupe(camera->pos, 0.0f, 0.0f, 500.0f);
-    vec3f_clear(camera->unk30);
-    vec3f_set_dupe(camera->unk24, 0.0f, 0.0f, 500.0f);
-    vec3f_set_dupe(camera->unk3C, 0.0f, 1.0f, 0.0f);
-    camera->unk18 = 0.0f;
-    vec3s_clear(camera->unk48);
-    vec3s_clear(camera->unk4E);
-    vec3s_clear(camera->unk54);
-    vec3s_clear(camera->unk5A);
-    camera->unk60 = 0;
-    camera->unk64 = 0.0f;
-    camera->unk68 = 0.0f;
-    camera->unk6C = 0;
-    camera->unk6E = 0;
-    camera->unk20 = gCameraZoom[0];
-    sCutsceneShot = 0;
-    gCutsceneShotTimer = 0;
+    Vec3FClear(Camera->LookAt);
+    Vec3FSetDupe(Camera->pos, 0.0f, 0.0f, 500.0f);
+    Vec3FClear(Camera->unk30);
+    Vec3FSetDupe(Camera->unk24, 0.0f, 0.0f, 500.0f);
+    Vec3FSetDupe(Camera->unk3C, 0.0f, 1.0f, 0.0f);
+    Camera->unk18 = 0.0f;
+    Vec3SClear(Camera->unk48);
+    Vec3SClear(Camera->Unk4E);
+    Vec3SClear(Camera->Unk54);
+    Vec3SClear(Camera->Unk5A);
+    Camera->Unk60 = 0;
+    Camera->Unk64 = 0.0f;
+    Camera->Unk68 = 0.0f;
+    Camera->Unk6C = 0;
+    Camera->Unk6E = 0;
+    Camera->unk20 = CameraZoom[0];
+    SCutsceneShot = 0;
+    CutsceneShotTimer = 0;
     D_802876D4 = 0;
-    reset_spline();
+    ResetSpline();
 
     for (i = 0; i < 32; i++) {
-        D_80287818[i].unk0 = -1;
-        D_80287998[i].unk0 = -1;
+        D_80287818[i].Unk0 = -1;
+        D_80287998[i].Unk0 = -1;
     }
 
     for (i = 0; i < 10; i++) {
-        vec3f_clear(D_80287750[i].unk0);
-        vec3s_clear(D_80287750[i].unkC);
+        Vec3FClear(D_80287750[i].Unk0);
+        Vec3SClear(D_80287750[i].UnkC);
     }
 
-    gSizeSlidingBorders = 0.0f;
+    SizeSlidingBorders = 0.0f;
 
-    if (gGamestate == ENDING) {
+    if (GameState == ENDING) {
         D_802856B0 = 120.0f;
         D_802856B4 = 12.0f;
-        gOrderedSizeSlidingBorders = 120.0f;
+        OrderedSizeSlidingBorders = 120.0f;
     } else {
         D_802856B0 = 98.0f;
         D_802856B4 = 12.0f;
-        gOrderedSizeSlidingBorders = 52.0f;
+        OrderedSizeSlidingBorders = 52.0f;
     }
 }
 
-// weird link between camera and cinematic camera where pos and lookAt are swapped
-s32 Grou_camdemo_main(Camera* camera) {
+// weird link between Camera and cinematic Camera where pos and LookAt are swapped
+s32 GrouCamdemoMain(Camera* Camera) {
     s16 angleYToXZ;
     s16 angleY;
     f32 var_f2;
-    f32 distance;
+    f32 Distance;
     Vec3f pos;
-    Vec3f lookAt;
+    Vec3f LookAt;
     Vec3f up;
     CinematicCamera* cinematicCamera = &D_802876E0;
 
-    cinematic_stub();
-    vec3f_copy_return_dupe(pos, camera->camera_pos);
-    vec3f_copy_return_dupe(lookAt, camera->lookat_pos);
-    vec3f_copy_return_dupe(up, camera->up_vector);
-    cinematicCamera->cutscene = func_8028336C(cinematicCamera, camera);
-    if (cinematicCamera->cutscene != 0) {
-        vec3f_copy_return_dupe(cinematicCamera->lookAt, camera->camera_pos);
-        vec3f_copy_return_dupe(cinematicCamera->pos, camera->lookat_pos);
-        play_cutscene(cinematicCamera);
-        calculate_distance_angle_y_and_angle_y_to_xz(cinematicCamera->lookAt, cinematicCamera->pos, &distance,
+    CinematicStub();
+    Vec3FCopyReturnDupe(pos, Camera->CameraPos);
+    Vec3FCopyReturnDupe(LookAt, Camera->LookatPos);
+    Vec3FCopyReturnDupe(up, Camera->UpVector);
+    cinematicCamera->Cutscene = func_8028336C(cinematicCamera, Camera);
+    if (cinematicCamera->Cutscene != 0) {
+        Vec3FCopyReturnDupe(cinematicCamera->LookAt, Camera->CameraPos);
+        Vec3FCopyReturnDupe(cinematicCamera->pos, Camera->LookatPos);
+        PlayCutscene(cinematicCamera);
+        CalculateDistanceAngleYAndAngleYToXz(cinematicCamera->LookAt, cinematicCamera->pos, &Distance,
                                                      &angleYToXZ, &angleY);
         if (angleYToXZ >= 0x3800) {
             angleYToXZ = 0x3800;
@@ -603,7 +603,7 @@ s32 Grou_camdemo_main(Camera* camera) {
             angleYToXZ = -0x3800;
         }
         if ((angleYToXZ == 0x3800) || (angleYToXZ == -0x3800)) {
-            apply_distance_angle_y_and_angle_y_to_xz(cinematicCamera->lookAt, cinematicCamera->pos, distance,
+            ApplyDistanceAngleYAndAngleYToXz(cinematicCamera->LookAt, cinematicCamera->pos, Distance,
                                                      angleYToXZ, angleY);
         }
         if (cinematicCamera->unk18 > 65536.0f) {
@@ -619,146 +619,146 @@ s32 Grou_camdemo_main(Camera* camera) {
         if (var_f2 < 0.0f) {
             var_f2 = 65536.0f + var_f2;
         }
-        camera->up_vector[0] = sinT(var_f2) * cosT(angleY);
-        camera->up_vector[1] = cosT(var_f2);
-        camera->up_vector[2] = -sinT(var_f2) * sinT(angleY);
-        vec3f_copy_return_dupe(camera->camera_pos, cinematicCamera->lookAt);
-        vec3f_copy_return_dupe(camera->lookat_pos, cinematicCamera->pos);
-        if ((gGamestate == CREDITS_SEQUENCE) && (g_ScreenFlip != 0)) {
-            camera->camera_pos[0] = -camera->camera_pos[0];
-            camera->lookat_pos[0] = -camera->lookat_pos[0];
+        Camera->UpVector[0] = SinT(var_f2) * CosT(angleY);
+        Camera->UpVector[1] = CosT(var_f2);
+        Camera->UpVector[2] = -SinT(var_f2) * SinT(angleY);
+        Vec3FCopyReturnDupe(Camera->CameraPos, cinematicCamera->LookAt);
+        Vec3FCopyReturnDupe(Camera->LookatPos, cinematicCamera->pos);
+        if ((GameState == CREDITS_SEQUENCE) && (ScreenFlip != 0)) {
+            Camera->CameraPos[0] = -Camera->CameraPos[0];
+            Camera->LookatPos[0] = -Camera->LookatPos[0];
         }
     }
-    func_80282F44(0, cinematicCamera, camera);
-    func_80282F44(1, cinematicCamera, camera);
-    func_80283100(cinematicCamera, gCameraZoom);
-    vec3f_copy_return_dupe(cinematicCamera->unk30, camera->camera_pos);
-    vec3f_copy_return_dupe(cinematicCamera->unk24, camera->lookat_pos);
-    vec3f_copy_return_dupe(cinematicCamera->unk3C, camera->up_vector);
+    func_80282F44(0, cinematicCamera, Camera);
+    func_80282F44(1, cinematicCamera, Camera);
+    func_80283100(cinematicCamera, CameraZoom);
+    Vec3FCopyReturnDupe(cinematicCamera->unk30, Camera->CameraPos);
+    Vec3FCopyReturnDupe(cinematicCamera->unk24, Camera->LookatPos);
+    Vec3FCopyReturnDupe(cinematicCamera->unk3C, Camera->UpVector);
     return D_802876D8;
 }
 
-void ev_balloon(UNUSED CinematicCamera* camera) {
+void EvBalloon(UNUSED CinematicCamera* Camera) {
     func_8028100C(-0xC6C, 0xD2, -0x1EF);
 }
 
-void ev_kartmove(UNUSED CinematicCamera* camera) {
+void EvKartmove(UNUSED CinematicCamera* Camera) {
     func_80280FFC();
 }
 
-void win_open(UNUSED CinematicCamera* camera) {
-    gOrderedSizeSlidingBorders = 52.0f;
+void WinOpen(UNUSED CinematicCamera* Camera) {
+    OrderedSizeSlidingBorders = 52.0f;
 }
 
-void win_close(UNUSED CinematicCamera* camera) {
-    gOrderedSizeSlidingBorders = 0.0f;
+void WinClose(UNUSED CinematicCamera* Camera) {
+    OrderedSizeSlidingBorders = 0.0f;
 }
 
-void credits_gone(UNUSED CinematicCamera* camera) {
-    StaffRoll_kawano1();
+void CreditsGone(UNUSED CinematicCamera* Camera) {
+    StaffRollKawano1();
 }
 
 /**
  * Played at beginning of credits.
  */
-void camDEMO_SE_ThisIsMarioKart(UNUSED CinematicCamera* camera) {
+void CamDEMOSEThisIsMarioKart(UNUSED CinematicCamera* Camera) {
     if (D_800DC5E4 == 0) {
-        playSound(SOUND_INTRO_WELCOME);
+        PlaySound(SOUND_INTRO_WELCOME);
     }
 }
 
-void camDEMO_SeMute_Hyoushou(UNUSED CinematicCamera* camera) {
-    Na_SeMute_Hyoushou();
+void CamDEMOSeMuteHyoushou(UNUSED CinematicCamera* Camera) {
+    NaSeMuteHyoushou();
 }
 
 /**
  * Played after receiving trophy.
  */
-void camDEMO_SE_Congratulations(UNUSED CinematicCamera* camera) {
-    playSound(SOUND_CEREMONY_CONGRATULATION);
+void CamDEMOSECongratulations(UNUSED CinematicCamera* Camera) {
+    PlaySound(SOUND_CEREMONY_CONGRATULATION);
 }
 
 /**
  * Played in ceremony opening with balloons.
  */
-void camDEMO_SE_HANABI(UNUSED CinematicCamera* camera) {
-    playSound(SOUND_CEREMONY_BALLOON_POP);
+void CamDEMOSEHANABI(UNUSED CinematicCamera* Camera) {
+    PlaySound(SOUND_CEREMONY_BALLOON_POP);
 }
 
-void camDEMO_SE_PUKUPUKU_BIGGER(UNUSED CinematicCamera* camera) {
-    playSound(SOUND_CEREMONY_FISH);
+void CamDEMOSEPUKUPUKUBIGGER(UNUSED CinematicCamera* Camera) {
+    PlaySound(SOUND_CEREMONY_FISH);
 }
 
-void camDEMO_SE_PUKUPUKU_DOWN(UNUSED CinematicCamera* camera) {
-    playSound(SOUND_CEREMONY_FISH_2);
+void CamDEMOSEPUKUPUKUDOWN(UNUSED CinematicCamera* Camera) {
+    PlaySound(SOUND_CEREMONY_FISH_2);
 }
 
-void camDEMO_SE_PUKUPUKU_FIRE(UNUSED CinematicCamera* camera) {
-    playSound(SOUND_CEREMONY_SHOOT_TROPHY);
+void CamDEMOSEPUKUPUKUFIRE(UNUSED CinematicCamera* Camera) {
+    PlaySound(SOUND_CEREMONY_SHOOT_TROPHY);
 }
 
-void camDEMO_SE_DODAI_UP(UNUSED CinematicCamera* camera) {
-    playSound(SOUND_CEREMONY_PODIUM);
+void CamDEMOSEDODAIUP(UNUSED CinematicCamera* Camera) {
+    PlaySound(SOUND_CEREMONY_PODIUM);
 }
 
 /**
  * Played in background nearly the entire ceremony
  * Begins again or plays louder once the trophy appears.
  */
-void camDEMO_SE_STAR_BURST(UNUSED CinematicCamera* camera) {
-    playSound(SOUND_CEREMONY_TROPHY);
+void CamDEMOSESTARBURST(UNUSED CinematicCamera* Camera) {
+    PlaySound(SOUND_CEREMONY_TROPHY);
 }
 
-void camDEMO_SE_BIG_CRUSH(UNUSED CinematicCamera* camera) {
-    Na_SeMute_Title_Off();
+void CamDEMOSEBIGCRUSH(UNUSED CinematicCamera* Camera) {
+    NaSeMuteTitleOff();
     NAPlyTrgStart(0, SOUND_ACTION_EXPLOSION);
-    Na_SeMute_Title();
+    NaSeMuteTitle();
 }
 
-void camDEMO_SE_Voice(UNUSED CinematicCamera* camera) {
-    Na_SeMute_Title_Off();
-    NAPlyVoiceStart(0, (gPlayerFour->kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x04));
-    Na_SeMute_Title();
+void CamDEMOSEVoice(UNUSED CinematicCamera* Camera) {
+    NaSeMuteTitleOff();
+    NAPlyVoiceStart(0, (PlayerFour->Kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x04));
+    NaSeMuteTitle();
 }
 
-void camDEMO_PRIZE_A_BGM(UNUSED CinematicCamera* camera) {
+void CamDEMOPRIZEABGM(UNUSED CinematicCamera* Camera) {
     NaFanStart(SEQ_EVENT_CEREMONY_PRESENTATION_PART1);
 }
 
-void camDEMO_PRIZE_B_BGM(UNUSED CinematicCamera* camera) {
+void CamDEMOPRIZEBBGM(UNUSED CinematicCamera* Camera) {
     NaFanStart(SEQ_EVENT_CEREMONY_PRESENTATION_PART2_WIN);
 }
 
-void camDEMO_Fourth_Init(UNUSED CinematicCamera* camera) {
-    Na_Fourth_Init();
+void CamDEMOFourthInit(UNUSED CinematicCamera* Camera) {
+    NaFourthInit();
 }
 
-void camDEMO_Fourth_Routine(UNUSED CinematicCamera* camera) {
-    Na_Fourth_Routine();
+void CamDEMOFourthRoutine(UNUSED CinematicCamera* Camera) {
+    NaFourthRoutine();
 }
 
-void camDEMO_ENDING_BGM(UNUSED CinematicCamera* arg0) {
+void CamDEMOENDINGBGM(UNUSED CinematicCamera* arg0) {
     if (D_800DC5E4 == 0) {
         NaFanStart(SEQ_EVENT_CEREMONY_TROPHY_CREDITS);
     }
 }
 
-void camDEMO_ChangeSoundMode_result(UNUSED CinematicCamera* camera) {
-    Na_ChangeSoundMode(0, 3);
+void CamDEMOChangeSoundModeResult(UNUSED CinematicCamera* Camera) {
+    NaChangeSoundMode(0, 3);
 }
 
-void camDEMO_ChangeSoundMode_ending(UNUSED CinematicCamera* camera) {
+void CamDEMOChangeSoundModeEnding(UNUSED CinematicCamera* Camera) {
     if (D_800DC5E4 == 0) {
-        Na_ChangeSoundMode(0, 2);
+        NaChangeSoundMode(0, 2);
     }
 }
 
 /**
  * End of credits farewell.
- * "Hey, you're very good. See you next time!"
+ * "Hey, you're very good. See you Next Time!"
  */
-void camDEMO_SE_THE_END(UNUSED CinematicCamera* arg0) {
-    playSound(SOUND_CREDITS_FAREWELL);
+void CamDEMOSETHEEND(UNUSED CinematicCamera* arg0) {
+    PlaySound(SOUND_CREDITS_FAREWELL);
 }
 
 //! Camera rail spline animation
@@ -896,7 +896,7 @@ struct struct_80282C40 D_80285928[] = {
     { -1, 0, 0, 6, 0, 0, { 0xF340, 0x0025, 0xFE28 } },
 };
 
-// Is some of this unused?
+// Is some of this Unused?
 struct struct_80282C40 D_80285940[] = {
     { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, { 0xF3C3, 0x006B, 0xFE1A } },
     { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, { 0xF3C3, 0x006B, 0xFE1A } },
@@ -916,133 +916,133 @@ struct struct_80282C40 D_80285940[] = {
     { 0xFF, 0x00, 0x00, 0x1E, 0x00, 0x00, { 0xF1E0, 0x000C, 0xFE71 } },
 };
 
-void DemoFirework_0(CinematicCamera* camera) {
-    gOrderedSizeSlidingBorders = 120.0f;
-    cutscene_event(camDEMO_ChangeSoundMode_result, camera, 0, 0);
-    cutscene_event(camDEMO_SeMute_Hyoushou, camera, 1, 1);
-    cutscene_event(camDEMO_PRIZE_A_BGM, camera, 0, 0);
-    cutscene_event(camDEMO_SE_HANABI, camera, 45, 45);
-    cutscene_event(camDEMO_SE_HANABI, camera, 65, 65);
-    cutscene_event(camDEMO_SE_HANABI, camera, 70, 70);
-    cutscene_event(camDEMO_SE_HANABI, camera, 94, 94);
-    cutscene_event(camDEMO_SE_HANABI, camera, 110, 110);
-    cutscene_event(camDEMO_SE_HANABI, camera, 130, 130);
-    cutscene_event(camDEMO_SE_HANABI, camera, 152, 152);
-    cutscene_event(camDEMO_SE_HANABI, camera, 160, 160);
-    cutscene_event(ev_kartmove, camera, gCutScene[0].duration - 60, gCutScene[0].duration - 60);
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_802856DC,
+void DemoFirework0(CinematicCamera* Camera) {
+    OrderedSizeSlidingBorders = 120.0f;
+    CutsceneEvent(CamDEMOChangeSoundModeResult, Camera, 0, 0);
+    CutsceneEvent(CamDEMOSeMuteHyoushou, Camera, 1, 1);
+    CutsceneEvent(CamDEMOPRIZEABGM, Camera, 0, 0);
+    CutsceneEvent(CamDEMOSEHANABI, Camera, 45, 45);
+    CutsceneEvent(CamDEMOSEHANABI, Camera, 65, 65);
+    CutsceneEvent(CamDEMOSEHANABI, Camera, 70, 70);
+    CutsceneEvent(CamDEMOSEHANABI, Camera, 94, 94);
+    CutsceneEvent(CamDEMOSEHANABI, Camera, 110, 110);
+    CutsceneEvent(CamDEMOSEHANABI, Camera, 130, 130);
+    CutsceneEvent(CamDEMOSEHANABI, Camera, 152, 152);
+    CutsceneEvent(CamDEMOSEHANABI, Camera, 160, 160);
+    CutsceneEvent(EvKartmove, Camera, CutScene[0].Duration - 60, CutScene[0].Duration - 60);
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_802856DC,
                                        (struct struct_80286A04*) D_80285718, 0);
 }
 
-void func_80283EA0(CinematicCamera* camera) {
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285754,
+void func_80283EA0(CinematicCamera* Camera) {
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285754,
                                        (struct struct_80286A04*) D_80285784, 0);
 }
 
-void copy_player_two_in_camera(CinematicCamera* camera) {
-    vec3f_copy_return_dupe(camera->pos, gPlayerTwo->position);
+void CopyPlayerTwoInCamera(CinematicCamera* Camera) {
+    Vec3FCopyReturnDupe(Camera->pos, PlayerTwo->Position);
 }
 
-void lerp_player_two_in_camera(CinematicCamera* camera) {
-    f32_lerp(&camera->pos[0], gPlayerTwo->position[0], 0.12f);
-    f32_lerp(&camera->pos[1], gPlayerTwo->position[1], 0.12f);
-    f32_lerp(&camera->pos[2], gPlayerTwo->position[2], 0.12f);
+void LerpPlayerTwoInCamera(CinematicCamera* Camera) {
+    F32Lerp(&Camera->pos[0], PlayerTwo->Position[0], 0.12f);
+    F32Lerp(&Camera->pos[1], PlayerTwo->Position[1], 0.12f);
+    F32Lerp(&Camera->pos[2], PlayerTwo->Position[2], 0.12f);
 }
 
-void func_80283F6C(CinematicCamera* camera) {
-    cutscene_event(copy_player_two_in_camera, camera, 0, 0);
-    cutscene_event(lerp_player_two_in_camera, camera, 0, -1);
-    func_80282E58(camera, (struct struct_80282C40*) D_802857B4, 0);
+void func_80283F6C(CinematicCamera* Camera) {
+    CutsceneEvent(CopyPlayerTwoInCamera, Camera, 0, 0);
+    CutsceneEvent(LerpPlayerTwoInCamera, Camera, 0, -1);
+    func_80282E58(Camera, (struct struct_80282C40*) D_802857B4, 0);
 }
 
-void copy_player_three_in_camera(CinematicCamera* camera) {
-    vec3f_copy_return_dupe(camera->pos, gPlayerThree->position);
+void CopyPlayerThreeInCamera(CinematicCamera* Camera) {
+    Vec3FCopyReturnDupe(Camera->pos, PlayerThree->Position);
 }
 
-void lerp_player_three_in_camera(CinematicCamera* camera) {
-    f32_lerp(&camera->pos[0], gPlayerThree->position[0], 0.12f);
-    f32_lerp(&camera->pos[1], gPlayerThree->position[1], 0.12f);
-    f32_lerp(&camera->pos[2], gPlayerThree->position[2], 0.12f);
+void LerpPlayerThreeInCamera(CinematicCamera* Camera) {
+    F32Lerp(&Camera->pos[0], PlayerThree->Position[0], 0.12f);
+    F32Lerp(&Camera->pos[1], PlayerThree->Position[1], 0.12f);
+    F32Lerp(&Camera->pos[2], PlayerThree->Position[2], 0.12f);
 }
 
-void func_80284068(CinematicCamera* camera) {
-    cutscene_event(copy_player_three_in_camera, camera, 0, 0);
-    cutscene_event(lerp_player_three_in_camera, camera, 0, -1);
-    func_80282E58(camera, (struct struct_80282C40*) D_802857CC, 0);
+void func_80284068(CinematicCamera* Camera) {
+    CutsceneEvent(CopyPlayerThreeInCamera, Camera, 0, 0);
+    CutsceneEvent(LerpPlayerThreeInCamera, Camera, 0, -1);
+    func_80282E58(Camera, (struct struct_80282C40*) D_802857CC, 0);
 }
 
-void func_802840C8(CinematicCamera* camera) {
-    cutscene_event(camDEMO_PRIZE_B_BGM, camera, 5, 5);
+void func_802840C8(CinematicCamera* Camera) {
+    CutsceneEvent(CamDEMOPRIZEBBGM, Camera, 5, 5);
 
     switch (D_802876D8) {
         case 2:
-            func_80283EA0(camera);
+            func_80283EA0(Camera);
             break;
         case 3:
-            func_80283F6C(camera);
+            func_80283F6C(Camera);
             break;
         case 4:
-            func_80284068(camera);
+            func_80284068(Camera);
             break;
     }
 }
 
-void func_80284154(CinematicCamera* camera) {
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285910,
+void func_80284154(CinematicCamera* Camera) {
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285910,
                                        (struct struct_80286A04*) D_80285928, 0);
 }
 
-void func_80284184(CinematicCamera* camera) {
+void func_80284184(CinematicCamera* Camera) {
     f32 trophy;
-    trophy = ((g_DynamicObjects[objallocptr[3]].pos[1] - camera->lookAt[1]) * 0.9f) + camera->lookAt[1];
-    f32_lerp(&camera->pos[1], trophy, 0.5);
+    trophy = ((DynamicObjects[Objallocptr[3]].pos[1] - Camera->LookAt[1]) * 0.9f) + Camera->LookAt[1];
+    F32Lerp(&Camera->pos[1], trophy, 0.5);
 }
 
-void func_802841E8(CinematicCamera* camera) {
-    func_80282E58(camera, (struct struct_80282C40*) D_80285940, 0);
-    vec3f_set_dupe(camera->pos, -3202.0f, 90.0f, -478.0f);
+void func_802841E8(CinematicCamera* Camera) {
+    func_80282E58(Camera, (struct struct_80282C40*) D_80285940, 0);
+    Vec3FSetDupe(Camera->pos, -3202.0f, 90.0f, -478.0f);
 }
 
-void func_8028422C(CinematicCamera* camera) {
-    cutscene_event(camDEMO_SE_PUKUPUKU_FIRE, camera, 6, 6);
-    cutscene_event(camDEMO_SE_STAR_BURST, camera, 30, 30);
-    cutscene_event(func_802841E8, camera, 0, 0);
-    cutscene_event(func_80284184, camera, 6, -1);
+void func_8028422C(CinematicCamera* Camera) {
+    CutsceneEvent(CamDEMOSEPUKUPUKUFIRE, Camera, 6, 6);
+    CutsceneEvent(CamDEMOSESTARBURST, Camera, 30, 30);
+    CutsceneEvent(func_802841E8, Camera, 0, 0);
+    CutsceneEvent(func_80284184, Camera, 6, -1);
 }
 
-void func_802842A8(CinematicCamera* camera) {
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_802858B0,
+void func_802842A8(CinematicCamera* Camera) {
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_802858B0,
                                        (struct struct_80286A04*) D_802858C8, 0);
 }
 
-void func_802842D8(CinematicCamera* camera) {
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_802857F0,
+void func_802842D8(CinematicCamera* Camera) {
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_802857F0,
                                        (struct struct_80286A04*) D_80285850, 0);
 }
 
-void func_80284308(CinematicCamera* camera) {
-    Player** sp30[4] = { &gPlayerOne, &gPlayerTwo, &gPlayerThree, &gPlayerFour };
+void func_80284308(CinematicCamera* Camera) {
+    Player** sp30[4] = { &PlayerOne, &PlayerTwo, &PlayerThree, &PlayerFour };
     Player* ply;
     f32 x;
     f32 y;
     f32 z;
 
-    cutscene_event(camDEMO_SE_Congratulations, camera, 140, 140);
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_802858E0,
+    CutsceneEvent(CamDEMOSECongratulations, Camera, 140, 140);
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_802858E0,
                                        (struct struct_80286A04*) D_802858F8, 0);
 
-    ply = *(sp30[0] + resultstat.rank);
+    ply = *(sp30[0] + Resultstat.Rank);
 
-    x = ply->position[0] - gPlayerOne->position[0];
-    y = ply->position[1] - gPlayerOne->position[1];
-    z = ply->position[2] - gPlayerOne->position[2];
+    x = ply->Position[0] - PlayerOne->Position[0];
+    y = ply->Position[1] - PlayerOne->Position[1];
+    z = ply->Position[2] - PlayerOne->Position[2];
 
-    camera->lookAt[0] += x;
-    camera->lookAt[2] += z;
-    camera->pos[0] += x;
-    camera->pos[2] += z;
-    camera->lookAt[1] += y;
-    camera->pos[1] += y;
+    Camera->LookAt[0] += x;
+    Camera->LookAt[2] += z;
+    Camera->pos[0] += x;
+    Camera->pos[2] += z;
+    Camera->LookAt[1] += y;
+    Camera->pos[1] += y;
 }
 
 struct struct_80282C40 D_80285A10[] = {
@@ -1154,77 +1154,77 @@ struct struct_80282C40 D_80285CE0[] = {
     { 0xFF, 0x00, 0x00, 0x19, 0x00, 0x00, { 0xF3E1, 0xFF47, 0x00A2 } },
 };
 
-struct Cutscene gCutScene[] = {
-    { DemoFirework_0, 330 }, { func_802840C8, 270 }, { func_802842D8, 247 },
+struct Cutscene CutScene[] = {
+    { DemoFirework0, 330 }, { func_802840C8, 270 }, { func_802842D8, 247 },
     { func_80284418, 200 }, { func_80284494, 170 }, { func_802844FC, 108 },
     { func_8028422C, 140 }, { func_802842A8, 270 }, { func_80284308, 0x7FFF },
 };
 
-void func_80284418(CinematicCamera* camera) {
-    cutscene_event(camDEMO_SE_DODAI_UP, camera, 0x52, 0x52);
-    cutscene_event(camDEMO_SE_DODAI_UP, camera, 0x48, 0x48);
-    cutscene_event(camDEMO_SE_DODAI_UP, camera, 0x3D, 0x3D);
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285A10,
+void func_80284418(CinematicCamera* Camera) {
+    CutsceneEvent(CamDEMOSEDODAIUP, Camera, 0x52, 0x52);
+    CutsceneEvent(CamDEMOSEDODAIUP, Camera, 0x48, 0x48);
+    CutsceneEvent(CamDEMOSEDODAIUP, Camera, 0x3D, 0x3D);
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285A10,
                                        (struct struct_80286A04*) D_80285A4C, 0);
 }
 
-void func_80284494(CinematicCamera* camera) {
-    cutscene_event(camDEMO_SE_PUKUPUKU_DOWN, camera, 0x1E, 0x1E);
-    cutscene_event(ev_balloon, camera, 0, 0);
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285A88,
+void func_80284494(CinematicCamera* Camera) {
+    CutsceneEvent(CamDEMOSEPUKUPUKUDOWN, Camera, 0x1E, 0x1E);
+    CutsceneEvent(EvBalloon, Camera, 0, 0);
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285A88,
                                        (struct struct_80286A04*) D_80285AB8, 0);
 }
 
-void func_802844FC(CinematicCamera* camera) {
-    cutscene_event(camDEMO_SE_PUKUPUKU_BIGGER, camera, 0x3B, 0x3B);
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285AE8,
+void func_802844FC(CinematicCamera* Camera) {
+    CutsceneEvent(CamDEMOSEPUKUPUKUBIGGER, Camera, 0x3B, 0x3B);
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285AE8,
                                        (struct struct_80286A04*) D_80285B00, 0);
 }
 
-void func_8028454C(CinematicCamera* camera) {
-    cutscene_event(camDEMO_ChangeSoundMode_result, camera, 0, 0);
-    cutscene_event(camDEMO_SeMute_Hyoushou, camera, 1, 1);
-    cutscene_event(camDEMO_Fourth_Init, camera, 0, 0);
-    cutscene_event(ev_kartmove, camera, 0x3C, 0x3C);
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285B18,
+void func_8028454C(CinematicCamera* Camera) {
+    CutsceneEvent(CamDEMOChangeSoundModeResult, Camera, 0, 0);
+    CutsceneEvent(CamDEMOSeMuteHyoushou, Camera, 1, 1);
+    CutsceneEvent(CamDEMOFourthInit, Camera, 0, 0);
+    CutsceneEvent(EvKartmove, Camera, 0x3C, 0x3C);
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285B18,
                                        (struct struct_80286A04*) D_80285B54, 0);
 }
 
-void func_802845EC(CinematicCamera* camera) {
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285B90,
+void func_802845EC(CinematicCamera* Camera) {
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285B90,
                                        (struct struct_80286A04*) D_80285BA8, 0);
 }
 
-void func_8028461C(CinematicCamera* camera) {
+void func_8028461C(CinematicCamera* Camera) {
     func_80283240(1);
-    camDEMO_SE_BIG_CRUSH(camera);
+    CamDEMOSEBIGCRUSH(Camera);
 }
 
-void func_80284648(CinematicCamera* camera) {
-    cutscene_event(func_802845EC, camera, 0, 0);
-    cutscene_event(func_8028461C, camera, 0x110, 0x110);
-    cutscene_event(camDEMO_SE_Voice, camera, 0x115, 0x115);
+void func_80284648(CinematicCamera* Camera) {
+    CutsceneEvent(func_802845EC, Camera, 0, 0);
+    CutsceneEvent(func_8028461C, Camera, 0x110, 0x110);
+    CutsceneEvent(CamDEMOSEVoice, Camera, 0x115, 0x115);
 }
 
 UNUSED void func_802846AC(void) {
 }
 
-void func_802846B4(CinematicCamera* camera) {
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285C38,
+void func_802846B4(CinematicCamera* Camera) {
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285C38,
                                        (struct struct_80286A04*) D_80285C74, 0);
 }
 
 //! @todo What does this even do?
-void func_802846E4(CinematicCamera* camera) {
+void func_802846E4(CinematicCamera* Camera) {
 
-    move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80285CB0,
+    MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80285CB0,
                                        (struct struct_80286A04*) D_80285CE0, 0);
-    camera->lookAt[0] += (gPlayerFour->position[0] - -2796.0f); // <-- rodata
-    camera->lookAt[1] += (gPlayerFour->position[1] - -29.0f);
-    camera->lookAt[2] += (gPlayerFour->position[2] - -97.0f);
-    camera->pos[0] += (gPlayerFour->position[0] - -2796.0f);
-    camera->pos[1] += (gPlayerFour->position[1] - -29.0f);
-    camera->pos[2] += (gPlayerFour->position[2] - -97.0f);
+    Camera->LookAt[0] += (PlayerFour->Position[0] - -2796.0f); // <-- rodata
+    Camera->LookAt[1] += (PlayerFour->Position[1] - -29.0f);
+    Camera->LookAt[2] += (PlayerFour->Position[2] - -97.0f);
+    Camera->pos[0] += (PlayerFour->Position[0] - -2796.0f);
+    Camera->pos[1] += (PlayerFour->Position[1] - -29.0f);
+    Camera->pos[2] += (PlayerFour->Position[2] - -97.0f);
 }
 
 struct Cutscene D_80285D58[] = {
@@ -1372,9 +1372,9 @@ struct struct_80285D80 D_80285D80[] = {
 };
 
 struct struct_80286A10 {
-    u16 unk0[4];
-    struct struct_80285D80* unk8;
-    struct struct_80285D80* unkC;
+    u16 Unk0[4];
+    struct struct_80285D80* Unk8;
+    struct struct_80285D80* UnkC;
 };
 
 #ifdef VERSION_EU
@@ -1408,7 +1408,7 @@ u16 D_80286B34[] = {
 
 #else
 
-// 0xC90 (80285D80 size) 3216 decimal.
+// 0xC90 (80285D80 Size) 3216 decimal.
 struct struct_80286A04 D_80286A04[] = {
 
     { 0x01, 0x00, &D_80285D80[162], &D_80285D80[162], 0x0096 },
@@ -1438,89 +1438,89 @@ u16 D_80286B34[] = {
 };
 #endif
 
-void func_802847CC(CinematicCamera* camera) {
+void func_802847CC(CinematicCamera* Camera) {
     u16 sp2E;
     u16 sp2C;
     // D_802856B4 cast to u32 triggers cfc1.
-    sp2E = D_80286A04[D_800DC5E4].unkC - (10 - (-(((u16) (u32) D_802856B4))));
-    sp2C = D_80286A04[D_800DC5E4].unkC;
+    sp2E = D_80286A04[D_800DC5E4].UnkC - (10 - (-(((u16) (u32) D_802856B4))));
+    sp2C = D_80286A04[D_800DC5E4].UnkC;
 
-    cutscene_event(camDEMO_ChangeSoundMode_ending, camera, 0, 0);
-    cutscene_event(camDEMO_SE_ThisIsMarioKart, camera, 8, 8);
+    CutsceneEvent(CamDEMOChangeSoundModeEnding, Camera, 0, 0);
+    CutsceneEvent(CamDEMOSEThisIsMarioKart, Camera, 8, 8);
 #ifdef VERSION_EU
-    cutscene_event(camDEMO_ENDING_BGM, camera, 134, 134);
+    CutsceneEvent(CamDEMOENDINGBGM, Camera, 134, 134);
 #else
-    cutscene_event(camDEMO_ENDING_BGM, camera, 149, 149);
+    CutsceneEvent(CamDEMOENDINGBGM, Camera, 149, 149);
 #endif
-    cutscene_event(reset_spline_wrap, camera, 0, 0);
-    switch (D_80286A04[D_800DC5E4].unk0) {
+    CutsceneEvent(ResetSplineWrap, Camera, 0, 0);
+    switch (D_80286A04[D_800DC5E4].Unk0) {
         case 1:
-            cutscene_event(win_close, camera, 0, -1);
-            cutscene_event(credits_gone, camera, sp2E - 0x14, sp2E - 0x14);
+            CutsceneEvent(WinClose, Camera, 0, -1);
+            CutsceneEvent(CreditsGone, Camera, sp2E - 0x14, sp2E - 0x14);
             break;
 
         case 2:
-            cutscene_event(win_open, camera, 0, 0);
-            cutscene_event(camDEMO_SE_THE_END, camera, 247, 247);
-            move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80286A04[D_800DC5E4].unk4,
-                                               (struct struct_80286A04*) D_80286A04[D_800DC5E4].unk8, 0);
+            CutsceneEvent(WinOpen, Camera, 0, 0);
+            CutsceneEvent(CamDEMOSETHEEND, Camera, 247, 247);
+            MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80286A04[D_800DC5E4].unk4,
+                                               (struct struct_80286A04*) D_80286A04[D_800DC5E4].Unk8, 0);
             break;
         default:
-            cutscene_event(win_open, camera, 0, 0);
-            cutscene_event(win_close, camera, sp2E, sp2E);
-            cutscene_event(credits_gone, camera, sp2E - 0x14, sp2E - 0x14);
-            move_cinematic_camera_along_spline(camera, (struct struct_80286A04*) D_80286A04[D_800DC5E4].unk4,
-                                               (struct struct_80286A04*) D_80286A04[D_800DC5E4].unk8, 0);
+            CutsceneEvent(WinOpen, Camera, 0, 0);
+            CutsceneEvent(WinClose, Camera, sp2E, sp2E);
+            CutsceneEvent(CreditsGone, Camera, sp2E - 0x14, sp2E - 0x14);
+            MoveCinematicCameraAlongSpline(Camera, (struct struct_80286A04*) D_80286A04[D_800DC5E4].unk4,
+                                               (struct struct_80286A04*) D_80286A04[D_800DC5E4].Unk8, 0);
             break;
     }
 
 #ifndef VERSION_EU
-    if (g_raceClass == CC_EXTRA) {
+    if (RaceClass == CC_EXTRA) {
         sp2C = D_80286B34[D_800DC5E4];
     }
 #endif
 
-    if (gCutsceneShotTimer == sp2C) {
-        if (D_80286A04[D_800DC5E4].unk0 != 2) {
-            mapchange(D_80286A04[D_800DC5E4 + 1].unk1);
+    if (CutsceneShotTimer == sp2C) {
+        if (D_80286A04[D_800DC5E4].Unk0 != 2) {
+            Mapchange(D_80286A04[D_800DC5E4 + 1].Unk1);
         }
     }
 }
 
-// Start of credits cutscene?
+// Start of credits Cutscene?
 struct Cutscene D_80286B5C[] = {
     { func_802847CC, 0x7FFF },
 };
 
 struct struct_80284AE8 {
-    u8 unk0[0x1C];
+    u8 Unk0[0x1C];
     u8 unk1C;
 };
 
 /**
- * Play the current cutscene until either gCutsceneShotTimer reaches the max time, or c->cutscene is set to 0
+ * Play the Current Cutscene until either CutsceneShotTimer reaches the max Time, or c->Cutscene is set to 0
  */
-void play_cutscene(CinematicCamera* camera) {
+void PlayCutscene(CinematicCamera* Camera) {
     UNUSED s32 pad[3];
     s16 cutsceneDuration;
 
-#define CUTSCENE(id, cutscene)                               \
+#define CUTSCENE(id, Cutscene)                               \
     case id:                                                 \
-        cutsceneDuration = cutscene[sCutsceneShot].duration; \
-        cutscene[sCutsceneShot].shot(camera);
+        cutsceneDuration = Cutscene[SCutsceneShot].Duration; \
+        Cutscene[SCutsceneShot].shot(Camera);
 
-    if (!camera->cutscene) {
+    if (!Camera->Cutscene) {
         return;
     }
-    switch (camera->cutscene) {
-        CUTSCENE(2, gCutScene)
+    switch (Camera->Cutscene) {
+        CUTSCENE(2, CutScene)
         break;
-        CUTSCENE(3, gCutScene)
+        CUTSCENE(3, CutScene)
         break;
-        CUTSCENE(4, gCutScene)
+        CUTSCENE(4, CutScene)
         break;
         CUTSCENE(5, D_80285D58)
-        camDEMO_Fourth_Routine(camera);
+        CamDEMOFourthRoutine(Camera);
         break;
         CUTSCENE(6, D_80286B5C)
         break;
@@ -1528,25 +1528,25 @@ void play_cutscene(CinematicCamera* camera) {
 
 #undef CUTSCENE
 
-    if ((cutsceneDuration != 0) && ((gCutsceneShotTimer & 0xC000) == 0)) {
+    if ((cutsceneDuration != 0) && ((CutsceneShotTimer & 0xC000) == 0)) {
 
-        if (gCutsceneShotTimer < 16383) {
-            gCutsceneShotTimer++;
+        if (CutsceneShotTimer < 16383) {
+            CutsceneShotTimer++;
         }
-        if (gCutsceneShotTimer == cutsceneDuration) {
-            sCutsceneShot++;
-            gCutsceneShotTimer = 0;
-            reset_spline();
+        if (CutsceneShotTimer == cutsceneDuration) {
+            SCutsceneShot++;
+            CutsceneShotTimer = 0;
+            ResetSpline();
         }
     } else {
-        if (gCutsceneShotTimer & 0x4000) {
-            gCutsceneShotTimer = 0;
-            reset_spline();
+        if (CutsceneShotTimer & 0x4000) {
+            CutsceneShotTimer = 0;
+            ResetSpline();
         } else {
             D_802876D8 = 0;
-            sCutsceneShot = 0;
-            gCutsceneShotTimer = 0;
-            reset_spline();
+            SCutsceneShot = 0;
+            CutsceneShotTimer = 0;
+            ResetSpline();
         }
     }
 }
@@ -1557,26 +1557,26 @@ void play_cutscene(CinematicCamera* camera) {
  * Sliding black borders that open horizontally to display scene.
  * Used at the beginning of award ceremony and throughout credits.
  */
-void ceremony_transition_sliding_borders(void) {
+void CeremonyTransitionSlidingBorders(void) {
     f32 temp_f0;
     f32 temp_f14;
 
-    temp_f14 = D_802856B0 - gSizeSlidingBorders;
+    temp_f14 = D_802856B0 - SizeSlidingBorders;
     if (temp_f14 < 0.0f) {
         temp_f14 = 0.0f;
     }
-    temp_f0 = D_802856B0 + gSizeSlidingBorders;
+    temp_f0 = D_802856B0 + SizeSlidingBorders;
     // clang-format off
     // Note that this MUST be on one line. All hail significant whitespace in C!
     do {if (temp_f0 > 240.0f) { temp_f0 = 239.0f; } } while (0);
     // clang-format on
 
-    gDPPipeSync(gDisplayListHead++);
-    gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
-    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
-    gDPSetFillColor(gDisplayListHead++, (GPACK_RGBA5551(0, 0, 0, 1) << 16 | GPACK_RGBA5551(0, 0, 0, 1)));
-    gDPFillRectangle(gDisplayListHead++, 0, 0, 319, (s32) temp_f14);
-    gDPFillRectangle(gDisplayListHead++, 0, (s32) temp_f0, 319, 239);
-    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
-    adjust_f32_value_transition(&gSizeSlidingBorders, gOrderedSizeSlidingBorders, D_802856BC / D_802856B4);
+    gDPPipeSync(DisplayListHead++);
+    gDPSetRenderMode(DisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gDPSetCycleType(DisplayListHead++, G_CYC_FILL);
+    gDPSetFillColor(DisplayListHead++, (GPACK_RGBA5551(0, 0, 0, 1) << 16 | GPACK_RGBA5551(0, 0, 0, 1)));
+    gDPFillRectangle(DisplayListHead++, 0, 0, 319, (s32) temp_f14);
+    gDPFillRectangle(DisplayListHead++, 0, (s32) temp_f0, 319, 239);
+    gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
+    AdjustF32ValueTransition(&SizeSlidingBorders, OrderedSizeSlidingBorders, D_802856BC / D_802856B4);
 }

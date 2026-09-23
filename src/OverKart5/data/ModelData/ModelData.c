@@ -7420,155 +7420,155 @@ Gfx Draw_RedCoin_M[] =
 };
 
 
-uint GoldCoin_GFX[] =
+Uint GoldCoin_GFX[] =
 {
-	(uint)(&Draw_whitecoin_T),
-	(uint)(&Draw_GoldCoin_M)
+	(Uint)(&Draw_whitecoin_T),
+	(Uint)(&Draw_GoldCoin_M)
 };
 
 
-uint RedCoin_GFX[] =
+Uint RedCoin_GFX[] =
 {
-	(uint)(&Draw_whitecoin_T),
-	(uint)(&Draw_RedCoin_M)
+	(Uint)(&Draw_whitecoin_T),
+	(Uint)(&Draw_RedCoin_M)
 };
 
-uint BlueCoin_GFX[] =
+Uint BlueCoin_GFX[] =
 {
-	(uint)(&Draw_whitecoin_T),
-	(uint)(&Draw_BlueCoin_M)
+	(Uint)(&Draw_whitecoin_T),
+	(Uint)(&Draw_BlueCoin_M)
 };
 
-uint BattleFlag_Red_GFX[] = 
+Uint BattleFlag_Red_GFX[] = 
 {
-	(uint)(&Draw_battleflag_T),
-	(uint)(&Draw_BattleFlag_M),
-};
-
-
-
-uint BattleMushroom_Red_GFX[] = 
-{
-	(uint)(&Draw_mushroomcombo_T),
-	(uint)(&Draw_RedMushroom_M),
-};
-
-
-uint battleflag_mario_GFX[] = 
-{
-	(uint)(&Draw_battleflag_mario_T),
-	(uint)(&Draw_MarioFlag_M),
-};
-
-
-uint battleflag_luigi_GFX[] = 
-{
-	(uint)(&Draw_battleflag_luigi_T),
-	(uint)(&Draw_LuigiFlag_M),
-};
-
-
-uint battleflag_peach_GFX[] = 
-{
-	(uint)(&Draw_battleflag_peach_T),
-	(uint)(&Draw_PeachFlag_M),
-};
-
-
-uint battleflag_dk_GFX[] = 
-{
-	(uint)(&Draw_battleflag_dk_T),
-	(uint)(&Draw_DKFlag_M),
-};
-
-
-uint battleflag_toad_GFX[] = 
-{
-	(uint)(&Draw_battleflag_toad_T),
-	(uint)(&Draw_ToadFlag_M),
-};
-
-
-uint battleflag_wario_GFX[] = 
-{
-	(uint)(&Draw_battleflag_wario_T),
-	(uint)(&Draw_WarioFlag_M),
-};
-
-
-uint battleflag_yoshi_GFX[] = 
-{
-	(uint)(&Draw_battleflag_yoshi_T),
-	(uint)(&Draw_YoshiFlag_M),
-};
-
-
-uint battleflag_bowser_GFX[] = 
-{
-	(uint)(&Draw_battleflag_bowser_T),
-	(uint)(&Draw_BowserFlag_M),
+	(Uint)(&Draw_battleflag_T),
+	(Uint)(&Draw_BattleFlag_M),
 };
 
 
 
-
-uint battlemushroom_mario_GFX[] = 
+Uint BattleMushroom_Red_GFX[] = 
 {
-	(uint)(&Draw_mushroom_mario_T),
-	(uint)(&Draw_MarioMushroom_M),
+	(Uint)(&Draw_mushroomcombo_T),
+	(Uint)(&Draw_RedMushroom_M),
 };
 
 
-uint battlemushroom_luigi_GFX[] = 
+Uint battleflag_mario_GFX[] = 
 {
-	(uint)(&Draw_mushroom_luigi_T),
-	(uint)(&Draw_LuigiMushroom_M),
+	(Uint)(&Draw_battleflag_mario_T),
+	(Uint)(&Draw_MarioFlag_M),
 };
 
 
-uint battlemushroom_peach_GFX[] = 
+Uint battleflag_luigi_GFX[] = 
 {
-	(uint)(&Draw_mushroom_peach_T),
-	(uint)(&Draw_PeachMushroom_M),
+	(Uint)(&Draw_battleflag_luigi_T),
+	(Uint)(&Draw_LuigiFlag_M),
 };
 
 
-uint battlemushroom_dk_GFX[] = 
+Uint battleflag_peach_GFX[] = 
 {
-	(uint)(&Draw_mushroom_dk_T),
-	(uint)(&Draw_DKMushroom_M),
+	(Uint)(&Draw_battleflag_peach_T),
+	(Uint)(&Draw_PeachFlag_M),
 };
 
 
-uint battlemushroom_toad_GFX[] = 
+Uint battleflag_dk_GFX[] = 
 {
-	(uint)(&Draw_mushroom_toad_T),
-	(uint)(&Draw_ToadMushroom_M),
+	(Uint)(&Draw_battleflag_dk_T),
+	(Uint)(&Draw_DKFlag_M),
 };
 
 
-uint battlemushroom_wario_GFX[] = 
+Uint battleflag_toad_GFX[] = 
 {
-	(uint)(&Draw_mushroom_wario_T),
-	(uint)(&Draw_WarioMushroom_M),
+	(Uint)(&Draw_battleflag_toad_T),
+	(Uint)(&Draw_ToadFlag_M),
 };
 
 
-uint battlemushroom_yoshi_GFX[] = 
+Uint battleflag_wario_GFX[] = 
 {
-	(uint)(&Draw_mushroom_yoshi_T),
-	(uint)(&Draw_YoshiMushroom_M),
+	(Uint)(&Draw_battleflag_wario_T),
+	(Uint)(&Draw_WarioFlag_M),
 };
 
 
-uint battlemushroom_bowser_GFX[] = 
+Uint battleflag_yoshi_GFX[] = 
 {
-	(uint)(&Draw_mushroom_bowser_T),
-	(uint)(&Draw_BowserMushroom_M),
+	(Uint)(&Draw_battleflag_yoshi_T),
+	(Uint)(&Draw_YoshiFlag_M),
 };
 
 
-uint *FlagModels[] = 
+Uint battleflag_bowser_GFX[] = 
+{
+	(Uint)(&Draw_battleflag_bowser_T),
+	(Uint)(&Draw_BowserFlag_M),
+};
+
+
+
+
+Uint battlemushroom_mario_GFX[] = 
+{
+	(Uint)(&Draw_mushroom_mario_T),
+	(Uint)(&Draw_MarioMushroom_M),
+};
+
+
+Uint battlemushroom_luigi_GFX[] = 
+{
+	(Uint)(&Draw_mushroom_luigi_T),
+	(Uint)(&Draw_LuigiMushroom_M),
+};
+
+
+Uint battlemushroom_peach_GFX[] = 
+{
+	(Uint)(&Draw_mushroom_peach_T),
+	(Uint)(&Draw_PeachMushroom_M),
+};
+
+
+Uint battlemushroom_dk_GFX[] = 
+{
+	(Uint)(&Draw_mushroom_dk_T),
+	(Uint)(&Draw_DKMushroom_M),
+};
+
+
+Uint battlemushroom_toad_GFX[] = 
+{
+	(Uint)(&Draw_mushroom_toad_T),
+	(Uint)(&Draw_ToadMushroom_M),
+};
+
+
+Uint battlemushroom_wario_GFX[] = 
+{
+	(Uint)(&Draw_mushroom_wario_T),
+	(Uint)(&Draw_WarioMushroom_M),
+};
+
+
+Uint battlemushroom_yoshi_GFX[] = 
+{
+	(Uint)(&Draw_mushroom_yoshi_T),
+	(Uint)(&Draw_YoshiMushroom_M),
+};
+
+
+Uint battlemushroom_bowser_GFX[] = 
+{
+	(Uint)(&Draw_mushroom_bowser_T),
+	(Uint)(&Draw_BowserMushroom_M),
+};
+
+
+Uint *FlagModels[] = 
 {
 	battleflag_mario_GFX,
 	battleflag_luigi_GFX,
@@ -7580,7 +7580,7 @@ uint *FlagModels[] =
 	battleflag_bowser_GFX
 };
 
-uint *MushroomModels[] = 
+Uint *MushroomModels[] = 
 {
 	battlemushroom_mario_GFX,
 	battlemushroom_luigi_GFX,

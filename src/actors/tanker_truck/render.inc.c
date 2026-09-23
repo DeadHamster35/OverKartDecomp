@@ -1,43 +1,43 @@
 #include <actors.h>
-#include <main.h>
+#include <Main.h>
 #include <defines.h>
 
 /**
  * @brief Renders the tanker truck actor.
- * Actor used in Toad's Turnpike.
+ * Actor Used in Toad's Turnpike.
  * His update are made in vehicle.
  *
- * @param camera
- * @param arg1
+ * @Param Camera
+ * @Param arg1
  */
-void display_tanklorry(Camera* camera, Object* arg1) {
+void DisplayTanklorry(Camera* Camera, Object* arg1) {
     UNUSED s32 pad[6];
     Mat4 spC8;
-    UNUSED s32 pad2[32];
-    f32 temp_f0 = CheckDisplayRange(camera->camera_pos, arg1->position, camera->camera_direction[1], 2500.0f,
-                                          gCameraZoom[camera - camera1], 9000000.0f);
+    UNUSED s32 Pad2[32];
+    f32 temp_f0 = CheckDisplayRange(Camera->CameraPos, arg1->Position, Camera->CameraDirection[1], 2500.0f,
+                                          CameraZoom[Camera - Camera1], 9000000.0f);
 
     if (!(temp_f0 < 0.0f)) {
 
-        gSPTexture(gDisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
-        gSPClearGeometryMode(gDisplayListHead++, G_LIGHTING);
+        gSPTexture(DisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+        gSPClearGeometryMode(DisplayListHead++, G_LIGHTING);
 
-        CreateModelingMatrix(spC8, arg1->position, arg1->angle);
+        CreateModelingMatrix(spC8, arg1->Position, arg1->Angle);
         if (SetMatrix(spC8, 0) != 0) {
 
-            if (g_ScreenSplitA == SCREEN_MODE_1P) {
+            if (ScreenSplitA == SCREEN_MODE_1P) {
                 if (temp_f0 < 160000.0f) {
 
-                    gSPDisplayList(gDisplayListHead++, &toads_turnpike_dl_6);
+                    gSPDisplayList(DisplayListHead++, &toads_turnpike_dl_6);
                 } else if (temp_f0 < 640000.0f) {
-                    gSPDisplayList(gDisplayListHead++, &toads_turnpike_dl_7);
+                    gSPDisplayList(DisplayListHead++, &toads_turnpike_dl_7);
                 } else {
-                    gSPDisplayList(gDisplayListHead++, &toads_turnpike_dl_8);
+                    gSPDisplayList(DisplayListHead++, &toads_turnpike_dl_8);
                 }
             } else if (temp_f0 < 160000.0f) {
-                gSPDisplayList(gDisplayListHead++, &toads_turnpike_dl_7);
+                gSPDisplayList(DisplayListHead++, &toads_turnpike_dl_7);
             } else {
-                gSPDisplayList(gDisplayListHead++, &toads_turnpike_dl_8);
+                gSPDisplayList(DisplayListHead++, &toads_turnpike_dl_8);
             }
         }
     }

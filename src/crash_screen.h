@@ -4,7 +4,7 @@
 #include <ultra64.h>
 #include <macros.h>
 
-extern u16* pFramebuffer;
+extern u16* PFramebuffer;
 
 void SetFaultFrameBuffer(u16*);
 

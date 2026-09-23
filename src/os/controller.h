@@ -125,6 +125,9 @@ typedef struct {
 #define CONT_CMD_END 0xfe // indicates end of a command
 #define CONT_CMD_EXE 1    // set pif ram status byte to this to do a command
 
+#define CONT_BLOCK_DETECT 1024
+#define CONT_BLOCK_RUMBLE 1536
+
 #define DIR_STATUS_EMPTY 0
 #define DIR_STATUS_UNKNOWN 1
 #define DIR_STATUS_OCCUPIED 2

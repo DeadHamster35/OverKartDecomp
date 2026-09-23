@@ -1,7 +1,7 @@
 /*
-This imports new custom C code from the library.
+This imports new custom C Code from the library.
 It also contains the targets of the Hooks from LIBRARYBUILD1.
-The address must be offset to match it's position in RAM.
+The Address must be Offset to match it's Position in RAM.
 */
 
 
@@ -95,10 +95,10 @@ bannerU:
 SnowHook:
 LW a0, 0x40(sp)
 ADDIU sp, sp, -0x20
-SW ra, 0x001C (sp) //push ra to the stack
+SW ra, 0x001C (sp) //push ra to the Stack
 JAL SnowCustomCheck
 NOP
-LW ra, 0x001C (sp) //pop ra from the stack
+LW ra, 0x001C (sp) //pop ra from the Stack
 ADDIU sp, sp, 0x20
 J 0x800786B8
 NOP
@@ -118,11 +118,11 @@ NOP
 .align 0x10
 GhostHook:
 ADDIU sp, sp, -0x20
-SW ra, 0x001C (sp) //push ra to the stack
+SW ra, 0x001C (sp) //push ra to the Stack
 NOP
 JAL SetGhostData
 NOP
-LW ra, 0x001C (sp) //pop ra from the stack
+LW ra, 0x001C (sp) //pop ra from the Stack
 ADDIU sp, sp, 0x20
 LUI $at, 0x8016
 JR ra
@@ -137,11 +137,11 @@ ADDIU sp, sp, -0x20
 SW ra, 0x001C (sp)
 JAL	0x80095574 //run what we overwrote with our hook
 NOP
-JAL titleMenu
+JAL TitleMenu
 NOP
 LW ra, 0x001C (sp)
 ADDIU sp, sp, 0x20
-J 0x80094BD8 //jump back to where we were
+J 0x80094BD8 //Jump back to where we were
 NOP
 NOP
 
@@ -161,11 +161,11 @@ ADDIU sp, sp, 0x98
 .align 0x10
 race1P:
 ADDIU sp, sp, -0x20
-SW ra, 0x001C (sp) //push ra to the stack
+SW ra, 0x001C (sp) //push ra to the Stack
 NOP
-JAL gameCode
+JAL GameCode
 NOP
-LW ra, 0x001C (sp) //pop ra from the stack
+LW ra, 0x001C (sp) //pop ra from the Stack
 ADDIU sp, sp, 0x20
 LUI a0, 0x800E
 LHU a0, 0xC520 (a0)
@@ -176,11 +176,11 @@ NOP
 .align 0x10
 race2P:
 ADDIU sp, sp, -0x20
-SW ra, 0x001C (sp) //push ra to the stack
+SW ra, 0x001C (sp) //push ra to the Stack
 NOP
-JAL gameCode
+JAL GameCode
 NOP
-LW ra, 0x001C (sp) //pop ra from the stack
+LW ra, 0x001C (sp) //pop ra from the Stack
 ADDIU sp, sp, 0x20
 LUI t3, 0x800E
 LW t3, 0xC5E8 (t3)
@@ -190,11 +190,11 @@ NOP
 .align 0x10
 race2PLR:
 ADDIU sp, sp, -0x20
-SW ra, 0x001C (sp) //push ra to the stack
+SW ra, 0x001C (sp) //push ra to the Stack
 NOP
-JAL gameCode
+JAL GameCode
 NOP
-LW ra, 0x001C (sp) //pop ra from the stack
+LW ra, 0x001C (sp) //pop ra from the Stack
 ADDIU sp, sp, 0x20
 LUI t3, 0x800E
 LW t3, 0xC5E8 (t3)
@@ -205,11 +205,11 @@ NOP
 .align 0x10
 raceMP:
 ADDIU sp, sp, -0x20
-SW ra, 0x001C (sp) //push ra to the stack
+SW ra, 0x001C (sp) //push ra to the Stack
 NOP
-JAL gameCode
+JAL GameCode
 NOP
-LW ra, 0x001C (sp) //pop ra from the stack
+LW ra, 0x001C (sp) //pop ra from the Stack
 ADDIU sp, sp, 0x20
 LUI v0, 0x800E
 LW v0, 0xC5E8 (v0)
@@ -310,9 +310,9 @@ CollisionHopTable:
 HijackScaleMinimapX:
 	LB a0, ScaleXMode
 	LI a1, 2
-	BEQ a0, a1, @@branch_skip_scaling_minimap //If not scaling, skip code
+	BEQ a0, a1, @@branch_skip_scaling_minimap //If not scaling, skip Code
 		LUI a2, hi(LevelScales)
-		SLL a0, a0, 2 //Multiply ScaleXMode  by 4 to get offset for LevelScales
+		SLL a0, a0, 2 //Multiply ScaleXMode  by 4 to get Offset for LevelScales
 		ADDU a2, a2, a0
 		lwc1  f8, lo(LevelScales) (a2) //Load scaling from LevelScales 
 		div.s f2, f2, f8 //Divide by level scaling 
@@ -324,9 +324,9 @@ HijackScaleMinimapX:
 HijackScaleMinimapY:
 	LB a0, ScaleZMode
 	LI a1, 2
-	BEQ a0, a1, @@branch_skip_scaling_minimap //If not scaling, skip code
+	BEQ a0, a1, @@branch_skip_scaling_minimap //If not scaling, skip Code
 		LUI a2, hi(LevelScales)
-		SLL a0, a0, 2 //Multiply ScaleYMode  by 4 to get offset for LevelScales	
+		SLL a0, a0, 2 //Multiply ScaleYMode  by 4 to get Offset for LevelScales	
 		ADDU a2, a2, a0
 		lwc1  f10, lo(LevelScales) (a2) //Load scaling from LevelScales 
 		div.s f12, f12, f10 //Divide by level scaling 

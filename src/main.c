@@ -40,160 +40,161 @@
 #include "crash_screen.h"
 #include "buffers/gfx_output_buffer.h"
 #include "OverKartHooks.h"
+#include "save.h"
 
 void InitMKCode(void);
-void Nas_InitAudio(void);
+void NasInitAudio(void);
 void CreateDebugThread(void);
 void StartDebugThread(void);
-struct SPTask* Nas_AudioMain(void);
+struct SPTask* NasAudioMain(void);
 
-struct VblankHandler* gVblankHandler1 = NULL;
-struct VblankHandler* gVblankHandler2 = NULL;
+struct VblankHandler* VblankHandler1 = NULL;
+struct VblankHandler* VblankHandler2 = NULL;
 
-struct SPTask* gActiveSPTask = NULL;
-struct SPTask* sCurrentAudioSPTask = NULL;
-struct SPTask* sCurrentDisplaySPTask = NULL;
-struct SPTask* sNextAudioSPTask = NULL;
-struct SPTask* sNextDisplaySPTask = NULL;
+struct SPTask* ActiveSPTask = NULL;
+struct SPTask* SCurrentAudioSPTask = NULL;
+struct SPTask* SCurrentDisplaySPTask = NULL;
+struct SPTask* SNextAudioSPTask = NULL;
+struct SPTask* SNextDisplaySPTask = NULL;
 
-struct Controller gControllers[NUM_PLAYERS];
-struct Controller* gControllerOne = &gControllers[0];
-struct Controller* gControllerTwo = &gControllers[1];
-struct Controller* gControllerThree = &gControllers[2];
-struct Controller* gControllerFour = &gControllers[3];
-struct Controller* gControllerFive = &gControllers[4]; // All physical controllers combined.`
-struct Controller* gControllerSix = &gControllers[5];
-struct Controller* gControllerSeven = &gControllers[6];
-struct Controller* gControllerEight = &gControllers[7];
+struct Controller Controllers[NUM_PLAYERS];
+struct Controller* ControllerOne = &Controllers[0];
+struct Controller* ControllerTwo = &Controllers[1];
+struct Controller* ControllerThree = &Controllers[2];
+struct Controller* ControllerFour = &Controllers[3];
+struct Controller* ControllerFive = &Controllers[4]; // All physical controllers combined.`
+struct Controller* ControllerSix = &Controllers[5];
+struct Controller* ControllerSeven = &Controllers[6];
+struct Controller* ControllerEight = &Controllers[7];
 
-Player gPlayers[NUM_PLAYERS];
-Player* gPlayerOne = &gPlayers[0];
-Player* gPlayerTwo = &gPlayers[1];
-Player* gPlayerThree = &gPlayers[2];
-Player* gPlayerFour = &gPlayers[3];
-Player* gPlayerFive = &gPlayers[4];
-Player* gPlayerSix = &gPlayers[5];
-Player* gPlayerSeven = &gPlayers[6];
-Player* gPlayerEight = &gPlayers[7];
+Player GamePlayers[NUM_PLAYERS];
+Player* PlayerOne = &GamePlayers[0];
+Player* PlayerTwo = &GamePlayers[1];
+Player* PlayerThree = &GamePlayers[2];
+Player* PlayerFour = &GamePlayers[3];
+Player* PlayerFive = &GamePlayers[4];
+Player* PlayerSix = &GamePlayers[5];
+Player* PlayerSeven = &GamePlayers[6];
+Player* PlayerEight = &GamePlayers[7];
 
-Player* gPlayerOneCopy = &gPlayers[0];
-Player* gPlayerTwoCopy = &gPlayers[1];
-UNUSED Player* gPlayerThreeCopy = &gPlayers[2];
-UNUSED Player* gPlayerFourCopy = &gPlayers[3];
+Player* PlayerOneCopy = &GamePlayers[0];
+Player* PlayerTwoCopy = &GamePlayers[1];
+UNUSED Player* PlayerThreeCopy = &GamePlayers[2];
+UNUSED Player* PlayerFourCopy = &GamePlayers[3];
 
 UNUSED s32 D_800FD850[3];
-struct GfxPool gGfxPools[2];
-struct GfxPool* gDynamicP;
+struct GfxPool GfxPools[2];
+struct GfxPool* DynamicP;
 
-UNUSED s32 gfxPool_padding; // is this necessary?
-struct VblankHandler gGameVblankHandler;
-struct VblankHandler sSoundVblankHandler;
-OSMesgQueue gDmaMesgQueue, gGameVblankQueue, gGfxVblankQueue, unused_gMsgQueue, gIntrMesgQueue, gSPTaskMesgQueue;
-OSMesgQueue sSoundMesgQueue;
-OSMesg sSoundMesgBuf[1];
-OSMesg gDmaMesgBuf[1], gGameMesgBuf;
-OSMesg gGfxMesgBuf[1];
+UNUSED s32 GFXPoolPadding; // is this necessary?
+struct VblankHandler GameVblankHandler;
+struct VblankHandler SSoundVblankHandler;
+OSMesgQueue DmaMesgQueue, GameVblankQueue, GfxVblankQueue, UnusedGMsgQueue, IntrMesgQueue, gSPTaskMesgQueue;
+OSMesgQueue SSoundMesgQueue;
+OSMesg SSoundMesgBuf[1];
+OSMesg DmaMesgBuf[1], GameMesgBuf;
+OSMesg GfxMesgBuf[1];
 UNUSED OSMesg D_8014F010, D_8014F014;
-OSMesg gIntrMesgBuf[16], gSPTaskMesgBuf[16];
-OSMesg gMainReceivedMesg;
-OSIoMesg gDmaIoMesg;
-OSMesgQueue gSIEventMesgQueue;
-OSMesg gSIEventMesgBuf[3];
+OSMesg IntrMesgBuf[16], gSPTaskMesgBuf[16];
+OSMesg MainReceivedMesg;
+OSIoMesg DmaIoMesg;
+OSMesgQueue SIEventMesgQueue;
+OSMesg SIEventMesgBuf[3];
 
-OSContStatus gControllerStatuses[4];
-OSContPad gControllerPads[4];
-u8 gControllerBits;
-// Contains a 32x32 grid of indices into collision_table containing indices into gFaceBuffer
-CollisionGrid gCollisionGrid[1024];
-u16 g_simpleObjectCount;
-u16 gMatrixCount;
-s32 framerate;
+OSContStatus ControllerStatuses[4];
+OSContPad ControllerPads[4];
+u8 ControllerBits;
+// Contains a 32x32 grid of indices into CollisionTable containing indices into FaceBuffer
+CollisionGrid CollisionGridTable[1024];
+u16 SimpleObjectCount;
+u16 MatrixCount;
+s32 Framerate;
 f32 D_80150118;
 
-u16 resert_type;
-u16 time_flag;
+u16 ResertType;
+u16 TimeFlag;
 
-s32 race_clear_flag;
-s32 next_sequence_mode;
+s32 RaceClearFlag;
+s32 NextSequenceMode;
 UNUSED s32 D_80150128;
 UNUSED s32 D_8015012C;
-f32 gCameraZoom[4]; // look like to be the fov of each character
+f32 CameraZoom[4]; // look like to be the fov of each character
 UNUSED s32 D_80150140;
 UNUSED s32 D_80150144;
-f32 g_aspectRatio;
-f32 g_farClip;
-f32 screen_near_point;
+f32 AspectRatio;
+f32 FarClip;
+f32 ScreenNearPoint;
 UNUSED f32 D_80150154;
 
-struct D_80150158 gD_80150158[16];
+struct D_80150158 D80150158[16];
 uintptr_t SegmentTable[16];
-Gfx* gDisplayListHead;
+Gfx* DisplayListHead;
 
-struct SPTask* gGfxSPTask;
+struct SPTask* GfxSPTask;
 s32 D_801502A0;
 s32 D_801502A4;
-u16* g_CfbPtrs[3];
-uintptr_t gPhysicalZBuffer;
+u16* CfbPtrs[3];
+uintptr_t PhysicalZBuffer;
 UNUSED u32 D_801502B8;
 UNUSED u32 D_801502BC;
-Mat4 gAffine;
+Mat4 Affine;
 
-s32 padding[2048];
+s32 Padding[2048];
 
-u16 camera_mode[4];
-u16 camera_point;
+u16 CameraMode[4];
+u16 CameraPoint;
 
-UNUSED OSThread paddingThread;
-OSThread gIdleThread;
-ALIGNED8 u8 gIdleThreadStack[STACKSIZE]; // Based on sm64 and padding between bss symbols.
-OSThread gVideoThread;
-ALIGNED8 u8 gVideoThreadStack[STACKSIZE];
+UNUSED OSThread PaddingThread;
+OSThread IdleThread;
+ALIGNED8 u8 IdleThreadStack[STACKSIZE]; // Based on sm64 and Padding between bss symbols.
+OSThread VideoThread;
+ALIGNED8 u8 VideoThreadStack[STACKSIZE];
 UNUSED OSThread D_80156820;
-UNUSED ALIGNED8 u8 D_8015680_Stack[STACKSIZE];
-OSThread gGameLoopThread;
-ALIGNED8 u8 gGameLoopThreadStack[STACKSIZE];
-OSThread gAudioThread;
-ALIGNED8 u8 gAudioThreadStack[STACKSIZE];
+UNUSED ALIGNED8 u8 D8015680Stack[STACKSIZE];
+OSThread GameLoopThread;
+ALIGNED8 u8 GameLoopThreadStack[STACKSIZE];
+OSThread AudioThread;
+ALIGNED8 u8 AudioThreadStack[STACKSIZE];
 UNUSED OSThread D_8015CD30;
-UNUSED ALIGNED8 u8 D_8015CD30_Stack[STACKSIZE / 2];
+UNUSED ALIGNED8 u8 D8015CD30Stack[STACKSIZE / 2];
 
-ALIGNED8 u8 gGfxSPTaskYieldBuffer[4352];
-ALIGNED8 u32 gGfxSPTaskStack[256];
-OSMesg gPIMesgBuf[32];
-OSMesgQueue gPIMesgQueue;
+ALIGNED8 u8 GfxSPTaskYieldBuffer[4352];
+ALIGNED8 u32 GfxSPTaskStack[256];
+OSMesg PIMesgBuf[32];
+OSMesgQueue PIMesgQueue;
 
-s32 gGamestate = 0xFFFF;
-// g_startingIndicator is externed as an s32 in other files. g_DebugSection is only used in main.c, likely a developer mistake.
-u16 g_startingIndicator = RACE_NONE;
-u16 g_DebugSection = 0;
-u16 g_DisplayFlag = 0; // Renders the whole track. Displays red if used in normal race mode.
-u16 g_DemoFlag = DEMO_MODE_INACTIVE;
-u16 g_DebugMode = ENABLE_DEBUG_MODE;
-s32 g_NewSequenceMode = 7; // = COURSE_DATA_MENU?;
-UNUSED s32 g_NextSequenceMode = 1;
-s32 g_ScreenSplitA = SCREEN_MODE_1P;
-s32 g_ScreenSplitB = SCREEN_MODE_1P;
+s32 GameState = 0xFFFF;
+// StartingIndicator is externed as an s32 in other files. DebugSection is only Used in Main.c, likely a developer mistake.
+u16 StartingIndicator = RACE_NONE;
+u16 DebugSection = 0;
+u16 DisplayFlag = 0; // Renders the whole track. Displays red if Used in normal race Mode.
+u16 DemoFlag = DEMO_MODE_INACTIVE;
+u16 DebugMode = ENABLE_DEBUG_MODE;
+s32 NewSequenceMode = 7; // = COURSE_DATA_MENU?;
+UNUSED s32 NextSequenceModeUnused = 1;
+s32 ScreenSplitA = SCREEN_MODE_1P;
+s32 ScreenSplitB = SCREEN_MODE_1P;
 UNUSED s32 D_800DC534 = 0;
-s32 g_playerCount = 2;
+s32 PlayerCount = 2;
 
-s32 g_gameMode = GRAND_PRIX;
-s32 cup_level = 0;
-s32 cup_number = 0;
-s32 g_raceClass = CC_50;
-s32 frame_counter = 0;
+s32 GameMode = GRAND_PRIX;
+s32 CupLevel = 0;
+s32 CupNumber = 0;
+s32 RaceClass = CC_50;
+s32 FrameCounter = 0;
 UNUSED s32 D_800DC550 = 0;
 UNUSED s32 D_800DC554 = 0;
 UNUSED s32 D_800DC558 = 0;
 // Framebuffer rendering values (max 3)
-u16 g_DispFrame = 0;
-u16 draw_frame = 0;
+u16 DispFrame = 0;
+u16 DrawFrame = 0;
 UNUSED u16 D_800DC564 = 0;
 s32 D_800DC568 = 0;
 s32 D_800DC56C[8] = { 0 };
-s16 videoframe = 0;
+s16 Videoframe = 0;
 UNUSED s16 D_800DC590 = 0;
-f32 timer = 0.0f;
-f32 g_gameTimer = 0.0f;
+f32 Timer = 0.0f;
+f32 GameTimer = 0.0f;
 
 void SysCreateThread(OSThread* thread, OSId id, void (*entry)(void*), void* arg, void* sp, OSPri pri) {
     thread->next = NULL;
@@ -201,7 +202,7 @@ void SysCreateThread(OSThread* thread, OSId id, void (*entry)(void*), void* arg,
     osCreateThread(thread, id, entry, arg, sp, pri);
 }
 void isPrintfInit(void);
-void main_func(void) {
+void MainFunc(void) {
 #ifdef VERSION_EU
     osTvType = TV_TYPE_PAL;
 #endif
@@ -209,14 +210,14 @@ void main_func(void) {
 #ifdef DEBUG
     isPrintfInit(); // init osSyncPrintf
 #endif
-    SysCreateThread(&gIdleThread, 1, &thread1_idle, NULL, gIdleThreadStack + ARRAY_COUNT(gIdleThreadStack), 100);
-    osStartThread(&gIdleThread);
+    SysCreateThread(&IdleThread, 1, &Thread1Idle, NULL, IdleThreadStack + ARRAY_COUNT(IdleThreadStack), 100);
+    osStartThread(&IdleThread);
 }
 
 /**
- * Initialize hardware, start main thread, then idle.
+ * Initialize hardware, Start Main thread, then idle.
  */
-void thread1_idle(void* arg) {
+void Thread1Idle(void* arg) {
     osCreateViManager(OS_PRIORITY_VIMGR);
 #ifdef VERSION_EU
     osViSetMode(&osViModeTable[OS_VI_PAL_LAN1]);
@@ -229,12 +230,12 @@ void thread1_idle(void* arg) {
 #endif
     osViBlack(true);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
-    osCreatePiManager(OS_PRIORITY_PIMGR, &gPIMesgQueue, gPIMesgBuf, ARRAY_COUNT(gPIMesgBuf));
-    resert_type = (s16) osResetType;
+    osCreatePiManager(OS_PRIORITY_PIMGR, &PIMesgQueue, PIMesgBuf, ARRAY_COUNT(PIMesgBuf));
+    ResertType = (s16) osResetType;
     CreateDebugThread();
     StartDebugThread();
-    SysCreateThread(&gVideoThread, 3, &mainproc, arg, gVideoThreadStack + ARRAY_COUNT(gVideoThreadStack), 100);
-    osStartThread(&gVideoThread);
+    SysCreateThread(&VideoThread, 3, &Mainproc, arg, VideoThreadStack + ARRAY_COUNT(VideoThreadStack), 100);
+    osStartThread(&VideoThread);
     osSetThreadPri(NULL, 0);
 
     // Halt
@@ -243,88 +244,88 @@ void thread1_idle(void* arg) {
     }
 }
 
-void setup_messagequeue(void) {
-    osCreateMesgQueue(&gDmaMesgQueue, gDmaMesgBuf, ARRAY_COUNT(gDmaMesgBuf));
+void SetupMessagequeue(void) {
+    osCreateMesgQueue(&DmaMesgQueue, DmaMesgBuf, ARRAY_COUNT(DmaMesgBuf));
     osCreateMesgQueue(&gSPTaskMesgQueue, gSPTaskMesgBuf, ARRAY_COUNT(gSPTaskMesgBuf));
-    osCreateMesgQueue(&gIntrMesgQueue, gIntrMesgBuf, ARRAY_COUNT(gIntrMesgBuf));
-    osViSetEvent(&gIntrMesgQueue, (OSMesg) MESG_VI_VBLANK, 1);
-    osSetEventMesg(OS_EVENT_SP, &gIntrMesgQueue, (OSMesg) MESG_SP_COMPLETE);
-    osSetEventMesg(OS_EVENT_DP, &gIntrMesgQueue, (OSMesg) MESG_DP_COMPLETE);
+    osCreateMesgQueue(&IntrMesgQueue, IntrMesgBuf, ARRAY_COUNT(IntrMesgBuf));
+    osViSetEvent(&IntrMesgQueue, (OSMesg) MESG_VI_VBLANK, 1);
+    osSetEventMesg(OS_EVENT_SP, &IntrMesgQueue, (OSMesg) MESG_SP_COMPLETE);
+    osSetEventMesg(OS_EVENT_DP, &IntrMesgQueue, (OSMesg) MESG_DP_COMPLETE);
 }
 
-void start_RSP_task(s32 taskType) {
+void StartRSPTask(s32 taskType) {
     if (taskType == M_AUDTASK) {
-        gActiveSPTask = sCurrentAudioSPTask;
+        ActiveSPTask = SCurrentAudioSPTask;
     } else {
-        gActiveSPTask = sCurrentDisplaySPTask;
+        ActiveSPTask = SCurrentDisplaySPTask;
     }
-    osSpTaskLoad(&gActiveSPTask->task);
-    osSpTaskStartGo(&gActiveSPTask->task);
-    gActiveSPTask->state = SPTASK_STATE_RUNNING;
+    osSpTaskLoad(&ActiveSPTask->Task);
+    osSpTaskStartGo(&ActiveSPTask->Task);
+    ActiveSPTask->State = SPTASK_STATE_RUNNING;
 }
 
 /**
  * Initializes the Fast3D OSTask structure.
- * Loads F3DEX or F3DLX based on the number of players
+ * Loads F3DEX or F3DLX based on the Number of players
  **/
-void build_graphics_task(void) {
-    gGfxSPTask->msgqueue = &gGfxVblankQueue;
-    gGfxSPTask->msg = (OSMesg) 2;
-    gGfxSPTask->task.t.type = M_GFXTASK;
-    gGfxSPTask->task.t.flags = OS_TASK_DP_WAIT;
-    gGfxSPTask->task.t.ucode_boot = rspF3DBootStart;
-    gGfxSPTask->task.t.ucode_boot_size = ((u8*) rspF3DBootEnd - (u8*) rspF3DBootStart);
-    // The split-screen multiplayer racing state uses F3DLX which has a simple subpixel calculation.
-    // Singleplayer race mode and all other game states use F3DEX.
+void BuildGraphicsTask(void) {
+    GfxSPTask->Msgqueue = &GfxVblankQueue;
+    GfxSPTask->msg = (OSMesg) 2;
+    GfxSPTask->Task.t.type = M_GFXTASK;
+    GfxSPTask->Task.t.flags = OS_TASK_DP_WAIT;
+    GfxSPTask->Task.t.ucode_boot = rspF3DBootStart;
+    GfxSPTask->Task.t.ucode_boot_size = ((u8*) rspF3DBootEnd - (u8*) rspF3DBootStart);
+    // The split-screen multiplayer racing State uses F3DLX which has a simple subpixel calculation.
+    // Singleplayer race Mode and all other game states use F3DEX.
     // http://n64devkit.square7.ch/n64man/ucode/gspF3DEX.htm
-    if (gGamestate != RACING || g_playerCount == 1) {
-        gGfxSPTask->task.t.ucode = gspF3DEXTextStart;
-        gGfxSPTask->task.t.ucode_data = gspF3DEXDataStart;
+    if (GameState != RACING || PlayerCount == 1) {
+        GfxSPTask->Task.t.ucode = gspF3DEXTextStart;
+        GfxSPTask->Task.t.ucode_data = gspF3DEXDataStart;
     } else {
-        gGfxSPTask->task.t.ucode = gspF3DLXTextStart;
-        gGfxSPTask->task.t.ucode_data = gspF3DLXDataStart;
+        GfxSPTask->Task.t.ucode = gspF3DLXTextStart;
+        GfxSPTask->Task.t.ucode_data = gspF3DLXDataStart;
     }
-    gGfxSPTask->task.t.flags = 0;
-    gGfxSPTask->task.t.flags = OS_TASK_DP_WAIT;
-    gGfxSPTask->task.t.ucode_size = SP_UCODE_SIZE;
-    gGfxSPTask->task.t.ucode_data_size = SP_UCODE_DATA_SIZE;
-    gGfxSPTask->task.t.dram_stack = (u64*) &gGfxSPTaskStack;
-    gGfxSPTask->task.t.dram_stack_size = SP_DRAM_STACK_SIZE8;
-    gGfxSPTask->task.t.output_buff = (u64*) &gGfxSPTaskOutputBuffer;
-    gGfxSPTask->task.t.output_buff_size = (u64*) ((u8*) gGfxSPTaskOutputBuffer + sizeof(gGfxSPTaskOutputBuffer));
-    gGfxSPTask->task.t.data_ptr = (u64*) gDynamicP->gfxPool;
-    gGfxSPTask->task.t.data_size = (gDisplayListHead - gDynamicP->gfxPool) * sizeof(Gfx);
-    kwdebug_rcp();
-    gGfxSPTask->task.t.yield_data_ptr = (u64*) &gGfxSPTaskYieldBuffer;
-    gGfxSPTask->task.t.yield_data_size = OS_YIELD_DATA_SIZE;
+    GfxSPTask->Task.t.flags = 0;
+    GfxSPTask->Task.t.flags = OS_TASK_DP_WAIT;
+    GfxSPTask->Task.t.ucode_size = SP_UCODE_SIZE;
+    GfxSPTask->Task.t.ucode_data_size = SP_UCODE_DATA_SIZE;
+    GfxSPTask->Task.t.dram_stack = (u64*) &GfxSPTaskStack;
+    GfxSPTask->Task.t.dram_stack_size = SP_DRAM_STACK_SIZE8;
+    GfxSPTask->Task.t.output_buff = (u64*) &GfxSPTaskOutputBuffer;
+    GfxSPTask->Task.t.output_buff_size = (u64*) ((u8*) GfxSPTaskOutputBuffer + sizeof(GfxSPTaskOutputBuffer));
+    GfxSPTask->Task.t.data_ptr = (u64*) DynamicP->GFXPool;
+    GfxSPTask->Task.t.data_size = (DisplayListHead - DynamicP->GFXPool) * sizeof(Gfx);
+    KwdebugRcp();
+    GfxSPTask->Task.t.yield_data_ptr = (u64*) &GfxSPTaskYieldBuffer;
+    GfxSPTask->Task.t.yield_data_size = OS_YIELD_DATA_SIZE;
 }
 
 void InitControllers(void) {
-    osCreateMesgQueue(&gSIEventMesgQueue, &gSIEventMesgBuf[0], ARRAY_COUNT(gSIEventMesgBuf));
-    osSetEventMesg(OS_EVENT_SI, &gSIEventMesgQueue, (OSMesg) 0x33333333);
-    osContInit(&gSIEventMesgQueue, &gControllerBits, gControllerStatuses);
-    if ((gControllerBits & 1) == 0) {
-        sIsController1Unplugged = true;
+    osCreateMesgQueue(&SIEventMesgQueue, &SIEventMesgBuf[0], ARRAY_COUNT(SIEventMesgBuf));
+    osSetEventMesg(OS_EVENT_SI, &SIEventMesgQueue, (OSMesg) 0x33333333);
+    osContInit(&SIEventMesgQueue, &ControllerBits, ControllerStatuses);
+    if ((ControllerBits & 1) == 0) {
+        SIsController1Unplugged = true;
     } else {
-        sIsController1Unplugged = false;
+        SIsController1Unplugged = false;
     }
 }
 
-void check_controller(s32 index) {
-    struct Controller* controller = &gControllers[index];
+void CheckController(s32 Index) {
+    struct Controller* controller = &Controllers[Index];
     u16 stick;
 
-    if (sIsController1Unplugged) {
+    if (SIsController1Unplugged) {
         return;
     }
 
-    controller->AnalogX = gControllerPads[index].stick_x;
-    controller->AnalogY = gControllerPads[index].stick_y;
+    controller->AnalogX = ControllerPads[Index].stick_x;
+    controller->AnalogY = ControllerPads[Index].stick_y;
 
     controller->ButtonPressed =
-        gControllerPads[index].button & (gControllerPads[index].button ^ controller->ButtonHeld);
-    controller->ButtonReleased = controller->ButtonHeld & (gControllerPads[index].button ^ controller->ButtonHeld);
-    controller->ButtonHeld = gControllerPads[index].button;
+        ControllerPads[Index].button & (ControllerPads[Index].button ^ controller->ButtonHeld);
+    controller->ButtonReleased = controller->ButtonHeld & (ControllerPads[Index].button ^ controller->ButtonHeld);
+    controller->ButtonHeld = ControllerPads[Index].button;
 
     stick = 0;
     if (controller->AnalogX < -50) {
@@ -344,140 +345,142 @@ void check_controller(s32 index) {
     controller->AnalogHeld = stick;
 }
 
-void readControllers(void) {
+void ReadControllers(void) {
     OSMesg msg;
 
-    osContStartReadData(&gSIEventMesgQueue);
-    osRecvMesg(&gSIEventMesgQueue, &msg, OS_MESG_BLOCK);
-    osContGetReadData(gControllerPads);
-    check_controller(0);
-    check_controller(1);
-    check_controller(2);
-    check_controller(3);
-    gControllerFive->ButtonHeld =
-        (s16) (((gControllerOne->ButtonHeld | gControllerTwo->ButtonHeld) | gControllerThree->ButtonHeld) |
-               gControllerFour->ButtonHeld);
-    gControllerFive->ButtonPressed =
-        (s16) (((gControllerOne->ButtonPressed | gControllerTwo->ButtonPressed) | gControllerThree->ButtonPressed) |
-               gControllerFour->ButtonPressed);
-    gControllerFive->ButtonReleased =
-        (s16) (((gControllerOne->ButtonReleased | gControllerTwo->ButtonReleased) | gControllerThree->ButtonReleased) |
-               gControllerFour->ButtonReleased);
-    gControllerFive->AnalogHeld =
-        (s16) (((gControllerOne->AnalogHeld | gControllerTwo->AnalogHeld) | gControllerThree->AnalogHeld) |
-               gControllerFour->AnalogHeld);
-    gControllerFive->AnalogPressed =
-        (s16) (((gControllerOne->AnalogPressed | gControllerTwo->AnalogPressed) | gControllerThree->AnalogPressed) |
-               gControllerFour->AnalogPressed);
-    gControllerFive->AnalogReleased =
-        (s16) (((gControllerOne->AnalogReleased | gControllerTwo->AnalogReleased) | gControllerThree->AnalogReleased) |
-               gControllerFour->AnalogReleased);
+    osContStartReadData(&SIEventMesgQueue);
+    osRecvMesg(&SIEventMesgQueue, &msg, OS_MESG_BLOCK);
+    osContGetReadData(ControllerPads);
+    CheckController(0);
+    CheckController(1);
+    CheckController(2);
+    CheckController(3);
+    ControllerFive->ButtonHeld =
+        (s16) (((ControllerOne->ButtonHeld | ControllerTwo->ButtonHeld) | ControllerThree->ButtonHeld) |
+               ControllerFour->ButtonHeld);
+    ControllerFive->ButtonPressed =
+        (s16) (((ControllerOne->ButtonPressed | ControllerTwo->ButtonPressed) | ControllerThree->ButtonPressed) |
+               ControllerFour->ButtonPressed);
+    ControllerFive->ButtonReleased =
+        (s16) (((ControllerOne->ButtonReleased | ControllerTwo->ButtonReleased) | ControllerThree->ButtonReleased) |
+               ControllerFour->ButtonReleased);
+    ControllerFive->AnalogHeld =
+        (s16) (((ControllerOne->AnalogHeld | ControllerTwo->AnalogHeld) | ControllerThree->AnalogHeld) |
+               ControllerFour->AnalogHeld);
+    ControllerFive->AnalogPressed =
+        (s16) (((ControllerOne->AnalogPressed | ControllerTwo->AnalogPressed) | ControllerThree->AnalogPressed) |
+               ControllerFour->AnalogPressed);
+    ControllerFive->AnalogReleased =
+        (s16) (((ControllerOne->AnalogReleased | ControllerTwo->AnalogReleased) | ControllerThree->AnalogReleased) |
+               ControllerFour->AnalogReleased);
+    //MotorActive[0] = (ControllerOne->ButtonHeld & L_TRIG) != 0;
+    UpdateMotors();
 }
 
 void AllocDepthBuffer(void) {
-    gPhysicalZBuffer = VIRTUAL_TO_PHYSICAL(&gZBuffer);
+    PhysicalZBuffer = VIRTUAL_TO_PHYSICAL(&ZBuffer);
 }
 
-void set_RSP_task(struct SPTask* spTask) {
+void SetRSPTask(struct SPTask* SPTask) {
     osWritebackDCacheAll();
-    osSendMesg(&gSPTaskMesgQueue, spTask, OS_MESG_NOBLOCK);
+    osSendMesg(&gSPTaskMesgQueue, SPTask, OS_MESG_NOBLOCK);
 }
 
-void start_graphic_task(struct SPTask* spTask) {
+void StartGraphicTask(struct SPTask* SPTask) {
     osWritebackDCacheAll();
-    spTask->state = SPTASK_STATE_NOT_STARTED;
-    if (sCurrentDisplaySPTask == NULL) {
-        sCurrentDisplaySPTask = spTask;
-        sNextDisplaySPTask = NULL;
-        osSendMesg(&gIntrMesgQueue, (OSMesg) MESG_START_GFX_SPTASK, OS_MESG_NOBLOCK);
+    SPTask->State = SPTASK_STATE_NOT_STARTED;
+    if (SCurrentDisplaySPTask == NULL) {
+        SCurrentDisplaySPTask = SPTask;
+        SNextDisplaySPTask = NULL;
+        osSendMesg(&IntrMesgQueue, (OSMesg) MESG_START_GFX_SPTASK, OS_MESG_NOBLOCK);
     } else {
-        sNextDisplaySPTask = spTask;
+        SNextDisplaySPTask = SPTask;
     }
 }
 
 /**
  * Set default RCP (Reality Co-Processor) settings.
  */
-void begin_drawing(void) {
+void BeginDrawing(void) {
     StoreSegments();
     InitRDP();
     InitRSP();
-    g_ClearFramebuffer();
+    ClearFramebuffer();
     ClearZBuffer();
 }
 
 /**
- * End the master display list and initialize the graphics task structure for the next frame to be rendered.
+ * End the master display list and initialize the graphics Task structure for the Next frame to be rendered.
  */
-void end_drawing(void) {
-    gDPFullSync(gDisplayListHead++);
-    gSPEndDisplayList(gDisplayListHead++);
-    build_graphics_task();
+void EndDrawing(void) {
+    gDPFullSync(DisplayListHead++);
+    gSPEndDisplayList(DisplayListHead++);
+    BuildGraphicsTask();
 }
 
 // clear_frame_buffer from SM64, with a few edits
 //! @todo Why did void* work for matching
 void* SoftwareBlanking(s32 color) {
-    gDPPipeSync(gDisplayListHead++);
+    gDPPipeSync(DisplayListHead++);
 
-    gDPSetRenderMode(gDisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
-    gDPSetCycleType(gDisplayListHead++, G_CYC_FILL);
+    gDPSetRenderMode(DisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gDPSetCycleType(DisplayListHead++, G_CYC_FILL);
 
-    gDPSetFillColor(gDisplayListHead++, color);
-    gDPFillRectangle(gDisplayListHead++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
+    gDPSetFillColor(DisplayListHead++, color);
+    gDPFillRectangle(DisplayListHead++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);
 
-    gDPPipeSync(gDisplayListHead++);
+    gDPPipeSync(DisplayListHead++);
 
-    gDPSetCycleType(gDisplayListHead++, G_CYC_1CYCLE);
+    gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
 }
 
-void initial_gameframe(void) {
-    gDynamicP = &gGfxPools[0];
-    SetSegment(1, gDynamicP);
-    gGfxSPTask = &gDynamicP->spTask;
-    gDisplayListHead = gDynamicP->gfxPool;
-    begin_drawing();
+void InitialGameframe(void) {
+    DynamicP = &GfxPools[0];
+    SetSegment(1, DynamicP);
+    GfxSPTask = &DynamicP->SPTask;
+    DisplayListHead = DynamicP->GFXPool;
+    BeginDrawing();
     SoftwareBlanking(0);
-    end_drawing();
-    start_graphic_task(&gDynamicP->spTask);
-    draw_frame++;
-    frame_counter++;
+    EndDrawing();
+    StartGraphicTask(&DynamicP->SPTask);
+    DrawFrame++;
+    FrameCounter++;
 }
 
-void begin_gameframe(void) {
-    gDynamicP = &gGfxPools[frame_counter & 1];
-    SetSegment(1, gDynamicP);
-    gDisplayListHead = gDynamicP->gfxPool;
-    gGfxSPTask = &gDynamicP->spTask;
+void BeginGameframe(void) {
+    DynamicP = &GfxPools[FrameCounter & 1];
+    SetSegment(1, DynamicP);
+    DisplayListHead = DynamicP->GFXPool;
+    GfxSPTask = &DynamicP->SPTask;
 }
 
 /**
- * Send current master display list for rendering.
+ * Send Current master display list for rendering.
  * Tell the VI which colour framebuffer to display.
- * Yields to the VI framerate twice, locking the game at 30 FPS.
- * Selects the next framebuffer to be rendered and displayed.
+ * Yields to the VI Framerate twice, locking the game at 30 FPS.
+ * Selects the Next framebuffer to be rendered and displayed.
  */
-void flush_displaylist(void) {
+void FlushDisplaylist(void) {
     SetGraphCPUTime(BEFORE_DISPLAY_LISTS);
-    osRecvMesg(&gGfxVblankQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
-    start_graphic_task(&gDynamicP->spTask);
+    osRecvMesg(&GfxVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+    StartGraphicTask(&DynamicP->SPTask);
     SetGraphCPUTime(AFTER_DISPLAY_LISTS);
-    osRecvMesg(&gGameVblankQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
-    osViSwapBuffer((void*) PHYSICAL_TO_VIRTUAL(g_CfbPtrs[g_DispFrame]));
+    osRecvMesg(&GameVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+    osViSwapBuffer((void*) PHYSICAL_TO_VIRTUAL(CfbPtrs[DispFrame]));
     SetGraphCPUTime(THREAD5_END);
-    osRecvMesg(&gGameVblankQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
-    SetFaultFrameBuffer(g_CfbPtrs[g_DispFrame]);
+    osRecvMesg(&GameVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+    SetFaultFrameBuffer(CfbPtrs[DispFrame]);
 
-    if (++g_DispFrame == 3) {
-        g_DispFrame = 0;
+    if (++DispFrame == 3) {
+        DispFrame = 0;
     }
-    if (++draw_frame == 3) {
-        draw_frame = 0;
+    if (++DrawFrame == 3) {
+        DrawFrame = 0;
     }
-    frame_counter++;
+    FrameCounter++;
 }
 
-void init_excode(void) {
+void InitExcode(void) {
     bzero((void*) SEG_ENDING, SEG_ENDING_SIZE);
     osWritebackDCacheAll();
     DMA((u8*) SEG_ENDING, (u8*) SEG_ENDING_ROM_START, SEG_ENDING_ROM_SIZE);
@@ -485,7 +488,7 @@ void init_excode(void) {
     osInvalDCache((void*) SEG_ENDING, SEG_ENDING_SIZE);
 }
 
-void init_mkcode(void) {
+void InitMkcode(void) {
     bzero((void*) SEG_RACING, SEG_RACING_SIZE);
     osWritebackDCacheAll();
     DMA((u8*) SEG_RACING, (u8*) SEG_RACING_ROM_START, SEG_RACING_ROM_SIZE);
@@ -493,58 +496,58 @@ void init_mkcode(void) {
     osInvalDCache((void*) SEG_RACING, SEG_RACING_SIZE);
 }
 
-void init_overkart(void) {
+void InitOverkart(void) {
     bzero((void*) SEG_OVERKART, SEG_OVERKART_SIZE);
     osWritebackDCacheAll();
     DMA((u8*) SEG_OVERKART, (u8*) SEG_OVERKART_ROM_START, SEG_OVERKART_ROM_SIZE);
     osInvalICache((void*) SEG_OVERKART, SEG_OVERKART_SIZE);
     osInvalDCache((void*) SEG_OVERKART, SEG_OVERKART_SIZE);
-    loadBigFont();
+    LoadBigFont();
 }
 
-void DMA(u8* dest, u8* romAddr, size_t size) {
+void DMA(u8* dest, u8* romAddr, size_t Size) {
 
-    osInvalDCache(dest, size);
-    while (size > 0x100) {
-        osPiStartDma(&gDmaIoMesg, 0, 0, (uintptr_t) romAddr, dest, 0x100, &gDmaMesgQueue);
-        osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, 1);
-        size -= 0x100;
+    osInvalDCache(dest, Size);
+    while (Size > 0x100) {
+        osPiStartDma(&DmaIoMesg, 0, 0, (uintptr_t) romAddr, dest, 0x100, &DmaMesgQueue);
+        osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, 1);
+        Size -= 0x100;
         romAddr += 0x100;
         dest += 0x100;
     }
-    if (size != 0) {
-        osPiStartDma(&gDmaIoMesg, 0, 0, (uintptr_t) romAddr, dest, size, &gDmaMesgQueue);
-        osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, 1);
+    if (Size != 0) {
+        osPiStartDma(&DmaIoMesg, 0, 0, (uintptr_t) romAddr, dest, Size, &DmaMesgQueue);
+        osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, 1);
     }
 }
 
 /**
- * Setup main segments and framebuffers.
+ * Setup Main segments and framebuffers.
  */
 void InitializeSystemWorks(void) {
     UNUSED u32 pad[2];
-    ptrdiff_t commonCourseDataSize; // Compressed mio0 size
+    ptrdiff_t commonCourseDataSize; // Compressed mio0 Size
     uintptr_t textureSegSize;
     ptrdiff_t textureSegStart;
     uintptr_t allocatedMemory;
     UNUSED s32 unknown_padding;
 
-    init_mkcode();
-    init_overkart();
+    InitMkcode();
+    InitOverkart();
     LastMemoryPointer = SEG_RACING;
     SetSegment(0, (void*) SEG_START);
 
-    // Memory pool size of 0xAB630
-    initial_free_memory(MEMORY_POOL_START, MEMORY_POOL_END);
+    // Memory Pool Size of 0xAB630
+    InitialFreeMemory(MEMORY_POOL_START, MEMORY_POOL_END);
 
     AllocDepthBuffer();
 
     // Initialize trig tables segment
     osInvalDCache((void*) TRIG_TABLES, TRIG_TABLES_SIZE);
-    osPiStartDma(&gDmaIoMesg, 0, 0, TRIG_TABLES_ROM_START, (void*) TRIG_TABLES, TRIG_TABLES_SIZE, &gDmaMesgQueue);
-    osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+    osPiStartDma(&DmaIoMesg, 0, 0, TRIG_TABLES_ROM_START, (void*) TRIG_TABLES, TRIG_TABLES_SIZE, &DmaMesgQueue);
+    osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
 
-    SetSegment(2, (void*) load_data(SEG_DATA_START, SEG_DATA_END));
+    SetSegment(2, (void*) LoadSegment(SEG_DATA_START, SEG_DATA_END));
 
     commonCourseDataSize = COMMON_TEXTURES_SIZE;
     commonCourseDataSize = ALIGN16(commonCourseDataSize);
@@ -554,9 +557,9 @@ void InitializeSystemWorks(void) {
 #else
     textureSegStart = SEG_RACING - commonCourseDataSize;
 #endif
-    osPiStartDma(&gDmaIoMesg, 0, 0, COMMON_TEXTURES_ROM_START, (void*) textureSegStart, commonCourseDataSize,
-                 &gDmaMesgQueue);
-    osRecvMesg(&gDmaMesgQueue, &gMainReceivedMesg, OS_MESG_BLOCK);
+    osPiStartDma(&DmaIoMesg, 0, 0, COMMON_TEXTURES_ROM_START, (void*) textureSegStart, commonCourseDataSize,
+                 &DmaMesgQueue);
+    osRecvMesg(&DmaMesgQueue, &MainReceivedMesg, OS_MESG_BLOCK);
 
     textureSegSize = *(uintptr_t*) (textureSegStart + 4);
     textureSegSize = ALIGN16(textureSegSize);
@@ -566,7 +569,7 @@ void InitializeSystemWorks(void) {
 
     FreeMemoryPointer += textureSegSize;
 
-    // Common course data does not get reloaded when the race state resets.
+    // Common course data does not get reloaded when the race State resets.
     // Therefore, only reset the memory ptr to after the common course data.
     StaticMemoryPointer = FreeMemoryPointer;
     VertexMemoryPointer = VERTEX_MEMORY_TOP;
@@ -577,329 +580,329 @@ void InitializeSystemWorks(void) {
  * @brief
  *
  */
-void boot_sequence(void) {
-    g_NewSequenceMode = 0; // = START_MENU_FROM_QUIT?
+void BootSequence(void) {
+    NewSequenceMode = 0; // = START_MENU_FROM_QUIT?
     SoftwareBlanking(0);
 }
 
-void race_sequence(void) {
+void RaceSequence(void) {
     s16 i;
-    u16 rotY;
+    u16 RotY;
 
-    gMatrixCount = 0;
-    effectcount = 0;
-    if (pause_flag != 0) {
-        pause_sequence();
+    MatrixCount = 0;
+    Effectcount = 0;
+    if (PauseFlag != 0) {
+        PauseSequence();
     }
-    if (g_fadeOutFlag != 0) {
-        fadeout_sequence();
+    if (FadeOutFlag != 0) {
+        FadeoutSequence();
         return;
     }
 
-    gameCodeDefault();
+    GameCodeDefault();
 
-    if (videoframe >= 6) {
-        videoframe = 5;
+    if (Videoframe >= 6) {
+        Videoframe = 5;
     }
-    if (videoframe < 0) {
-        videoframe = 1;
+    if (Videoframe < 0) {
+        Videoframe = 1;
     }
-    setup_perspective();
+    SetupPerspective();
 
-    switch (g_ScreenSplitA) {
+    switch (ScreenSplitA) {
         case SCREEN_MODE_1P:
-            framerate = 2;
+            Framerate = 2;
             ApplyRaceTempo();
-            key_data_control();
-            if (pause_flag == 0) {
-                for (i = 0; i < framerate; i++) {
-                    if (time_flag) {
-                        g_gameTimer += COURSE_TIMER_ITER;
+            KeyDataControl();
+            if (PauseFlag == 0) {
+                for (i = 0; i < Framerate; i++) {
+                    if (TimeFlag) {
+                        GameTimer += COURSE_TIMER_ITER;
                     }
-                    collision_kart_to_kart();
-                    collision_object_to_kart();
-                    drive_stick_control();
-                    CameraCheckFunc(gPlayerOneCopy, camera1, 0);
-                    kartpos_control_full();
-                    enemy_control();
+                    CollisionKartToKart();
+                    CollisionObjectToKart();
+                    DriveStickControl();
+                    CameraCheckFunc(PlayerOneCopy, Camera1, 0);
+                    KartposControlFull();
+                    EnemyControl();
                     KWVideoFramesYori();
-                    object_strategy();
-                    map_strategy();
-                    race_control();
+                    ObjectStrategy();
+                    MapStrategy();
+                    RaceControl();
                 }
-                ken_startegy();
+                KenStartegy();
             }
-            kwgameframesyori();
-            videoframe = 0;
+            Kwgameframesyori();
+            Videoframe = 0;
             SetGraphCPUTime(LEVEL_SCRIPT_EXECUTE);
-            g_ScreenCounter = 0;
-            draw_full_screen();
-            if (!g_DebugMode) {
-                g_DebugSection = false;
+            ScreenCounter = 0;
+            DrawFullScreen();
+            if (!DebugMode) {
+                DebugSection = false;
             } else {
-                if (g_DebugSection) {
+                if (DebugSection) {
 
-                    if ((gControllerOne->ButtonPressed & R_TRIG) && (gControllerOne->ButtonHeld & A_BUTTON) &&
-                        (gControllerOne->ButtonHeld & B_BUTTON)) {
-                        g_DebugSection = false;
+                    if ((ControllerOne->ButtonPressed & R_TRIG) && (ControllerOne->ButtonHeld & A_BUTTON) &&
+                        (ControllerOne->ButtonHeld & B_BUTTON)) {
+                        DebugSection = false;
                     }
 
-                    rotY = camera1->camera_direction[1];
-                    gDebugPathCount = D_800DC5EC->camera_point;
-                    if (rotY < DEGREES(45)) {
-                        kwfprintud(40, 100, "SOUTH  ", gDebugPathCount);
-                    } else if (rotY < DEGREES(135)) {
-                        kwfprintud(40, 100, "EAST   ", gDebugPathCount);
-                    } else if (rotY < DEGREES(225)) {
-                        kwfprintud(40, 100, "NORTH  ", gDebugPathCount);
-                    } else if (rotY < DEGREES(315)) {
-                        kwfprintud(40, 100, "WEST   ", gDebugPathCount);
+                    RotY = Camera1->CameraDirection[1];
+                    DebugPathCount = D_800DC5EC->CameraPoint;
+                    if (RotY < DEGREES(45)) {
+                        Kwfprintud(40, 100, "SOUTH  ", DebugPathCount);
+                    } else if (RotY < DEGREES(135)) {
+                        Kwfprintud(40, 100, "EAST   ", DebugPathCount);
+                    } else if (RotY < DEGREES(225)) {
+                        Kwfprintud(40, 100, "NORTH  ", DebugPathCount);
+                    } else if (RotY < DEGREES(315)) {
+                        Kwfprintud(40, 100, "WEST   ", DebugPathCount);
                     } else {
-                        kwfprintud(40, 100, "SOUTH  ", gDebugPathCount);
+                        Kwfprintud(40, 100, "SOUTH  ", DebugPathCount);
                     }
 
                 } else {
-                    if ((gControllerOne->ButtonPressed & L_TRIG) && (gControllerOne->ButtonHeld & A_BUTTON) &&
-                        (gControllerOne->ButtonHeld & B_BUTTON)) {
-                        g_DebugSection = true;
+                    if ((ControllerOne->ButtonPressed & L_TRIG) && (ControllerOne->ButtonHeld & A_BUTTON) &&
+                        (ControllerOne->ButtonHeld & B_BUTTON)) {
+                        DebugSection = true;
                     }
                 }
             }
             break;
 
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            if (g_courseID == COURSE_DK_JUNGLE) {
-                framerate = 3;
+            if (CourseID == COURSE_DK_JUNGLE) {
+                Framerate = 3;
             } else {
-                framerate = 2;
+                Framerate = 2;
             }
             ApplyRaceTempo();
-            if (pause_flag == 0) {
-                for (i = 0; i < framerate; i++) {
-                    if (time_flag != 0) {
-                        g_gameTimer += COURSE_TIMER_ITER;
+            if (PauseFlag == 0) {
+                for (i = 0; i < Framerate; i++) {
+                    if (TimeFlag != 0) {
+                        GameTimer += COURSE_TIMER_ITER;
                     }
-                    collision_kart_to_kart();
-                    collision_object_to_kart();
-                    drive_stick_control();
-                    CameraCheckFunc(gPlayerOneCopy, camera1, 0);
-                    kartpos_control_ru();
-                    CameraCheckFunc(gPlayerTwoCopy, camera2, 1);
-                    kartpos_control_ld();
-                    enemy_control();
+                    CollisionKartToKart();
+                    CollisionObjectToKart();
+                    DriveStickControl();
+                    CameraCheckFunc(PlayerOneCopy, Camera1, 0);
+                    KartposControlRu();
+                    CameraCheckFunc(PlayerTwoCopy, Camera2, 1);
+                    KartposControlLd();
+                    EnemyControl();
                     KWVideoFramesYori();
-                    object_strategy();
-                    map_strategy();
-                    race_control();
+                    ObjectStrategy();
+                    MapStrategy();
+                    RaceControl();
                 }
-                ken_startegy();
+                KenStartegy();
             }
-            kwgameframesyori();
+            Kwgameframesyori();
             SetGraphCPUTime(LEVEL_SCRIPT_EXECUTE);
-            videoframe = 0;
+            Videoframe = 0;
             StoreSegments();
             InitRDP();
-            if (g_ClearCFBFlag != 0) {
-                g_ClearFramebuffer();
+            if (ClearCFBFlag != 0) {
+                ClearFramebuffer();
             }
-            g_ScreenCounter = 0;
-            if (win_kart == 0) {
-                draw_right_screen();
-                draw_left_screen();
+            ScreenCounter = 0;
+            if (WinKart == 0) {
+                DrawRightScreen();
+                DrawLeftScreen();
             } else {
-                draw_left_screen();
-                draw_right_screen();
+                DrawLeftScreen();
+                DrawRightScreen();
             }
             break;
 
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
 
-            if (g_courseID == COURSE_DK_JUNGLE) {
-                framerate = 3;
+            if (CourseID == COURSE_DK_JUNGLE) {
+                Framerate = 3;
             } else {
-                framerate = 2;
+                Framerate = 2;
             }
             ApplyRaceTempo();
 
-            if (pause_flag == 0) {
-                for (i = 0; i < framerate; i++) {
-                    if (time_flag != 0) {
-                        g_gameTimer += COURSE_TIMER_ITER;
+            if (PauseFlag == 0) {
+                for (i = 0; i < Framerate; i++) {
+                    if (TimeFlag != 0) {
+                        GameTimer += COURSE_TIMER_ITER;
                     }
-                    collision_kart_to_kart();
-                    collision_object_to_kart();
-                    drive_stick_control();
-                    CameraCheckFunc(gPlayerOneCopy, camera1, 0);
-                    kartpos_control_ru();
-                    CameraCheckFunc(gPlayerTwoCopy, camera2, 1);
-                    kartpos_control_ld();
-                    enemy_control();
+                    CollisionKartToKart();
+                    CollisionObjectToKart();
+                    DriveStickControl();
+                    CameraCheckFunc(PlayerOneCopy, Camera1, 0);
+                    KartposControlRu();
+                    CameraCheckFunc(PlayerTwoCopy, Camera2, 1);
+                    KartposControlLd();
+                    EnemyControl();
                     KWVideoFramesYori();
-                    object_strategy();
-                    map_strategy();
-                    race_control();
+                    ObjectStrategy();
+                    MapStrategy();
+                    RaceControl();
                 }
-                ken_startegy();
+                KenStartegy();
             }
             SetGraphCPUTime(LEVEL_SCRIPT_EXECUTE);
-            videoframe = (u16) 0;
-            kwgameframesyori();
+            Videoframe = (u16) 0;
+            Kwgameframesyori();
             StoreSegments();
             InitRDP();
-            if (g_ClearCFBFlag != 0) {
-                g_ClearFramebuffer();
+            if (ClearCFBFlag != 0) {
+                ClearFramebuffer();
             }
-            g_ScreenCounter = 0;
-            if (win_kart == 0) {
-                draw_down_screen();
-                draw_up_screen();
+            ScreenCounter = 0;
+            if (WinKart == 0) {
+                DrawDownScreen();
+                DrawUpScreen();
             } else {
-                draw_up_screen();
-                draw_down_screen();
+                DrawUpScreen();
+                DrawDownScreen();
             }
 
             break;
 
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            if (g_playerCount == 3) {
-                switch (g_courseID) {
+            if (PlayerCount == 3) {
+                switch (CourseID) {
                     case COURSE_BOWSER_CASTLE:
                     case COURSE_MOO_MOO_FARM:
                     case COURSE_SKYSCRAPER:
                     case COURSE_DK_JUNGLE:
-                        framerate = 3;
+                        Framerate = 3;
                         break;
                     default:
-                        framerate = 2;
+                        Framerate = 2;
                         break;
                 }
             } else {
                 // Four players
-                switch (g_courseID) {
+                switch (CourseID) {
                     case COURSE_BLOCK_FORT:
                     case COURSE_DOUBLE_DECK:
                     case COURSE_BIG_DONUT:
-                        framerate = 2;
+                        Framerate = 2;
                         break;
                     case COURSE_DK_JUNGLE:
-                        framerate = 4;
+                        Framerate = 4;
                         break;
                     default:
-                        framerate = 3;
+                        Framerate = 3;
                         break;
                 }
             }
             ApplyRaceTempo();
-            if (pause_flag == 0) {
-                for (i = 0; i < framerate; i++) {
-                    if (time_flag != 0) {
-                        g_gameTimer += COURSE_TIMER_ITER;
+            if (PauseFlag == 0) {
+                for (i = 0; i < Framerate; i++) {
+                    if (TimeFlag != 0) {
+                        GameTimer += COURSE_TIMER_ITER;
                     }
-                    collision_kart_to_kart();
-                    collision_object_to_kart();
-                    drive_stick_control();
-                    CameraCheckFunc(gPlayerOneCopy, camera1, 0);
-                    kartpost_control_1P();
-                    CameraCheckFunc(gPlayerTwo, camera2, 1);
-                    kartpost_control_2P();
-                    CameraCheckFunc(gPlayerThree, camera3, 2);
-                    kartpos_control_3P();
-                    CameraCheckFunc(gPlayerFour, camera4, 3);
-                    kartpos_control_4P();
-                    enemy_control();
+                    CollisionKartToKart();
+                    CollisionObjectToKart();
+                    DriveStickControl();
+                    CameraCheckFunc(PlayerOneCopy, Camera1, 0);
+                    KartpostControl1P();
+                    CameraCheckFunc(PlayerTwo, Camera2, 1);
+                    KartpostControl2P();
+                    CameraCheckFunc(PlayerThree, Camera3, 2);
+                    KartposControl3P();
+                    CameraCheckFunc(PlayerFour, Camera4, 3);
+                    KartposControl4P();
+                    EnemyControl();
                     KWVideoFramesYori();
-                    object_strategy();
-                    map_strategy();
-                    race_control();
+                    ObjectStrategy();
+                    MapStrategy();
+                    RaceControl();
                 }
-                ken_startegy();
+                KenStartegy();
             }
-            kwgameframesyori();
-            videoframe = 0;
+            Kwgameframesyori();
+            Videoframe = 0;
             SetGraphCPUTime(LEVEL_SCRIPT_EXECUTE);
             StoreSegments();
             InitRDP();
-            if (g_ClearCFBFlag != 0) {
-                g_ClearFramebuffer();
+            if (ClearCFBFlag != 0) {
+                ClearFramebuffer();
             }
-            g_ScreenCounter = 0;
-            if (win_kart == 0) {
-                draw_up_right_screen();
-                draw_down_left_screen();
-                draw_down_right_screen();
-                draw_up_left_screen();
-            } else if (win_kart == 1) {
-                draw_up_left_screen();
-                draw_down_left_screen();
-                draw_down_right_screen();
-                draw_up_right_screen();
-            } else if (win_kart == 2) {
-                draw_up_left_screen();
-                draw_up_right_screen();
-                draw_down_right_screen();
-                draw_down_left_screen();
+            ScreenCounter = 0;
+            if (WinKart == 0) {
+                DrawUpRightScreen();
+                DrawDownLeftScreen();
+                DrawDownRightScreen();
+                DrawUpLeftScreen();
+            } else if (WinKart == 1) {
+                DrawUpLeftScreen();
+                DrawDownLeftScreen();
+                DrawDownRightScreen();
+                DrawUpRightScreen();
+            } else if (WinKart == 2) {
+                DrawUpLeftScreen();
+                DrawUpRightScreen();
+                DrawDownRightScreen();
+                DrawDownLeftScreen();
             } else {
-                draw_up_left_screen();
-                draw_up_right_screen();
-                draw_down_left_screen();
-                draw_down_right_screen();
+                DrawUpLeftScreen();
+                DrawUpRightScreen();
+                DrawDownLeftScreen();
+                DrawDownRightScreen();
             }
             break;
     }
 
-    if (!g_DebugMode) {
-        g_DispTimeFlag = 0;
+    if (!DebugMode) {
+        DispTimeFlag = 0;
     } else {
-        if (g_DispTimeFlag) {
+        if (DispTimeFlag) {
             DisplayProcTime();
-            if ((!(gControllerOne->ButtonHeld & L_TRIG)) && (gControllerOne->ButtonHeld & R_TRIG) &&
-                (gControllerOne->ButtonPressed & B_BUTTON)) {
-                g_DispTimeFlag = 0;
+            if ((!(ControllerOne->ButtonHeld & L_TRIG)) && (ControllerOne->ButtonHeld & R_TRIG) &&
+                (ControllerOne->ButtonPressed & B_BUTTON)) {
+                DispTimeFlag = 0;
             }
         } else {
-            if ((!(gControllerOne->ButtonHeld & L_TRIG)) && (gControllerOne->ButtonHeld & R_TRIG) &&
-                (gControllerOne->ButtonPressed & B_BUTTON)) {
-                g_DispTimeFlag = 1;
+            if ((!(ControllerOne->ButtonHeld & L_TRIG)) && (ControllerOne->ButtonHeld & R_TRIG) &&
+                (ControllerOne->ButtonPressed & B_BUTTON)) {
+                DispTimeFlag = 1;
             }
         }
     }
-    make_border();
-    kwdisplay_toppri();
+    MakeBorder();
+    KwdisplayToppri();
     MiniMapDrawDefault();
 #if DVDL
     display_dvdl();
 #endif
-    gDPFullSync(gDisplayListHead++);
-    gSPEndDisplayList(gDisplayListHead++);
+    gDPFullSync(DisplayListHead++);
+    gSPEndDisplayList(DisplayListHead++);
 }
 
 /**
- * mk64's game loop depends on a series of states.
- * It runs a wide branching series of code based on these states.
+ * mk64's game Loop depends on a series of states.
+ * It runs a wide branching series of Code based on these states.
  * State 1) Clear framebuffer
  * State 2) Run menus
  * State 3) Process race related logic
  * State 4) Ending sequence
  * State 5) Credits
  *
- * Note that the state doesn't flip-flop at random but is permanent
- * until the state changes (ie. Exit menus and start a race).
+ * Note that the State doesn't flip-flop at random but is permanent
+ * until the State Changes (ie. Exit menus and Start a race).
  */
 
-void execute_sequence(void) {
+void ExecuteSequence(void) {
 #if DVDL
-    if ((gControllerOne->ButtonHeld & L_TRIG) && (gControllerOne->ButtonHeld & R_TRIG) &&
-        (gControllerOne->ButtonHeld & Z_TRIG) && (gControllerOne->ButtonHeld & A_BUTTON)) {
-        g_NewSequenceMode = CREDITS_SEQUENCE;
-    } else if ((gControllerOne->ButtonHeld & L_TRIG) && (gControllerOne->ButtonHeld & R_TRIG) &&
-               (gControllerOne->ButtonHeld & Z_TRIG) && (gControllerOne->ButtonHeld & B_BUTTON)) {
-        g_NewSequenceMode = ENDING;
+    if ((ControllerOne->ButtonHeld & L_TRIG) && (ControllerOne->ButtonHeld & R_TRIG) &&
+        (ControllerOne->ButtonHeld & Z_TRIG) && (ControllerOne->ButtonHeld & A_BUTTON)) {
+        NewSequenceMode = CREDITS_SEQUENCE;
+    } else if ((ControllerOne->ButtonHeld & L_TRIG) && (ControllerOne->ButtonHeld & R_TRIG) &&
+               (ControllerOne->ButtonHeld & Z_TRIG) && (ControllerOne->ButtonHeld & B_BUTTON)) {
+        NewSequenceMode = ENDING;
     }
 #endif
 
-    switch (gGamestate) {
+    switch (GameState) {
         case 7:
-            boot_sequence();
+            BootSequence();
             break;
         case START_MENU_FROM_QUIT:
         case MAIN_MENU_FROM_QUIT:
@@ -908,14 +911,14 @@ void execute_sequence(void) {
             // Display black
             osViBlack(0);
             UpdateController();
-            begin_drawing();
-            doGameSelect(gDynamicP);
+            BeginDrawing();
+            DoGameSelect(DynamicP);
 #if DVDL
             display_dvdl();
 #endif
             break;
         case RACING:
-            race_sequence();
+            RaceSequence();
             break;
         case ENDING:
             ResultsSequence();
@@ -927,219 +930,219 @@ void execute_sequence(void) {
     PrintMenuFunctionDefault();
 }
 
-void yield_RSP_task(void) {
-    if (gActiveSPTask->task.t.type == M_GFXTASK) {
-        gActiveSPTask->state = SPTASK_STATE_INTERRUPTED;
+void YieldRSPTask(void) {
+    if (ActiveSPTask->Task.t.type == M_GFXTASK) {
+        ActiveSPTask->State = SPTASK_STATE_INTERRUPTED;
         osSpTaskYield();
     }
 }
 
-void get_task_message(void) {
+void GetTaskMessage(void) {
     UNUSED s32 pad;
-    struct SPTask* spTask;
+    struct SPTask* SPTask;
 
-    while (osRecvMesg(&gSPTaskMesgQueue, (OSMesg*) &spTask, OS_MESG_NOBLOCK) != -1) {
-        spTask->state = SPTASK_STATE_NOT_STARTED;
-        switch (spTask->task.t.type) {
+    while (osRecvMesg(&gSPTaskMesgQueue, (OSMesg*) &SPTask, OS_MESG_NOBLOCK) != -1) {
+        SPTask->State = SPTASK_STATE_NOT_STARTED;
+        switch (SPTask->Task.t.type) {
             case 2:
-                sNextAudioSPTask = spTask;
+                SNextAudioSPTask = SPTask;
                 break;
             case 1:
-                sNextDisplaySPTask = spTask;
+                SNextDisplaySPTask = SPTask;
                 break;
         }
     }
 
-    if (sCurrentAudioSPTask == NULL && sNextAudioSPTask != NULL) {
-        sCurrentAudioSPTask = sNextAudioSPTask;
-        sNextAudioSPTask = NULL;
+    if (SCurrentAudioSPTask == NULL && SNextAudioSPTask != NULL) {
+        SCurrentAudioSPTask = SNextAudioSPTask;
+        SNextAudioSPTask = NULL;
     }
-    if (sCurrentDisplaySPTask == NULL && sNextDisplaySPTask != NULL) {
-        sCurrentDisplaySPTask = sNextDisplaySPTask;
-        sNextDisplaySPTask = NULL;
+    if (SCurrentDisplaySPTask == NULL && SNextDisplaySPTask != NULL) {
+        SCurrentDisplaySPTask = SNextDisplaySPTask;
+        SNextDisplaySPTask = NULL;
     }
 }
 
-void set_client(s32 index, struct VblankHandler* handler, OSMesgQueue* queue, OSMesg* msg) {
-    handler->queue = queue;
+void SetClient(s32 Index, struct VblankHandler* handler, OSMesgQueue* Queue, OSMesg* msg) {
+    handler->Queue = Queue;
     handler->msg = msg;
-    switch (index) {
+    switch (Index) {
         case 1:
-            gVblankHandler1 = handler;
+            VblankHandler1 = handler;
             break;
         case 2:
-            gVblankHandler2 = handler;
+            VblankHandler2 = handler;
             break;
     }
 }
 
-void start_gfx_task(void) {
-    if (gActiveSPTask == NULL && sCurrentDisplaySPTask != NULL &&
-        sCurrentDisplaySPTask->state == SPTASK_STATE_NOT_STARTED) {
+void StartGFXTask(void) {
+    if (ActiveSPTask == NULL && SCurrentDisplaySPTask != NULL &&
+        SCurrentDisplaySPTask->State == SPTASK_STATE_NOT_STARTED) {
         SetGraphRCPTime(TASKS_QUEUED);
-        start_RSP_task(M_GFXTASK);
+        StartRSPTask(M_GFXTASK);
     }
 }
 
-void interrupt_sequence(void) {
-    timer += V_BlANK_TIMER_ITER;
-    videoframe++;
+void InterruptSequence(void) {
+    Timer += V_BlANK_TIMER_ITER;
+    Videoframe++;
 
-    get_task_message();
+    GetTaskMessage();
 
-    // First try to kick off an audio task. If the gfx task is currently
-    // running, we need to asynchronously interrupt it -- rsp_done_sequence
-    // will pick up on what we're doing and start the audio task for us.
-    // If there is already an audio task running, there is nothing to do.
-    // If there is no audio task available, try a gfx task instead.
-    if (sCurrentAudioSPTask != NULL) {
-        if (gActiveSPTask != NULL) {
-            yield_RSP_task();
+    // First try to kick off an audio Task. If the gfx Task is currently
+    // running, we need to asynchronously interrupt it -- RSPDoneSequence
+    // will pick up on what we're doing and Start the audio Task for us.
+    // If there is already an audio Task running, there is nothing to do.
+    // If there is no audio Task available, try a gfx Task instead.
+    if (SCurrentAudioSPTask != NULL) {
+        if (ActiveSPTask != NULL) {
+            YieldRSPTask();
         } else {
             SetAudioRCPTime();
-            start_RSP_task(M_AUDTASK);
+            StartRSPTask(M_AUDTASK);
         }
     } else {
-        if (gActiveSPTask == NULL && sCurrentDisplaySPTask != NULL &&
-            sCurrentDisplaySPTask->state != SPTASK_STATE_FINISHED) {
+        if (ActiveSPTask == NULL && SCurrentDisplaySPTask != NULL &&
+            SCurrentDisplaySPTask->State != SPTASK_STATE_FINISHED) {
             SetGraphRCPTime(TASKS_QUEUED);
-            start_RSP_task(M_GFXTASK);
+            StartRSPTask(M_GFXTASK);
         }
     }
 
-/* This is where I would put my rumble code... If I had any. */
+/* This is where I would put my rumble Code... If I had any. */
 #if ENABLE_RUMBLE
     rumble_thread_update_vi();
 #endif
 
-    if (gVblankHandler1 != NULL) {
-        osSendMesg(gVblankHandler1->queue, gVblankHandler1->msg, OS_MESG_NOBLOCK);
+    if (VblankHandler1 != NULL) {
+        osSendMesg(VblankHandler1->Queue, VblankHandler1->msg, OS_MESG_NOBLOCK);
     }
-    if (gVblankHandler2 != NULL) {
-        osSendMesg(gVblankHandler2->queue, gVblankHandler2->msg, OS_MESG_NOBLOCK);
+    if (VblankHandler2 != NULL) {
+        osSendMesg(VblankHandler2->Queue, VblankHandler2->msg, OS_MESG_NOBLOCK);
     }
 }
 
-void rdp_done_sequence(void) {
-    // Gfx SP task is completely done.
-    if (sCurrentDisplaySPTask->msgqueue != NULL) {
-        osSendMesg(sCurrentDisplaySPTask->msgqueue, sCurrentDisplaySPTask->msg, OS_MESG_NOBLOCK);
+void RDPDoneSequence(void) {
+    // Gfx SP Task is completely done.
+    if (SCurrentDisplaySPTask->Msgqueue != NULL) {
+        osSendMesg(SCurrentDisplaySPTask->Msgqueue, SCurrentDisplaySPTask->msg, OS_MESG_NOBLOCK);
     }
     SetGraphRCPTime(RDP_COMPLETE);
-    sCurrentDisplaySPTask->state = SPTASK_STATE_FINISHED_DP;
-    sCurrentDisplaySPTask = NULL;
+    SCurrentDisplaySPTask->State = SPTASK_STATE_FINISHED_DP;
+    SCurrentDisplaySPTask = NULL;
 }
 
-void rsp_done_sequence(void) {
-    struct SPTask* curSPTask = gActiveSPTask;
+void RSPDoneSequence(void) {
+    struct SPTask* curSPTask = ActiveSPTask;
 
-    gActiveSPTask = NULL;
+    ActiveSPTask = NULL;
 
-    if (curSPTask->state == SPTASK_STATE_INTERRUPTED) {
-        // interrupt_sequence tried to start an audio task while there was already a
-        // gfx task running, so it had to interrupt the gfx task. That interruption
-        // just finished.
+    if (curSPTask->State == SPTASK_STATE_INTERRUPTED) {
+        // InterruptSequence tried to Start an audio Task while there was already a
+        // gfx Task running, so it had to interrupt the gfx Task. That interruption
+        // just Finished.
         if (osSpTaskYielded((OSTask*) curSPTask) == 0) {
-            // The gfx task completed before we had time to interrupt it.
-            // Mark it finished, just like below.
-            curSPTask->state = SPTASK_STATE_FINISHED;
+            // The gfx Task completed before we had Time to interrupt it.
+            // Mark it Finished, just like below.
+            curSPTask->State = SPTASK_STATE_FINISHED;
             SetGraphRCPTime(RSP_COMPLETE);
         }
-        // Start the audio task, as expected by interrupt_sequence.
+        // Start the audio Task, as expected by InterruptSequence.
         SetAudioRCPTime();
-        start_RSP_task(M_AUDTASK);
+        StartRSPTask(M_AUDTASK);
     } else {
-        curSPTask->state = SPTASK_STATE_FINISHED;
-        if (curSPTask->task.t.type == M_AUDTASK) {
+        curSPTask->State = SPTASK_STATE_FINISHED;
+        if (curSPTask->Task.t.type == M_AUDTASK) {
             // After audio tasks come gfx tasks.
             SetAudioRCPTime();
-            if (sCurrentDisplaySPTask != NULL) {
-                if (sCurrentDisplaySPTask->state != SPTASK_STATE_FINISHED) {
-                    if (sCurrentDisplaySPTask->state != SPTASK_STATE_INTERRUPTED) {
+            if (SCurrentDisplaySPTask != NULL) {
+                if (SCurrentDisplaySPTask->State != SPTASK_STATE_FINISHED) {
+                    if (SCurrentDisplaySPTask->State != SPTASK_STATE_INTERRUPTED) {
                         SetGraphRCPTime(TASKS_QUEUED);
                     }
-                    start_RSP_task(M_GFXTASK);
+                    StartRSPTask(M_GFXTASK);
                 }
             }
-            sCurrentAudioSPTask = NULL;
-            if (curSPTask->msgqueue != NULL) {
-                osSendMesg(curSPTask->msgqueue, curSPTask->msg, OS_MESG_NOBLOCK);
+            SCurrentAudioSPTask = NULL;
+            if (curSPTask->Msgqueue != NULL) {
+                osSendMesg(curSPTask->Msgqueue, curSPTask->msg, OS_MESG_NOBLOCK);
             }
         } else {
             // The SP process is done, but there is still a Display Processor notification
-            // that needs to arrive before we can consider the task completely finished and
-            // null out sCurrentDisplaySPTask. That happens in rdp_done_sequence.
+            // that needs to arrive before we can consider the Task completely Finished and
+            // Null out SCurrentDisplaySPTask. That happens in RDPDoneSequence.
             SetGraphRCPTime(RSP_COMPLETE);
         }
     };
 }
 
-void mainproc(UNUSED void* arg0) {
+void Mainproc(UNUSED void* arg0) {
     s32 i;
     u64* framebuffer1;
     OSMesg msg;
     UNUSED s32 pad[4];
 
-    g_CfbPtrs[0] = (u16*) &gFramebuffer0;
-    g_CfbPtrs[1] = (u16*) &gFramebuffer1;
-    g_CfbPtrs[2] = (u16*) &gFramebuffer2;
+    CfbPtrs[0] = (u16*) &Framebuffer0;
+    CfbPtrs[1] = (u16*) &Framebuffer1;
+    CfbPtrs[2] = (u16*) &Framebuffer2;
 
     // Clear framebuffer.
-    framebuffer1 = (u64*) &gFramebuffer1;
+    framebuffer1 = (u64*) &Framebuffer1;
     for (i = 0; i < 19200; i++) {
         framebuffer1[i] = 0;
     }
-    setup_messagequeue();
+    SetupMessagequeue();
     InitializeSystemWorks();
 
-    SysCreateThread(&gAudioThread, 4, &audioproc, 0, gAudioThreadStack + ARRAY_COUNT(gAudioThreadStack), 20);
-    osStartThread(&gAudioThread);
+    SysCreateThread(&AudioThread, 4, &Audioproc, 0, AudioThreadStack + ARRAY_COUNT(AudioThreadStack), 20);
+    osStartThread(&AudioThread);
 
-    SysCreateThread(&gGameLoopThread, 5, &gameproc, 0, gGameLoopThreadStack + ARRAY_COUNT(gGameLoopThreadStack),
+    SysCreateThread(&GameLoopThread, 5, &Gameproc, 0, GameLoopThreadStack + ARRAY_COUNT(GameLoopThreadStack),
                   10);
-    osStartThread(&gGameLoopThread);
+    osStartThread(&GameLoopThread);
 
     while (true) {
-        osRecvMesg(&gIntrMesgQueue, &msg, OS_MESG_BLOCK);
+        osRecvMesg(&IntrMesgQueue, &msg, OS_MESG_BLOCK);
         switch ((u32) msg) {
             case MESG_VI_VBLANK:
-                interrupt_sequence();
+                InterruptSequence();
                 break;
             case MESG_SP_COMPLETE:
-                rsp_done_sequence();
+                RSPDoneSequence();
                 break;
             case MESG_DP_COMPLETE:
-                rdp_done_sequence();
+                RDPDoneSequence();
                 break;
             case MESG_START_GFX_SPTASK:
-                start_gfx_task();
+                StartGFXTask();
                 break;
         }
     }
 }
 
-void initial_gameselect_sequence(void) {
+void InitialGameselectSequence(void) {
     InitMKCode();
-    g_ScreenSplitA = SCREEN_MODE_1P;
-    initital_perspective();
+    ScreenSplitA = SCREEN_MODE_1P;
+    InititalPerspective();
 }
 
-void initial_kartselect_sequence(void) {
+void InitialKartselectSequence(void) {
     InitMKCode();
-    g_ScreenSplitA = SCREEN_MODE_1P;
-    initital_perspective();
+    ScreenSplitA = SCREEN_MODE_1P;
+    InititalPerspective();
 }
 
-void initial_mapselect_sequence(void) {
+void InitialMapselectSequence(void) {
     InitMKCode();
-    g_ScreenSplitA = SCREEN_MODE_1P;
-    initital_perspective();
+    ScreenSplitA = SCREEN_MODE_1P;
+    InititalPerspective();
 }
 
-void initial_title_sequence(void) {
+void InitialTitleSequence(void) {
     InitMKCode();
-    g_ScreenSplitA = SCREEN_MODE_1P;
-    initital_perspective();
+    ScreenSplitA = SCREEN_MODE_1P;
+    InititalPerspective();
 }
 
 /**
@@ -1147,101 +1150,101 @@ void initial_title_sequence(void) {
  *
  *
  */
-void initialize_sequence(void) {
-    switch (gGamestate) {
+void InitializeSequence(void) {
+    switch (GameState) {
         case START_MENU_FROM_QUIT:
-            initial_title_sequence();
-            g_loadedcourseFlag = COURSE_NULL;
+            InitialTitleSequence();
+            LoadedcourseFlag = COURSE_NULL;
             break;
         case MAIN_MENU_FROM_QUIT:
-            initial_gameselect_sequence();
-            g_loadedcourseFlag = COURSE_NULL;
+            InitialGameselectSequence();
+            LoadedcourseFlag = COURSE_NULL;
             break;
         case PLAYER_SELECT_MENU_FROM_QUIT:
-            initial_kartselect_sequence();
-            g_loadedcourseFlag = COURSE_NULL;
+            InitialKartselectSequence();
+            LoadedcourseFlag = COURSE_NULL;
             break;
         case COURSE_SELECT_MENU_FROM_QUIT:
-            initial_mapselect_sequence();
-            g_loadedcourseFlag = COURSE_NULL;
+            InitialMapselectSequence();
+            LoadedcourseFlag = COURSE_NULL;
             break;
         case RACING:
             InitialRaceSequence();
             break;
         case ENDING:
-            g_loadedcourseFlag = COURSE_NULL;
-            init_excode();
-            initial_result_sequence();
+            LoadedcourseFlag = COURSE_NULL;
+            InitExcode();
+            InitialResultSequence();
             break;
         case CREDITS_SEQUENCE:
-            g_loadedcourseFlag = COURSE_NULL;
-            init_excode();
+            LoadedcourseFlag = COURSE_NULL;
+            InitExcode();
             InitializeEndingSequence();
             break;
     }
 }
 
-void gameproc(UNUSED void* arg) {
-    osCreateMesgQueue(&gGfxVblankQueue, gGfxMesgBuf, 1);
-    osCreateMesgQueue(&gGameVblankQueue, &gGameMesgBuf, 1);
+void Gameproc(UNUSED void* arg) {
+    osCreateMesgQueue(&GfxVblankQueue, GfxMesgBuf, 1);
+    osCreateMesgQueue(&GameVblankQueue, &GameMesgBuf, 1);
     InitControllers();
-    if (!resert_type) {
-        initialize_first_once();
+    if (!ResertType) {
+        InitializeFirstOnce();
     }
 
-    set_client(2, &gGameVblankHandler, &gGameVblankQueue, (OSMesg) OS_EVENT_SW2);
-    // These variables track stats such as player wins.
+    SetClient(2, &GameVblankHandler, &GameVblankQueue, (OSMesg) OS_EVENT_SW2);
+    // These variables track stats such as Player wins.
     // In the event of a console reset, it remembers them.
-    wincount2p = &pAppNmiBuffer[0]; // 2  u8's, tracks number of times player 1/2 won a VS race
-    wincount3p =
-        &pAppNmiBuffer[2]; // 9  u8's, 3x3, tracks number of times player 1/2/3   has placed in 1st/2nd/3rd in a VS race
-    wincount4p = &pAppNmiBuffer[11]; // 12 u8's, 4x3, tracks number of times player 1/2/3/4 has placed in 1st/2nd/3rd
+    Wincount2P = &PAppNmiBuffer[0]; // 2  u8's, tracks Number of times Player 1/2 won a VS race
+    Wincount3P =
+        &PAppNmiBuffer[2]; // 9  u8's, 3x3, tracks Number of times Player 1/2/3   has placed in 1st/2nd/3rd in a VS race
+    Wincount4P = &PAppNmiBuffer[11]; // 12 u8's, 4x3, tracks Number of times Player 1/2/3/4 has placed in 1st/2nd/3rd
                                        // in a VS race
-    battlewincount2p = &pAppNmiBuffer[23]; // 2  u8's, tracking number of Battle mode wins by player 1/2
-    battlewincount3p = &pAppNmiBuffer[25]; // 3  u8's, tracking number of Battle mode wins by player 1/2/3
-    battlewincount4p = &pAppNmiBuffer[28]; // 4  u8's, tracking number of Battle mode wins by player 1/2/3/4
-    initial_gameframe();
-    readControllers();
-    Nai_InitInterface();
+    Battlewincount2P = &PAppNmiBuffer[23]; // 2  u8's, tracking Number of Battle Mode wins by Player 1/2
+    Battlewincount3P = &PAppNmiBuffer[25]; // 3  u8's, tracking Number of Battle Mode wins by Player 1/2/3
+    Battlewincount4P = &PAppNmiBuffer[28]; // 4  u8's, tracking Number of Battle Mode wins by Player 1/2/3/4
+    InitialGameframe();
+    ReadControllers();
+    NaiInitInterface();
 
     while (true) {
-        Nas_AudioInput();
+        NasAudioInput();
 
         // Update the gamestate if it has changed (racing, menus, credits, etc.).
-        if (g_NewSequenceMode != gGamestate) {
-            gGamestate = g_NewSequenceMode;
-            initialize_sequence();
+        if (NewSequenceMode != GameState) {
+            GameState = NewSequenceMode;
+            InitializeSequence();
         }
         SetGraphCPUTime(THREAD5_START);
-        begin_gameframe();
-        readControllers();
-        execute_sequence();
-        end_drawing();
-        flush_displaylist();
-        allRunDefault();
+        BeginGameframe();
+        ReadControllers();
+        ExecuteSequence();
+        EndDrawing();
+        FlushDisplaylist();
+        AllRunDefault();
     }
 }
 
 /**
  * Sound processing thread. Runs at 50 or 60 FPS according to osTvType.
  */
-void audioproc(UNUSED void* arg) {
-    UNUSED u32 unused[3];
-    Nas_InitAudio();
-    osCreateMesgQueue(&sSoundMesgQueue, sSoundMesgBuf, ARRAY_COUNT(sSoundMesgBuf));
-    set_client(1, &sSoundVblankHandler, &sSoundMesgQueue, (OSMesg) 512);
+void Audioproc(UNUSED void* arg) {
+    UNUSED u32 Unused[3];
+    NasInitAudio();
+    osCreateMesgQueue(&SSoundMesgQueue, SSoundMesgBuf, ARRAY_COUNT(SSoundMesgBuf));
+    SetClient(1, &SSoundVblankHandler, &SSoundMesgQueue, (OSMesg) 512);
 
     while (true) {
         OSMesg msg;
-        struct SPTask* spTask;
+        struct SPTask* SPTask;
 
-        osRecvMesg(&sSoundMesgQueue, &msg, OS_MESG_BLOCK);
+        osRecvMesg(&SSoundMesgQueue, &msg, OS_MESG_BLOCK);
 
         SetAudioCPUTime();
 
-        spTask = Nas_AudioMain();
-        if (spTask != NULL) {
-            set_RSP_task(spTask);
+        SPTask = NasAudioMain();
+        if (SPTask != NULL) {
+            SetRSPTask(SPTask);
         }
         SetAudioCPUTime();
     }

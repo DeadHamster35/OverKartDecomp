@@ -1,2 +1,2 @@
-extern void GFX_Frame(void);
-extern void GFX_Net(void);
+extern void GFXFrame(void);
+extern void GFXNet(void);

@@ -2593,7 +2593,7 @@ CenterPathStruct d_course_toads_turnpike_track_path[] = {
 };
 
 // 0x59B8
-// Appears to be two windshields? Leaf texture or mask?
+// Appears to be two windshields? Leaf Texture or mask?
 u8 d_course_toads_turnpike_unk_windshield1[] = {
 #include "assets/courses/toads_turnpike/gTextureToadsTurnpikeTruckWindshieldLeft.inc.c"
 };
@@ -2637,7 +2637,7 @@ u8 d_course_toads_turnpike_bus_side[] = {
 #include "assets/courses/toads_turnpike/gTextureToadsTurnpikeBusSide.inc.c"
 };
 
-// 0xB1B8 Bus is right-hand drive. High resolution
+// 0xB1B8 Bus is Right-hand drive. High resolution
 u8 d_course_toads_turnpike_bus_door_lod0[] = {
 #include "assets/courses/toads_turnpike/gTextureToadsTurnpikeBusDoorLod0.inc.c"
 };
@@ -2652,7 +2652,7 @@ u8 d_course_toads_turnpike_bus_front_lod0[] = {
 #include "assets/courses/toads_turnpike/gTextureToadsTurnpikeBusFrontLod0.inc.c"
 };
 
-// 0xD1B8 Black fill
+// 0xD1B8 Black Fill
 u8 d_course_toads_turnpike_black[] = {
 #include "assets/courses/toads_turnpike/gTextureToadsTurnpikeBusUnknown1.inc.c"
 };

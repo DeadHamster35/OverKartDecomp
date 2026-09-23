@@ -8,9 +8,9 @@
 
 void Sikartdma(Player*, s8, s8, s8, s8);
 void Pakartdma(Player*, s8, s8, s8, s8);
-void Iinitcol_dma(Player*, s8, s8, s8);
-void tirecol_dma_Si(Player*, s32, void*, u16);
-void tirecol_dma_Pa(Player*, s32, void*, u16);
+void IinitcolDMA(Player*, s8, s8, s8);
+void TirecolDMASi(Player*, s32, void*, u16);
+void TirecolDMAPa(Player*, s32, void*, u16);
 
 /* This is where I'd put my static data, if I had any */
 

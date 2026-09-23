@@ -31,85 +31,85 @@ s32 D_802874A0;
 // s32 D_802874A4[5];
 
 void func_80280000(void) {
-    map_strategy();
+    MapStrategy();
     KWVideoFramesYori();
     KWVideoFramesYori();
-    kwgameframesyori();
+    Kwgameframesyori();
 }
 
 void func_80280038(void) {
     u16 perspNorm;
-    Camera* camera = &cameras[0];
+    Camera* Camera = &Cameras[0];
     UNUSED s32 pad;
-    Mat4 matrix;
+    Mat4 Matrix;
 
-    gMatrixCount = 0;
-    effectcount = 0;
-    modelingnum = 0;
+    MatrixCount = 0;
+    Effectcount = 0;
+    Modelingnum = 0;
     InitRDP();
     InitialDrawCommon();
     InitRDP();
-    kwdisplay_kumo(0);
+    KwdisplayKumo(0);
 
-    gSPSetGeometryMode(gDisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
-    guPerspective(&gDynamicP->mtxPersp[0], &perspNorm, gCameraZoom[0], g_aspectRatio, screen_near_point, g_farClip,
+    gSPSetGeometryMode(DisplayListHead++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_SHADING_SMOOTH);
+    guPerspective(&DynamicP->MTXPersp[0], &perspNorm, CameraZoom[0], AspectRatio, ScreenNearPoint, FarClip,
                   1.0f);
-    gSPPerspNormalize(gDisplayListHead++, perspNorm);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxPersp[0]),
+    gSPPerspNormalize(DisplayListHead++, perspNorm);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXPersp[0]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
-    guLookAt(&gDynamicP->mtxLookAt[0], camera->camera_pos[0], camera->camera_pos[1], camera->camera_pos[2], camera->lookat_pos[0],
-             camera->lookat_pos[1], camera->lookat_pos[2], camera->up_vector[0], camera->up_vector[1], camera->up_vector[2]);
-    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(&gDynamicP->mtxLookAt[0]),
+    guLookAt(&DynamicP->MTXLookAt[0], Camera->CameraPos[0], Camera->CameraPos[1], Camera->CameraPos[2], Camera->LookatPos[0],
+             Camera->LookatPos[1], Camera->LookatPos[2], Camera->UpVector[0], Camera->UpVector[1], Camera->UpVector[2]);
+    gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXLookAt[0]),
               G_MTX_NOPUSH | G_MTX_MUL | G_MTX_PROJECTION);
-    g_courseID = gCreditsCourseId;
-    LoadIdentAffineMtx(matrix);
-    SetMatrix(matrix, 0);
-    display_map(D_800DC5EC);
-    display_object(D_800DC5EC);
-    kwdisplay3D(PLAYER_ONE + SCREEN_MODE_1P);
-    kwdisplay3D_after(PLAYER_ONE + SCREEN_MODE_1P);
-    ceremony_transition_sliding_borders();
+    CourseID = CreditsCourseId;
+    LoadIdentAffineMtx(Matrix);
+    SetMatrix(Matrix, 0);
+    DisplayMap(D_800DC5EC);
+    DisplayCourseObject(D_800DC5EC);
+    Kwdisplay3D(PLAYER_ONE + SCREEN_MODE_1P);
+    Kwdisplay3DAfter(PLAYER_ONE + SCREEN_MODE_1P);
+    CeremonyTransitionSlidingBorders();
     func_80281C40();
     InitRDP();
-    kawanoDrawResult();
+    KawanoDrawResult();
     InitRDP();
 }
 
-void mapchange(s32 arg0) {
-    g_fadeOutFlag = 1;
-    g_fadeOutCounter = 5;
+void Mapchange(s32 arg0) {
+    FadeOutFlag = 1;
+    FadeOutCounter = 5;
     D_802874A0 = 1;
     if ((arg0 < 0) || ((arg0 >= 20))) {
         arg0 = 0;
     }
-    gCreditsCourseId = arg0;
+    CreditsCourseId = arg0;
 }
 
 void EndingSequence(void) {
-    Camera* camera = &cameras[0];
+    Camera* Camera = &Cameras[0];
 
     f32 temp_f12;
     f32 temp;
     f32 temp_f14;
 
     D_802874A0 = 0;
-    if (g_fadeOutFlag) {
-        g_fadeOutCounter--;
-        if (g_fadeOutCounter == 0) {
-            g_fadeOutFlag = 0;
-            g_NewSequenceMode = CREDITS_SEQUENCE;
-            gGamestate = 255;
+    if (FadeOutFlag) {
+        FadeOutCounter--;
+        if (FadeOutCounter == 0) {
+            FadeOutFlag = 0;
+            NewSequenceMode = CREDITS_SEQUENCE;
+            GameState = 255;
         }
     } else {
 
         D_802874FC = 0;
-        Grou_camdemo_main(camera);
-        temp_f12 = camera->lookat_pos[0] - camera->camera_pos[0];
-        temp = camera->lookat_pos[1] - camera->camera_pos[1];
-        temp_f14 = camera->lookat_pos[2] - camera->camera_pos[2];
-        camera->camera_direction[1] = Atan2t(temp_f12, temp_f14);
-        camera->camera_direction[0] = Atan2t(sqrtf((temp_f12 * temp_f12) + (temp_f14 * temp_f14)), temp);
-        camera->camera_direction[2] = 0;
+        GrouCamdemoMain(Camera);
+        temp_f12 = Camera->LookatPos[0] - Camera->CameraPos[0];
+        temp = Camera->LookatPos[1] - Camera->CameraPos[1];
+        temp_f14 = Camera->LookatPos[2] - Camera->CameraPos[2];
+        Camera->CameraDirection[1] = Atan2t(temp_f12, temp_f14);
+        Camera->CameraDirection[0] = Atan2t(sqrtf((temp_f12 * temp_f12) + (temp_f14 * temp_f14)), temp);
+        Camera->CameraDirection[2] = 0;
         if (D_802874A0 != 0) {
             D_800DC5E4++;
         } else {
@@ -118,63 +118,63 @@ void EndingSequence(void) {
 #if DVDL
             display_dvdl();
 #endif
-            gDPFullSync(gDisplayListHead++);
-            gSPEndDisplayList(gDisplayListHead++);
+            gDPFullSync(DisplayListHead++);
+            gSPEndDisplayList(DisplayListHead++);
         }
     }
 }
 
 void InitializeEndingSequence(void) {
-    Camera* camera = &cameras[0];
+    Camera* Camera = &Cameras[0];
 
-    g_courseID = gCreditsCourseId;
-    gBackgroundFlag = 1;
-    g_DisplayFlag = 1;
-    initital_perspective();
-    initial_screen_data();
-    camera->screen_view_angle = 60.0f;
-    gCameraZoom[0] = 60.0f;
-    D_800DC5EC->width = SCREEN_WIDTH;
-    D_800DC5EC->height = SCREEN_HEIGHT;
-    D_800DC5EC->posx = 160;
-    D_800DC5EC->posy = 120;
-    g_ScreenSplitB = SCREEN_MODE_1P;
-    g_ScreenSplitA = SCREEN_MODE_1P;
+    CourseID = CreditsCourseId;
+    BackgroundFlag = 1;
+    DisplayFlag = 1;
+    InititalPerspective();
+    InitialScreenData();
+    Camera->ScreenViewAngle = 60.0f;
+    CameraZoom[0] = 60.0f;
+    D_800DC5EC->Width = SCREEN_WIDTH;
+    D_800DC5EC->Height = SCREEN_HEIGHT;
+    D_800DC5EC->Posx = 160;
+    D_800DC5EC->Posy = 120;
+    ScreenSplitB = SCREEN_MODE_1P;
+    ScreenSplitA = SCREEN_MODE_1P;
     FreeMemoryPointer = StaticMemoryPointer;
     VertexMemoryPointer = VERTEX_MEMORY_TOP;
     ObjectMemoryPointer = (uintptr_t) ok_ObjectPoolStart;
-    load_course(g_courseID);
-    map_memory_pointer = FreeMemoryPointer;
-    SetSegment(0xB, (void*) load_press_data((u8*) CEREMONY_DATA_ROM_START, (u8*) CEREMONY_DATA_ROM_END));
+    LoadCourse(CourseID);
+    MapMemoryPointer = FreeMemoryPointer;
+    SetSegment(0xB, (void*) LoadPressData((u8*) CEREMONY_DATA_ROM_START, (u8*) CEREMONY_DATA_ROM_END));
     CheckCourseMemoryHighWater();
 
-    minimum_x = -0x15A1;
-    minimum_y = -0x15A1;
-    minimum_z = -0x15A1;
+    MinimumX = -0x15A1;
+    MinimumY = -0x15A1;
+    MinimumZ = -0x15A1;
 
-    maximum_x = 0x15A1;
-    maximum_y = 0x15A1;
-    maximum_z = 0x15A1;
-    wall_flag = 0;
-    flat_flag = 0;
-    facenumber = 0;
-    g_courseFaceMaxIndex = 0;
-    g_skyToggle = 0;
-    g_fadeOutCounter2 = 0;
-    gFaceBuffer = (FaceStruct*) FACE_BUFFER_START;
-    camera->camera_pos[0] = 1400.0f;
-    camera->camera_pos[1] = 300.0f;
-    camera->camera_pos[2] = 1400.0f;
-    camera->lookat_pos[0] = 0.0f;
-    camera->lookat_pos[1] = 0.0f;
-    camera->lookat_pos[2] = 0.0f;
-    camera->up_vector[0] = 0.0f;
-    camera->up_vector[1] = 1.0f;
-    camera->up_vector[2] = 0.0f;
-    Grou_camdemo_init();
-    initial_ending_map();
-    initialize_params();
-    init_kawanoResult();
+    MaximumX = 0x15A1;
+    MaximumY = 0x15A1;
+    MaximumZ = 0x15A1;
+    WallFlag = 0;
+    FlatFlag = 0;
+    Facenumber = 0;
+    CourseFaceMaxIndex = 0;
+    SkyToggle = 0;
+    FadeOutCounter2 = 0;
+    FaceBuffer = (FaceStruct*) FACE_BUFFER_START;
+    Camera->CameraPos[0] = 1400.0f;
+    Camera->CameraPos[1] = 300.0f;
+    Camera->CameraPos[2] = 1400.0f;
+    Camera->LookatPos[0] = 0.0f;
+    Camera->LookatPos[1] = 0.0f;
+    Camera->LookatPos[2] = 0.0f;
+    Camera->UpVector[0] = 0.0f;
+    Camera->UpVector[1] = 1.0f;
+    Camera->UpVector[2] = 0.0f;
+    GrouCamdemoInit();
+    InitialEndingMap();
+    InitializeParams();
+    InitKawanoResult();
     StartKawanoEnding();
     if (D_800DC5EC) {}
     D_801625F8 = ((s32) LastMemoryPointer - FreeMemoryPointer);

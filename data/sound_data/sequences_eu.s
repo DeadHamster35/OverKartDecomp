@@ -6,7 +6,7 @@
 .section .data
 
 .ifdef VERSION_EU
-# music sequence table
+# music sequence Table
 glabel music_sequence_table_header
 .hword 3, ((music_sequence_table_end - music_sequence_table) / 8) - 1 # this should be 30...
 glabel music_sequence_table

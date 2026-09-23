@@ -42,10 +42,10 @@ extern Gfx Draw_GoldCoin_M[];
 extern Gfx Draw_RedCoin_M[];
 
 
-extern uint GoldCoin_GFX[];
-extern uint RedCoin_GFX[];
-extern uint BlueCoin_GFX[];
-extern uint BattleMushroom_Red_GFX[];
-extern uint BattleFlag_Red_GFX[];
-extern uint *FlagModels[];
-extern uint *MushroomModels[];
+extern Uint GoldCoin_GFX[];
+extern Uint RedCoin_GFX[];
+extern Uint BlueCoin_GFX[];
+extern Uint BattleMushroom_Red_GFX[];
+extern Uint BattleFlag_Red_GFX[];
+extern Uint *FlagModels[];
+extern Uint *MushroomModels[];

@@ -5,7 +5,7 @@
 
 .data
 
-# 641F70-72421F: standalone textures
+# 641F70-72421F: standalone Textures
 
 .balign 4, 0x00
 glabel gTextureSignShellShot0

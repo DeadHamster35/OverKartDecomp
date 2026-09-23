@@ -22,405 +22,405 @@
 
 s32 D_8018D900[8];
 s16 D_8018D920[8];
-s32 g_StarUseCounter[8];
-s32 g_GhostUseCounter[8];
-s32 g_GhostUseTimer[8]; // Used for the alpha of the other screens in split-screen mode
+s32 StarUseCounter[8];
+s32 GhostUseCounter[8];
+s32 GhostUseTimer[8]; // Used for the Alpha of the other screens in split-screen Mode
 s32 D_8018D990[8];
 
-UNUSED void kwGetTimeInit(void) {
+UNUSED void KWGetTimeInit(void) {
 }
 
-s32 kwStartTime(UNUSED s32* arg0) {
+s32 KWStartTime(UNUSED s32* arg0) {
 }
 
-void kwGetTime(UNUSED s32* arg0, UNUSED s32 arg1) {
+void KWGetTime(UNUSED s32* arg0, UNUSED s32 arg1) {
     arg1 = 4;
 }
 
-UNUSED void kwAddTime(UNUSED s32 arg0) {
+UNUSED void KWAddTime(UNUSED s32 arg0) {
 }
 
-UNUSED void kwGetLine(UNUSED s32 arg0) {
+UNUSED void KWGetLine(UNUSED s32 arg0) {
 }
 
-UNUSED void kwSetTime(void) {
+UNUSED void KWSetTime(void) {
 }
 
-void kwdebug(void) {
+void Kwdebug(void) {
 }
 
-UNUSED void kwdebug_items(void) {
+UNUSED void KwdebugItems(void) {
 }
 
-UNUSED void kwdebug_rcp(void) {
+UNUSED void KwdebugRcp(void) {
 }
 
-UNUSED void debugsyori_test(void) {
+UNUSED void DebugsyoriTest(void) {
 }
 
-UNUSED void kwdebug_anmbreak(void) {
+UNUSED void KwdebugAnmbreak(void) {
 }
 
-UNUSED void kwdebug_mtxkazu(void) {
+UNUSED void KwdebugMtxkazu(void) {
 }
 
-UNUSED void kwdebug_gptrkazu(void) {
+UNUSED void KwdebugGptrkazu(void) {
 }
 
-UNUSED void kwdebug_kumoram(void) {
+UNUSED void KwdebugKumoram(void) {
 }
 
-UNUSED void kwdebug_rmonprint_1p(void) {
+UNUSED void KwdebugRmonprint1P(void) {
 }
-UNUSED void debugsyori_1p(void) {
+UNUSED void Debugsyori1P(void) {
 }
-UNUSED void debugsyori_2p_lr(void) {
+UNUSED void Debugsyori2PLr(void) {
 }
-UNUSED void debugsyori_2p_ud(void) {
+UNUSED void Debugsyori2PUd(void) {
 }
-UNUSED void debugsyori_4p_kleft(void) {
+UNUSED void Debugsyori4PKleft(void) {
 }
-UNUSED void debugsyori_4p_kright(void) {
+UNUSED void Debugsyori4PKright(void) {
 }
-UNUSED void debugsyori_4p_kup(void) {
+UNUSED void Debugsyori4PKup(void) {
 }
-UNUSED void debugsyori_4p_kdown(void) {
+UNUSED void Debugsyori4PKdown(void) {
 }
-UNUSED void debugsyori_4p(void) {
+UNUSED void Debugsyori4P(void) {
 }
-UNUSED void kwdisplay_debug(void) {
+UNUSED void KwdisplayDebug(void) {
 }
-UNUSED void kwdebug_print_common(void) {
+UNUSED void KwdebugPrintCommon(void) {
 }
-UNUSED void kwdebugprint_player_sub(void) {
+UNUSED void KwdebugprintPlayerSub(void) {
 }
-UNUSED void kwdebugprint_ogawa(void) {
+UNUSED void KwdebugprintOgawa(void) {
 }
 
-UNUSED void kwdebugprint_player(UNUSED s32 arg0, UNUSED s32 arg1) {
+UNUSED void KwdebugprintPlayer(UNUSED s32 arg0, UNUSED s32 arg1) {
     arg1 = 4;
 }
 
-UNUSED void kwdebugprint_syori(void) {
+UNUSED void KwdebugprintSyori(void) {
 }
 
-UNUSED void kwdebugprint_test(void) {
+UNUSED void KwdebugprintTest(void) {
 }
 
-UNUSED void kwdebugprint_1p(void) {
+UNUSED void Kwdebugprint1P(void) {
 }
 
-UNUSED void kwdebugprint_2p_left(void) {
+UNUSED void Kwdebugprint2PLeft(void) {
 }
 
-UNUSED void kwdebugprint_2p_right(void) {
+UNUSED void Kwdebugprint2PRight(void) {
 }
 
-UNUSED void kwdebugprint_2p_up(void) {
+UNUSED void Kwdebugprint2PUp(void) {
 }
 
-UNUSED void kwdebugprint_2p_down(void) {
+UNUSED void Kwdebugprint2PDown(void) {
 }
 
-UNUSED void kwdebugprint_4p_upleft(void) {
+UNUSED void Kwdebugprint4PUpleft(void) {
 }
 
-UNUSED void kwdebugprint_4p_upright(void) {
+UNUSED void Kwdebugprint4PUpright(void) {
 }
 
-UNUSED void kwdebugprint_4p_downleft(void) {
+UNUSED void Kwdebugprint4PDownleft(void) {
 }
 
-UNUSED void kwdebugprint_4p_downright(void) {
+UNUSED void Kwdebugprint4PDownright(void) {
 }
 
-void check_hit_letter(Player* player) {
+void CheckHitLetter(Player* Player) {
     // The << 9 is a hacky way to check for HIT_BOMB
-    if ((player->weapon & HIT_REDSHELL) || (player->weapon & HIT_GREENSHELL) ||
-        ((player->weapon << 9) < 0) || (player->weapon & HIT_BOMB_THROW)) {
-        player->talk = ((u16) player->talk | FLASH);
+    if ((Player->Weapon & HIT_REDSHELL) || (Player->Weapon & HIT_GREENSHELL) ||
+        ((Player->Weapon << 9) < 0) || (Player->Weapon & HIT_BOMB_THROW)) {
+        Player->Talk = ((u16) Player->Talk | FLASH);
     }
 }
 
-UNUSED void stop_strat(void) {
+UNUSED void StopStrat(void) {
 }
 
-void kill_strat(Player* player, s8 playerIndex) {
+void KillStrat(Player* Player, s8 playerIndex) {
 
-    if ((player->slip_flag & ROLLOVER) == ROLLOVER) {
-        reset_rollover(player, playerIndex);
+    if ((Player->SlipFlag & ROLLOVER) == ROLLOVER) {
+        ResetRollover(Player, playerIndex);
     }
 
-    if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-        (player->slip_flag & SPIN_R) == SPIN_R) {
-        reset_spin(player, playerIndex);
+    if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+        (Player->SlipFlag & SPIN_R) == SPIN_R) {
+        ResetSpin(Player, playerIndex);
     }
-    if ((player->slip_flag & WHEELSPIN) == WHEELSPIN) {
-        reset_wheelspin(player, playerIndex);
+    if ((Player->SlipFlag & WHEELSPIN) == WHEELSPIN) {
+        ResetWheelspin(Player, playerIndex);
     }
-    if ((player->handling_flag & SPINOUT_SWERVE) != 0) {
-        reset_pro_wheelspin(player, playerIndex);
+    if ((Player->HandlingFlag & SPINOUT_SWERVE) != 0) {
+        ResetProWheelspin(Player, playerIndex);
     }
-    if ((player->slip_flag & TURBO) == TURBO) {
-        reset_turbo(player);
+    if ((Player->SlipFlag & TURBO) == TURBO) {
+        ResetTurbo(Player);
     }
-    if ((player->slip_flag & WING) == WING) {
-        ResetWing(player);
+    if ((Player->SlipFlag & WING) == WING) {
+        ResetWing(Player);
     }
-    if ((player->slip_flag & STORM) == STORM) {
-        reset_storm(player);
+    if ((Player->SlipFlag & STORM) == STORM) {
+        ResetStorm(Player);
     }
-    if ((player->slip_flag & EXPLODE) == EXPLODE) {
-        reset_bomb(player, playerIndex);
+    if ((Player->SlipFlag & EXPLODE) == EXPLODE) {
+        ResetBomb(Player, playerIndex);
     }
-    if ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE) {
-        reset_bomb_throw(player, playerIndex);
+    if ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE) {
+        ResetBombThrow(Player, playerIndex);
     }
-    if ((player->slip_flag & DASH_JUMP) == DASH_JUMP) {
-        reset_dashjump(player);
+    if ((Player->SlipFlag & DASH_JUMP) == DASH_JUMP) {
+        ResetDashjump(Player);
     }
-    if ((player->slip_flag & DASH_MIDJUMP) == DASH_MIDJUMP) {
-        reset_dash_midjump(player);
+    if ((Player->SlipFlag & DASH_MIDJUMP) == DASH_MIDJUMP) {
+        ResetDashMidjump(Player);
     }
-    if ((player->slip_flag & RAPID_ACC) == RAPID_ACC) {
-        reset_rapidacc(player);
+    if ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC) {
+        ResetRapidacc(Player);
     }
-    if ((player->slip_flag & ROLLOVER_FALL) == ROLLOVER_FALL) {
-        ResetRolloverFall(player, playerIndex);
+    if ((Player->SlipFlag & ROLLOVER_FALL) == ROLLOVER_FALL) {
+        ResetRolloverFall(Player, playerIndex);
     }
-    if ((player->slip_flag & HEIGHT_JUMP) == HEIGHT_JUMP) {
-        reset_height_jump(player, playerIndex);
+    if ((Player->SlipFlag & HEIGHT_JUMP) == HEIGHT_JUMP) {
+        ResetHeightJump(Player, playerIndex);
     }
-    player->handling_flag = (s16) (player->handling_flag & ~REVERSE_GEAR);
-    player->slip_flag = (s32) (player->slip_flag & ~SPIN_TURN);
+    Player->HandlingFlag = (s16) (Player->HandlingFlag & ~REVERSE_GEAR);
+    Player->SlipFlag = (s32) (Player->SlipFlag & ~SPIN_TURN);
 }
 
-void SetRollover(Player* player, s8 playerIndex) {
+void SetRollover(Player* Player, s8 playerIndex) {
     UNUSED s32 sp24;
     s32 temp_v1;
-    kill_strat(player, playerIndex);
-    check_hit_letter(player);
-    temp_v1 = player->kart;
-    player->jumpcount = 0;
-    player->jmp_acc = D_800E37B0[temp_v1];
-    player->jmp_speed = 0.0f;
+    KillStrat(Player, playerIndex);
+    CheckHitLetter(Player);
+    temp_v1 = Player->Kart;
+    Player->Jumpcount = 0;
+    Player->JmpAcc = D_800E37B0[temp_v1];
+    Player->JmpSpeed = 0.0f;
 
-    player->jump = D_800E3790[temp_v1];
-    player->slipcount = 0;
-    player->slip_flag = player->slip_flag | ROLLOVER;
-    player->slip_flag = player->slip_flag & ~DRIFT;
-    player->slipang = 0;
-    player->roliover_time = 2;
-    player->kage_ang = 0;
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
+    Player->Jump = D_800E3790[temp_v1];
+    Player->Slipcount = 0;
+    Player->SlipFlag = Player->SlipFlag | ROLLOVER;
+    Player->SlipFlag = Player->SlipFlag & ~DRIFT;
+    Player->Slipang = 0;
+    Player->RolioverTime = 2;
+    Player->KageAng = 0;
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
         NAPlyVoiceStart(playerIndex, (temp_v1 * 0x10) + 0x29008005);
         NAPlyTrgStart(playerIndex, SOUND_ACTION_EXPLOSION);
     } else {
-        oga_enemy_voice(playerIndex, player);
+        OgaEnemyVoice(playerIndex, Player);
     }
-    player->weapon = (s32) (player->weapon & ~HIT_GREENSHELL);
+    Player->Weapon = (s32) (Player->Weapon & ~HIT_GREENSHELL);
 }
 
-void rollover(Player* player, s8 playerIndex) {
+void Rollover(Player* Player, s8 playerIndex) {
 
-    AccelOff(player, 5.0f);
-    player->slipcount += (s16) 0xA0;
-    player->kage_ang += (s16) DEGREES(10);
-    if (player->slipcount >= 0x2000) {
-        player->slipcount = 0;
-        player->roliover_time = (s16) (player->roliover_time - 1);
-        if (player->roliover_time == 0) {
-            player->slipcount = 0x2000;
-            reset_rollover(player, playerIndex);
-            if (g_gameMode == BATTLE) {
-                cut_balloon(player, playerIndex);
+    AccelOff(Player, 5.0f);
+    Player->Slipcount += (s16) 0xA0;
+    Player->KageAng += (s16) DEGREES(10);
+    if (Player->Slipcount >= 0x2000) {
+        Player->Slipcount = 0;
+        Player->RolioverTime = (s16) (Player->RolioverTime - 1);
+        if (Player->RolioverTime == 0) {
+            Player->Slipcount = 0x2000;
+            ResetRollover(Player, playerIndex);
+            if (GameMode == BATTLE) {
+                CutPlayerBalloon(Player, playerIndex);
             }
         }
     }
 }
 
-void reset_rollover(Player* player, s8 playerIndex) {
+void ResetRollover(Player* Player, s8 playerIndex) {
 
-    player->kartroll = 0;
-    player->kartpitch = 0;
-    player->slip_flag = (s32) (player->slip_flag & ~ROLLOVER);
-    player->slipcount = 0;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->roliover_time = 0;
-    player->sterrangle = 0;
-    player->accelcount = 0.0f;
-    compel_flag[0][playerIndex] = 1;
-    compel_flag[1][playerIndex] = 1;
-    compel_flag[2][playerIndex] = 1;
-    compel_flag[3][playerIndex] = 1;
-    player->kage_ang = 0;
+    Player->Kartroll = 0;
+    Player->Kartpitch = 0;
+    Player->SlipFlag = (s32) (Player->SlipFlag & ~ROLLOVER);
+    Player->Slipcount = 0;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->RolioverTime = 0;
+    Player->Sterrangle = 0;
+    Player->Accelcount = 0.0f;
+    CompelFlag[0][playerIndex] = 1;
+    CompelFlag[1][playerIndex] = 1;
+    CompelFlag[2][playerIndex] = 1;
+    CompelFlag[3][playerIndex] = 1;
+    Player->KageAng = 0;
 }
 
-void SetSpin(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
-    if (((player->slip_flag & SPIN_L) != SPIN_L) &&
-        ((player->slip_flag & SPIN_R) != SPIN_R)) {
-        player->slip_flag &= ~DRIFT;
+void SetSpin(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
+    if (((Player->SlipFlag & SPIN_L) != SPIN_L) &&
+        ((Player->SlipFlag & SPIN_R) != SPIN_R)) {
+        Player->SlipFlag &= ~DRIFT;
 
-        if ((player->slipang / DEGREES(1)) >= 0) {
-            player->slip_flag |= SPIN_R;
+        if ((Player->Slipang / DEGREES(1)) >= 0) {
+            Player->SlipFlag |= SPIN_R;
         } else {
-            player->slip_flag |= SPIN_L;
+            Player->SlipFlag |= SPIN_L;
         }
 
-        player->talk |= WHIRRR;
+        Player->Talk |= WHIRRR;
         // clang-format off
-        player->slipang = 0; player->nowsterr = 0; player->sterrangle = 0; player->old_direction = player->direction[1]; player->spin_timer = 2;
+        Player->Slipang = 0; Player->Nowsterr = 0; Player->Sterrangle = 0; Player->OldDirection = Player->Direction[1]; Player->SpinTimer = 2;
         // clang-format on
-        compel_flag[0][playerIndex] = 1;
-        compel_flag[1][playerIndex] = 1;
-        compel_flag[2][playerIndex] = 1;
-        compel_flag[3][playerIndex] = 1;
-        accele_count[playerIndex] = player->accelcount;
-        power_band_timer[playerIndex] = 0;
-        power_band_accele[playerIndex] = false;
-        accele_flag[playerIndex] = 0;
-        accele_time[playerIndex] = 0;
+        CompelFlag[0][playerIndex] = 1;
+        CompelFlag[1][playerIndex] = 1;
+        CompelFlag[2][playerIndex] = 1;
+        CompelFlag[3][playerIndex] = 1;
+        AcceleCount[playerIndex] = Player->Accelcount;
+        PowerBandTimer[playerIndex] = 0;
+        PowerBandAccele[playerIndex] = false;
+        AcceleFlag[playerIndex] = 0;
+        AcceleTime[playerIndex] = 0;
         D_8018D920[playerIndex] = 0;
 
-        if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-            ((player->flag & IS_GHOST) != IS_GHOST)) {
-            NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008003);
+        if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+            ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+            NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008003);
         } else {
-            oga_enemy_voice(playerIndex, player);
+            OgaEnemyVoice(playerIndex, Player);
         }
     }
 }
 
-void reset_spin(Player* player, s8 playerId) {
-    player->slip_flag &= ~SPIN_L;
-    player->slip_flag &= ~SPIN_R;
-    player->slipcount = 0;
-    player->direction[1] = player->old_direction;
-    player->nowsterr = 0;
-    player->slipang = 0;
-    player->slip_flag &= ~WHEELSPIN;
+void ResetSpin(Player* Player, s8 PlayerId) {
+    Player->SlipFlag &= ~SPIN_L;
+    Player->SlipFlag &= ~SPIN_R;
+    Player->Slipcount = 0;
+    Player->Direction[1] = Player->OldDirection;
+    Player->Nowsterr = 0;
+    Player->Slipang = 0;
+    Player->SlipFlag &= ~WHEELSPIN;
 
-    compel_flag[0][playerId] = 1;
-    compel_flag[1][playerId] = 1;
-    compel_flag[2][playerId] = 1;
-    compel_flag[3][playerId] = 1;
+    CompelFlag[0][PlayerId] = 1;
+    CompelFlag[1][PlayerId] = 1;
+    CompelFlag[2][PlayerId] = 1;
+    CompelFlag[3][PlayerId] = 1;
 
-    player->hit_flag &= ~INSTANT_SPINOUT;
+    Player->HitFlag &= ~INSTANT_SPINOUT;
 
-    if ((power_band_accele[playerId] == true) && ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-        player->accelcount = (f32) (player->accelcount + 100.0f);
+    if ((PowerBandAccele[PlayerId] == true) && ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+        Player->Accelcount = (f32) (Player->Accelcount + 100.0f);
     }
-    if ((g_gameMode == VERSUS) && ((player->flag & IS_CPU_PLAYER) == IS_CPU_PLAYER) && (!g_DemoFlag) &&
-        ((player->jugemu_flag & ON_LAKITU_ROD) == 0) && (gGPCurrentRaceRankByPlayerId[playerId] != 0)) {
-        player->weapon = (s32) (player->weapon | HIT_BOMB);
+    if ((GameMode == VERSUS) && ((Player->Flag & IS_CPU_PLAYER) == IS_CPU_PLAYER) && (!DemoFlag) &&
+        ((Player->JugemuFlag & ON_LAKITU_ROD) == 0) && (GPCurrentRaceRankByPlayerId[PlayerId] != 0)) {
+        Player->Weapon = (s32) (Player->Weapon | HIT_BOMB);
     }
 }
 
-void spin(Player* player, s8 playerIndex) {
+void Spin(Player* Player, s8 playerIndex) {
     s16 stackPadding1;
     s16 stackPadding2;
     s16 sp30[5] = { DEGREES(6), DEGREES(6), DEGREES(12), DEGREES(9), DEGREES(10) };
 
-    player->kartroll = 0;
-    player->kartpitch = 0;
-    if ((player->hit_flag & INSTANT_SPINOUT) == INSTANT_SPINOUT) {
-        AccelOff(player, 100.0f);
+    Player->Kartroll = 0;
+    Player->Kartpitch = 0;
+    if ((Player->HitFlag & INSTANT_SPINOUT) == INSTANT_SPINOUT) {
+        AccelOff(Player, 100.0f);
     } else {
-        if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-            AccelOff(player, 1.0f);
+        if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+            AccelOff(Player, 1.0f);
         } else {
-            AccelOff(player, 4.0f);
+            AccelOff(Player, 4.0f);
         }
-        if (!(player->flag & IS_PLAYER)) {
-            AccelOff(player, 30.0f);
+        if (!(Player->Flag & IS_PLAYER)) {
+            AccelOff(Player, 30.0f);
         }
     }
-    if ((player->slip_flag & SPIN_L) == SPIN_L) {
-        player->direction[1] -= sp30[player->spin_timer];
-        D_8018D920[playerIndex] -= sp30[player->spin_timer];
-        stackPadding1 = (u16) D_8018D920[playerIndex] / (0x10000 / (0x168 / (sp30[player->spin_timer] / DEGREES(1))));
+    if ((Player->SlipFlag & SPIN_L) == SPIN_L) {
+        Player->Direction[1] -= sp30[Player->SpinTimer];
+        D_8018D920[playerIndex] -= sp30[Player->SpinTimer];
+        stackPadding1 = (u16) D_8018D920[playerIndex] / (0x10000 / (0x168 / (sp30[Player->SpinTimer] / DEGREES(1))));
         if (stackPadding1 == 0) {
-            player->spin_timer--;
-            if (player->spin_timer <= 0) {
-                if (g_gameMode == BATTLE) {
-                    cut_balloon(player, playerIndex);
+            Player->SpinTimer--;
+            if (Player->SpinTimer <= 0) {
+                if (GameMode == BATTLE) {
+                    CutPlayerBalloon(Player, playerIndex);
                 }
-                reset_spin(player, playerIndex);
+                ResetSpin(Player, playerIndex);
             }
         }
     } else {
-        player->direction[1] += sp30[player->spin_timer];
-        D_8018D920[playerIndex] -= sp30[player->spin_timer];
-        stackPadding2 = (u16) D_8018D920[playerIndex] / (0x10000 / (0x168 / (sp30[player->spin_timer] / DEGREES(1))));
+        Player->Direction[1] += sp30[Player->SpinTimer];
+        D_8018D920[playerIndex] -= sp30[Player->SpinTimer];
+        stackPadding2 = (u16) D_8018D920[playerIndex] / (0x10000 / (0x168 / (sp30[Player->SpinTimer] / DEGREES(1))));
         if (stackPadding2 == 0) {
-            player->spin_timer--;
-            if (player->spin_timer <= 0) {
-                reset_spin(player, playerIndex);
-                if (g_gameMode == BATTLE) {
-                    cut_balloon(player, playerIndex);
+            Player->SpinTimer--;
+            if (Player->SpinTimer <= 0) {
+                ResetSpin(Player, playerIndex);
+                if (GameMode == BATTLE) {
+                    CutPlayerBalloon(Player, playerIndex);
                 }
             }
         }
     }
-    if ((power_band_accele[playerIndex] == true) && ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-        power_band_timer[playerIndex] = 0x00000078;
-        if (player->accelcount <= 90.0f) {
-            player->accelcount = 90.0f;
+    if ((PowerBandAccele[playerIndex] == true) && ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+        PowerBandTimer[playerIndex] = 0x00000078;
+        if (Player->Accelcount <= 90.0f) {
+            Player->Accelcount = 90.0f;
         }
     }
 }
 
-void SetWheelspin(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+void SetWheelspin(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
 
-    player->weapon &= ~HIT_BANANA;
-    player->offsetsterr_timer = 0;
-    player->offsetsterr_speed = 3.0f;
-    player->offsetsterr_flag = 1;
-    player->slip_flag &= ~DRIFT;
+    Player->Weapon &= ~HIT_BANANA;
+    Player->OffsetsterrTimer = 0;
+    Player->OffsetsterrSpeed = 3.0f;
+    Player->OffsetsterrFlag = 1;
+    Player->SlipFlag &= ~DRIFT;
 
-    if (((player->nowsterr >> 16) >= 20) || ((player->nowsterr >> 16) <= -20) ||
-        (((player->speed / 18.0f) * 216.0f) <= 30.0f) || ((player->slip_flag & N_JUMP) != 0) ||
-        (((player->flag & IS_PLAYER) == 0) && ((player->slip_flag & CENTER_LINE) == 0))) {
-        SetSpin(player, playerIndex);
+    if (((Player->Nowsterr >> 16) >= 20) || ((Player->Nowsterr >> 16) <= -20) ||
+        (((Player->Speed / 18.0f) * 216.0f) <= 30.0f) || ((Player->SlipFlag & N_JUMP) != 0) ||
+        (((Player->Flag & IS_PLAYER) == 0) && ((Player->SlipFlag & CENTER_LINE) == 0))) {
+        SetSpin(Player, playerIndex);
     } else {
-        player->slip_flag |= WHEELSPIN;
+        Player->SlipFlag |= WHEELSPIN;
     }
 }
 
-// almost identical to pro_wheelspin, see there for more documentation
-void wheelspin(Player* player, s8 playerIndex) {
+// almost identical to ProWheelspin, see there for more documentation
+void Wheelspin(Player* Player, s8 playerIndex) {
     f32 swerve_accel_init;
     s16 swerve_timer;
     s16 swerve_direction;
     s16 swerve_velo_current;
 
-    swerve_accel_init = player->offsetsterr_speed;
-    swerve_timer = player->offsetsterr_timer;
-    swerve_direction = player->offsetsterr_flag;
+    swerve_accel_init = Player->OffsetsterrSpeed;
+    swerve_timer = Player->OffsetsterrTimer;
+    swerve_direction = Player->OffsetsterrFlag;
     swerve_timer++;
     swerve_velo_current = (swerve_timer * swerve_accel_init) - (0.2 * (swerve_timer * swerve_timer));
     if ((swerve_timer != 0) && (swerve_velo_current < 0)) {
         swerve_timer = 0;
         swerve_direction = -swerve_direction;
         swerve_accel_init *= 0.8;
-        // requires braking to recover. A driving spinout allows just releasing gas as well
-        if ((player->slip_flag & BREAKE) == BREAKE) {
-            player->slip_flag |= DISABLE_SPIN;
+        // requires braking to recover. A driving spinout allows just Releasing gas as well
+        if ((Player->SlipFlag & BREAKE) == BREAKE) {
+            Player->SlipFlag |= DISABLE_SPIN;
         }
         if (swerve_accel_init <= 1.0f) {
-            player->slip_flag &= ~WHEELSPIN;
-            if ((player->slip_flag & DISABLE_SPIN) != DISABLE_SPIN) {
-                SetSpin(player, playerIndex);
+            Player->SlipFlag &= ~WHEELSPIN;
+            if ((Player->SlipFlag & DISABLE_SPIN) != DISABLE_SPIN) {
+                SetSpin(Player, playerIndex);
                 swerve_timer = 0;
             } else {
-                player->talk |= MUSIC_NOTE;
-                player->slip_flag &= ~DISABLE_SPIN;
-                if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-                    NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008008);
+                Player->Talk |= MUSIC_NOTE;
+                Player->SlipFlag &= ~DISABLE_SPIN;
+                if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+                    NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008008);
                     swerve_timer = 0;
                 }
             }
@@ -433,65 +433,65 @@ void wheelspin(Player* player, s8 playerIndex) {
     if ((swerve_velo_current >= 0) && (swerve_direction == -1)) {
         swerve_velo_current = 0;
     }
-    player->sterrangle += swerve_velo_current * 18;
-    player->offsetsterr_speed = swerve_accel_init;
-    player->offsetsterr_timer = swerve_timer;
-    player->offsetsterr_flag = swerve_direction;
-    if (player->slip_flag & N_JUMP) {
-        SetSpin(player, playerIndex);
-        player->slip_flag &= ~WHEELSPIN;
+    Player->Sterrangle += swerve_velo_current * 18;
+    Player->OffsetsterrSpeed = swerve_accel_init;
+    Player->OffsetsterrTimer = swerve_timer;
+    Player->OffsetsterrFlag = swerve_direction;
+    if (Player->SlipFlag & N_JUMP) {
+        SetSpin(Player, playerIndex);
+        Player->SlipFlag &= ~WHEELSPIN;
     }
 }
 
-void reset_wheelspin(Player* player, UNUSED s8 playerIndex) {
-    player->slip_flag &= ~WHEELSPIN;
+void ResetWheelspin(Player* Player, UNUSED s8 playerIndex) {
+    Player->SlipFlag &= ~WHEELSPIN;
 }
 
-void SetProWheelSpin(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+void SetProWheelSpin(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
 
-    player->weapon &= ~PRESS_SAVESPIN;
-    player->offsetsterr_timer = 0;
-    player->offsetsterr_speed = 2.0f;
-    player->offsetsterr_flag = 1;
-    player->slip_flag &= ~DRIFT;
-    player->handling_flag |= SPINOUT_SWERVE;
+    Player->Weapon &= ~PRESS_SAVESPIN;
+    Player->OffsetsterrTimer = 0;
+    Player->OffsetsterrSpeed = 2.0f;
+    Player->OffsetsterrFlag = 1;
+    Player->SlipFlag &= ~DRIFT;
+    Player->HandlingFlag |= SPINOUT_SWERVE;
 }
 
-void pro_wheelspin(Player* player, s8 playerIndex) {
+void ProWheelspin(Player* Player, s8 playerIndex) {
     f32 swerve_accel_init;
     s16 swerve_timer;
     s16 swerve_direction;
     s16 swerve_velo_current;
 
-    // These properties are only used for swerving before spinouts
-    swerve_accel_init = player->offsetsterr_speed;
-    swerve_timer = player->offsetsterr_timer;
-    swerve_direction = player->offsetsterr_flag;
+    // These properties are only Used for swerving before spinouts
+    swerve_accel_init = Player->OffsetsterrSpeed;
+    swerve_timer = Player->OffsetsterrTimer;
+    swerve_direction = Player->OffsetsterrFlag;
     swerve_timer++;
 
-    // Standard physics formula: Velo_current = velo_init + (accel_init * time) + (accel_jerk * time**2) / 2
+    // Standard physics formula: Velo_current = velo_init + (accel_init * Time) + (accel_jerk * Time**2) / 2
     swerve_velo_current = (swerve_accel_init * swerve_timer) - (0.1 * (swerve_timer * swerve_timer)); 
 
-    // Once one swerve finishes, setup to start a smaller one in the opposite direction
+    // Once one swerve finishes, setup to Start a smaller one in the opposite Direction
     if ((swerve_timer != 0) && (swerve_velo_current < 0)) { // (10 * swerve_accel_init < swerve_timer))
         swerve_timer = 0;
         swerve_direction = -swerve_direction;
         swerve_accel_init *= 0.9;
-        if (((player->slip_flag & BREAKE) == BREAKE) || !(player->handling_flag & ACCELERATE)) {
-            player->slip_flag |= DISABLE_SPIN;
+        if (((Player->SlipFlag & BREAKE) == BREAKE) || !(Player->HandlingFlag & ACCELERATE)) {
+            Player->SlipFlag |= DISABLE_SPIN;
         }
         // stop swerving once they are small enough
         if (swerve_accel_init <= 1.3) {
-            player->handling_flag &= ~SPINOUT_SWERVE;
-            if ((player->slip_flag & DISABLE_SPIN) != DISABLE_SPIN) {
-                SetSpin(player, playerIndex);
+            Player->HandlingFlag &= ~SPINOUT_SWERVE;
+            if ((Player->SlipFlag & DISABLE_SPIN) != DISABLE_SPIN) {
+                SetSpin(Player, playerIndex);
                 swerve_timer = 0;
             } else {
-                player->talk |= MUSIC_NOTE;
-                player->slip_flag &= ~DISABLE_SPIN;
-                if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-                    NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008008);
+                Player->Talk |= MUSIC_NOTE;
+                Player->SlipFlag &= ~DISABLE_SPIN;
+                if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+                    NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008008);
                     swerve_timer = 0;
                 }
             }
@@ -504,268 +504,268 @@ void pro_wheelspin(Player* player, s8 playerIndex) {
     if ((swerve_velo_current >= 0) && (swerve_direction == -1)) {
         swerve_velo_current = 0;
     }
-    /* unk_078 contributes to rotational velocity (spin). It looks to be set each frame in steering code
+    /* Unk078 contributes to rotational Velocity (Spin). It looks to be set each frame in steering Code
     (e.g. ProStickAngle), so it does not accumulate values from swerve_velo_current over multiple frames */
-    player->sterrangle += swerve_velo_current * 20;
-    player->offsetsterr_speed = swerve_accel_init;
-    player->offsetsterr_timer = swerve_timer;
-    player->offsetsterr_flag = swerve_direction;
-    if (player->slip_flag & N_JUMP) {
-        SetSpin(player, playerIndex);
-        player->handling_flag &= ~SPINOUT_SWERVE;
+    Player->Sterrangle += swerve_velo_current * 20;
+    Player->OffsetsterrSpeed = swerve_accel_init;
+    Player->OffsetsterrTimer = swerve_timer;
+    Player->OffsetsterrFlag = swerve_direction;
+    if (Player->SlipFlag & N_JUMP) {
+        SetSpin(Player, playerIndex);
+        Player->HandlingFlag &= ~SPINOUT_SWERVE;
     }
 }
 
-void reset_pro_wheelspin(Player* player, UNUSED s8 playerIndex) {
-    player->handling_flag &= ~SPINOUT_SWERVE;
+void ResetProWheelspin(Player* Player, UNUSED s8 playerIndex) {
+    Player->HandlingFlag &= ~SPINOUT_SWERVE;
 }
 
-void SetTurbo(Player* player, s8 playerIndex) {
+void SetTurbo(Player* Player, s8 playerIndex) {
 
-    kill_strat(player, playerIndex);
+    KillStrat(Player, playerIndex);
 
-    player->slip_flag |= TURBO;
-    player->weapon &= ~USE_MUSHROOM;
-    player->sus.gachon_timer = 0;
-    player->sus.gachon_firstspeed = 8.0f;
+    Player->SlipFlag |= TURBO;
+    Player->Weapon &= ~USE_MUSHROOM;
+    Player->sus.GachonTimer = 0;
+    Player->sus.GachonFirstspeed = 8.0f;
 
-    if (replay_flag != 1) {
-        if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-            ((player->flag & IS_GHOST) != IS_GHOST)) {
-            Na_PlyDash_Start(playerIndex);
+    if (ReplayFlag != 1) {
+        if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+            ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+            NaPlyDashStart(playerIndex);
             NAPlyTrgStart(playerIndex, 0x1900A40B);
         }
     } else {
-        if (player == gPlayerOne) {
-            Na_PlyDash_Start(playerIndex);
+        if (Player == PlayerOne) {
+            NaPlyDashStart(playerIndex);
             NAPlyTrgStart(playerIndex, 0x1900A40B);
         }
     }
 
-    player->turbo_timer = 0x50;
+    Player->TurboTimer = 0x50;
 }
 
-void now_turbo(Player* player) {
-    player->accelcount = (f32) player->acc_maxcount;
-    if (player->turbo_timer > 0) {
-        --player->turbo_timer;
+void NowTurbo(Player* Player) {
+    Player->Accelcount = (f32) Player->AccMaxcount;
+    if (Player->TurboTimer > 0) {
+        --Player->TurboTimer;
     }
 
-    if (player->turbo_timer != 0) {
-        chase_Fnumber(&player->turbo_power, 400.0f, 0.5f);
+    if (Player->TurboTimer != 0) {
+        ChaseFnumber(&Player->TurboPower, 400.0f, 0.5f);
     } else {
-        chase_Fnumber(&player->turbo_power, 0.0f, 0.1f);
+        ChaseFnumber(&Player->TurboPower, 0.0f, 0.1f);
     }
 
-    if (player->turbo_power <= 1.0f) {
-        player->slip_flag &= ~TURBO;
+    if (Player->TurboPower <= 1.0f) {
+        Player->SlipFlag &= ~TURBO;
     }
 }
 
-void reset_turbo(Player* player) {
-    player->slip_flag &= ~TURBO;
-    player->turbo_power = 0.0f;
+void ResetTurbo(Player* Player) {
+    Player->SlipFlag &= ~TURBO;
+    Player->TurboPower = 0.0f;
 }
 
-void SetWing(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+void SetWing(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
 
-    player->old_direction = player->direction[1];
-    player->slip_flag |= WING;
-    player->slip_flag &= ~DRIFT;
-    player->weapon &= ~USE_FEATHER;
-    player->jmp_acc = D_800E3730[player->kart];
-    player->jmp_speed = 0.0f;
-    player->jump = (f32) D_800E3710[player->kart];
-    player->spin_timer = 1;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->sterrangle = 0;
+    Player->OldDirection = Player->Direction[1];
+    Player->SlipFlag |= WING;
+    Player->SlipFlag &= ~DRIFT;
+    Player->Weapon &= ~USE_FEATHER;
+    Player->JmpAcc = D_800E3730[Player->Kart];
+    Player->JmpSpeed = 0.0f;
+    Player->Jump = (f32) D_800E3710[Player->Kart];
+    Player->SpinTimer = 1;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->Sterrangle = 0;
     D_8018D920[playerIndex] = 0;
 
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
         NAPlyTrgStart(playerIndex, 0x19008002);
     }
 
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
-        NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x2900800C);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+        NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x2900800C);
     }
 }
 
-void wing(Player* player, s8 playerIndex) {
+void Wing(Player* Player, s8 playerIndex) {
     s16 temp;
 
-    if (player->spin_timer == 0) {
-        player->direction[1] = player->old_direction;
+    if (Player->SpinTimer == 0) {
+        Player->Direction[1] = Player->OldDirection;
         temp = 0;
     } else {
-        player->direction[1] -= DEGREES(10);
+        Player->Direction[1] -= DEGREES(10);
         D_8018D920[playerIndex] -= DEGREES(10);
         temp = ((u16) D_8018D920[playerIndex] / DEGREES(10));
     }
     if (temp == 0) {
-        --player->spin_timer;
-        if (player->spin_timer <= 0) {
-            player->spin_timer = 0;
+        --Player->SpinTimer;
+        if (Player->SpinTimer <= 0) {
+            Player->SpinTimer = 0;
         }
-        if ((player->spin_timer == 0) && ((player->slip_flag & N_JUMP) != N_JUMP)) {
-            ResetWing(player);
+        if ((Player->SpinTimer == 0) && ((Player->SlipFlag & N_JUMP) != N_JUMP)) {
+            ResetWing(Player);
         }
     }
 }
 
-void ResetWing(Player* player) {
-    player->slipcount = 0;
-    player->nowsterr = 0;
-    player->slipang = 0;
-    player->direction[1] = player->old_direction;
-    player->slip_flag &= ~WING;
-    player->gravity = gravity_1[player->kart];
-    player->flag &= ~PLAYER_UNKNOWN_0x80;
+void ResetWing(Player* Player) {
+    Player->Slipcount = 0;
+    Player->Nowsterr = 0;
+    Player->Slipang = 0;
+    Player->Direction[1] = Player->OldDirection;
+    Player->SlipFlag &= ~WING;
+    Player->Gravity = Gravity1[Player->Kart];
+    Player->Flag &= ~PLAYER_UNKNOWN_0x80;
 }
 
-void SetStorm(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+void SetStorm(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
 
-    player->old_direction = player->direction[1];
-    player->slip_flag |= STORM;
-    player->slip_flag &= ~DRIFT;
-    player->weapon &= ~HIT_TORNADO;
-    player->jmp_acc = D_800E3770[player->kart];
-    player->jmp_speed = 0.0f;
-    player->jump = D_800E3750[player->kart];
+    Player->OldDirection = Player->Direction[1];
+    Player->SlipFlag |= STORM;
+    Player->SlipFlag &= ~DRIFT;
+    Player->Weapon &= ~HIT_TORNADO;
+    Player->JmpAcc = D_800E3770[Player->Kart];
+    Player->JmpSpeed = 0.0f;
+    Player->Jump = D_800E3750[Player->Kart];
     D_8018D920[playerIndex] = 0;
-    player->spin_timer = 4;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->sterrangle = 0;
+    Player->SpinTimer = 4;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->Sterrangle = 0;
 
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
-        NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008003);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+        NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008003);
     }
 }
 
-void storm(Player* player, s8 playerIndex) {
+void Storm(Player* Player, s8 playerIndex) {
     s16 temp;
 
-    if (player->spin_timer == 0) {
-        player->direction[1] = player->old_direction;
+    if (Player->SpinTimer == 0) {
+        Player->Direction[1] = Player->OldDirection;
         temp = 0;
     } else {
-        player->direction[1] -= DEGREES(10);
+        Player->Direction[1] -= DEGREES(10);
         D_8018D920[playerIndex] -= DEGREES(10);
         temp = ((u16) (D_8018D920[playerIndex]) / DEGREES(10));
     }
     if (temp == 0) {
-        --player->spin_timer;
-        if (player->spin_timer <= 0) {
-            player->spin_timer = 0;
+        --Player->SpinTimer;
+        if (Player->SpinTimer <= 0) {
+            Player->SpinTimer = 0;
         }
-        if ((player->spin_timer == 0) && ((player->slip_flag & N_JUMP) != N_JUMP)) {
-            reset_storm(player);
-        }
-    }
-}
-
-void reset_storm(Player* player) {
-    player->slipcount = 0;
-    player->nowsterr = 0;
-    player->slipang = 0;
-    player->direction[1] = player->old_direction;
-    player->slip_flag &= ~STORM;
-    player->gravity = gravity_1[player->kart];
-}
-
-void roll_brokenkart(Player* player) {
-    player->sus.accele += 8.0f;
-    if (player->sus.accele >= 140.0f) {
-        player->sus.accele = 140.0f;
-    }
-
-    if (player->sus.flag == 1) {
-        player->sus.position += player->sus.accele;
-        if (2002.0f <= player->sus.position) {
-            player->sus.accele = 10.0f;
-            player->sus.flag *= -1;
-        }
-    }
-    if (player->sus.flag == -1) {
-        player->sus.position -= player->sus.accele;
-        if (player->sus.position <= -2002.0f) {
-            player->sus.accele = 10.0f;
-            player->sus.flag *= -1;
+        if ((Player->SpinTimer == 0) && ((Player->SlipFlag & N_JUMP) != N_JUMP)) {
+            ResetStorm(Player);
         }
     }
 }
 
-void SetBroken(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+void ResetStorm(Player* Player) {
+    Player->Slipcount = 0;
+    Player->Nowsterr = 0;
+    Player->Slipang = 0;
+    Player->Direction[1] = Player->OldDirection;
+    Player->SlipFlag &= ~STORM;
+    Player->Gravity = Gravity1[Player->Kart];
+}
 
-    if ((player->slip_flag & BROKEN) == 0) {
-        player->sus.broken_timer = 0;
-        player->broken_timer = 0;
-        player->sus.broken_firstspeed = 4.5f;
+void RollBrokenkart(Player* Player) {
+    Player->sus.Accele += 8.0f;
+    if (Player->sus.Accele >= 140.0f) {
+        Player->sus.Accele = 140.0f;
+    }
+
+    if (Player->sus.Flag == 1) {
+        Player->sus.Position += Player->sus.Accele;
+        if (2002.0f <= Player->sus.Position) {
+            Player->sus.Accele = 10.0f;
+            Player->sus.Flag *= -1;
+        }
+    }
+    if (Player->sus.Flag == -1) {
+        Player->sus.Position -= Player->sus.Accele;
+        if (Player->sus.Position <= -2002.0f) {
+            Player->sus.Accele = 10.0f;
+            Player->sus.Flag *= -1;
+        }
+    }
+}
+
+void SetBroken(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
+
+    if ((Player->SlipFlag & BROKEN) == 0) {
+        Player->sus.BrokenTimer = 0;
+        Player->BrokenTimer = 0;
+        Player->sus.BrokenFirstspeed = 4.5f;
         D_8018D990[playerIndex] = 0;
-        player->slip_flag &= ~(RESTORE | DRIFT);
-        compel_flag[0][playerIndex] = 1;
-        compel_flag[1][playerIndex] = 1;
-        compel_flag[2][playerIndex] = 1;
-        compel_flag[3][playerIndex] = 1;
-        player->sus.flag = 1;
-        player->sus.position = 0.0f;
-        player->sus.accele = 65.0f;
+        Player->SlipFlag &= ~(RESTORE | DRIFT);
+        CompelFlag[0][playerIndex] = 1;
+        CompelFlag[1][playerIndex] = 1;
+        CompelFlag[2][playerIndex] = 1;
+        CompelFlag[3][playerIndex] = 1;
+        Player->sus.Flag = 1;
+        Player->sus.Position = 0.0f;
+        Player->sus.Accele = 65.0f;
 
-        if ((player->weapon & PRESS_SQUISH) != 0) {
-            player->hit_flag |= 0x80;
+        if ((Player->Weapon & PRESS_SQUISH) != 0) {
+            Player->HitFlag |= 0x80;
         }
 
-        if (((player->flag & IS_PLAYER) != 0) && ((player->slip_flag & BROKEN) == 0)) {
-            NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x05));
+        if (((Player->Flag & IS_PLAYER) != 0) && ((Player->SlipFlag & BROKEN) == 0)) {
+            NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x05));
         }
 
-        player->slip_flag |= BROKEN;
-        if (((player->flag) & IS_CPU_PLAYER) != 0) {
-            oga_enemy_voice(playerIndex, player);
+        Player->SlipFlag |= BROKEN;
+        if (((Player->Flag) & IS_CPU_PLAYER) != 0) {
+            OgaEnemyVoice(playerIndex, Player);
         }
     }
 }
 
-void broken(Player* player, s8 playerIndex) {
-    player->jumpcount = 0;
-    player->slipcount = 0;
-    player->nowsterr = 0;
-    player->slipang = 0;
-    player->force = 0.0f;
-    player->accelcount = 0.0f;
+void Broken(Player* Player, s8 playerIndex) {
+    Player->Jumpcount = 0;
+    Player->Slipcount = 0;
+    Player->Nowsterr = 0;
+    Player->Slipang = 0;
+    Player->Force = 0.0f;
+    Player->Accelcount = 0.0f;
     // clang-format off
-    if ((player->bump.distance_zx >= 600.0f) || ((player->slip_flag & CENTER_LINE) != 0)) { D_8018D990[playerIndex] = 3; } // placed block on same line to match
+    if ((Player->Bump.DistanceZX >= 600.0f) || ((Player->SlipFlag & CENTER_LINE) != 0)) { D_8018D990[playerIndex] = 3; } // placed block on same line to match
     // clang-format on
 
     switch (D_8018D990[playerIndex]) {
         case 0:
-            player->sus.broken_firstspeed = 4.5f;
-            if (player->broken_timer < 0x3D) {
-                ++player->broken_timer;
+            Player->sus.BrokenFirstspeed = 4.5f;
+            if (Player->BrokenTimer < 0x3D) {
+                ++Player->BrokenTimer;
             }
 
-            if ((player->hit_flag & 0x80) != 0) {
-                if ((player->weapon & PRESS_SQUISH) == 0) {
+            if ((Player->HitFlag & 0x80) != 0) {
+                if ((Player->Weapon & PRESS_SQUISH) == 0) {
                     D_8018D990[playerIndex] = 1;
-                    player->broken_timer = 0;
-                    if ((player->flag & IS_PLAYER) != 0) {
+                    Player->BrokenTimer = 0;
+                    if ((Player->Flag & IS_PLAYER) != 0) {
                         NAPlyTrgStart(playerIndex, 0x1901904B);
                         break;
                     }
                 }
             } else {
-                ++player->broken_timer;
-                if (player->broken_timer >= 0x1E) {
+                ++Player->BrokenTimer;
+                if (Player->BrokenTimer >= 0x1E) {
                     D_8018D990[playerIndex] = 1;
-                    player->broken_timer = 0;
-                    if ((player->flag & IS_PLAYER) != 0) {
+                    Player->BrokenTimer = 0;
+                    if ((Player->Flag & IS_PLAYER) != 0) {
                         NAPlyTrgStart(playerIndex, 0x1901904B);
                         break;
                     }
@@ -775,909 +775,909 @@ void broken(Player* player, s8 playerIndex) {
 
             break;
         case 1:
-            player->sus.broken_firstspeed = 4.5f;
-            player->position[1] += 0.13;
-            ++player->broken_timer;
+            Player->sus.BrokenFirstspeed = 4.5f;
+            Player->Position[1] += 0.13;
+            ++Player->BrokenTimer;
 
-            if ((player->hit_flag & 0x80) != 0) {
-                if (player->broken_timer >= 0x32) {
+            if ((Player->HitFlag & 0x80) != 0) {
+                if (Player->BrokenTimer >= 0x32) {
                     D_8018D990[playerIndex] = 2;
-                    player->broken_timer = 0;
-                    player->hit_flag &= 0xFF7F;
+                    Player->BrokenTimer = 0;
+                    Player->HitFlag &= 0xFF7F;
                 }
-            } else if (player->broken_timer >= 0x50) {
+            } else if (Player->BrokenTimer >= 0x50) {
                 D_8018D990[playerIndex] = 2;
-                player->broken_timer = 0;
+                Player->BrokenTimer = 0;
             }
 
-            player->sus.accele += 6.0f;
-            if (player->sus.accele >= 90.0f) {
-                player->sus.accele = 90.0f;
+            Player->sus.Accele += 6.0f;
+            if (Player->sus.Accele >= 90.0f) {
+                Player->sus.Accele = 90.0f;
             }
 
-            player->sus.position += player->sus.accele;
-            if (3458.0f <= player->sus.position) {
-                player->sus.accele = 0.0f;
+            Player->sus.Position += Player->sus.Accele;
+            if (3458.0f <= Player->sus.Position) {
+                Player->sus.Accele = 0.0f;
                 break;
             }
             break;
         case 2:
-            ++player->broken_timer;
-            if (player->broken_timer >= 0x259) {
+            ++Player->BrokenTimer;
+            if (Player->BrokenTimer >= 0x259) {
                 D_8018D990[playerIndex] = 3;
-                player->broken_timer = 0;
+                Player->BrokenTimer = 0;
             }
 
-            if (player->bump.distance_zx >= 600.0f) {
+            if (Player->Bump.DistanceZX >= 600.0f) {
                 D_8018D990[playerIndex] = 3;
             }
 
-            player->sus.broken_firstspeed = 4.5f;
-            player->position[1] -= 0.085;
+            Player->sus.BrokenFirstspeed = 4.5f;
+            Player->Position[1] -= 0.085;
 
-            if ((player->slip_flag & N_JUMP) != N_JUMP) {
+            if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
                 D_8018D990[playerIndex] = 3;
-                player->broken_timer = 0;
+                Player->BrokenTimer = 0;
             }
 
-            roll_brokenkart(player);
+            RollBrokenkart(Player);
             break;
         case 3:
-            player->sus.broken_firstspeed = 3.0f;
-            player->slip_flag &= ~BROKEN;
-            player->sus.broken_timer = 0;
-            player->slip_flag |= RESTORE;
-            player->offsetsize = 1.0f;
-            player->radius = g_charRadiusTbl[player->kart];
-            compel_flag[0][playerIndex] = 1;
-            compel_flag[1][playerIndex] = 1;
-            compel_flag[2][playerIndex] = 1;
-            compel_flag[3][playerIndex] = 1;
+            Player->sus.BrokenFirstspeed = 3.0f;
+            Player->SlipFlag &= ~BROKEN;
+            Player->sus.BrokenTimer = 0;
+            Player->SlipFlag |= RESTORE;
+            Player->Offsetsize = 1.0f;
+            Player->Radius = CharRadiusTbl[Player->Kart];
+            CompelFlag[0][playerIndex] = 1;
+            CompelFlag[1][playerIndex] = 1;
+            CompelFlag[2][playerIndex] = 1;
+            CompelFlag[3][playerIndex] = 1;
 
-            if ((player->flag & IS_PLAYER) != 0) {
-                NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008008);
+            if ((Player->Flag & IS_PLAYER) != 0) {
+                NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008008);
             }
             break;
     }
 }
 
-void SetThunder(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+void SetThunder(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
 
-    player->weapon &= ~HIT_LIGHTNING;
-    player->slip_flag |= (THUNDER | THUNDER_SPIN);
-    player->slip_flag &= ~DRIFT;
-    player->force *= 0.6;
-    player->thunder_timer = 0;
-    player->offsetsize = 1.0f;
-    g_StarUseCounter[playerIndex] = g_gameTimer;
-    player->old_direction = player->direction[1];
-    player->spin_timer = 2;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->sterrangle = 0;
+    Player->Weapon &= ~HIT_LIGHTNING;
+    Player->SlipFlag |= (THUNDER | THUNDER_SPIN);
+    Player->SlipFlag &= ~DRIFT;
+    Player->Force *= 0.6;
+    Player->ThunderTimer = 0;
+    Player->Offsetsize = 1.0f;
+    StarUseCounter[playerIndex] = GameTimer;
+    Player->OldDirection = Player->Direction[1];
+    Player->SpinTimer = 2;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->Sterrangle = 0;
 
-    compel_flag[0][playerIndex] = 1;
-    compel_flag[1][playerIndex] = 1;
-    compel_flag[2][playerIndex] = 1;
-    compel_flag[3][playerIndex] = 1;
+    CompelFlag[0][playerIndex] = 1;
+    CompelFlag[1][playerIndex] = 1;
+    CompelFlag[2][playerIndex] = 1;
+    CompelFlag[3][playerIndex] = 1;
 
     D_8018D920[playerIndex] = 0;
 
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
-        NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008003);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+        NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008003);
     } else {
-        oga_enemy_voice(playerIndex, player);
+        OgaEnemyVoice(playerIndex, Player);
     }
-    if (g_gameMode == BATTLE) {
-        cut_balloon(player, playerIndex);
+    if (GameMode == BATTLE) {
+        CutPlayerBalloon(Player, playerIndex);
     }
 }
 
-void thunder(Player* player, s8 playerIndex) {
+void Thunder(Player* Player, s8 playerIndex) {
     s16 test;
-    if (((player->slip_flag & CARHIT) == CARHIT) &&
-        ((player->slip_flag & BROKEN) != BROKEN)) {
-        player->slip_flag &= ~THUNDER_SPIN;
-        player->slipcount = 0;
-        player->nowsterr = 0;
-        player->slipang = 0;
-        player->direction[1] = player->old_direction;
-        reset_thunder(player, playerIndex);
-        compel_flag[0][playerIndex] = 1;
-        compel_flag[1][playerIndex] = 1;
-        compel_flag[2][playerIndex] = 1;
-        compel_flag[3][playerIndex] = 1;
-        SetBroken(player, playerIndex);
-    } else if ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN) {
-        player->direction[1] -= DEGREES(8);
+    if (((Player->SlipFlag & CARHIT) == CARHIT) &&
+        ((Player->SlipFlag & BROKEN) != BROKEN)) {
+        Player->SlipFlag &= ~THUNDER_SPIN;
+        Player->Slipcount = 0;
+        Player->Nowsterr = 0;
+        Player->Slipang = 0;
+        Player->Direction[1] = Player->OldDirection;
+        ResetThunder(Player, playerIndex);
+        CompelFlag[0][playerIndex] = 1;
+        CompelFlag[1][playerIndex] = 1;
+        CompelFlag[2][playerIndex] = 1;
+        CompelFlag[3][playerIndex] = 1;
+        SetBroken(Player, playerIndex);
+    } else if ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN) {
+        Player->Direction[1] -= DEGREES(8);
         D_8018D920[playerIndex] -= DEGREES(8);
         test = (u16) D_8018D920[playerIndex] / DEGREES(8);
         if (test == 0) {
-            player->spin_timer--;
-            if (player->spin_timer <= 0) {
-                player->slipcount = 0;
-                player->slip_flag &= ~THUNDER_SPIN;
-                player->nowsterr = 0;
-                player->slipang = 0;
-                player->direction[1] = player->old_direction;
-                compel_flag[0][playerIndex] = 1;
-                compel_flag[1][playerIndex] = 1;
-                compel_flag[2][playerIndex] = 1;
-                compel_flag[3][playerIndex] = 1;
+            Player->SpinTimer--;
+            if (Player->SpinTimer <= 0) {
+                Player->Slipcount = 0;
+                Player->SlipFlag &= ~THUNDER_SPIN;
+                Player->Nowsterr = 0;
+                Player->Slipang = 0;
+                Player->Direction[1] = Player->OldDirection;
+                CompelFlag[0][playerIndex] = 1;
+                CompelFlag[1][playerIndex] = 1;
+                CompelFlag[2][playerIndex] = 1;
+                CompelFlag[3][playerIndex] = 1;
             }
         }
-        AccelOff(player, 1.0f);
+        AccelOff(Player, 1.0f);
     } else {
-        player->thunder_timer += 1;
-        player->force = (f32) ((f64) player->force * 0.6);
-        if ((player->thunder_timer == 1) && (player->flag & IS_PLAYER)) {
-            NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008005);
+        Player->ThunderTimer += 1;
+        Player->Force = (f32) ((f64) Player->Force * 0.6);
+        if ((Player->ThunderTimer == 1) && (Player->Flag & IS_PLAYER)) {
+            NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008005);
         }
-        if ((player->thunder_timer >= 0) && (player->thunder_timer < 0x1CC)) {
-            chase_Fnumber(&player->offsetsize, 0.7f, 0.1f);
-            chase_Fnumber(&player->radius,
-                             (f32) ((f64) g_charRadiusTbl[player->kart] * 0.9), 0.1f);
+        if ((Player->ThunderTimer >= 0) && (Player->ThunderTimer < 0x1CC)) {
+            ChaseFnumber(&Player->Offsetsize, 0.7f, 0.1f);
+            ChaseFnumber(&Player->Radius,
+                             (f32) ((f64) CharRadiusTbl[Player->Kart] * 0.9), 0.1f);
         } else {
-            reset_thunder(player, playerIndex);
-            if (player->flag & IS_PLAYER) {
-                NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008008);
+            ResetThunder(Player, playerIndex);
+            if (Player->Flag & IS_PLAYER) {
+                NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008008);
             }
         }
     }
 }
 
-void reset_thunder(Player* player, UNUSED s8 playerIndex) {
-    chase_Fnumber(&player->offsetsize, 1.0f, 0.1f);
-    chase_Fnumber(&player->radius, g_charRadiusTbl[player->kart], 0.1f);
+void ResetThunder(Player* Player, UNUSED s8 playerIndex) {
+    ChaseFnumber(&Player->Offsetsize, 1.0f, 0.1f);
+    ChaseFnumber(&Player->Radius, CharRadiusTbl[Player->Kart], 0.1f);
 
-    player->slip_flag &= ~THUNDER;
-    player->offsetsize = 1.0f;
-    player->radius = g_charRadiusTbl[player->kart];
-    player->sus.broken_firstspeed = 3.0f;
-    player->sus.broken_timer = 0;
-    player->slip_flag |= RESTORE;
+    Player->SlipFlag &= ~THUNDER;
+    Player->Offsetsize = 1.0f;
+    Player->Radius = CharRadiusTbl[Player->Kart];
+    Player->sus.BrokenFirstspeed = 3.0f;
+    Player->sus.BrokenTimer = 0;
+    Player->SlipFlag |= RESTORE;
 
-    if ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN) {
-        player->direction[1] = player->old_direction;
+    if ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN) {
+        Player->Direction[1] = Player->OldDirection;
     }
 
-    player->slip_flag &= ~THUNDER_SPIN;
+    Player->SlipFlag &= ~THUNDER_SPIN;
 }
 
-void bomb(Player* player, s8 playerIndex) {
-    player->kartroll = 0;
-    player->kartpitch = 0;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->jumpcount = 0xF;
-    player->kage_ang += DEGREES(15);
-    player->force = 0.0f;
-    player->accelcount = 0.0f;
-    player->velocity[0] = 0.0f;
-    player->velocity[2] = 0.0f;
-    player->slip_flag &= ~(SPIN_L | SPIN_R);
+void Bomb(Player* Player, s8 playerIndex) {
+    Player->Kartroll = 0;
+    Player->Kartpitch = 0;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->Jumpcount = 0xF;
+    Player->KageAng += DEGREES(15);
+    Player->Force = 0.0f;
+    Player->Accelcount = 0.0f;
+    Player->Velocity[0] = 0.0f;
+    Player->Velocity[2] = 0.0f;
+    Player->SlipFlag &= ~(SPIN_L | SPIN_R);
 
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        ++player->bomb_timer;
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        ++Player->BombTimer;
     }
 
-    if (player->bomb_timer == 3) {
-        player->slip_flag &= ~EXPLODE;
-        player->slipcount = 0;
-        player->roliover_time = 0;
-        compel_flag[0][playerIndex] = 1;
-        compel_flag[1][playerIndex] = 1;
-        compel_flag[2][playerIndex] = 1;
-        compel_flag[3][playerIndex] = 1;
-        player->kage_ang = 0;
-        player->flag &= ~PLAYER_UNKNOWN_0x80;
+    if (Player->BombTimer == 3) {
+        Player->SlipFlag &= ~EXPLODE;
+        Player->Slipcount = 0;
+        Player->RolioverTime = 0;
+        CompelFlag[0][playerIndex] = 1;
+        CompelFlag[1][playerIndex] = 1;
+        CompelFlag[2][playerIndex] = 1;
+        CompelFlag[3][playerIndex] = 1;
+        Player->KageAng = 0;
+        Player->Flag &= ~PLAYER_UNKNOWN_0x80;
 
-        if ((power_band_accele[playerIndex] == true) && ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-            player->accelcount += 100.0f;
+        if ((PowerBandAccele[playerIndex] == true) && ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+            Player->Accelcount += 100.0f;
         }
-        if (g_gameMode == BATTLE) {
-            cut_balloon(player, playerIndex);
+        if (GameMode == BATTLE) {
+            CutPlayerBalloon(Player, playerIndex);
         }
     } else {
-        player->slipcount += 0x80;
-        if (player->slipcount >= 0x2000) {
-            player->slipcount = 0;
-            --player->roliover_time;
-            if (player->roliover_time == 0) {
-                player->slip_flag &= ~EXPLODE;
-                player->roliover_time = 0;
-                compel_flag[0][playerIndex] = 1;
-                compel_flag[1][playerIndex] = 1;
-                compel_flag[2][playerIndex] = 1;
-                compel_flag[3][playerIndex] = 1;
-                player->kage_ang = 0;
+        Player->Slipcount += 0x80;
+        if (Player->Slipcount >= 0x2000) {
+            Player->Slipcount = 0;
+            --Player->RolioverTime;
+            if (Player->RolioverTime == 0) {
+                Player->SlipFlag &= ~EXPLODE;
+                Player->RolioverTime = 0;
+                CompelFlag[0][playerIndex] = 1;
+                CompelFlag[1][playerIndex] = 1;
+                CompelFlag[2][playerIndex] = 1;
+                CompelFlag[3][playerIndex] = 1;
+                Player->KageAng = 0;
 
-                if (g_gameMode == BATTLE) {
-                    cut_balloon(player, playerIndex);
+                if (GameMode == BATTLE) {
+                    CutPlayerBalloon(Player, playerIndex);
                 }
-                if ((power_band_accele[playerIndex] == true) &&
-                    ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-                    player->accelcount += 100.0f;
+                if ((PowerBandAccele[playerIndex] == true) &&
+                    ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+                    Player->Accelcount += 100.0f;
                 }
 
-                player->flag &= ~PLAYER_UNKNOWN_0x80;
+                Player->Flag &= ~PLAYER_UNKNOWN_0x80;
             }
         }
     }
 }
 
-void SetBombRollover(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
-    check_hit_letter(player);
+void SetBombRollover(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
+    CheckHitLetter(Player);
 
-    player->slipcount = 0;
-    player->slip_flag |= EXPLODE;
-    player->slip_flag &= ~DRIFT;
-    player->jmp_acc = 0.0f;
-    player->jmp_speed = 0.0f;
-    player->jump = 0.0f;
-    player->jmp_acc = D_800E3730[player->kart];
-    player->jump = D_800E3710[player->kart];
-    player->roliover_time = 4;
-    player->kage_ang = 0;
-    player->bomb_timer = 0;
+    Player->Slipcount = 0;
+    Player->SlipFlag |= EXPLODE;
+    Player->SlipFlag &= ~DRIFT;
+    Player->JmpAcc = 0.0f;
+    Player->JmpSpeed = 0.0f;
+    Player->Jump = 0.0f;
+    Player->JmpAcc = D_800E3730[Player->Kart];
+    Player->Jump = D_800E3710[Player->Kart];
+    Player->RolioverTime = 4;
+    Player->KageAng = 0;
+    Player->BombTimer = 0;
 
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
-        if (((g_gameMode == VERSUS) && ((player->flag & IS_CPU_PLAYER) != 0)) && (!g_DemoFlag)) {
-            Na_SeMute_Off(playerIndex);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+        if (((GameMode == VERSUS) && ((Player->Flag & IS_CPU_PLAYER) != 0)) && (!DemoFlag)) {
+            NaSeMuteOff(playerIndex);
         }
 
         if (1) {}
 
-        NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008005);
-        if (((g_gameMode == VERSUS) && ((player->flag & IS_CPU_PLAYER) != 0)) && (!g_DemoFlag)) {
-            Na_SeMute_Off(playerIndex);
+        NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008005);
+        if (((GameMode == VERSUS) && ((Player->Flag & IS_CPU_PLAYER) != 0)) && (!DemoFlag)) {
+            NaSeMuteOff(playerIndex);
         }
         NAPlyTrgStart(playerIndex, SOUND_ACTION_EXPLOSION);
     } else {
-        oga_enemy_voice(playerIndex, player);
+        OgaEnemyVoice(playerIndex, Player);
     }
 
-    player->weapon &= ~(HIT_BOMB | HIT_BOAT);
-    player->talk |= CRASH;
-    power_band_timer[playerIndex] = 0;
-    power_band_accele[playerIndex] = false;
-    accele_flag[playerIndex] = 0;
-    accele_time[playerIndex] = 0;
+    Player->Weapon &= ~(HIT_BOMB | HIT_BOAT);
+    Player->Talk |= CRASH;
+    PowerBandTimer[playerIndex] = 0;
+    PowerBandAccele[playerIndex] = false;
+    AcceleFlag[playerIndex] = 0;
+    AcceleTime[playerIndex] = 0;
 }
 
-void reset_bomb(Player* player, s8 playerIndex) {
-    player->slip_flag &= ~EXPLODE;
-    player->slipcount = 0;
-    player->roliover_time = 0;
-    compel_flag[0][playerIndex] = 1;
-    compel_flag[1][playerIndex] = 1;
-    compel_flag[2][playerIndex] = 1;
-    compel_flag[3][playerIndex] = 1;
-    player->kage_ang = 0;
+void ResetBomb(Player* Player, s8 playerIndex) {
+    Player->SlipFlag &= ~EXPLODE;
+    Player->Slipcount = 0;
+    Player->RolioverTime = 0;
+    CompelFlag[0][playerIndex] = 1;
+    CompelFlag[1][playerIndex] = 1;
+    CompelFlag[2][playerIndex] = 1;
+    CompelFlag[3][playerIndex] = 1;
+    Player->KageAng = 0;
 }
 
-void bomb_throw(Player* player, s8 playerIndex) {
-    player->kartroll = 0;
-    player->kartpitch = 0;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->jumpcount = 0xF;
-    player->kage_ang += DEGREES(15);
-    player->force /= 2;
-    player->accelcount = 0.0f;
-    player->slip_flag &= ~(SPIN_L | SPIN_R);
+void BombThrow(Player* Player, s8 playerIndex) {
+    Player->Kartroll = 0;
+    Player->Kartpitch = 0;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->Jumpcount = 0xF;
+    Player->KageAng += DEGREES(15);
+    Player->Force /= 2;
+    Player->Accelcount = 0.0f;
+    Player->SlipFlag &= ~(SPIN_L | SPIN_R);
 
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        ++player->bomb_timer;
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        ++Player->BombTimer;
     }
 
-    if (player->bomb_timer == 4) {
-        player->slip_flag &= ~THROW_EXPLODE;
-        player->slipcount = 0;
-        player->roliover_time = 0;
-        compel_flag[3][playerIndex] = 1;
-        compel_flag[0][playerIndex] = 1;
-        compel_flag[1][playerIndex] = 1;
-        compel_flag[2][playerIndex] = 1;
-        player->kage_ang = 0;
+    if (Player->BombTimer == 4) {
+        Player->SlipFlag &= ~THROW_EXPLODE;
+        Player->Slipcount = 0;
+        Player->RolioverTime = 0;
+        CompelFlag[3][playerIndex] = 1;
+        CompelFlag[0][playerIndex] = 1;
+        CompelFlag[1][playerIndex] = 1;
+        CompelFlag[2][playerIndex] = 1;
+        Player->KageAng = 0;
 
-        if ((power_band_accele[playerIndex] == true) && ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-            player->accelcount += 100.0f;
+        if ((PowerBandAccele[playerIndex] == true) && ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+            Player->Accelcount += 100.0f;
         }
 
-        if (g_gameMode == BATTLE) {
-            cut_balloon(player, playerIndex);
+        if (GameMode == BATTLE) {
+            CutPlayerBalloon(Player, playerIndex);
         }
     } else {
-        player->slipcount = (s16) (player->slipcount + 0x90);
-        if (((s32) player->slipcount) >= 0x2000) {
-            player->slipcount = 0;
-            --player->roliover_time;
-            if (player->roliover_time == 0) {
-                player->slip_flag &= ~THROW_EXPLODE;
-                player->roliover_time = 0;
-                compel_flag[0][playerIndex] = 1;
-                compel_flag[1][playerIndex] = 1;
-                compel_flag[2][playerIndex] = 1;
-                compel_flag[3][playerIndex] = 1;
-                player->kage_ang = 0;
-                if ((power_band_accele[playerIndex] == true) &&
-                    ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-                    player->accelcount += 100.0f;
+        Player->Slipcount = (s16) (Player->Slipcount + 0x90);
+        if (((s32) Player->Slipcount) >= 0x2000) {
+            Player->Slipcount = 0;
+            --Player->RolioverTime;
+            if (Player->RolioverTime == 0) {
+                Player->SlipFlag &= ~THROW_EXPLODE;
+                Player->RolioverTime = 0;
+                CompelFlag[0][playerIndex] = 1;
+                CompelFlag[1][playerIndex] = 1;
+                CompelFlag[2][playerIndex] = 1;
+                CompelFlag[3][playerIndex] = 1;
+                Player->KageAng = 0;
+                if ((PowerBandAccele[playerIndex] == true) &&
+                    ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+                    Player->Accelcount += 100.0f;
                 }
 
-                if (g_gameMode == BATTLE) {
-                    cut_balloon(player, playerIndex);
+                if (GameMode == BATTLE) {
+                    CutPlayerBalloon(Player, playerIndex);
                 }
             }
         }
     }
 }
 
-void SetBombThrowRollover(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
-    check_hit_letter(player);
+void SetBombThrowRollover(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
+    CheckHitLetter(Player);
 
-    player->slipcount = 0;
-    player->slip_flag &= ~DRIFT;
-    player->jmp_acc = 0.0f;
-    player->jmp_speed = 0.0f;
-    player->jump = 0.0f;
-    player->jmp_acc = D_800E3730[player->kart];
-    player->jump = D_800E3710[player->kart];
-    player->roliover_time = 4;
-    player->kage_ang = 0;
-    player->bomb_timer = 0;
+    Player->Slipcount = 0;
+    Player->SlipFlag &= ~DRIFT;
+    Player->JmpAcc = 0.0f;
+    Player->JmpSpeed = 0.0f;
+    Player->Jump = 0.0f;
+    Player->JmpAcc = D_800E3730[Player->Kart];
+    Player->Jump = D_800E3710[Player->Kart];
+    Player->RolioverTime = 4;
+    Player->KageAng = 0;
+    Player->BombTimer = 0;
 
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
-        NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008005);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+        NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008005);
         NAPlyTrgStart(playerIndex, SOUND_ACTION_EXPLOSION);
     } else {
-        oga_enemy_voice(playerIndex, player);
+        OgaEnemyVoice(playerIndex, Player);
     }
 
-    player->slip_flag |= THROW_EXPLODE;
-    player->talk |= CRASH;
-    player->weapon &= ~(HIT_BOMB_THROW | HIT_REDSHELL);
+    Player->SlipFlag |= THROW_EXPLODE;
+    Player->Talk |= CRASH;
+    Player->Weapon &= ~(HIT_BOMB_THROW | HIT_REDSHELL);
 
-    power_band_timer[playerIndex] = 0;
-    power_band_accele[playerIndex] = false;
-    accele_flag[playerIndex] = 0;
-    accele_time[playerIndex] = 0;
+    PowerBandTimer[playerIndex] = 0;
+    PowerBandAccele[playerIndex] = false;
+    AcceleFlag[playerIndex] = 0;
+    AcceleTime[playerIndex] = 0;
 }
 
-void reset_bomb_throw(Player* player, s8 playerIndex) {
-    player->slip_flag &= ~THROW_EXPLODE;
-    player->slipcount = 0;
-    player->roliover_time = 0;
-    compel_flag[0][playerIndex] = 1;
-    compel_flag[1][playerIndex] = 1;
-    compel_flag[2][playerIndex] = 1;
-    compel_flag[3][playerIndex] = 1;
-    player->kage_ang = 0;
+void ResetBombThrow(Player* Player, s8 playerIndex) {
+    Player->SlipFlag &= ~THROW_EXPLODE;
+    Player->Slipcount = 0;
+    Player->RolioverTime = 0;
+    CompelFlag[0][playerIndex] = 1;
+    CompelFlag[1][playerIndex] = 1;
+    CompelFlag[2][playerIndex] = 1;
+    CompelFlag[3][playerIndex] = 1;
+    Player->KageAng = 0;
 }
 
-void set_dashjump(Player* player, s8 playerId) {
-    kill_strat(player, playerId);
+void SetDashjump(Player* Player, s8 PlayerId) {
+    KillStrat(Player, PlayerId);
 
-    player->slip_flag |= DASH_JUMP;
-    player->weapon &= ~PRESS_BOOSTPAD;
-    player->sus.gachon_timer = 0;
-    player->sus.gachon_firstspeed = 8.0f;
-    if (replay_flag != 1) {
-        if (((player->flag & IS_PLAYER) == IS_PLAYER) && ((player->flag & IS_GHOST) == 0)) {
-            NAPlyVoiceStart(playerId, (player->kart * 0x10) + 0x29008001);
-            NAPlyTrgStart(playerId, 0x1900A40B);
+    Player->SlipFlag |= DASH_JUMP;
+    Player->Weapon &= ~PRESS_BOOSTPAD;
+    Player->sus.GachonTimer = 0;
+    Player->sus.GachonFirstspeed = 8.0f;
+    if (ReplayFlag != 1) {
+        if (((Player->Flag & IS_PLAYER) == IS_PLAYER) && ((Player->Flag & IS_GHOST) == 0)) {
+            NAPlyVoiceStart(PlayerId, (Player->Kart * 0x10) + 0x29008001);
+            NAPlyTrgStart(PlayerId, 0x1900A40B);
         }
-    } else if (player == gPlayerOne) {
-        NAPlyVoiceStart(playerId, (player->kart * 0x10) + 0x29008001);
-        NAPlyTrgStart(playerId, 0x1900A40B);
+    } else if (Player == PlayerOne) {
+        NAPlyVoiceStart(PlayerId, (Player->Kart * 0x10) + 0x29008001);
+        NAPlyTrgStart(PlayerId, 0x1900A40B);
     }
-    player->handling_flag &= ~REVERSE_GEAR;
-    player->slip_flag &= ~SPIN_TURN;
+    Player->HandlingFlag &= ~REVERSE_GEAR;
+    Player->SlipFlag &= ~SPIN_TURN;
 }
 
-void now_dashjump(Player* player) {
+void NowDashjump(Player* Player) {
     f64 temp_f0;
 
-    player->accelcount = player->acc_maxcount;
-    if ((u16) player->wallhitcount > 0) {
-        player->accelcount = 0.0f;
+    Player->Accelcount = Player->AccMaxcount;
+    if ((u16) Player->Wallhitcount > 0) {
+        Player->Accelcount = 0.0f;
     }
-    if ((player->bump_status != BOOST_RAMP_ASPHALT) && ((player->slip_flag & N_JUMP) != N_JUMP)) {
-        chase_Fnumber(&player->turbo_power, 0, 1.0f);
+    if ((Player->BumpStatus != BOOST_RAMP_ASPHALT) && ((Player->SlipFlag & N_JUMP) != N_JUMP)) {
+        ChaseFnumber(&Player->TurboPower, 0, 1.0f);
     } else {
-        chase_Fnumber(&player->turbo_power, 400.0f, 0.01f);
+        ChaseFnumber(&Player->TurboPower, 400.0f, 0.01f);
     }
-    if (player->turbo_power <= 1.0f) {
-        player->slip_flag &= ~DASH_JUMP;
-        player->turbo_power = 0.0f;
-        if (player->jumpcount >= 0x33) {
+    if (Player->TurboPower <= 1.0f) {
+        Player->SlipFlag &= ~DASH_JUMP;
+        Player->TurboPower = 0.0f;
+        if (Player->Jumpcount >= 0x33) {
             temp_f0 = 0.7;
-            player->accelcount = (player->accelcount * temp_f0);
-            player->force = (player->force * temp_f0);
+            Player->Accelcount = (Player->Accelcount * temp_f0);
+            Player->Force = (Player->Force * temp_f0);
         }
     }
 }
 
-void reset_dashjump(Player* player) {
-    player->slip_flag &= ~DASH_JUMP;
-    player->turbo_power = 0.0f;
+void ResetDashjump(Player* Player) {
+    Player->SlipFlag &= ~DASH_JUMP;
+    Player->TurboPower = 0.0f;
 }
 
-void set_dash_midjump(Player* player, s8 playerId) {
-    kill_strat(player, playerId);
+void SetDashMidjump(Player* Player, s8 PlayerId) {
+    KillStrat(Player, PlayerId);
 
-    player->slip_flag |= DASH_MIDJUMP;
-    player->weapon &= ~PRESS_BOOSTJUMP;
+    Player->SlipFlag |= DASH_MIDJUMP;
+    Player->Weapon &= ~PRESS_BOOSTJUMP;
 
-    if (replay_flag != 1) {
-        if (((player->flag & IS_PLAYER) == IS_PLAYER) && ((player->flag & IS_GHOST) == 0)) {
-            NAPlyVoiceStart(playerId, (player->kart * 0x10) + 0x29008001);
-            NAPlyTrgStart(playerId, 0x1900A40B);
+    if (ReplayFlag != 1) {
+        if (((Player->Flag & IS_PLAYER) == IS_PLAYER) && ((Player->Flag & IS_GHOST) == 0)) {
+            NAPlyVoiceStart(PlayerId, (Player->Kart * 0x10) + 0x29008001);
+            NAPlyTrgStart(PlayerId, 0x1900A40B);
         }
-    } else if (player == gPlayerOne) {
-        NAPlyVoiceStart(playerId, (player->kart * 0x10) + 0x29008001);
-        NAPlyTrgStart(playerId, 0x1900A40B);
+    } else if (Player == PlayerOne) {
+        NAPlyVoiceStart(PlayerId, (Player->Kart * 0x10) + 0x29008001);
+        NAPlyTrgStart(PlayerId, 0x1900A40B);
     }
 
-    player->handling_flag &= ~REVERSE_GEAR;
-    player->slip_flag &= ~SPIN_TURN;
+    Player->HandlingFlag &= ~REVERSE_GEAR;
+    Player->SlipFlag &= ~SPIN_TURN;
 }
 
-void now_dash_midjump(Player* player) {
-    player->accelcount = gTopSpeedTable[0][player->kart];
+void NowDashMidjump(Player* Player) {
+    Player->Accelcount = TopSpeedTable[0][Player->Kart];
 
-    if ((player->bump_status != BOOST_RAMP_WOOD) && ((player->slip_flag & N_JUMP) != N_JUMP)) {
-        chase_Fnumber(&player->turbo_power, 0, 1.0f);
+    if ((Player->BumpStatus != BOOST_RAMP_WOOD) && ((Player->SlipFlag & N_JUMP) != N_JUMP)) {
+        ChaseFnumber(&Player->TurboPower, 0, 1.0f);
     } else {
-        chase_Fnumber(&player->turbo_power, 300.0f, 0.1f);
+        ChaseFnumber(&Player->TurboPower, 300.0f, 0.1f);
     }
 
-    if (player->turbo_power <= 1.0f) {
-        player->slip_flag &= ~DASH_MIDJUMP;
-        player->turbo_power = 0.0f;
-        player->accelcount /= 2;
-        player->force /= 2;
+    if (Player->TurboPower <= 1.0f) {
+        Player->SlipFlag &= ~DASH_MIDJUMP;
+        Player->TurboPower = 0.0f;
+        Player->Accelcount /= 2;
+        Player->Force /= 2;
     }
 }
 
-void reset_dash_midjump(Player* player) {
-    player->slip_flag &= ~DASH_MIDJUMP;
-    player->turbo_power = 0.0f;
+void ResetDashMidjump(Player* Player) {
+    Player->SlipFlag &= ~DASH_MIDJUMP;
+    Player->TurboPower = 0.0f;
 }
 
-void set_rapidacc(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+void SetRapidacc(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
 
-    player->old_direction = player->direction[1];
-    player->spin_timer = 2;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->slip_flag |= RAPID_ACC;
-    player->sterrangle = 0;
+    Player->OldDirection = Player->Direction[1];
+    Player->SpinTimer = 2;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->SlipFlag |= RAPID_ACC;
+    Player->Sterrangle = 0;
     D_8018D920[playerIndex] = -0x8000;
 
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
-        NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008003);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+        NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008003);
     }
 }
 
-void rapidacc(Player* player, s8 arg1) {
+void Rapidacc(Player* Player, s8 arg1) {
     s16 temp;
 
-    player->force = (player->max_power * 0.05);
-    if (player->spin_timer < 0) {
-        if ((player->handling_flag & START_SPIN_LEFT) == START_SPIN_LEFT) {
-            player->direction[1] += DEGREES(1);
+    Player->Force = (Player->MaxPower * 0.05);
+    if (Player->SpinTimer < 0) {
+        if ((Player->HandlingFlag & START_SPIN_LEFT) == START_SPIN_LEFT) {
+            Player->Direction[1] += DEGREES(1);
             D_8018D920[arg1] += DEGREES(1);
 
             temp = ((u16) D_8018D920[arg1] / DEGREES(1));
             if (temp == 180) {
-                player->slip_flag &= ~RAPID_ACC;
-                player->flag &= ~PLAYER_UNKNOWN_0x80;
-                player->accelcount /= 3.0f;
+                Player->SlipFlag &= ~RAPID_ACC;
+                Player->Flag &= ~PLAYER_UNKNOWN_0x80;
+                Player->Accelcount /= 3.0f;
             }
         } else {
 
-            player->direction[1] -= DEGREES(1);
+            Player->Direction[1] -= DEGREES(1);
             D_8018D920[arg1] -= DEGREES(1);
             temp = ((u16) D_8018D920[arg1] / DEGREES(1));
             if (temp == 180) {
-                player->slip_flag &= ~RAPID_ACC;
-                player->flag &= ~PLAYER_UNKNOWN_0x80;
-                player->accelcount /= 3.0f;
+                Player->SlipFlag &= ~RAPID_ACC;
+                Player->Flag &= ~PLAYER_UNKNOWN_0x80;
+                Player->Accelcount /= 3.0f;
             }
         }
     } else {
-        if ((player->spin_timer & 1) != 0) {
-            player->direction[1] -= DEGREES(2);
+        if ((Player->SpinTimer & 1) != 0) {
+            Player->Direction[1] -= DEGREES(2);
             D_8018D920[arg1] -= DEGREES(2);
             temp = ((u16) D_8018D920[arg1] / DEGREES(2));
             if (temp < 71) {
-                --player->spin_timer;
+                --Player->SpinTimer;
             }
-            player->handling_flag |= START_SPIN_LEFT;
-            player->handling_flag &= ~START_SPIN_RIGHT;
+            Player->HandlingFlag |= START_SPIN_LEFT;
+            Player->HandlingFlag &= ~START_SPIN_RIGHT;
             return;
         }
-        player->direction[1] += DEGREES(2);
+        Player->Direction[1] += DEGREES(2);
         D_8018D920[arg1] += DEGREES(2);
         temp = ((u16) D_8018D920[arg1] / DEGREES(2));
         if (temp >= 110) {
-            --player->spin_timer;
+            --Player->SpinTimer;
         }
-        player->handling_flag |= START_SPIN_RIGHT;
-        player->handling_flag &= ~START_SPIN_LEFT;
+        Player->HandlingFlag |= START_SPIN_RIGHT;
+        Player->HandlingFlag &= ~START_SPIN_LEFT;
     }
 }
 
-void reset_rapidacc(Player* player) {
-    player->slip_flag &= ~RAPID_ACC;
+void ResetRapidacc(Player* Player) {
+    Player->SlipFlag &= ~RAPID_ACC;
 }
 
-void rollover_fall(Player* player, UNUSED s8 arg1) {
-    player->slipcount += 0x80;
-    player->kage_ang += DEGREES(10);
-    player->nowsterr = 0;
-    player->accelcount = 0.0f;
-    player->force /= 2;
-    if (player->slipcount >= 0x2000) {
-        player->slipcount = 0;
-        --player->roliover_time;
-        if (player->roliover_time == 0) {
-            player->slip_flag &= ~ROLLOVER_FALL;
-            ExplorerSetJugemu(player);
-            ExplorerCallJugemu(player);
+void RolloverFall(Player* Player, UNUSED s8 arg1) {
+    Player->Slipcount += 0x80;
+    Player->KageAng += DEGREES(10);
+    Player->Nowsterr = 0;
+    Player->Accelcount = 0.0f;
+    Player->Force /= 2;
+    if (Player->Slipcount >= 0x2000) {
+        Player->Slipcount = 0;
+        --Player->RolioverTime;
+        if (Player->RolioverTime == 0) {
+            Player->SlipFlag &= ~ROLLOVER_FALL;
+            ExplorerSetJugemu(Player);
+            ExplorerCallJugemu(Player);
         }
     }
 }
 
-void SetRolloverFall(Player* player, s8 playerIndex) {
-    if ((((player->slip_flag & SPIN_L) != 0) || ((player->slip_flag & SPIN_R) != 0) ||
-         ((player->slip_flag & EXPLODE)) || ((player->slip_flag & THROW_EXPLODE)) ||
-         ((player->slip_flag & ROLLOVER) != 0)) &&
-        (g_gameMode == BATTLE)) {
-        player->handling_flag |= BALLOON_CUT;
+void SetRolloverFall(Player* Player, s8 playerIndex) {
+    if ((((Player->SlipFlag & SPIN_L) != 0) || ((Player->SlipFlag & SPIN_R) != 0) ||
+         ((Player->SlipFlag & EXPLODE)) || ((Player->SlipFlag & THROW_EXPLODE)) ||
+         ((Player->SlipFlag & ROLLOVER) != 0)) &&
+        (GameMode == BATTLE)) {
+        Player->HandlingFlag |= BALLOON_CUT;
     }
 
-    kill_strat(player, playerIndex);
-    ResetStar(player, playerIndex);
+    KillStrat(Player, playerIndex);
+    ResetStar(Player, playerIndex);
 
-    player->slipcount = 0;
-    player->slip_flag |= ROLLOVER_FALL;
-    player->slip_flag &= ~DRIFT;
-    player->roliover_time = 0x1E;
-    player->kage_ang = 0;
+    Player->Slipcount = 0;
+    Player->SlipFlag |= ROLLOVER_FALL;
+    Player->SlipFlag &= ~DRIFT;
+    Player->RolioverTime = 0x1E;
+    Player->KageAng = 0;
 
-    if (((player->flag & IS_PLAYER) != 0) && ((player->flag & IS_GHOST) == 0) &&
-        ((player->jugemu_flag & ON_LAKITU_ROD) == 0) && ((player->water_flag & SUBMERGED) == 0) &&
-        ((player->water_flag & HALF_SUBMERGED) == 0)) {
-        NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008004);
+    if (((Player->Flag & IS_PLAYER) != 0) && ((Player->Flag & IS_GHOST) == 0) &&
+        ((Player->JugemuFlag & ON_LAKITU_ROD) == 0) && ((Player->WaterFlag & SUBMERGED) == 0) &&
+        ((Player->WaterFlag & HALF_SUBMERGED) == 0)) {
+        NAPlyVoiceStart(playerIndex, (Player->Kart * 0x10) + 0x29008004);
     }
 }
 
-void ResetRolloverFall(Player* player, s8 playerIndex) {
+void ResetRolloverFall(Player* Player, s8 playerIndex) {
 
-    if ((player->handling_flag & BALLOON_CUT) != 0) {
-        cut_balloon(player, playerIndex);
-        player->handling_flag &= ~BALLOON_CUT;
+    if ((Player->HandlingFlag & BALLOON_CUT) != 0) {
+        CutPlayerBalloon(Player, playerIndex);
+        Player->HandlingFlag &= ~BALLOON_CUT;
     }
 
-    player->kartroll = 0;
-    player->kartpitch = 0;
-    player->slip_flag &= ~ROLLOVER_FALL;
-    player->slipcount = 0;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->roliover_time = 0;
-    player->sterrangle = 0;
-    player->accelcount = 0.0f;
+    Player->Kartroll = 0;
+    Player->Kartpitch = 0;
+    Player->SlipFlag &= ~ROLLOVER_FALL;
+    Player->Slipcount = 0;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->RolioverTime = 0;
+    Player->Sterrangle = 0;
+    Player->Accelcount = 0.0f;
 
-    compel_flag[0][playerIndex] = 1;
-    compel_flag[1][playerIndex] = 1;
-    compel_flag[2][playerIndex] = 1;
-    compel_flag[3][playerIndex] = 1;
-    player->kage_ang = 0;
+    CompelFlag[0][playerIndex] = 1;
+    CompelFlag[1][playerIndex] = 1;
+    CompelFlag[2][playerIndex] = 1;
+    CompelFlag[3][playerIndex] = 1;
+    Player->KageAng = 0;
 }
 
-void star(Player* player, s8 playerIndex) {
-    if (((s32) g_gameTimer - g_StarUseCounter[playerIndex]) >= STAR_EFFECT_DURATION - 1) {
+void Star(Player* Player, s8 playerIndex) {
+    if (((s32) GameTimer - StarUseCounter[playerIndex]) >= STAR_EFFECT_DURATION - 1) {
         D_8018D900[playerIndex] = 1;
 
-        if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-            ((player->flag & IS_GHOST) != IS_GHOST)) {
+        if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+            ((Player->Flag & IS_GHOST) != IS_GHOST)) {
             if (D_8018D900[playerIndex] == 1) {
                 StopStarMusicHook(playerIndex);
                 D_8018D900[playerIndex] = 0;
             }
         } else if (D_8018D900[playerIndex] == 1) {
-            Na_EnmMuteki_Stop((u8) playerIndex);
+            NaEnmMutekiStop((u8) playerIndex);
             D_8018D900[playerIndex] = 0;
         }
     }
 
-    if (((s32) g_gameTimer - g_StarUseCounter[playerIndex]) >= STAR_EFFECT_DURATION) {
-        player->slip_flag &= ~STAR;
+    if (((s32) GameTimer - StarUseCounter[playerIndex]) >= STAR_EFFECT_DURATION) {
+        Player->SlipFlag &= ~STAR;
     }
 }
 
-// Star item
-void SetStar(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+// Star Item
+void SetStar(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
 
-    player->slip_flag |= STAR;
-    player->weapon &= ~USE_STAR;
-    g_StarUseCounter[playerIndex] = g_gameTimer;
+    Player->SlipFlag |= STAR;
+    Player->Weapon &= ~USE_STAR;
+    StarUseCounter[playerIndex] = GameTimer;
     D_8018D900[playerIndex] = 1;
 
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
         if (D_8018D900[playerIndex] == 1) {
             PlayStarMusicHook(playerIndex);
             D_8018D900[playerIndex] = 2;
         }
-        // This may be in charge of ending the star sound. Still unknown though.
+        // This may be in charge of ending the Star Sound. Still Unknown though.
     } else if (D_8018D900[playerIndex] == 1) {
-        Na_EnmMuteki_Start(playerIndex);
+        NaEnmMutekiStart(playerIndex);
         D_8018D900[playerIndex] = 2;
     }
 }
 
-void ResetStar(Player* player, s8 playerIndex) {
-    player->slip_flag &= ~STAR;
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
+void ResetStar(Player* Player, s8 playerIndex) {
+    Player->SlipFlag &= ~STAR;
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
         StopStarMusicHook(playerIndex);
         return;
     }
-    Na_EnmMuteki_Stop(playerIndex);
+    NaEnmMutekiStop(playerIndex);
 }
 
-void vs_ghost(Player* player, s8 playerIndex) {
+void VSGhost(Player* Player, s8 playerIndex) {
     s32 time_elapsed;
-    time_elapsed = ((s32) g_gameTimer) - g_GhostUseCounter[playerIndex];
+    time_elapsed = ((s32) GameTimer) - GhostUseCounter[playerIndex];
     if (time_elapsed < BOO_EFFECT_DURATION) {
-        player->erase -= 2;
+        Player->Erase -= 2;
 
-        if (player->erase <= ALPHA_BOO_EFFECT) {
-            player->erase = ALPHA_BOO_EFFECT;
+        if (Player->Erase <= ALPHA_BOO_EFFECT) {
+            Player->Erase = ALPHA_BOO_EFFECT;
         }
         // Player becomes invisible to other players
-        g_GhostUseTimer[playerIndex] -= 2;
-        if (g_GhostUseTimer[playerIndex] <= 0) {
-            g_GhostUseTimer[playerIndex] = 0;
+        GhostUseTimer[playerIndex] -= 2;
+        if (GhostUseTimer[playerIndex] <= 0) {
+            GhostUseTimer[playerIndex] = 0;
         }
     } else {
         // Player returns to normal visibility
-        player->erase += 4;
-        if (player->erase >= 0xF0) {
-            player->erase = ALPHA_MAX;
-            g_GhostUseTimer[playerIndex] = ALPHA_MAX;
-            player->slip_flag &= ~TERESA;
-            if ((player->flag & IS_PLAYER) != 0) {
-                Na_PlyObake_Stop(playerIndex);
+        Player->Erase += 4;
+        if (Player->Erase >= 0xF0) {
+            Player->Erase = ALPHA_MAX;
+            GhostUseTimer[playerIndex] = ALPHA_MAX;
+            Player->SlipFlag &= ~TERESA;
+            if ((Player->Flag & IS_PLAYER) != 0) {
+                NaPlyObakeStop(playerIndex);
             }
         }
 
-        g_GhostUseTimer[playerIndex] += 8;
-        if (g_GhostUseTimer[playerIndex] >= 0xF0) {
-            g_GhostUseTimer[playerIndex] = ALPHA_MAX;
-            player->erase = ALPHA_MAX;
-            player->slip_flag &= ~TERESA;
-            if ((player->flag & IS_PLAYER) != 0) {
-                Na_PlyObake_Stop(playerIndex);
+        GhostUseTimer[playerIndex] += 8;
+        if (GhostUseTimer[playerIndex] >= 0xF0) {
+            GhostUseTimer[playerIndex] = ALPHA_MAX;
+            Player->Erase = ALPHA_MAX;
+            Player->SlipFlag &= ~TERESA;
+            if ((Player->Flag & IS_PLAYER) != 0) {
+                NaPlyObakeStop(playerIndex);
             }
         }
     }
 }
 
-void SetVSGhost(Player* player, s8 playerIndex) {
+void SetVSGhost(Player* Player, s8 playerIndex) {
     s16 temp_v1;
     // become boo
-    if ((player->flag & IS_PLAYER) != 0) {
-        player->handling_flag |= BOO_SMOKE_EFFECT;
+    if ((Player->Flag & IS_PLAYER) != 0) {
+        Player->HandlingFlag |= BOO_SMOKE_EFFECT;
 
         for (temp_v1 = 0; temp_v1 < 10; ++temp_v1) {
-            player->gass[temp_v1].flag = 0;
-            player->gass[temp_v1].timer = 0;
-            player->gass[temp_v1].number = 0;
+            Player->Gass[temp_v1].Flag = 0;
+            Player->Gass[temp_v1].Timer = 0;
+            Player->Gass[temp_v1].Number = 0;
         }
     }
 
-    kill_strat(player, playerIndex);
+    KillStrat(Player, playerIndex);
 
-    player->slip_flag |= TERESA;
-    player->weapon &= ~USE_BOO;
-    g_GhostUseCounter[playerIndex] = g_gameTimer;
-    g_GhostUseTimer[playerIndex] = ALPHA_MAX;
+    Player->SlipFlag |= TERESA;
+    Player->Weapon &= ~USE_BOO;
+    GhostUseCounter[playerIndex] = GameTimer;
+    GhostUseTimer[playerIndex] = ALPHA_MAX;
 
-    if ((player->flag & IS_PLAYER) != 0) {
-        Na_PlyObake_Start(playerIndex);
+    if ((Player->Flag & IS_PLAYER) != 0) {
+        NaPlyObakeStart(playerIndex);
     }
 }
 
-void ResetVSGhost(Player* player, s8 playerIndex) {
-    player->erase += 8;
-    if (player->erase >= 0xF0) {
-        player->erase = ALPHA_MAX;
-        g_GhostUseTimer[playerIndex] = ALPHA_MAX;
+void ResetVSGhost(Player* Player, s8 playerIndex) {
+    Player->Erase += 8;
+    if (Player->Erase >= 0xF0) {
+        Player->Erase = ALPHA_MAX;
+        GhostUseTimer[playerIndex] = ALPHA_MAX;
 
-        player->slip_flag &= ~TERESA;
-        if ((player->flag & IS_PLAYER) != 0) {
-            Na_PlyObake_Stop(playerIndex);
+        Player->SlipFlag &= ~TERESA;
+        if ((Player->Flag & IS_PLAYER) != 0) {
+            NaPlyObakeStop(playerIndex);
         }
     }
 
-    g_GhostUseTimer[playerIndex] += 0x10;
-    if (g_GhostUseTimer[playerIndex] >= 0xE0) {
-        g_GhostUseTimer[playerIndex] = ALPHA_MAX;
-        player->erase = ALPHA_MAX;
-        player->slip_flag &= ~TERESA;
-        if ((player->flag & IS_PLAYER) != 0) {
-            Na_PlyObake_Stop(playerIndex);
+    GhostUseTimer[playerIndex] += 0x10;
+    if (GhostUseTimer[playerIndex] >= 0xE0) {
+        GhostUseTimer[playerIndex] = ALPHA_MAX;
+        Player->Erase = ALPHA_MAX;
+        Player->SlipFlag &= ~TERESA;
+        if ((Player->Flag & IS_PLAYER) != 0) {
+            NaPlyObakeStop(playerIndex);
         }
     }
 }
 
-void kill_bomb_kart(Player* player) {
+void KillBombKart(Player* Player) {
     s32 playerIndex;
 
-    if ((player->flag & IS_BOMB) != 0) {
-        playerIndex = check_kart_number(player);
-        player->flag = (IS_PLAYER | NO_CONTROLS | IS_CPU_PLAYER);
-        kwfinish_bombkart(playerIndex);
+    if ((Player->Flag & IS_BOMB) != 0) {
+        playerIndex = CheckKartNumber(Player);
+        Player->Flag = (IS_PLAYER | NO_CONTROLS | IS_CPU_PLAYER);
+        KwfinishBombkart(playerIndex);
     }
 }
 
-void change_bomb(Player* player, s8 arg1) {
-    player->erase -= 4;
-    if (player->erase < 5) {
-        player->erase = ALPHA_MIN;
-        player->weapon &= ~PRESS_BECOME_BOMB;
-        player->weapon |= PRESS_IS_BOMB;
-        player->flag |= IS_BOMB;
+void ChangeBomb(Player* Player, s8 arg1) {
+    Player->Erase -= 4;
+    if (Player->Erase < 5) {
+        Player->Erase = ALPHA_MIN;
+        Player->Weapon &= ~PRESS_BECOME_BOMB;
+        Player->Weapon |= PRESS_IS_BOMB;
+        Player->Flag |= IS_BOMB;
 
-        set_real_bomb(player, arg1);
-        kwstart_bombkart(arg1);
+        SetRealBomb(Player, arg1);
+        KwstartBombkart(arg1);
     }
 }
 
-void real_bomb(Player* player, s8 playerIndex) {
-    player->erase += 2;
-    if (player->erase >= 0xF0) {
-        player->erase = ALPHA_MAX;
-        player->weapon &= ~PRESS_IS_BOMB;
+void RealBomb(Player* Player, s8 playerIndex) {
+    Player->Erase += 2;
+    if (Player->Erase >= 0xF0) {
+        Player->Erase = ALPHA_MAX;
+        Player->Weapon &= ~PRESS_IS_BOMB;
     }
 
-    kwset_bombkart_alpha(playerIndex, (u32) player->erase);
+    KwsetBombkartAlpha(playerIndex, (u32) Player->Erase);
 }
 
-void set_change_bomb(Player* player, UNUSED s8 arg1) {
+void SetChangeBomb(Player* Player, UNUSED s8 arg1) {
     s16 temp_v0;
 
-    player->weapon |= PRESS_BECOME_BOMB;
-    player->handling_flag |= BOO_SMOKE_EFFECT;
+    Player->Weapon |= PRESS_BECOME_BOMB;
+    Player->HandlingFlag |= BOO_SMOKE_EFFECT;
 
     for (temp_v0 = 0; temp_v0 < 10; ++temp_v0) {
-        player->gass[temp_v0].flag = 0;
-        player->gass[temp_v0].timer = 0;
-        player->gass[temp_v0].number = 0;
+        Player->Gass[temp_v0].Flag = 0;
+        Player->Gass[temp_v0].Timer = 0;
+        Player->Gass[temp_v0].Number = 0;
     }
 }
-// become bomb
-void set_real_bomb(Player* player, UNUSED s8 arg1) {
+// become Bomb
+void SetRealBomb(Player* Player, UNUSED s8 arg1) {
     s16 temp_v0;
-    player->handling_flag |= BOO_SMOKE_EFFECT;
+    Player->HandlingFlag |= BOO_SMOKE_EFFECT;
     for (temp_v0 = 0; temp_v0 < 10; ++temp_v0) {
-        player->gass[temp_v0].flag = 0;
-        player->gass[temp_v0].timer = 0;
-        player->gass[temp_v0].number = 0;
+        Player->Gass[temp_v0].Flag = 0;
+        Player->Gass[temp_v0].Timer = 0;
+        Player->Gass[temp_v0].Number = 0;
     }
 }
 
-void SetHeightJump(Player* player, s8 playerIndex) {
-    kill_strat(player, playerIndex);
+void SetHeightJump(Player* Player, s8 playerIndex) {
+    KillStrat(Player, playerIndex);
 
-    player->slip_flag &= ~DRIFT;
-    player->jmp_acc = D_800E37F0[player->kart];
-    player->jmp_speed = 0.0f;
-    player->jump = D_800E37D0[player->kart];
-    player->weapon &= ~UNUSED_TRIGGER_0x10000;
-    player->slip_flag |= HEIGHT_JUMP;
+    Player->SlipFlag &= ~DRIFT;
+    Player->JmpAcc = D_800E37F0[Player->Kart];
+    Player->JmpSpeed = 0.0f;
+    Player->Jump = D_800E37D0[Player->Kart];
+    Player->Weapon &= ~UNUSED_TRIGGER_0x10000;
+    Player->SlipFlag |= HEIGHT_JUMP;
 }
 
-void height_jump(Player* player, UNUSED s8 playerIndex) {
-    player->slip_flag &= ~DRIFT;
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        player->slip_flag &= ~HEIGHT_JUMP;
-        player->accelcount /= 2;
-        player->force /= 2;
+void HeightJump(Player* Player, UNUSED s8 playerIndex) {
+    Player->SlipFlag &= ~DRIFT;
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        Player->SlipFlag &= ~HEIGHT_JUMP;
+        Player->Accelcount /= 2;
+        Player->Force /= 2;
     }
 }
 
-void reset_height_jump(Player* player, UNUSED s8 playerIndex) {
-    player->slip_flag &= ~HEIGHT_JUMP;
-    player->jmp_acc = 0.0f;
-    player->jump = 0.0f;
-    player->jmp_speed = 0.0f;
+void ResetHeightJump(Player* Player, UNUSED s8 playerIndex) {
+    Player->SlipFlag &= ~HEIGHT_JUMP;
+    Player->JmpAcc = 0.0f;
+    Player->Jump = 0.0f;
+    Player->JmpSpeed = 0.0f;
 }
 
-void make_chasepoint(Player* player, s8 playerId) {
+void MakeChasepoint(Player* Player, s8 PlayerId) {
     s16 pathPoint;
 
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-    switch (g_courseID) {
+    switch (CourseID) {
         case COURSE_BOWSER_CASTLE:
-            pathPoint = gNearestPathPointByPlayerId[playerId];
+            pathPoint = NearestPathPointByPlayerId[PlayerId];
             if ((pathPoint >= 0x235) && (pathPoint < 0x247)) {
-                player->chasepoint = 0x214;
+                Player->Chasepoint = 0x214;
             } else if ((pathPoint >= 0x267) && (pathPoint < 0x277)) {
-                player->chasepoint = 0x25B;
+                Player->Chasepoint = 0x25B;
             } else {
-                player->chasepoint = gNearestPathPointByPlayerId[playerId];
-                if (player->chasepoint < 0) {
-                    player->chasepoint = g_courseTotalPathPoints[0] + player->chasepoint;
+                Player->Chasepoint = NearestPathPointByPlayerId[PlayerId];
+                if (Player->Chasepoint < 0) {
+                    Player->Chasepoint = CourseTotalPathPoints[0] + Player->Chasepoint;
                 }
             }
             break;
         case COURSE_BANSHEE_BOARDWALK:
-            pathPoint = gNearestPathPointByPlayerId[playerId];
+            pathPoint = NearestPathPointByPlayerId[PlayerId];
             if ((pathPoint >= 0x12C) && (pathPoint < 0x13C)) {
-                player->chasepoint = 0x12CU;
+                Player->Chasepoint = 0x12CU;
             } else {
-                player->chasepoint = gNearestPathPointByPlayerId[playerId];
-                if (player->chasepoint < 0) {
-                    player->chasepoint = g_courseTotalPathPoints[0] + player->chasepoint;
+                Player->Chasepoint = NearestPathPointByPlayerId[PlayerId];
+                if (Player->Chasepoint < 0) {
+                    Player->Chasepoint = CourseTotalPathPoints[0] + Player->Chasepoint;
                 }
             }
             break;
         case COURSE_YOSHI_VALLEY:
         case COURSE_RAINBOW_ROAD:
-            player->chasepoint = g_playerPathPointCopy[playerId];
+            Player->Chasepoint = PlayerPathPointCopy[PlayerId];
             break;
         case COURSE_FRAPPE_SNOWLAND:
-            pathPoint = gNearestPathPointByPlayerId[playerId];
+            pathPoint = NearestPathPointByPlayerId[PlayerId];
 #ifdef VERSION_EU
-            if (((pathPoint >= 0xF0) && (pathPoint < 0x11E)) || ((g_playerPathPointCopy[playerId] >= 0xF0) &&
-                                                                 (g_playerPathPointCopy[playerId] < 0x11E)))
+            if (((pathPoint >= 0xF0) && (pathPoint < 0x11E)) || ((PlayerPathPointCopy[PlayerId] >= 0xF0) &&
+                                                                 (PlayerPathPointCopy[PlayerId] < 0x11E)))
 #else
             if ((pathPoint >= 0xF0) && (pathPoint < 0x105))
 #endif
             {
-                player->chasepoint = 0xF0U;
+                Player->Chasepoint = 0xF0U;
             } else {
-                player->chasepoint = g_playerPathPointCopy[playerId];
-                if (player->chasepoint < 0) {
-                    player->chasepoint = g_courseTotalPathPoints[0] + player->chasepoint;
+                Player->Chasepoint = PlayerPathPointCopy[PlayerId];
+                if (Player->Chasepoint < 0) {
+                    Player->Chasepoint = CourseTotalPathPoints[0] + Player->Chasepoint;
                 }
             }
             break;
         case COURSE_ROYAL_RACEWAY:
-            pathPoint = gNearestPathPointByPlayerId[playerId];
+            pathPoint = NearestPathPointByPlayerId[PlayerId];
             if ((pathPoint >= 0x258) && (pathPoint < 0x2A4)) {
-                player->chasepoint = 0x258U;
+                Player->Chasepoint = 0x258U;
             } else {
-                player->chasepoint = g_playerPathPointCopy[playerId];
-                if (player->chasepoint < 0) {
-                    player->chasepoint = g_courseTotalPathPoints[0] + player->chasepoint;
+                Player->Chasepoint = PlayerPathPointCopy[PlayerId];
+                if (Player->Chasepoint < 0) {
+                    Player->Chasepoint = CourseTotalPathPoints[0] + Player->Chasepoint;
                 }
             }
             break;
         case COURSE_DK_JUNGLE:
-            pathPoint = gNearestPathPointByPlayerId[playerId];
+            pathPoint = NearestPathPointByPlayerId[PlayerId];
             if ((pathPoint >= 0xB9) && (pathPoint < 0x119)) {
-                player->chasepoint = 0xB9U;
+                Player->Chasepoint = 0xB9U;
             } else {
-                player->chasepoint = gNearestPathPointByPlayerId[playerId];
-                if (player->chasepoint < 0) {
-                    player->chasepoint = g_courseTotalPathPoints[0] + player->chasepoint;
+                Player->Chasepoint = NearestPathPointByPlayerId[PlayerId];
+                if (Player->Chasepoint < 0) {
+                    Player->Chasepoint = CourseTotalPathPoints[0] + Player->Chasepoint;
                 }
             }
             break;
@@ -1685,12 +1685,12 @@ void make_chasepoint(Player* player, s8 playerId) {
         case COURSE_SKYSCRAPER:
         case COURSE_DOUBLE_DECK:
         case COURSE_BIG_DONUT:
-            player->chasepoint = 0U;
+            Player->Chasepoint = 0U;
             break;
         default:
-            player->chasepoint = gNearestPathPointByPlayerId[playerId];
-            if (player->chasepoint < 0) {
-                player->chasepoint = g_courseTotalPathPoints[0] + player->chasepoint;
+            Player->Chasepoint = NearestPathPointByPlayerId[PlayerId];
+            if (Player->Chasepoint < 0) {
+                Player->Chasepoint = CourseTotalPathPoints[0] + Player->Chasepoint;
             }
             break;
     }
@@ -1699,7 +1699,7 @@ void make_chasepoint(Player* player, s8 playerId) {
 #endif
 }
 
-void func_80090178(Player* player, s8 playerId, Vec3f arg2, Vec3f arg3) {
+void func_80090178(Player* Player, s8 PlayerId, Vec3f Arg2, Vec3f Arg3) {
     u16 test;
     CenterPathStruct* temp_v1;
     f32 spF8[4] = { 0.0f, 0.0f, -700.0f, 700.0f };
@@ -1719,130 +1719,130 @@ void func_80090178(Player* player, s8 playerId, Vec3f arg2, Vec3f arg3) {
     f32 sp18[4] = { 10.0f, -10.0f, -575.0f, 575.0f };
     f32 sp08[4] = { 575.0f, -575.0f, 10.0f, -10.0f };
 
-    switch (g_courseID) {
+    switch (CourseID) {
         case COURSE_YOSHI_VALLEY:
-            test = player->chasepoint;
-            temp_v1 = &CenterPathBP[jugemu_line[playerId]][test];
-            arg2[0] = temp_v1->pointx;
-            arg2[1] = temp_v1->pointy;
-            arg2[2] = temp_v1->pointz;
-            temp_v1 = &CenterPathBP[jugemu_line[playerId]]
-                                  [(player->chasepoint + 5) %
-                                   (g_courseTotalPathPoints[jugemu_line[playerId]] + 1)];
-            arg3[0] = temp_v1->pointx;
-            arg3[1] = temp_v1->pointy;
-            arg3[2] = temp_v1->pointz;
+            test = Player->Chasepoint;
+            temp_v1 = &CenterPathBP[JugemuLine[PlayerId]][test];
+            Arg2[0] = temp_v1->Pointx;
+            Arg2[1] = temp_v1->Pointy;
+            Arg2[2] = temp_v1->Pointz;
+            temp_v1 = &CenterPathBP[JugemuLine[PlayerId]]
+                                  [(Player->Chasepoint + 5) %
+                                   (CourseTotalPathPoints[JugemuLine[PlayerId]] + 1)];
+            Arg3[0] = temp_v1->Pointx;
+            Arg3[1] = temp_v1->Pointy;
+            Arg3[2] = temp_v1->Pointz;
             break;
         case COURSE_BLOCK_FORT:
-            arg2[0] = spF8[playerId];
-            arg2[1] = 0.0f;
-            arg2[2] = spE8[playerId];
-            arg3[0] = spD8[playerId];
-            arg3[1] = 0.0f;
-            arg3[2] = spC8[playerId];
+            Arg2[0] = spF8[PlayerId];
+            Arg2[1] = 0.0f;
+            Arg2[2] = spE8[PlayerId];
+            Arg3[0] = spD8[PlayerId];
+            Arg3[1] = 0.0f;
+            Arg3[2] = spC8[PlayerId];
             break;
         case COURSE_SKYSCRAPER:
-            arg2[0] = spB8[playerId];
-            arg2[1] = 480.0f;
-            arg2[2] = spA8[playerId];
-            arg3[0] = sp98[playerId];
-            arg3[1] = 480.0f;
-            arg3[2] = sp88[playerId];
+            Arg2[0] = spB8[PlayerId];
+            Arg2[1] = 480.0f;
+            Arg2[2] = spA8[PlayerId];
+            Arg3[0] = sp98[PlayerId];
+            Arg3[1] = 480.0f;
+            Arg3[2] = sp88[PlayerId];
             break;
         case COURSE_DOUBLE_DECK:
-            arg2[0] = sp78[playerId];
-            arg2[1] = 0.0f;
-            arg2[2] = sp68[playerId];
-            arg3[0] = sp58[playerId];
-            arg3[1] = 0.0f;
-            arg3[2] = sp48[playerId];
+            Arg2[0] = sp78[PlayerId];
+            Arg2[1] = 0.0f;
+            Arg2[2] = sp68[PlayerId];
+            Arg3[0] = sp58[PlayerId];
+            Arg3[1] = 0.0f;
+            Arg3[2] = sp48[PlayerId];
             break;
         case COURSE_BIG_DONUT:
-            arg2[0] = sp38[playerId];
-            arg2[1] = 200.0f;
-            arg2[2] = sp28[playerId];
-            arg3[0] = sp18[playerId];
-            arg3[1] = 200.0f;
-            arg3[2] = sp08[playerId];
+            Arg2[0] = sp38[PlayerId];
+            Arg2[1] = 200.0f;
+            Arg2[2] = sp28[PlayerId];
+            Arg3[0] = sp18[PlayerId];
+            Arg3[1] = 200.0f;
+            Arg3[2] = sp08[PlayerId];
             break;
         default:
-            test = player->chasepoint;
+            test = Player->Chasepoint;
             temp_v1 = &CenterPathBP[0][test];
-            arg2[0] = temp_v1->pointx;
-            arg2[1] = temp_v1->pointy;
-            arg2[2] = temp_v1->pointz;
-            temp_v1 = &CenterPathBP[0][(player->chasepoint + 5) % (g_courseTotalPathPoints[0] + 1)];
-            arg3[0] = temp_v1->pointx;
-            arg3[1] = temp_v1->pointy;
-            arg3[2] = temp_v1->pointz;
+            Arg2[0] = temp_v1->Pointx;
+            Arg2[1] = temp_v1->Pointy;
+            Arg2[2] = temp_v1->Pointz;
+            temp_v1 = &CenterPathBP[0][(Player->Chasepoint + 5) % (CourseTotalPathPoints[0] + 1)];
+            Arg3[0] = temp_v1->Pointx;
+            Arg3[1] = temp_v1->Pointy;
+            Arg3[2] = temp_v1->Pointz;
             break;
     }
 }
 
-void SetLakitu(Player* player) {
-    s32 playerIndex = check_kart_number(player);
+void SetLakitu(Player* Player) {
+    s32 playerIndex = CheckKartNumber(Player);
 
-    player->sterrangle = 0;
-    player->nowsterr = 0;
-    player->slipang = 0;
-    player->jugemu_flag |= LAKITU_SCENE;
-    player->slip_flag &= ~DRIFT;
-    player->hangflag = 0;
-    player->force = 0.0f;
+    Player->Sterrangle = 0;
+    Player->Nowsterr = 0;
+    Player->Slipang = 0;
+    Player->JugemuFlag |= LAKITU_SCENE;
+    Player->SlipFlag &= ~DRIFT;
+    Player->Hangflag = 0;
+    Player->Force = 0.0f;
 
-    kill_strat(player, playerIndex);
-    ResetStar(player, playerIndex);
+    KillStrat(Player, playerIndex);
+    ResetStar(Player, playerIndex);
 
-    player->sus.gachon_timer = 0;
-    player->jumpcount = 0;
-    player->sus.gachon_firstspeed = 0.0f;
-    if ((player->slip_flag & THUNDER) == THUNDER) {
-        if ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN) {
-            player->slip_flag &= ~THUNDER_SPIN;
-            player->slipcount = 0;
-            player->nowsterr = 0;
-            player->slipang = 0;
-            player->direction[1] = player->old_direction;
+    Player->sus.GachonTimer = 0;
+    Player->Jumpcount = 0;
+    Player->sus.GachonFirstspeed = 0.0f;
+    if ((Player->SlipFlag & THUNDER) == THUNDER) {
+        if ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN) {
+            Player->SlipFlag &= ~THUNDER_SPIN;
+            Player->Slipcount = 0;
+            Player->Nowsterr = 0;
+            Player->Slipang = 0;
+            Player->Direction[1] = Player->OldDirection;
         }
-        reset_thunder(player, playerIndex);
+        ResetThunder(Player, playerIndex);
     }
-    player->slip_flag &= ~SPIN_TURN;
+    Player->SlipFlag &= ~SPIN_TURN;
 }
 
-void func_80090868(Player* player) {
+void func_80090868(Player* Player) {
     s32 playerIndex;
 
-    player->sterrangle = 0;
-    player->nowsterr = 0;
-    player->slipang = 0;
-    player->force = 0.0f;
-    playerIndex = check_kart_number(player);
+    Player->Sterrangle = 0;
+    Player->Nowsterr = 0;
+    Player->Slipang = 0;
+    Player->Force = 0.0f;
+    playerIndex = CheckKartNumber(Player);
 
-    if ((player->jugemu_flag & ON_LAKITU_ROD) != ON_LAKITU_ROD) {
-        player->sus.flag = 1;
-        player->sus.position = 0.0f;
-        player->sus.accele = 0.5f;
-        make_chasepoint(player, playerIndex);
-        player->hangflag = 0;
-        player->jugemu_flag |= ON_LAKITU_ROD;
-        player->jugemu_timer = 0;
-        if ((player->water_flag & SUBMERGED) == SUBMERGED) {
-            if ((g_courseID == COURSE_BOWSER_CASTLE) || (g_courseID == COURSE_BIG_DONUT)) {
-                player->jugemu_flag |= LAVA_EFFECT;
+    if ((Player->JugemuFlag & ON_LAKITU_ROD) != ON_LAKITU_ROD) {
+        Player->sus.Flag = 1;
+        Player->sus.Position = 0.0f;
+        Player->sus.Accele = 0.5f;
+        MakeChasepoint(Player, playerIndex);
+        Player->Hangflag = 0;
+        Player->JugemuFlag |= ON_LAKITU_ROD;
+        Player->JugemuTimer = 0;
+        if ((Player->WaterFlag & SUBMERGED) == SUBMERGED) {
+            if ((CourseID == COURSE_BOWSER_CASTLE) || (CourseID == COURSE_BIG_DONUT)) {
+                Player->JugemuFlag |= LAVA_EFFECT;
             } else {
-                player->jugemu_flag |= WATER_EFFECT;
+                Player->JugemuFlag |= WATER_EFFECT;
             }
             // removing the water effect for Sherbet Land makes sense. Perhaps rainbow road and skyscraper
             // had lava instead of an abyss initially?
-            if ((g_courseID == COURSE_SHERBET_LAND) || (g_courseID == COURSE_SKYSCRAPER) ||
-                (g_courseID == COURSE_RAINBOW_ROAD)) {
-                player->jugemu_flag &= ~(LAVA_EFFECT | WATER_EFFECT);
+            if ((CourseID == COURSE_SHERBET_LAND) || (CourseID == COURSE_SKYSCRAPER) ||
+                (CourseID == COURSE_RAINBOW_ROAD)) {
+                Player->JugemuFlag &= ~(LAVA_EFFECT | WATER_EFFECT);
             }
         }
     }
 }
 
-void HangLakitu(Player* player, s8 playerId, s8 arg2) {
+void HangLakitu(Player* Player, s8 PlayerId, s8 Arg2) {
     UNUSED s32 stackPadding0;
     UNUSED s32 stackPadding1;
     Vec3f sp44;
@@ -1851,142 +1851,142 @@ void HangLakitu(Player* player, s8 playerId, s8 arg2) {
     UNUSED s32 stackPadding2;
     UNUSED s32 stackPadding3;
 
-    player->jumpcount = 0x000C;
-    player->sterrangle = 0;
-    player->nowsterr = 0;
-    player->slipang = 0;
-    player->force = 0.0f;
-    kill_strat(player, playerId);
-    switch (player->hangflag) {
+    Player->Jumpcount = 0x000C;
+    Player->Sterrangle = 0;
+    Player->Nowsterr = 0;
+    Player->Slipang = 0;
+    Player->Force = 0.0f;
+    KillStrat(Player, PlayerId);
+    switch (Player->Hangflag) {
         case 0:
-            if ((player->jugemu_flag & IS_IN_WATER) == IS_IN_WATER) {
-                if ((player->jugemu_timer < 0x3C) || ((player->jugemu_flag & ON_LAKITU_ROD) != ON_LAKITU_ROD)) {
-                    player->jugemu_timer++;
-                    if (player->jugemu_timer >= 0x3C) {
-                        player->jugemu_timer = 0x003C;
+            if ((Player->JugemuFlag & IS_IN_WATER) == IS_IN_WATER) {
+                if ((Player->JugemuTimer < 0x3C) || ((Player->JugemuFlag & ON_LAKITU_ROD) != ON_LAKITU_ROD)) {
+                    Player->JugemuTimer++;
+                    if (Player->JugemuTimer >= 0x3C) {
+                        Player->JugemuTimer = 0x003C;
                     }
                 } else {
-                    chase_Fnumber(&player->position[1], g_waterlevelPlayer[playerId] + 100.0f, 0.012f);
-                    chase_Snumber(&player->roll[arg2], 0, 0.2f);
-                    if ((g_waterlevelPlayer[playerId] + 40.0f) <= player->position[1]) {
-                        player->hangflag = 1;
-                        player->jugemu_flag |= IS_FADING_OUT;
-                        player->erase = 0x00FF;
+                    ChaseFnumber(&Player->Position[1], WaterlevelPlayer[PlayerId] + 100.0f, 0.012f);
+                    ChaseSnumber(&Player->Roll[Arg2], 0, 0.2f);
+                    if ((WaterlevelPlayer[PlayerId] + 40.0f) <= Player->Position[1]) {
+                        Player->Hangflag = 1;
+                        Player->JugemuFlag |= IS_FADING_OUT;
+                        Player->Erase = 0x00FF;
                     }
                 }
-            } else if ((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD) {
-                chase_Fnumber(&player->position[1], player->ground + 100.0f, 0.025f);
-                chase_Snumber(&player->roll[arg2], 0, 0.2f);
-                if ((player->ground + 40.0f) <= player->position[1]) {
-                    player->hangflag = 1;
-                    player->jugemu_flag |= IS_FADING_OUT;
-                    player->erase = 0x00FF;
+            } else if ((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD) {
+                ChaseFnumber(&Player->Position[1], Player->Ground + 100.0f, 0.025f);
+                ChaseSnumber(&Player->Roll[Arg2], 0, 0.2f);
+                if ((Player->Ground + 40.0f) <= Player->Position[1]) {
+                    Player->Hangflag = 1;
+                    Player->JugemuFlag |= IS_FADING_OUT;
+                    Player->Erase = 0x00FF;
                 }
             }
-            if ((player->slip_flag & TERESA) == TERESA) {
-                ResetVSGhost(player, playerId);
+            if ((Player->SlipFlag & TERESA) == TERESA) {
+                ResetVSGhost(Player, PlayerId);
             }
             break;
         case 1:
-            if (((player->flag & IS_PLAYER) == IS_PLAYER) && ((player->flag & IS_CPU_PLAYER) == 0)) {
-                SetFadeOutScreen(playerId, 0xA);
+            if (((Player->Flag & IS_PLAYER) == IS_PLAYER) && ((Player->Flag & IS_CPU_PLAYER) == 0)) {
+                SetFadeOutScreen(PlayerId, 0xA);
             }
-            if ((player->jugemu_flag & IS_IN_WATER) == IS_IN_WATER) {
-                chase_Fnumber(&player->position[1], g_waterlevelPlayer[playerId] + 40.0f, 0.02f);
-                player->erase -= 8;
-                if (player->erase < 9) {
-                    player->erase = 0;
-                    player->hangflag = 2;
-                    player->jugemu_flag &= ~IS_IN_WATER;
+            if ((Player->JugemuFlag & IS_IN_WATER) == IS_IN_WATER) {
+                ChaseFnumber(&Player->Position[1], WaterlevelPlayer[PlayerId] + 40.0f, 0.02f);
+                Player->Erase -= 8;
+                if (Player->Erase < 9) {
+                    Player->Erase = 0;
+                    Player->Hangflag = 2;
+                    Player->JugemuFlag &= ~IS_IN_WATER;
                 }
             } else {
-                chase_Fnumber(&player->position[1], player->old_position[1] + 40.0f, 0.02f);
-                player->erase -= 8;
-                if (player->erase < 9) {
-                    player->erase = 0;
-                    player->hangflag = 2;
+                ChaseFnumber(&Player->Position[1], Player->OldPosition[1] + 40.0f, 0.02f);
+                Player->Erase -= 8;
+                if (Player->Erase < 9) {
+                    Player->Erase = 0;
+                    Player->Hangflag = 2;
                 }
             }
-            player->jugemu_flag &= ~WATER_EFFECT;
+            Player->JugemuFlag &= ~WATER_EFFECT;
             break;
         case 2:
-            LakituSpawnBypass(player, playerId, sp44, sp38);
+            LakituSpawnBypass(Player, PlayerId, sp44, sp38);
             // Fakematch found by Verti, who knows what's going on here
-            player->direction[1] = (u16) -CalcDirection(sp44, sp38) & 0xFFFF;
-            player->position[0] = sp44[0];
-            player->position[1] = sp44[1] + 40.0f;
-            player->position[2] = sp44[2];
-            player->hangflag = 3;
+            Player->Direction[1] = (u16) -CalcDirection(sp44, sp38) & 0xFFFF;
+            Player->Position[0] = sp44[0];
+            Player->Position[1] = sp44[1] + 40.0f;
+            Player->Position[2] = sp44[2];
+            Player->Hangflag = 3;
             break;
         case 3:
-            g_offroadFlagPlayer1[playerId] = 0;
-            if (((player->flag & IS_PLAYER) == IS_PLAYER) && ((player->flag & IS_CPU_PLAYER) == 0)) {
-                SetFadeInScreen(playerId, 0x14);
+            OffroadFlagPlayer1[PlayerId] = 0;
+            if (((Player->Flag & IS_PLAYER) == IS_PLAYER) && ((Player->Flag & IS_CPU_PLAYER) == 0)) {
+                SetFadeInScreen(PlayerId, 0x14);
             }
-            LakituSpawnBypass(player, playerId, sp44, sp38);
-            player->position[0] = sp44[0];
-            player->position[1] = sp44[1] + 40.0f;
-            player->position[2] = sp44[2];
-            player->position[2] = player->position[2] + cosT((playerId * 0x1C70) - player->direction[1]) * -5.0f;
-            player->position[0] = player->position[0] + sinT((playerId * 0x1C70) - player->direction[1]) * -5.0f;
-            player->erase += 8;
-            if (player->erase >= 0xF0) {
-                player->erase = 0x00FF;
-                player->hangflag = 4;
-                player->jugemu_flag &= ~IS_FADING_OUT;
-                player->jugemu_timer = 0;
+            LakituSpawnBypass(Player, PlayerId, sp44, sp38);
+            Player->Position[0] = sp44[0];
+            Player->Position[1] = sp44[1] + 40.0f;
+            Player->Position[2] = sp44[2];
+            Player->Position[2] = Player->Position[2] + CosT((PlayerId * 0x1C70) - Player->Direction[1]) * -5.0f;
+            Player->Position[0] = Player->Position[0] + SinT((PlayerId * 0x1C70) - Player->Direction[1]) * -5.0f;
+            Player->Erase += 8;
+            if (Player->Erase >= 0xF0) {
+                Player->Erase = 0x00FF;
+                Player->Hangflag = 4;
+                Player->JugemuFlag &= ~IS_FADING_OUT;
+                Player->JugemuTimer = 0;
             }
             break;
         case 4:
-            if ((player->jugemu_timer == 0x0096) || (player->jugemu_timer == 0x00C8) || (player->jugemu_timer == 0x00FA)) {
-                player->position[2] = player->position[2] + cosT(-player->direction[1]) * -10.0f;
-                player->position[0] = player->position[0] + sinT(-player->direction[1]) * -10.0f;
+            if ((Player->JugemuTimer == 0x0096) || (Player->JugemuTimer == 0x00C8) || (Player->JugemuTimer == 0x00FA)) {
+                Player->Position[2] = Player->Position[2] + CosT(-Player->Direction[1]) * -10.0f;
+                Player->Position[0] = Player->Position[0] + SinT(-Player->Direction[1]) * -10.0f;
             }
-            if (player->jugemu_timer == 0x00FC) {
+            if (Player->JugemuTimer == 0x00FC) {
                 pathPoint = CenterPathBP[0];
-                player->position[0] = pathPoint->pointx;
-                player->position[1] = pathPoint->pointy;
-                player->position[2] = pathPoint->pointz;
+                Player->Position[0] = pathPoint->Pointx;
+                Player->Position[1] = pathPoint->Pointy;
+                Player->Position[2] = pathPoint->Pointz;
             }
-            chase_Fnumber(&player->position[1], (player->ground + player->radius) - 2.0f, 0.04f);
-            player->jugemu_timer++;
-            if (((player->slip_flag & N_JUMP) != N_JUMP) || (player->slip_flag & CARHIT)) {
-                player->jugemu_flag &= ~LAVA_EFFECT;
-                if (player->jugemu_timer >= 0x5B) {
-                    if (player->flag & IS_PLAYER) {
-                        NaPlyLevelStop(playerId, SOUND_ARG_LOAD(0x01, 0x00, 0xFA, 0x28));
+            ChaseFnumber(&Player->Position[1], (Player->Ground + Player->Radius) - 2.0f, 0.04f);
+            Player->JugemuTimer++;
+            if (((Player->SlipFlag & N_JUMP) != N_JUMP) || (Player->SlipFlag & CARHIT)) {
+                Player->JugemuFlag &= ~LAVA_EFFECT;
+                if (Player->JugemuTimer >= 0x5B) {
+                    if (Player->Flag & IS_PLAYER) {
+                        NaPlyLevelStop(PlayerId, SOUND_ARG_LOAD(0x01, 0x00, 0xFA, 0x28));
                     }
-                    if (g_gameMode == BATTLE) {
-                        cut_balloon(player, playerId);
+                    if (GameMode == BATTLE) {
+                        CutPlayerBalloon(Player, PlayerId);
                     }
-                    player->jugemu_flag &= ~ON_LAKITU_ROD;
-                    player->water_flag &= ~SPLASH_START;
-                    if ((player->jugemu_flag & HAS_ICE_CUBE) != HAS_ICE_CUBE) {
-                        player->jugemu_flag &= ~LAKITU_SCENE;
-                        if ((player->acc_maxcount * 0.9) <= player->accelcount) {
-                            set_rapidacc(player, playerId);
+                    Player->JugemuFlag &= ~ON_LAKITU_ROD;
+                    Player->WaterFlag &= ~SPLASH_START;
+                    if ((Player->JugemuFlag & HAS_ICE_CUBE) != HAS_ICE_CUBE) {
+                        Player->JugemuFlag &= ~LAKITU_SCENE;
+                        if ((Player->AccMaxcount * 0.9) <= Player->Accelcount) {
+                            SetRapidacc(Player, PlayerId);
                         }
                     }
                 }
             }
             break;
     }
-    player->sus.accele += 8.0f;
-    if (player->sus.accele >= 180.0f) {
-        player->sus.accele = 180.0f;
+    Player->sus.Accele += 8.0f;
+    if (Player->sus.Accele >= 180.0f) {
+        Player->sus.Accele = 180.0f;
     }
-    if (player->sus.flag == 1) {
-        player->sus.position += player->sus.accele;
-        if (player->sus.position >= (f32) DEGREES(10)) {
-            player->sus.accele = 0.0f;
-            player->sus.flag *= -1;
+    if (Player->sus.Flag == 1) {
+        Player->sus.Position += Player->sus.Accele;
+        if (Player->sus.Position >= (f32) DEGREES(10)) {
+            Player->sus.Accele = 0.0f;
+            Player->sus.Flag *= -1;
         }
     }
-    if (player->sus.flag == -1) {
-        player->sus.position -= player->sus.accele;
-        if (player->sus.position <= (f32) -DEGREES(10)) {
-            player->sus.accele = 0.0f;
-            player->sus.flag *= -1;
+    if (Player->sus.Flag == -1) {
+        Player->sus.Position -= Player->sus.Accele;
+        if (Player->sus.Position <= (f32) -DEGREES(10)) {
+            Player->sus.Accele = 0.0f;
+            Player->sus.Flag *= -1;
         }
     }
 }
@@ -1997,22 +1997,22 @@ void HangLakitu(Player* player, s8 playerId, s8 arg2) {
         ROLLOVER_FALL | RAPID_ACC | WHEELSPIN | ROLLOVER | \
         STAR | SPIN_L | SPIN_R | DASH_MIDJUMP
 
-bool check_itembutton(Player* player) {
+bool CheckItembutton(Player* Player) {
     s32 phi_v0 = 0;
-    if ((((((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
-           ((player->jugemu_flag & LAKITU_SCENE) == LAKITU_SCENE)) ||
-          ((player->flag & IS_BOMB) != 0)) ||
-         ((player->flag & IS_RACE_FINISH) != 0)) ||
-        ((player->flag & EXISTS) == 0)) {
+    if ((((((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
+           ((Player->JugemuFlag & LAKITU_SCENE) == LAKITU_SCENE)) ||
+          ((Player->Flag & IS_BOMB) != 0)) ||
+         ((Player->Flag & IS_RACE_FINISH) != 0)) ||
+        ((Player->Flag & EXISTS) == 0)) {
         return true;
     }
 
-    switch (player->item) {
+    switch (Player->Item) {
         case ITEM_MUSHROOM:
         case ITEM_DOUBLE_MUSHROOM:
         case ITEM_TRIPLE_MUSHROOM:
         case ITEM_SUPER_MUSHROOM:
-            if ((player->slip_flag & N_JUMP) != 0) {
+            if ((Player->SlipFlag & N_JUMP) != 0) {
                 return true;
             }
             phi_v0 = BLOCK_ITEM_USE_EFFECTS;
@@ -2023,7 +2023,7 @@ bool check_itembutton(Player* player) {
             phi_v0 = phi_v0 | (TERESA | BLOCK_ITEM_USE_EFFECTS);
         prevent_item_use_label:
         default:
-            if ((player->slip_flag & phi_v0) != 0) {
+            if ((Player->SlipFlag & phi_v0) != 0) {
                 return true;
             }
             return false;
@@ -2031,84 +2031,84 @@ bool check_itembutton(Player* player) {
 }
 
 //UNUSED
-void set_result_jump(Player* player, s8 arg1) {
+void SetResultJump(Player* Player, s8 arg1) {
     s32 temp_v0;
 
-    player->old_direction = player->direction[1];
-    player->handling_flag |= (TROPHYJUMP_STARS | TROPHYJUMP_END);
-    player->handling_flag &= ~TROPHYJUMP_START;
-    player->handling_flag |= TROPHYJUMP_KEEP;
-    player->jmp_acc = 0.002f;
-    player->jmp_speed = 0.0f;
-    player->jump = 2.6f;
-    player->spin_timer = 2;
-    player->slipang = 0;
-    player->nowsterr = 0;
-    player->sterrangle = 0;
+    Player->OldDirection = Player->Direction[1];
+    Player->HandlingFlag |= (TROPHYJUMP_STARS | TROPHYJUMP_END);
+    Player->HandlingFlag &= ~TROPHYJUMP_START;
+    Player->HandlingFlag |= TROPHYJUMP_KEEP;
+    Player->JmpAcc = 0.002f;
+    Player->JmpSpeed = 0.0f;
+    Player->Jump = 2.6f;
+    Player->SpinTimer = 2;
+    Player->Slipang = 0;
+    Player->Nowsterr = 0;
+    Player->Sterrangle = 0;
     D_8018D920[arg1] = 0;
 
-    player->spark[1].number = 0;
-    player->spark[1].timer = 0;
-    player->spark[1].flag = 0;
-    player->spark[0].number = 0;
-    player->spark[0].timer = 0;
-    player->spark[0].flag = 0;
+    Player->Spark[1].Number = 0;
+    Player->Spark[1].Timer = 0;
+    Player->Spark[1].Flag = 0;
+    Player->Spark[0].Number = 0;
+    Player->Spark[0].Timer = 0;
+    Player->Spark[0].Flag = 0;
 
     // clang-format off
     temp_v0 = 2; do {
         // clang-format on
-        player->spark[1 + temp_v0].flag = 0;
-        player->spark[1 + temp_v0].timer = 0;
-        player->spark[1 + temp_v0].number = 0;
-        player->spark[2 + temp_v0].flag = 0;
-        player->spark[2 + temp_v0].timer = 0;
-        player->spark[2 + temp_v0].number = 0;
-        player->spark[3 + temp_v0].flag = 0;
-        player->spark[3 + temp_v0].timer = 0;
-        player->spark[3 + temp_v0].number = 0;
+        Player->Spark[1 + temp_v0].Flag = 0;
+        Player->Spark[1 + temp_v0].Timer = 0;
+        Player->Spark[1 + temp_v0].Number = 0;
+        Player->Spark[2 + temp_v0].Flag = 0;
+        Player->Spark[2 + temp_v0].Timer = 0;
+        Player->Spark[2 + temp_v0].Number = 0;
+        Player->Spark[3 + temp_v0].Flag = 0;
+        Player->Spark[3 + temp_v0].Timer = 0;
+        Player->Spark[3 + temp_v0].Number = 0;
 
         temp_v0 += 4;
-        player->letter[6 + temp_v0].flag = 0;
-        player->letter[6 + temp_v0].timer = 0;
-        player->letter[6 + temp_v0].number = 0;
+        Player->Letter[6 + temp_v0].Flag = 0;
+        Player->Letter[6 + temp_v0].Timer = 0;
+        Player->Letter[6 + temp_v0].Number = 0;
     } while (temp_v0 < 10);
 }
 
-// unused
-void result_jump(Player* player, s8 arg1) {
+// Unused
+void ResultJump(Player* Player, s8 arg1) {
     s16 var_v1;
     UNUSED s32 stackPadding1;
     Vec3f spC = { 27.167f, 25.167f, 23.167f };
 
-    player->handling_flag |= TROPHYJUMP_KEEP;
-    if (player->spin_timer == 0) {
+    Player->HandlingFlag |= TROPHYJUMP_KEEP;
+    if (Player->SpinTimer == 0) {
         var_v1 = 0;
     } else {
-        player->direction[1] -= DEGREES(20);
+        Player->Direction[1] -= DEGREES(20);
         D_8018D920[arg1] -= DEGREES(20);
         var_v1 = (u16) D_8018D920[arg1] / DEGREES(20);
     }
-    if (((var_v1 == 9) && (player->spin_timer == 1)) || ((var_v1 == 0) && (player->spin_timer == 2)) ||
-        (player->spin_timer == 0)) {
-        player->spin_timer--;
-        if (player->spin_timer <= 0) {
-            player->spin_timer = 0;
+    if (((var_v1 == 9) && (Player->SpinTimer == 1)) || ((var_v1 == 0) && (Player->SpinTimer == 2)) ||
+        (Player->SpinTimer == 0)) {
+        Player->SpinTimer--;
+        if (Player->SpinTimer <= 0) {
+            Player->SpinTimer = 0;
         }
-        if (player->spin_timer == 0) {
-            if ((player->position[1] - (player->radius + 1.0f)) <= spC[arg1]) {
-                player->position[1] = (f32) ((f64) (spC[arg1] + player->radius) + 1.08);
-                player->sus.bound_timer = 0;
-                player->slipcount = 0;
-                player->nowsterr = 0;
-                player->slipang = 0;
-                player->sus.bound_firstspeed = 3.0f;
-                player->handling_flag &= ~TROPHYJUMP_END;
-                player->gravity = gravity_1[player->kart];
-                player->pitch[0] = 0;
-                player->flag |= NO_CONTROLS;
-                player->speed = 0.0f;
-                player->force = 0.0f;
-                player->accelcount = 0.0f;
+        if (Player->SpinTimer == 0) {
+            if ((Player->Position[1] - (Player->Radius + 1.0f)) <= spC[arg1]) {
+                Player->Position[1] = (f32) ((f64) (spC[arg1] + Player->Radius) + 1.08);
+                Player->sus.BoundTimer = 0;
+                Player->Slipcount = 0;
+                Player->Nowsterr = 0;
+                Player->Slipang = 0;
+                Player->sus.BoundFirstspeed = 3.0f;
+                Player->HandlingFlag &= ~TROPHYJUMP_END;
+                Player->Gravity = Gravity1[Player->Kart];
+                Player->Pitch[0] = 0;
+                Player->Flag |= NO_CONTROLS;
+                Player->Speed = 0.0f;
+                Player->Force = 0.0f;
+                Player->Accelcount = 0.0f;
                 if (arg1 == 0) {
                     D_801658BC = 1;
                 }
@@ -2117,9 +2117,9 @@ void result_jump(Player* player, s8 arg1) {
     }
 }
 
-void result_kart_jump_start(s8 arg0) {
-    if ((gPlayers[arg0].handling_flag & TROPHYJUMP_END) == 0) {
-        gPlayers[arg0].handling_flag |= (TROPHYJUMP_KEEP | TROPHYJUMP_START);
-        gPlayers[arg0].flag &= ~NO_CONTROLS;
+void ResultKartJumpStart(s8 arg0) {
+    if ((GamePlayers[arg0].HandlingFlag & TROPHYJUMP_END) == 0) {
+        GamePlayers[arg0].HandlingFlag |= (TROPHYJUMP_KEEP | TROPHYJUMP_START);
+        GamePlayers[arg0].Flag &= ~NO_CONTROLS;
     }
 }

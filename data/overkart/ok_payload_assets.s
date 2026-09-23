@@ -1,4 +1,4 @@
-# OverKart Library payload blobs (RAM after init_overkart).
+# OverKart Library payload blobs (RAM after InitOverkart).
 # Do not assemble src/OverKartLibrary/*.s leftover GCC dumps.
 
 .include "macros.inc"

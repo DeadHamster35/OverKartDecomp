@@ -4,22 +4,22 @@
 extern u64 osClockRate;
 
 struct ProfilerFrameData {
-    /* 0x00 */ s16 numSoundTimes;
-    /* 0x02 */ s16 numVblankTimes;
-    // gameTimes:
-    // 0: thread 5 start
+    /* 0x00 */ s16 NumSoundTimes;
+    /* 0x02 */ s16 NumVblankTimes;
+    // GameTimes:
+    // 0: thread 5 Start
     // 1: level script execution
     // 2: render
     // 3: display lists
     // 4: thread 4 end (0 terminated)
-    /* 0x08 */ OSTime gameTimes[5];
-    // gfxTimes:
+    /* 0x08 */ OSTime GameTimes[5];
+    // GFXTimes:
     // 0: processors queued
     // 1: rsp completed
     // 2: rdp completed
-    /* 0x30 */ OSTime gfxTimes[3];
-    /* 0x48 */ OSTime soundTimes[8];
-    /* 0x88 */ OSTime vblankTimes[8];
+    /* 0x30 */ OSTime GFXTimes[3];
+    /* 0x48 */ OSTime SoundTimes[8];
+    /* 0x88 */ OSTime VblankTimes[8];
 };
 
 // thread event IDs
@@ -34,6 +34,6 @@ void SetAudioRCPTime(void);
 void draw_profiler(void);
 void DisplayProcTime(void);
 
-extern s32 g_DispTimeFlag;
+extern s32 DispTimeFlag;
 
 #endif /* PROFILER_H */

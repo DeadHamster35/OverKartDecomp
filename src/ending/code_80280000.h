@@ -7,7 +7,7 @@
 
 void func_80280000(void);
 void func_80280038(void);
-void mapchange(s32 arg0);
+void Mapchange(s32 arg0);
 void EndingSequence(void);
 void InitializeEndingSequence(void);
 

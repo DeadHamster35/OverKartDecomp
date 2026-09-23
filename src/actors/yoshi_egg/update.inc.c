@@ -3,24 +3,24 @@
 /**
  * @brief Updates the Yoshi egg actor.
  *
- * @param egg
+ * @Param egg
  */
-void egg_strategy(struct YoshiValleyEgg* egg) {
-    egg->pathRot += 0x5B; // half a degree
-    egg->position[0] = egg->pathCenter[0] + (sinT(egg->pathRot) * egg->pathRadius);
-    egg->position[2] = egg->pathCenter[2] + (cosT(egg->pathRot) * egg->pathRadius);
-    if ((egg->flag & FLYINGOBJ) != 0) {
-        egg->pathCenter[1] -= 0.12;
-        if (egg->pathCenter[1] < -3.0f) {
-            egg->pathCenter[1] = -3.0f;
+void EggStrategy(struct YoshiValleyEgg* egg) {
+    egg->PathRot += 0x5B; // half a degree
+    egg->Position[0] = egg->PathCenter[0] + (SinT(egg->PathRot) * egg->PathRadius);
+    egg->Position[2] = egg->PathCenter[2] + (CosT(egg->PathRot) * egg->PathRadius);
+    if ((egg->Flag & FLYINGOBJ) != 0) {
+        egg->PathCenter[1] -= 0.12;
+        if (egg->PathCenter[1] < -3.0f) {
+            egg->PathCenter[1] = -3.0f;
         }
-        egg->position[1] += egg->pathCenter[1];
-        if (egg->position[1] < 0.0f) {
-            egg->position[1] = 0.0f;
-            egg->pathCenter[1] = 0.0f;
-            egg->flag &= ~(1 << 10);
+        egg->Position[1] += egg->PathCenter[1];
+        if (egg->Position[1] < 0.0f) {
+            egg->Position[1] = 0.0f;
+            egg->PathCenter[1] = 0.0f;
+            egg->Flag &= ~(1 << 10);
         }
-        egg->eggRot -= DEGREES(7);
+        egg->EggRot -= DEGREES(7);
     }
-    egg->eggRot -= DEGREES(3);
+    egg->EggRot -= DEGREES(3);
 }

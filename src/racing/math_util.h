@@ -3,8 +3,8 @@
 
 #include <PR/ultratypes.h>
 
-// #define sinT(x) gSineTable[(u16) (x) >> 4]
-// #define cosT(x) CosTable[(u16) (x) >> 4]
+// #define SinT(x) SineTable[(u16) (x) >> 4]
+// #define CosT(x) CosTable[(u16) (x) >> 4]
 
 // #define min(a, b) ((a) <= (b) ? (a) : (b))
 // #define max(a, b) ((a) > (b) ? (a) : (b))
@@ -20,11 +20,11 @@ s32 SetMatrix(Mat4, s32);
 f32 CalcDistance(Vec3f, Vec3f);
 s32 CalcDirection(Vec3f, Vec3f);
 u32 CalcDirectionS(Vec3f, Vec3s); // Unused
-void vec3f_set(Vec3f, f32, f32, f32);
+void Vec3FSet(Vec3f, f32, f32, f32);
 void SetSVector(Vec3s, s16, s16, s16);
 void* CopyVector(Vec3f, Vec3f);
 void CopySVector(Vec3s, Vec3s);
-void* vec3f_set_return(Vec3f, f32, f32, f32);
+void* Vec3FSetReturn(Vec3f, f32, f32, f32);
 void CopyAffine(Mat4, Mat4);
 void CopyLongArray(s32*, s32*, s32);
 void LoadIdentAffineMtx(Mat4);
@@ -61,8 +61,8 @@ u16 MakeRandom(void);
 u16 MakeRandomLimmit(u16);
 s16 angle_from_coords(f32, f32, f32, f32);
 void MakeDirection3D(Vec3f, Vec3f, Vec3s);
-f32 sinT(u16);
-f32 cosT(u16);
+f32 SinT(u16);
+f32 CosT(u16);
 s32 CheckCone(u16, u16, u16);
 f32 CheckDisplayRange(Vec3f, Vec3f, u16, f32, f32, f32);
 

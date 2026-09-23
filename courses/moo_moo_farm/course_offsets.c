@@ -31,7 +31,7 @@ extern u8 gTexture66D698[];
 extern u8 gTexture66EBF0[];
 extern u8 gTextureWheelSteamEngineReal[];
 
-const course_texture moo_moo_farm_textures[] = {
+const CourseTexture moo_moo_farm_textures[] = {
     { gTextureWoodDoor0, 0x0294, 0x1000, 0x0 },
     { gTextureGrass2, 0x0415, 0x0800, 0x0 },
     { gTexture64AF50, 0x0140, 0x0800, 0x0 },

@@ -1,84 +1,84 @@
 #include "../MainInclude.h"
 
-ushort C_particle_count;
+Ushort CParticleCount;
 
 CustomParticle CustomParticleBuffer[MAX_CUSTOM_PARTICLES];
 
 //Call on Race Start
 void InitialCustomParticleBuffer(void)
 {
-	C_particle_count=0;
+	CParticleCount=0;
 	{
 	    int i;
 	for (i=0; i<MAX_CUSTOM_PARTICLES; i++)
 	{
 		//Default values on race init
-		CustomParticleBuffer[i].flag=0;
-		CustomParticleBuffer[i].category=0;
-		CustomParticleBuffer[i].counter=0; 
+		CustomParticleBuffer[i].Flag=0;
+		CustomParticleBuffer[i].Category=0;
+		CustomParticleBuffer[i].Counter=0; 
 		CustomParticleBuffer[i].cparam=0; 
-		CustomParticleBuffer[i].fparam=0; 
-		CustomParticleBuffer[i].renderdistance=0;
-		CustomParticleBuffer[i].drawmode=0;
+		CustomParticleBuffer[i].Fparam=0; 
+		CustomParticleBuffer[i].Renderdistance=0;
+		CustomParticleBuffer[i].Drawmode=0;
 		CustomParticleBuffer[i].movemode=0;
-		CustomParticleBuffer[i].scale=0;
-		CustomParticleBuffer[i].position[0]=0;
-		CustomParticleBuffer[i].position[1]=0;
-		CustomParticleBuffer[i].position[2]=0;
-		CustomParticleBuffer[i].velocity[0]=0;
-		CustomParticleBuffer[i].velocity[1]=0;
-		CustomParticleBuffer[i].velocity[2]=0;
-		CustomParticleBuffer[i].angle[0]=0;
-		CustomParticleBuffer[i].angle[1]=0;
-		CustomParticleBuffer[i].angle[2]=0;
-		CustomParticleBuffer[i].colR=0;
+		CustomParticleBuffer[i].Scale=0;
+		CustomParticleBuffer[i].Position[0]=0;
+		CustomParticleBuffer[i].Position[1]=0;
+		CustomParticleBuffer[i].Position[2]=0;
+		CustomParticleBuffer[i].Velocity[0]=0;
+		CustomParticleBuffer[i].Velocity[1]=0;
+		CustomParticleBuffer[i].Velocity[2]=0;
+		CustomParticleBuffer[i].Angle[0]=0;
+		CustomParticleBuffer[i].Angle[1]=0;
+		CustomParticleBuffer[i].Angle[2]=0;
+		CustomParticleBuffer[i].ColR=0;
 		CustomParticleBuffer[i].colG=0;
 		CustomParticleBuffer[i].colB=0;
 		CustomParticleBuffer[i].colA=0;
-		CustomParticleBuffer[i].onscreen=0;
+		CustomParticleBuffer[i].Onscreen=0;
 		CustomParticleBuffer[i].anim_speed=1;
 		CustomParticleBuffer[i].anim_counter=0;
 		CustomParticleBuffer[i].anim_maxframe=1;
 		CustomParticleBuffer[i].draw_counter=0;
-		CustomParticleBuffer[i].loopcount=0;
+		CustomParticleBuffer[i].Loopcount=0;
 		CustomParticleBuffer[i].loopcountmax=1;
-		CustomParticleBuffer[i].sparam1=0;
+		CustomParticleBuffer[i].Sparam1=0;
 	}
 	}
 }
 
 void DeleteCustomParticleBuffer(CustomParticle *particle)
 {
-	particle->flag=0;
-	particle->category=0;
-	--C_particle_count;
+	particle->Flag=0;
+	particle->Category=0;
+	--CParticleCount;
 }
 
-void SetCustomParticleBuffer(CustomParticle *particle,Vector pos,SVector angle,Vector velo,float scale,short category)
+void SetCustomParticleBuffer(CustomParticle *particle,Vector pos,SVector Angle,Vector velo,float Scale,short Category)
 {
-	CopyVector(particle->position,pos);
-	CopyVector(particle->velocity,velo);
-	particle->angle[0] = angle[0];
-	particle->angle[1] = angle[1];
-	particle->angle[2] = angle[2];	
+	CopyVector(particle->Position,pos);
+	CopyVector(particle->Velocity,velo);
+	particle->Angle[0] = Angle[0];
+	particle->Angle[1] = Angle[1];
+	particle->Angle[2] = Angle[2];	
 
 
 
- 	particle->category=category;
-	SET_FLAG(particle->flag,EXISTPTCL);
-	particle->counter=0;
+ 	particle->Category=Category;
+	SET_FLAG(particle->Flag,EXISTPTCL);
+	particle->Counter=0;
 	particle->cparam=0;
-	particle->fparam=0;
-	particle->renderdistance=500;
-	particle->scale=scale;
-	particle->loopcount=0;
+	particle->Fparam=0;
+	particle->Renderdistance=500;
+	particle->Scale=Scale;
+	particle->Loopcount=0;
 	particle->loopcountmax=1;
 }
 
-short AddCustomParticleBuffer(Vector pos,SVector angle,Vector velo,float scale,short category,char filtermode)
+short AddCustomParticleBuffer(Vector pos,SVector Angle,Vector velo,float Scale,short Category,char filtermode)
 {
 	CustomParticle *particle;
-	if(C_particle_count>=MAX_CUSTOM_PARTICLES)
+	if(CParticleCount>=MAX_CUSTOM_PARTICLES)
 	{
 		return(-1);
 	}
@@ -86,12 +86,12 @@ short AddCustomParticleBuffer(Vector pos,SVector angle,Vector velo,float scale,s
  	    int i;
  	for (i=0;i<MAX_CUSTOM_PARTICLES;i++)
 	{
-		if(CustomParticleBuffer[i].flag==0)	 
+		if(CustomParticleBuffer[i].Flag==0)	 
 		{
-			++C_particle_count;
+			++CParticleCount;
 			particle=(CustomParticle *)&CustomParticleBuffer[i];
-			SetCustomParticleBuffer(particle,pos,angle,velo,scale,category);
-			CustomParticleBuffer[i].drawmode = filtermode;
+			SetCustomParticleBuffer(particle,pos,Angle,velo,Scale,Category);
+			CustomParticleBuffer[i].Drawmode = filtermode;
 			return(i);
 		}
 	}
@@ -103,16 +103,16 @@ short AddCustomParticleBuffer(Vector pos,SVector angle,Vector velo,float scale,s
 ////Color Mode////
 
 
-void Particle_Colormode(CustomParticle *particle)
+void ParticleColormode(CustomParticle *particle)
 {
-	switch (particle->drawmode)
+	switch (particle->Drawmode)
 	{
 	case KWMODE_BL_FLASH:
 	case KWMODE_PT_FLASH:
 		ToumeIMode(MakeRandomLimmit(200)+40,MakeRandomLimmit(200)+40,MakeRandomLimmit(200)+40,particle->colA);
 		break;
 	default:
-		ToumeIMode(particle->colR,particle->colG,particle->colB,particle->colA);
+		ToumeIMode(particle->ColR,particle->colG,particle->colB,particle->colA);
 		break;
 	}
 }
@@ -120,9 +120,9 @@ void Particle_Colormode(CustomParticle *particle)
 ////Filter////
 
 
-void Particle_Filtermode(CustomParticle *particle)
+void ParticleFiltermode(CustomParticle *particle)
 {
-	switch (particle->drawmode)
+	switch (particle->Drawmode)
 	{
 	case KWMODE_BL:
 	case KWMODE_BL_FLASH:
@@ -140,43 +140,43 @@ void Particle_Filtermode(CustomParticle *particle)
 ////On screen////
 
 
-void Particle_Onscreen(CustomParticle *particle, int player, bool onscreen)
+void ParticleOnscreen(CustomParticle *particle, int Player, bool Onscreen)
 {
-	if(onscreen)
+	if(Onscreen)
 	{
-		switch (player)
+		switch (Player)
 		{
 		case 0:
-			SET_FLAG(particle->onscreen,ONSCREEN1);
+			SET_FLAG(particle->Onscreen,ONSCREEN1);
 			break;
 		case 1:
-			SET_FLAG(particle->onscreen,ONSCREEN2);
+			SET_FLAG(particle->Onscreen,ONSCREEN2);
 			break;
 		case 2:
-			SET_FLAG(particle->onscreen,ONSCREEN3);
+			SET_FLAG(particle->Onscreen,ONSCREEN3);
 			break;
 		case 3:
-			SET_FLAG(particle->onscreen,ONSCREEN4);
+			SET_FLAG(particle->Onscreen,ONSCREEN4);
 			break;		
 		default:
 			break;
 		}
 	}
-	if(!onscreen)
+	if(!Onscreen)
 	{
-		switch (player)
+		switch (Player)
 		{
 		case 0:
-			CLR_FLAG(particle->onscreen,ONSCREEN1);
+			CLR_FLAG(particle->Onscreen,ONSCREEN1);
 			break;
 		case 1:
-			CLR_FLAG(particle->onscreen,ONSCREEN2);
+			CLR_FLAG(particle->Onscreen,ONSCREEN2);
 			break;
 		case 2:
-			CLR_FLAG(particle->onscreen,ONSCREEN3);
+			CLR_FLAG(particle->Onscreen,ONSCREEN3);
 			break;
 		case 3:
-			CLR_FLAG(particle->onscreen,ONSCREEN4);
+			CLR_FLAG(particle->Onscreen,ONSCREEN4);
 			break;		
 		default:
 			break;
@@ -186,11 +186,11 @@ void Particle_Onscreen(CustomParticle *particle, int player, bool onscreen)
 
 ////Common Move Routines////
 
-void Particle_UpdateVel_Move(CustomParticle *particle)
+void ParticleUpdateVelMove(CustomParticle *particle)
 {
 
 	char frame;
-	uchar subframemode = 0;
+	Uchar subframemode = 0;
 
 	switch (particle->anim_speed)
 	{
@@ -233,7 +233,7 @@ void Particle_UpdateVel_Move(CustomParticle *particle)
 		break;
 	}
 
-	if (!g_InGame)
+	if (!InGame)
 	{
 		switch (particle->anim_speed)
 		{
@@ -268,7 +268,7 @@ void Particle_UpdateVel_Move(CustomParticle *particle)
 		if (particle->anim_counter >= particle->anim_maxframe)
 		{
 			particle->anim_counter = 0;
-			particle->loopcount++;
+			particle->Loopcount++;
 		}
 		break;
 
@@ -284,35 +284,35 @@ void Particle_UpdateVel_Move(CustomParticle *particle)
 				particle->anim_counter += frame;
 			}
 		}
-		particle->loopcount++;
+		particle->Loopcount++;
 		break;
 	}
 
-	if (particle->loopcount >= particle->loopcountmax)
+	if (particle->Loopcount >= particle->loopcountmax)
 	{
 		DeleteCustomParticleBuffer(particle);
 	}	
 
 
-	particle->position[0] += particle->velocity[0];
-	particle->position[1] += particle->velocity[1];
-	particle->position[2] += particle->velocity[2];
+	particle->Position[0] += particle->Velocity[0];
+	particle->Position[1] += particle->Velocity[1];
+	particle->Position[2] += particle->Velocity[2];
 }
 
 
 
 
 ////-------Create Local Particle-------//
-// category = particle visual
-// player = camera screen
-// screen_share = show to every player
-// rndoffset = random spawn offset from position
-// filtermode = bilinear/point KWMODE_BL/KWMODE_PT or add color flashing: _FLASH
+// Category = particle visual
+// Player = Camera screen
+// screen_share = show to every Player
+// rndoffset = random spawn Offset from Position
+// filtermode = bilinear/Point KWMODE_BL/KWMODE_PT or add color flashing: _FLASH
 // anim_speed = FRAME_1/FRAME_2/FRAME_4/FRAME_8/FRAME_16 or _SUB_ for skip
-// loopcount = sprite sheet loop until destruction
-// xflip = mirror sprite
+// Loopcount = sprite sheet Loop until destruction
+// Xflip = mirror sprite
 // RGBA = int 0xRRGGBBAA or CHARS2INT(r,g,b,a)
-short ParticleCreate_Local(short category, int player, bool screen_share, short angle, Vector pos, float scale, float speed_forward, float speed_up, short rotationadd, ushort rndoffset, char filtermode, uchar anim_speed, uchar loopcount, uchar xflip, uint RGBA)
+short ParticleCreateLocal(short Category, int Player, bool screen_share, short Angle, Vector pos, float Scale, float speed_forward, float speed_up, short rotationadd, Ushort rndoffset, char filtermode, Uchar anim_speed, Uchar Loopcount, Uchar Xflip, Uint RGBA)
 {
 	CustomParticle *particle;	
 	short particleID = -1;
@@ -330,9 +330,9 @@ short ParticleCreate_Local(short category, int player, bool screen_share, short 
 	ang[1] = 0;
 	ang[2] = deg(180);
 
-	MakeAlignVector(vel,angle);
+	MakeAlignVector(vel,Angle);
 
-	particleID = AddCustomParticleBuffer(pos,ang,vel,scale,category,filtermode);
+	particleID = AddCustomParticleBuffer(pos,ang,vel,Scale,Category,filtermode);
 	if (particleID < 0)
 	{
 		return -1;
@@ -340,15 +340,15 @@ short ParticleCreate_Local(short category, int player, bool screen_share, short 
 
 	particle=&CustomParticleBuffer[particleID];
 
-	particle->owner = (char)player;
+	particle->Owner = (char)Player;
 	particle->anim_speed = anim_speed;
 	particle->anim_counter = 0;
-	particle->xflip = xflip;
-	particle->loopcountmax = loopcount;
-	particle->sparam1 = rotationadd;
+	particle->Xflip = Xflip;
+	particle->loopcountmax = Loopcount;
+	particle->Sparam1 = rotationadd;
 
 
-	particle->colR = (RGBA>>24) & 0xFF;
+	particle->ColR = (RGBA>>24) & 0xFF;
 	particle->colG = (RGBA>>16) & 0xFF;
 	particle->colB = (RGBA>>8) & 0xFF;
 	particle->colA = RGBA & 0xFF;
@@ -358,23 +358,23 @@ short ParticleCreate_Local(short category, int player, bool screen_share, short 
 	rndZ = MakeRandomLimmit(rndoffset);
 	if (MakeRandomLimmit(2) == 0)
 	{
-		particle->position[0] += rndX;
-		particle->position[1] += rndY;
-		particle->position[2] += rndZ;
+		particle->Position[0] += rndX;
+		particle->Position[1] += rndY;
+		particle->Position[2] += rndZ;
 	}
 	else
 	{
-		particle->position[0] -= rndX;
-		particle->position[1] -= rndY;
-		particle->position[2] -= rndZ;		
+		particle->Position[0] -= rndX;
+		particle->Position[1] -= rndY;
+		particle->Position[2] -= rndZ;		
 	}
 
 	if (screen_share)
 	{
-		SET_FLAG(particle->flag,SCRNSHREPTCL);
+		SET_FLAG(particle->Flag,SCRNSHREPTCL);
 	}
 
-	switch (particle->category)
+	switch (particle->Category)
 	{
 	default:
 		particle->anim_maxframe = 6;
@@ -391,7 +391,7 @@ short ParticleCreate_Local(short category, int player, bool screen_share, short 
 		particle->anim_maxframe = 3;
 		break;
 	case PTCLPEBBLE:
-		particle->renderdistance = 3000;
+		particle->Renderdistance = 3000;
 		particle->anim_maxframe = 1;
 		break;
 	case PTCLBUBBLE:
@@ -405,25 +405,25 @@ short ParticleCreate_Local(short category, int player, bool screen_share, short 
 
 ////Common 32x32 Particle////
 
-void ParticleDraw_Common_32x32(CustomParticle *particle, int player, bool RGBAMode)
+void ParticleDrawCommon32X32(CustomParticle *particle, int Player, bool RGBAMode)
 {
-	float distance;
+	float Distance;
 	int rdist;
 	Vtx_t *VTXTile;
 	Gfx *GFXTile;
-	uchar SpriteMode;
-	ushort *sprite_sheet;
+	Uchar SpriteMode;
+	Ushort *sprite_sheet;
 
-	if (!(particle->flag&SCRNSHREPTCL) && particle->owner != player)
+	if (!(particle->Flag&SCRNSHREPTCL) && particle->Owner != Player)
 	{
 		return;
 	}
 
-	rdist= particle->renderdistance;
+	rdist= particle->Renderdistance;
 
-	distance=CheckDisplayRange(GlobalCamera[player]->camera_pos,particle->position,GlobalCamera[player]->camera_direction[1],20*20,g_screenViewAngle[player],rdist*rdist);
+	Distance=CheckDisplayRange(GlobalCamera[Player]->CameraPos,particle->Position,GlobalCamera[Player]->CameraDirection[1],20*20,g_screenViewAngle[Player],rdist*rdist);
 	
-	if(distance<0 && g_InGame == 1) // Not on screen
+	if(Distance<0 && InGame == 1) // Not on screen
 	{
 		return;
 	}
@@ -434,19 +434,19 @@ void ParticleDraw_Common_32x32(CustomParticle *particle, int player, bool RGBAMo
 
 	if (RGBAMode)
 	{
-		GFXTile = KWTextureRGBA_AAZBBL_Init;
+		GFXTile = kwtexture_rgba_xlu_aa_zb_bl_init;
 		SpriteMode = 1;
 	}
 
-	VTXTile = Vtx_KTile32x32;
+	VTXTile = (Vtx_t *) Vtx_KTile32x32;
 
-	if (particle->xflip)
+	if (particle->Xflip)
 	{
-		VTXTile = Vtx_KTile32x32XFlip;
+		VTXTile = (Vtx_t *) Vtx_KTile32x32XFlip;
 	}
 
 	// Sheets //
-	switch (particle->category)
+	switch (particle->Category)
 	{
 	default:
 	case PTCLSMOKEPUFF:
@@ -491,30 +491,30 @@ void ParticleDraw_Common_32x32(CustomParticle *particle, int player, bool RGBAMo
 
 
 	// Make sprite //
-	if (g_InGame)
+	if (InGame)
 	{
-	    particle->angle[2] = particle->angle[2] + particle->sparam1;
-	    particle->angle[1] = KWLookCamera(particle->position[0],particle->position[2],GlobalCamera[player]);
+	    particle->Angle[2] = particle->Angle[2] + particle->Sparam1;
+	    particle->Angle[1] = KWLookCamera(particle->Position[0],particle->Position[2],GlobalCamera[Player]);
 	}
 	
 
-	KWCreateAffine3D(particle->position,particle->angle,particle->scale);
+	KWCreateAffine3D(particle->Position,particle->Angle,particle->Scale);
 
 	switch (SpriteMode)
 	{
 	default:
 	case 0:
 		gSPDisplayList(GraphPtrOffset++, GFXTile);
-		Particle_Colormode(particle);
-		Particle_Filtermode(particle);
-		KWTextureIA16_Sub(sprite_sheet, (Vtx *) VTXTile,32,32,32,32);
+		ParticleColormode(particle);
+		ParticleFiltermode(particle);
+		KWTextureIA16Sub(sprite_sheet, (Vtx *) VTXTile,32,32,32,32);
 		break;
 
 	case 1:
 		gSPDisplayList(GraphPtrOffset++, GFXTile);
-		Particle_Colormode(particle);
-		Particle_Filtermode(particle);
-		KWTextureRGBA_SubBL(sprite_sheet, (Vtx *) VTXTile,32,32,32);
+		ParticleColormode(particle);
+		ParticleFiltermode(particle);
+		KWTextureRGBASubBL(sprite_sheet, (Vtx *) VTXTile,32,32,32);
 		break;
 	}
 
@@ -526,7 +526,7 @@ void ParticleDraw_Common_32x32(CustomParticle *particle, int player, bool RGBAMo
 
 ////Particle////
 
-void DrawCustomParticle(int player)
+void DrawCustomParticle(int Player)
 {
 	CustomParticle *particle;
 
@@ -534,18 +534,18 @@ void DrawCustomParticle(int player)
 	    int i;
 	for (i=0;i<MAX_CUSTOM_PARTICLES;i++)
 	{
-		if(!(CustomParticleBuffer[i].flag&EXISTPTCL))
+		if(!(CustomParticleBuffer[i].Flag&EXISTPTCL))
 		{
 			continue;
 		}
-		if(CustomParticleBuffer[i].flag&HIDEPTCL)
+		if(CustomParticleBuffer[i].Flag&HIDEPTCL)
 		{
 			continue;
 		}
 
 		particle =(CustomParticle *)&CustomParticleBuffer[i];
 
-		switch (particle->category)
+		switch (particle->Category)
 		{
 			case PTCLSPARKLE:
 			case PTCLPUFF:
@@ -557,10 +557,10 @@ void DrawCustomParticle(int player)
 			case PTCLBUBBLE:
 			case PTCLSPLATTER:
 			case PTCLDIRT:
-				ParticleDraw_Common_32x32(particle,player,0);
+				ParticleDrawCommon32X32(particle,Player,0);
 				break;
 			case PTCLEXPLOSION:
-				ParticleDraw_Common_32x32(particle,player,1);
+				ParticleDrawCommon32X32(particle,Player,1);
 				break;
 			default:
 				break;
@@ -573,7 +573,7 @@ void MoveCustomParticle(void)
 {
 	CustomParticle *particle;
 
-	if (g_gamePausedFlag != 0)
+	if (GamePausedFlag != 0)
 	{
 		return;
 	}
@@ -582,18 +582,18 @@ void MoveCustomParticle(void)
 	    int i;
 	for (i=0;i<MAX_CUSTOM_PARTICLES;i++)
 	{
-		if(!(CustomParticleBuffer[i].flag&EXISTPTCL))
+		if(!(CustomParticleBuffer[i].Flag&EXISTPTCL))
 		{
 			continue;
 		}
-		if(CustomParticleBuffer[i].flag&HIDEPTCL)
+		if(CustomParticleBuffer[i].Flag&HIDEPTCL)
 		{
 			continue;
 		}
 
 		particle =(CustomParticle *)&CustomParticleBuffer[i];
 
-		Particle_UpdateVel_Move(particle);
+		ParticleUpdateVelMove(particle);
 
 	}
 	}

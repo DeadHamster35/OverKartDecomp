@@ -36,60 +36,60 @@ extern void DisplayObject(void* car, Object* inputObject);
 extern void CollideObject(Player* Car, Object* Target);
 extern void ItemboxCollideCheck(Player* Car, Object* Target);
 extern void DrawPerScreen(Camera* LocalCamera);
-extern void titleMenu(void);
+extern void TitleMenu(void);
 extern void MiniMapDraw(void);
-extern void gameCode(void);
-extern void allRun(void);
+extern void GameCode(void);
+extern void AllRun(void);
 extern void PrintMenuFunction(void);
 extern void ExecuteItemHook(Player* Car);
 
 
-extern int LoadOKData(uint SourceInput, uint SizeData);
-extern int LoadDataBypass(uint RomStart, uint RomEnd);
-extern int LoadPressDataBypass(uint RomStart, uint RomEnd);
+extern int LoadOKData(Uint SourceInput, Uint SizeData);
+extern int LoadDataBypass(Uint RomStart, Uint RomEnd);
+extern int LoadPressDataBypass(Uint RomStart, Uint RomEnd);
 
 
 extern void DetectEmulator(void);
 
-extern void runDMA(void);
-extern void runRAM(void);
-extern void runTKM(void);
-extern int runMIO(void);
-extern void loadEEPROM(uint Destination);
-extern void saveEEPROM(uint Source);
-extern uint getStarTimer(uchar playerID);
-extern uint getBooTimer(uchar playerID);
+extern void RunDMA(void);
+extern void RunRAM(void);
+extern void RunTKM(void);
+extern int RunMIO(void);
+extern void LoadEEPROM(Uint Destination);
+extern void SaveEEPROM(Uint Source);
+extern Uint GetStarTimer(Uchar PlayerID);
+extern Uint GetBooTimer(Uchar PlayerID);
 
 extern short CustomLevelID(void);
 
-extern ushort GetRGBA16(int R, int G, int B, int A);
-extern uint GetRGB32(int R, int G, int B);
+extern Ushort GetRGBA16(int R, int G, int B, int A);
+extern Uint GetRGB32(int R, int G, int B);
 
 extern void SetFontColor(int FontR, int FontG, int FontB, int ShadowR, int ShadowG, int ShadowB);
-extern void LoadFontF3D(uint Address);
+extern void LoadFontF3D(Uint Address);
 extern void SetupFontF3D(void);
-extern void printDecimal(int X, int Y, float Value, int Length);
-extern void printFloat(int X, int Y, float Value);
+extern void PrintDecimal(int X, int Y, float Value, int Length);
+extern void PrintFloat(int X, int Y, float Value);
 extern int GetRealAddress(int RSPAddress);
 
-extern void loadBigFont(void);
+extern void LoadBigFont(void);
 
-extern ushort CalcVerticalDirection(Vector origin,Vector object);
+extern Ushort CalcVerticalDirection(Vector origin,Vector object);
 void MakeAlignVectorX(Vector Input, short RotX);
 void MakeAlignVectorZ(Vector Input, short RotX);
 
 extern void ResetObject(void);
 extern void DrawBox(int X, int Y, int SizeX, int SizeY, int R, int G, int B, int A);
-extern char* printHex(char *buf, int num, int nDigits);
-extern void printNumberSprite(int X, int Y, int Value);
-extern void ShiftVertColor(uint address,uint counter,uint v_buff,char alpha,char red,char green,char blue);
-extern void MakeVertex(Vtx *vtx, int n, short x, short y, short z, short tx, short ty, uchar r, uchar g, uchar b, uchar a);
+extern char* PrintHex(char *buf, int num, int nDigits);
+extern void PrintNumberSprite(int X, int Y, int Value);
+extern void ShiftVertColor(Uint Address,Uint Counter,Uint v_buff,char Alpha,char red,char Green,char Blue);
+extern void MakeVertex(Vtx *vtx, int n, short x, short y, short z, short tx, short ty, Uchar r, Uchar g, Uchar b, Uchar a);
 
 extern int ReturnStringLength(char *stringAddress);
 extern char CharacterConvert[];
 extern char CharacterUnconvert[];
 
-extern void RunWaveSpeed(ushort *WaveDir,short WaveSpeed);
-extern void SpriteDrawWave(int cx,int cy,ushort *addr,int sizex,int sizey,float WaveScale,short WaveAngleStep,ushort WaveDirAddr);
-extern ushort custom_check_bump_2(Bump* bump, float radius, float px, float py, float pz, float lastx, float lasty, float lastz);
+extern void RunWaveSpeed(Ushort *WaveDir,short WaveSpeed);
+extern void SpriteDrawWave(int cx,int cy,Ushort *Addr,int sizex,int sizey,float WaveScale,short WaveAngleStep,Ushort WaveDirAddr);
+extern Ushort CustomCheckBump2(Bump* Bump, float Radius, float px, float py, float pz, float lastx, float lasty, float lastz);
 #endif

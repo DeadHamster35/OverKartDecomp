@@ -1,11 +1,11 @@
 #include <actors.h>
 #include <path.h>
 #include <defines.h>
-#include <main.h>
+#include <Main.h>
 #include <actors_extended.h>
 #include <code_800029B0.h>
 
-void search_point(struct ShellActor* shell) {
+void SearchPoint(struct ShellActor* shell) {
     u16 currentPathPoint;
     u16 nextPathPoint;
     f32 temp_f0;
@@ -28,41 +28,41 @@ void search_point(struct ShellActor* shell) {
     f32 temp_f26;
     Vec3f origPos;
 
-    currentPathPoint = shell->pathIndex;
-    temp_f2 = g_pathPointPointer[currentPathPoint].pointx;
-    temp_f12 = g_pathPointPointer[currentPathPoint].pointy;
-    temp_f28 = g_pathPointPointer[currentPathPoint].pointz;
+    currentPathPoint = shell->PathIndex;
+    temp_f2 = PathPointPointer[currentPathPoint].Pointx;
+    temp_f12 = PathPointPointer[currentPathPoint].Pointy;
+    temp_f28 = PathPointPointer[currentPathPoint].Pointz;
     nextPathPoint = currentPathPoint + 1;
 
-    if (nextPathPoint >= center_line_max) {
-        nextPathPoint -= center_line_max;
+    if (nextPathPoint >= CenterLineMax) {
+        nextPathPoint -= CenterLineMax;
     }
 
-    temp_f20 = temp_f2 - shell->position[0];
-    temp_f22 = temp_f12 - shell->position[1];
-    temp_f24 = temp_f28 - shell->position[2];
+    temp_f20 = temp_f2 - shell->Position[0];
+    temp_f22 = temp_f12 - shell->Position[1];
+    temp_f24 = temp_f28 - shell->Position[2];
     temp_f0 = (temp_f20 * temp_f20) + (temp_f22 * temp_f22) + (temp_f24 * temp_f24);
     if (temp_f0 > 400.0f) {
-        temp_f18_3 = g_pathPointPointer[nextPathPoint].pointx;
-        temp_f16_3 = g_pathPointPointer[nextPathPoint].pointy;
-        temp_f26 = g_pathPointPointer[nextPathPoint].pointz;
+        temp_f18_3 = PathPointPointer[nextPathPoint].Pointx;
+        temp_f16_3 = PathPointPointer[nextPathPoint].Pointy;
+        temp_f26 = PathPointPointer[nextPathPoint].Pointz;
 
-        temp_f12_0 = temp_f18_3 - shell->position[0];
-        temp_f12_1 = temp_f16_3 - shell->position[1];
-        temp_f12_2 = temp_f26 - shell->position[2];
+        temp_f12_0 = temp_f18_3 - shell->Position[0];
+        temp_f12_1 = temp_f16_3 - shell->Position[1];
+        temp_f12_2 = temp_f26 - shell->Position[2];
 
         temp_f0_3 = (temp_f12_0 * temp_f12_0) + (temp_f12_1 * temp_f12_1) + (temp_f12_2 * temp_f12_2);
         if (temp_f0_3 < temp_f0) {
-            shell->pathIndex = nextPathPoint;
+            shell->PathIndex = nextPathPoint;
         } else {
             temp_f0_2 = sqrtf(temp_f0) * 4.0f;
             temp_f20 /= temp_f0_2;
             temp_f22 /= temp_f0_2;
             temp_f24 /= temp_f0_2;
 
-            temp_f12_3 = shell->velocity[0];
-            temp_f14_2 = shell->velocity[1];
-            temp_f16_2 = shell->velocity[2];
+            temp_f12_3 = shell->Velocity[0];
+            temp_f14_2 = shell->Velocity[1];
+            temp_f16_2 = shell->Velocity[2];
 
             temp_f12_3 += temp_f20;
             temp_f14_2 += temp_f22;
@@ -74,53 +74,53 @@ void search_point(struct ShellActor* shell) {
                 temp_f14_2 /= temp_f0;
                 temp_f16_2 /= temp_f0;
             }
-            shell->velocity[0] = temp_f12_3;
-            shell->velocity[1] = temp_f14_2;
-            shell->velocity[2] = temp_f16_2;
+            shell->Velocity[0] = temp_f12_3;
+            shell->Velocity[1] = temp_f14_2;
+            shell->Velocity[2] = temp_f16_2;
 
-            origPos[0] = shell->position[0];
-            origPos[1] = shell->position[1];
-            origPos[2] = shell->position[2];
+            origPos[0] = shell->Position[0];
+            origPos[1] = shell->Position[1];
+            origPos[2] = shell->Position[2];
 
-            shell->position[0] += temp_f12_3;
-            shell->position[1] += temp_f14_2;
-            shell->position[2] += temp_f16_2;
-            CheckBump2(&shell->bump, 4.0f, shell->position[0], shell->position[1], shell->position[2], origPos[0],
+            shell->Position[0] += temp_f12_3;
+            shell->Position[1] += temp_f14_2;
+            shell->Position[2] += temp_f16_2;
+            CheckBump2(&shell->Bump, 4.0f, shell->Position[0], shell->Position[1], shell->Position[2], origPos[0],
                                     origPos[1], origPos[2]);
             BumpObject((Object*) shell);
         }
     } else {
         if (temp_f0 > 5.0f) {
-            shell->position[0] = temp_f2;
-            shell->position[1] = shell->radius + temp_f12;
-            shell->position[2] = temp_f28;
-            shell->pathIndex = nextPathPoint;
+            shell->Position[0] = temp_f2;
+            shell->Position[1] = shell->Radius + temp_f12;
+            shell->Position[2] = temp_f28;
+            shell->PathIndex = nextPathPoint;
         } else {
-            temp_f18_3 = g_pathPointPointer[nextPathPoint].pointx;
-            temp_f16_3 = g_pathPointPointer[nextPathPoint].pointy;
-            temp_f26 = g_pathPointPointer[nextPathPoint].pointz;
+            temp_f18_3 = PathPointPointer[nextPathPoint].Pointx;
+            temp_f16_3 = PathPointPointer[nextPathPoint].Pointy;
+            temp_f26 = PathPointPointer[nextPathPoint].Pointz;
 
-            shell->position[0] = (temp_f2 + temp_f18_3) * 0.5f;
-            shell->position[1] = ((temp_f12 + temp_f16_3) * 0.5f) + shell->radius;
-            shell->position[2] = (temp_f28 + temp_f26) * 0.5f;
+            shell->Position[0] = (temp_f2 + temp_f18_3) * 0.5f;
+            shell->Position[1] = ((temp_f12 + temp_f16_3) * 0.5f) + shell->Radius;
+            shell->Position[2] = (temp_f28 + temp_f26) * 0.5f;
 
-            shell->velocity[0] = (temp_f18_3 - temp_f2) * 0.5f;
-            shell->velocity[1] = (temp_f16_3 - temp_f12) * 0.5f;
-            shell->velocity[2] = (temp_f26 - temp_f28) * 0.5f;
+            shell->Velocity[0] = (temp_f18_3 - temp_f2) * 0.5f;
+            shell->Velocity[1] = (temp_f16_3 - temp_f12) * 0.5f;
+            shell->Velocity[2] = (temp_f26 - temp_f28) * 0.5f;
         }
     }
 }
 
-void search_enemy(struct ShellActor* shell, Player* player) {
+void SearchEnemy(struct ShellActor* shell, Player* Player) {
     f32 x_velocity;
     f32 z_velocity;
     f32 xz_dist;
     Vec3f newPosition;
 
-    x_velocity = player->position[0];
-    x_velocity -= shell->position[0];
-    z_velocity = player->position[2];
-    z_velocity -= shell->position[2];
+    x_velocity = Player->Position[0];
+    x_velocity -= shell->Position[0];
+    z_velocity = Player->Position[2];
+    z_velocity -= shell->Position[2];
     xz_dist = sqrtf((x_velocity * x_velocity) + (z_velocity * z_velocity)) / 8;
     if (xz_dist == 0.0f) {
         x_velocity = 0.0f;
@@ -130,93 +130,93 @@ void search_enemy(struct ShellActor* shell, Player* player) {
         z_velocity /= xz_dist;
     }
 
-    newPosition[0] = shell->position[0];
-    newPosition[1] = shell->position[1];
-    newPosition[2] = shell->position[2];
-    shell->position[0] += x_velocity;
-    shell->position[1] -= 2.0f;
-    shell->position[2] += z_velocity;
-    shell->velocity[0] = x_velocity;
-    shell->velocity[1] = -2.0f;
-    shell->velocity[2] = z_velocity;
+    newPosition[0] = shell->Position[0];
+    newPosition[1] = shell->Position[1];
+    newPosition[2] = shell->Position[2];
+    shell->Position[0] += x_velocity;
+    shell->Position[1] -= 2.0f;
+    shell->Position[2] += z_velocity;
+    shell->Velocity[0] = x_velocity;
+    shell->Velocity[1] = -2.0f;
+    shell->Velocity[2] = z_velocity;
 
-    if (player->slip_flag & TERESA) {
+    if (Player->SlipFlag & TERESA) {
         KillObject((Object*) shell);
     } else {
-        CheckBump2(&shell->bump, 4.0f, shell->position[0], shell->position[1], shell->position[2], newPosition[0],
+        CheckBump2(&shell->Bump, 4.0f, shell->Position[0], shell->Position[1], shell->Position[2], newPosition[0],
                                 newPosition[1], newPosition[2]);
         BumpObject((Object*) shell);
-        check_kill_shell(shell);
+        CheckKillShell(shell);
     }
 }
 
 /**
- * Only used in Battle mode
- * Likely trying to find the nearest player that is not the shell's owner and is not dead
+ * Only Used in Battle Mode
+ * Likely trying to find the nearest Player that is not the shell's Owner and is not dead
  **/
-s16 select_battle_enemy(Player* owner, struct ShellActor* shell) {
-    Player* player;
+s16 SelectBattleEnemy(Player* Owner, struct ShellActor* shell) {
+    Player* Player;
     s32 playerIndex;
     f32 playerToShellDistance;
-    s16 playerId = -1;
+    s16 PlayerId = -1;
     f32 smallestDistance = 25000000.0f;
 
     for (playerIndex = 0; playerIndex < 4; playerIndex++) {
-        player = &gPlayers[playerIndex];
-        if ((player->flag & EXISTS) == 0) {
+        Player = &GamePlayers[playerIndex];
+        if ((Player->Flag & EXISTS) == 0) {
             continue;
         }
-        if (player == owner) {
+        if (Player == Owner) {
             continue;
         }
         if (BalloonCount[playerIndex] < 0) {
             continue;
         }
-        // CalcDistance is not quite a 3D distance function, it doubles (rather than squares) the Z difference of the
+        // CalcDistance is not quite a 3D Distance function, it doubles (rather than squares) the Z difference of the
         // positions
-        playerToShellDistance = CalcDistance(player->position, shell->position);
+        playerToShellDistance = CalcDistance(Player->Position, shell->Position);
         if (playerToShellDistance < smallestDistance) {
             smallestDistance = playerToShellDistance;
-            playerId = player - gPlayerOne;
+            PlayerId = Player - PlayerOne;
         }
     }
 
-    return playerId;
+    return PlayerId;
 }
 
-void check_kill_shell(struct ShellActor* shell) {
-    if ((shell->bump.distance_xy < 0.0f) &&
-        ((shell->bump.bump_xy[1] < 0.25f) || (shell->bump.bump_xy[1] > -0.25f))) {
+void CheckKillShell(struct ShellActor* shell) {
+    if ((shell->Bump.DistanceXY < 0.0f) &&
+        ((shell->Bump.BumpXY[1] < 0.25f) || (shell->Bump.BumpXY[1] > -0.25f))) {
         KillObject((Object*) shell);
-        NAEnmTrgStart(shell->position, shell->velocity, SOUND_ARG_LOAD(0x19, 0x00, 0x80, 0x54));
-        shell->flag |= SEKAMEOUTOBJ;
-    } else if ((shell->bump.distance_yz < 0.0f) &&
-               ((shell->bump.bump_yz[1] < 0.25f) || (shell->bump.bump_yz[1] < -0.25f))) {
+        NAEnmTrgStart(shell->Position, shell->Velocity, SOUND_ARG_LOAD(0x19, 0x00, 0x80, 0x54));
+        shell->Flag |= SEKAMEOUTOBJ;
+    } else if ((shell->Bump.DistanceYZ < 0.0f) &&
+               ((shell->Bump.BumpYZ[1] < 0.25f) || (shell->Bump.BumpYZ[1] < -0.25f))) {
         KillObject((Object*) shell);
-        NAEnmTrgStart(shell->position, shell->velocity, SOUND_ARG_LOAD(0x19, 0x00, 0x80, 0x54));
-        shell->flag |= SEKAMEOUTOBJ;
+        NAEnmTrgStart(shell->Position, shell->Velocity, SOUND_ARG_LOAD(0x19, 0x00, 0x80, 0x54));
+        shell->Flag |= SEKAMEOUTOBJ;
     }
 }
 
 /**
- * @brief Update the red and blue shell actors
+ * @brief Update the red and Blue shell actors
  *
- * @param shell
+ * @Param shell
  */
-void move_rshell(struct ShellActor* shell) {
+void MoveRshell(struct ShellActor* shell) {
     UNUSED f32 pad9;
-    Player* player;
-    f32 height;
+    Player* Player;
+    f32 Height;
     UNUSED f32 temp_f14;
     f32 temp_f2;
     s16 temp_v0;
-    UNUSED s16 pad3;
+    UNUSED s16 Pad3;
     Vec3f somePosVel;
     struct Controller* controller;
     TripleShellParent* parent;
-    UNUSED f32 pad0;
+    UNUSED f32 Pad0;
     UNUSED f32 pad1;
-    UNUSED f32 pad2;
+    UNUSED f32 Pad2;
     UNUSED f32 pad4;
     UNUSED f32 pad5;
     UNUSED f32 pad6;
@@ -233,249 +233,249 @@ void move_rshell(struct ShellActor* shell) {
     UNUSED f32 pad17;
     Vec3f origPos;
 
-    pad1 = shell->position[0];
-    pad0 = shell->position[2];
-    pad2 = shell->position[1];
-    pad13 = shell->category;
-    if ((pad0 < (f32) minimum_z) || ((f32) maximum_z < pad0) || (pad1 < (f32) minimum_x) ||
-        ((f32) maximum_x < pad1) || (pad2 < (f32) minimum_y)) {
+    pad1 = shell->Position[0];
+    Pad0 = shell->Position[2];
+    Pad2 = shell->Position[1];
+    pad13 = shell->Category;
+    if ((Pad0 < (f32) MinimumZ) || ((f32) MaximumZ < Pad0) || (pad1 < (f32) MinimumX) ||
+        ((f32) MaximumX < pad1) || (Pad2 < (f32) MinimumY)) {
         KillObject((Object*) shell);
     }
 
-    shell->rotVelocity += DEGREES(10);
-    switch (shell->sparam) {
+    shell->RotVelocity += DEGREES(10);
+    switch (shell->Sparam) {
         case HELD_SHELL:
-            player = &gPlayers[shell->playerId];
-            copy_bump(&player->bump, &shell->bump);
+            Player = &GamePlayers[shell->PlayerId];
+            CopyCollisionBump(&Player->Bump, &shell->Bump);
             somePosVel[0] = 0.0f;
-            somePosVel[1] = player->radius;
-            somePosVel[2] = -(player->radius + shell->radius + 2.0f);
-            MultipleMatrixByVector(somePosVel, player->align);
-            shell->position[0] = player->position[0] + somePosVel[0];
-            pad7 = player->position[1] - somePosVel[1];
-            shell->position[2] = player->position[2] + somePosVel[2];
-            height = CalcHeight(shell->position[0], pad7, shell->position[2], player->bump.last_zx);
-            temp_f2 = pad7 - height;
+            somePosVel[1] = Player->Radius;
+            somePosVel[2] = -(Player->Radius + shell->Radius + 2.0f);
+            MultipleMatrixByVector(somePosVel, Player->align);
+            shell->Position[0] = Player->Position[0] + somePosVel[0];
+            pad7 = Player->Position[1] - somePosVel[1];
+            shell->Position[2] = Player->Position[2] + somePosVel[2];
+            Height = CalcHeight(shell->Position[0], pad7, shell->Position[2], Player->Bump.LastZX);
+            temp_f2 = pad7 - Height;
 
             if ((temp_f2 < 5.0f) && (temp_f2 > -5.0f)) {
-                shell->position[1] = shell->radius + height;
+                shell->Position[1] = shell->Radius + Height;
             } else {
-                shell->position[1] = pad7;
+                shell->Position[1] = pad7;
             }
 
-            if ((player->flag & IS_PLAYER) != 0) {
-                if (g_DemoFlag) {
-                    controller = gControllerOne;
+            if ((Player->Flag & IS_PLAYER) != 0) {
+                if (DemoFlag) {
+                    controller = ControllerOne;
                 } else {
-                    controller = &gControllers[shell->playerId];
+                    controller = &Controllers[shell->PlayerId];
                 }
             } else {
-                controller = gControllerOne;
+                controller = ControllerOne;
             }
 
             if ((controller->ButtonReleased & Z_TRIG) != 0) {
                 controller->ButtonReleased &= ~Z_TRIG;
-                shell->sparam = RELEASED_SHELL;
-                if (player->slipang > 0) {
-                    shell->rotAngle = DEGREES(170);
+                shell->Sparam = RELEASED_SHELL;
+                if (Player->Slipang > 0) {
+                    shell->RotAngle = DEGREES(170);
                 } else {
                     // The minus 1 is almost certainly just due to rounding the other way
-                    shell->rotAngle = -DEGREES(170) - 1;
+                    shell->RotAngle = -DEGREES(170) - 1;
                 }
             }
             break;
         case RELEASED_SHELL:
-            player = &gPlayers[shell->playerId];
-            if (shell->rotAngle > 0) {
-                shell->rotAngle -= DEGREES(10);
-                if (shell->rotAngle < 0) {
-                    shell->sparam = MOVING_SHELL;
-                    NAPlyTrgStart(shell->playerId, SOUND_ARG_LOAD(0x19, 0x00, 0x80, 0x04));
-                    NAPlyVoiceStart(shell->playerId,
-                                  (player->kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x00));
+            Player = &GamePlayers[shell->PlayerId];
+            if (shell->RotAngle > 0) {
+                shell->RotAngle -= DEGREES(10);
+                if (shell->RotAngle < 0) {
+                    shell->Sparam = MOVING_SHELL;
+                    NAPlyTrgStart(shell->PlayerId, SOUND_ARG_LOAD(0x19, 0x00, 0x80, 0x04));
+                    NAPlyVoiceStart(shell->PlayerId,
+                                  (Player->Kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x00));
                     if (pad13 == ACTOR_RED_SHELL) {
-                        kame_hibasira_set((Object*) shell - g_SimpleObjectArray);
+                        KameHibasiraSet((Object*) shell - SimpleObjectArray);
                     } else {
-                        kame_toge_hibasira_set((Object*) shell - g_SimpleObjectArray);
-                        NaSceneLevelStart(shell->position, shell->velocity, SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x08));
+                        KameTogeHibasiraSet((Object*) shell - SimpleObjectArray);
+                        NaSceneLevelStart(shell->Position, shell->Velocity, SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x08));
                     }
                 }
             } else {
-                shell->rotAngle += DEGREES(10);
-                if (shell->rotAngle > 0) {
-                    shell->sparam = MOVING_SHELL;
-                    NAPlyTrgStart(shell->playerId, SOUND_ARG_LOAD(0x19, 0x00, 0x80, 0x04));
-                    NAPlyVoiceStart(shell->playerId,
-                                  (player->kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x00));
+                shell->RotAngle += DEGREES(10);
+                if (shell->RotAngle > 0) {
+                    shell->Sparam = MOVING_SHELL;
+                    NAPlyTrgStart(shell->PlayerId, SOUND_ARG_LOAD(0x19, 0x00, 0x80, 0x04));
+                    NAPlyVoiceStart(shell->PlayerId,
+                                  (Player->Kart * 0x10) + SOUND_ARG_LOAD(0x29, 0x00, 0x80, 0x00));
                     if (pad13 == ACTOR_RED_SHELL) {
-                        kame_hibasira_set((Object*) shell - g_SimpleObjectArray);
+                        KameHibasiraSet((Object*) shell - SimpleObjectArray);
                     } else {
-                        kame_toge_hibasira_set((Object*) shell - g_SimpleObjectArray);
-                        NaSceneLevelStart(shell->position, shell->velocity, SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x08));
+                        KameTogeHibasiraSet((Object*) shell - SimpleObjectArray);
+                        NaSceneLevelStart(shell->Position, shell->Velocity, SOUND_ARG_LOAD(0x51, 0x01, 0x80, 0x08));
                     }
                 }
             }
-            if (shell->sparam == MOVING_SHELL) {
-                shell->someTimer = 0x001E;
-                height = 8.0f;
-                if (player->speed > 8.0f) {
-                    height = player->speed * 1.2f;
+            if (shell->Sparam == MOVING_SHELL) {
+                shell->SomeTimer = 0x001E;
+                Height = 8.0f;
+                if (Player->Speed > 8.0f) {
+                    Height = Player->Speed * 1.2f;
                 }
                 somePosVel[0] = 0.0f;
                 somePosVel[1] = 0.0f;
-                somePosVel[2] = height;
-                MakeAlignVector(somePosVel, (s16) (player->direction[1] + player->slipang));
-                shell->velocity[0] = somePosVel[0];
-                shell->velocity[1] = somePosVel[1];
-                shell->velocity[2] = somePosVel[2];
+                somePosVel[2] = Height;
+                MakeAlignVector(somePosVel, (s16) (Player->Direction[1] + Player->Slipang));
+                shell->Velocity[0] = somePosVel[0];
+                shell->Velocity[1] = somePosVel[1];
+                shell->Velocity[2] = somePosVel[2];
             } else {
-                somePosVel[0] = sinT(shell->rotAngle) * 8.0f;
-                somePosVel[1] = shell->radius - player->radius;
-                somePosVel[2] = cosT(shell->rotAngle) * 8.0f;
-                MultipleMatrixByVector(somePosVel, player->align);
-                shell->position[0] = player->position[0] + somePosVel[0];
-                shell->position[1] = player->position[1] + somePosVel[1];
-                shell->position[2] = player->position[2] + somePosVel[2];
+                somePosVel[0] = SinT(shell->RotAngle) * 8.0f;
+                somePosVel[1] = shell->Radius - Player->Radius;
+                somePosVel[2] = CosT(shell->RotAngle) * 8.0f;
+                MultipleMatrixByVector(somePosVel, Player->align);
+                shell->Position[0] = Player->Position[0] + somePosVel[0];
+                shell->Position[1] = Player->Position[1] + somePosVel[1];
+                shell->Position[2] = Player->Position[2] + somePosVel[2];
             }
             break;
         case MOVING_SHELL:
-            player = &gPlayers[shell->playerId];
-            shell->someTimer -= 1;
-            if (shell->someTimer == 0) {
-                shell->flag &= 0xEFFF;
-                if (shell->category == ACTOR_BLUE_SPINY_SHELL) {
-                    shell->targetPlayer = rank_buffer[0];
-                    shell->sparam = BLUE_SHELL_LOCK_ON;
+            Player = &GamePlayers[shell->PlayerId];
+            shell->SomeTimer -= 1;
+            if (shell->SomeTimer == 0) {
+                shell->Flag &= 0xEFFF;
+                if (shell->Category == ACTOR_BLUE_SPINY_SHELL) {
+                    shell->TargetPlayer = RankBuffer[0];
+                    shell->Sparam = BLUE_SHELL_LOCK_ON;
                     shell->shellId = 1000.0f;
-                    temp_v0 = gNearestPathPointByPlayerId[player - gPlayerOne] + 8;
-                    if ((s32) center_line_max < temp_v0) {
-                        temp_v0 -= center_line_max;
+                    temp_v0 = NearestPathPointByPlayerId[Player - PlayerOne] + 8;
+                    if ((s32) CenterLineMax < temp_v0) {
+                        temp_v0 -= CenterLineMax;
                     }
-                    shell->pathIndex = temp_v0;
-                } else if (g_gameMode == BATTLE) {
+                    shell->PathIndex = temp_v0;
+                } else if (GameMode == BATTLE) {
                     shell->shellId = 1000.0f;
-                    shell->targetPlayer = select_battle_enemy(player, shell);
-                    if (shell->targetPlayer < 0) {
-                        shell->flag = EXISTOBJ;
-                        shell->velocity[1] = 3.0f;
-                        shell->pathIndex = 0;
-                        shell->someTimer = 0x003C;
-                        shell->sparam = DESTROYED_SHELL;
+                    shell->TargetPlayer = SelectBattleEnemy(Player, shell);
+                    if (shell->TargetPlayer < 0) {
+                        shell->Flag = EXISTOBJ;
+                        shell->Velocity[1] = 3.0f;
+                        shell->PathIndex = 0;
+                        shell->SomeTimer = 0x003C;
+                        shell->Sparam = DESTROYED_SHELL;
                     } else {
-                        shell->sparam = RED_SHELL_LOCK_ON;
+                        shell->Sparam = RED_SHELL_LOCK_ON;
                     }
                 } else {
-                    if (player->rank == 0) {
-                        shell->sparam = TRIPLE_GREEN_SHELL;
-                        shell->someTimer = 0x0258;
-                        temp_v0 = gNearestPathPointByPlayerId[player - gPlayerOne] + 8;
-                        if ((s32) center_line_max < temp_v0) {
-                            temp_v0 -= center_line_max;
+                    if (Player->Rank == 0) {
+                        shell->Sparam = TRIPLE_GREEN_SHELL;
+                        shell->SomeTimer = 0x0258;
+                        temp_v0 = NearestPathPointByPlayerId[Player - PlayerOne] + 8;
+                        if ((s32) CenterLineMax < temp_v0) {
+                            temp_v0 -= CenterLineMax;
                         }
-                        shell->pathIndex = temp_v0;
-                    } else if (player->rank >= 5) {
-                        shell->sparam = GREEN_SHELL_HIT_A_RACER;
+                        shell->PathIndex = temp_v0;
+                    } else if (Player->Rank >= 5) {
+                        shell->Sparam = GREEN_SHELL_HIT_A_RACER;
                         shell->shellId = 1000.0f;
-                        temp_v0 = gNearestPathPointByPlayerId[player - gPlayerOne] + 8;
-                        if ((s32) center_line_max < temp_v0) {
-                            temp_v0 -= center_line_max;
+                        temp_v0 = NearestPathPointByPlayerId[Player - PlayerOne] + 8;
+                        if ((s32) CenterLineMax < temp_v0) {
+                            temp_v0 -= CenterLineMax;
                         }
-                        shell->pathIndex = temp_v0;
-                        shell->targetPlayer = rank_buffer[player->rank - 1];
+                        shell->PathIndex = temp_v0;
+                        shell->TargetPlayer = RankBuffer[Player->Rank - 1];
                     } else {
-                        shell->sparam = RED_SHELL_LOCK_ON;
+                        shell->Sparam = RED_SHELL_LOCK_ON;
                         shell->shellId = 1000.0f;
-                        shell->targetPlayer = rank_buffer[player->rank - 1];
+                        shell->TargetPlayer = RankBuffer[Player->Rank - 1];
                     }
                 }
             }
-            shell->velocity[1] -= 0.5;
-            if (shell->velocity[1] < -2.0f) {
-                shell->velocity[1] = -2.0f;
+            shell->Velocity[1] -= 0.5;
+            if (shell->Velocity[1] < -2.0f) {
+                shell->Velocity[1] = -2.0f;
             }
-            origPos[0] = shell->position[0];
-            origPos[1] = shell->position[1];
-            origPos[2] = shell->position[2];
-            shell->position[0] += shell->velocity[0];
-            shell->position[1] += shell->velocity[1];
-            shell->position[2] += shell->velocity[2];
-            CheckBump2(&shell->bump, 4.0f, shell->position[0], shell->position[1], shell->position[2], origPos[0],
+            origPos[0] = shell->Position[0];
+            origPos[1] = shell->Position[1];
+            origPos[2] = shell->Position[2];
+            shell->Position[0] += shell->Velocity[0];
+            shell->Position[1] += shell->Velocity[1];
+            shell->Position[2] += shell->Velocity[2];
+            CheckBump2(&shell->Bump, 4.0f, shell->Position[0], shell->Position[1], shell->Position[2], origPos[0],
                                     origPos[1], origPos[2]);
             BumpObject((Object*) shell);
-            check_kill_shell(shell);
+            CheckKillShell(shell);
             break;
         case RED_SHELL_LOCK_ON:
-            search_enemy(shell, &gPlayers[shell->targetPlayer]);
+            SearchEnemy(shell, &GamePlayers[shell->TargetPlayer]);
             break;
         case TRIPLE_GREEN_SHELL:
-            search_point(shell);
-            if (shell->someTimer == 0) {
-                if ((shell->flag & 0xF) == 0) {
+            SearchPoint(shell);
+            if (shell->SomeTimer == 0) {
+                if ((shell->Flag & 0xF) == 0) {
                     KillObject((Object*) shell);
                 } else {
-                    shell->someTimer -= 1;
+                    shell->SomeTimer -= 1;
                 }
             }
             break;
         case GREEN_SHELL_HIT_A_RACER:
-            search_point(shell);
-            player = &gPlayers[shell->targetPlayer];
-            height = player->position[0];
-            height -= shell->position[0];
-            temp_f2 = player->position[2];
-            temp_f2 -= shell->position[2];
-            if (((height * height) + (temp_f2 * temp_f2)) < 40000.0f) {
-                shell->sparam = RED_SHELL_LOCK_ON;
+            SearchPoint(shell);
+            Player = &GamePlayers[shell->TargetPlayer];
+            Height = Player->Position[0];
+            Height -= shell->Position[0];
+            temp_f2 = Player->Position[2];
+            temp_f2 -= shell->Position[2];
+            if (((Height * Height) + (temp_f2 * temp_f2)) < 40000.0f) {
+                shell->Sparam = RED_SHELL_LOCK_ON;
             }
             break;
         case TRIPLE_RED_SHELL:
-            player = &gPlayers[shell->playerId];
-            parent = (TripleShellParent*) &g_SimpleObjectArray[shell->parentIndex];
-            if (parent->category != ACTOR_TRIPLE_RED_SHELL) {
+            Player = &GamePlayers[shell->PlayerId];
+            parent = (TripleShellParent*) &SimpleObjectArray[shell->ParentIndex];
+            if (parent->Category != ACTOR_TRIPLE_RED_SHELL) {
                 KillObject((Object*) shell);
             } else {
-                shell->rotAngle += parent->rotVelocity;
-                somePosVel[0] = sinT(shell->rotAngle) * 8.0f;
-                somePosVel[1] = shell->radius - player->radius;
-                somePosVel[2] = cosT(shell->rotAngle) * 8.0f;
-                MultipleMatrixByVector(somePosVel, player->align);
-                origPos[0] = shell->position[0];
-                origPos[1] = shell->position[1];
-                origPos[2] = shell->position[2];
-                shell->position[0] = player->position[0] + somePosVel[0];
-                shell->position[1] = player->position[1] + somePosVel[1];
-                shell->position[2] = player->position[2] + somePosVel[2];
-                CheckBump2(&shell->bump, 4.0f, shell->position[0], shell->position[1], shell->position[2], origPos[0],
+                shell->RotAngle += parent->RotVelocity;
+                somePosVel[0] = SinT(shell->RotAngle) * 8.0f;
+                somePosVel[1] = shell->Radius - Player->Radius;
+                somePosVel[2] = CosT(shell->RotAngle) * 8.0f;
+                MultipleMatrixByVector(somePosVel, Player->align);
+                origPos[0] = shell->Position[0];
+                origPos[1] = shell->Position[1];
+                origPos[2] = shell->Position[2];
+                shell->Position[0] = Player->Position[0] + somePosVel[0];
+                shell->Position[1] = Player->Position[1] + somePosVel[1];
+                shell->Position[2] = Player->Position[2] + somePosVel[2];
+                CheckBump2(&shell->Bump, 4.0f, shell->Position[0], shell->Position[1], shell->Position[2], origPos[0],
                                         origPos[1], origPos[2]);
                 BumpObject((Object*) shell);
             }
             break;
         case DESTROYED_SHELL:
-            shell->velocity[1] -= 0.3f;
-            if (shell->velocity[1] < -5.0f) {
-                shell->velocity[1] = -5.0f;
+            shell->Velocity[1] -= 0.3f;
+            if (shell->Velocity[1] < -5.0f) {
+                shell->Velocity[1] = -5.0f;
             }
-            shell->rotAngle += DEGREES(8);
-            shell->someTimer -= 1;
-            shell->position[1] += shell->velocity[1];
-            if (shell->someTimer == 0) {
-                deleteObjectBuffer((Object*) shell);
+            shell->RotAngle += DEGREES(8);
+            shell->SomeTimer -= 1;
+            shell->Position[1] += shell->Velocity[1];
+            if (shell->SomeTimer == 0) {
+                DeleteObjectBuffer((Object*) shell);
             }
             break;
         case BLUE_SHELL_LOCK_ON:
-            search_point(shell);
-            shell->targetPlayer = rank_buffer[0];
-            player = &gPlayers[rank_buffer[0]];
-            height = player->position[0];
-            height -= shell->position[0];
-            temp_f2 = player->position[2];
-            temp_f2 -= shell->position[2];
-            if (((height * height) + (temp_f2 * temp_f2)) < 40000.0f) {
-                shell->sparam = BLUE_SHELL_TARGET_ELIMINATED;
+            SearchPoint(shell);
+            shell->TargetPlayer = RankBuffer[0];
+            Player = &GamePlayers[RankBuffer[0]];
+            Height = Player->Position[0];
+            Height -= shell->Position[0];
+            temp_f2 = Player->Position[2];
+            temp_f2 -= shell->Position[2];
+            if (((Height * Height) + (temp_f2 * temp_f2)) < 40000.0f) {
+                shell->Sparam = BLUE_SHELL_TARGET_ELIMINATED;
             }
             break;
         case 9:
-            search_enemy(shell, &gPlayers[shell->targetPlayer]);
+            SearchEnemy(shell, &GamePlayers[shell->TargetPlayer]);
             break;
         default:
             break;

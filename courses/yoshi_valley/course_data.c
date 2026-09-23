@@ -8170,7 +8170,7 @@ Gfx d_course_yoshi_valley_dl_142C0[] = {
     gsSPEndDisplayList(),
 };
 
-// 0x14348 Flag is a triangle split into five different models.
+// 0x14348 Flag is a Triangle split into five different models.
 // It's done this way to make it move in the wind.
 Vtx d_course_yoshi_valley_flag_1_model1[] = {
     { { { 0, 0, 0 }, 0, { -226, 510 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },

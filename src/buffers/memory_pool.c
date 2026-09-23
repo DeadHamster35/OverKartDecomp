@@ -5,8 +5,8 @@
 #define MEMORY_POOL_SIZE 0xC0000
 
 /**
- * Memory pool variable prevents code segments flowing into the memory pool
+ * Memory Pool variable prevents Code segments flowing into the memory Pool
  * for easier portability.
- * @warning should not really be used.
+ * @warning should not really be Used.
  */
-u8 TexList_cpf_000[MEMORY_POOL_SIZE];
+u8 TexListCpf000[MEMORY_POOL_SIZE];

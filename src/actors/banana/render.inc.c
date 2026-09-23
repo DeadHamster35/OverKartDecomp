@@ -5,41 +5,41 @@
 /**
  * @brief Render the banana actor
  *
- * @param camera
- * @param arg1
- * @param banana
+ * @Param Camera
+ * @Param arg1
+ * @Param banana
  */
-void display_banana(Camera* camera, UNUSED Mat4 arg1, struct BananaActor* banana) {
+void DisplayBanana(Camera* Camera, UNUSED Mat4 arg1, struct BananaActor* banana) {
     UNUSED s32 pad[2];
     s32 maxObjectsReached;
     Vec3s sp7C;
     Mat4 sp3C;
 
     f32 temp =
-        CheckDisplayRange(camera->camera_pos, banana->position, camera->camera_direction[1], 0, gCameraZoom[camera - camera1], 490000.0f);
+        CheckDisplayRange(Camera->CameraPos, banana->Position, Camera->CameraDirection[1], 0, CameraZoom[Camera - Camera1], 490000.0f);
     if (temp < 0.0f) {
-        out_of_screen(camera, (Object*) banana);
+        OutOfScreen(Camera, (Object*) banana);
         return;
     }
 
-    if ((banana->position[1] > maximum_y + 800.0f)) {
-        out_of_screen(camera, (Object*) banana);
+    if ((banana->Position[1] > MaximumY + 800.0f)) {
+        OutOfScreen(Camera, (Object*) banana);
         return;
     }
-    if (banana->position[1] < (minimum_y - 800.0f)) {
-        out_of_screen(camera, (Object*) banana);
+    if (banana->Position[1] < (MinimumY - 800.0f)) {
+        OutOfScreen(Camera, (Object*) banana);
         return;
     }
 
-    on_screen(camera, (Object*) banana);
+    OnScreen(Camera, (Object*) banana);
 
-    if (banana->sparam == 5) {
-        CreateModelingMatrix(sp3C, banana->position, banana->angle);
+    if (banana->Sparam == 5) {
+        CreateModelingMatrix(sp3C, banana->Position, banana->Angle);
     } else {
         sp7C[0] = 0;
         sp7C[1] = 0;
         sp7C[2] = 0;
-        CreateModelingMatrix(sp3C, banana->position, sp7C);
+        CreateModelingMatrix(sp3C, banana->Position, sp7C);
     }
 
     maxObjectsReached = SetMatrix(sp3C, 0) == 0;
@@ -47,9 +47,9 @@ void display_banana(Camera* camera, UNUSED Mat4 arg1, struct BananaActor* banana
         return;
     }
 
-    if (banana->sparam != 5) {
-        gSPDisplayList(gDisplayListHead++, &common_model_banana);
+    if (banana->Sparam != 5) {
+        gSPDisplayList(DisplayListHead++, &common_model_banana);
     } else {
-        gSPDisplayList(gDisplayListHead++, &common_model_flat_banana);
+        gSPDisplayList(DisplayListHead++, &common_model_flat_banana);
     }
 }

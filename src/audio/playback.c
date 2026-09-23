@@ -10,72 +10,72 @@
 #include "audio/data.h"
 #include "audio/seqplayer.h"
 
-void Nas_smzSetVol(struct Note* note, f32 velocity, u8 pan, u8 reverbVol) {
-    struct NoteSubEu* sub = &note->noteSubEu;
+void NasSmzSetVol(struct Note* Note, f32 Velocity, u8 pan, u8 ReverbVol) {
+    struct NoteSubEu* sub = &Note->NoteSubEu;
     f32 volRight, volLeft;
-    u8 strongRight;
-    u8 strongLeft;
+    u8 StrongRight;
+    u8 StrongLeft;
     s32 smallPanIndex;
     u16 unkMask = ~0x80;
 
     pan &= unkMask;
 
-    if (note->noteSubEu.stereoHeadsetEffects && gAudioLibSoundMode == SOUND_MODE_HEADSET) {
+    if (Note->NoteSubEu.StereoHeadsetEffects && AudioLibSoundMode == SOUND_MODE_HEADSET) {
         smallPanIndex = pan >> 3;
-        if (smallPanIndex >= ARRAY_COUNT(gHeadsetPanQuantization)) {
-            smallPanIndex = ARRAY_COUNT(gHeadsetPanQuantization) - 1;
+        if (smallPanIndex >= ARRAY_COUNT(HeadsetPanQuantization)) {
+            smallPanIndex = ARRAY_COUNT(HeadsetPanQuantization) - 1;
         }
 
-        sub->headsetPanLeft = gHeadsetPanQuantization[smallPanIndex];
-        sub->headsetPanRight = gHeadsetPanQuantization[ARRAY_COUNT(gHeadsetPanQuantization) - 1 - smallPanIndex];
+        sub->headsetPanLeft = HeadsetPanQuantization[smallPanIndex];
+        sub->headsetPanRight = HeadsetPanQuantization[ARRAY_COUNT(HeadsetPanQuantization) - 1 - smallPanIndex];
         sub->stereoStrongRight = false;
         sub->stereoStrongLeft = false;
-        sub->usesHeadsetPanEffects = true;
+        sub->UsesHeadsetPanEffects = true;
 
-        volLeft = gHeadsetPanVolume[pan];
-        volRight = gHeadsetPanVolume[127 - pan];
-    } else if (sub->stereoHeadsetEffects && gAudioLibSoundMode == SOUND_MODE_STEREO) {
-        strongRight = false;
-        strongLeft = false;
+        volLeft = HeadsetPanVolume[pan];
+        volRight = HeadsetPanVolume[127 - pan];
+    } else if (sub->StereoHeadsetEffects && AudioLibSoundMode == SOUND_MODE_STEREO) {
+        StrongRight = false;
+        StrongLeft = false;
         sub->headsetPanRight = 0;
         sub->headsetPanLeft = 0;
 
-        sub->usesHeadsetPanEffects = false;
+        sub->UsesHeadsetPanEffects = false;
 
-        volLeft = gStereoPanVolume[pan];
-        volRight = gStereoPanVolume[127 - pan];
+        volLeft = StereoPanVolume[pan];
+        volRight = StereoPanVolume[127 - pan];
         if (pan < 0x20) {
-            strongLeft = true;
+            StrongLeft = true;
         } else if (pan > 0x60) {
-            strongRight = true;
+            StrongRight = true;
         }
 
-        sub->stereoStrongRight = strongRight;
-        sub->stereoStrongLeft = strongLeft;
+        sub->stereoStrongRight = StrongRight;
+        sub->stereoStrongLeft = StrongLeft;
 
-    } else if (gAudioLibSoundMode == SOUND_MODE_MONO) {
+    } else if (AudioLibSoundMode == SOUND_MODE_MONO) {
         volLeft = 0.707f;
         volRight = 0.707f;
     } else {
-        volLeft = gDefaultPanVolume[pan];
-        volRight = gDefaultPanVolume[127 - pan];
+        volLeft = DefaultPanVolume[pan];
+        volRight = DefaultPanVolume[127 - pan];
     }
 
-    if (velocity < 0.0f) {
-        stubbed_printf("Audio: setvol: volume minus %f\n", velocity);
-        velocity = 0.0f;
+    if (Velocity < 0.0f) {
+        stubbed_printf("Audio: setvol: volume minus %f\n", Velocity);
+        Velocity = 0.0f;
     }
-    if (velocity > 1.0f) {
-        stubbed_printf("Audio: setvol: volume overflow %f\n", velocity);
-        velocity = 1.0f;
+    if (Velocity > 1.0f) {
+        stubbed_printf("Audio: setvol: volume overflow %f\n", Velocity);
+        Velocity = 1.0f;
     }
 
-    sub->targetVolLeft = ((s32) (velocity * volLeft * 4095.999f));
-    sub->targetVolRight = ((s32) (velocity * volRight * 4095.999f));
+    sub->targetVolLeft = ((s32) (Velocity * volLeft * 4095.999f));
+    sub->targetVolRight = ((s32) (Velocity * volRight * 4095.999f));
 
     //! @bug for the change to UQ0.7, the if statement should also have been changed accordingly
-    if (sub->reverbVol != reverbVol) {
-        sub->reverbVol = reverbVol;
+    if (sub->ReverbVol != ReverbVol) {
+        sub->ReverbVol = ReverbVol;
         sub->envMixerNeedsInit = true;
         return;
     }
@@ -87,9 +87,9 @@ void Nas_smzSetVol(struct Note* note, f32 velocity, u8 pan, u8 reverbVol) {
     }
 }
 
-void Nas_smzSetPitch(struct Note* note, f32 resamplingRateInput) {
+void NasSmzSetPitch(struct Note* Note, f32 resamplingRateInput) {
     f32 resamplingRate = 0.0f;
-    struct NoteSubEu* tempSub = &note->noteSubEu;
+    struct NoteSubEu* tempSub = &Note->NoteSubEu;
 
     if (resamplingRateInput < 0.0f) {
         stubbed_printf("Audio: setpitch: pitch minus %f\n", resamplingRateInput);
@@ -112,496 +112,496 @@ void Nas_smzSetPitch(struct Note* note, f32 resamplingRateInput) {
             resamplingRate = resamplingRateInput * 0.5f;
         }
     }
-    note->noteSubEu.resamplingRateFixedPoint = (s32) (resamplingRate * 32768.0f);
+    Note->NoteSubEu.resamplingRateFixedPoint = (s32) (resamplingRate * 32768.0f);
 }
 
-struct AudioBankSound* NoteToVoice(struct Instrument* instrument, s32 semitone) {
-    struct AudioBankSound* sound;
-    if (semitone < instrument->normalRangeLo) {
-        sound = &instrument->lowNotesSound;
-    } else if (semitone <= instrument->normalRangeHi) {
-        sound = &instrument->normalNotesSound;
+struct AudioBankSound* NoteToVoice(struct Instrument* Instrument, s32 semitone) {
+    struct AudioBankSound* Sound;
+    if (semitone < Instrument->NormalRangeLo) {
+        Sound = &Instrument->LowNotesSound;
+    } else if (semitone <= Instrument->NormalRangeHi) {
+        Sound = &Instrument->NormalNotesSound;
     } else {
-        sound = &instrument->highNotesSound;
+        Sound = &Instrument->HighNotesSound;
     }
-    return sound;
+    return Sound;
 }
 
-struct Instrument* ProgToVp(s32 bankId, s32 instId) {
+struct Instrument* ProgToVp(s32 BankId, s32 instId) {
     struct Instrument* inst;
 
-    if (IS_BANK_LOAD_COMPLETE(bankId) == false) {
-        stubbed_printf("Audio: voiceman: No bank error %d\n", bankId);
-        gAudioErrorFlags = bankId + 0x10000000;
+    if (IS_BANK_LOAD_COMPLETE(BankId) == false) {
+        stubbed_printf("Audio: voiceman: No bank error %d\n", BankId);
+        AudioErrorFlags = BankId + 0x10000000;
         return NULL;
     }
 
-    if (instId >= g_sfxPointer[bankId].numInstruments) {
-        stubbed_printf("Audio: voiceman: progNo. overflow %d,%d\n", instId, g_sfxPointer[bankId].numInstruments);
-        gAudioErrorFlags = ((bankId << 8) + instId) + 0x3000000;
+    if (instId >= SFXPointer[BankId].NumInstruments) {
+        stubbed_printf("Audio: voiceman: progNo. overflow %d,%d\n", instId, SFXPointer[BankId].NumInstruments);
+        AudioErrorFlags = ((BankId << 8) + instId) + 0x3000000;
         return NULL;
     }
 
-    inst = g_sfxPointer[bankId].instruments[instId];
+    inst = SFXPointer[BankId].Instruments[instId];
     if (inst == NULL) {
-        stubbed_printf("Audio: voiceman: progNo. undefined %d,%d\n", bankId, instId);
-        gAudioErrorFlags = ((bankId << 8) + instId) + 0x1000000;
+        stubbed_printf("Audio: voiceman: progNo. undefined %d,%d\n", BankId, instId);
+        AudioErrorFlags = ((BankId << 8) + instId) + 0x1000000;
         return inst;
     }
     return inst;
 }
 
-struct Drum* PercToPp(s32 bankId, s32 drumId) {
+struct Drum* PercToPp(s32 BankId, s32 drumId) {
     struct Drum* drum;
 
-    if (IS_BANK_LOAD_COMPLETE(bankId) == false) {
-        stubbed_printf("Audio: voiceman: No bank error %d\n", bankId);
-        gAudioErrorFlags = bankId + 0x10000000;
+    if (IS_BANK_LOAD_COMPLETE(BankId) == false) {
+        stubbed_printf("Audio: voiceman: No bank error %d\n", BankId);
+        AudioErrorFlags = BankId + 0x10000000;
         return NULL;
     }
 
-    if (drumId >= g_sfxPointer[bankId].numDrums) {
-        stubbed_printf("Audio: voiceman: Percussion Overflow %d,%d\n", drumId, g_sfxPointer[bankId].numDrums);
-        gAudioErrorFlags = ((bankId << 8) + drumId) + 0x4000000;
+    if (drumId >= SFXPointer[BankId].NumDrums) {
+        stubbed_printf("Audio: voiceman: Percussion Overflow %d,%d\n", drumId, SFXPointer[BankId].NumDrums);
+        AudioErrorFlags = ((BankId << 8) + drumId) + 0x4000000;
         return NULL;
     }
 
-    if ((uintptr_t) g_sfxPointer[bankId].drums < 0x80000000U) {
+    if ((uintptr_t) SFXPointer[BankId].Drums < 0x80000000U) {
         stubbed_printf("Audio: voiceman: Percussion table pointer (bank %d) is irregular.\n");
         return NULL;
     }
 
-    drum = g_sfxPointer[bankId].drums[drumId];
+    drum = SFXPointer[BankId].Drums[drumId];
     if (drum == NULL) {
-        stubbed_printf("Audio: voiceman: Percpointer NULL %d,%d\n", bankId, drumId);
-        gAudioErrorFlags = ((bankId << 8) + drumId) + 0x5000000;
+        stubbed_printf("Audio: voiceman: Percpointer NULL %d,%d\n", BankId, drumId);
+        AudioErrorFlags = ((BankId << 8) + drumId) + 0x5000000;
     }
     // Don't know where these actually belong, putting them here because why not
     // Really, we just need these so the format strings could put into the .data section
-    stubbed_printf("--4 %x\n", gAudioErrorFlags);
+    stubbed_printf("--4 %x\n", AudioErrorFlags);
     stubbed_printf("Stoped Voice\n");
     return drum;
 }
 
-void Nas_StartVoice(struct Note* note) {
-    if (note->parentLayer->adsr.releaseRate == 0) {
-        Nas_Modulator(&note->adsr, note->parentLayer->seqChannel->adsr.envelope, &note->adsrVolScale);
+void NasStartVoice(struct Note* Note) {
+    if (Note->ParentLayer->Adsr.ReleaseRate == 0) {
+        NasModulator(&Note->Adsr, Note->ParentLayer->SEQChannel->Adsr.Envelope, &Note->AdsrVolScale);
     } else {
-        Nas_Modulator(&note->adsr, note->parentLayer->adsr.envelope, &note->adsrVolScale);
+        NasModulator(&Note->Adsr, Note->ParentLayer->Adsr.Envelope, &Note->AdsrVolScale);
     }
-    note->adsr.state = ADSR_STATE_INITIAL;
-    note->noteSubEu = gDefaultNoteSub;
+    Note->Adsr.State = ADSR_STATE_INITIAL;
+    Note->NoteSubEu = DefaultNoteSub;
 }
 
-void Nas_StopVoice(struct Note* note) {
-    if (note->noteSubEu.needsInit == true) {
-        note->noteSubEu.needsInit = false;
+void NasStopVoice(struct Note* Note) {
+    if (Note->NoteSubEu.needsInit == true) {
+        Note->NoteSubEu.needsInit = false;
     } else {
-        Nas_smzSetVol(note, 0, 0x40, 0);
+        NasSmzSetVol(Note, 0, 0x40, 0);
     }
-    note->priority = NOTE_PRIORITY_DISABLED;
-    note->parentLayer = NO_LAYER;
-    note->prevParentLayer = NO_LAYER;
-    note->noteSubEu.enabled = false;
-    note->noteSubEu.finished = false;
+    Note->Priority = NOTE_PRIORITY_DISABLED;
+    Note->ParentLayer = NO_LAYER;
+    Note->PrevParentLayer = NO_LAYER;
+    Note->NoteSubEu.Enabled = false;
+    Note->NoteSubEu.Finished = false;
 }
 
-void Nas_UpdateChannel(void) {
-    f32 scale;
-    f32 frequency;
-    f32 velocity;
-    struct Note* note;
+void NasUpdateChannel(void) {
+    f32 Scale;
+    f32 Frequency;
+    f32 Velocity;
+    struct Note* Note;
     struct NotePlaybackState* playbackState;
-    struct NoteSubEu* noteSubEu;
+    struct NoteSubEu* NoteSubEu;
     UNUSED u8 pad[12];
-    u8 reverbVol;
-    UNUSED u8 pad3;
+    u8 ReverbVol;
+    UNUSED u8 Pad3;
     u8 pan;
     u8 bookOffset;
-    struct NoteAttributes* attributes;
+    struct NoteAttributes* Attributes;
     s32 i;
 
-    for (i = 0; i < gMaxSimultaneousNotes; i++) {
-        note = &gNotes[i];
-        playbackState = (struct NotePlaybackState*) &note->priority;
-        if (note->parentLayer != NO_LAYER) {
+    for (i = 0; i < MaxSimultaneousNotes; i++) {
+        Note = &Notes[i];
+        playbackState = (struct NotePlaybackState*) &Note->Priority;
+        if (Note->ParentLayer != NO_LAYER) {
 #ifndef NO_SEGMENTED_MEMORY
-            if ((uintptr_t) playbackState->parentLayer < 0x7fffffffU) {
+            if ((uintptr_t) playbackState->ParentLayer < 0x7fffffffU) {
                 continue;
             }
 #endif
 
 #ifdef VERSION_EU_V10
             // Just threw these in here. They are probably wrong place and variables.
-            stubbed_printf("----------------------Double-Error CH: %x %f\n", &note, note->parentLayer->seqChannel);
-            stubbed_printf("----------------------Double-Error NT: %x\n", &note);
-            if (note != playbackState->parentLayer->note && playbackState->priority != 1) {
-                playbackState->adsr.action |= ADSR_ACTION_RELEASE;
-                playbackState->adsr.fadeOutVel = gAudioBufferParameters.updatesPerFrameInv;
-                playbackState->priority = 1;
+            stubbed_printf("----------------------Double-Error CH: %x %f\n", &Note, Note->ParentLayer->SEQChannel);
+            stubbed_printf("----------------------Double-Error NT: %x\n", &Note);
+            if (Note != playbackState->ParentLayer->Note && playbackState->Priority != 1) {
+                playbackState->Adsr.Action |= ADSR_ACTION_RELEASE;
+                playbackState->Adsr.FadeOutVel = AudioBufferParameters.UpdatesPerFrameInv;
+                playbackState->Priority = 1;
                 goto d;
             }
 #endif
-            if (!playbackState->parentLayer->enabled && playbackState->priority >= NOTE_PRIORITY_MIN) {
+            if (!playbackState->ParentLayer->Enabled && playbackState->Priority >= NOTE_PRIORITY_MIN) {
                 goto c;
-            } else if (playbackState->parentLayer->seqChannel->seqPlayer == NULL) {
+            } else if (playbackState->ParentLayer->SEQChannel->seqPlayer == NULL) {
                 eu_stubbed_printf_0("CAUTION:SUB IS SEPARATED FROM GROUP");
-                Nas_InitSubTrack(playbackState->parentLayer->seqChannel);
-                playbackState->priority = NOTE_PRIORITY_STOPPING;
+                NasInitSubTrack(playbackState->ParentLayer->SEQChannel);
+                playbackState->Priority = NOTE_PRIORITY_STOPPING;
                 continue;
-            } else if (playbackState->parentLayer->seqChannel->seqPlayer->muted) {
-                if ((playbackState->parentLayer->seqChannel->muteBehavior &
+            } else if (playbackState->ParentLayer->SEQChannel->seqPlayer->Muted) {
+                if ((playbackState->ParentLayer->SEQChannel->MuteBehavior &
                      (MUTE_BEHAVIOR_STOP_SCRIPT | MUTE_BEHAVIOR_STOP_NOTES))) {
                     goto c;
                 }
             }
             goto d;
         c:
-            L_loopout(playbackState->parentLayer);
-            Nas_DeAllocAllVoices(&note->listItem);
-            Nas_InitChannelList(&note->listItem.pool->decaying, &note->listItem);
-            playbackState->priority = NOTE_PRIORITY_STOPPING;
-        } else if (playbackState->priority >= NOTE_PRIORITY_MIN) {
+            LLoopout(playbackState->ParentLayer);
+            NasDeAllocAllVoices(&Note->ListItem);
+            NasInitChannelList(&Note->ListItem.Pool->Decaying, &Note->ListItem);
+            playbackState->Priority = NOTE_PRIORITY_STOPPING;
+        } else if (playbackState->Priority >= NOTE_PRIORITY_MIN) {
             continue;
         }
     d:
-        if (playbackState->priority != NOTE_PRIORITY_DISABLED) {
-            noteSubEu = &note->noteSubEu;
-            if (playbackState->priority == NOTE_PRIORITY_STOPPING || noteSubEu->finished) {
-                if (playbackState->adsr.state == ADSR_STATE_DISABLED || noteSubEu->finished) {
+        if (playbackState->Priority != NOTE_PRIORITY_DISABLED) {
+            NoteSubEu = &Note->NoteSubEu;
+            if (playbackState->Priority == NOTE_PRIORITY_STOPPING || NoteSubEu->Finished) {
+                if (playbackState->Adsr.State == ADSR_STATE_DISABLED || NoteSubEu->Finished) {
                     if (playbackState && playbackState) {}
-                    if (playbackState->wantedParentLayer != NO_LAYER) {
-                        Nas_StopVoice(note);
-                        if (playbackState->wantedParentLayer->seqChannel != NULL) {
-                            Nas_AddListHead(note, playbackState->wantedParentLayer);
-                            Nas_ModTableRead(note);
-                            Nas_DeAllocAllVoices(&note->listItem);
-                            Nas_AllocSub(&note->listItem.pool->active, &note->listItem);
-                            playbackState->wantedParentLayer = NO_LAYER;
+                    if (playbackState->WantedParentLayer != NO_LAYER) {
+                        NasStopVoice(Note);
+                        if (playbackState->WantedParentLayer->SEQChannel != NULL) {
+                            NasAddListHead(Note, playbackState->WantedParentLayer);
+                            NasModTableRead(Note);
+                            NasDeAllocAllVoices(&Note->ListItem);
+                            NasAllocSub(&Note->ListItem.Pool->Active, &Note->ListItem);
+                            playbackState->WantedParentLayer = NO_LAYER;
                             // don't skip
                         } else {
                             eu_stubbed_printf_0("Error:Wait Track disappear\n");
-                            Nas_StopVoice(note);
-                            Nas_DeAllocAllVoices(&note->listItem);
-                            Nas_AllocSub(&note->listItem.pool->disabled, &note->listItem);
-                            playbackState->wantedParentLayer = NO_LAYER;
+                            NasStopVoice(Note);
+                            NasDeAllocAllVoices(&Note->ListItem);
+                            NasAllocSub(&Note->ListItem.Pool->Disabled, &Note->ListItem);
+                            playbackState->WantedParentLayer = NO_LAYER;
                             goto skip;
                         }
                     } else {
-                        Nas_StopVoice(note);
-                        Nas_DeAllocAllVoices(&note->listItem);
-                        Nas_AllocSub(&note->listItem.pool->disabled, &note->listItem);
+                        NasStopVoice(Note);
+                        NasDeAllocAllVoices(&Note->ListItem);
+                        NasAllocSub(&Note->ListItem.Pool->Disabled, &Note->ListItem);
                         goto skip;
                     }
                 }
-            } else if (playbackState->adsr.state == ADSR_STATE_DISABLED) {
-                Nas_StopVoice(note);
-                Nas_DeAllocAllVoices(&note->listItem);
-                Nas_AllocSub(&note->listItem.pool->disabled, &note->listItem);
+            } else if (playbackState->Adsr.State == ADSR_STATE_DISABLED) {
+                NasStopVoice(Note);
+                NasDeAllocAllVoices(&Note->ListItem);
+                NasAllocSub(&Note->ListItem.Pool->Disabled, &Note->ListItem);
                 goto skip;
             }
 
-            scale = Nas_ChannelModulation(&playbackState->adsr);
-            Nas_SweepCalculator(note);
-            attributes = &playbackState->attributes;
-            if (playbackState->priority == NOTE_PRIORITY_STOPPING) {
-                frequency = attributes->freqScale;
-                velocity = attributes->velocity;
-                pan = attributes->pan;
-                reverbVol = attributes->reverbVol;
+            Scale = NasChannelModulation(&playbackState->Adsr);
+            NasSweepCalculator(Note);
+            Attributes = &playbackState->Attributes;
+            if (playbackState->Priority == NOTE_PRIORITY_STOPPING) {
+                Frequency = Attributes->FreqScale;
+                Velocity = Attributes->Velocity;
+                pan = Attributes->pan;
+                ReverbVol = Attributes->ReverbVol;
                 if (1) {}
-                bookOffset = noteSubEu->bookOffset;
+                bookOffset = NoteSubEu->bookOffset;
             } else {
-                frequency = playbackState->parentLayer->noteFreqScale;
-                velocity = playbackState->parentLayer->noteVelocity;
-                pan = playbackState->parentLayer->notePan;
-                reverbVol = playbackState->parentLayer->seqChannel->reverbVol;
-                bookOffset = playbackState->parentLayer->seqChannel->bookOffset & 0x7;
+                Frequency = playbackState->ParentLayer->NoteFreqScale;
+                Velocity = playbackState->ParentLayer->NoteVelocity;
+                pan = playbackState->ParentLayer->NotePan;
+                ReverbVol = playbackState->ParentLayer->SEQChannel->ReverbVol;
+                bookOffset = playbackState->ParentLayer->SEQChannel->bookOffset & 0x7;
             }
 
-            frequency *= playbackState->vibratoFreqScale * playbackState->portamentoFreqScale;
-            velocity = velocity * scale;
-            Nas_smzSetPitch(note, frequency);
-            Nas_smzSetVol(note, velocity, pan, reverbVol);
-            noteSubEu->bookOffset = bookOffset;
+            Frequency *= playbackState->VibratoFreqScale * playbackState->PortamentoFreqScale;
+            Velocity = Velocity * Scale;
+            NasSmzSetPitch(Note, Frequency);
+            NasSmzSetVol(Note, Velocity, pan, ReverbVol);
+            NoteSubEu->bookOffset = bookOffset;
         skip:;
         }
     }
 }
 
-void L_ReleaseEmergency(struct SequenceChannelLayer* seqLayer, s32 target) {
-    struct Note* note;
-    struct NoteAttributes* attributes;
+void LReleaseEmergency(struct SequenceChannelLayer* seqLayer, s32 Target) {
+    struct Note* Note;
+    struct NoteAttributes* Attributes;
 
-    if ((seqLayer == NO_LAYER) || (seqLayer->note == NULL)) {
+    if ((seqLayer == NO_LAYER) || (seqLayer->Note == NULL)) {
         return;
     }
 
-    note = seqLayer->note;
-    attributes = &note->attributes;
+    Note = seqLayer->Note;
+    Attributes = &Note->Attributes;
 
-    if (note->wantedParentLayer == seqLayer) {
-        note->wantedParentLayer = NO_LAYER;
+    if (Note->WantedParentLayer == seqLayer) {
+        Note->WantedParentLayer = NO_LAYER;
     }
 
-    if (note->parentLayer != seqLayer) {
-        if (note->parentLayer == NO_LAYER && note->wantedParentLayer == NO_LAYER && note->prevParentLayer == seqLayer &&
-            target != ADSR_STATE_DECAY) {
+    if (Note->ParentLayer != seqLayer) {
+        if (Note->ParentLayer == NO_LAYER && Note->WantedParentLayer == NO_LAYER && Note->PrevParentLayer == seqLayer &&
+            Target != ADSR_STATE_DECAY) {
             // Just guessing that this printf goes here... it's hard to parse.
             eu_stubbed_printf_0("Slow Release Batting\n");
-            note->adsr.fadeOutVel = gAudioBufferParameters.updatesPerFrameInv;
-            note->adsr.action |= ADSR_ACTION_RELEASE;
+            Note->Adsr.FadeOutVel = AudioBufferParameters.UpdatesPerFrameInv;
+            Note->Adsr.Action |= ADSR_ACTION_RELEASE;
         }
     } else {
-        seqLayer->status = SOUND_LOAD_STATUS_NOT_LOADED;
-        if (note->adsr.state != ADSR_STATE_DECAY) {
-            attributes->freqScale = seqLayer->noteFreqScale;
-            attributes->velocity = seqLayer->noteVelocity;
-            attributes->pan = seqLayer->notePan;
-            if (seqLayer->seqChannel != NULL) {
-                attributes->reverbVol = seqLayer->seqChannel->reverbVol;
+        seqLayer->Status = SOUND_LOAD_STATUS_NOT_LOADED;
+        if (Note->Adsr.State != ADSR_STATE_DECAY) {
+            Attributes->FreqScale = seqLayer->NoteFreqScale;
+            Attributes->Velocity = seqLayer->NoteVelocity;
+            Attributes->pan = seqLayer->NotePan;
+            if (seqLayer->SEQChannel != NULL) {
+                Attributes->ReverbVol = seqLayer->SEQChannel->ReverbVol;
             }
-            note->priority = NOTE_PRIORITY_STOPPING;
-            note->prevParentLayer = note->parentLayer;
-            note->parentLayer = NO_LAYER;
-            if (target == ADSR_STATE_RELEASE) {
-                note->adsr.fadeOutVel = gAudioBufferParameters.updatesPerFrameInv;
-                note->adsr.action |= ADSR_ACTION_RELEASE;
+            Note->Priority = NOTE_PRIORITY_STOPPING;
+            Note->PrevParentLayer = Note->ParentLayer;
+            Note->ParentLayer = NO_LAYER;
+            if (Target == ADSR_STATE_RELEASE) {
+                Note->Adsr.FadeOutVel = AudioBufferParameters.UpdatesPerFrameInv;
+                Note->Adsr.Action |= ADSR_ACTION_RELEASE;
             } else {
-                note->adsr.action |= ADSR_ACTION_DECAY;
-                if (seqLayer->adsr.releaseRate == 0) {
-                    note->adsr.fadeOutVel =
-                        seqLayer->seqChannel->adsr.releaseRate * gAudioBufferParameters.unkUpdatesPerFrameScaled;
+                Note->Adsr.Action |= ADSR_ACTION_DECAY;
+                if (seqLayer->Adsr.ReleaseRate == 0) {
+                    Note->Adsr.FadeOutVel =
+                        seqLayer->SEQChannel->Adsr.ReleaseRate * AudioBufferParameters.UnkUpdatesPerFrameScaled;
                 } else {
-                    note->adsr.fadeOutVel =
-                        seqLayer->adsr.releaseRate * gAudioBufferParameters.unkUpdatesPerFrameScaled;
+                    Note->Adsr.FadeOutVel =
+                        seqLayer->Adsr.ReleaseRate * AudioBufferParameters.UnkUpdatesPerFrameScaled;
                 }
-                note->adsr.sustain = (FLOAT_CAST(seqLayer->seqChannel->adsr.sustain) * note->adsr.current) / 256.0f;
+                Note->Adsr.Sustain = (FLOAT_CAST(seqLayer->SEQChannel->Adsr.Sustain) * Note->Adsr.Current) / 256.0f;
             }
         }
 
-        if (target == ADSR_STATE_DECAY) {
-            Nas_DeAllocAllVoices(&note->listItem);
-            Nas_InitChannelList(&note->listItem.pool->decaying, &note->listItem);
+        if (Target == ADSR_STATE_DECAY) {
+            NasDeAllocAllVoices(&Note->ListItem);
+            NasInitChannelList(&Note->ListItem.Pool->Decaying, &Note->ListItem);
         }
     }
 }
 
-void L_CheckTerminate(struct SequenceChannelLayer* seqLayer) {
-    L_ReleaseEmergency(seqLayer, ADSR_STATE_DECAY);
+void LCheckTerminate(struct SequenceChannelLayer* seqLayer) {
+    LReleaseEmergency(seqLayer, ADSR_STATE_DECAY);
 }
 
-void L_loopout(struct SequenceChannelLayer* seqLayer) {
-    L_ReleaseEmergency(seqLayer, ADSR_STATE_RELEASE);
+void LLoopout(struct SequenceChannelLayer* seqLayer) {
+    LReleaseEmergency(seqLayer, ADSR_STATE_RELEASE);
 }
 
 const u8 D_800E98F4[4] = { 0x40, 0x20, 0x10, 0x08 };
 
-s32 Nas_Release_Channel_Main(struct Note* note, struct SequenceChannelLayer* seqLayer, s32 waveId) {
-    f32 freqScale;
+s32 NasReleaseChannelMain(struct Note* Note, struct SequenceChannelLayer* seqLayer, s32 WaveId) {
+    f32 FreqScale;
     f32 ratio;
-    u8 sampleCountIndex;
+    u8 SampleCountIndex;
 
-    if (waveId < 128) {
-        stubbed_printf("Audio:Wavemem: Bad voiceno (%d)\n", waveId);
-        waveId = 128;
+    if (WaveId < 128) {
+        stubbed_printf("Audio:Wavemem: Bad voiceno (%d)\n", WaveId);
+        WaveId = 128;
     }
 
-    freqScale = seqLayer->freqScale;
-    if (seqLayer->portamento.mode != 0 && 0.0f < seqLayer->portamento.extent) {
-        freqScale *= (seqLayer->portamento.extent + 1.0f);
+    FreqScale = seqLayer->FreqScale;
+    if (seqLayer->Portamento.Mode != 0 && 0.0f < seqLayer->Portamento.Extent) {
+        FreqScale *= (seqLayer->Portamento.Extent + 1.0f);
     }
-    if (freqScale < 1.0f) {
-        sampleCountIndex = 0;
+    if (FreqScale < 1.0f) {
+        SampleCountIndex = 0;
         ratio = 1.0465f;
-    } else if (freqScale < 2.0f) {
-        sampleCountIndex = 1;
+    } else if (FreqScale < 2.0f) {
+        SampleCountIndex = 1;
         ratio = 0.52325f;
-    } else if (freqScale < 4.0f) {
-        sampleCountIndex = 2;
+    } else if (FreqScale < 4.0f) {
+        SampleCountIndex = 2;
         ratio = 0.26263f;
     } else {
-        sampleCountIndex = 3;
+        SampleCountIndex = 3;
         ratio = 0.13081f;
     }
-    seqLayer->freqScale *= ratio;
-    note->waveId = waveId;
-    note->sampleCountIndex = sampleCountIndex;
+    seqLayer->FreqScale *= ratio;
+    Note->WaveId = WaveId;
+    Note->SampleCountIndex = SampleCountIndex;
 
-    note->noteSubEu.sound.samples = &gWaveSamples[waveId - 128][sampleCountIndex * 64];
+    Note->NoteSubEu.Sound.Samples = &WaveSamples[WaveId - 128][SampleCountIndex * 64];
 
-    return sampleCountIndex;
+    return SampleCountIndex;
 }
 
-void Nas_Release_Channel(struct Note* note, struct SequenceChannelLayer* seqLayer) {
-    s32 sampleCountIndex;
+void NasReleaseChannel(struct Note* Note, struct SequenceChannelLayer* seqLayer) {
+    s32 SampleCountIndex;
     s32 waveSampleCountIndex;
-    s32 waveId = seqLayer->instOrWave;
-    if (waveId == 0xff) {
-        waveId = seqLayer->seqChannel->instOrWave;
+    s32 WaveId = seqLayer->InstOrWave;
+    if (WaveId == 0xff) {
+        WaveId = seqLayer->SEQChannel->InstOrWave;
     }
-    sampleCountIndex = note->sampleCountIndex;
-    waveSampleCountIndex = Nas_Release_Channel_Main(note, seqLayer, waveId);
-    note->synthesisState.samplePosInt =
-        note->synthesisState.samplePosInt * D_800E98F4[waveSampleCountIndex] / D_800E98F4[sampleCountIndex];
+    SampleCountIndex = Note->SampleCountIndex;
+    waveSampleCountIndex = NasReleaseChannelMain(Note, seqLayer, WaveId);
+    Note->SynthesisState.SamplePosInt =
+        Note->SynthesisState.SamplePosInt * D_800E98F4[waveSampleCountIndex] / D_800E98F4[SampleCountIndex];
 }
 
-void Nas_Release_Channel_Force(struct AudioListItem* list) {
-    list->prev = list;
-    list->next = list;
-    list->u.count = 0;
+void NasReleaseChannelForce(struct AudioListItem* list) {
+    list->Prev = list;
+    list->Next = list;
+    list->u.Count = 0;
 }
 
-void Nas_WaveMemoryMake(struct NotePool* pool) {
-    Nas_Release_Channel_Force(&pool->disabled);
-    Nas_Release_Channel_Force(&pool->decaying);
-    Nas_Release_Channel_Force(&pool->releasing);
-    Nas_Release_Channel_Force(&pool->active);
-    pool->disabled.pool = pool;
-    pool->decaying.pool = pool;
-    pool->releasing.pool = pool;
-    pool->active.pool = pool;
+void NasWaveMemoryMake(struct NotePool* Pool) {
+    NasReleaseChannelForce(&Pool->Disabled);
+    NasReleaseChannelForce(&Pool->Decaying);
+    NasReleaseChannelForce(&Pool->Releasing);
+    NasReleaseChannelForce(&Pool->Active);
+    Pool->Disabled.Pool = Pool;
+    Pool->Decaying.Pool = Pool;
+    Pool->Releasing.Pool = Pool;
+    Pool->Active.Pool = Pool;
 }
 
-void Nas_ContinueWaveMemory(void) {
+void NasContinueWaveMemory(void) {
     s32 i;
 
-    Nas_WaveMemoryMake(&gNoteFreeLists);
-    for (i = 0; i < gMaxSimultaneousNotes; i++) {
-        gNotes[i].listItem.u.value = &gNotes[i];
-        gNotes[i].listItem.prev = NULL;
-        Nas_AllocSub(&gNoteFreeLists.disabled, &gNotes[i].listItem);
+    NasWaveMemoryMake(&NoteFreeLists);
+    for (i = 0; i < MaxSimultaneousNotes; i++) {
+        Notes[i].ListItem.u.Value = &Notes[i];
+        Notes[i].ListItem.Prev = NULL;
+        NasAllocSub(&NoteFreeLists.Disabled, &Notes[i].ListItem);
     }
 }
 
-void Nas_InitList(struct NotePool* pool) {
+void NasInitList(struct NotePool* Pool) {
     s32 i;
-    struct AudioListItem* source;
+    struct AudioListItem* Source;
     struct AudioListItem* cur;
     struct AudioListItem* dest;
-    UNUSED s32 j; // unused in EU
+    UNUSED s32 j; // Unused in EU
 
     for (i = 0; i < 4; i++) {
         switch (i) {
             case 0:
-                source = &pool->disabled;
-                dest = &gNoteFreeLists.disabled;
+                Source = &Pool->Disabled;
+                dest = &NoteFreeLists.Disabled;
                 break;
 
             case 1:
-                source = &pool->decaying;
-                dest = &gNoteFreeLists.decaying;
+                Source = &Pool->Decaying;
+                dest = &NoteFreeLists.Decaying;
                 break;
 
             case 2:
-                source = &pool->releasing;
-                dest = &gNoteFreeLists.releasing;
+                Source = &Pool->Releasing;
+                dest = &NoteFreeLists.Releasing;
                 break;
 
             case 3:
-                source = &pool->active;
-                dest = &gNoteFreeLists.active;
+                Source = &Pool->Active;
+                dest = &NoteFreeLists.Active;
                 break;
         }
 
         for (;;) {
-            cur = source->next;
-            if (cur == source) {
+            cur = Source->Next;
+            if (cur == Source) {
                 break;
             }
             if (cur == NULL) {
                 eu_stubbed_printf_0("Audio: C-Alloc : Dealloc voice is NULL\n");
                 break;
             }
-            Nas_DeAllocAllVoices(cur);
-            Nas_AllocSub(dest, cur);
+            NasDeAllocAllVoices(cur);
+            NasAllocSub(dest, cur);
         }
     }
 }
 
-void Nas_InitChNode(struct NotePool* pool, s32 count) {
+void NasInitChNode(struct NotePool* Pool, s32 Count) {
     s32 i;
     s32 j;
-    struct Note* note;
-    struct AudioListItem* source;
+    struct Note* Note;
+    struct AudioListItem* Source;
     struct AudioListItem* dest;
 
-    Nas_InitList(pool);
+    NasInitList(Pool);
 
-    for (i = 0, j = 0; j < count; i++) {
+    for (i = 0, j = 0; j < Count; i++) {
         if (i == 4) {
-            eu_stubbed_printf_1("Alloc Error:Dim voice-Alloc %d", count);
+            eu_stubbed_printf_1("Alloc Error:Dim voice-Alloc %d", Count);
             return;
         }
 
         switch (i) {
             case 0:
-                source = &gNoteFreeLists.disabled;
-                dest = &pool->disabled;
+                Source = &NoteFreeLists.Disabled;
+                dest = &Pool->Disabled;
                 break;
 
             case 1:
-                source = &gNoteFreeLists.decaying;
-                dest = &pool->decaying;
+                Source = &NoteFreeLists.Decaying;
+                dest = &Pool->Decaying;
                 break;
 
             case 2:
-                source = &gNoteFreeLists.releasing;
-                dest = &pool->releasing;
+                Source = &NoteFreeLists.Releasing;
+                dest = &Pool->Releasing;
                 break;
 
             case 3:
-                source = &gNoteFreeLists.active;
-                dest = &pool->active;
+                Source = &NoteFreeLists.Active;
+                dest = &Pool->Active;
                 break;
         }
 
-        while (j < count) {
-            note = Nas_DeAllocSub(source);
-            if (note == NULL) {
+        while (j < Count) {
+            Note = NasDeAllocSub(Source);
+            if (Note == NULL) {
                 break;
             }
-            Nas_AllocSub(dest, &note->listItem);
+            NasAllocSub(dest, &Note->ListItem);
             j++;
         }
     }
 }
 
-void Nas_InitChannelList(struct AudioListItem* list, struct AudioListItem* item) {
-    // add 'item' to the front of the list given by 'list', if it's not in any list
-    if (item->prev != NULL) {
+void NasInitChannelList(struct AudioListItem* list, struct AudioListItem* Item) {
+    // add 'Item' to the front of the list given by 'list', if it's not in any list
+    if (Item->Prev != NULL) {
         eu_stubbed_printf_0("Error:Same List Add\n");
     } else {
-        item->prev = list;
-        item->next = list->next;
-        list->next->prev = item;
-        list->next = item;
-        list->u.count++;
-        item->pool = list->pool;
+        Item->Prev = list;
+        Item->Next = list->Next;
+        list->Next->Prev = Item;
+        list->Next = Item;
+        list->u.Count++;
+        Item->Pool = list->Pool;
     }
 }
 
-void Nas_DeAllocAllVoices(struct AudioListItem* item) {
-    // remove 'item' from the list it's in, if any
-    if (item->prev == NULL) {
+void NasDeAllocAllVoices(struct AudioListItem* Item) {
+    // remove 'Item' from the list it's in, if any
+    if (Item->Prev == NULL) {
         eu_stubbed_printf_0("Already Cut\n");
     } else {
-        item->prev->next = item->next;
-        item->next->prev = item->prev;
-        item->prev = NULL;
+        Item->Prev->Next = Item->Next;
+        Item->Next->Prev = Item->Prev;
+        Item->Prev = NULL;
     }
 }
 
-struct Note* Nas_AllocVoices(struct AudioListItem* list, s32 limit) {
-    struct AudioListItem* cur = list->next;
+struct Note* NasAllocVoices(struct AudioListItem* list, s32 Limit) {
+    struct AudioListItem* cur = list->Next;
     struct AudioListItem* best;
 
     if (cur == list) {
         return NULL;
     }
 
-    for (best = cur; cur != list; cur = cur->next) {
-        if (((struct Note*) best->u.value)->priority >= ((struct Note*) cur->u.value)->priority) {
+    for (best = cur; cur != list; cur = cur->Next) {
+        if (((struct Note*) best->u.Value)->Priority >= ((struct Note*) cur->u.Value)->Priority) {
             best = cur;
         }
     }
@@ -610,34 +610,34 @@ struct Note* Nas_AllocVoices(struct AudioListItem* list, s32 limit) {
         return NULL;
     }
 
-    if (limit <= ((struct Note*) best->u.value)->priority) {
+    if (Limit <= ((struct Note*) best->u.Value)->Priority) {
         return NULL;
     }
 
-    Nas_DeAllocAllVoices(best);
-    return best->u.value;
+    NasDeAllocAllVoices(best);
+    return best->u.Value;
 }
 
-void Nas_AddListHead(struct Note* note, struct SequenceChannelLayer* seqLayer) {
+void NasAddListHead(struct Note* Note, struct SequenceChannelLayer* seqLayer) {
     UNUSED s32 pad[4];
     s16 instId;
-    struct NoteSubEu* sub = &note->noteSubEu;
+    struct NoteSubEu* sub = &Note->NoteSubEu;
 
-    note->prevParentLayer = NO_LAYER;
-    note->parentLayer = seqLayer;
-    note->priority = seqLayer->seqChannel->notePriority;
-    seqLayer->notePropertiesNeedInit = true;
-    seqLayer->status = SOUND_LOAD_STATUS_DISCARDABLE; // "loaded"
-    seqLayer->note = note;
-    seqLayer->seqChannel->noteUnused = note;
-    seqLayer->seqChannel->layerUnused = seqLayer;
-    seqLayer->noteVelocity = 0.0f;
-    Nas_StartVoice(note);
-    instId = seqLayer->instOrWave;
+    Note->PrevParentLayer = NO_LAYER;
+    Note->ParentLayer = seqLayer;
+    Note->Priority = seqLayer->SEQChannel->notePriority;
+    seqLayer->NotePropertiesNeedInit = true;
+    seqLayer->Status = SOUND_LOAD_STATUS_DISCARDABLE; // "Loaded"
+    seqLayer->Note = Note;
+    seqLayer->SEQChannel->noteUnused = Note;
+    seqLayer->SEQChannel->layerUnused = seqLayer;
+    seqLayer->NoteVelocity = 0.0f;
+    NasStartVoice(Note);
+    instId = seqLayer->InstOrWave;
     if (instId == 0xff) {
-        instId = seqLayer->seqChannel->instOrWave;
+        instId = seqLayer->SEQChannel->InstOrWave;
     }
-    sub->sound.audioBankSound = seqLayer->sound;
+    sub->Sound.AudioBankSound = seqLayer->Sound;
 
     if (instId >= 0x80) {
         sub->isSyntheticWave = true;
@@ -646,144 +646,144 @@ void Nas_AddListHead(struct Note* note, struct SequenceChannelLayer* seqLayer) {
     }
 
     if (sub->isSyntheticWave) {
-        Nas_Release_Channel_Main(note, seqLayer, instId);
+        NasReleaseChannelMain(Note, seqLayer, instId);
     }
-    sub->bankId = seqLayer->seqChannel->bankId;
-    sub->stereoHeadsetEffects = seqLayer->seqChannel->stereoHeadsetEffects;
-    sub->reverbIndex = seqLayer->seqChannel->reverbIndex & 3;
+    sub->BankId = seqLayer->SEQChannel->BankId;
+    sub->StereoHeadsetEffects = seqLayer->SEQChannel->StereoHeadsetEffects;
+    sub->reverbIndex = seqLayer->SEQChannel->reverbIndex & 3;
 }
 
-void Nas_CutList(struct Note* note, struct SequenceChannelLayer* seqLayer) {
-    L_loopout(note->parentLayer);
-    note->wantedParentLayer = seqLayer;
+void NasCutList(struct Note* Note, struct SequenceChannelLayer* seqLayer) {
+    LLoopout(Note->ParentLayer);
+    Note->WantedParentLayer = seqLayer;
 }
 
-void Nas_GetLowerPrio(struct Note* note, struct SequenceChannelLayer* seqLayer) {
-    note->wantedParentLayer = seqLayer;
-    note->priority = NOTE_PRIORITY_STOPPING;
-    note->adsr.fadeOutVel = gAudioBufferParameters.updatesPerFrameInv;
-    note->adsr.action |= ADSR_ACTION_RELEASE;
+void NasGetLowerPrio(struct Note* Note, struct SequenceChannelLayer* seqLayer) {
+    Note->WantedParentLayer = seqLayer;
+    Note->Priority = NOTE_PRIORITY_STOPPING;
+    Note->Adsr.FadeOutVel = AudioBufferParameters.UpdatesPerFrameInv;
+    Note->Adsr.Action |= ADSR_ACTION_RELEASE;
 }
 
-struct Note* Nas_EntryTrack(struct NotePool* pool, struct SequenceChannelLayer* seqLayer) {
-    struct Note* note = Nas_DeAllocSub(&pool->disabled);
-    if (note != NULL) {
-        Nas_AddListHead(note, seqLayer);
-        Nas_InitChannelList(&pool->active, &note->listItem);
+struct Note* NasEntryTrack(struct NotePool* Pool, struct SequenceChannelLayer* seqLayer) {
+    struct Note* Note = NasDeAllocSub(&Pool->Disabled);
+    if (Note != NULL) {
+        NasAddListHead(Note, seqLayer);
+        NasInitChannelList(&Pool->Active, &Note->ListItem);
     }
-    return note;
+    return Note;
 }
 
-struct Note* Nas_InterTrack(struct NotePool* pool, struct SequenceChannelLayer* seqLayer) {
-    struct Note* note = Nas_DeAllocSub(&pool->decaying);
-    if (note != NULL) {
-        Nas_GetLowerPrio(note, seqLayer);
-        Nas_AllocSub(&pool->releasing, &note->listItem);
+struct Note* NasInterTrack(struct NotePool* Pool, struct SequenceChannelLayer* seqLayer) {
+    struct Note* Note = NasDeAllocSub(&Pool->Decaying);
+    if (Note != NULL) {
+        NasGetLowerPrio(Note, seqLayer);
+        NasAllocSub(&Pool->Releasing, &Note->ListItem);
     }
-    return note;
+    return Note;
 }
 
-struct Note* Nas_InterReleaseTrack(struct NotePool* pool, struct SequenceChannelLayer* seqLayer) {
+struct Note* NasInterReleaseTrack(struct NotePool* Pool, struct SequenceChannelLayer* seqLayer) {
     struct Note* aNote;
 
-    aNote = Nas_AllocVoices(&pool->active, seqLayer->seqChannel->notePriority);
+    aNote = NasAllocVoices(&Pool->Active, seqLayer->SEQChannel->notePriority);
 
     if (aNote == NULL) {
         eu_stubbed_printf_0("Audio: C-Alloc : lowerPrio is NULL\n");
     } else {
-        Nas_CutList(aNote, seqLayer);
-        Nas_AllocSub(&pool->releasing, &aNote->listItem);
+        NasCutList(aNote, seqLayer);
+        NasAllocSub(&Pool->Releasing, &aNote->ListItem);
     }
 
     return aNote;
 }
 
-struct Note* Nas_ChLookFree(struct SequenceChannelLayer* seqLayer) {
+struct Note* NasChLookFree(struct SequenceChannelLayer* seqLayer) {
     struct Note* ret;
-    u32 policy = seqLayer->seqChannel->noteAllocPolicy;
+    u32 policy = seqLayer->SEQChannel->NoteAllocPolicy;
 
     if (policy & NOTE_ALLOC_LAYER) {
-        ret = seqLayer->note;
-        if (ret != NULL && ret->prevParentLayer == seqLayer && ret->wantedParentLayer == NO_LAYER) {
-            Nas_GetLowerPrio(ret, seqLayer);
-            Nas_DeAllocAllVoices(&ret->listItem);
-            Nas_AllocSub(&ret->listItem.pool->releasing, &ret->listItem);
+        ret = seqLayer->Note;
+        if (ret != NULL && ret->PrevParentLayer == seqLayer && ret->WantedParentLayer == NO_LAYER) {
+            NasGetLowerPrio(ret, seqLayer);
+            NasDeAllocAllVoices(&ret->ListItem);
+            NasAllocSub(&ret->ListItem.Pool->Releasing, &ret->ListItem);
             return ret;
         }
     }
 
     if (policy & NOTE_ALLOC_CHANNEL) {
-        if (!(ret = Nas_EntryTrack(&seqLayer->seqChannel->notePool, seqLayer)) &&
-            !(ret = Nas_InterTrack(&seqLayer->seqChannel->notePool, seqLayer)) &&
-            !(ret = Nas_InterReleaseTrack(&seqLayer->seqChannel->notePool, seqLayer))) {
+        if (!(ret = NasEntryTrack(&seqLayer->SEQChannel->NotePool, seqLayer)) &&
+            !(ret = NasInterTrack(&seqLayer->SEQChannel->NotePool, seqLayer)) &&
+            !(ret = NasInterReleaseTrack(&seqLayer->SEQChannel->NotePool, seqLayer))) {
             eu_stubbed_printf_0("Sub Limited Warning: Drop Voice");
-            seqLayer->status = SOUND_LOAD_STATUS_NOT_LOADED;
+            seqLayer->Status = SOUND_LOAD_STATUS_NOT_LOADED;
             return NULL;
         }
         return ret;
     }
 
     if (policy & NOTE_ALLOC_SEQ) {
-        if (!(ret = Nas_EntryTrack(&seqLayer->seqChannel->notePool, seqLayer)) &&
-            !(ret = Nas_EntryTrack(&seqLayer->seqChannel->seqPlayer->notePool, seqLayer)) &&
-            !(ret = Nas_InterTrack(&seqLayer->seqChannel->notePool, seqLayer)) &&
-            !(ret = Nas_InterTrack(&seqLayer->seqChannel->seqPlayer->notePool, seqLayer)) &&
-            !(ret = Nas_InterReleaseTrack(&seqLayer->seqChannel->notePool, seqLayer)) &&
-            !(ret = Nas_InterReleaseTrack(&seqLayer->seqChannel->seqPlayer->notePool, seqLayer))) {
+        if (!(ret = NasEntryTrack(&seqLayer->SEQChannel->NotePool, seqLayer)) &&
+            !(ret = NasEntryTrack(&seqLayer->SEQChannel->seqPlayer->NotePool, seqLayer)) &&
+            !(ret = NasInterTrack(&seqLayer->SEQChannel->NotePool, seqLayer)) &&
+            !(ret = NasInterTrack(&seqLayer->SEQChannel->seqPlayer->NotePool, seqLayer)) &&
+            !(ret = NasInterReleaseTrack(&seqLayer->SEQChannel->NotePool, seqLayer)) &&
+            !(ret = NasInterReleaseTrack(&seqLayer->SEQChannel->seqPlayer->NotePool, seqLayer))) {
             eu_stubbed_printf_0("Warning: Drop Voice");
-            seqLayer->status = SOUND_LOAD_STATUS_NOT_LOADED;
+            seqLayer->Status = SOUND_LOAD_STATUS_NOT_LOADED;
             return NULL;
         }
         return ret;
     }
 
     if (policy & NOTE_ALLOC_GLOBAL_FREELIST) {
-        if (!(ret = Nas_EntryTrack(&gNoteFreeLists, seqLayer)) &&
-            !(ret = Nas_InterTrack(&gNoteFreeLists, seqLayer)) &&
-            !(ret = Nas_InterReleaseTrack(&gNoteFreeLists, seqLayer))) {
+        if (!(ret = NasEntryTrack(&NoteFreeLists, seqLayer)) &&
+            !(ret = NasInterTrack(&NoteFreeLists, seqLayer)) &&
+            !(ret = NasInterReleaseTrack(&NoteFreeLists, seqLayer))) {
             eu_stubbed_printf_0("Warning: Drop Voice");
-            seqLayer->status = SOUND_LOAD_STATUS_NOT_LOADED;
+            seqLayer->Status = SOUND_LOAD_STATUS_NOT_LOADED;
             return NULL;
         }
         return ret;
     }
 
-    if (!(ret = Nas_EntryTrack(&seqLayer->seqChannel->notePool, seqLayer)) &&
-        !(ret = Nas_EntryTrack(&seqLayer->seqChannel->seqPlayer->notePool, seqLayer)) &&
-        !(ret = Nas_EntryTrack(&gNoteFreeLists, seqLayer)) &&
-        !(ret = Nas_InterTrack(&seqLayer->seqChannel->notePool, seqLayer)) &&
-        !(ret = Nas_InterTrack(&seqLayer->seqChannel->seqPlayer->notePool, seqLayer)) &&
-        !(ret = Nas_InterTrack(&gNoteFreeLists, seqLayer)) &&
-        !(ret = Nas_InterReleaseTrack(&seqLayer->seqChannel->notePool, seqLayer)) &&
-        !(ret = Nas_InterReleaseTrack(&seqLayer->seqChannel->seqPlayer->notePool, seqLayer)) &&
-        !(ret = Nas_InterReleaseTrack(&gNoteFreeLists, seqLayer))) {
+    if (!(ret = NasEntryTrack(&seqLayer->SEQChannel->NotePool, seqLayer)) &&
+        !(ret = NasEntryTrack(&seqLayer->SEQChannel->seqPlayer->NotePool, seqLayer)) &&
+        !(ret = NasEntryTrack(&NoteFreeLists, seqLayer)) &&
+        !(ret = NasInterTrack(&seqLayer->SEQChannel->NotePool, seqLayer)) &&
+        !(ret = NasInterTrack(&seqLayer->SEQChannel->seqPlayer->NotePool, seqLayer)) &&
+        !(ret = NasInterTrack(&NoteFreeLists, seqLayer)) &&
+        !(ret = NasInterReleaseTrack(&seqLayer->SEQChannel->NotePool, seqLayer)) &&
+        !(ret = NasInterReleaseTrack(&seqLayer->SEQChannel->seqPlayer->NotePool, seqLayer)) &&
+        !(ret = NasInterReleaseTrack(&NoteFreeLists, seqLayer))) {
         eu_stubbed_printf_0("Warning: Drop Voice");
-        seqLayer->status = SOUND_LOAD_STATUS_NOT_LOADED;
+        seqLayer->Status = SOUND_LOAD_STATUS_NOT_LOADED;
         return NULL;
     }
     return ret;
 }
 
-void Nas_ChLookRelease(void) {
-    struct Note* note;
+void NasChLookRelease(void) {
+    struct Note* Note;
     s32 i;
 
-    for (i = 0; i < gMaxSimultaneousNotes; i++) {
-        note = &gNotes[i];
-        note->noteSubEu = gZeroNoteSub;
-        note->priority = NOTE_PRIORITY_DISABLED;
-        note->parentLayer = NO_LAYER;
-        note->wantedParentLayer = NO_LAYER;
-        note->prevParentLayer = NO_LAYER;
-        note->waveId = 0;
-        note->attributes.velocity = 0.0f;
-        note->adsrVolScale = 0;
-        note->adsr.state = ADSR_STATE_DISABLED;
-        note->adsr.action = 0;
-        note->vibratoState.active = false;
-        note->portamento.cur = 0.0f;
-        note->portamento.speed = 0.0f;
-        // This only works if NoteSynthesisBuffers are size 0xA0. See internal.h
-        note->synthesisState.synthesisBuffers = Nas_HeapAlloc(&gNotesAndBuffersPool, sizeof(struct NoteSynthesisBuffers));
+    for (i = 0; i < MaxSimultaneousNotes; i++) {
+        Note = &Notes[i];
+        Note->NoteSubEu = ZeroNoteSub;
+        Note->Priority = NOTE_PRIORITY_DISABLED;
+        Note->ParentLayer = NO_LAYER;
+        Note->WantedParentLayer = NO_LAYER;
+        Note->PrevParentLayer = NO_LAYER;
+        Note->WaveId = 0;
+        Note->Attributes.Velocity = 0.0f;
+        Note->AdsrVolScale = 0;
+        Note->Adsr.State = ADSR_STATE_DISABLED;
+        Note->Adsr.Action = 0;
+        Note->VibratoState.Active = false;
+        Note->Portamento.cur = 0.0f;
+        Note->Portamento.Speed = 0.0f;
+        // This only works if NoteSynthesisBuffers are Size 0xA0. See internal.h
+        Note->SynthesisState.SynthesisBuffers = NasHeapAlloc(&NotesAndBuffersPool, sizeof(struct NoteSynthesisBuffers));
     }
 }

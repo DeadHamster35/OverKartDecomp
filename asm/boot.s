@@ -5,7 +5,7 @@
 
 .include "macros.inc"
 
-# 0xA0000000-0xBFFFFFFF: KSEG1 direct map non-cache mirror of 0x00000000
+# 0xA0000000-0xBFFFFFFF: KSEG1 direct Map non-cache mirror of 0x00000000
 # 0xA4000000-0xA4000FFF: RSP DMEM
 
 # 0xA4000000-0xA400003F: ROM header
@@ -14,7 +14,7 @@
 
 # 0xA4000040-0xA4000B6F: IPL3
 
-# IPL3 entry point jumped to from IPL2
+# IPL3 entry Point jumped to from IPL2
 glabel ipl3_entry # 0xA4000040
     mtc0  $zero, $13
     mtc0  $zero, $9
@@ -446,7 +446,7 @@ glabel ipl3_entry # 0xA4000040
     bal   func_A4000690
      nop
 
-halt: # checksum fail
+halt: # Checksum fail
     bal   halt
      nop
 

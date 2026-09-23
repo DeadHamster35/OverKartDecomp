@@ -13,7 +13,7 @@ OUTPUT_ARCH (mips)
  * OKHeader may overflow into 0x80500000 (must not reach FB0 at 0x805DA800).
  * Z at 0x80300000; gfx/audio follow; leftover to 0x80400000 is ok_ObjectPool (LoadOKData).
  * FB0 0x805DA800 (flush against FB1), FB1 0x80600000, FB2 0x80700000.
- * gFaceBuffer 0x80625800 forward; Vtx from 0x80700000 back; DLs/tex from 0x80800000 back.
+ * FaceBuffer 0x80625800 forward; Vtx from 0x80700000 back; DLs/tex from 0x80800000 back.
  * FreeMemory 768 KB at original hole (0x801978D0–0x802578D0). */
 
 #define LINKER_OVERKART    0x80400000
@@ -84,10 +84,10 @@ OUTPUT_ARCH (mips)
 // End of Jumper pak memory
 #define RDRAM_END         0x807FFFFF
 
-#define BEGIN_SEG(name, addr) \
+#define BEGIN_SEG(name, Addr) \
     _##name##SegmentStart = ADDR(.name); \
     _##name##SegmentRomStart = __romPos; \
-    .name addr : AT(__romPos)
+    .name Addr : AT(__romPos)
 
 #define END_SEG(name) \
     _##name##SegmentEnd = ADDR(.name) + SIZEOF(.name); \
@@ -114,10 +114,10 @@ SECTIONS
    END_SEG(boot)
 
    /* 0x80000400 001000-0D9B70 [D8B70] */
-   BEGIN_SEG(main, LINKER_MAIN) SUBALIGN(0x10)
+   BEGIN_SEG(Main, LINKER_MAIN) SUBALIGN(0x10)
    {
       BUILD_DIR/asm/entry.o(.text);
-      BUILD_DIR/src/main.o(.text*);
+      BUILD_DIR/src/Main.o(.text*);
       BUILD_DIR/src/code_800029B0.o(.text*);
       BUILD_DIR/src/profiler.o(.text*);
       BUILD_DIR/src/crash_screen.o(.text*);
@@ -126,7 +126,7 @@ SECTIONS
       BUILD_DIR/src/replays.o(.text*);
       BUILD_DIR/asm/unused_overflow_check.o(.text);
       BUILD_DIR/src/cpu_vehicles_camera_path.jp.o(.text*);
-      BUILD_DIR/src/camera.o(.text*);
+      BUILD_DIR/src/Camera.o(.text*);
       BUILD_DIR/src/render_player.o(.text*);
       BUILD_DIR/src/kart_dma.o(.text*);
       BUILD_DIR/src/player_controller.o(.text*);
@@ -203,6 +203,7 @@ SECTIONS
       BUILD_DIR/src/os/osEepromProbe.o(.text*);
       BUILD_DIR/src/os/osPfsIsPlug.o(.text*);
       BUILD_DIR/src/os/osPfsInit.o(.text*);
+      BUILD_DIR/src/os/motor.o(.text*);
       BUILD_DIR/src/os/osPfsNumFiles.o(.text*);
       BUILD_DIR/src/os/osPfsFileState.o(.text*);
       BUILD_DIR/src/os/osPfsFreeBlocks.o(.text*);
@@ -286,21 +287,21 @@ SECTIONS
       BUILD_DIR/src/os/_Ldtob.o(.text*);
       BUILD_DIR/src/os/ldiv.o(.text*);
       BUILD_DIR/data/rsp.o(.text);
-      BUILD_DIR/src/main.o(.data*);
+      BUILD_DIR/src/Main.o(.data*);
       BUILD_DIR/src/code_800029B0.o(.data*);
       BUILD_DIR/src/profiler.o(.data*);
       BUILD_DIR/src/crash_screen.o(.data*);
       BUILD_DIR/src/debug/crash_screen_enhancement.o(.data*);
       BUILD_DIR/src/replays.o(.data*);
       BUILD_DIR/src/data/path_spawn_metadata.o(.data*);
-      BUILD_DIR/src/camera.o(.data*);
+      BUILD_DIR/src/Camera.o(.data*);
       BUILD_DIR/src/render_player.o(.data*);
       BUILD_DIR/src/kart_dma.o(.data*);
       BUILD_DIR/src/data/kart_attributes.o(.data*);
       BUILD_DIR/src/player_controller.o(.data*);
       BUILD_DIR/src/spawn_players.o(.data*);
       BUILD_DIR/src/update_objects.o(.data*);
-      BUILD_DIR/assets/code/data_800E45C0/data_800E45C0.o(.data*);
+      BUILD_DIR/assets/Code/data_800E45C0/data_800E45C0.o(.data*);
       BUILD_DIR/src/code_80057C60.o(.data*);
       BUILD_DIR/src/data/some_data.o(.data*);
       BUILD_DIR/src/effects.o(.data*);
@@ -309,7 +310,7 @@ SECTIONS
       BUILD_DIR/src/code_800AF9B0.o(.data*);
       BUILD_DIR/src/menus.o(.data*);
       BUILD_DIR/src/save.o(.data*);
-      BUILD_DIR/assets/code/data_800E8700/data_800E8700.o(.data*);
+      BUILD_DIR/assets/Code/data_800E8700/data_800E8700.o(.data*);
       BUILD_DIR/src/audio/synthesis.o(.data*);
       BUILD_DIR/src/audio/heap.o(.data*);
       BUILD_DIR/src/audio/load.o(.data*);
@@ -328,6 +329,7 @@ SECTIONS
       BUILD_DIR/src/os/osViTable.o(.data*);
       BUILD_DIR/src/os/osCreatePiManager.o(.data*);
       BUILD_DIR/src/os/osContInit.o(.data*);
+      BUILD_DIR/src/os/motor.o(.data*);
       BUILD_DIR/src/os/osAiSetNextBuffer.o(.data*);
       BUILD_DIR/src/os/__osSetHWIntrRoutine.o(.data*);
       BUILD_DIR/src/os/__osDequeueThread.o(.data*);
@@ -338,11 +340,11 @@ SECTIONS
       BUILD_DIR/src/os/_Printf.o(.data*);
       BUILD_DIR/src/os/osViData.o(.data*);
       BUILD_DIR/src/os/_Litob.o(.data*);
-      BUILD_DIR/src/main.o(.rodata*);
+      BUILD_DIR/src/Main.o(.rodata*);
       BUILD_DIR/src/animation.o(.rodata*);
       BUILD_DIR/src/code_800029B0.o(.rodata*);
       BUILD_DIR/src/cpu_vehicles_camera_path.jp.o(.rodata*);
-      BUILD_DIR/src/camera.o(.rodata*);
+      BUILD_DIR/src/Camera.o(.rodata*);
       BUILD_DIR/src/render_player.o(.rodata*);
       BUILD_DIR/src/player_controller.o(.rodata*);
       BUILD_DIR/src/spawn_players.o(.rodata*);
@@ -391,10 +393,10 @@ SECTIONS
       BUILD_DIR/data/rsp.o(.data*);
       BUILD_DIR/src/audio/data.o(.data*);
    }
-   END_SEG(main)
+   END_SEG(Main)
 
-   BEGIN_NOLOAD(main) {
-      BUILD_DIR/src/main.o(.bss*);
+   BEGIN_NOLOAD(Main) {
+      BUILD_DIR/src/Main.o(.bss*);
       BUILD_DIR/src/code_800029B0.o(.bss*);
       BUILD_DIR/src/profiler.o(.bss*);
       BUILD_DIR/src/crash_screen.o(.bss*);
@@ -402,7 +404,7 @@ SECTIONS
       BUILD_DIR/src/animation.o(.bss*);
       BUILD_DIR/src/replays.o(.bss*);
       BUILD_DIR/src/cpu_vehicles_camera_path.jp.o(.bss*);
-      BUILD_DIR/src/camera.o(.bss*);
+      BUILD_DIR/src/Camera.o(.bss*);
       BUILD_DIR/src/render_player.o(.bss*);
       BUILD_DIR/src/spawn_players.o(.bss*);
       BUILD_DIR/src/code_80057C60.o(.bss*);
@@ -428,6 +430,7 @@ SECTIONS
       BUILD_DIR/src/os/osContStartReadData.o(.bss*);
       BUILD_DIR/src/os/osContInit.o(.bss*);
       BUILD_DIR/src/os/osPfsIsPlug.o(.bss*);
+      BUILD_DIR/src/os/motor.o(.bss*);
       BUILD_DIR/src/os/guRotateF.o(.bss*);
       BUILD_DIR/src/os/__osLeoInterrupt.o(.bss*);
       BUILD_DIR/src/os/osTimer.o(.bss*);
@@ -438,9 +441,9 @@ SECTIONS
       BUILD_DIR/src/os/osLeoDiskInit.o(.bss*);
       . = ALIGN(0x10);
    }
-   END_NOLOAD(main)
+   END_NOLOAD(Main)
 
-   /* Checks that segments are not overlapping into the memory pool but is not strictly necessary */
+   /* Checks that segments are not overlapping into the memory Pool but is not strictly necessary */
    BEGIN_NOLOAD(memoryPool)
    {
       BUILD_DIR/src/buffers/memory_pool.o(.bss*);
@@ -496,7 +499,7 @@ SECTIONS
    }
    END_NOLOAD(buffers)
 
-   /* Bank 3: Z at 0x80300000, then gfx output + audio. Remainder to 0x80400000 is ok_ObjectPool. */
+   /* Bank 3: Z at 0x80300000, then gfx Output + audio. Remainder to 0x80400000 is ok_ObjectPool. */
    .zbuffer 0x80300000 (NOLOAD) :
    {
       BUILD_DIR/src/buffers/zbuffer.o(.bss*);
@@ -552,25 +555,25 @@ SECTIONS
    END_NOLOAD(ending)
 
    /* 0x801978D0 12AAE0-132B50 [8070] */
-   /* texture tables and DLs, set as segment 0x02 */
+   /* Texture tables and DLs, set as segment 0x02 */
    BEGIN_SEG(data_segment2, 0x02000000)
    {
-      BUILD_DIR/src/data/textures.o(.data);
+      BUILD_DIR/src/data/Textures.o(.data);
       BUILD_DIR/src/data/data_segment2.o(.data);
    }
    END_SEG(data_segment2)
 
    /* 0x02000000 132B50-145470 [12920] (copied to 0x8027B5E0) */
-   /* common textures, decompressed and set as segment 0x0D */
+   /* common Textures, decompressed and set as segment 0x0D */
    BEGIN_SEG(common_textures, 0x0D000000)
    {
-      BUILD_DIR/assets/code/common_data/common_data.mio0.o(.data);
+      BUILD_DIR/assets/Code/common_data/common_data.mio0.o(.data);
       . = ALIGN(0x10);
    }
    END_SEG(common_textures)
 
    /* 0x0F000000 145470-63E278 [4F8E08] */
-   /* compressed kart textures and palettes */
+   /* compressed Kart Textures and palettes */
    BEGIN_SEG(kart_textures, 0x0F000000) SUBALIGN(0x10)
    {
       BUILD_DIR/data/karts/luigi_kart.o(.data);
@@ -622,20 +625,20 @@ SECTIONS
             0x828400 -> 0x8028DE30 (0xD0) */
    BEGIN_SEG(ceremonyData, 0x0B000000)
    {
-      BUILD_DIR/assets/code/ceremony_data/ceremony_data.mio0.o(.data);
+      BUILD_DIR/assets/Code/ceremony_data/ceremony_data.mio0.o(.data);
       . = ALIGN(0x10);
    }
    END_SEG(ceremonyData)
 
    BEGIN_SEG(startupLogo, 0x06000000)
    {
-      BUILD_DIR/assets/code/startup_logo/startup_logo.mio0.o(.data);
+      BUILD_DIR/assets/Code/startup_logo/startup_logo.mio0.o(.data);
       . = ALIGN(0x10);
    }
    END_SEG(startupLogo)
 
 
-   /* Segment Six Course Data (Displaylists, models, textures, course paths, etc.) */
+   /* Segment Six Course Data (Displaylists, models, Textures, course paths, etc.) */
 
    #define COURSE_DATA_SEG(dir, name) \
       BEGIN_SEG(name##_mio0, 0x06000000) \
@@ -779,7 +782,7 @@ SECTIONS
    }
    END_SEG(overkart)
 
-   /* Fonts / IceKage / Crash / previews: cart addresses for runDMA. Not in 0x80400000. */
+   /* Fonts / IceKage / Crash / previews: cart addresses for RunDMA. Not in 0x80400000. */
    BEGIN_SEG(oklib_romassets, __romPos) SUBALIGN(0x10)
    {
       BUILD_DIR/data/overkart/ok_rom_assets.o(.data*);
@@ -931,7 +934,7 @@ SECTIONS
       *(*);
    }
 
-   ASSERT((_mainSegmentNoloadEnd <= _memoryPoolSegmentNoloadStart), "Error: Main segment extended into the memory pool.")
+   ASSERT((_MainSegmentNoloadEnd <= _memoryPoolSegmentNoloadStart), "Error: Main segment extended into the memory pool.")
    ASSERT((_memoryPoolSegmentNoloadEnd <= _endingSegmentStart), "Error: Memory pool extended into the ending segment.")
    ASSERT((_endingSegmentNoloadEnd <= _racingSegmentStart), "Error: Ending segment extended into the racing segment")
    ASSERT((_endingSegmentNoloadEnd <= _racingSegmentStart), "Error: Ending segment extended into the racing segment.")

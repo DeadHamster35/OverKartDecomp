@@ -73,7 +73,7 @@
 #define ONSCREEN3     0x4
 #define ONSCREEN4     0x8
 
-// Player / weapon / water / handling / talk / Kimura slip flags live in defines.h.
+// Player / Weapon / water / handling / Talk / Kimura slip flags live in defines.h.
 // P1 sprite bits also live there. P2–P4 are OverKart-only.
 
 //Player Status Flag
@@ -151,7 +151,7 @@
 #define SEDAN	   44
 #define NUTS	   45
 
-//Player Slip Flag (OverKart names; same bits as defines.h BREAKE / DRIFT / …)
+//Player Slip Flag (OverKart Names; same bits as defines.h BREAKE / DRIFT / …)
 #define IS_BRAKING	 		0x00000001
 #define IS_JUMPING 			0x00000002
 #define IS_BOOSTJUMP_ZONE	0x00000004
@@ -184,7 +184,7 @@
 #define IS_LIGHTNING_HIT	0x40000000
 #define IS_BOO				0x80000000
 
-// OverKart jugemu names not in defines.h (OUT_OF_BOUNDS is the same bit as LAKITU_SCENE).
+// OverKart jugemu Names not in defines.h (OUT_OF_BOUNDS is the same bit as LAKITU_SCENE).
 #define OUT_OF_BOUNDS  		0x0008
 #define IS_ALL_MELTING		0x0040
 
@@ -213,14 +213,14 @@
 
 typedef struct EnemyItem //SIZE: 8* 0x10 = 0x80 | LOCATION: 801642D8 | 801642E8 | 801642F8 | 80164308 | 80164318 | 80164328 | 80164338 | 80164348
 {   
-	short	item_num;		//0
-	short	obj_num;		//2
-	short	time;			//4
-	short	limit;			//6
-	short	count1;			//8
-	short	count2;			//A
-	short	count3;			//C
-	short	count4;			//E
+	short	ItemNum;		//0
+	short	ObjNum;		//2
+	short	Time;			//4
+	short	Limit;			//6
+	short	Count1;			//8
+	short	Count2;			//A
+	short	Count3;			//C
+	short	Count4;			//E
 }EnemyItem;
 
 
@@ -229,17 +229,17 @@ typedef struct BalloonColor{
 	char R,G,B;
 } BalloonColor;
 
-typedef struct GpResult //size: 0x20 | location: 0x802874D8
+typedef struct GpResult //Size: 0x20 | location: 0x802874D8
 {
-	short mode;			//00 802874D8 result mode 
+	short Mode;			//00 802874D8 result Mode 
 	//empty short
-	long  timer;		//04 802874DC result_timer 
-	long  total_timer;	//08 802874E0 result_timer 
-	long  timeend;		//0C 802874E4 timeend 		
+	long  Timer;		//04 802874DC result_timer 
+	long  TotalTimer;	//08 802874E0 result_timer 
+	long  Timeend;		//0C 802874E4 Timeend 		
 	long  pos[3];		//10 802874E8
-	char  carmove;		//1C 802874F4 move along trophy path
-	char  rank;			//1D 802874F5 result rank 0,1,2,3 			| equals player num in trophy	   
-	uchar  kart;		//1E 802874F6 result rank 0,1,2,3,4,5,6,7 
+	char  Carmove;		//1C 802874F4 move along trophy path
+	char  Rank;			//1D 802874F5 result Rank 0,1,2,3 			| equals Player num in trophy	   
+	Uchar  Kart;		//1E 802874F6 result Rank 0,1,2,3,4,5,6,7 
 	// empty char
 } GpResult;
 
@@ -247,26 +247,26 @@ typedef struct GpResult //size: 0x20 | location: 0x802874D8
 typedef unsigned long Hierarchy;
 
 typedef struct AnimeRecord{
-	short			attr;
-	short			code;
-	short			start;
-	short			loop;
-	short			anime_frame;
-	short			skeleton_total;
-	short		   	*param;
-	unsigned short 	*table;
+	short			Attr;
+	short			Code;
+	short			Start;
+	short			Loop;
+	short			AnimeFrame;
+	short			SkeletonTotal;
+	short		   	*Param;
+	unsigned short 	*Table;
 } AnimeRecord,*AnimePtr;
 
 
 typedef struct Lakitu{
-		char		unknown;
-		char		activeFlag; //busy
-		short		unknown3;
-		long		unknown4;
-		long		unknown5;
-		char      	pickupFlag;
-		char		unknownFlag;
-		char		reverseFlag;
+		char		Unknown;
+		char		ActiveFlag; //busy
+		short		Unknown3;
+		long		Unknown4;
+		long		Unknown5;
+		char      	PickupFlag;
+		char		UnknownFlag;
+		char		ReverseFlag;
 		//much more
 } Lakitu;
 
@@ -287,56 +287,56 @@ typedef struct Lakitu{
 #define LAKITU_REVERSE		6
 #define LAKITU_RESCUE_ICE	7
 
-typedef struct AnmObject_Lakitu{
-		float		scale;
+typedef struct AnmObjectLakitu{
+		float		Scale;
 		float		pos[3];
-		float		pos_offset[3];
-		float		unknown[3];
-		float		pos_anm_offset[3];
-		float		unknown2[3];
-		float		unknown3[4];
-		unsigned long	anm_start_counter;
-		long      	anm_bit_flag;
-		long      	alpha_bit_flag;
-		long		unknown4;
-		long		colormode_copy;
-		long		image_address_ptr;
-		long		colormode;
-		long		image_address_offset;
-		long		unknown5;
-		long		render_mode;
-		long		unknown6;
-		long		unknown_ptr;
-		long		unknown_ptr2;
-		float		unknown7[4];
-		long      	status_flag;
-		unsigned short	movement_counter;
-		short      	movement_offset_counter;
-		long		unknown8;
-		ushort		alpha_dither;
-		short		unknown9;
-		long      	anm_progress_counter;
-		long      	unknown_counter;
-		short      	unknown10;
-		short      	movement_offset_flag;
-		short      	unknown11;
-		short      	unknown12;
-		short      	angle;
-		short      	unknown13;
-		float		unknown14[4];
-		long      	active_flag;
-		char      	anm_state_countdown;
-		short      	unknown15;
-		short      	unknown16;
-		char      	anm_frame_count;
-		char      	anm_frame_count_copy;
-		short      	unknown17;
-		short      	unknown18;
-		char      	event_flag;
-		char      	anm_frame_offsetX;
-		char      	anm_frame_offsetY;
-		long      	unknown_state_flag;
-} AnmObject_Lakitu;
+		float		PosOffset[3];
+		float		Unknown[3];
+		float		PosAnmOffset[3];
+		float		Unknown2[3];
+		float		Unknown3[4];
+		unsigned long	AnmStartCounter;
+		long      	AnmBitFlag;
+		long      	AlphaBitFlag;
+		long		Unknown4;
+		long		ColormodeCopy;
+		long		ImageAddressPtr;
+		long		Colormode;
+		long		ImageAddressOffset;
+		long		Unknown5;
+		long		RenderMode;
+		long		Unknown6;
+		long		UnknownPtr;
+		long		UnknownPtr2;
+		float		Unknown7[4];
+		long      	StatusFlag;
+		unsigned short	MovementCounter;
+		short      	MovementOffsetCounter;
+		long		Unknown8;
+		Ushort		AlphaDither;
+		short		Unknown9;
+		long      	AnmProgressCounter;
+		long      	UnknownCounter;
+		short      	Unknown10;
+		short      	MovementOffsetFlag;
+		short      	Unknown11;
+		short      	Unknown12;
+		short      	Angle;
+		short      	Unknown13;
+		float		Unknown14[4];
+		long      	ActiveFlag;
+		char      	AnmStateCountdown;
+		short      	Unknown15;
+		short      	Unknown16;
+		char      	AnmFrameCount;
+		char      	AnmFrameCountCopy;
+		short      	Unknown17;
+		short      	Unknown18;
+		char      	EventFlag;
+		char      	AnmFrameOffsetX;
+		char      	AnmFrameOffsetY;
+		long      	UnknownStateFlag;
+} AnmObjectLakitu;
 
 
 typedef struct SkyColor{
@@ -347,15 +347,15 @@ typedef struct SkyColor{
 
 typedef struct Playercolor{
 		short	R;
-        short   dummy[7];
+        short   Dummy[7];
         short   G;
-        short   dummy2[7];
+        short   Dummy2[7];
         short   B;
-        short   dummy3[7];
+        short   Dummy3[7];
         short	D;
-        short   dummy4[7];
+        short   Dummy4[7];
         short   P;
-        short   dummy5[7];
+        short   Dummy5[7];
         short   Y;
 } Playercolor;
 
@@ -435,37 +435,37 @@ typedef struct Stats{
 
 typedef struct POSXY{
     short x,y;
-    short dummy1,dummy2;
+    short Dummy1,Dummy2;
 } POSXY;
 
-typedef struct POS_XY_NoBS{
+typedef struct POSXYNoBS{
     short x,y;
-} POS_XY_NoBS;
+} POSXYNoBS;
 
 typedef struct PlayerTextureTable{
-	uint		TextureOffset[8];
+	Uint		TextureOffset[8];
 } PlayerTextureTable;
 
 #define OBJ_BLOCK_MAX 32
 
-typedef struct ObjBlock //size: 0x28 * 32 = 0x500 | location: 0x8018D9E0
+typedef struct ObjBlock //Size: 0x28 * 32 = 0x500 | location: 0x8018D9E0
 {
-    int 		kind;				//00 
-    int 		pattern,pattern2;	//04 08
-    int 		disp_x,disp_y;		//0C 10
-    char 		pri,disp_on;		//14 15
-	char 		hootanim;		//custom align
-	char		zuul_flag;		//custom align	
-    int 		sd_number;			//18 seq_data_number
-    int 		work1,work2;		//1C 20
-    float 		workf1;				//24
+    int 		Kind;				//00 
+    int 		Pattern,Pattern2;	//04 08
+    int 		DispX,DispY;		//0C 10
+    char 		pri,DispOn;		//14 15
+	char 		Hootanim;		//custom align
+	char		ZuulFlag;		//custom align	
+    int 		SdNumber;			//18 seq_data_number
+    int 		Work1,Work2;		//1C 20
+    float 		Workf1;				//24
 } ObjBlock;
 
 typedef struct SOUKOU_ZURE_TYPE{        // 128 bit  (16)byte
-    float lane;                            // 32 bit    (4)
-    float lane_target;                    // 32 bit    (4)
-    float speed;                        // 32 bit    (4)
-    float lane_free_drive;                // 32 bit    (4)
+    float Lane;                            // 32 bit    (4)
+    float LaneTarget;                    // 32 bit    (4)
+    float Speed;                        // 32 bit    (4)
+    float LaneFreeDrive;                // 32 bit    (4)
 }SOUKOU_ZURE_TYPE;
 
 #define CHANNEL_MUTE		0x10000000
@@ -475,27 +475,27 @@ typedef struct SOUKOU_ZURE_TYPE{        // 128 bit  (16)byte
 
 //SFX Structs
 typedef struct SFXStruct{
-    ushort                    flag1;
-    ushort                    flag2;
-    long                    rawSFXROMpointer;
-    long                    loopdataRAMpointer;
-    long                    predictordataRAMpointer;
-    long                    length;
-    long                    empty1;
-    long                    empty2;
-    long                    emtpy3;
+    Ushort                    Flag1;
+    Ushort                    Flag2;
+    long                    RawSFXROMpointer;
+    long                    LoopdataRAMpointer;
+    long                    PredictordataRAMpointer;
+    long                    Length;
+    long                    Empty1;
+    long                    Empty2;
+    long                    Emtpy3;
 } SFXStruct;
 
 typedef struct SFXSampleStruct{
-    ushort                    flag1;
-    ushort                    flag2;
-    long                    *unknown1;
-    long                    empty1;
-    long                    emtpy2;
-    SFXStruct                *predictors;
-    long                    unknown2;
-    long                    empty3;
-    long                    emtpy4;
+    Ushort                    Flag1;
+    Ushort                    Flag2;
+    long                    *Unknown1;
+    long                    Empty1;
+    long                    Emtpy2;
+    SFXStruct                *Predictors;
+    long                    Unknown2;
+    long                    Empty3;
+    long                    Emtpy4;
 } SFXSampleStruct;
 
 // The below structs have been guesswork on the Seq0 sounds, but they would need to be extended for every sequence if you want to access those.
@@ -504,186 +504,186 @@ typedef struct SFXSampleIndexStruct{
 } SFXSampleIndexStruct;
 
 typedef struct SFXTempPointerStruct{
-    ushort                InstrumentChannelAmount;
-    uchar                DrumChannelAmount,pad;
+    Ushort                InstrumentChannelAmount;
+    Uchar                DrumChannelAmount,pad;
     SFXSampleIndexStruct            *InstSampleindex;
     SFXSampleIndexStruct            *DrumSampleindex2;
 } SFXTempPointerStruct;
 
 
 typedef struct TablePointer{
-    int address;
-    int length;        
+    int Address;
+    int Length;        
 } TablePointer;
 
 typedef struct SequenceTable{
-    short category;        
-    short index;        
-    TablePointer pointer[30];        
+    short Category;        
+    short Index;        
+    TablePointer Pointer[30];        
 } SequenceTable;
 
 typedef struct InstrumentTable{
-    short category;        
-    short index;        
-    TablePointer pointer[21];        
+    short Category;        
+    short Index;        
+    TablePointer Pointer[21];        
 } InstrumentTable;
 
 typedef struct RawAudioTable{
-    short category;        
-    short index;        
-    TablePointer pointer[21];        
+    short Category;        
+    short Index;        
+    TablePointer Pointer[21];        
 } RawAudioTable;
 
 typedef struct BankMap{
-    uchar tableID;
-    uchar instBankID;        
+    Uchar TableID;
+    Uchar InstBankID;        
 } BankMap;
 
 typedef struct BankMapTable{
-    short offset[30];        
-    BankMap assignment[30];        
+    short Offset[30];        
+    BankMap Assignment[30];        
 } BankMapTable;
 
 typedef struct AudioTablePointers{
-    SequenceTable SequenceTable_p;
-    InstrumentTable InstrumentTable_p;
-    RawAudioTable RawAudioTable_p;
-    BankMapTable BankMapTable_p;
+    SequenceTable SequenceTableP;
+    InstrumentTable InstrumentTableP;
+    RawAudioTable RawAudioTableP;
+    BankMapTable BankMapTableP;
     short SongAmount;
-    short free;
-    SFXTempPointerStruct SFXAlloc_p;
+    short Free;
+    SFXTempPointerStruct SFXAllocP;
 } AudioTablePointers;
 
 
 typedef struct SeqChannelStruct{
 		int Playflag; 
-		char unknown1; 
+		char Unknown1; 
 		char Priority; 
-		short unknown3;
-		char unknown4; 
+		short Unknown3;
+		char Unknown4; 
 		char PanNote; 
 		char Pan;
-		char unknown6;
-		int unknown7;
-		int unknown8;
-		int unknown9;
+		char Unknown6;
+		int Unknown7;
+		int Unknown8;
+		int Unknown9;
 		int Loopcount;
 		short Instrument;
-		short unknown11;
+		short Unknown11;
 		float Volume;
 		float VolumeMultiplicator;
-		short unknown12;
+		short Unknown12;
 		short Looppan;
 		float VolumeTarget;
 		float Pitch;
-		int *unknown13;
+		int *Unknown13;
 		int *Audiotask1note;
 		int *Audiotask2note;
-		int *unknown14;
+		int *Unknown14;
 		int *Sequencepointer;
 		int *Audiotask1loop;
 		int *Audiotask2loop;
-		int *unknown15;
-		int unknown16;
-		int unknown17;
-		int unknown18;
+		int *Unknown15;
+		int Unknown16;
+		int Unknown17;
+		int Unknown18;
 		int *Currenttracknote;
-		int unknown19;
-		int unknown20;
-		int unknown21;
-		int unknown22;
-		int unknown23;
-		int unknown24;
-		uchar Echo;
-		uchar Release;
-		short unknown25;
-		int *unknown26;
-		int *unknownselfpointer1;
-		int *unknownselfpointer2;
-		int unknown27;
-		int *unknownselfpointer3;
-		int *unknownselfpointer4;
-		int *unknownselfpointer5;
-		int unknown28;
-		int *unknownselfpointer6;
-		int *unknownselfpointer7;
-		int *unknownselfpointer8;
-		int unknown29;
-		int *unknownselfpointer9;
-		int *unknownselfpointer10;
-		int *unknownselfpointer11;
-		int unknown30;
-		int *unknownselfpointer12;
+		int Unknown19;
+		int Unknown20;
+		int Unknown21;
+		int Unknown22;
+		int Unknown23;
+		int Unknown24;
+		Uchar Echo;
+		Uchar Release;
+		short Unknown25;
+		int *Unknown26;
+		int *Unknownselfpointer1;
+		int *Unknownselfpointer2;
+		int Unknown27;
+		int *Unknownselfpointer3;
+		int *Unknownselfpointer4;
+		int *Unknownselfpointer5;
+		int Unknown28;
+		int *Unknownselfpointer6;
+		int *Unknownselfpointer7;
+		int *Unknownselfpointer8;
+		int Unknown29;
+		int *Unknownselfpointer9;
+		int *Unknownselfpointer10;
+		int *Unknownselfpointer11;
+		int Unknown30;
+		int *Unknownselfpointer12;
 } SeqChannelStruct;
 
 typedef struct SeqPlayerStruct{
 		int Playflag; 
-		uchar CurrentID; 
-		uchar SubID; 
-		short unknown1;
-		ushort Tempo;
-		short unknown2;
+		Uchar CurrentID; 
+		Uchar SubID; 
+		short Unknown1;
+		Ushort Tempo;
+		short Unknown2;
 		int Loopcount;
-		int unknown3;
+		int Unknown3;
 		int *RawSequence;
 		float VolumeFull;
-		float unknown5;
-		int unknown6;
+		float Unknown5;
+		int Unknown6;
 		float Volumedodge;
 		float VolumeMultiplicator;
 		float VolumeTarget;
 		SeqChannelStruct *Channel[16];
 		int *LoopBranch;
-		int unknown7;
-		int unknown8;
-		int unknown9;
-		int unknown10;
-		int unknown11;
-		int unknown12;
-		int *unknown13;
-		int *unknown14;
-		int *unknownselfpointer1;
-		int *unknownselfpointer2;
-		int unknown15;
-		int *unknownselfpointer3;
-		int *unknownselfpointer4;
-		int *unknownselfpointer5;
-		int unknown16;
-		int *unknownselfpointer6;
-		int *unknownselfpointer7;
-		int *unknownselfpointer8;
-		int unknown17;
-		int *unknownselfpointer9;
-		int *unknownselfpointer10;
-		int *unknownselfpointer11;
-		int unknown18;
-		int *unknownselfpointer912;
+		int Unknown7;
+		int Unknown8;
+		int Unknown9;
+		int Unknown10;
+		int Unknown11;
+		int Unknown12;
+		int *Unknown13;
+		int *Unknown14;
+		int *Unknownselfpointer1;
+		int *Unknownselfpointer2;
+		int Unknown15;
+		int *Unknownselfpointer3;
+		int *Unknownselfpointer4;
+		int *Unknownselfpointer5;
+		int Unknown16;
+		int *Unknownselfpointer6;
+		int *Unknownselfpointer7;
+		int *Unknownselfpointer8;
+		int Unknown17;
+		int *Unknownselfpointer9;
+		int *Unknownselfpointer10;
+		int *Unknownselfpointer11;
+		int Unknown18;
+		int *Unknownselfpointer912;
 		int Empty[29];
 } SeqPlayerStruct;
 
 typedef struct CourseHeader {
-	uint Seg6Start;      //(0x00) ROM address at which segment 6 file begins
-	uint Seg6End;       //(0x04) ROM address at which segment 6 file ends
-	uint Seg4Start;      //(0x08) ROM address at which segment 4 file begins
-	uint Seg7End;       //(0x0C) ROM address at which segment 7 (not 4) file ends
-	uint Seg9Start;      //(0x10) ROM address at which segment 9 file begins
-	uint Seg9End;       //(0x14) ROM address at which segment 9 file ends
-	uint Seg47Buffer;      //(0x18) RSP address of compressed segments 4 and 7
-	uint NumberVerts;        //(0x1C) number of vertices in the vertex file
-	uint Segment7Pointer;       //(0x20) RSP address at which segment 7 data begins
-	uint Segment7Size;      //(0x24) Size of segment 7 data after decompression, minus 8 bytes for some reason
-	uint TextureRSP;   //(0x28) RSP address of texture list
-	ushort flag,unused;    //(0x2E) Padding
+	Uint Seg6Start;      //(0x00) ROM Address at which segment 6 file begins
+	Uint Seg6End;       //(0x04) ROM Address at which segment 6 file ends
+	Uint Seg4Start;      //(0x08) ROM Address at which segment 4 file begins
+	Uint Seg7End;       //(0x0C) ROM Address at which segment 7 (not 4) file ends
+	Uint Seg9Start;      //(0x10) ROM Address at which segment 9 file begins
+	Uint Seg9End;       //(0x14) ROM Address at which segment 9 file ends
+	Uint Seg47Buffer;      //(0x18) RSP Address of compressed segments 4 and 7
+	Uint NumberVerts;        //(0x1C) Number of vertices in the vertex file
+	Uint Segment7Pointer;       //(0x20) RSP Address at which segment 7 data begins
+	Uint Segment7Size;      //(0x24) Size of segment 7 data after decompression, minus 8 bytes for some reason
+	Uint TextureRSP;   //(0x28) RSP Address of Texture list
+	Ushort Flag,Unused;    //(0x2E) Padding
 } CourseHeader;
 
 
 typedef struct TexDataTable{
-	uint null;
+	Uint Null;
 	short* DataPointer;
 	short Width, Height;
-	uint null2;
+	Uint Null2;
 	short DMASize, pad1;
-	uint padding[5]; //padding
+	Uint Padding[5]; //Padding
 } TexDataTable;
 
 #endif

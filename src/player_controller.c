@@ -25,349 +25,349 @@
 
 extern s32 D_8018D168;
 
-s16 cpu_forMario[] = { LUIGI, YOSHI, TOAD, DK, WARIO, PEACH, BOWSER, 0 };
+s16 CPUForMario[] = { LUIGI, YOSHI, TOAD, DK, WARIO, PEACH, BOWSER, 0 };
 
-s16 cpu_forLuigi[] = { MARIO, YOSHI, TOAD, DK, WARIO, PEACH, BOWSER, 0 };
+s16 CPUForLuigi[] = { MARIO, YOSHI, TOAD, DK, WARIO, PEACH, BOWSER, 0 };
 
-s16 cpu_forYoshi[] = { MARIO, LUIGI, TOAD, DK, WARIO, PEACH, BOWSER, 0 };
+s16 CPUForYoshi[] = { MARIO, LUIGI, TOAD, DK, WARIO, PEACH, BOWSER, 0 };
 
-s16 cpu_forToad[] = { MARIO, LUIGI, YOSHI, DK, WARIO, PEACH, BOWSER, 0 };
+s16 CPUForToad[] = { MARIO, LUIGI, YOSHI, DK, WARIO, PEACH, BOWSER, 0 };
 
-s16 cpu_forDk[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, PEACH, BOWSER, 0 };
+s16 CPUForDk[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, PEACH, BOWSER, 0 };
 
-s16 cpu_forWario[] = { MARIO, LUIGI, YOSHI, TOAD, DK, PEACH, BOWSER, 0 };
+s16 CPUForWario[] = { MARIO, LUIGI, YOSHI, TOAD, DK, PEACH, BOWSER, 0 };
 
-s16 cpu_forPeach[] = { MARIO, LUIGI, YOSHI, TOAD, DK, WARIO, BOWSER, 0 };
+s16 CPUForPeach[] = { MARIO, LUIGI, YOSHI, TOAD, DK, WARIO, BOWSER, 0 };
 
-s16 cpu_forBowser[] = { MARIO, LUIGI, YOSHI, TOAD, DK, WARIO, PEACH, 0 };
+s16 CPUForBowser[] = { MARIO, LUIGI, YOSHI, TOAD, DK, WARIO, PEACH, 0 };
 
-s16* cpu_forPlayer[] = { cpu_forMario, cpu_forLuigi, cpu_forYoshi, cpu_forToad,
-                         cpu_forDk,    cpu_forWario, cpu_forPeach, cpu_forBowser };
+s16* CPUForPlayer[] = { CPUForMario, CPUForLuigi, CPUForYoshi, CPUForToad,
+                         CPUForDk,    CPUForWario, CPUForPeach, CPUForBowser };
 
-s16 cpu_forMarioAndLuigi[] = { YOSHI, TOAD, DK, WARIO, PEACH, BOWSER };
+s16 CPUForMarioAndLuigi[] = { YOSHI, TOAD, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forMarioAndYoshi[] = { LUIGI, TOAD, DK, WARIO, PEACH, BOWSER };
+s16 CPUForMarioAndYoshi[] = { LUIGI, TOAD, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forMarioAndToad[] = { LUIGI, YOSHI, DK, WARIO, PEACH, BOWSER };
+s16 CPUForMarioAndToad[] = { LUIGI, YOSHI, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forMarioAndDk[] = { LUIGI, YOSHI, TOAD, WARIO, PEACH, BOWSER };
+s16 CPUForMarioAndDk[] = { LUIGI, YOSHI, TOAD, WARIO, PEACH, BOWSER };
 
-s16 cpu_forMarioAndWario[] = { LUIGI, YOSHI, TOAD, DK, PEACH, BOWSER };
+s16 CPUForMarioAndWario[] = { LUIGI, YOSHI, TOAD, DK, PEACH, BOWSER };
 
-s16 cpu_forMarioAndPeach[] = { LUIGI, YOSHI, TOAD, DK, WARIO, BOWSER };
+s16 CPUForMarioAndPeach[] = { LUIGI, YOSHI, TOAD, DK, WARIO, BOWSER };
 
-s16 cpu_forMarioAndBowser[] = { LUIGI, YOSHI, TOAD, DK, WARIO, PEACH };
+s16 CPUForMarioAndBowser[] = { LUIGI, YOSHI, TOAD, DK, WARIO, PEACH };
 
-s16 cpu_forLuigiAndMario[] = { YOSHI, TOAD, DK, WARIO, PEACH, BOWSER };
+s16 CPUForLuigiAndMario[] = { YOSHI, TOAD, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forLuigiAndYoshi[] = { MARIO, TOAD, DK, WARIO, PEACH, BOWSER };
+s16 CPUForLuigiAndYoshi[] = { MARIO, TOAD, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forLuigiAndToad[] = { MARIO, YOSHI, DK, WARIO, PEACH, BOWSER };
+s16 CPUForLuigiAndToad[] = { MARIO, YOSHI, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forLuigiAndDk[] = { MARIO, YOSHI, TOAD, WARIO, PEACH, BOWSER };
+s16 CPUForLuigiAndDk[] = { MARIO, YOSHI, TOAD, WARIO, PEACH, BOWSER };
 
-s16 cpu_forLuigiAndWario[] = { MARIO, YOSHI, TOAD, DK, PEACH, BOWSER };
+s16 CPUForLuigiAndWario[] = { MARIO, YOSHI, TOAD, DK, PEACH, BOWSER };
 
-s16 cpu_forLuigiAndPeach[] = { MARIO, YOSHI, TOAD, DK, WARIO, BOWSER };
+s16 CPUForLuigiAndPeach[] = { MARIO, YOSHI, TOAD, DK, WARIO, BOWSER };
 
-s16 cpu_forLuigiAndBowser[] = { MARIO, YOSHI, TOAD, DK, WARIO, PEACH };
+s16 CPUForLuigiAndBowser[] = { MARIO, YOSHI, TOAD, DK, WARIO, PEACH };
 
-s16 cpu_forYoshiAndMario[] = { LUIGI, TOAD, DK, WARIO, PEACH, BOWSER };
+s16 CPUForYoshiAndMario[] = { LUIGI, TOAD, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forYoshiAndLuigi[] = { MARIO, TOAD, DK, WARIO, PEACH, BOWSER };
+s16 CPUForYoshiAndLuigi[] = { MARIO, TOAD, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forYoshiAndToad[] = { MARIO, LUIGI, DK, WARIO, PEACH, BOWSER };
+s16 CPUForYoshiAndToad[] = { MARIO, LUIGI, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forYoshiAndDk[] = { MARIO, LUIGI, TOAD, WARIO, PEACH, BOWSER };
+s16 CPUForYoshiAndDk[] = { MARIO, LUIGI, TOAD, WARIO, PEACH, BOWSER };
 
-s16 cpu_forYoshiAndWario[] = { MARIO, LUIGI, TOAD, DK, PEACH, BOWSER };
+s16 CPUForYoshiAndWario[] = { MARIO, LUIGI, TOAD, DK, PEACH, BOWSER };
 
-s16 cpu_forYoshiAndPeach[] = { MARIO, LUIGI, TOAD, DK, WARIO, BOWSER };
+s16 CPUForYoshiAndPeach[] = { MARIO, LUIGI, TOAD, DK, WARIO, BOWSER };
 
-s16 cpu_forYoshiAndBowser[] = { MARIO, LUIGI, TOAD, DK, WARIO, PEACH };
+s16 CPUForYoshiAndBowser[] = { MARIO, LUIGI, TOAD, DK, WARIO, PEACH };
 
-s16 cpu_forToadAndMario[] = { LUIGI, YOSHI, DK, WARIO, PEACH, BOWSER };
+s16 CPUForToadAndMario[] = { LUIGI, YOSHI, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forToadAndLuigi[] = { MARIO, YOSHI, DK, WARIO, PEACH, BOWSER };
+s16 CPUForToadAndLuigi[] = { MARIO, YOSHI, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forToadAndYoshi[] = { MARIO, LUIGI, DK, WARIO, PEACH, BOWSER };
+s16 CPUForToadAndYoshi[] = { MARIO, LUIGI, DK, WARIO, PEACH, BOWSER };
 
-s16 cpu_forToadAndDk[] = { MARIO, LUIGI, YOSHI, WARIO, PEACH, BOWSER };
+s16 CPUForToadAndDk[] = { MARIO, LUIGI, YOSHI, WARIO, PEACH, BOWSER };
 
-s16 cpu_forToadAndWario[] = { MARIO, LUIGI, YOSHI, DK, PEACH, BOWSER };
+s16 CPUForToadAndWario[] = { MARIO, LUIGI, YOSHI, DK, PEACH, BOWSER };
 
-s16 cpu_forToadAndPeach[] = { MARIO, LUIGI, YOSHI, DK, WARIO, BOWSER };
+s16 CPUForToadAndPeach[] = { MARIO, LUIGI, YOSHI, DK, WARIO, BOWSER };
 
-s16 cpu_forToadAndBowser[] = { MARIO, LUIGI, YOSHI, DK, WARIO, PEACH };
+s16 CPUForToadAndBowser[] = { MARIO, LUIGI, YOSHI, DK, WARIO, PEACH };
 
-s16 cpu_forDkAndMario[] = { LUIGI, YOSHI, TOAD, WARIO, PEACH, BOWSER };
+s16 CPUForDkAndMario[] = { LUIGI, YOSHI, TOAD, WARIO, PEACH, BOWSER };
 
-s16 cpu_forDkAndLuigi[] = { MARIO, YOSHI, TOAD, WARIO, PEACH, BOWSER };
+s16 CPUForDkAndLuigi[] = { MARIO, YOSHI, TOAD, WARIO, PEACH, BOWSER };
 
-s16 cpu_forDkAndToad[] = { MARIO, LUIGI, TOAD, WARIO, PEACH, BOWSER };
+s16 CPUForDkAndToad[] = { MARIO, LUIGI, TOAD, WARIO, PEACH, BOWSER };
 
-s16 cpu_forDkAndYoshi[] = { MARIO, LUIGI, YOSHI, WARIO, PEACH, BOWSER };
+s16 CPUForDkAndYoshi[] = { MARIO, LUIGI, YOSHI, WARIO, PEACH, BOWSER };
 
-s16 cpu_forDkAndWario[] = { MARIO, LUIGI, YOSHI, TOAD, PEACH, BOWSER };
+s16 CPUForDkAndWario[] = { MARIO, LUIGI, YOSHI, TOAD, PEACH, BOWSER };
 
-s16 cpu_forDkAndPeach[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, BOWSER };
+s16 CPUForDkAndPeach[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, BOWSER };
 
-s16 cpu_forDkAndBowser[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, PEACH };
+s16 CPUForDkAndBowser[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, PEACH };
 
-s16 cpu_forWarioAndMario[] = { LUIGI, YOSHI, TOAD, DK, PEACH, BOWSER };
+s16 CPUForWarioAndMario[] = { LUIGI, YOSHI, TOAD, DK, PEACH, BOWSER };
 
-s16 cpu_forWarioAndLuigi[] = { MARIO, YOSHI, TOAD, DK, PEACH, BOWSER };
+s16 CPUForWarioAndLuigi[] = { MARIO, YOSHI, TOAD, DK, PEACH, BOWSER };
 
-s16 cpu_forWarioAndYoshi[] = { MARIO, LUIGI, TOAD, DK, PEACH, BOWSER };
+s16 CPUForWarioAndYoshi[] = { MARIO, LUIGI, TOAD, DK, PEACH, BOWSER };
 
-s16 cpu_forWarioAndDk[] = { MARIO, LUIGI, YOSHI, TOAD, PEACH, BOWSER };
+s16 CPUForWarioAndDk[] = { MARIO, LUIGI, YOSHI, TOAD, PEACH, BOWSER };
 
-s16 cpu_forWarioAndToad[] = { MARIO, LUIGI, YOSHI, DK, PEACH, BOWSER };
+s16 CPUForWarioAndToad[] = { MARIO, LUIGI, YOSHI, DK, PEACH, BOWSER };
 
-s16 cpu_forWarioAndPeach[] = { MARIO, LUIGI, YOSHI, TOAD, DK, BOWSER };
+s16 CPUForWarioAndPeach[] = { MARIO, LUIGI, YOSHI, TOAD, DK, BOWSER };
 
-s16 cpu_forWarioAndBowser[] = { MARIO, LUIGI, YOSHI, TOAD, DK, PEACH };
+s16 CPUForWarioAndBowser[] = { MARIO, LUIGI, YOSHI, TOAD, DK, PEACH };
 
-s16 cpu_forPeachAndMario[] = { LUIGI, YOSHI, TOAD, DK, WARIO, BOWSER };
+s16 CPUForPeachAndMario[] = { LUIGI, YOSHI, TOAD, DK, WARIO, BOWSER };
 
-s16 cpu_forPeachAndLuigi[] = { MARIO, YOSHI, TOAD, DK, WARIO, BOWSER };
+s16 CPUForPeachAndLuigi[] = { MARIO, YOSHI, TOAD, DK, WARIO, BOWSER };
 
-s16 cpu_forPeachAndYoshi[] = { MARIO, LUIGI, TOAD, DK, WARIO, BOWSER };
+s16 CPUForPeachAndYoshi[] = { MARIO, LUIGI, TOAD, DK, WARIO, BOWSER };
 
-s16 cpu_forPeachAndDk[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, BOWSER };
+s16 CPUForPeachAndDk[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, BOWSER };
 
-s16 cpu_forPeachAndWario[] = { MARIO, LUIGI, YOSHI, TOAD, DK, BOWSER };
+s16 CPUForPeachAndWario[] = { MARIO, LUIGI, YOSHI, TOAD, DK, BOWSER };
 
-s16 cpu_forPeachAndToad[] = { MARIO, LUIGI, YOSHI, DK, WARIO, BOWSER };
+s16 CPUForPeachAndToad[] = { MARIO, LUIGI, YOSHI, DK, WARIO, BOWSER };
 
-s16 cpu_forPeachAndBowser[] = { MARIO, LUIGI, YOSHI, TOAD, DK, WARIO };
+s16 CPUForPeachAndBowser[] = { MARIO, LUIGI, YOSHI, TOAD, DK, WARIO };
 
-s16 cpu_forBowserAndMario[] = { LUIGI, YOSHI, TOAD, DK, WARIO, PEACH };
+s16 CPUForBowserAndMario[] = { LUIGI, YOSHI, TOAD, DK, WARIO, PEACH };
 
-s16 cpu_forBowserAndLuigi[] = { MARIO, YOSHI, TOAD, DK, WARIO, PEACH };
+s16 CPUForBowserAndLuigi[] = { MARIO, YOSHI, TOAD, DK, WARIO, PEACH };
 
-s16 cpu_forBowserAndYoshi[] = { MARIO, LUIGI, TOAD, DK, WARIO, PEACH };
+s16 CPUForBowserAndYoshi[] = { MARIO, LUIGI, TOAD, DK, WARIO, PEACH };
 
-s16 cpu_forBowserAndDk[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, PEACH };
+s16 CPUForBowserAndDk[] = { MARIO, LUIGI, YOSHI, TOAD, WARIO, PEACH };
 
-s16 cpu_forBowserAndWario[] = { MARIO, LUIGI, YOSHI, TOAD, DK, PEACH };
+s16 CPUForBowserAndWario[] = { MARIO, LUIGI, YOSHI, TOAD, DK, PEACH };
 
-s16 cpu_forBowserAndToad[] = { MARIO, LUIGI, YOSHI, DK, WARIO, PEACH };
+s16 CPUForBowserAndToad[] = { MARIO, LUIGI, YOSHI, DK, WARIO, PEACH };
 
-s16 cpu_forBowserAndPeach[] = { MARIO, LUIGI, YOSHI, TOAD, DK, WARIO };
+s16 CPUForBowserAndPeach[] = { MARIO, LUIGI, YOSHI, TOAD, DK, WARIO };
 
-s16* gListCPUforMario[] = { cpu_forMarioAndLuigi, cpu_forMarioAndLuigi, cpu_forMarioAndYoshi, cpu_forMarioAndToad,
-                            cpu_forMarioAndDk,    cpu_forMarioAndWario, cpu_forMarioAndPeach, cpu_forMarioAndBowser };
+s16* ListCPUforMario[] = { CPUForMarioAndLuigi, CPUForMarioAndLuigi, CPUForMarioAndYoshi, CPUForMarioAndToad,
+                            CPUForMarioAndDk,    CPUForMarioAndWario, CPUForMarioAndPeach, CPUForMarioAndBowser };
 
-s16* gListCPUforLuigi[] = { cpu_forLuigiAndMario, cpu_forLuigiAndMario, cpu_forLuigiAndYoshi, cpu_forLuigiAndToad,
-                            cpu_forLuigiAndDk,    cpu_forLuigiAndWario, cpu_forLuigiAndPeach, cpu_forLuigiAndBowser };
+s16* ListCPUforLuigi[] = { CPUForLuigiAndMario, CPUForLuigiAndMario, CPUForLuigiAndYoshi, CPUForLuigiAndToad,
+                            CPUForLuigiAndDk,    CPUForLuigiAndWario, CPUForLuigiAndPeach, CPUForLuigiAndBowser };
 
-s16* gListCPUforYoshi[] = { cpu_forYoshiAndMario, cpu_forYoshiAndLuigi, cpu_forYoshiAndLuigi, cpu_forYoshiAndToad,
-                            cpu_forYoshiAndDk,    cpu_forYoshiAndWario, cpu_forYoshiAndPeach, cpu_forYoshiAndBowser };
+s16* ListCPUforYoshi[] = { CPUForYoshiAndMario, CPUForYoshiAndLuigi, CPUForYoshiAndLuigi, CPUForYoshiAndToad,
+                            CPUForYoshiAndDk,    CPUForYoshiAndWario, CPUForYoshiAndPeach, CPUForYoshiAndBowser };
 
-s16* gListCPUforToad[] = { cpu_forToadAndMario, cpu_forToadAndLuigi, cpu_forToadAndYoshi, cpu_forToadAndYoshi,
-                           cpu_forToadAndDk,    cpu_forToadAndWario, cpu_forToadAndPeach, cpu_forToadAndBowser };
+s16* ListCPUforToad[] = { CPUForToadAndMario, CPUForToadAndLuigi, CPUForToadAndYoshi, CPUForToadAndYoshi,
+                           CPUForToadAndDk,    CPUForToadAndWario, CPUForToadAndPeach, CPUForToadAndBowser };
 
-s16* gListCPUforDk[] = { cpu_forDkAndMario, cpu_forDkAndLuigi, cpu_forDkAndToad,  cpu_forDkAndYoshi,
-                         cpu_forDkAndYoshi, cpu_forDkAndWario, cpu_forDkAndPeach, cpu_forDkAndBowser };
+s16* ListCPUforDk[] = { CPUForDkAndMario, CPUForDkAndLuigi, CPUForDkAndToad,  CPUForDkAndYoshi,
+                         CPUForDkAndYoshi, CPUForDkAndWario, CPUForDkAndPeach, CPUForDkAndBowser };
 
-s16* gListCPUforWario[] = { cpu_forWarioAndMario, cpu_forWarioAndLuigi, cpu_forWarioAndYoshi, cpu_forWarioAndToad,
-                            cpu_forWarioAndDk,    cpu_forWarioAndDk,    cpu_forWarioAndPeach, cpu_forWarioAndBowser };
+s16* ListCPUforWario[] = { CPUForWarioAndMario, CPUForWarioAndLuigi, CPUForWarioAndYoshi, CPUForWarioAndToad,
+                            CPUForWarioAndDk,    CPUForWarioAndDk,    CPUForWarioAndPeach, CPUForWarioAndBowser };
 
-s16* gListCPUforPeach[] = { cpu_forPeachAndMario, cpu_forPeachAndLuigi, cpu_forPeachAndYoshi, cpu_forPeachAndToad,
-                            cpu_forPeachAndDk,    cpu_forPeachAndWario, cpu_forPeachAndDk,    cpu_forPeachAndBowser };
+s16* ListCPUforPeach[] = { CPUForPeachAndMario, CPUForPeachAndLuigi, CPUForPeachAndYoshi, CPUForPeachAndToad,
+                            CPUForPeachAndDk,    CPUForPeachAndWario, CPUForPeachAndDk,    CPUForPeachAndBowser };
 
-s16* gListCPUforBowser[] = {
-    cpu_forBowserAndMario, cpu_forBowserAndLuigi, cpu_forBowserAndYoshi, cpu_forBowserAndToad,
-    cpu_forBowserAndDk,    cpu_forBowserAndWario, cpu_forBowserAndPeach, cpu_forBowserAndPeach
+s16* ListCPUforBowser[] = {
+    CPUForBowserAndMario, CPUForBowserAndLuigi, CPUForBowserAndYoshi, CPUForBowserAndToad,
+    CPUForBowserAndDk,    CPUForBowserAndWario, CPUForBowserAndPeach, CPUForBowserAndPeach
 };
 
-s16** cpu_forTwoPlayer[] = { gListCPUforMario, gListCPUforLuigi, gListCPUforYoshi, gListCPUforToad,
-                             gListCPUforDk,    gListCPUforWario, gListCPUforPeach, gListCPUforBowser };
+s16** CPUForTwoPlayer[] = { ListCPUforMario, ListCPUforLuigi, ListCPUforYoshi, ListCPUforToad,
+                             ListCPUforDk,    ListCPUforWario, ListCPUforPeach, ListCPUforBowser };
 
 // func_80027D00
-s32 check_kart_number(Player* player) {
-    s32 index;
+s32 CheckKartNumber(Player* Player) {
+    s32 Index;
 
-    if (player == gPlayerOne) {
-        index = 0;
+    if (Player == PlayerOne) {
+        Index = 0;
     }
-    if (player == gPlayerTwo) {
-        index = 1;
+    if (Player == PlayerTwo) {
+        Index = 1;
     }
-    if (player == gPlayerThree) {
-        index = 2;
+    if (Player == PlayerThree) {
+        Index = 2;
     }
-    if (player == gPlayerFour) {
-        index = 3;
+    if (Player == PlayerFour) {
+        Index = 3;
     }
-    if (player == gPlayerFive) {
-        index = 4;
+    if (Player == PlayerFive) {
+        Index = 4;
     }
-    if (player == gPlayerSix) {
-        index = 5;
+    if (Player == PlayerSix) {
+        Index = 5;
     }
-    if (player == gPlayerSeven) {
-        index = 6;
+    if (Player == PlayerSeven) {
+        Index = 6;
     }
-    if (player == gPlayerEight) {
-        index = 7;
+    if (Player == PlayerEight) {
+        Index = 7;
     }
-    return index;
+    return Index;
 }
 
-void start_kart_engine(Player* player, s8 playerId) {
-    if (replay_flag != 1) {
-        if ((player->flag & MOTOR_ON) != MOTOR_ON) {
-            if (((D_8018D168 == 1) && ((player->flag & IS_PLAYER) == IS_PLAYER)) &&
-                ((player->flag & IS_GHOST) != IS_GHOST)) {
-                Na_PlyEng_Start(playerId);
-                player->flag |= MOTOR_ON;
-            } else if ((player->flag & NO_CONTROLS) == 0) {
-                Na_EnmLevel_Start(playerId);
-                player->flag |= MOTOR_ON;
+void StartKartEngine(Player* Player, s8 PlayerId) {
+    if (ReplayFlag != 1) {
+        if ((Player->Flag & MOTOR_ON) != MOTOR_ON) {
+            if (((D_8018D168 == 1) && ((Player->Flag & IS_PLAYER) == IS_PLAYER)) &&
+                ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+                NaPlyEngStart(PlayerId);
+                Player->Flag |= MOTOR_ON;
+            } else if ((Player->Flag & NO_CONTROLS) == 0) {
+                NaEnmLevelStart(PlayerId);
+                Player->Flag |= MOTOR_ON;
             }
         }
-    } else if ((player->flag & MOTOR_ON) != MOTOR_ON) {
-        if ((D_8018D168 == 1) && (player == gPlayerOne)) {
-            Na_PlyEng_Start(playerId);
-            player->flag |= MOTOR_ON;
-        } else if ((player->flag & NO_CONTROLS) == 0) {
-            Na_EnmLevel_Start(playerId);
-            player->flag |= MOTOR_ON;
+    } else if ((Player->Flag & MOTOR_ON) != MOTOR_ON) {
+        if ((D_8018D168 == 1) && (Player == PlayerOne)) {
+            NaPlyEngStart(PlayerId);
+            Player->Flag |= MOTOR_ON;
+        } else if ((Player->Flag & NO_CONTROLS) == 0) {
+            NaEnmLevelStart(PlayerId);
+            Player->Flag |= MOTOR_ON;
         }
     }
 }
 
-void kart_engine_echo(Player* player, s8 playerId) {
+void KartEngineEcho(Player* Player, s8 PlayerId) {
     UNUSED s32 pad;
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
 
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-        switch (g_courseID) {
+        switch (CourseID) {
             case COURSE_MARIO_RACEWAY:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= g_EchoStart) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < g_EchoStop)) {
-                    if (echo_flag[playerId] != 1) {
-                        NA_PlyEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= EchoStart) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < EchoStop)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NAPlyEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        NA_PlyEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NAPlyEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_CHOCO_MOUNTAIN:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0xA0) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0xB4)) {
-                    if (echo_flag[playerId] != 1) {
-                        NA_PlyEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0xA0) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0xB4)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NAPlyEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        NA_PlyEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NAPlyEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_BOWSER_CASTLE:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x29) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x1D2)) {
-                    if (echo_flag[playerId] != 1) {
-                        NA_PlyEcho_On(playerId, 0x41);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x29) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x1D2)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NAPlyEchoOn(PlayerId, 0x41);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        NA_PlyEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NAPlyEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_BANSHEE_BOARDWALK:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x180) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x1E1)) {
-                    if (echo_flag[playerId] != 1) {
-                        NA_PlyEcho_On(playerId, 0x41);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x180) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x1E1)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NAPlyEchoOn(PlayerId, 0x41);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        NA_PlyEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NAPlyEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_LUIGI_RACEWAY:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x145) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x18B)) {
-                    if (echo_flag[playerId] != 1) {
-                        NA_PlyEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x145) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x18B)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NAPlyEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        NA_PlyEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NAPlyEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_TOADS_TURNPIKE:
-                if ((player->flag & IS_RACE_FINISH) != IS_RACE_FINISH) {
-                    if (echo_flag[playerId] != 1) {
-                        NA_PlyEcho_On(playerId, 0x1e);
+                if ((Player->Flag & IS_RACE_FINISH) != IS_RACE_FINISH) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NAPlyEchoOn(PlayerId, 0x1e);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        NA_PlyEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NAPlyEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_SHERBET_LAND:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x11C) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x209)) {
-                    if (echo_flag[playerId] != 1) {
-                        NA_PlyEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x11C) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x209)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NAPlyEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        NA_PlyEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NAPlyEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_DK_JUNGLE:
-                if ((((s16) gNearestPathPointByPlayerId[playerId] >= 0) &&
-                     ((s16) gNearestPathPointByPlayerId[playerId] < 0x65)) ||
-                    (((s16) gNearestPathPointByPlayerId[playerId] >= 0x14A) &&
-                     ((s16) gNearestPathPointByPlayerId[playerId] < 0x21F))) {
-                    if (echo_flag[playerId] != 2) {
-                        NaPlyLevelStart(playerId, 0x0170802D);
+                if ((((s16) NearestPathPointByPlayerId[PlayerId] >= 0) &&
+                     ((s16) NearestPathPointByPlayerId[PlayerId] < 0x65)) ||
+                    (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x14A) &&
+                     ((s16) NearestPathPointByPlayerId[PlayerId] < 0x21F))) {
+                    if (EchoFlag[PlayerId] != 2) {
+                        NaPlyLevelStart(PlayerId, 0x0170802D);
                     }
-                    echo_flag[playerId] = 2;
+                    EchoFlag[PlayerId] = 2;
                 } else {
-                    if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x288) &&
-                        ((s16) gNearestPathPointByPlayerId[playerId] < 0x305)) {
-                        if (echo_flag[playerId] != 1) {
-                            NA_PlyEcho_On(playerId, 0x55);
+                    if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x288) &&
+                        ((s16) NearestPathPointByPlayerId[PlayerId] < 0x305)) {
+                        if (EchoFlag[PlayerId] != 1) {
+                            NAPlyEchoOn(PlayerId, 0x55);
                         }
-                        echo_flag[playerId] = 1;
+                        EchoFlag[PlayerId] = 1;
                     } else {
-                        if (echo_flag[playerId] != 0) {
-                            if (echo_flag[playerId] == 1) {
-                                NA_PlyEcho_Off(playerId);
+                        if (EchoFlag[PlayerId] != 0) {
+                            if (EchoFlag[PlayerId] == 1) {
+                                NAPlyEchoOff(PlayerId);
                             }
-                            if (echo_flag[playerId] == 2) {
-                                NaPlyLevelStop(playerId, SOUND_ARG_LOAD(0x01, 0x70, 0x80, 0x2D));
+                            if (EchoFlag[PlayerId] == 2) {
+                                NaPlyLevelStop(PlayerId, SOUND_ARG_LOAD(0x01, 0x70, 0x80, 0x2D));
                             }
-                            echo_flag[playerId] = 0;
+                            EchoFlag[PlayerId] = 0;
                         }
                     }
                 }
@@ -380,115 +380,115 @@ void kart_engine_echo(Player* player, s8 playerId) {
 #endif
     } else {
 #if !ENABLE_CUSTOM_COURSE_ENGINE
-        switch (g_courseID) {
+        switch (CourseID) {
             case COURSE_MARIO_RACEWAY:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= g_EchoStart) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < g_EchoStop)) {
-                    if (echo_flag[playerId] != 1) {
-                        Na_EnmEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= EchoStart) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < EchoStop)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NaEnmEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        Na_EnmEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NaEnmEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_CHOCO_MOUNTAIN:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0xA0) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0xB4)) {
-                    if (echo_flag[playerId] != 1) {
-                        Na_EnmEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0xA0) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0xB4)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NaEnmEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        Na_EnmEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NaEnmEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_BOWSER_CASTLE:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x29) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x1D2)) {
-                    if (echo_flag[playerId] != 1) {
-                        Na_EnmEcho_On(playerId, 0x41);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x29) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x1D2)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NaEnmEchoOn(PlayerId, 0x41);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        Na_EnmEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NaEnmEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_BANSHEE_BOARDWALK:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x180) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x1E1)) {
-                    if (echo_flag[playerId] != 1) {
-                        Na_EnmEcho_On(playerId, 0x41);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x180) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x1E1)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NaEnmEchoOn(PlayerId, 0x41);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        Na_EnmEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NaEnmEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_LUIGI_RACEWAY:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x145) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x18B)) {
-                    if (echo_flag[playerId] != 1) {
-                        Na_EnmEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x145) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x18B)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NaEnmEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        Na_EnmEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NaEnmEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_TOADS_TURNPIKE:
-                if ((player->flag & IS_RACE_FINISH) != IS_RACE_FINISH) {
-                    if (echo_flag[playerId] != 1) {
-                        Na_EnmEcho_On(playerId, 0x1E);
+                if ((Player->Flag & IS_RACE_FINISH) != IS_RACE_FINISH) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NaEnmEchoOn(PlayerId, 0x1E);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        Na_EnmEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NaEnmEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_SHERBET_LAND:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x11C) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x209)) {
-                    if (echo_flag[playerId] != 1) {
-                        Na_EnmEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x11C) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x209)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NaEnmEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        Na_EnmEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NaEnmEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
             case COURSE_DK_JUNGLE:
-                if (((s16) gNearestPathPointByPlayerId[playerId] >= 0x288) &&
-                    ((s16) gNearestPathPointByPlayerId[playerId] < 0x305)) {
-                    if (echo_flag[playerId] != 1) {
-                        Na_EnmEcho_On(playerId, 0x55);
+                if (((s16) NearestPathPointByPlayerId[PlayerId] >= 0x288) &&
+                    ((s16) NearestPathPointByPlayerId[PlayerId] < 0x305)) {
+                    if (EchoFlag[PlayerId] != 1) {
+                        NaEnmEchoOn(PlayerId, 0x55);
                     }
-                    echo_flag[playerId] = 1;
+                    EchoFlag[PlayerId] = 1;
                 } else {
-                    if (echo_flag[playerId] != 0) {
-                        Na_EnmEcho_Off(playerId);
-                        echo_flag[playerId] = 0;
+                    if (EchoFlag[PlayerId] != 0) {
+                        NaEnmEchoOff(PlayerId);
+                        EchoFlag[PlayerId] = 0;
                     }
                 }
                 break;
@@ -501,143 +501,143 @@ void kart_engine_echo(Player* player, s8 playerId) {
     }
 }
 
-void mariogp_movekart(Player* player, Camera* camera, s8 playerId, s8 screenId) {
+void MariogpMovekart(Player* Player, Camera* Camera, s8 PlayerId, s8 screenId) {
     u16 isVisible;
 
-    if (!(player->flag & NO_CONTROLS)) {
-        switch (g_ScreenSplitA) {
+    if (!(Player->Flag & NO_CONTROLS)) {
+        switch (ScreenSplitA) {
             case SCREEN_MODE_1P:
-                isVisible = viewport(player, camera1, (f32) select_bumpKart, 0.0f);
+                isVisible = IsInViewport(Player, Camera1, (f32) SelectBumpKart, 0.0f);
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
             case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-                isVisible = viewport(player, camera1, (f32) select_bumpKart, 0.0f);
+                isVisible = IsInViewport(Player, Camera1, (f32) SelectBumpKart, 0.0f);
                 if (isVisible == true) {
                     break;
                 }
-                isVisible = viewport(player, camera2, (f32) select_bumpKart, 0.0f);
+                isVisible = IsInViewport(Player, Camera2, (f32) SelectBumpKart, 0.0f);
                 break;
             case SCREEN_MODE_3P_4P_SPLITSCREEN:
-                isVisible = viewport(player, camera1, (f32) select_bumpKart, 0.0f);
+                isVisible = IsInViewport(Player, Camera1, (f32) SelectBumpKart, 0.0f);
                 if (isVisible == true) {
                     break;
                 }
-                isVisible = viewport(player, camera2, (f32) select_bumpKart, 0.0f);
+                isVisible = IsInViewport(Player, Camera2, (f32) SelectBumpKart, 0.0f);
                 if (isVisible == true) {
                     break;
                 }
-                isVisible = viewport(player, camera3, (f32) select_bumpKart, 0.0f);
+                isVisible = IsInViewport(Player, Camera3, (f32) SelectBumpKart, 0.0f);
                 if (isVisible == true) {
                     break;
                 }
-                isVisible = viewport(player, camera4, (f32) select_bumpKart, 0.0f);
+                isVisible = IsInViewport(Player, Camera4, (f32) SelectBumpKart, 0.0f);
                 break;
         }
-        if ((isVisible == 1) || ((player->flag & IS_GHOST) == IS_GHOST) ||
-            (g_gameMode == BATTLE) || ((player->jugemu_flag & ON_LAKITU_ROD) != 0) ||
-            (player->jugemu_flag & LAKITU_SCENE) ||
+        if ((isVisible == 1) || ((Player->Flag & IS_GHOST) == IS_GHOST) ||
+            (GameMode == BATTLE) || ((Player->JugemuFlag & ON_LAKITU_ROD) != 0) ||
+            (Player->JugemuFlag & LAKITU_SCENE) ||
             //! @todo make a proper match
-            ((*(g_noSimpleKartFlag + (playerId))) == ((s16) 1U))) {
-            player->slip_flag &= ~CENTER_LINE;
-            if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-                ((player->slip_flag & SPIN_R) == SPIN_R) ||
-                ((player->slip_flag & ROLLOVER) == ROLLOVER) ||
-                ((player->slip_flag & RAPID_ACC) == RAPID_ACC) ||
-                ((player->slip_flag & WING) == WING) ||
-                ((player->slip_flag & STORM) == STORM) ||
-                ((player->slip_flag & EXPLODE) == EXPLODE) ||
-                ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE) ||
-                ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN) ||
-                (player->handling_flag & TROPHYJUMP_END)) {
-                custom_SpinKart(player, camera, screenId, playerId);
+            ((*(NoSimpleKartFlag + (PlayerId))) == ((s16) 1U))) {
+            Player->SlipFlag &= ~CENTER_LINE;
+            if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+                ((Player->SlipFlag & SPIN_R) == SPIN_R) ||
+                ((Player->SlipFlag & ROLLOVER) == ROLLOVER) ||
+                ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC) ||
+                ((Player->SlipFlag & WING) == WING) ||
+                ((Player->SlipFlag & STORM) == STORM) ||
+                ((Player->SlipFlag & EXPLODE) == EXPLODE) ||
+                ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE) ||
+                ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN) ||
+                (Player->HandlingFlag & TROPHYJUMP_END)) {
+                CustomSpinKart(Player, Camera, screenId, PlayerId);
             } else {
-                RunKart(player, camera, screenId, playerId);
+                RunKart(Player, Camera, screenId, PlayerId);
             }
         } else {
-            RunKartSimple(player, camera, screenId, playerId);
+            RunKartSimple(Player, Camera, screenId, PlayerId);
         }
-    } else if ((player->flag & IS_GP_OPENING) == IS_GP_OPENING) {
-        opening_kart(player, playerId);
-        openkart(player, camera, screenId, playerId);
-    } else if (player->flag & PLAYER_UNKNOWN_0x80) {
-        RunKart(player, camera, screenId, playerId);
+    } else if ((Player->Flag & IS_GP_OPENING) == IS_GP_OPENING) {
+        OpeningKart(Player, PlayerId);
+        Openkart(Player, Camera, screenId, PlayerId);
+    } else if (Player->Flag & PLAYER_UNKNOWN_0x80) {
+        RunKart(Player, Camera, screenId, PlayerId);
     } else {
-        if ((player->flag & IS_PLAYER) != IS_PLAYER) {
-            player->accelcount = 50.0f;
+        if ((Player->Flag & IS_PLAYER) != IS_PLAYER) {
+            Player->Accelcount = 50.0f;
         }
-        player->slip_flag &= ~N_JUMP;
+        Player->SlipFlag &= ~N_JUMP;
     }
 }
 
-void vs_time_movekart(Player* player, Camera* camera, s8 playerId, s8 screenId) {
-    if ((player->flag & NO_CONTROLS) == 0) {
-        player->slip_flag &= ~CENTER_LINE;
-        if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-            ((player->slip_flag & SPIN_R) == SPIN_R) ||
-            ((player->slip_flag & ROLLOVER) == ROLLOVER) ||
-            ((player->slip_flag & RAPID_ACC) == RAPID_ACC) ||
-            ((player->slip_flag & WING) == WING) ||
-            ((player->slip_flag & STORM) == STORM) ||
-            ((player->slip_flag & EXPLODE) == EXPLODE) ||
-            ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE) ||
-            ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN) ||
-            ((player->handling_flag & TROPHYJUMP_END) != 0)) {
-            custom_SpinKart(player, camera, screenId, playerId);
+void VSTimeMovekart(Player* Player, Camera* Camera, s8 PlayerId, s8 screenId) {
+    if ((Player->Flag & NO_CONTROLS) == 0) {
+        Player->SlipFlag &= ~CENTER_LINE;
+        if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+            ((Player->SlipFlag & SPIN_R) == SPIN_R) ||
+            ((Player->SlipFlag & ROLLOVER) == ROLLOVER) ||
+            ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC) ||
+            ((Player->SlipFlag & WING) == WING) ||
+            ((Player->SlipFlag & STORM) == STORM) ||
+            ((Player->SlipFlag & EXPLODE) == EXPLODE) ||
+            ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE) ||
+            ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN) ||
+            ((Player->HandlingFlag & TROPHYJUMP_END) != 0)) {
+            CustomSpinKart(Player, Camera, screenId, PlayerId);
         } else {
-            RunKart(player, camera, screenId, playerId);
+            RunKart(Player, Camera, screenId, PlayerId);
         }
     } else {
-        player->slip_flag &= ~N_JUMP;
+        Player->SlipFlag &= ~N_JUMP;
     }
 }
 
-void battle_movekart(Player* player, Camera* camera, s8 playerId, s8 screenId) {
-    if ((((player->flag & NO_CONTROLS) == 0) && (g_startingIndicator != RACE_DONE)) || (player->jugemu_flag & 2) != 0 ||
-        (player->jugemu_flag & LAKITU_SCENE) != 0 ||
-        (player->slip_flag & (THUNDER | EXPLODE | THROW_EXPLODE | BROKEN |
+void BattleMovekart(Player* Player, Camera* Camera, s8 PlayerId, s8 screenId) {
+    if ((((Player->Flag & NO_CONTROLS) == 0) && (StartingIndicator != RACE_DONE)) || (Player->JugemuFlag & 2) != 0 ||
+        (Player->JugemuFlag & LAKITU_SCENE) != 0 ||
+        (Player->SlipFlag & (THUNDER | EXPLODE | THROW_EXPLODE | BROKEN |
                             RESTORE | ROLLOVER_FALL | 0xC00 | 0xC0)) != 0) {
-        player->slip_flag &= ~CENTER_LINE;
-        if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-            ((player->slip_flag & SPIN_R) == SPIN_R) ||
-            ((player->slip_flag & ROLLOVER) == ROLLOVER) ||
-            ((player->slip_flag & RAPID_ACC) == RAPID_ACC) ||
-            ((player->slip_flag & WING) == WING) ||
-            ((player->slip_flag & STORM) == STORM) ||
-            ((player->slip_flag & EXPLODE) == EXPLODE) ||
-            ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE) ||
-            ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN) ||
-            ((player->handling_flag & TROPHYJUMP_END) != 0)) {
-            custom_SpinKart(player, camera, screenId, playerId);
+        Player->SlipFlag &= ~CENTER_LINE;
+        if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+            ((Player->SlipFlag & SPIN_R) == SPIN_R) ||
+            ((Player->SlipFlag & ROLLOVER) == ROLLOVER) ||
+            ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC) ||
+            ((Player->SlipFlag & WING) == WING) ||
+            ((Player->SlipFlag & STORM) == STORM) ||
+            ((Player->SlipFlag & EXPLODE) == EXPLODE) ||
+            ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE) ||
+            ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN) ||
+            ((Player->HandlingFlag & TROPHYJUMP_END) != 0)) {
+            CustomSpinKart(Player, Camera, screenId, PlayerId);
         } else {
-            RunKart(player, camera, screenId, playerId);
+            RunKart(Player, Camera, screenId, PlayerId);
         }
     } else {
-        player->slip_flag = player->slip_flag & ~N_JUMP;
+        Player->SlipFlag = Player->SlipFlag & ~N_JUMP;
     }
 }
 
-void movekart(Player* player, Camera* camera, s8 playerId, s8 screenId) {
-    if ((player->flag & EXISTS) == EXISTS) {
-        switch (gGamestate) {
+void Movekart(Player* Player, Camera* Camera, s8 PlayerId, s8 screenId) {
+    if ((Player->Flag & EXISTS) == EXISTS) {
+        switch (GameState) {
             case ENDING:
-                if (!(player->flag & NO_CONTROLS)) {
-                    result_runkart(player, camera, screenId, playerId);
+                if (!(Player->Flag & NO_CONTROLS)) {
+                    ResultRunkart(Player, Camera, screenId, PlayerId);
                 } else {
-                    player->slip_flag &= ~N_JUMP;
+                    Player->SlipFlag &= ~N_JUMP;
                 }
                 break;
             default:
-                start_kart_engine(player, playerId);
-                switch (g_gameMode) {
+                StartKartEngine(Player, PlayerId);
+                switch (GameMode) {
                     case TIME_TRIALS:
                     case VERSUS:
-                        vs_time_movekart(player, camera, playerId, screenId);
+                        VSTimeMovekart(Player, Camera, PlayerId, screenId);
                         break;
                     case BATTLE:
-                        battle_movekart(player, camera, playerId, screenId);
+                        BattleMovekart(Player, Camera, PlayerId, screenId);
                         break;
                     default:
-                        mariogp_movekart(player, camera, playerId, screenId);
+                        MariogpMovekart(Player, Camera, PlayerId, screenId);
                         break;
                 }
                 break;
@@ -645,88 +645,88 @@ void movekart(Player* player, Camera* camera, s8 playerId, s8 screenId) {
     }
 }
 
-UNUSED void func_80028F5C(UNUSED s32 arg0, UNUSED s32 arg1, UNUSED s32 arg2, UNUSED s32 arg3) {
+UNUSED void func_80028F5C(UNUSED s32 arg0, UNUSED s32 arg1, UNUSED s32 Arg2, UNUSED s32 Arg3) {
 }
 
-void kartpos_control_full(void) {
-    effectcount = 0;
-    movekart(gPlayerOneCopy, camera1, 0, 0);
-    movekart(gPlayerTwo, camera1, 1, 0);
-    movekart(gPlayerThree, camera1, 2, 0);
-    movekart(gPlayerFour, camera1, 3, 0);
-    movekart(gPlayerFive, camera1, 4, 0);
-    movekart(gPlayerSix, camera1, 5, 0);
-    movekart(gPlayerSeven, camera1, 6, 0);
-    movekart(gPlayerEight, camera1, 7, 0);
+void KartposControlFull(void) {
+    Effectcount = 0;
+    Movekart(PlayerOneCopy, Camera1, 0, 0);
+    Movekart(PlayerTwo, Camera1, 1, 0);
+    Movekart(PlayerThree, Camera1, 2, 0);
+    Movekart(PlayerFour, Camera1, 3, 0);
+    Movekart(PlayerFive, Camera1, 4, 0);
+    Movekart(PlayerSix, Camera1, 5, 0);
+    Movekart(PlayerSeven, Camera1, 6, 0);
+    Movekart(PlayerEight, Camera1, 7, 0);
 }
 
-void kartpos_control_ru(void) {
-    effectcount = 0;
-    movekart(gPlayerOneCopy, camera1, 0, 0);
-    movekart(gPlayerTwo, camera1, 1, 0);
-    movekart(gPlayerThree, camera1, 2, 0);
-    movekart(gPlayerFour, camera1, 3, 0);
-    movekart(gPlayerFive, camera1, 4, 0);
-    movekart(gPlayerSix, camera1, 5, 0);
-    movekart(gPlayerSeven, camera1, 6, 0);
-    movekart(gPlayerEight, camera1, 7, 0);
+void KartposControlRu(void) {
+    Effectcount = 0;
+    Movekart(PlayerOneCopy, Camera1, 0, 0);
+    Movekart(PlayerTwo, Camera1, 1, 0);
+    Movekart(PlayerThree, Camera1, 2, 0);
+    Movekart(PlayerFour, Camera1, 3, 0);
+    Movekart(PlayerFive, Camera1, 4, 0);
+    Movekart(PlayerSix, Camera1, 5, 0);
+    Movekart(PlayerSeven, Camera1, 6, 0);
+    Movekart(PlayerEight, Camera1, 7, 0);
 }
 
-void kartpos_control_ld(void) {
+void KartposControlLd(void) {
 }
 
-void kartpost_control_1P(void) {
-    effectcount = 0;
-    movekart(gPlayerOneCopy, camera1, 0, 0);
-    movekart(gPlayerTwo, camera1, 1, 0);
-    movekart(gPlayerThree, camera1, 2, 0);
-    movekart(gPlayerFour, camera1, 3, 0);
+void KartpostControl1P(void) {
+    Effectcount = 0;
+    Movekart(PlayerOneCopy, Camera1, 0, 0);
+    Movekart(PlayerTwo, Camera1, 1, 0);
+    Movekart(PlayerThree, Camera1, 2, 0);
+    Movekart(PlayerFour, Camera1, 3, 0);
 }
 
-void kartpost_control_2P(void) {
+void KartpostControl2P(void) {
 }
 
-void kartpos_control_3P(void) {
+void KartposControl3P(void) {
 }
 
-void kartpos_control_4P(void) {
+void KartposControl4P(void) {
 }
 
-void make_degpict(Player* player, s8 screenId) {
-    if ((s32) player->kartpitch < -0x71B) {
-        player->deg[screenId] = 0;
+void MakeDegpict(Player* Player, s8 screenId) {
+    if ((s32) Player->Kartpitch < -0x71B) {
+        Player->deg[screenId] = 0;
     }
-    if (((s32) player->kartpitch < -0x4F9) && ((s32) player->kartpitch > -DEGREES(10))) {
-        player->deg[screenId] = 1;
+    if (((s32) Player->Kartpitch < -0x4F9) && ((s32) Player->Kartpitch > -DEGREES(10))) {
+        Player->deg[screenId] = 1;
     }
-    if ((player->kartpitch <= -DEGREES(3)) && (player->kartpitch > -DEGREES(7))) {
-        player->deg[screenId] = 2;
+    if ((Player->Kartpitch <= -DEGREES(3)) && (Player->Kartpitch > -DEGREES(7))) {
+        Player->deg[screenId] = 2;
     }
-    if ((player->kartpitch <= -DEGREES(2)) && (player->kartpitch > -DEGREES(3))) {
-        player->deg[screenId] = 3;
+    if ((Player->Kartpitch <= -DEGREES(2)) && (Player->Kartpitch > -DEGREES(3))) {
+        Player->deg[screenId] = 3;
     }
-    if ((player->kartpitch < DEGREES(2)) && (player->kartpitch > -DEGREES(2))) {
-        player->deg[screenId] = 4;
+    if ((Player->Kartpitch < DEGREES(2)) && (Player->Kartpitch > -DEGREES(2))) {
+        Player->deg[screenId] = 4;
     }
-    if ((player->kartpitch >= DEGREES(2)) && (player->kartpitch < DEGREES(3))) {
-        player->deg[screenId] = 5;
+    if ((Player->Kartpitch >= DEGREES(2)) && (Player->Kartpitch < DEGREES(3))) {
+        Player->deg[screenId] = 5;
     }
-    if ((player->kartpitch >= DEGREES(3)) && (player->kartpitch < DEGREES(7))) {
-        player->deg[screenId] = 6;
+    if ((Player->Kartpitch >= DEGREES(3)) && (Player->Kartpitch < DEGREES(7))) {
+        Player->deg[screenId] = 6;
     }
-    if ((player->kartpitch >= DEGREES(7)) && (player->kartpitch < DEGREES(10))) {
-        player->deg[screenId] = 7;
+    if ((Player->Kartpitch >= DEGREES(7)) && (Player->Kartpitch < DEGREES(10))) {
+        Player->deg[screenId] = 7;
     }
-    if (player->kartpitch >= DEGREES(10)) {
-        player->deg[screenId] = 8;
+    if (Player->Kartpitch >= DEGREES(10)) {
+        Player->deg[screenId] = 8;
     }
 }
 
-void kart_posset(Player* player, Camera* camera, s8 screenId, s8 playerId) {
+void KartPosset(Player* Player, Camera* Camera, s8 screenId, s8 PlayerId) {
     UNUSED s32 pad[2];
     f32 temp_f0;
     f32 temp_f2;
-    UNUSED s32 pad2[3];
+    UNUSED s32 Pad2[3];
     f32 var_f0;
     s16 temp_a0;
     s32 temp_a0_2;
@@ -734,52 +734,52 @@ void kart_posset(Player* player, Camera* camera, s8 screenId, s8 playerId) {
     s32 var_t0;
     u16 var_a0;
 
-    player->angle_y[screenId] = Atan2t(player->position[0] - camera->camera_pos[0], player->position[2] - camera->camera_pos[2]);
-    player->dir[screenId] =
-        (u16) ((((player->angle_y[screenId]) + player->direction[1] + player->slipang))) / 128;
+    Player->AngleY[screenId] = Atan2t(Player->Position[0] - Camera->CameraPos[0], Player->Position[2] - Camera->CameraPos[2]);
+    Player->dir[screenId] =
+        (u16) ((((Player->AngleY[screenId]) + Player->Direction[1] + Player->Slipang))) / 128;
 
-    temp_f2 = (gCharacterSize[player->kart] * 18.0f) * player->offsetsize;
-    temp_f0 = player->mid_left - player->mid_right;
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        if ((player->slip_flag & THUNDER) == THUNDER) {
-            player->roll[screenId] = (s16) ((s32) (((f64) Atant(temp_f0 / temp_f2)) * 1.6));
+    temp_f2 = (CharacterSize[Player->Kart] * 18.0f) * Player->Offsetsize;
+    temp_f0 = Player->MidLeft - Player->MidRight;
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        if ((Player->SlipFlag & THUNDER) == THUNDER) {
+            Player->Roll[screenId] = (s16) ((s32) (((f64) Atant(temp_f0 / temp_f2)) * 1.6));
         } else {
-            player->roll[screenId] = Atant(temp_f0 / temp_f2) * 2;
+            Player->Roll[screenId] = Atant(temp_f0 / temp_f2) * 2;
         }
     }
-    if ((player->slip_flag & BROKEN) == BROKEN) {
-        player->roll[screenId] = (s16) ((s32) player->sus.position);
+    if ((Player->SlipFlag & BROKEN) == BROKEN) {
+        Player->Roll[screenId] = (s16) ((s32) Player->sus.Position);
     }
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        temp_f0 = player->mid_front - player->mid_rear;
-        player->pitch[screenId] = (((Atant(temp_f0 / temp_f2)) * 0.9));
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        temp_f0 = Player->MidFront - Player->MidRear;
+        Player->Pitch[screenId] = (((Atant(temp_f0 / temp_f2)) * 0.9));
     } else {
-        if (((player->dir[screenId]) >= 0) && ((player->dir[screenId]) < 0x101)) {
-            var_f0 = player->old_position[1] - player->position[1];
+        if (((Player->dir[screenId]) >= 0) && ((Player->dir[screenId]) < 0x101)) {
+            var_f0 = Player->OldPosition[1] - Player->Position[1];
         } else {
-            var_f0 = player->position[1] - player->old_position[1];
+            var_f0 = Player->Position[1] - Player->OldPosition[1];
         }
-        player->pitch[screenId] = (s16) ((s32) (((f64) Atant(var_f0 / temp_f2)) * 0.5));
+        Player->Pitch[screenId] = (s16) ((s32) (((f64) Atant(var_f0 / temp_f2)) * 0.5));
     }
-    if ((player->slip_flag & BROKEN) == BROKEN) {
-        player->pitch[screenId] = (s16) ((s32) player->sus.position);
+    if ((Player->SlipFlag & BROKEN) == BROKEN) {
+        Player->Pitch[screenId] = (s16) ((s32) Player->sus.Position);
     }
-    make_degpict(player, screenId);
-    temp_a0 = ((player->angle_y[screenId] + player->direction[1]) + player->slipang);
-    temp_a0 = (s16) player->pitch[screenId] * sinT((u16) temp_a0) + player->roll[screenId] * cosT((u16) temp_a0);
-    chase_Snumber(&player->angle_z[screenId], temp_a0, 0.5f);
-    var_a0 = player->dir[screenId];
-    player->status = player->status & (~(P1_FLIP_SPRITE << (screenId * 4)));
+    MakeDegpict(Player, screenId);
+    temp_a0 = ((Player->AngleY[screenId] + Player->Direction[1]) + Player->Slipang);
+    temp_a0 = (s16) Player->Pitch[screenId] * SinT((u16) temp_a0) + Player->Roll[screenId] * CosT((u16) temp_a0);
+    ChaseSnumber(&Player->AngleZ[screenId], temp_a0, 0.5f);
+    var_a0 = Player->dir[screenId];
+    Player->Status = Player->Status & (~(P1_FLIP_SPRITE << (screenId * 4)));
     if (var_a0 >= 0x101) {
         var_a0 = 0x201 - var_a0;
-        player->status |= (P1_FLIP_SPRITE << (screenId * 4));
+        Player->Status |= (P1_FLIP_SPRITE << (screenId * 4));
     }
-    if (((player->slip_flag & SPIN_L) != SPIN_L) &&
-        ((player->slip_flag & SPIN_R) != SPIN_R) &&
-        ((player->slip_flag & WING) != WING) &&
-        ((player->slip_flag & STORM) != STORM) &&
-        ((player->slip_flag & THUNDER_SPIN) != THUNDER_SPIN) &&
-        (!(player->handling_flag & TROPHYJUMP_END))) {
+    if (((Player->SlipFlag & SPIN_L) != SPIN_L) &&
+        ((Player->SlipFlag & SPIN_R) != SPIN_R) &&
+        ((Player->SlipFlag & WING) != WING) &&
+        ((Player->SlipFlag & STORM) != STORM) &&
+        ((Player->SlipFlag & THUNDER_SPIN) != THUNDER_SPIN) &&
+        (!(Player->HandlingFlag & TROPHYJUMP_END))) {
         if (var_a0 < 0x51) {
             var_a1 = 0x208;
             var_t0 = 0;
@@ -791,22 +791,22 @@ void kart_posset(Player* player, Camera* camera, s8 screenId, s8 playerId) {
         var_a1 = DEGREES(9);
         var_t0 = 0;
     }
-    if (((player->slip_flag & WING) == WING) ||
-        ((player->slip_flag & STORM) == STORM) ||
-        (player->handling_flag & TROPHYJUMP_END)) {
-        player->angle_z[screenId] = 0;
+    if (((Player->SlipFlag & WING) == WING) ||
+        ((Player->SlipFlag & STORM) == STORM) ||
+        (Player->HandlingFlag & TROPHYJUMP_END)) {
+        Player->AngleZ[screenId] = 0;
     }
-    if (((player->slip_flag & N_JUMP) == N_JUMP) &&
-        ((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD)) {
-        player->angle_z[screenId] = 0;
+    if (((Player->SlipFlag & N_JUMP) == N_JUMP) &&
+        ((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD)) {
+        Player->AngleZ[screenId] = 0;
     }
-    var_a0 = (player->angle_y[screenId] + player->direction[1] + player->slipang);
-    if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-        ((player->slip_flag & SPIN_R) == SPIN_R) ||
-        ((player->slip_flag & WING) == WING) ||
-        ((player->slip_flag & STORM) == STORM) ||
-        ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN) ||
-        (player->handling_flag & TROPHYJUMP_END)) {
+    var_a0 = (Player->AngleY[screenId] + Player->Direction[1] + Player->Slipang);
+    if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+        ((Player->SlipFlag & SPIN_R) == SPIN_R) ||
+        ((Player->SlipFlag & WING) == WING) ||
+        ((Player->SlipFlag & STORM) == STORM) ||
+        ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN) ||
+        (Player->HandlingFlag & TROPHYJUMP_END)) {
         if (var_a0 >= 0x7FF9) {
             var_a0 = -var_a0;
             var_a0 /= var_a1;
@@ -822,59 +822,59 @@ void kart_posset(Player* player, Camera* camera, s8 screenId, s8 playerId) {
         }
         var_a0 /= var_a1;
     }
-    player->dir[screenId] = var_a0 + var_t0;
-    if ((player->dir[screenId]) >= 0x23) {
-        player->dir[screenId] = 0x22;
+    Player->dir[screenId] = var_a0 + var_t0;
+    if ((Player->dir[screenId]) >= 0x23) {
+        Player->dir[screenId] = 0x22;
     }
-    if ((player->slip_flag & SPIN_L) || (player->slip_flag & SPIN_R) ||
-        (player->slip_flag & WING) || (player->slip_flag & STORM) ||
-        (player->slip_flag & THUNDER_SPIN) || (player->handling_flag & TROPHYJUMP_END)) {
+    if ((Player->SlipFlag & SPIN_L) || (Player->SlipFlag & SPIN_R) ||
+        (Player->SlipFlag & WING) || (Player->SlipFlag & STORM) ||
+        (Player->SlipFlag & THUNDER_SPIN) || (Player->HandlingFlag & TROPHYJUMP_END)) {
 
-        if ((player->dir[screenId]) >= 0x14) {
-            player->dir[screenId] = 0;
+        if ((Player->dir[screenId]) >= 0x14) {
+            Player->dir[screenId] = 0;
         }
     }
-    if ((player->deg[screenId]) >= 9) {
-        player->deg[screenId] = 4;
+    if ((Player->deg[screenId]) >= 9) {
+        Player->deg[screenId] = 4;
     }
-    if (((player->slip_flag & WING) == WING) ||
-        ((player->slip_flag & STORM) == STORM) ||
-        (player->handling_flag & TROPHYJUMP_END)) {
+    if (((Player->SlipFlag & WING) == WING) ||
+        ((Player->SlipFlag & STORM) == STORM) ||
+        (Player->HandlingFlag & TROPHYJUMP_END)) {
 
-        player->deg[screenId] = 4;
+        Player->deg[screenId] = 4;
     }
-    if (((player->slip_flag & ROLLOVER) == ROLLOVER) ||
-        ((player->slip_flag & EXPLODE) == EXPLODE) ||
-        ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE) || (player->slip_flag & ROLLOVER_FALL) ||
-        (player->slip_flag & SPIN_L) || (player->slip_flag & SPIN_R)) {
+    if (((Player->SlipFlag & ROLLOVER) == ROLLOVER) ||
+        ((Player->SlipFlag & EXPLODE) == EXPLODE) ||
+        ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE) || (Player->SlipFlag & ROLLOVER_FALL) ||
+        (Player->SlipFlag & SPIN_L) || (Player->SlipFlag & SPIN_R)) {
 
-        player->status |= P1_DMA_SPRITE << (screenId * 4);
-        compel_flag[screenId][playerId] = 1;
+        Player->Status |= P1_DMA_SPRITE << (screenId * 4);
+        CompelFlag[screenId][PlayerId] = 1;
 
-        if ((player->slip_flag & SPIN_L) || (player->slip_flag & SPIN_R)) {
-            if ((player->dir[screenId] == old_dir[screenId][playerId]) &&
-                (player->deg[screenId] == old_deg[screenId][playerId])) {
-                player->status &= ~(P1_DMA_SPRITE << (screenId * 4));
-                compel_flag[screenId][playerId] = 1;
+        if ((Player->SlipFlag & SPIN_L) || (Player->SlipFlag & SPIN_R)) {
+            if ((Player->dir[screenId] == OldDir[screenId][PlayerId]) &&
+                (Player->deg[screenId] == OldDeg[screenId][PlayerId])) {
+                Player->Status &= ~(P1_DMA_SPRITE << (screenId * 4));
+                CompelFlag[screenId][PlayerId] = 1;
             }
-        } else if (((player->slipcount) >> 8) == old_slipcount[screenId][playerId] >> 8) {
-            player->status &= ~(P1_DMA_SPRITE << (screenId * 4));
+        } else if (((Player->Slipcount) >> 8) == OldSlipcount[screenId][PlayerId] >> 8) {
+            Player->Status &= ~(P1_DMA_SPRITE << (screenId * 4));
         }
     } else {
-        player->status |= P1_DMA_SPRITE << (screenId * 4);
-        if (((player->dir[screenId] == old_dir[screenId][playerId]) &&
-             (player->deg[screenId] == old_deg[screenId][playerId])) &&
-            ((compel_flag[screenId][playerId]) == 0)) {
-            player->status &= ~(P1_DMA_SPRITE << (screenId * 4));
+        Player->Status |= P1_DMA_SPRITE << (screenId * 4);
+        if (((Player->dir[screenId] == OldDir[screenId][PlayerId]) &&
+             (Player->deg[screenId] == OldDeg[screenId][PlayerId])) &&
+            ((CompelFlag[screenId][PlayerId]) == 0)) {
+            Player->Status &= ~(P1_DMA_SPRITE << (screenId * 4));
         }
     }
-    temp_a0_2 = old_dir[screenId][playerId] - player->dir[screenId];
+    temp_a0_2 = OldDir[screenId][PlayerId] - Player->dir[screenId];
     if ((temp_a0_2 >= 0x14) || (temp_a0_2 < (-0x13))) {
-        player->status |= P1_DMA_SPRITE << (screenId * 4);
+        Player->Status |= P1_DMA_SPRITE << (screenId * 4);
     }
 }
 
-void TirePosition(Player* player, UNUSED f32 arg1, f32 arg2, UNUSED f32 arg3) {
+void TirePosition(Player* Player, UNUSED f32 arg1, f32 Arg2, UNUSED f32 Arg3) {
     f32 a;
     f32 b;
     f32 c;
@@ -888,196 +888,196 @@ void TirePosition(Player* player, UNUSED f32 arg1, f32 arg2, UNUSED f32 arg3) {
     s16 temp_v0;
     f32 var_f12;
 
-    if ((player->slip_flag & THUNDER) == THUNDER) {
-        var_f12 = 18.0f * ((((gCharacterSize[player->kart] / 2)) * ((player->offsetsize) * 1.5)));
+    if ((Player->SlipFlag & THUNDER) == THUNDER) {
+        var_f12 = 18.0f * ((((CharacterSize[Player->Kart] / 2)) * ((Player->Offsetsize) * 1.5)));
     } else {
-        var_f12 = 18.0f * (gCharacterSize[player->kart] / 2);
+        var_f12 = 18.0f * (CharacterSize[Player->Kart] / 2);
     }
 
-    MakeAlignMatrix(sp5C, 0.0f, 1.0f, 0.0f, (player->direction[1] + player->slipang));
+    MakeAlignMatrix(sp5C, 0.0f, 1.0f, 0.0f, (Player->Direction[1] + Player->Slipang));
     sp8C[0] = var_f12 - 3.6;
-    sp8C[1] = -player->radius;
+    sp8C[1] = -Player->Radius;
     sp8C[2] = var_f12 - 2.0f;
     MultipleMatrixByVector(sp8C, sp5C);
-    sp80[0] = player->tire_FL.Position[0];
-    sp80[1] = player->tire_FL.Position[1];
-    sp80[2] = player->tire_FL.Position[2];
-    player->tire_FL.Position[0] = player->position[0] + sp8C[0];
-    player->tire_FL.Position[1] = player->position[1] + sp8C[1];
-    player->tire_FL.Position[2] = player->position[2] + sp8C[2];
-    check_tire_2(player, &player->tire_FL, sp80[0], sp80[1], sp80[2]);
+    sp80[0] = Player->TireFL.Position[0];
+    sp80[1] = Player->TireFL.Position[1];
+    sp80[2] = Player->TireFL.Position[2];
+    Player->TireFL.Position[0] = Player->Position[0] + sp8C[0];
+    Player->TireFL.Position[1] = Player->Position[1] + sp8C[1];
+    Player->TireFL.Position[2] = Player->Position[2] + sp8C[2];
+    CheckTire2(Player, &Player->TireFL, sp80[0], sp80[1], sp80[2]);
     sp8C[0] = (-var_f12) + 3.6;
-    sp8C[1] = -player->radius;
+    sp8C[1] = -Player->Radius;
     sp8C[2] = var_f12 - 2.0f;
     MultipleMatrixByVector(sp8C, sp5C);
-    sp80[0] = player->tire_FR.Position[0];
-    sp80[1] = player->tire_FR.Position[1];
-    sp80[2] = player->tire_FR.Position[2];
-    player->tire_FR.Position[0] = player->position[0] + sp8C[0];
-    player->tire_FR.Position[1] = player->position[1] + sp8C[1];
-    player->tire_FR.Position[2] = player->position[2] + sp8C[2];
-    check_tire_2(player, &player->tire_FR, sp80[0], sp80[1], sp80[2]);
+    sp80[0] = Player->TireFR.Position[0];
+    sp80[1] = Player->TireFR.Position[1];
+    sp80[2] = Player->TireFR.Position[2];
+    Player->TireFR.Position[0] = Player->Position[0] + sp8C[0];
+    Player->TireFR.Position[1] = Player->Position[1] + sp8C[1];
+    Player->TireFR.Position[2] = Player->Position[2] + sp8C[2];
+    CheckTire2(Player, &Player->TireFR, sp80[0], sp80[1], sp80[2]);
     sp8C[0] = var_f12 - 2.6;
-    sp8C[1] = -player->radius;
+    sp8C[1] = -Player->Radius;
     sp8C[2] = (-var_f12) + 4.0f;
     MultipleMatrixByVector(sp8C, sp5C);
-    sp80[0] = player->tire_RL.Position[0];
-    sp80[1] = player->tire_RL.Position[1];
-    sp80[2] = player->tire_RL.Position[2];
-    player->tire_RL.Position[0] = player->position[0] + sp8C[0];
-    player->tire_RL.Position[1] = player->position[1] + sp8C[1];
-    player->tire_RL.Position[2] = player->position[2] + sp8C[2];
-    check_tire_2(player, &player->tire_RL, sp80[0], sp80[1], sp80[2]);
+    sp80[0] = Player->TireRL.Position[0];
+    sp80[1] = Player->TireRL.Position[1];
+    sp80[2] = Player->TireRL.Position[2];
+    Player->TireRL.Position[0] = Player->Position[0] + sp8C[0];
+    Player->TireRL.Position[1] = Player->Position[1] + sp8C[1];
+    Player->TireRL.Position[2] = Player->Position[2] + sp8C[2];
+    CheckTire2(Player, &Player->TireRL, sp80[0], sp80[1], sp80[2]);
     sp8C[0] = (-var_f12) + 2.6;
-    sp8C[1] = -player->radius;
+    sp8C[1] = -Player->Radius;
     sp8C[2] = (-var_f12) + 4.0f;
     MultipleMatrixByVector(sp8C, sp5C);
-    sp80[0] = player->tire_RR.Position[0];
-    sp80[1] = player->tire_RR.Position[1];
-    sp80[2] = player->tire_RR.Position[2];
-    player->tire_RR.Position[0] = player->position[0] + sp8C[0];
-    player->tire_RR.Position[1] = player->position[1] + sp8C[1];
-    player->tire_RR.Position[2] = player->position[2] + sp8C[2];
-    check_tire_2(player, &player->tire_RR, sp80[0], sp80[1], sp80[2]);
-    if (!(player->slip_flag & N_JUMP)) {
-        a = (player->tire_RL.Height + player->tire_FL.Height) / 2;
-        chase_Fnumber(&player->mid_left, a, 0.5f);
+    sp80[0] = Player->TireRR.Position[0];
+    sp80[1] = Player->TireRR.Position[1];
+    sp80[2] = Player->TireRR.Position[2];
+    Player->TireRR.Position[0] = Player->Position[0] + sp8C[0];
+    Player->TireRR.Position[1] = Player->Position[1] + sp8C[1];
+    Player->TireRR.Position[2] = Player->Position[2] + sp8C[2];
+    CheckTire2(Player, &Player->TireRR, sp80[0], sp80[1], sp80[2]);
+    if (!(Player->SlipFlag & N_JUMP)) {
+        a = (Player->TireRL.Height + Player->TireFL.Height) / 2;
+        ChaseFnumber(&Player->MidLeft, a, 0.5f);
 
-        b = (player->tire_RR.Height + player->tire_FR.Height) / 2;
-        chase_Fnumber(&player->mid_right, b, 0.5f);
+        b = (Player->TireRR.Height + Player->TireFR.Height) / 2;
+        ChaseFnumber(&Player->MidRight, b, 0.5f);
 
-        c = (player->tire_FR.Height + player->tire_FL.Height) / 2;
-        chase_Fnumber(&player->mid_rear, c, 0.5f);
+        c = (Player->TireFR.Height + Player->TireFL.Height) / 2;
+        ChaseFnumber(&Player->MidRear, c, 0.5f);
 
-        d = (player->tire_RR.Height + player->tire_RL.Height) / 2;
-        chase_Fnumber(&player->mid_front, d, 0.5f);
+        d = (Player->TireRR.Height + Player->TireRL.Height) / 2;
+        ChaseFnumber(&Player->MidFront, d, 0.5f);
     }
-    temp_f2_3 = ((gCharacterSize[player->kart] * 18.0f) + 1.0f) * player->offsetsize;
-    temp_f0_2 = player->mid_right - player->mid_left;
-    player->kartroll = -Atant(temp_f0_2 / temp_f2_3);
-    if (((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD) || (player->slip_flag & N_JUMP)) {
-        player->kartroll = 0;
+    temp_f2_3 = ((CharacterSize[Player->Kart] * 18.0f) + 1.0f) * Player->Offsetsize;
+    temp_f0_2 = Player->MidRight - Player->MidLeft;
+    Player->Kartroll = -Atant(temp_f0_2 / temp_f2_3);
+    if (((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD) || (Player->SlipFlag & N_JUMP)) {
+        Player->Kartroll = 0;
     }
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        temp_f0_2 = player->mid_front - player->mid_rear;
-        chase_Snumber(&player->kartpitch, Atant(temp_f0_2 / temp_f2_3), 0.5f);
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        temp_f0_2 = Player->MidFront - Player->MidRear;
+        ChaseSnumber(&Player->Kartpitch, Atant(temp_f0_2 / temp_f2_3), 0.5f);
     } else {
-        temp_f0_2 = player->old_position[1] - arg2;
+        temp_f0_2 = Player->OldPosition[1] - Arg2;
         temp_v0 = Atant(temp_f0_2 / temp_f2_3);
         if (temp_f0_2 >= 0.0f) {
             temp_v0 /= 4;
         } else {
             temp_v0 *= 10;
         }
-        chase_Snumber(&player->kartpitch, temp_v0, 0.5f);
+        ChaseSnumber(&Player->Kartpitch, temp_v0, 0.5f);
     }
-    if (((player->slip_flag & N_JUMP) == N_JUMP) &&
-        ((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD)) {
-        player->kartpitch = (s16) ((s32) player->sus.position);
+    if (((Player->SlipFlag & N_JUMP) == N_JUMP) &&
+        ((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD)) {
+        Player->Kartpitch = (s16) ((s32) Player->sus.Position);
     }
-    player->bump_status = check_status(player->bump.last_zx) & 0xFF;
-    if (player->bump_status == BOOST_RAMP_ASPHALT) {
-        if (((player->slip_flag & DASH_JUMP) != DASH_JUMP) &&
-            ((player->slip_flag & N_JUMP) != N_JUMP)) {
-            player->weapon |= PRESS_BOOSTPAD;
+    Player->BumpStatus = CheckStatus(Player->Bump.LastZX) & 0xFF;
+    if (Player->BumpStatus == BOOST_RAMP_ASPHALT) {
+        if (((Player->SlipFlag & DASH_JUMP) != DASH_JUMP) &&
+            ((Player->SlipFlag & N_JUMP) != N_JUMP)) {
+            Player->Weapon |= PRESS_BOOSTPAD;
         }
     }
-    if (player->bump_status == BOOST_RAMP_WOOD) {
-        if (((player->slip_flag & DASH_MIDJUMP) != DASH_MIDJUMP) &&
-            ((player->slip_flag & N_JUMP) != N_JUMP)) {
-            player->weapon |= PRESS_BOOSTJUMP;
+    if (Player->BumpStatus == BOOST_RAMP_WOOD) {
+        if (((Player->SlipFlag & DASH_MIDJUMP) != DASH_MIDJUMP) &&
+            ((Player->SlipFlag & N_JUMP) != N_JUMP)) {
+            Player->Weapon |= PRESS_BOOSTJUMP;
         }
     }
 }
 
-void EnemyTirePosition(Player* player, f32 x, f32 y, f32 z) {
+void EnemyTirePosition(Player* Player, f32 x, f32 y, f32 z) {
     UNUSED s32 pad[2];
     f32 temp_f12;
     f32 var_f20;
     s32 temp_v0;
     s16 temp_v1;
     s16 var_a1;
-    UNUSED s32 pad2;
+    UNUSED s32 Pad2;
     f32 temp_f0;
 
-    temp_v1 = -player->direction[1] - player->slipang;
-    if ((player->slip_flag & THUNDER) == THUNDER) {
-        var_f20 = (((gCharacterSize[player->kart] * 18) / 2) * (player->offsetsize * 1.5)) - 1;
+    temp_v1 = -Player->Direction[1] - Player->Slipang;
+    if ((Player->SlipFlag & THUNDER) == THUNDER) {
+        var_f20 = (((CharacterSize[Player->Kart] * 18) / 2) * (Player->Offsetsize * 1.5)) - 1;
     } else {
-        var_f20 = (((gCharacterSize[player->kart] * 18) / 2) * player->offsetsize) - 1;
+        var_f20 = (((CharacterSize[Player->Kart] * 18) / 2) * Player->Offsetsize) - 1;
     }
 
-    player->tire_FL.Position[2] = (cosT(temp_v1 + 0x2000) * var_f20) + z;
-    temp_f12 = (sinT(temp_v1 + 0x2000) * var_f20) + x;
-    player->tire_FL.Position[0] = temp_f12;
-    player->tire_FL.Height =
-        CalcHeight(temp_f12, y, player->tire_FL.Position[2], player->bump.last_zx);
+    Player->TireFL.Position[2] = (CosT(temp_v1 + 0x2000) * var_f20) + z;
+    temp_f12 = (SinT(temp_v1 + 0x2000) * var_f20) + x;
+    Player->TireFL.Position[0] = temp_f12;
+    Player->TireFL.Height =
+        CalcHeight(temp_f12, y, Player->TireFL.Position[2], Player->Bump.LastZX);
 
-    player->tire_FR.Position[2] = (cosT(temp_v1 - 0x2000) * var_f20) + z;
-    temp_f12 = (sinT(temp_v1 - 0x2000) * var_f20) + x;
-    player->tire_FR.Position[0] = temp_f12;
-    player->tire_FR.Height =
-        CalcHeight(temp_f12, y, player->tire_FR.Position[2], player->bump.last_zx);
+    Player->TireFR.Position[2] = (CosT(temp_v1 - 0x2000) * var_f20) + z;
+    temp_f12 = (SinT(temp_v1 - 0x2000) * var_f20) + x;
+    Player->TireFR.Position[0] = temp_f12;
+    Player->TireFR.Height =
+        CalcHeight(temp_f12, y, Player->TireFR.Position[2], Player->Bump.LastZX);
 
-    player->tire_RL.Position[2] = (cosT(temp_v1 + 0x6000) * var_f20) + z;
-    temp_f12 = (sinT(temp_v1 + 0x6000) * var_f20) + x;
-    player->tire_RL.Position[0] = temp_f12;
-    player->tire_RL.Height =
-        CalcHeight(temp_f12, y, player->tire_RL.Position[2], player->bump.last_zx);
+    Player->TireRL.Position[2] = (CosT(temp_v1 + 0x6000) * var_f20) + z;
+    temp_f12 = (SinT(temp_v1 + 0x6000) * var_f20) + x;
+    Player->TireRL.Position[0] = temp_f12;
+    Player->TireRL.Height =
+        CalcHeight(temp_f12, y, Player->TireRL.Position[2], Player->Bump.LastZX);
 
-    player->tire_RR.Position[2] = (cosT(temp_v1 - 0x6000) * var_f20) + z;
-    player->tire_RR.Position[0] = (sinT(temp_v1 - 0x6000) * var_f20) + x;
-    player->tire_RR.Height = CalcHeight(
-        player->tire_RL.Position[0], y, player->tire_RL.Position[2], player->bump.last_zx);
+    Player->TireRR.Position[2] = (CosT(temp_v1 - 0x6000) * var_f20) + z;
+    Player->TireRR.Position[0] = (SinT(temp_v1 - 0x6000) * var_f20) + x;
+    Player->TireRR.Height = CalcHeight(
+        Player->TireRL.Position[0], y, Player->TireRL.Position[2], Player->Bump.LastZX);
 
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        player->mid_left = (player->tire_RL.Height + player->tire_FL.Height) / 2;
-        player->mid_right = (player->tire_RR.Height + player->tire_FR.Height) / 2;
-        player->mid_rear = (player->tire_FR.Height + player->tire_FL.Height) / 2;
-        player->mid_front = (player->tire_RR.Height + player->tire_RL.Height) / 2;
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        Player->MidLeft = (Player->TireRL.Height + Player->TireFL.Height) / 2;
+        Player->MidRight = (Player->TireRR.Height + Player->TireFR.Height) / 2;
+        Player->MidRear = (Player->TireFR.Height + Player->TireFL.Height) / 2;
+        Player->MidFront = (Player->TireRR.Height + Player->TireRL.Height) / 2;
     }
-    player->bump_status = (u8) check_status(player->bump.last_zx);
-    player->tire_RR.Status = player->bump_status;
-    player->tire_RL.Status = player->bump_status;
-    player->tire_FR.Status = player->bump_status;
-    player->tire_FL.Status = player->bump_status;
-    var_f20 = (gCharacterSize[player->kart] * 18) + 1;
-    temp_f0 = (player->mid_right - player->mid_left);
-    player->kartroll = -Atant(temp_f0 / var_f20);
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        temp_f0 = (player->mid_front - player->mid_rear);
-        chase_Snumber(&player->kartpitch, Atant(temp_f0 / var_f20), 0.5f);
+    Player->BumpStatus = (u8) CheckStatus(Player->Bump.LastZX);
+    Player->TireRR.Status = Player->BumpStatus;
+    Player->TireRL.Status = Player->BumpStatus;
+    Player->TireFR.Status = Player->BumpStatus;
+    Player->TireFL.Status = Player->BumpStatus;
+    var_f20 = (CharacterSize[Player->Kart] * 18) + 1;
+    temp_f0 = (Player->MidRight - Player->MidLeft);
+    Player->Kartroll = -Atant(temp_f0 / var_f20);
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        temp_f0 = (Player->MidFront - Player->MidRear);
+        ChaseSnumber(&Player->Kartpitch, Atant(temp_f0 / var_f20), 0.5f);
     } else {
-        temp_f0 = player->old_position[1] - y;
+        temp_f0 = Player->OldPosition[1] - y;
         temp_v0 = Atant(temp_f0 / var_f20);
         if (temp_f0 >= 0.0f) {
             var_a1 = temp_v0 * 2;
         } else {
             var_a1 = temp_v0 * 0xA;
         }
-        chase_Snumber(&player->kartpitch, var_a1, 0.5f);
+        ChaseSnumber(&Player->Kartpitch, var_a1, 0.5f);
     }
-    if (check_shadow(player->bump.last_zx) != 0) {
-        player->tire_RR.Dummy |= 1;
+    if (CheckShadow(Player->Bump.LastZX) != 0) {
+        Player->TireRR.Dummy |= 1;
     } else {
-        player->tire_RR.Dummy &= ~1;
+        Player->TireRR.Dummy &= ~1;
     }
-    if (player->bump_status == BOOST_RAMP_ASPHALT) {
-        if (((player->slip_flag & DASH_JUMP) != DASH_JUMP) &&
-            ((player->slip_flag & N_JUMP) != N_JUMP)) {
-            player->weapon |= PRESS_BOOSTPAD;
+    if (Player->BumpStatus == BOOST_RAMP_ASPHALT) {
+        if (((Player->SlipFlag & DASH_JUMP) != DASH_JUMP) &&
+            ((Player->SlipFlag & N_JUMP) != N_JUMP)) {
+            Player->Weapon |= PRESS_BOOSTPAD;
         }
     }
-    if (player->bump_status == BOOST_RAMP_WOOD) {
-        if (((player->slip_flag & DASH_MIDJUMP) != DASH_MIDJUMP) &&
-            ((player->slip_flag & N_JUMP) != N_JUMP)) {
-            player->weapon |= PRESS_BOOSTJUMP;
+    if (Player->BumpStatus == BOOST_RAMP_WOOD) {
+        if (((Player->SlipFlag & DASH_MIDJUMP) != DASH_MIDJUMP) &&
+            ((Player->SlipFlag & N_JUMP) != N_JUMP)) {
+            Player->Weapon |= PRESS_BOOSTJUMP;
         }
     }
 }
 
 // Near identical to BumpVelocity in memory.c
-void hit_velocity(Vec3f arg0, f32 arg1, Vec3f arg2, f32 arg3, f32 arg4) {
+void HitVelocity(Vec3f arg0, f32 arg1, Vec3f Arg2, f32 Arg3, f32 arg4) {
     f32 temp_f0;
     f32 temp_f2;
     f32 temp_f12;
@@ -1089,9 +1089,9 @@ void hit_velocity(Vec3f arg0, f32 arg1, Vec3f arg2, f32 arg3, f32 arg4) {
     f32 tmp2;
     f32 tmp3;
 
-    temp_f0 = arg2[0];
-    temp_f2 = arg2[1];
-    temp_f12 = arg2[2];
+    temp_f0 = Arg2[0];
+    temp_f2 = Arg2[1];
+    temp_f12 = Arg2[2];
     temp_f14 = -arg0[0];
     temp_f16 = -arg0[1];
     temp_f18 = -arg0[2];
@@ -1100,111 +1100,111 @@ void hit_velocity(Vec3f arg0, f32 arg1, Vec3f arg2, f32 arg3, f32 arg4) {
     tmp2 = temp_f2 - (temp_f20 * temp_f16);
     tmp3 = temp_f12 - (temp_f20 * temp_f18);
     if (arg1 < -arg4) {
-        arg2[0] = tmp1 - (temp_f20 * temp_f14 * arg3);
-        arg2[1] = tmp2 - (temp_f20 * temp_f16 * arg3);
-        arg2[2] = tmp3 - (temp_f20 * temp_f18 * arg3);
+        Arg2[0] = tmp1 - (temp_f20 * temp_f14 * Arg3);
+        Arg2[1] = tmp2 - (temp_f20 * temp_f16 * Arg3);
+        Arg2[2] = tmp3 - (temp_f20 * temp_f18 * Arg3);
     } else {
-        arg2[0] = tmp1;
-        arg2[1] = tmp2;
-        arg2[2] = tmp3;
+        Arg2[0] = tmp1;
+        Arg2[1] = tmp2;
+        Arg2[2] = tmp3;
     }
 }
 
-void set_start_dush(Player* player, s8 playerIndex) {
-    player->slip_flag |= TURBO;
-    player->weapon &= ~USE_STARTDASH;
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
-        NAPlyVoiceStart(0U, (player->kart * 0x10) + 0x29008001);
+void SetStartDush(Player* Player, s8 playerIndex) {
+    Player->SlipFlag |= TURBO;
+    Player->Weapon &= ~USE_STARTDASH;
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+        NAPlyVoiceStart(0U, (Player->Kart * 0x10) + 0x29008001);
         NAPlyTrgStart(playerIndex, 0x1900A40BU);
     }
-    player->turbo_timer = 0x0050;
+    Player->TurboTimer = 0x0050;
 }
 
-void drift_turbo(Player* player, s8 playerIndex) {
-    if (((player->slip_flag & DRIFT_TURBO) != DRIFT_TURBO) &&
-        ((player->slip_flag & DRIFT) != DRIFT) && (player->powerstack_count >= 2)) {
-        player->slip_flag |= DRIFT_TURBO;
-        player->drift_turbo_timer = 0;
-        player->powerstack_count = 0;
-        player->stopsetrr_count = 0;
-        if (replay_flag != 1) {
-            if ((player->flag & IS_PLAYER) && !(player->flag & IS_GHOST)) {
-                Na_PlyDash_Start(playerIndex);
+void DriftTurbo(Player* Player, s8 playerIndex) {
+    if (((Player->SlipFlag & DRIFT_TURBO) != DRIFT_TURBO) &&
+        ((Player->SlipFlag & DRIFT) != DRIFT) && (Player->PowerstackCount >= 2)) {
+        Player->SlipFlag |= DRIFT_TURBO;
+        Player->DriftTurboTimer = 0;
+        Player->PowerstackCount = 0;
+        Player->StopsetrrCount = 0;
+        if (ReplayFlag != 1) {
+            if ((Player->Flag & IS_PLAYER) && !(Player->Flag & IS_GHOST)) {
+                NaPlyDashStart(playerIndex);
             }
-        } else if (player == gPlayerOne) {
-            Na_PlyDash_Start(playerIndex);
+        } else if (Player == PlayerOne) {
+            NaPlyDashStart(playerIndex);
         }
-    } else if ((player->slip_flag & DRIFT_TURBO) == DRIFT_TURBO) {
-        player->drift_turbo_timer += 1;
-        if (player->drift_turbo_timer >= 0x1F) {
-            player->drift_turbo_timer = 0;
-            player->slip_flag &= ~DRIFT_TURBO;
-            player->powerstack_count = 0;
-            player->stopsetrr_count = 0;
+    } else if ((Player->SlipFlag & DRIFT_TURBO) == DRIFT_TURBO) {
+        Player->DriftTurboTimer += 1;
+        if (Player->DriftTurboTimer >= 0x1F) {
+            Player->DriftTurboTimer = 0;
+            Player->SlipFlag &= ~DRIFT_TURBO;
+            Player->PowerstackCount = 0;
+            Player->StopsetrrCount = 0;
         }
     }
 }
 
-void check_drift_turbo(Player* player, s8 playerIndex) {
-    if (((s16) player->slipang / DEGREES(1)) > 0) {
-        if (((s32) player->nowsterr >> 16) <= -10) {
-            if (player->stopsetrr_count <= 100) {
-                player->stopsetrr_count++;
+void CheckDriftTurbo(Player* Player, s8 playerIndex) {
+    if (((s16) Player->Slipang / DEGREES(1)) > 0) {
+        if (((s32) Player->Nowsterr >> 16) <= -10) {
+            if (Player->StopsetrrCount <= 100) {
+                Player->StopsetrrCount++;
             }
-            if ((player->stopsetrr_count == 100) && (player->flag & IS_PLAYER)) {
+            if ((Player->StopsetrrCount == 100) && (Player->Flag & IS_PLAYER)) {
                 NAPlyTrgStart(playerIndex, 0x1900851EU);
             }
         } else {
-            if ((player->stopsetrr_count >= 18) && (player->stopsetrr_count < 100)) {
-                if (player->powerstack_count < 3) {
-                    player->powerstack_count++;
+            if ((Player->StopsetrrCount >= 18) && (Player->StopsetrrCount < 100)) {
+                if (Player->PowerstackCount < 3) {
+                    Player->PowerstackCount++;
                 }
             }
-            if ((player->stopsetrr_count >= 10) && (player->stopsetrr_count < 100)) {
-                player->stopsetrr_count = 10;
+            if ((Player->StopsetrrCount >= 10) && (Player->StopsetrrCount < 100)) {
+                Player->StopsetrrCount = 10;
             } else {
-                player->stopsetrr_count = 0;
-                player->powerstack_count = 0;
+                Player->StopsetrrCount = 0;
+                Player->PowerstackCount = 0;
             }
         }
-    } else if (((s32) player->nowsterr >> 16) >= 10) {
-        if (player->stopsetrr_count <= 100) {
-            player->stopsetrr_count++;
+    } else if (((s32) Player->Nowsterr >> 16) >= 10) {
+        if (Player->StopsetrrCount <= 100) {
+            Player->StopsetrrCount++;
         }
-        if ((player->stopsetrr_count == 100) && (player->flag & IS_PLAYER)) {
+        if ((Player->StopsetrrCount == 100) && (Player->Flag & IS_PLAYER)) {
             NAPlyTrgStart(playerIndex, 0x1900851EU);
         }
     } else {
-        if ((player->stopsetrr_count >= 18) && (player->stopsetrr_count < 100)) {
-            if (player->powerstack_count < 3) {
-                player->powerstack_count++;
+        if ((Player->StopsetrrCount >= 18) && (Player->StopsetrrCount < 100)) {
+            if (Player->PowerstackCount < 3) {
+                Player->PowerstackCount++;
             }
         }
-        if ((player->stopsetrr_count >= 10) && (player->stopsetrr_count < 100)) {
-            player->stopsetrr_count = 10;
+        if ((Player->StopsetrrCount >= 10) && (Player->StopsetrrCount < 100)) {
+            Player->StopsetrrCount = 10;
         } else {
-            player->stopsetrr_count = 0;
-            player->powerstack_count = 0;
+            Player->StopsetrrCount = 0;
+            Player->PowerstackCount = 0;
         }
     }
 }
 
-void jump_set(Player* player) {
-    player->jmp_acc = gKartHopJerkTable[player->kart];
-    player->jmp_speed = 0.0f;
-    player->jump = gKartHopInitialVelocityTable[player->kart];
-    player->slip_flag |= D_JUMP;
-    player->sus.jump_firstspeed = 3.0f;
-    player->gravity = 500.0f;
-    drift_set(player);
+void JumpSet(Player* Player) {
+    Player->JmpAcc = gKartHopJerkTable[Player->Kart];
+    Player->JmpSpeed = 0.0f;
+    Player->Jump = gKartHopInitialVelocityTable[Player->Kart];
+    Player->SlipFlag |= D_JUMP;
+    Player->sus.JumpFirstspeed = 3.0f;
+    Player->Gravity = 500.0f;
+    DriftSet(Player);
 }
 
 /**
   * Function: DriftJump
 
   * Parameters:
-  *     Player *player - A pointer to a Player
+  *     Player *Player - A Pointer to a Player
 
   * First kartHopJerk is subtracted from kartHopAcceleration
   * Then kartHopAcceleration is added to kartHopVelocity.
@@ -1217,88 +1217,88 @@ void jump_set(Player* player) {
 
   * kartHopAcceleration is restricted to values in [-9.0f, 9.0f]
 **/
-void DriftJump(Player* player) {
-    player->jmp_speed -= player->jmp_acc;
-    if (player->jmp_speed >= 9.0f) {
-        player->jmp_speed = 9.0f;
+void DriftJump(Player* Player) {
+    Player->JmpSpeed -= Player->JmpAcc;
+    if (Player->JmpSpeed >= 9.0f) {
+        Player->JmpSpeed = 9.0f;
     }
 
-    if (player->jmp_speed <= -9.0f) {
-        player->jmp_speed = -9.0f;
+    if (Player->JmpSpeed <= -9.0f) {
+        Player->JmpSpeed = -9.0f;
     }
 
-    player->jump += player->jmp_speed;
-    if (player->jump >= 15.0f) {
-        player->jump = 15.0f;
+    Player->Jump += Player->JmpSpeed;
+    if (Player->Jump >= 15.0f) {
+        Player->Jump = 15.0f;
     }
 
-    if (player->jump <= 0.0f) {
-        player->jmp_acc = 0.0f;
-        player->jmp_speed = 0.0f;
-        player->jump = 0.0f;
+    if (Player->Jump <= 0.0f) {
+        Player->JmpAcc = 0.0f;
+        Player->JmpSpeed = 0.0f;
+        Player->Jump = 0.0f;
     }
 }
 
-void AddGravity(Player* player) {
+void AddGravity(Player* Player) {
     UNUSED s32 pad[2];
-    if (((player->slip_flag & N_JUMP) != N_JUMP) && (player->force > 0.0f)) {
-        if (((player->kartpitch / DEGREES(1)) < -1) && ((player->kartpitch / DEGREES(1)) >= -0x14) &&
-            (((player->speed / 18.0f) * 216.0f) >= 20.0f)) {
-            chase_Fnumber(&player->gravity, 500.0f, 1.0f);
-            chase_Fnumber(&player->sus.jump_firstspeed, 3.0f, 0.05f);
+    if (((Player->SlipFlag & N_JUMP) != N_JUMP) && (Player->Force > 0.0f)) {
+        if (((Player->Kartpitch / DEGREES(1)) < -1) && ((Player->Kartpitch / DEGREES(1)) >= -0x14) &&
+            (((Player->Speed / 18.0f) * 216.0f) >= 20.0f)) {
+            ChaseFnumber(&Player->Gravity, 500.0f, 1.0f);
+            ChaseFnumber(&Player->sus.JumpFirstspeed, 3.0f, 0.05f);
         } else {
-            chase_Fnumber(&player->gravity, gravity_1[player->kart], 0.1f);
-            chase_Fnumber(&player->sus.jump_firstspeed, 1.0f, 0.07f);
+            ChaseFnumber(&Player->Gravity, Gravity1[Player->Kart], 0.1f);
+            ChaseFnumber(&Player->sus.JumpFirstspeed, 1.0f, 0.07f);
         }
     } else {
-        if (player->bump.distance_zx >= 50.0f) {
-            player->sus.jump_firstspeed = 2.0f;
+        if (Player->Bump.DistanceZX >= 50.0f) {
+            Player->sus.JumpFirstspeed = 2.0f;
         }
-        chase_Fnumber(&player->gravity, gravity_1[player->kart], 0.02f);
-        if ((player->slip_flag & D_JUMP) == D_JUMP) {
-            chase_Fnumber(&player->sus.jump_firstspeed, 1.0f, 0.07f);
+        ChaseFnumber(&Player->Gravity, Gravity1[Player->Kart], 0.02f);
+        if ((Player->SlipFlag & D_JUMP) == D_JUMP) {
+            ChaseFnumber(&Player->sus.JumpFirstspeed, 1.0f, 0.07f);
         } else {
-            chase_Fnumber(&player->sus.jump_firstspeed, 1.0f, 0.07f);
+            ChaseFnumber(&Player->sus.JumpFirstspeed, 1.0f, 0.07f);
         }
     }
-    if ((player->slip_flag & DASH_JUMP) == DASH_JUMP) {
-        chase_Fnumber(&player->sus.jump_firstspeed, 20.0f, 1.0f);
-        player->gravity = 3500.0f;
+    if ((Player->SlipFlag & DASH_JUMP) == DASH_JUMP) {
+        ChaseFnumber(&Player->sus.JumpFirstspeed, 20.0f, 1.0f);
+        Player->Gravity = 3500.0f;
     }
-    if ((player->slip_flag & DASH_MIDJUMP) == DASH_MIDJUMP) {
-        chase_Fnumber(&player->sus.jump_firstspeed, 25.0f, 1.0f);
-        player->gravity = 1800.0f;
+    if ((Player->SlipFlag & DASH_MIDJUMP) == DASH_MIDJUMP) {
+        ChaseFnumber(&Player->sus.JumpFirstspeed, 25.0f, 1.0f);
+        Player->Gravity = 1800.0f;
     }
-    if ((player->slip_flag & ROLLOVER) == ROLLOVER) {
-        player->gravity = 1100.0f;
+    if ((Player->SlipFlag & ROLLOVER) == ROLLOVER) {
+        Player->Gravity = 1100.0f;
     }
-    if (player->slip_flag & WING) {
-        player->gravity = 1500.0f;
+    if (Player->SlipFlag & WING) {
+        Player->Gravity = 1500.0f;
     }
-    if ((player->handling_flag & TROPHYJUMP_END) != 0) {
-        player->gravity = 1900.0f;
+    if ((Player->HandlingFlag & TROPHYJUMP_END) != 0) {
+        Player->Gravity = 1900.0f;
     }
-    if ((player->slip_flag & STORM) == STORM) {
-        player->gravity = 300.0f;
+    if ((Player->SlipFlag & STORM) == STORM) {
+        Player->Gravity = 300.0f;
     }
-    if ((player->slip_flag & EXPLODE) == EXPLODE) {
-        player->gravity = 550.0f;
+    if ((Player->SlipFlag & EXPLODE) == EXPLODE) {
+        Player->Gravity = 550.0f;
     }
-    if ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE) {
-        player->gravity = 800.0f;
+    if ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE) {
+        Player->Gravity = 800.0f;
     }
 }
 
-UNUSED void set_nature_vector(void) {
+UNUSED void SetNatureVector(void) {
 }
 
-UNUSED void check_nature_vector(void) {
+UNUSED void CheckNatureVector(void) {
 }
 
-UNUSED void check_direction(void) {
+UNUSED void CheckDirection(void) {
 }
 
-void SetSlipAngle(Player* player, s8 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+void SetSlipAngle(Player* Player, s8 arg1, f32 Arg2, f32 Arg3, f32 arg4, f32 arg5) {
     UNUSED s32 pad[4];
     s16 temp_v0_3;
     f32 sp28;
@@ -1306,313 +1306,313 @@ void SetSlipAngle(Player* player, s8 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg
     s16 temp_a0;
     s32 var_v1;
 
-    sp28 = (sinT(-player->direction[1]) * player->speed) + arg2;
-    temp_f16 = (cosT(-player->direction[1]) * player->speed) + arg3;
-    if (((player->slip_flag & WHEELSPIN) != WHEELSPIN) &&
-        ((player->slip_flag & DRIFT) != DRIFT) && !(player->handling_flag & SPINOUT_SWERVE) &&
-        ((((player->speed / 18.0f) * 216.0f) <= 8.0f) ||
-         (((player->nowsterr >> 16) < 5) && ((player->nowsterr >> 16) > -5)))) {
-        if ((player->slip_flag & SPIN_TURN) == SPIN_TURN) {
-            player->slipang = (f32) (player->slipang - (player->slipang / 10));
+    sp28 = (SinT(-Player->Direction[1]) * Player->Speed) + Arg2;
+    temp_f16 = (CosT(-Player->Direction[1]) * Player->Speed) + Arg3;
+    if (((Player->SlipFlag & WHEELSPIN) != WHEELSPIN) &&
+        ((Player->SlipFlag & DRIFT) != DRIFT) && !(Player->HandlingFlag & SPINOUT_SWERVE) &&
+        ((((Player->Speed / 18.0f) * 216.0f) <= 8.0f) ||
+         (((Player->Nowsterr >> 16) < 5) && ((Player->Nowsterr >> 16) > -5)))) {
+        if ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) {
+            Player->Slipang = (f32) (Player->Slipang - (Player->Slipang / 10));
         } else {
-            temp_v0_3 = player->slipang;
-            player->slipang = player->sterrangle * 9;
-            temp_a0 = player->slipang - temp_v0_3;
-            player->slipang = (f32) (temp_v0_3 + (temp_a0 / 15));
+            temp_v0_3 = Player->Slipang;
+            Player->Slipang = Player->Sterrangle * 9;
+            temp_a0 = Player->Slipang - temp_v0_3;
+            Player->Slipang = (f32) (temp_v0_3 + (temp_a0 / 15));
         }
     } else {
-        temp_v0_3 = player->slipang;
-        if (sterr_counter[arg1] & 8) {
+        temp_v0_3 = Player->Slipang;
+        if (SterrCounter[arg1] & 8) {
             var_v1 = 2;
         } else {
             var_v1 = 0;
         }
-        if ((player->accelcount >= 200.0f) && (var_v1 == 2) &&
-            (((player->slipang / DEGREES(1)) >= 0x10) || ((player->slipang / DEGREES(1)) < -0xF))) {
-            player->slipang = Atan2t(arg2 - arg4, arg3 - arg5) - Atan2t(arg2 - sp28, arg3 - temp_f16);
+        if ((Player->Accelcount >= 200.0f) && (var_v1 == 2) &&
+            (((Player->Slipang / DEGREES(1)) >= 0x10) || ((Player->Slipang / DEGREES(1)) < -0xF))) {
+            Player->Slipang = Atan2t(Arg2 - arg4, Arg3 - arg5) - Atan2t(Arg2 - sp28, Arg3 - temp_f16);
         } else {
-            player->slipang = (Atan2t(arg2 - arg4, arg3 - arg5) - Atan2t(arg2 - sp28, arg3 - temp_f16)) * 2;
+            Player->Slipang = (Atan2t(Arg2 - arg4, Arg3 - arg5) - Atan2t(Arg2 - sp28, Arg3 - temp_f16)) * 2;
         }
-        if (((player->slip_flag & DRIFT) != DRIFT) &&
-            ((((player->nowsterr >> 16) > 0) && (player->slipang < 0)) ||
-             (((player->nowsterr >> 16) < 0) && (player->slipang > 0)))) {
-            if (player->slipang > 0) {
-                player->slipang = player->sterrangle * 0x14;
+        if (((Player->SlipFlag & DRIFT) != DRIFT) &&
+            ((((Player->Nowsterr >> 16) > 0) && (Player->Slipang < 0)) ||
+             (((Player->Nowsterr >> 16) < 0) && (Player->Slipang > 0)))) {
+            if (Player->Slipang > 0) {
+                Player->Slipang = Player->Sterrangle * 0x14;
             }
-            if (player->slipang < 0) {
-                player->slipang = player->sterrangle * 0x14;
+            if (Player->Slipang < 0) {
+                Player->Slipang = Player->Sterrangle * 0x14;
             }
-            temp_a0 = player->slipang - temp_v0_3;
-            player->slipang = (f32) (temp_v0_3 + (temp_a0 / 12));
+            temp_a0 = Player->Slipang - temp_v0_3;
+            Player->Slipang = (f32) (temp_v0_3 + (temp_a0 / 12));
         } else {
-            if (player->slipang >= 0x1C71) {
-                player->slipang = 0x1C70;
+            if (Player->Slipang >= 0x1C71) {
+                Player->Slipang = 0x1C70;
             }
-            if (player->slipang < -0x1C70) {
-                player->slipang = -0x1C70;
+            if (Player->Slipang < -0x1C70) {
+                Player->Slipang = -0x1C70;
             }
-            temp_a0 = player->slipang - temp_v0_3;
-            player->slipang = (f32) (temp_v0_3 + (temp_a0 / 12));
+            temp_a0 = Player->Slipang - temp_v0_3;
+            Player->Slipang = (f32) (temp_v0_3 + (temp_a0 / 12));
         }
     }
 }
 
-void enemy_checkdrift(Player* player) {
+void EnemyCheckdrift(Player* Player) {
     u16 someIndex;
     u16 sp38[10] = { 0x0003, 0x0016, 0x0026, 0x003c, 0x0050, 0x0069, 0x0090, 0x009d, 0x00a9, 0x00cc };
     u16 sp24[10] = { 0x000c, 0x0021, 0x002f, 0x0045, 0x005f, 0x007a, 0x0098, 0x00a5, 0x00b3, 0x00d5 };
 
     for (someIndex = 0; someIndex < 10; someIndex++) {
-        if (player->point == sp38[someIndex]) {
-            player->slip_flag |= DRIFT;
-            jump_set(player);
-            player->drift_count = 0;
+        if (Player->Point == sp38[someIndex]) {
+            Player->SlipFlag |= DRIFT;
+            JumpSet(Player);
+            Player->DriftCount = 0;
             break;
         }
 
-        if (player->point == sp24[someIndex]) {
-            player->slip_flag &= ~DRIFT;
+        if (Player->Point == sp24[someIndex]) {
+            Player->SlipFlag &= ~DRIFT;
             break;
         }
     }
 }
 
-void set_weapon(Player* player, s8 playerId, UNUSED s8 screenId) {
-    if ((player->weapon & HIT_REDSHELL) == HIT_REDSHELL) {
-        BombThrowRolloverWrap(player, playerId);
+void SetWeapon(Player* Player, s8 PlayerId, UNUSED s8 screenId) {
+    if ((Player->Weapon & HIT_REDSHELL) == HIT_REDSHELL) {
+        BombThrowRolloverWrap(Player, PlayerId);
     }
-    if ((player->weapon & HIT_GREENSHELL) == HIT_GREENSHELL) {
-        RolloverWrap(player, playerId);
+    if ((Player->Weapon & HIT_GREENSHELL) == HIT_GREENSHELL) {
+        RolloverWrap(Player, PlayerId);
     }
-    if ((player->weapon & HIT_BANANA) == HIT_BANANA) {
-        WheelSpinWrap(player, playerId);
+    if ((Player->Weapon & HIT_BANANA) == HIT_BANANA) {
+        WheelSpinWrap(Player, PlayerId);
     }
-    if ((player->weapon & USE_MUSHROOM) == USE_MUSHROOM) {
-        SetTurbo(player, playerId);
+    if ((Player->Weapon & USE_MUSHROOM) == USE_MUSHROOM) {
+        SetTurbo(Player, PlayerId);
     }
-    if ((player->weapon & USE_STARTDASH) == USE_STARTDASH) {
-        set_start_dush(player, playerId);
+    if ((Player->Weapon & USE_STARTDASH) == USE_STARTDASH) {
+        SetStartDush(Player, PlayerId);
     }
-    if ((player->weapon & USE_FEATHER) == USE_FEATHER) {
-        SetWing(player, playerId);
+    if ((Player->Weapon & USE_FEATHER) == USE_FEATHER) {
+        SetWing(Player, PlayerId);
     }
-    if ((player->weapon & HIT_TORNADO) == HIT_TORNADO) {
-        SetStorm(player, playerId);
+    if ((Player->Weapon & HIT_TORNADO) == HIT_TORNADO) {
+        SetStorm(Player, PlayerId);
     }
-    if ((player->weapon & PRESS_SQUISH) == PRESS_SQUISH) {
-        BrokenWrap(player, playerId);
+    if ((Player->Weapon & PRESS_SQUISH) == PRESS_SQUISH) {
+        BrokenWrap(Player, PlayerId);
     }
-    if ((player->weapon & HIT_LIGHTNING) == HIT_LIGHTNING) {
-        ThunderWrap(player, playerId);
+    if ((Player->Weapon & HIT_LIGHTNING) == HIT_LIGHTNING) {
+        ThunderWrap(Player, PlayerId);
     }
-    if ((player->weapon & HIT_CRITTER) == HIT_CRITTER) {
-        SpinWrap(player, playerId);
+    if ((Player->Weapon & HIT_CRITTER) == HIT_CRITTER) {
+        SpinWrap(Player, PlayerId);
     }
-    if ((player->weapon & HIT_BOMB) == HIT_BOMB) {
-        BombRolloverWrap(player, playerId);
+    if ((Player->Weapon & HIT_BOMB) == HIT_BOMB) {
+        BombRolloverWrap(Player, PlayerId);
     }
-    if ((player->weapon & HIT_BOMB_THROW) == HIT_BOMB_THROW) {
-        BombThrowRolloverWrap(player, playerId);
+    if ((Player->Weapon & HIT_BOMB_THROW) == HIT_BOMB_THROW) {
+        BombThrowRolloverWrap(Player, PlayerId);
     }
-    if ((player->weapon & PRESS_BOOSTPAD) == PRESS_BOOSTPAD) {
-        set_dashjump(player, playerId);
+    if ((Player->Weapon & PRESS_BOOSTPAD) == PRESS_BOOSTPAD) {
+        SetDashjump(Player, PlayerId);
     }
-    if ((player->weapon & PRESS_BOOSTJUMP) == PRESS_BOOSTJUMP) {
-        set_dash_midjump(player, playerId);
+    if ((Player->Weapon & PRESS_BOOSTJUMP) == PRESS_BOOSTJUMP) {
+        SetDashMidjump(Player, PlayerId);
     }
-    if ((player->weapon & USE_STAR) == USE_STAR) {
-        SetStar(player, playerId);
+    if ((Player->Weapon & USE_STAR) == USE_STAR) {
+        SetStar(Player, PlayerId);
     }
-    if ((player->weapon & USE_BOO) == USE_BOO) {
-        SetVSGhost(player, playerId);
+    if ((Player->Weapon & USE_BOO) == USE_BOO) {
+        SetVSGhost(Player, PlayerId);
     }
-    if (player->weapon & PRESS_SAVESPIN) {
-        ProWheelSpinWrap(player, playerId);
+    if (Player->Weapon & PRESS_SAVESPIN) {
+        ProWheelSpinWrap(Player, PlayerId);
     }
-    if (player->weapon & HIT_BOAT) {
-        BombRolloverWrap(player, playerId);
+    if (Player->Weapon & HIT_BOAT) {
+        BombRolloverWrap(Player, PlayerId);
     }
 }
 
-void check_weapon(Player* player, UNUSED s8 playerId, UNUSED s8 screenId) {
-    if (((player->jugemu_flag & LAKITU_SCENE) != 0) || ((player->jugemu_flag & ON_LAKITU_ROD) != 0)) {
-        player->weapon &=
+void CheckWeapon(Player* Player, UNUSED s8 PlayerId, UNUSED s8 screenId) {
+    if (((Player->JugemuFlag & LAKITU_SCENE) != 0) || ((Player->JugemuFlag & ON_LAKITU_ROD) != 0)) {
+        Player->Weapon &=
             ALL_TRIGGERS & ~(HIT_TRIGGERS | ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // Green shell
-    if ((player->slip_flag & ROLLOVER) == ROLLOVER) {
-        player->weapon &= ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
+    if ((Player->SlipFlag & ROLLOVER) == ROLLOVER) {
+        Player->Weapon &= ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // Spinout (banana or driving)
-    if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-        ((player->slip_flag & SPIN_R) == SPIN_R)) {
-        player->weapon &=
+    if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+        ((Player->SlipFlag & SPIN_R) == SPIN_R)) {
+        Player->Weapon &=
             (ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS)) |
             HIT_TORNADO;
     }
     // Near spinout (banana)
-    if ((player->slip_flag & WHEELSPIN) == WHEELSPIN) {
-        player->weapon &= ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
+    if ((Player->SlipFlag & WHEELSPIN) == WHEELSPIN) {
+        Player->Weapon &= ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
-    if ((player->handling_flag & SPINOUT_SWERVE) != 0) {
-        player->weapon &= ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
+    if ((Player->HandlingFlag & SPINOUT_SWERVE) != 0) {
+        Player->Weapon &= ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // unclear
-    if ((player->slip_flag & WING) == WING) {
-        player->weapon &= ALL_TRIGGERS & ~((HIT_TRIGGERS ^ HIT_LIGHTNING) | ANY_BOOST_TRIGGERS |
+    if ((Player->SlipFlag & WING) == WING) {
+        Player->Weapon &= ALL_TRIGGERS & ~((HIT_TRIGGERS ^ HIT_LIGHTNING) | ANY_BOOST_TRIGGERS |
                                              RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // unclear
-    if ((player->slip_flag & STORM) == STORM) {
-        player->weapon &=
+    if ((Player->SlipFlag & STORM) == STORM) {
+        Player->Weapon &=
             ALL_TRIGGERS & ~(HIT_TRIGGERS | ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // squished
-    if ((player->slip_flag & BROKEN) == BROKEN) {
-        player->weapon &= (ALL_TRIGGERS & ~(HIT_TRIGGERS | ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS |
+    if ((Player->SlipFlag & BROKEN) == BROKEN) {
+        Player->Weapon &= (ALL_TRIGGERS & ~(HIT_TRIGGERS | ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS |
                                               STATE_TRANSITION_TRIGGERS)) |
                             PRESS_SQUISH;
     }
     // explosion crash
-    if ((player->slip_flag & EXPLODE) == EXPLODE) {
-        player->weapon &= ALL_TRIGGERS & ~((HIT_TRIGGERS ^ HIT_LIGHTNING) | ANY_BOOST_TRIGGERS |
+    if ((Player->SlipFlag & EXPLODE) == EXPLODE) {
+        Player->Weapon &= ALL_TRIGGERS & ~((HIT_TRIGGERS ^ HIT_LIGHTNING) | ANY_BOOST_TRIGGERS |
                                              RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
-    // hit by star or red shell
-    if ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE) {
-        player->weapon &= ALL_TRIGGERS & ~((HIT_TRIGGERS ^ HIT_LIGHTNING) | ANY_BOOST_TRIGGERS |
+    // hit by Star or red shell
+    if ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE) {
+        Player->Weapon &= ALL_TRIGGERS & ~((HIT_TRIGGERS ^ HIT_LIGHTNING) | ANY_BOOST_TRIGGERS |
                                              RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // boost asphalt
-    if ((player->slip_flag & DASH_JUMP) == DASH_JUMP) {
-        player->weapon &=
+    if ((Player->SlipFlag & DASH_JUMP) == DASH_JUMP) {
+        Player->Weapon &=
             ALL_TRIGGERS & ~(HIT_TRIGGERS | ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // boost ramp
-    if ((player->slip_flag & DASH_MIDJUMP) == DASH_MIDJUMP) {
-        player->weapon &=
+    if ((Player->SlipFlag & DASH_MIDJUMP) == DASH_MIDJUMP) {
+        Player->Weapon &=
             ALL_TRIGGERS & ~(HIT_TRIGGERS | ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // Terrain tumble
-    if ((player->slip_flag & ROLLOVER_FALL) == ROLLOVER_FALL) {
-        player->weapon &=
+    if ((Player->SlipFlag & ROLLOVER_FALL) == ROLLOVER_FALL) {
+        Player->Weapon &=
             ALL_TRIGGERS & ~(HIT_TRIGGERS | ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
-    // star
-    if ((player->slip_flag & STAR) == STAR) {
-        player->weapon &=
+    // Star
+    if ((Player->SlipFlag & STAR) == STAR) {
+        Player->Weapon &=
             ALL_TRIGGERS & ~(HIT_TRIGGERS | USE_MUSHROOM | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
     // boo
-    if ((player->slip_flag & TERESA) == TERESA) {
-        player->weapon &= ALL_TRIGGERS & ~(HIT_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
+    if ((Player->SlipFlag & TERESA) == TERESA) {
+        Player->Weapon &= ALL_TRIGGERS & ~(HIT_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
-    // early start spinout
-    if ((player->slip_flag & RAPID_ACC) == RAPID_ACC) {
-        player->weapon &= ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | HIT_CRITTER | STATE_TRANSITION_TRIGGERS);
+    // early Start spinout
+    if ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC) {
+        Player->Weapon &= ALL_TRIGGERS & ~(ANY_BOOST_TRIGGERS | HIT_CRITTER | STATE_TRANSITION_TRIGGERS);
     }
     // CPU_FAST_EFFECTS
-    if ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN) {
-        player->weapon &=
+    if ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN) {
+        Player->Weapon &=
             ALL_TRIGGERS & ~(HIT_TRIGGERS | ANY_BOOST_TRIGGERS | RACING_SPINOUT_TRIGGERS | STATE_TRANSITION_TRIGGERS);
     }
 }
 
-void WeaponStatus(Player* player, s8 playerId, s8 screenId) {
-    if (player->weapon != 0) {
-        check_weapon(player, playerId, screenId);
+void WeaponStatus(Player* Player, s8 PlayerId, s8 screenId) {
+    if (Player->Weapon != 0) {
+        CheckWeapon(Player, PlayerId, screenId);
     }
-    if (player->weapon != 0) {
-        set_weapon(player, playerId, screenId);
+    if (Player->Weapon != 0) {
+        SetWeapon(Player, PlayerId, screenId);
     }
-    if ((player->handling_flag & TROPHYJUMP_START) != 0) { // can never be true
-        set_result_jump(player, playerId);
+    if ((Player->HandlingFlag & TROPHYJUMP_START) != 0) { // can never be true
+        SetResultJump(Player, PlayerId);
     }
 }
 
-UNUSED void set_hitptr(Player* player_one, Player* player_two) {
+UNUSED void SetHitptr(Player* player_one, Player* player_two) {
     s32 var_v1;
 
     // clang-format off
     /*
     if's are being done bracket-less on purpose,
-    Technically only the `player_one == gPlayerEight` NEEDS to be
+    Technically only the `player_one == PlayerEight` NEEDS to be
     bracket-less that looks weird
     */
-    if (player_one == gPlayerOne) {   var_v1 = 0;
+    if (player_one == PlayerOne) {   var_v1 = 0;
 }
-    if (player_one == gPlayerTwo) {   var_v1 = 1;
+    if (player_one == PlayerTwo) {   var_v1 = 1;
 }
-    if (player_one == gPlayerThree) { var_v1 = 2;
+    if (player_one == PlayerThree) { var_v1 = 2;
 }
-    if (player_one == gPlayerFour) {  var_v1 = 3;
+    if (player_one == PlayerFour) {  var_v1 = 3;
 }
-    if (player_one == gPlayerFive) {  var_v1 = 4;
+    if (player_one == PlayerFive) {  var_v1 = 4;
 }
-    if (player_one == gPlayerSix) {   var_v1 = 5;
+    if (player_one == PlayerSix) {   var_v1 = 5;
 }
-    if (player_one == gPlayerSeven) { var_v1 = 6;
+    if (player_one == PlayerSeven) { var_v1 = 6;
 }
-    if (player_one == gPlayerEight) { var_v1 = 7;
+    if (player_one == PlayerEight) { var_v1 = 7;
 }
-    hitPtr[var_v1] = player_two;
-    if (player_two == gPlayerOne) {   var_v1 = 0;
+    HitPtr[var_v1] = player_two;
+    if (player_two == PlayerOne) {   var_v1 = 0;
 }
-    if (player_two == gPlayerTwo) {   var_v1 = 1;
+    if (player_two == PlayerTwo) {   var_v1 = 1;
 }
-    if (player_two == gPlayerThree) { var_v1 = 2;
+    if (player_two == PlayerThree) { var_v1 = 2;
 }
-    if (player_two == gPlayerFour) {  var_v1 = 3;
+    if (player_two == PlayerFour) {  var_v1 = 3;
 }
-    if (player_two == gPlayerFive) {  var_v1 = 4;
+    if (player_two == PlayerFive) {  var_v1 = 4;
 }
-    if (player_two == gPlayerSix) {   var_v1 = 5;
+    if (player_two == PlayerSix) {   var_v1 = 5;
 }
-    if (player_two == gPlayerSeven) { var_v1 = 6;
+    if (player_two == PlayerSeven) { var_v1 = 6;
 }
-    if (player_two == gPlayerEight) { var_v1 = 7;
+    if (player_two == PlayerEight) { var_v1 = 7;
 }
-    hitPtr[var_v1] = player_one;
+    HitPtr[var_v1] = player_one;
     // clang-format on
 }
 
-void check_impact(Player* player, s8 playerIndex, UNUSED s32 arg2) {
+void CheckImpact(Player* Player, s8 playerIndex, UNUSED s32 Arg2) {
     f32 temp_f0;
     f32 temp_f2;
     f32 temp_f14;
     s16 temp;
     s16 temp2;
 
-    if ((player->hit_flag & CRITTER_TOUCH) == CRITTER_TOUCH) {
+    if ((Player->HitFlag & CRITTER_TOUCH) == CRITTER_TOUCH) {
         temp_f0 = D_8018CE10[playerIndex].unk_04[0];
         temp_f2 = 0;
         temp_f14 = D_8018CE10[playerIndex].unk_04[2];
         if (sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2) + (temp_f14 * temp_f14)) >= 6.5) {
-            player->force /= 4;
-            player->accelcount /= 4;
-            if (!(player->slip_flag & SPIN_L) && !(player->slip_flag & SPIN_R)) {
-                SetSpin(player, playerIndex);
+            Player->Force /= 4;
+            Player->Accelcount /= 4;
+            if (!(Player->SlipFlag & SPIN_L) && !(Player->SlipFlag & SPIN_R)) {
+                SetSpin(Player, playerIndex);
             }
         }
     } else {
-        temp_f0 = old_velocity[playerIndex][0] - player->velocity[0];
-        temp_f2 = old_velocity[playerIndex][1] - player->velocity[1];
-        temp_f14 = old_velocity[playerIndex][2] - player->velocity[2];
+        temp_f0 = OldVelocity[playerIndex][0] - Player->Velocity[0];
+        temp_f2 = OldVelocity[playerIndex][1] - Player->Velocity[1];
+        temp_f14 = OldVelocity[playerIndex][2] - Player->Velocity[2];
         if (sqrtf((temp_f0 * temp_f0) + (temp_f2 * temp_f2) + (temp_f14 * temp_f14)) >= 4.2) {
-            player->force /= 4;
-            player->accelcount /= 4;
-            if (!(player->slip_flag & SPIN_L) && !(player->slip_flag & SPIN_R)) {
-                SetSpin(player, playerIndex);
+            Player->Force /= 4;
+            Player->Accelcount /= 4;
+            if (!(Player->SlipFlag & SPIN_L) && !(Player->SlipFlag & SPIN_R)) {
+                SetSpin(Player, playerIndex);
             }
         }
-        temp = (-(s16) CalcDirection(player->position, &player->old_position[0]));
-        temp2 = (player->direction[1] - player->slipang);
+        temp = (-(s16) CalcDirection(Player->Position, &Player->OldPosition[0]));
+        temp2 = (Player->Direction[1] - Player->Slipang);
         temp = temp - temp2;
-        player->hit_sterr = temp / DEGREES(1);
+        Player->HitSterr = temp / DEGREES(1);
     }
 }
 
-void check_impact_wall(Player* player, f32* arg1, f32* arg2, UNUSED s8 arg3, UNUSED s8 arg4, UNUSED Vec3f arg5) {
+void CheckImpactWall(Player* Player, f32* arg1, f32* Arg2, UNUSED s8 Arg3, UNUSED s8 arg4, UNUSED Vec3f arg5) {
     Mat3 sp64;
     Vec3f sp58;
     Vec3f sp4C;
@@ -1621,15 +1621,15 @@ void check_impact_wall(Player* player, f32* arg1, f32* arg2, UNUSED s8 arg3, UNU
     UNUSED s32 pad;
     s16 sp30[10] = { 0, DEGREES(1), DEGREES(2), DEGREES(3), DEGREES(4), DEGREES(5), DEGREES(6), DEGREES(7), DEGREES(8), DEGREES(9) };
 
-    if (((u16) player->wallhitcount) <= 0) {
+    if (((u16) Player->Wallhitcount) <= 0) {
         return;
     }
 
-    if (((u16) player->wallhitcount) > 2) {
+    if (((u16) Player->Wallhitcount) > 2) {
         return;
     }
 
-    if (!(player->hit_flag & 0x20)) {
+    if (!(Player->HitFlag & 0x20)) {
         return;
     }
 
@@ -1637,18 +1637,18 @@ void check_impact_wall(Player* player, f32* arg1, f32* arg2, UNUSED s8 arg3, UNU
 
     sp58[0] = *arg1;
     sp58[1] = 0;
-    sp58[2] = *arg2;
+    sp58[2] = *Arg2;
 
     MultipleMatrixByVector(sp58, sp64);
 
-    sp4C[0] = player->old_position[0];
+    sp4C[0] = Player->OldPosition[0];
     sp4C[1] = 0;
-    sp4C[2] = player->old_position[2];
+    sp4C[2] = Player->OldPosition[2];
 
     MultipleMatrixByVector(sp4C, sp64);
 
     var_v0 = -(s16) CalcDirection(sp58, sp4C);
-    t0 = player->direction[1];
+    t0 = Player->Direction[1];
     var_v0 = 0x10000 + (t0 - var_v0);
     var_v0 /= DEGREES(1);
 
@@ -1656,7 +1656,7 @@ void check_impact_wall(Player* player, f32* arg1, f32* arg2, UNUSED s8 arg3, UNU
         return;
     }
 
-    var_v0 = (player->nowsterr >> 16) / 6;
+    var_v0 = (Player->Nowsterr >> 16) / 6;
 
     if (var_v0 < 0) {
         var_v0 *= -1;
@@ -1666,79 +1666,79 @@ void check_impact_wall(Player* player, f32* arg1, f32* arg2, UNUSED s8 arg3, UNU
         var_v0 = 8;
     }
 
-    if ((player->nowsterr >> 16) < 0) {
-        player->direction[1] -= sp30[var_v0];
+    if ((Player->Nowsterr >> 16) < 0) {
+        Player->Direction[1] -= sp30[var_v0];
     } else {
-        player->direction[1] += sp30[var_v0];
+        Player->Direction[1] += sp30[var_v0];
     }
 }
 
-void check_impactsterr(Player* player) {
+void CheckImpactsterr(Player* Player) {
     s32 sp2C[7] = { 47 << 16, 48 << 16, 49 << 16, 50 << 16, 50 << 16, 50 << 16, 50 << 16 };
     s32 spC[8] = { 40 << 16, 44 << 16, 48 << 16, 50 << 16, 50 << 16, 50 << 16, 50 << 16, 50 << 16 };
     s16 temp_t5;
 
-    if (player->hit_sterr >= 0) {
-        if ((player->hit_sterr >= 5) && (player->hit_sterr < 30)) {
-            player->nowsterr = sp2C[player->hit_sterr / 6];
+    if (Player->HitSterr >= 0) {
+        if ((Player->HitSterr >= 5) && (Player->HitSterr < 30)) {
+            Player->Nowsterr = sp2C[Player->HitSterr / 6];
         }
-        if ((player->hit_sterr >= 30) && (player->hit_sterr < 80)) {
-            player->nowsterr = spC[(s32) (player->hit_sterr - 30) / 12];
+        if ((Player->HitSterr >= 30) && (Player->HitSterr < 80)) {
+            Player->Nowsterr = spC[(s32) (Player->HitSterr - 30) / 12];
         }
-        if (((player->hit_sterr < 80) || (player->hit_sterr > 90)) && (player->hit_sterr > 90) &&
-            (player->hit_sterr <= 160)) {
-            player->nowsterr = spC[1];
+        if (((Player->HitSterr < 80) || (Player->HitSterr > 90)) && (Player->HitSterr > 90) &&
+            (Player->HitSterr <= 160)) {
+            Player->Nowsterr = spC[1];
         }
     } else {
-        temp_t5 = -player->hit_sterr;
-        if ((player->hit_sterr < -4) && (player->hit_sterr >= -30)) {
-            player->nowsterr = sp2C[temp_t5 / 6] * -1;
+        temp_t5 = -Player->HitSterr;
+        if ((Player->HitSterr < -4) && (Player->HitSterr >= -30)) {
+            Player->Nowsterr = sp2C[temp_t5 / 6] * -1;
         }
-        if ((player->hit_sterr < -30) && (player->hit_sterr >= -80)) {
-            player->nowsterr = spC[(s32) (temp_t5 - 30) / 12] * -1;
+        if ((Player->HitSterr < -30) && (Player->HitSterr >= -80)) {
+            Player->Nowsterr = spC[(s32) (temp_t5 - 30) / 12] * -1;
         }
-        if (((player->hit_sterr >= -80) || (player->hit_sterr < -90)) && (player->hit_sterr < -90) &&
-            (player->hit_sterr >= -160)) {
-            player->nowsterr = spC[1] * -1;
+        if (((Player->HitSterr >= -80) || (Player->HitSterr < -90)) && (Player->HitSterr < -90) &&
+            (Player->HitSterr >= -160)) {
+            Player->Nowsterr = spC[1] * -1;
         }
     }
 }
 
-void check_slipstream(Player* player, s8 playerIndex) {
+void CheckSlipstream(Player* player, s8 playerIndex) {
     UNUSED s32 pad[3];
     UNUSED s32 uselessAssignment;
     s32 i;
     s32 var_a2;
     Player* playerBorrow;
-    Player* players = gPlayerOne;
+    Player* players = PlayerOne;
 
     var_a2 = 0;
 
-    if (((player->speed / 18.0f) * 216.0f) < 50.0f) {
-        player->slipstream_timer = 0;
-        player->slip_flag &= ~SLIP_STREAM;
+    if (((player->Speed / 18.0f) * 216.0f) < 50.0f) {
+        player->SlipstreamTimer = 0;
+        player->SlipFlag &= ~SLIP_STREAM;
         return;
     }
-    if ((player->slip_flag & SLIP_STREAM) == SLIP_STREAM) {
-        player->slipstream_timer -= 1;
-        if (player->slipstream_timer <= 0) {
-            player->slip_flag &= ~SLIP_STREAM;
+    if ((player->SlipFlag & SLIP_STREAM) == SLIP_STREAM) {
+        player->SlipstreamTimer -= 1;
+        if (player->SlipstreamTimer <= 0) {
+            player->SlipFlag &= ~SLIP_STREAM;
         }
     } else {
         for (i = 0; i < NUM_PLAYERS; i++) {
             playerBorrow = &players[i];
-            if (((player != playerBorrow) && ((playerBorrow->flag & IS_GHOST) == 0) &&
-                 (playerBorrow->flag & EXISTS)) &&
-                ((var_a2 = slipstream_kart(player, playerBorrow->position[0], playerBorrow->position[1], playerBorrow->position[2]),
+            if (((player != playerBorrow) && ((playerBorrow->Flag & IS_GHOST) == 0) &&
+                 (playerBorrow->Flag & EXISTS)) &&
+                ((var_a2 = SlipstreamKart(player, playerBorrow->Position[0], playerBorrow->Position[1], playerBorrow->Position[2]),
                   var_a2 == 1))) {
-                player->slipstream_timer += 1;
-                if (player->slipstream_timer >= 0x3D) {
-                    player->slip_flag |= SLIP_STREAM;
-                    if ((player->flag & IS_GHOST) != IS_GHOST) {
-                        uselessAssignment = player->flag & IS_GHOST;
-                        NAPlyVoiceStart(playerIndex, (player->kart * 0x10) + 0x29008001);
+                player->SlipstreamTimer += 1;
+                if (player->SlipstreamTimer >= 0x3D) {
+                    player->SlipFlag |= SLIP_STREAM;
+                    if ((player->Flag & IS_GHOST) != IS_GHOST) {
+                        uselessAssignment = player->Flag & IS_GHOST;
+                        NAPlyVoiceStart(playerIndex, (player->Kart * 0x10) + 0x29008001);
                     }
-                    if ((player->flag & IS_GHOST) != IS_GHOST) {
+                    if ((player->Flag & IS_GHOST) != IS_GHOST) {
                         uselessAssignment = var_a2;
                         NAPlyTrgStart(playerIndex, 0x19008011);
                     }
@@ -1748,102 +1748,102 @@ void check_slipstream(Player* player, s8 playerIndex) {
         }
 
         if (var_a2 == 0) {
-            player->slipstream_timer = 0;
+            player->SlipstreamTimer = 0;
         }
     }
 }
 
-void drift_counter(Player* player) {
-    if ((player->slip_flag & DRIFT) == DRIFT) {
-        player->drift_count += 1;
-        if (player->drift_count > 100) {
-            player->drift_count = 100;
+void DriftCounter(Player* Player) {
+    if ((Player->SlipFlag & DRIFT) == DRIFT) {
+        Player->DriftCount += 1;
+        if (Player->DriftCount > 100) {
+            Player->DriftCount = 100;
         }
     } else {
-        player->drift_count -= 1;
-        if (player->drift_count < 0) {
-            player->drift_count = 0;
+        Player->DriftCount -= 1;
+        if (Player->DriftCount < 0) {
+            Player->DriftCount = 0;
         }
     }
 }
 
-void LakituCheck(Player* player, s8 playerId) {
-    switch (g_courseID) { /* irregular */
+void LakituCheck(Player* Player, s8 PlayerId) {
+    switch (CourseID) { /* irregular */
         case COURSE_YOSHI_VALLEY:
-            if ((player->bump.distance_zx >= 600.0f) && (g_offroadFlagPlayer1[playerId] == 0)) {
-                g_offroadFlagPlayer1[playerId] = 1;
-                g_playerPathPointCopy[playerId] = gNearestPathPointByPlayerId[playerId];
-                jugemu_line[playerId] = CurrentPathID[playerId];
-            } else if (g_offroadFlagPlayer1[playerId] == 0) {
-                g_playerPathPointCopy[playerId] = gNearestPathPointByPlayerId[playerId];
-                jugemu_line[playerId] = CurrentPathID[playerId];
-            } else if (!(player->slip_flag & N_JUMP)) {
-                if (OoBCheck(player->bump.last_zx) == 0) {
-                    g_offroadFlagPlayer1[playerId] = 0;
+            if ((Player->Bump.DistanceZX >= 600.0f) && (OffroadFlagPlayer1[PlayerId] == 0)) {
+                OffroadFlagPlayer1[PlayerId] = 1;
+                PlayerPathPointCopy[PlayerId] = NearestPathPointByPlayerId[PlayerId];
+                JugemuLine[PlayerId] = CurrentPathID[PlayerId];
+            } else if (OffroadFlagPlayer1[PlayerId] == 0) {
+                PlayerPathPointCopy[PlayerId] = NearestPathPointByPlayerId[PlayerId];
+                JugemuLine[PlayerId] = CurrentPathID[PlayerId];
+            } else if (!(Player->SlipFlag & N_JUMP)) {
+                if (OoBCheck(Player->Bump.LastZX) == 0) {
+                    OffroadFlagPlayer1[PlayerId] = 0;
                 }
             }
             break;
         case COURSE_FRAPPE_SNOWLAND:
-            if ((player->bump_status == SNOW_OFFROAD) && (g_offroadFlagPlayer1[playerId] == 0)) {
-                g_offroadFlagPlayer1[playerId] = 1;
-                g_playerPathPointCopy[playerId] = gNearestPathPointByPlayerId[playerId];
-                jugemu_line[playerId] = CurrentPathID[playerId];
-            } else if (player->bump_status != SNOW_OFFROAD) {
-                g_offroadFlagPlayer1[playerId] = 0;
-                g_playerPathPointCopy[playerId] = gNearestPathPointByPlayerId[playerId];
-                jugemu_line[playerId] = CurrentPathID[playerId];
+            if ((Player->BumpStatus == SNOW_OFFROAD) && (OffroadFlagPlayer1[PlayerId] == 0)) {
+                OffroadFlagPlayer1[PlayerId] = 1;
+                PlayerPathPointCopy[PlayerId] = NearestPathPointByPlayerId[PlayerId];
+                JugemuLine[PlayerId] = CurrentPathID[PlayerId];
+            } else if (Player->BumpStatus != SNOW_OFFROAD) {
+                OffroadFlagPlayer1[PlayerId] = 0;
+                PlayerPathPointCopy[PlayerId] = NearestPathPointByPlayerId[PlayerId];
+                JugemuLine[PlayerId] = CurrentPathID[PlayerId];
             }
             break;
         case COURSE_ROYAL_RACEWAY:
-            if (((player->slip_flag & DASH_JUMP) != 0) && (g_offroadFlagPlayer1[playerId] == 0)) {
-                g_offroadFlagPlayer1[playerId] = 1;
-                g_playerPathPointCopy[playerId] = gNearestPathPointByPlayerId[playerId];
-                jugemu_line[playerId] = CurrentPathID[playerId];
-            } else if (((player->slip_flag & DASH_JUMP) == 0) && !(player->slip_flag & N_JUMP)) {
-                g_offroadFlagPlayer1[playerId] = 0;
-                g_playerPathPointCopy[playerId] = gNearestPathPointByPlayerId[playerId];
-                jugemu_line[playerId] = CurrentPathID[playerId];
+            if (((Player->SlipFlag & DASH_JUMP) != 0) && (OffroadFlagPlayer1[PlayerId] == 0)) {
+                OffroadFlagPlayer1[PlayerId] = 1;
+                PlayerPathPointCopy[PlayerId] = NearestPathPointByPlayerId[PlayerId];
+                JugemuLine[PlayerId] = CurrentPathID[PlayerId];
+            } else if (((Player->SlipFlag & DASH_JUMP) == 0) && !(Player->SlipFlag & N_JUMP)) {
+                OffroadFlagPlayer1[PlayerId] = 0;
+                PlayerPathPointCopy[PlayerId] = NearestPathPointByPlayerId[PlayerId];
+                JugemuLine[PlayerId] = CurrentPathID[PlayerId];
             }
             break;
         case COURSE_RAINBOW_ROAD:
-            if ((player->bump.distance_zx >= 600.0f) && (g_offroadFlagPlayer1[playerId] == 0)) {
-                g_offroadFlagPlayer1[playerId] = 1;
-                g_playerPathPointCopy[playerId] = gNearestPathPointByPlayerId[playerId];
-                jugemu_line[playerId] = CurrentPathID[playerId];
-            } else if (g_offroadFlagPlayer1[playerId] == 0) {
-                g_playerPathPointCopy[playerId] = gNearestPathPointByPlayerId[playerId];
-                jugemu_line[playerId] = CurrentPathID[playerId];
-            } else if (!((player->slip_flag & N_JUMP) || (player->jugemu_flag & IS_IN_WATER))) {
-                g_offroadFlagPlayer1[playerId] = 0;
+            if ((Player->Bump.DistanceZX >= 600.0f) && (OffroadFlagPlayer1[PlayerId] == 0)) {
+                OffroadFlagPlayer1[PlayerId] = 1;
+                PlayerPathPointCopy[PlayerId] = NearestPathPointByPlayerId[PlayerId];
+                JugemuLine[PlayerId] = CurrentPathID[PlayerId];
+            } else if (OffroadFlagPlayer1[PlayerId] == 0) {
+                PlayerPathPointCopy[PlayerId] = NearestPathPointByPlayerId[PlayerId];
+                JugemuLine[PlayerId] = CurrentPathID[PlayerId];
+            } else if (!((Player->SlipFlag & N_JUMP) || (Player->JugemuFlag & IS_IN_WATER))) {
+                OffroadFlagPlayer1[PlayerId] = 0;
             }
             break;
         default:
-            g_offroadFlagPlayer1[playerId] = 0;
+            OffroadFlagPlayer1[PlayerId] = 0;
             if (1) {}
             break;
     }
 }
 
-void CheckSplash(Player* player, s8 playerIndex) {
-    g_waterlevelPlayer[playerIndex] = CheckWaterLevel(player);
-    if (player->position[1] <= g_waterlevelPlayer[playerIndex]) {
-        player->water_flag |= HALF_SUBMERGED;
+void CheckSplash(Player* Player, s8 playerIndex) {
+    WaterlevelPlayer[playerIndex] = CheckWaterLevel(Player);
+    if (Player->Position[1] <= WaterlevelPlayer[playerIndex]) {
+        Player->WaterFlag |= HALF_SUBMERGED;
     } else {
-        player->water_flag &= ~HALF_SUBMERGED;
+        Player->WaterFlag &= ~HALF_SUBMERGED;
     }
-    if (player->radius < (g_waterlevelPlayer[playerIndex] - player->position[1])) {
-        player->water_flag |= SUBMERGED;
-        player->water_flag &= ~HALF_SUBMERGED;
+    if (Player->Radius < (WaterlevelPlayer[playerIndex] - Player->Position[1])) {
+        Player->WaterFlag |= SUBMERGED;
+        Player->WaterFlag &= ~HALF_SUBMERGED;
     } else {
-        player->water_flag &= ~SUBMERGED;
+        Player->WaterFlag &= ~SUBMERGED;
     }
-    if (player->radius < (g_waterlevelPlayer[playerIndex] - player->position[1])) {
-        if ((player->water_flag & SPLASH_START) != SPLASH_START) {
-            player->water_flag |= SPLASH_DIVE;
-            player->water_flag |= SPLASH_START;
-            if ((g_courseID != COURSE_KOOPA_BEACH) && (g_courseID != COURSE_SKYSCRAPER) &&
-                (g_courseID != COURSE_RAINBOW_ROAD) && ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-                if ((g_courseID == COURSE_BOWSER_CASTLE) || (g_courseID == COURSE_BIG_DONUT)) {
+    if (Player->Radius < (WaterlevelPlayer[playerIndex] - Player->Position[1])) {
+        if ((Player->WaterFlag & SPLASH_START) != SPLASH_START) {
+            Player->WaterFlag |= SPLASH_DIVE;
+            Player->WaterFlag |= SPLASH_START;
+            if ((CourseID != COURSE_KOOPA_BEACH) && (CourseID != COURSE_SKYSCRAPER) &&
+                (CourseID != COURSE_RAINBOW_ROAD) && ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+                if ((CourseID == COURSE_BOWSER_CASTLE) || (CourseID == COURSE_BIG_DONUT)) {
                     NAPlyTrgStart((u8) playerIndex, 0x1900801CU);
                 } else {
                     NAPlyTrgStart((u8) playerIndex, 0x19008008U);
@@ -1851,261 +1851,261 @@ void CheckSplash(Player* player, s8 playerIndex) {
             }
         }
     }
-    if ((g_courseID == COURSE_KOOPA_BEACH) || (g_courseID == COURSE_SKYSCRAPER) ||
-        (g_courseID == COURSE_RAINBOW_ROAD)) {
-        player->water_flag &= ~(SPLASH_DIVE | SPLASH_START);
+    if ((CourseID == COURSE_KOOPA_BEACH) || (CourseID == COURSE_SKYSCRAPER) ||
+        (CourseID == COURSE_RAINBOW_ROAD)) {
+        Player->WaterFlag &= ~(SPLASH_DIVE | SPLASH_START);
     }
-    if ((player->radius < (g_waterlevelPlayer[playerIndex] - player->position[1])) &&
-        (player->bump.distance_zx >= 600.0f)) {
-        player->jugemu_flag |= IS_IN_WATER;
+    if ((Player->Radius < (WaterlevelPlayer[playerIndex] - Player->Position[1])) &&
+        (Player->Bump.DistanceZX >= 600.0f)) {
+        Player->JugemuFlag |= IS_IN_WATER;
     }
-    if (player->bump.distance_zx >= 600.0f) {
-        player->jugemu_flag |= LAKITU_CAMERA;
-    } else if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        player->jugemu_flag &= ~LAKITU_CAMERA;
+    if (Player->Bump.DistanceZX >= 600.0f) {
+        Player->JugemuFlag |= LAKITU_CAMERA;
+    } else if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        Player->JugemuFlag &= ~LAKITU_CAMERA;
     }
-    if ((player->flag & IS_CPU_PLAYER) &&
-        ((OoBCheck(player->bump.last_zx) != 0) || (player->jugemu_flag & IS_IN_WATER))) {
-        if (!(player->jugemu_flag & ON_LAKITU_ROD) && !(player->jugemu_flag & LAKITU_SCENE) &&
-            !(player->slip_flag & CENTER_LINE)) {
-            ExplorerSetJugemu(player);
-            ExplorerCallJugemu(player);
+    if ((Player->Flag & IS_CPU_PLAYER) &&
+        ((OoBCheck(Player->Bump.LastZX) != 0) || (Player->JugemuFlag & IS_IN_WATER))) {
+        if (!(Player->JugemuFlag & ON_LAKITU_ROD) && !(Player->JugemuFlag & LAKITU_SCENE) &&
+            !(Player->SlipFlag & CENTER_LINE)) {
+            ExplorerSetJugemu(Player);
+            ExplorerCallJugemu(Player);
         }
     }
-    if ((player->flag & IS_CPU_PLAYER) && (player->bump_status == OUT_OF_BOUNDS) && !(player->slip_flag & N_JUMP)) {
-        ExplorerSetJugemu(player);
-        ExplorerCallJugemu(player);
+    if ((Player->Flag & IS_CPU_PLAYER) && (Player->BumpStatus == OUT_OF_BOUNDS) && !(Player->SlipFlag & N_JUMP)) {
+        ExplorerSetJugemu(Player);
+        ExplorerCallJugemu(Player);
     }
-    LakituCheck(player, playerIndex);
+    LakituCheck(Player, playerIndex);
 }
 
-void CheckKartHit(Player* player, s8 playerIndex, s8 arg2) {
-    if ((player->hit_flag & 1) != 1) {
-        if ((player->slip_flag & CARHIT) == CARHIT) {
-            if ((player->slip_flag & TURBO) != TURBO) {
-                check_impact(player, playerIndex, arg2);
+void CheckKartHit(Player* Player, s8 playerIndex, s8 Arg2) {
+    if ((Player->HitFlag & 1) != 1) {
+        if ((Player->SlipFlag & CARHIT) == CARHIT) {
+            if ((Player->SlipFlag & TURBO) != TURBO) {
+                CheckImpact(Player, playerIndex, Arg2);
             }
-            player->handling_flag &= ~REVERSE_GEAR;
-            player->hit_flag |= 1;
-            player->hit_flag |= 8;
-            if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-                ShakeHitCamera(player, 2.8f);
+            Player->HandlingFlag &= ~REVERSE_GEAR;
+            Player->HitFlag |= 1;
+            Player->HitFlag |= 8;
+            if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+                ShakeHitCamera(Player, 2.8f);
             }
-            if ((player->hit_flag & CRITTER_TOUCH) == CRITTER_TOUCH) {
-                if ((player->hit_flag & CRITTER_TOUCH_GATE) != CRITTER_TOUCH_GATE) {
-                    player->hit_flag |= CRITTER_TOUCH_GATE;
-                    player->hit_flag |= INSTANT_SPINOUT;
-                    if (player->slip_flag & TURBO) {
-                        reset_turbo(player);
+            if ((Player->HitFlag & CRITTER_TOUCH) == CRITTER_TOUCH) {
+                if ((Player->HitFlag & CRITTER_TOUCH_GATE) != CRITTER_TOUCH_GATE) {
+                    Player->HitFlag |= CRITTER_TOUCH_GATE;
+                    Player->HitFlag |= INSTANT_SPINOUT;
+                    if (Player->SlipFlag & TURBO) {
+                        ResetTurbo(Player);
                     }
                 }
             }
         }
     }
-    if ((player->slip_flag & CARHIT) == CARHIT) {
-        player->slip_flag &= ~CARHIT;
-        player->hitcount = 1;
-        player->handling_flag &= ~REVERSE_GEAR;
+    if ((Player->SlipFlag & CARHIT) == CARHIT) {
+        Player->SlipFlag &= ~CARHIT;
+        Player->Hitcount = 1;
+        Player->HandlingFlag &= ~REVERSE_GEAR;
         return;
     }
-    player->hit_flag &= ~0x0001;
-    player->slip_flag &= ~CARHIT;
-    if (player->hitcount > 0) {
-        player->hitcount += 1;
+    Player->HitFlag &= ~0x0001;
+    Player->SlipFlag &= ~CARHIT;
+    if (Player->Hitcount > 0) {
+        Player->Hitcount += 1;
     }
-    if (player->hitcount >= 0xA) {
-        player->hitcount = 0;
+    if (Player->Hitcount >= 0xA) {
+        Player->Hitcount = 0;
     }
 }
 
-void CheckWall(Player* player, s8 playerId, Vec3f velocity) {
+void CheckWall(Player* Player, s8 PlayerId, Vec3f Velocity) {
     f32 temp_f0;
     f32 var_f14;
     f32 xdist;
     f32 ydist;
     f32 zdist;
 
-    temp_f0 = player->position[1] - player->ground;
+    temp_f0 = Player->Position[1] - Player->Ground;
 
-    if (((((player->slip_flag & ROLLOVER_FALL) != ROLLOVER_FALL) &&
-          ((player->slip_flag & DASH_JUMP) == DASH_JUMP)) ||
-         ((((temp_f0 >= 20.0f) || (temp_f0 < (-1.0f))) && ((player->slip_flag & ROLLOVER_FALL) == 0)) &&
-          (player->slip_flag & N_JUMP)) ||
-         ((player->bump.flag_zx == 0) && ((player->slip_flag & ROLLOVER_FALL) == 0))) &&
-        (((player->jugemu_flag & ON_LAKITU_ROD) == 0) || (!(player->jugemu_flag & LAKITU_SCENE)))) {
-        SetRolloverFall(player, playerId);
+    if (((((Player->SlipFlag & ROLLOVER_FALL) != ROLLOVER_FALL) &&
+          ((Player->SlipFlag & DASH_JUMP) == DASH_JUMP)) ||
+         ((((temp_f0 >= 20.0f) || (temp_f0 < (-1.0f))) && ((Player->SlipFlag & ROLLOVER_FALL) == 0)) &&
+          (Player->SlipFlag & N_JUMP)) ||
+         ((Player->Bump.FlagZX == 0) && ((Player->SlipFlag & ROLLOVER_FALL) == 0))) &&
+        (((Player->JugemuFlag & ON_LAKITU_ROD) == 0) || (!(Player->JugemuFlag & LAKITU_SCENE)))) {
+        SetRolloverFall(Player, PlayerId);
     }
-    if ((player->hit_flag & 0x20) != 0x20) {
-        if ((player->bump.distance_xy < (-1.0f)) || (player->bump.distance_yz < (-1.0f))) {
-            player->wallhitcount = 1;
+    if ((Player->HitFlag & 0x20) != 0x20) {
+        if ((Player->Bump.DistanceXY < (-1.0f)) || (Player->Bump.DistanceYZ < (-1.0f))) {
+            Player->Wallhitcount = 1;
         }
-        player->hit_flag |= 0x20;
+        Player->HitFlag |= 0x20;
     }
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) && (((player->speed / 18.0f) * 216.0f) > 30.0f)) {
-        ShakeHitCamera(player, 3.0f);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) && (((Player->Speed / 18.0f) * 216.0f) > 30.0f)) {
+        ShakeHitCamera(Player, 3.0f);
     }
-    player->hit_flag |= 0x10;
-    player->wallhitcount++;
-    if (player->wallhitcount >= 0xA) {
-        player->wallhitcount = 0;
+    Player->HitFlag |= 0x10;
+    Player->Wallhitcount++;
+    if (Player->Wallhitcount >= 0xA) {
+        Player->Wallhitcount = 0;
     }
-    if ((player->kartpitch >= 0) && (((player->speed / 18.0f) * 216.0f) > 5.0f)) {
-        AccelOff(player, 18.0f);
+    if ((Player->Kartpitch >= 0) && (((Player->Speed / 18.0f) * 216.0f) > 5.0f)) {
+        AccelOff(Player, 18.0f);
     }
-    if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-        xdist = old_velocity[playerId][0] - velocity[0];
-        var_f14 = old_velocity[playerId][1] - velocity[1];
+    if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+        xdist = OldVelocity[PlayerId][0] - Velocity[0];
+        var_f14 = OldVelocity[PlayerId][1] - Velocity[1];
         ydist = var_f14; // okay
-        zdist = old_velocity[playerId][2] - velocity[2];
+        zdist = OldVelocity[PlayerId][2] - Velocity[2];
         var_f14 = sqrtf((xdist * xdist) + (ydist * ydist) + (zdist * zdist)) / 3;
         if (var_f14 >= 1.0) {
             var_f14 = 1.0f;
         }
-        if ((var_f14 <= 0.6) && (((player->speed / 18.0f) * 216.0f) >= 40.0f) &&
-            (!(player->flag & IS_GHOST))) {
-            Na_PlyCrush_Start(playerId, 0.6F);
-        } else if (!(player->flag & IS_GHOST)) {
-            if ((var_f14 <= 0.6) && (((player->speed / 18.0f) * 216.0f) < 40.0f) &&
-                (((player->speed / 18.0f) * 216.0f) >= 10.0f)) {
-                Na_PlyCrush_Start(playerId, 0.3F);
+        if ((var_f14 <= 0.6) && (((Player->Speed / 18.0f) * 216.0f) >= 40.0f) &&
+            (!(Player->Flag & IS_GHOST))) {
+            NaPlyCrushStart(PlayerId, 0.6F);
+        } else if (!(Player->Flag & IS_GHOST)) {
+            if ((var_f14 <= 0.6) && (((Player->Speed / 18.0f) * 216.0f) < 40.0f) &&
+                (((Player->Speed / 18.0f) * 216.0f) >= 10.0f)) {
+                NaPlyCrushStart(PlayerId, 0.3F);
             } else {
-                Na_PlyCrush_Start(playerId, var_f14);
+                NaPlyCrushStart(PlayerId, var_f14);
             }
         }
     }
-    if (player->slip_flag & TURBO) {
-        reset_turbo(player);
-        player->force /= 2;
+    if (Player->SlipFlag & TURBO) {
+        ResetTurbo(Player);
+        Player->Force /= 2;
     }
 }
 
-void SetStrategy(Player* player, s8 playerIndex, s8 arg2) {
-    if (((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
-        ((player->jugemu_flag & LAKITU_SCENE) == LAKITU_SCENE)) {
-        ExplorerHangJugemu(player, playerIndex, arg2);
+void SetStrategy(Player* Player, s8 playerIndex, s8 Arg2) {
+    if (((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
+        ((Player->JugemuFlag & LAKITU_SCENE) == LAKITU_SCENE)) {
+        ExplorerHangJugemu(Player, playerIndex, Arg2);
     }
-    if ((player->slip_flag & WHEELSPIN) == WHEELSPIN) {
-        wheelspin(player, playerIndex);
+    if ((Player->SlipFlag & WHEELSPIN) == WHEELSPIN) {
+        Wheelspin(Player, playerIndex);
     }
-    if (player->handling_flag & SPINOUT_SWERVE) {
-        pro_wheelspin(player, playerIndex);
+    if (Player->HandlingFlag & SPINOUT_SWERVE) {
+        ProWheelspin(Player, playerIndex);
     }
-    if ((player->slip_flag & TURBO) == TURBO) {
-        now_turbo(player);
+    if ((Player->SlipFlag & TURBO) == TURBO) {
+        NowTurbo(Player);
     }
-    if ((player->slip_flag & DASH_JUMP) == DASH_JUMP) {
-        now_dashjump(player);
+    if ((Player->SlipFlag & DASH_JUMP) == DASH_JUMP) {
+        NowDashjump(Player);
     }
-    if ((player->slip_flag & DASH_MIDJUMP) == DASH_MIDJUMP) {
-        now_dash_midjump(player);
+    if ((Player->SlipFlag & DASH_MIDJUMP) == DASH_MIDJUMP) {
+        NowDashMidjump(Player);
     }
-    if ((s32) (player->slip_flag & BROKEN) == BROKEN) {
-        broken(player, playerIndex);
+    if ((s32) (Player->SlipFlag & BROKEN) == BROKEN) {
+        Broken(Player, playerIndex);
     }
-    if ((player->slip_flag & THUNDER) == THUNDER) {
-        thunder(player, playerIndex);
+    if ((Player->SlipFlag & THUNDER) == THUNDER) {
+        Thunder(Player, playerIndex);
     }
-    if ((player->slip_flag & ROLLOVER_FALL) == ROLLOVER_FALL) {
-        rollover_fall(player, playerIndex);
+    if ((Player->SlipFlag & ROLLOVER_FALL) == ROLLOVER_FALL) {
+        RolloverFall(Player, playerIndex);
     }
-    if ((player->slip_flag & STAR) == STAR) {
-        star(player, playerIndex);
+    if ((Player->SlipFlag & STAR) == STAR) {
+        Star(Player, playerIndex);
     }
-    if ((player->slip_flag & TERESA) == TERESA) {
-        vs_ghost(player, playerIndex);
+    if ((Player->SlipFlag & TERESA) == TERESA) {
+        VSGhost(Player, playerIndex);
     }
-    if (((player->slip_flag & STOPSTERR) == STOPSTERR) && (player->stopsetrr_count >= 100)) {
-        AccelOff(player, 4.0f);
+    if (((Player->SlipFlag & STOPSTERR) == STOPSTERR) && (Player->StopsetrrCount >= 100)) {
+        AccelOff(Player, 4.0f);
     }
-    if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-        ((player->slip_flag & SPIN_R) == SPIN_R)) {
-        spin(player, playerIndex);
+    if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+        ((Player->SlipFlag & SPIN_R) == SPIN_R)) {
+        Spin(Player, playerIndex);
     }
-    if ((player->slip_flag & ROLLOVER) == ROLLOVER) {
-        rollover(player, playerIndex);
+    if ((Player->SlipFlag & ROLLOVER) == ROLLOVER) {
+        Rollover(Player, playerIndex);
     }
-    if ((player->slip_flag & EXPLODE) == EXPLODE) {
-        bomb(player, playerIndex);
+    if ((Player->SlipFlag & EXPLODE) == EXPLODE) {
+        Bomb(Player, playerIndex);
     }
-    if ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE) {
-        bomb_throw(player, playerIndex);
+    if ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE) {
+        BombThrow(Player, playerIndex);
     }
-    if ((player->slip_flag & RAPID_ACC) == RAPID_ACC) {
-        rapidacc(player, playerIndex);
+    if ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC) {
+        Rapidacc(Player, playerIndex);
     }
-    if ((player->slip_flag & WING) == WING) {
-        wing(player, playerIndex);
+    if ((Player->SlipFlag & WING) == WING) {
+        Wing(Player, playerIndex);
     }
-    if ((player->slip_flag & STORM) == STORM) {
-        storm(player, playerIndex);
-        AccelOff(player, 10.0f);
+    if ((Player->SlipFlag & STORM) == STORM) {
+        Storm(Player, playerIndex);
+        AccelOff(Player, 10.0f);
     }
-    if (g_startingIndicator != RACE_DONE) {
-        if (player->weapon & PRESS_BECOME_BOMB) {
-            change_bomb(player, playerIndex);
+    if (StartingIndicator != RACE_DONE) {
+        if (Player->Weapon & PRESS_BECOME_BOMB) {
+            ChangeBomb(Player, playerIndex);
         }
-        if (player->weapon & PRESS_IS_BOMB) {
-            real_bomb(player, playerIndex);
+        if (Player->Weapon & PRESS_IS_BOMB) {
+            RealBomb(Player, playerIndex);
         }
     }
-    if (player->handling_flag & TROPHYJUMP_END) { // never true
-        result_jump(player, playerIndex);
+    if (Player->HandlingFlag & TROPHYJUMP_END) { // never true
+        ResultJump(Player, playerIndex);
     }
 }
 
-void opening_kart(Player* player, s8 playerIndex) {
+void OpeningKart(Player* Player, s8 playerIndex) {
     Vec3f sp4C;
     f32 temp_f18;
     s16 temp_t1;
     s16 temp;
     s16 temp2;
-    f32 thing0;
+    f32 Thing0;
     UNUSED s32 pad;
 
-    sp4C[0] = grid_x[kartrank[playerIndex]];
+    sp4C[0] = GridX[Kartrank[playerIndex]];
     sp4C[1] = 0;
-    sp4C[2] = grid_z[kartrank[playerIndex]];
+    sp4C[2] = GridZ[Kartrank[playerIndex]];
 
-    temp = -(s16) CalcDirection(player->position, sp4C);
-    temp2 = player->direction[1];
+    temp = -(s16) CalcDirection(Player->Position, sp4C);
+    temp2 = Player->Direction[1];
     temp = (temp - temp2);
 
-    thing0 = 8;
+    Thing0 = 8;
 
-    if (temp > ((s16) (thing0 * DEGREES(1)))) {
-        temp = (thing0 * DEGREES(1));
+    if (temp > ((s16) (Thing0 * DEGREES(1)))) {
+        temp = (Thing0 * DEGREES(1));
     }
-    if (temp < ((s16) (-thing0 * DEGREES(1)))) {
-        temp = (-thing0 * DEGREES(1));
+    if (temp < ((s16) (-Thing0 * DEGREES(1)))) {
+        temp = (-Thing0 * DEGREES(1));
     }
 
-    temp_t1 = (D_80165020[playerIndex] + ((s16) ((temp * 0x35) / (thing0 * DEGREES(1))))) / 2;
-    enemy_stick_angle(player, (s16) temp_t1);
+    temp_t1 = (D_80165020[playerIndex] + ((s16) ((temp * 0x35) / (Thing0 * DEGREES(1))))) / 2;
+    EnemyStickAngle(Player, (s16) temp_t1);
     D_80165020[playerIndex] = (s16) temp_t1;
 
-    temp_f18 = sqrtf((sp4C[0] - player->position[0]) * (sp4C[0] - player->position[0]) +
-                     (sp4C[2] - player->position[2]) * (sp4C[2] - player->position[2]));
+    temp_f18 = sqrtf((sp4C[0] - Player->Position[0]) * (sp4C[0] - Player->Position[0]) +
+                     (sp4C[2] - Player->Position[2]) * (sp4C[2] - Player->Position[2]));
     if (temp_f18 <= 8.0f) {
-        ChaseDir(&player->direction[1], -DEGREES(180), DEGREES(2));
-        if ((player->direction[1] <= (-179 * DEGREES(1))) || (player->direction[1] >= (179 * DEGREES(1)))) {
-            player->flag &= ~IS_GP_OPENING;
+        ChaseDir(&Player->Direction[1], -DEGREES(180), DEGREES(2));
+        if ((Player->Direction[1] <= (-179 * DEGREES(1))) || (Player->Direction[1] >= (179 * DEGREES(1)))) {
+            Player->Flag &= ~IS_GP_OPENING;
         }
-        player->force = 0;
-        player->speed = 0;
-        player->power_cont = 0;
-        player->tcol_count = 0;
-        player->nowsterr = 0;
-        player->velocity[0] = 0;
-        player->velocity[1] = 0;
-        player->velocity[2] = 0;
-        player->slipang = 0;
-        player->sterrangle = 0;
+        Player->Force = 0;
+        Player->Speed = 0;
+        Player->PowerCont = 0;
+        Player->TcolCount = 0;
+        Player->Nowsterr = 0;
+        Player->Velocity[0] = 0;
+        Player->Velocity[1] = 0;
+        Player->Velocity[2] = 0;
+        Player->Slipang = 0;
+        Player->Sterrangle = 0;
     } else {
-        player->force = 1200;
+        Player->Force = 1200;
     }
 }
 
-void RunKart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
+void RunKart(Player* Player, UNUSED Camera* Camera, s8 screenId, s8 PlayerId) {
     Vec3f sp184 = { 0.0, 0.0, 1.0 };
     Vec3f sp178 = { 0.0, 0.0, 0.0 };
     Vec3f sp16C = { 0.0, 0.0, 0.0 };
@@ -2116,9 +2116,9 @@ void RunKart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
     f32 nextX;
     f32 nextY;
     f32 nextZ;
-    f32 posX;
-    f32 posY;
-    f32 posZ;
+    f32 PosX;
+    f32 PosY;
+    f32 PosZ;
     f32 temp2;
     s32 temp_v0_3;
     s32 temp3;
@@ -2128,331 +2128,331 @@ void RunKart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
     f32 gravityY;
     f32 gravityZ;
     f32 surfaceDistance;
-    UNUSED s32 pad2;
+    UNUSED s32 Pad2;
     Vec3f newVelocity;
     Vec3f sp8C;
-    UNUSED s32 pad3[3];
+    UNUSED s32 Pad3[3];
     s32 sp7C = 0;
     UNUSED s32 pad4[6];
 
-    kart_engine_echo(player, playerId);
-    drift_counter(player);
-    if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-        drift_turbo(player, playerId);
+    KartEngineEcho(Player, PlayerId);
+    DriftCounter(Player);
+    if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+        DriftTurbo(Player, PlayerId);
     }
-    WeaponStatus(player, playerId, screenId);
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_GHOST) != IS_GHOST)) {
-        check_slipstream(player, playerId);
+    WeaponStatus(Player, PlayerId, screenId);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+        CheckSlipstream(Player, PlayerId);
     }
-    SetStrategy(player, playerId, screenId);
-    if (((player->slip_flag & STOPSTERR) == STOPSTERR) && (player->stopsetrr_count >= 100)) {
+    SetStrategy(Player, PlayerId, screenId);
+    if (((Player->SlipFlag & STOPSTERR) == STOPSTERR) && (Player->StopsetrrCount >= 100)) {
         sp7C = 2;
     }
-    yoko_g(player, sp160);
-    AddGravityEdit(player);
-    SlipCheck(player, playerId);
-    if (player->handling_flag & REVERSE_GEAR) {
-        player->gravity_xz[0] *= -1.0f;
-        player->gravity_xz[2] *= -1.0f;
+    YokoG(Player, sp160);
+    AddGravityEdit(Player);
+    SlipCheck(Player, PlayerId);
+    if (Player->HandlingFlag & REVERSE_GEAR) {
+        Player->GravityXz[0] *= -1.0f;
+        Player->GravityXz[2] *= -1.0f;
     }
-    if ((player->tire_RL.Status == ASPHALT) && (player->tire_RR.Status == ASPHALT)) {
-        gravityX = (-1 * (player->gravity_xz[0] + sp16C[0])) +
-               ((-player->bump.bump_zx[0] * player->gravity) * 0.925);
-        gravityY = (-player->bump.bump_zx[1] * player->gravity);
-        gravityZ = (-1 * (player->gravity_xz[2] + sp16C[2])) +
-               ((-player->bump.bump_zx[2] * player->gravity) * 0.925);
+    if ((Player->TireRL.Status == ASPHALT) && (Player->TireRR.Status == ASPHALT)) {
+        gravityX = (-1 * (Player->GravityXz[0] + sp16C[0])) +
+               ((-Player->Bump.BumpZX[0] * Player->Gravity) * 0.925);
+        gravityY = (-Player->Bump.BumpZX[1] * Player->Gravity);
+        gravityZ = (-1 * (Player->GravityXz[2] + sp16C[2])) +
+               ((-Player->Bump.BumpZX[2] * Player->Gravity) * 0.925);
     } else {
-        temp3 = (((player->speed / 18.0f) * 216.0f) / 10.0f);
+        temp3 = (((Player->Speed / 18.0f) * 216.0f) / 10.0f);
         if (temp3 >= 10) {
             temp3 = 10;
         }
-        gravityX = -1 * (player->gravity_xz[0] + sp16C[0]) +
-                   ((-player->bump.bump_zx[0] * player->gravity) * sp104[temp3]);
-        gravityY = (-player->bump.bump_zx[1] * player->gravity);
-        gravityZ = -1 * (player->gravity_xz[2] + sp16C[2]) +
-                   ((-player->bump.bump_zx[2] * player->gravity) * sp104[temp3]);
+        gravityX = -1 * (Player->GravityXz[0] + sp16C[0]) +
+                   ((-Player->Bump.BumpZX[0] * Player->Gravity) * sp104[temp3]);
+        gravityY = (-Player->Bump.BumpZX[1] * Player->Gravity);
+        gravityZ = -1 * (Player->GravityXz[2] + sp16C[2]) +
+                   ((-Player->Bump.BumpZX[2] * Player->Gravity) * sp104[temp3]);
     }
-    if (((player->slip_flag & N_JUMP) != N_JUMP) &&
-        ((player->slip_flag & SPIN_TURN) == SPIN_TURN)) {
-        gravityX = 0 * (player->gravity_xz[0] + sp16C[0]);
-        gravityY = -1 * player->gravity / 4;
-        gravityZ = 0 * (player->gravity_xz[2] + sp16C[2]);
+    if (((Player->SlipFlag & N_JUMP) != N_JUMP) &&
+        ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN)) {
+        gravityX = 0 * (Player->GravityXz[0] + sp16C[0]);
+        gravityY = -1 * Player->Gravity / 4;
+        gravityZ = 0 * (Player->GravityXz[2] + sp16C[2]);
     }
-    if ((player->slip_flag & N_JUMP) == N_JUMP) {
-        gravityX = 0 * (player->gravity_xz[0] + sp16C[0]);
-        gravityY = -1 * player->gravity;
-        gravityZ = 0 * (player->gravity_xz[2] + sp16C[2]);
+    if ((Player->SlipFlag & N_JUMP) == N_JUMP) {
+        gravityX = 0 * (Player->GravityXz[0] + sp16C[0]);
+        gravityY = -1 * Player->Gravity;
+        gravityZ = 0 * (Player->GravityXz[2] + sp16C[2]);
     }
-    temp_f2_2 = ((player->old_position[2] - player->position[2]) * cosT(player->direction[1] + player->slipang)) +
-                (-(player->old_position[0] - player->position[0]) * sinT(player->direction[1] + player->slipang));
+    temp_f2_2 = ((Player->OldPosition[2] - Player->Position[2]) * CosT(Player->Direction[1] + Player->Slipang)) +
+                (-(Player->OldPosition[0] - Player->Position[0]) * SinT(Player->Direction[1] + Player->Slipang));
     if (temp_f2_2 > 0.1) {
-        player->handling_flag |= REVERSE_ACCEL;
+        Player->HandlingFlag |= REVERSE_ACCEL;
     } else {
-        player->handling_flag &= ~REVERSE_ACCEL;
+        Player->HandlingFlag &= ~REVERSE_ACCEL;
     }
-    if (((player->force <= 0.0f) &&
-         ((temp_v0_3 = player->slip_flag, (temp_v0_3 & BREAKE) == BREAKE))) &&
+    if (((Player->Force <= 0.0f) &&
+         ((temp_v0_3 = Player->SlipFlag, (temp_v0_3 & BREAKE) == BREAKE))) &&
         ((temp_v0_3 & SPIN_TURN) != SPIN_TURN)) {
         sp178[2] = temp_f2_2 * 4500.0f;
     } else {
         sp178[2] = 0.0f;
     }
     sp178[1] = 0.0f;
-    MultipleMatrixByVector(sp178, player->align);
+    MultipleMatrixByVector(sp178, Player->align);
     gravityX += sp178[0];
     gravityZ += sp178[2];
-    CheckKartHit(player, playerId, screenId);
-    sp184[2] = PowerCheck(player, playerId);
-    MultipleMatrixByVector(sp184, player->align);
-    newVelocity[0] = player->velocity[0];
-    newVelocity[1] = player->velocity[1];
-    newVelocity[2] = player->velocity[2];
-    if (((player->hitcount < 3) && (((s32) player->wallhitcount) < 3)) ||
-        ((player->slip_flag & TURBO) == TURBO)) {
+    CheckKartHit(Player, PlayerId, screenId);
+    sp184[2] = PowerCheck(Player, PlayerId);
+    MultipleMatrixByVector(sp184, Player->align);
+    newVelocity[0] = Player->Velocity[0];
+    newVelocity[1] = Player->Velocity[1];
+    newVelocity[2] = Player->Velocity[2];
+    if (((Player->Hitcount < 3) && (((s32) Player->Wallhitcount) < 3)) ||
+        ((Player->SlipFlag & TURBO) == TURBO)) {
 
-        if (((player->nowsterr >> 16) >= 40) || ((player->nowsterr >> 16) <= -40)) {
+        if (((Player->Nowsterr >> 16) >= 40) || ((Player->Nowsterr >> 16) <= -40)) {
 
             newVelocity[0] += (((((f64) ((sp184[0] + gravityX) + sp160[0])) -
-                                 (newVelocity[0] * (0.12 * ((f64) player->mass)))) /
+                                 (newVelocity[0] * (0.12 * ((f64) Player->Mass)))) /
                                 6000.0) /
-                               (((((f64) player->brake_time) * 0.6) + 1.0) + sp7C));
+                               (((((f64) Player->BrakeTime) * 0.6) + 1.0) + sp7C));
             newVelocity[2] += (((((f64) ((sp184[2] + gravityZ) + sp160[2])) -
-                                 (newVelocity[2] * (0.12 * ((f64) player->mass)))) /
+                                 (newVelocity[2] * (0.12 * ((f64) Player->Mass)))) /
                                 6000.0) /
-                               (((((f64) player->brake_time) * 0.6) + 1.0) + sp7C));
+                               (((((f64) Player->BrakeTime) * 0.6) + 1.0) + sp7C));
         } else {
             newVelocity[0] += (((((f64) ((sp184[0] + gravityX) + sp160[0])) -
-                                 (newVelocity[0] * (0.12 * ((f64) player->mass)))) /
+                                 (newVelocity[0] * (0.12 * ((f64) Player->Mass)))) /
                                 6000.0) /
                                (sp7C + 1));
             newVelocity[2] += (((((f64) ((sp184[2] + gravityZ) + sp160[2])) -
-                                 (newVelocity[2] * (0.12 * ((f64) player->mass)))) /
+                                 (newVelocity[2] * (0.12 * ((f64) Player->Mass)))) /
                                 6000.0) /
                                (sp7C + 1));
         }
     } else {
         newVelocity[0] +=
-            (((((f64) ((sp184[0] + gravityX) + sp160[0])) - (newVelocity[0] * (0.12 * ((f64) player->mass)))) /
+            (((((f64) ((sp184[0] + gravityX) + sp160[0])) - (newVelocity[0] * (0.12 * ((f64) Player->Mass)))) /
               6000.0) /
              30.0);
         newVelocity[2] +=
-            (((((f64) ((sp184[2] + gravityZ) + sp160[2])) - (newVelocity[2] * (0.12 * ((f64) player->mass)))) /
+            (((((f64) ((sp184[2] + gravityZ) + sp160[2])) - (newVelocity[2] * (0.12 * ((f64) Player->Mass)))) /
               6000.0) /
              30.0);
     }
     newVelocity[1] +=
-        (((((f64) ((sp184[1] + gravityY) + sp160[1])) - (newVelocity[1] * (0.12 * ((f64) player->mass)))) /
+        (((((f64) ((sp184[1] + gravityY) + sp160[1])) - (newVelocity[1] * (0.12 * ((f64) Player->Mass)))) /
           6000.0) /
-         ((f64) player->sus.jump_firstspeed));
-    if (((((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
-          ((player->jugemu_flag & LAKITU_SCENE) == LAKITU_SCENE)) ||
-         ((player->slip_flag & BROKEN) == BROKEN)) ||
-        (player->jugemu_flag & IS_IN_WATER)) {
+         ((f64) Player->sus.JumpFirstspeed));
+    if (((((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
+          ((Player->JugemuFlag & LAKITU_SCENE) == LAKITU_SCENE)) ||
+         ((Player->SlipFlag & BROKEN) == BROKEN)) ||
+        (Player->JugemuFlag & IS_IN_WATER)) {
         newVelocity[0] = 0.0f;
         newVelocity[1] = 0.0f;
         newVelocity[2] = 0.0f;
     }
-    if ((player->handling_flag & CPU_SIMPLE_KART) == CPU_SIMPLE_KART) {
-        player->handling_flag &= ~CPU_SIMPLE_KART;
+    if ((Player->HandlingFlag & CPU_SIMPLE_KART) == CPU_SIMPLE_KART) {
+        Player->HandlingFlag &= ~CPU_SIMPLE_KART;
     }
 
-    posX = player->position[0];
-    posY = player->position[1];
-    posZ = player->position[2];
+    PosX = Player->Position[0];
+    PosY = Player->Position[1];
+    PosZ = Player->Position[2];
 
-    player->old_position[0] = player->position[0];
-    player->old_position[2] = player->position[2];
-    player->old_position[1] = player->position[1];
-    nextX = posX + player->velocity[0] + D_8018CE10[playerId].unk_04[0];
-    nextY = posY + player->velocity[1];
-    nextZ = posZ + player->velocity[2] + D_8018CE10[playerId].unk_04[2];
+    Player->OldPosition[0] = Player->Position[0];
+    Player->OldPosition[2] = Player->Position[2];
+    Player->OldPosition[1] = Player->Position[1];
+    nextX = PosX + Player->Velocity[0] + D_8018CE10[PlayerId].unk_04[0];
+    nextY = PosY + Player->Velocity[1];
+    nextZ = PosZ + Player->Velocity[2] + D_8018CE10[PlayerId].unk_04[2];
 
-    if (((((player->jugemu_flag & ON_LAKITU_ROD) != ON_LAKITU_ROD) &&
-          ((player->jugemu_flag & LAKITU_SCENE) != LAKITU_SCENE)) &&
-         ((player->slip_flag & BROKEN) != BROKEN)) &&
-        (!(player->jugemu_flag & IS_IN_WATER))) {
-        DriftJump(player);
-        nextY += player->jump;
+    if (((((Player->JugemuFlag & ON_LAKITU_ROD) != ON_LAKITU_ROD) &&
+          ((Player->JugemuFlag & LAKITU_SCENE) != LAKITU_SCENE)) &&
+         ((Player->SlipFlag & BROKEN) != BROKEN)) &&
+        (!(Player->JugemuFlag & IS_IN_WATER))) {
+        DriftJump(Player);
+        nextY += Player->Jump;
         nextY -= 0.02;
     }
-    custom_check_bump_2(&player->bump, player->radius, nextX, nextY, nextZ, player->old_position[0],
-                            player->old_position[1], player->old_position[2]);
-    player->up_vector[0] = 0.0f;
-    player->up_vector[2] = 0.0f;
-    player->up_vector[1] = 1.0f;
-    if ((player->handling_flag & REVERSE_GEAR) != REVERSE_GEAR) {
-        MakeAlignMatrix(player->align, player->up_vector[0], player->up_vector[1], player->up_vector[2],
-                                     player->direction[1]);
+    CustomCheckBump2(&Player->Bump, Player->Radius, nextX, nextY, nextZ, Player->OldPosition[0],
+                            Player->OldPosition[1], Player->OldPosition[2]);
+    Player->UpVector[0] = 0.0f;
+    Player->UpVector[2] = 0.0f;
+    Player->UpVector[1] = 1.0f;
+    if ((Player->HandlingFlag & REVERSE_GEAR) != REVERSE_GEAR) {
+        MakeAlignMatrix(Player->align, Player->UpVector[0], Player->UpVector[1], Player->UpVector[2],
+                                     Player->Direction[1]);
     } else {
-        MakeAlignMatrix(player->align, player->up_vector[0], player->up_vector[1], player->up_vector[2],
-                                     player->direction[1] + DEGREES(180));
+        MakeAlignMatrix(Player->align, Player->UpVector[0], Player->UpVector[1], Player->UpVector[2],
+                                     Player->Direction[1] + DEGREES(180));
     }
-    player->slip_flag |= N_JUMP;
-    player->jumpcount += 1;
-    surfaceDistance = player->bump.distance_zx;
+    Player->SlipFlag |= N_JUMP;
+    Player->Jumpcount += 1;
+    surfaceDistance = Player->Bump.DistanceZX;
     if (surfaceDistance <= 0.0f) {
-        player->slip_flag = player->slip_flag & (~D_JUMP);
-        player->slip_flag = player->slip_flag & (~N_JUMP);
-        if (player->jumpcount >= 35) {
-            if (player->jumpcount >= 0x32) {
-                player->jumpcount = 0x32;
+        Player->SlipFlag = Player->SlipFlag & (~D_JUMP);
+        Player->SlipFlag = Player->SlipFlag & (~N_JUMP);
+        if (Player->Jumpcount >= 35) {
+            if (Player->Jumpcount >= 0x32) {
+                Player->Jumpcount = 0x32;
             }
-            player->sus.bound_firstspeed = 3.0f;
-            player->sus.bound_timer = 0;
-            player->talk |= POOMP;
-            if ((((player->flag & IS_PLAYER) == IS_PLAYER) &&
-                 ((player->slip_flag & DASH_JUMP) == DASH_JUMP)) &&
-                ((player->flag & IS_GHOST) != IS_GHOST)) {
+            Player->sus.BoundFirstspeed = 3.0f;
+            Player->sus.BoundTimer = 0;
+            Player->Talk |= POOMP;
+            if ((((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+                 ((Player->SlipFlag & DASH_JUMP) == DASH_JUMP)) &&
+                ((Player->Flag & IS_GHOST) != IS_GHOST)) {
 
-                NAPlyTrgStart(playerId, 0x1900A60AU);
-            } else if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-                       ((player->flag & IS_GHOST) != IS_GHOST)) {
-                NaPlyLandStart((u8) playerId, ((f32) player->jumpcount) / 35.0f);
+                NAPlyTrgStart(PlayerId, 0x1900A60AU);
+            } else if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+                       ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+                NaPlyLandStart((u8) PlayerId, ((f32) Player->Jumpcount) / 35.0f);
             }
-            if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-                player->handling_flag |= LANDING_DUST;
-            }
-        }
-        if (((player->jumpcount < 0x23) && (player->jumpcount >= 0x1C)) && (((player->speed / 18.0f) * 216.0f) >= 20.0f)) {
-            player->sus.bound_firstspeed = 2.8f;
-            player->sus.bound_timer = 0;
-            if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-                ((player->flag & IS_GHOST) != IS_GHOST)) {
-                NaPlyLandStart((u8) playerId, ((f32) player->jumpcount) / 35.0f);
-            }
-            if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-                player->handling_flag |= LANDING_DUST;
+            if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+                Player->HandlingFlag |= LANDING_DUST;
             }
         }
-        if (((player->jumpcount < 0x1C) && (player->jumpcount >= 4)) && (((player->speed / 18.0f) * 216.0f) >= 20.0f)) {
-            player->sus.bound_timer = 0;
-            player->sus.bound_firstspeed = 1.5f;
-            if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-                ((player->flag & IS_GHOST) != IS_GHOST)) {
-                if (((player->jumpcount < 0xB) && (player->jumpcount >= 4)) && (g_courseID == COURSE_BOWSER_CASTLE)) {
-                    NaPlyLandStart((u8) playerId, player->jumpcount / 14.0f);
+        if (((Player->Jumpcount < 0x23) && (Player->Jumpcount >= 0x1C)) && (((Player->Speed / 18.0f) * 216.0f) >= 20.0f)) {
+            Player->sus.BoundFirstspeed = 2.8f;
+            Player->sus.BoundTimer = 0;
+            if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+                ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+                NaPlyLandStart((u8) PlayerId, ((f32) Player->Jumpcount) / 35.0f);
+            }
+            if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+                Player->HandlingFlag |= LANDING_DUST;
+            }
+        }
+        if (((Player->Jumpcount < 0x1C) && (Player->Jumpcount >= 4)) && (((Player->Speed / 18.0f) * 216.0f) >= 20.0f)) {
+            Player->sus.BoundTimer = 0;
+            Player->sus.BoundFirstspeed = 1.5f;
+            if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+                ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+                if (((Player->Jumpcount < 0xB) && (Player->Jumpcount >= 4)) && (CourseID == COURSE_BOWSER_CASTLE)) {
+                    NaPlyLandStart((u8) PlayerId, Player->Jumpcount / 14.0f);
                 } else {
-                    NaPlyLandStart((u8) playerId, player->jumpcount / 25.0f);
+                    NaPlyLandStart((u8) PlayerId, Player->Jumpcount / 25.0f);
                 }
             }
         }
-        player->jumpcount = 0;
-        player->jump = player->jumpcount;
+        Player->Jumpcount = 0;
+        Player->Jump = Player->Jumpcount;
     }
-    surfaceDistance = player->bump.distance_zx;
+    surfaceDistance = Player->Bump.DistanceZX;
     if (surfaceDistance <= 0.0f) {
-        CheckMapBG_ZX_Hook(player, sp8C, newVelocity, sp178, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckMapBGZXHook(Player, sp8C, newVelocity, sp178, &surfaceDistance, &nextX, &nextY, &nextZ);
     }
-    surfaceDistance = player->bump.distance_xy;
+    surfaceDistance = Player->Bump.DistanceXY;
     if (surfaceDistance < 0.0f) {
-        CheckMapBG_XY(player, sp8C, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
-        CheckWall(player, playerId, newVelocity);
+        CheckMapBGXY(Player, sp8C, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckWall(Player, PlayerId, newVelocity);
     }
-    surfaceDistance = player->bump.distance_yz;
+    surfaceDistance = Player->Bump.DistanceYZ;
     if (surfaceDistance < 0.0f) {
-        CheckMapBG_YZ(player, sp8C, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
-        CheckWall(player, playerId, newVelocity);
+        CheckMapBGYZ(Player, sp8C, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckWall(Player, PlayerId, newVelocity);
     }
-    surfaceDistance = player->bump.distance_xy;
+    surfaceDistance = Player->Bump.DistanceXY;
     if (surfaceDistance >= 0.0f) {
-        surfaceDistance = player->bump.distance_yz;
+        surfaceDistance = Player->Bump.DistanceYZ;
         if (surfaceDistance >= 0.0f) {
-            player->hit_flag &= 0xFFDF;
-            if (player->wallhitcount != 0) {
-                player->wallhitcount++;
-                if (player->wallhitcount >= 10) {
-                    player->wallhitcount = 0;
+            Player->HitFlag &= 0xFFDF;
+            if (Player->Wallhitcount != 0) {
+                Player->Wallhitcount++;
+                if (Player->Wallhitcount >= 10) {
+                    Player->Wallhitcount = 0;
                 }
             }
         }
     }
-    if (((!(player->slip_flag & N_JUMP)) && (CheckSlope(player->bump.last_zx) != 0)) &&
-        ((player->slip_flag & ROLLOVER_FALL) != ROLLOVER_FALL)) {
-        if ((!(player->jugemu_flag & ON_LAKITU_ROD)) || (!(player->jugemu_flag & LAKITU_SCENE))) {
-            SetRolloverFall(player, playerId);
+    if (((!(Player->SlipFlag & N_JUMP)) && (CheckSlope(Player->Bump.LastZX) != 0)) &&
+        ((Player->SlipFlag & ROLLOVER_FALL) != ROLLOVER_FALL)) {
+        if ((!(Player->JugemuFlag & ON_LAKITU_ROD)) || (!(Player->JugemuFlag & LAKITU_SCENE))) {
+            SetRolloverFall(Player, PlayerId);
         }
-    } else if (((!(player->slip_flag & N_JUMP)) && (CheckSlope(player->bump.last_zx) == 0)) &&
-               (player->slip_flag & ROLLOVER_FALL)) {
-        ResetRolloverFall(player, playerId);
+    } else if (((!(Player->SlipFlag & N_JUMP)) && (CheckSlope(Player->Bump.LastZX) == 0)) &&
+               (Player->SlipFlag & ROLLOVER_FALL)) {
+        ResetRolloverFall(Player, PlayerId);
     }
-    player->ground = CalcHeight(nextX, nextY, nextZ, player->bump.last_zx);
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        (((g_ScreenSplitA == SCREEN_MODE_1P) || (g_ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_VERTICAL)) ||
-         (g_ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL))) {
-        TirePosition(player, nextX, nextY, nextZ);
+    Player->Ground = CalcHeight(nextX, nextY, nextZ, Player->Bump.LastZX);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        (((ScreenSplitA == SCREEN_MODE_1P) || (ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_VERTICAL)) ||
+         (ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL))) {
+        TirePosition(Player, nextX, nextY, nextZ);
     } else {
-        EnemyTirePosition(player, nextX, nextY, nextZ);
+        EnemyTirePosition(Player, nextX, nextY, nextZ);
     }
-    SetSlipAngle(player, playerId, posX, posZ, nextX, nextZ);
+    SetSlipAngle(Player, PlayerId, PosX, PosZ, nextX, nextZ);
 
     temp2 = (newVelocity[0] * newVelocity[0]) + (newVelocity[2] * newVelocity[2]);
-    player->old_speed = player->speed;
-    player->speed = sqrtf(temp2);
+    Player->OldSpeed = Player->Speed;
+    Player->Speed = sqrtf(temp2);
 
-    if ((player->force <= 0.0f) && (player->speed <= 0.08) && (D_8018CE10[playerId].unk_04[0] == 0.0f) &&
-        (D_8018CE10[playerId].unk_04[2] == 0.0f)) {
+    if ((Player->Force <= 0.0f) && (Player->Speed <= 0.08) && (D_8018CE10[PlayerId].unk_04[0] == 0.0f) &&
+        (D_8018CE10[PlayerId].unk_04[2] == 0.0f)) {
         newVelocity[0] = newVelocity[0] + (-1 * newVelocity[0]);
         newVelocity[2] = newVelocity[2] + (-1 * newVelocity[2]);
     } else {
-        player->position[0] = nextX;
-        player->position[2] = nextZ;
+        Player->Position[0] = nextX;
+        Player->Position[2] = nextZ;
     }
-    player->position[1] = nextY;
-    if ((player->flag & IS_PLAYER) && (!(player->flag & IS_CPU_PLAYER))) {
-        check_impact_wall(player, &nextX, &nextZ, screenId, playerId, newVelocity);
+    Player->Position[1] = nextY;
+    if ((Player->Flag & IS_PLAYER) && (!(Player->Flag & IS_CPU_PLAYER))) {
+        CheckImpactWall(Player, &nextX, &nextZ, screenId, PlayerId, newVelocity);
     }
-    player->gravity_xz[0] = sp178[0];
-    player->gravity_xz[2] = sp178[2];
-    player->velocity[0] = newVelocity[0];
-    player->velocity[1] = newVelocity[1];
-    player->velocity[2] = newVelocity[2];
-    old_velocity[playerId][0] = newVelocity[0];
-    old_velocity[playerId][1] = newVelocity[1];
-    old_velocity[playerId][2] = newVelocity[2];
-    if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-        if (gKartTopSpeedTable[player->kart] < player->speed) {
-            temp = gKartTopSpeedTable[player->kart] / player->speed;
-            player->velocity[0] *= temp;
-            player->velocity[1] *= temp;
-            player->velocity[2] *= temp;
-            player->speed = gKartTopSpeedTable[player->kart];
+    Player->GravityXz[0] = sp178[0];
+    Player->GravityXz[2] = sp178[2];
+    Player->Velocity[0] = newVelocity[0];
+    Player->Velocity[1] = newVelocity[1];
+    Player->Velocity[2] = newVelocity[2];
+    OldVelocity[PlayerId][0] = newVelocity[0];
+    OldVelocity[PlayerId][1] = newVelocity[1];
+    OldVelocity[PlayerId][2] = newVelocity[2];
+    if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+        if (gKartTopSpeedTable[Player->Kart] < Player->Speed) {
+            temp = gKartTopSpeedTable[Player->Kart] / Player->Speed;
+            Player->Velocity[0] *= temp;
+            Player->Velocity[1] *= temp;
+            Player->Velocity[2] *= temp;
+            Player->Speed = gKartTopSpeedTable[Player->Kart];
         }
     }
-    if ((player->handling_flag & REVERSE_GEAR) == REVERSE_GEAR) {
-        if (player->speed > 1) {
-            temp = 1 / player->speed;
-            player->velocity[0] *= temp;
-            player->velocity[1] *= temp;
-            player->velocity[2] *= temp;
-            player->speed = 1;
+    if ((Player->HandlingFlag & REVERSE_GEAR) == REVERSE_GEAR) {
+        if (Player->Speed > 1) {
+            temp = 1 / Player->Speed;
+            Player->Velocity[0] *= temp;
+            Player->Velocity[1] *= temp;
+            Player->Velocity[2] *= temp;
+            Player->Speed = 1;
         }
     }
-    if (player->bump.distance_zx >= 500.0f) {
-        player->sterrangle = (s16) (((s16) player->sterrangle) / 2);
+    if (Player->Bump.DistanceZX >= 500.0f) {
+        Player->Sterrangle = (s16) (((s16) Player->Sterrangle) / 2);
     }
-    if (ok_CheckSplashEnabled) {
-        CheckSplash(player, playerId);
+    if (OKCheckSplashEnabled) {
+        CheckSplash(Player, PlayerId);
     }
 }
 
-void set_hight(Player* player) {
+void SetHight(Player* Player) {
     s32 player_index;
 
-    player_index = check_kart_number(player);
-    player->jmp_acc = 0.0f;
-    player->jmp_speed = 0.0f;
-    player->jump = 0.0f;
-    player->position[1] = CheckHight(player->position[0], enemy_tenuki_y[player_index] + 10.0f, player->position[2]) +
-                     player->radius;
-    if (((player->position[1] - enemy_tenuki_y[player_index]) > 1200.0f) ||
-        ((player->position[1] - enemy_tenuki_y[player_index]) < -1200.0f)) {
-        player->position[1] = player->old_position[1];
+    player_index = CheckKartNumber(Player);
+    Player->JmpAcc = 0.0f;
+    Player->JmpSpeed = 0.0f;
+    Player->Jump = 0.0f;
+    Player->Position[1] = CheckHight(Player->Position[0], EnemyTenukiY[player_index] + 10.0f, Player->Position[2]) +
+                     Player->Radius;
+    if (((Player->Position[1] - EnemyTenukiY[player_index]) > 1200.0f) ||
+        ((Player->Position[1] - EnemyTenukiY[player_index]) < -1200.0f)) {
+        Player->Position[1] = Player->OldPosition[1];
     }
-    player->velocity[1] = 0.0f;
+    Player->Velocity[1] = 0.0f;
 }
 
-void SpinKart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
+void SpinKart(Player* Player, UNUSED Camera* Camera, s8 screenId, s8 PlayerId) {
     Vec3f spEC = { 0.0f, 0.0f, 1.0f };
     Vec3f spE0 = { 0.0f, 0.0f, 0.0f };
     Vec3f spD4 = { 0.0f, 0.0f, 0.0f };
@@ -2461,260 +2461,260 @@ void SpinKart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
     f32 nextZ;
     f32 topSpeedMultiplier;
     UNUSED s32 pad;
-    f32 posX;
-    f32 posY;
-    f32 posZ;
-    UNUSED s32 pad2[12];
+    f32 PosX;
+    f32 PosY;
+    f32 PosZ;
+    UNUSED s32 Pad2[12];
     f32 gravityX;
     f32 gravityY;
     f32 gravityZ;
     f32 surfaceDistance;
-    UNUSED s32 pad3[4];
+    UNUSED s32 Pad3[4];
     f32 temp;
     Vec3f newVelocity;
     Vec3f sp48;
     s16 sp46;
-    WeaponStatus(player, playerId, screenId);
-    if ((((((((player->slip_flag & SPIN_L) == SPIN_L) ||
-             ((player->slip_flag & SPIN_R) == SPIN_R)) ||
-            ((player->slip_flag & RAPID_ACC) == RAPID_ACC)) ||
-           ((player->slip_flag & WING) == WING)) ||
-          ((player->slip_flag & STORM) == STORM)) ||
-         ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN)) ||
-        (player->handling_flag & TROPHYJUMP_END)) {
+    WeaponStatus(Player, PlayerId, screenId);
+    if ((((((((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+             ((Player->SlipFlag & SPIN_R) == SPIN_R)) ||
+            ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC)) ||
+           ((Player->SlipFlag & WING) == WING)) ||
+          ((Player->SlipFlag & STORM) == STORM)) ||
+         ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN)) ||
+        (Player->HandlingFlag & TROPHYJUMP_END)) {
         sp46 = 1;
     } else {
         sp46 = 0;
     }
-    SetStrategy(player, playerId, screenId);
-    AddGravityEdit(player);
-    SlipCheck(player, playerId);
-    if ((((player->slip_flag & SPIN_L) == SPIN_L) ||
-         ((player->slip_flag & SPIN_R) == SPIN_R)) ||
-        ((player->slip_flag & THUNDER_SPIN) == THUNDER_SPIN)) {
+    SetStrategy(Player, PlayerId, screenId);
+    AddGravityEdit(Player);
+    SlipCheck(Player, PlayerId);
+    if ((((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+         ((Player->SlipFlag & SPIN_R) == SPIN_R)) ||
+        ((Player->SlipFlag & THUNDER_SPIN) == THUNDER_SPIN)) {
         gravityX =
-            -1 * (player->gravity_xz[0]) + (((-player->bump.bump_zx[0]) * player->gravity) * 0.1);
-        gravityY = (-player->bump.bump_zx[1]) * player->gravity;
+            -1 * (Player->GravityXz[0]) + (((-Player->Bump.BumpZX[0]) * Player->Gravity) * 0.1);
+        gravityY = (-Player->Bump.BumpZX[1]) * Player->Gravity;
         gravityZ =
-            -1 * (player->gravity_xz[2]) + (((-player->bump.bump_zx[2]) * player->gravity) * 0.1);
+            -1 * (Player->GravityXz[2]) + (((-Player->Bump.BumpZX[2]) * Player->Gravity) * 0.1);
     } else {
-        gravityX = -1 * player->gravity_xz[0];
-        gravityY = -1 * player->gravity;
-        gravityZ = -1 * player->gravity_xz[2];
+        gravityX = -1 * Player->GravityXz[0];
+        gravityY = -1 * Player->Gravity;
+        gravityZ = -1 * Player->GravityXz[2];
     }
-    CheckKartHit(player, playerId, screenId);
+    CheckKartHit(Player, PlayerId, screenId);
     if (sp46 == 1) {
-        MakeAlignMatrix(player->align, player->up_vector[0], player->up_vector[1], player->up_vector[2],
-                                     (s16) ((s32) player->direction[1]));
-        MakeAlignMatrix(player->align2, player->up_vector[0], player->up_vector[1], player->up_vector[2],
-                                     (s16) ((s32) player->old_direction));
+        MakeAlignMatrix(Player->align, Player->UpVector[0], Player->UpVector[1], Player->UpVector[2],
+                                     (s16) ((s32) Player->Direction[1]));
+        MakeAlignMatrix(Player->Align2, Player->UpVector[0], Player->UpVector[1], Player->UpVector[2],
+                                     (s16) ((s32) Player->OldDirection));
     } else {
-        MakeAlignMatrix(player->align, player->up_vector[0], player->up_vector[1], player->up_vector[2],
-                                     (s16) ((s32) player->direction[1]));
+        MakeAlignMatrix(Player->align, Player->UpVector[0], Player->UpVector[1], Player->UpVector[2],
+                                     (s16) ((s32) Player->Direction[1]));
     }
-    spEC[2] = PowerCheck(player, playerId);
+    spEC[2] = PowerCheck(Player, PlayerId);
     if (sp46 == 1) {
-        MultipleMatrixByVector(spEC, player->align2);
+        MultipleMatrixByVector(spEC, Player->Align2);
     } else {
-        MultipleMatrixByVector(spEC, player->align);
+        MultipleMatrixByVector(spEC, Player->align);
     }
-    newVelocity[0] = player->velocity[0];
-    newVelocity[1] = player->velocity[1];
-    newVelocity[2] = player->velocity[2];
-    if ((player->hitcount < 3) && ((player->wallhitcount) < 3) &&
-        ((player->slip_flag & ROLLOVER) != ROLLOVER) &&
-        ((player->slip_flag & EXPLODE) != EXPLODE) &&
-        ((player->slip_flag & THROW_EXPLODE) != THROW_EXPLODE)) {
+    newVelocity[0] = Player->Velocity[0];
+    newVelocity[1] = Player->Velocity[1];
+    newVelocity[2] = Player->Velocity[2];
+    if ((Player->Hitcount < 3) && ((Player->Wallhitcount) < 3) &&
+        ((Player->SlipFlag & ROLLOVER) != ROLLOVER) &&
+        ((Player->SlipFlag & EXPLODE) != EXPLODE) &&
+        ((Player->SlipFlag & THROW_EXPLODE) != THROW_EXPLODE)) {
         newVelocity[0] +=
-            (((((spEC[0] + gravityX) + spD4[0])) - (newVelocity[0] * (0.12 * player->mass))) / 6000) /
-            ((player->brake_time * 5.0f) + 1.0f);
+            (((((spEC[0] + gravityX) + spD4[0])) - (newVelocity[0] * (0.12 * Player->Mass))) / 6000) /
+            ((Player->BrakeTime * 5.0f) + 1.0f);
         newVelocity[2] +=
-            (((((spEC[2] + gravityZ) + spD4[2])) - (newVelocity[2] * (0.12 * player->mass))) / 6000) /
-            ((player->brake_time * 5.0f) + 1.0f);
+            (((((spEC[2] + gravityZ) + spD4[2])) - (newVelocity[2] * (0.12 * Player->Mass))) / 6000) /
+            ((Player->BrakeTime * 5.0f) + 1.0f);
     } else {
         newVelocity[0] +=
-            ((((f64) (spEC[0] + gravityX + spD4[0]) - (newVelocity[0] * (0.2 * (f64) player->mass))) / 6000) *
+            ((((f64) (spEC[0] + gravityX + spD4[0]) - (newVelocity[0] * (0.2 * (f64) Player->Mass))) / 6000) *
              0.08);
         newVelocity[2] +=
-            ((((f64) (spEC[2] + gravityZ + spD4[2]) - (newVelocity[2] * (0.2 * (f64) player->mass))) / 6000) *
+            ((((f64) (spEC[2] + gravityZ + spD4[2]) - (newVelocity[2] * (0.2 * (f64) Player->Mass))) / 6000) *
              0.08);
     }
-    newVelocity[1] += (((((spEC[1] + gravityY) + spD4[1])) - (newVelocity[1] * (0.12 * player->mass))) / 6000) /
-                      player->sus.jump_firstspeed;
+    newVelocity[1] += (((((spEC[1] + gravityY) + spD4[1])) - (newVelocity[1] * (0.12 * Player->Mass))) / 6000) /
+                      Player->sus.JumpFirstspeed;
 
-    if (((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
-        ((player->jugemu_flag & LAKITU_SCENE) == LAKITU_SCENE)) {
+    if (((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
+        ((Player->JugemuFlag & LAKITU_SCENE) == LAKITU_SCENE)) {
         newVelocity[0] = 0.0f;
         newVelocity[1] = 0.0f;
         newVelocity[2] = 0.0f;
     }
-    posX = player->position[0];
-    posY = player->position[1];
-    posZ = player->position[2];
+    PosX = Player->Position[0];
+    PosY = Player->Position[1];
+    PosZ = Player->Position[2];
 
-    player->old_position[0] = player->position[0];
-    player->old_position[1] = player->position[1];
-    player->old_position[2] = player->position[2];
+    Player->OldPosition[0] = Player->Position[0];
+    Player->OldPosition[1] = Player->Position[1];
+    Player->OldPosition[2] = Player->Position[2];
 
-    nextX = posX + player->velocity[0] + D_8018CE10[playerId].unk_04[0];
-    nextY = posY + player->velocity[1];
-    nextZ = posZ + player->velocity[2] + D_8018CE10[playerId].unk_04[2];
-    DriftJump(player);
-    nextY += player->jump;
-    custom_check_bump_2(&player->bump, player->radius, nextX, nextY, nextZ, player->old_position[0],
-                            player->old_position[1], player->old_position[2]);
-    player->slip_flag |= N_JUMP;
-    player->jumpcount += 1;
-    player->up_vector[0] = 0.0f;
-    player->up_vector[2] = 0.0f;
-    player->up_vector[1] = 1.0f;
-    surfaceDistance = player->bump.distance_zx;
+    nextX = PosX + Player->Velocity[0] + D_8018CE10[PlayerId].unk_04[0];
+    nextY = PosY + Player->Velocity[1];
+    nextZ = PosZ + Player->Velocity[2] + D_8018CE10[PlayerId].unk_04[2];
+    DriftJump(Player);
+    nextY += Player->Jump;
+    CustomCheckBump2(&Player->Bump, Player->Radius, nextX, nextY, nextZ, Player->OldPosition[0],
+                            Player->OldPosition[1], Player->OldPosition[2]);
+    Player->SlipFlag |= N_JUMP;
+    Player->Jumpcount += 1;
+    Player->UpVector[0] = 0.0f;
+    Player->UpVector[2] = 0.0f;
+    Player->UpVector[1] = 1.0f;
+    surfaceDistance = Player->Bump.DistanceZX;
     if (surfaceDistance <= 0.0f) {
-        player->slip_flag &= ~D_JUMP;
-        player->slip_flag &= ~N_JUMP;
-        if ((((player->slip_flag & ROLLOVER) != ROLLOVER) &&
-             ((player->slip_flag & EXPLODE) != EXPLODE)) &&
-            ((player->slip_flag & THROW_EXPLODE) != THROW_EXPLODE)) {
-            if (player->jumpcount >= 0x1C) {
-                if (player->jumpcount >= 0x32) {
-                    player->jumpcount = 0x0032;
+        Player->SlipFlag &= ~D_JUMP;
+        Player->SlipFlag &= ~N_JUMP;
+        if ((((Player->SlipFlag & ROLLOVER) != ROLLOVER) &&
+             ((Player->SlipFlag & EXPLODE) != EXPLODE)) &&
+            ((Player->SlipFlag & THROW_EXPLODE) != THROW_EXPLODE)) {
+            if (Player->Jumpcount >= 0x1C) {
+                if (Player->Jumpcount >= 0x32) {
+                    Player->Jumpcount = 0x0032;
                 }
-                player->sus.bound_timer = 0;
-                player->talk |= POOMP;
-                player->sus.bound_firstspeed = 3.0f;
-                if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-                    ((player->flag & IS_GHOST) != IS_GHOST)) {
-                    NaPlyLandStart((u8) playerId, ((f32) player->jumpcount) / 50.0f);
+                Player->sus.BoundTimer = 0;
+                Player->Talk |= POOMP;
+                Player->sus.BoundFirstspeed = 3.0f;
+                if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+                    ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+                    NaPlyLandStart((u8) PlayerId, ((f32) Player->Jumpcount) / 50.0f);
                 }
-                if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-                    player->handling_flag |= LANDING_DUST;
-                }
-            }
-            if (((player->jumpcount < 0x1C) && (player->jumpcount >= 0xA)) &&
-                (((player->speed / 18.0f) * 216.0f) >= 20.0f)) {
-                player->sus.bound_firstspeed = 2.0f;
-                player->sus.bound_timer = 0;
-                if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-                    ((player->flag & IS_GHOST) != IS_GHOST)) {
-                    NaPlyLandStart((u8) playerId, ((f32) player->jumpcount) / 50.0f);
-                }
-                if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-                    player->handling_flag |= LANDING_DUST;
+                if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+                    Player->HandlingFlag |= LANDING_DUST;
                 }
             }
-            player->jumpcount = 0;
+            if (((Player->Jumpcount < 0x1C) && (Player->Jumpcount >= 0xA)) &&
+                (((Player->Speed / 18.0f) * 216.0f) >= 20.0f)) {
+                Player->sus.BoundFirstspeed = 2.0f;
+                Player->sus.BoundTimer = 0;
+                if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+                    ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+                    NaPlyLandStart((u8) PlayerId, ((f32) Player->Jumpcount) / 50.0f);
+                }
+                if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+                    Player->HandlingFlag |= LANDING_DUST;
+                }
+            }
+            Player->Jumpcount = 0;
         } else {
-            if (player->jumpcount >= 0xA) {
-                if (player->jumpcount >= 0x32) {
-                    player->jumpcount = 0x0032;
+            if (Player->Jumpcount >= 0xA) {
+                if (Player->Jumpcount >= 0x32) {
+                    Player->Jumpcount = 0x0032;
                 }
-                if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-                    ((player->flag & IS_GHOST) != IS_GHOST)) {
-                    NaPlyLandStart((u8) playerId, ((f32) player->jumpcount) / 20.0f);
+                if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+                    ((Player->Flag & IS_GHOST) != IS_GHOST)) {
+                    NaPlyLandStart((u8) PlayerId, ((f32) Player->Jumpcount) / 20.0f);
                 }
-                if (player->jumpcount >= 0x28) {
-                    player->jumpcount = 0x0014;
+                if (Player->Jumpcount >= 0x28) {
+                    Player->Jumpcount = 0x0014;
                 }
-                if ((player->slip_flag & ROLLOVER) == ROLLOVER) {
-                    player->jumpcount /= 6.5;
-                    player->jmp_acc = 0.06f;
-                    player->jmp_speed = 0.0f;
+                if ((Player->SlipFlag & ROLLOVER) == ROLLOVER) {
+                    Player->Jumpcount /= 6.5;
+                    Player->JmpAcc = 0.06f;
+                    Player->JmpSpeed = 0.0f;
                 } else {
-                    player->jumpcount /= 7.5;
-                    player->jmp_acc = 0.06f;
-                    player->jmp_speed = 0.0f;
-                    if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-                        player->handling_flag |= LANDING_DUST;
+                    Player->Jumpcount /= 7.5;
+                    Player->JmpAcc = 0.06f;
+                    Player->JmpSpeed = 0.0f;
+                    if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+                        Player->HandlingFlag |= LANDING_DUST;
                     }
                 }
             } else {
-                player->jumpcount = 0;
+                Player->Jumpcount = 0;
             }
         }
-        player->jump = (f32) player->jumpcount;
+        Player->Jump = (f32) Player->Jumpcount;
     }
-    surfaceDistance = player->bump.distance_zx;
+    surfaceDistance = Player->Bump.DistanceZX;
     if (surfaceDistance <= 0.0f) {
-        CheckMapBG_ZX_Hook(player, sp48, newVelocity, spE0, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckMapBGZXHook(Player, sp48, newVelocity, spE0, &surfaceDistance, &nextX, &nextY, &nextZ);
     }
-    surfaceDistance = player->bump.distance_xy;
+    surfaceDistance = Player->Bump.DistanceXY;
     if (surfaceDistance < 0.0f) {
-        CheckMapBG_XY(player, sp48, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
-        CheckWall(player, playerId, newVelocity);
-        AccelOff(player, 6.0f);
+        CheckMapBGXY(Player, sp48, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckWall(Player, PlayerId, newVelocity);
+        AccelOff(Player, 6.0f);
     }
-    surfaceDistance = player->bump.distance_yz;
+    surfaceDistance = Player->Bump.DistanceYZ;
     if (surfaceDistance < 0.0f) {
-        CheckMapBG_YZ(player, sp48, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
-        CheckWall(player, playerId, newVelocity);
-        AccelOff(player, 6.0f);
+        CheckMapBGYZ(Player, sp48, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckWall(Player, PlayerId, newVelocity);
+        AccelOff(Player, 6.0f);
     }
-    surfaceDistance = player->bump.distance_xy;
+    surfaceDistance = Player->Bump.DistanceXY;
     if (surfaceDistance >= 0.0f) {
-        surfaceDistance = player->bump.distance_yz;
+        surfaceDistance = Player->Bump.DistanceYZ;
         if (surfaceDistance >= 0.0f) {
-            player->hit_flag &= 0xFFDF;
-            if (player->wallhitcount != 0) {
-                player->wallhitcount++;
-                if ((player->wallhitcount) >= 0xA) {
-                    player->wallhitcount = 0;
+            Player->HitFlag &= 0xFFDF;
+            if (Player->Wallhitcount != 0) {
+                Player->Wallhitcount++;
+                if ((Player->Wallhitcount) >= 0xA) {
+                    Player->Wallhitcount = 0;
                 }
             }
         }
     }
-    if (((CheckSlope(player->bump.last_zx) != 0) &&
-         ((player->slip_flag & ROLLOVER_FALL) != ROLLOVER_FALL)) &&
-        (((player->speed / 18.0f) * 216.0f) >= 20.0f)) {
-        if ((!(player->jugemu_flag & ON_LAKITU_ROD)) || (!(player->jugemu_flag & LAKITU_SCENE))) {
-            SetRolloverFall(player, playerId);
+    if (((CheckSlope(Player->Bump.LastZX) != 0) &&
+         ((Player->SlipFlag & ROLLOVER_FALL) != ROLLOVER_FALL)) &&
+        (((Player->Speed / 18.0f) * 216.0f) >= 20.0f)) {
+        if ((!(Player->JugemuFlag & ON_LAKITU_ROD)) || (!(Player->JugemuFlag & LAKITU_SCENE))) {
+            SetRolloverFall(Player, PlayerId);
         }
-    } else if (((!(player->slip_flag & N_JUMP)) && (CheckSlope(player->bump.last_zx) == 0)) &&
-               (player->slip_flag & ROLLOVER_FALL)) {
-        ResetRolloverFall(player, playerId);
+    } else if (((!(Player->SlipFlag & N_JUMP)) && (CheckSlope(Player->Bump.LastZX) == 0)) &&
+               (Player->SlipFlag & ROLLOVER_FALL)) {
+        ResetRolloverFall(Player, PlayerId);
     }
-    player->ground = CalcHeight(nextX, nextY, nextZ, player->bump.last_zx);
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        (((g_ScreenSplitA == SCREEN_MODE_1P) || (g_ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_VERTICAL)) ||
-         (g_ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL))) {
-        TirePosition(player, nextX, nextY, nextZ);
+    Player->Ground = CalcHeight(nextX, nextY, nextZ, Player->Bump.LastZX);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        (((ScreenSplitA == SCREEN_MODE_1P) || (ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_VERTICAL)) ||
+         (ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL))) {
+        TirePosition(Player, nextX, nextY, nextZ);
     } else {
-        EnemyTirePosition(player, nextX, nextY, nextZ);
+        EnemyTirePosition(Player, nextX, nextY, nextZ);
     }
-    SetSlipAngle(player, playerId, posX, posZ, nextX, nextZ);
+    SetSlipAngle(Player, PlayerId, PosX, PosZ, nextX, nextZ);
     temp = (newVelocity[0] * newVelocity[0]) + (newVelocity[2] * newVelocity[2]);
-    player->old_speed = player->speed;
-    player->speed = sqrtf(temp);
-    if ((((player->slip_flag & ROLLOVER) != ROLLOVER) && (player->force <= 0) &&
-         (player->speed < 0.13)) ||
-        (((player->slip_flag & ROLLOVER) != ROLLOVER) && (player->force <= 0) &&
-         (player->speed < 0.20) && ((player->slip_flag & BREAKE) == BREAKE))) {
+    Player->OldSpeed = Player->Speed;
+    Player->Speed = sqrtf(temp);
+    if ((((Player->SlipFlag & ROLLOVER) != ROLLOVER) && (Player->Force <= 0) &&
+         (Player->Speed < 0.13)) ||
+        (((Player->SlipFlag & ROLLOVER) != ROLLOVER) && (Player->Force <= 0) &&
+         (Player->Speed < 0.20) && ((Player->SlipFlag & BREAKE) == BREAKE))) {
         newVelocity[0] = newVelocity[0] + (-1 * newVelocity[0]);
         newVelocity[2] = newVelocity[2] + (-1 * newVelocity[2]);
     } else {
-        player->position[0] = nextX;
-        player->position[2] = nextZ;
+        Player->Position[0] = nextX;
+        Player->Position[2] = nextZ;
     }
-    player->position[1] = nextY;
-    player->gravity_xz[0] = spE0[0];
-    player->gravity_xz[2] = spE0[2];
-    player->velocity[0] = newVelocity[0];
-    player->velocity[1] = newVelocity[1];
-    player->velocity[2] = newVelocity[2];
-    if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-        if (gKartTopSpeedTable[player->kart] < player->speed) {
-            topSpeedMultiplier = gKartTopSpeedTable[player->kart] / player->speed;
-            player->velocity[0] *= topSpeedMultiplier;
-            player->velocity[1] *= topSpeedMultiplier;
-            player->velocity[2] *= topSpeedMultiplier;
-            player->speed = gKartTopSpeedTable[player->kart];
+    Player->Position[1] = nextY;
+    Player->GravityXz[0] = spE0[0];
+    Player->GravityXz[2] = spE0[2];
+    Player->Velocity[0] = newVelocity[0];
+    Player->Velocity[1] = newVelocity[1];
+    Player->Velocity[2] = newVelocity[2];
+    if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+        if (gKartTopSpeedTable[Player->Kart] < Player->Speed) {
+            topSpeedMultiplier = gKartTopSpeedTable[Player->Kart] / Player->Speed;
+            Player->Velocity[0] *= topSpeedMultiplier;
+            Player->Velocity[1] *= topSpeedMultiplier;
+            Player->Velocity[2] *= topSpeedMultiplier;
+            Player->Speed = gKartTopSpeedTable[Player->Kart];
         }
     }
-    if (ok_CheckSplashEnabled) {
-        CheckSplash(player, playerId);
+    if (OKCheckSplashEnabled) {
+        CheckSplash(Player, PlayerId);
     }
 }
 
-void RunKartSimple(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
+void RunKartSimple(Player* Player, UNUSED Camera* Camera, s8 screenId, s8 PlayerId) {
     Vec3f spF4 = { 0.0f, 0.0f, 1.0f };
     UNUSED Vec3f spE8 = { 0.0f, 0.0f, 0.0f };
     Vec3f spDC = { 0.0f, 0.0f, 0.0f };
@@ -2722,9 +2722,9 @@ void RunKartSimple(Player* player, UNUSED Camera* camera, s8 screenId, s8 player
     f32 nextX;
     UNUSED s32 pad;
     f32 nextZ;
-    UNUSED s32 pad2[15];
+    UNUSED s32 Pad2[15];
     f32 sp84;
-    UNUSED s32 pad3;
+    UNUSED s32 Pad3;
     f32 sp7C;
     UNUSED s32 pad4[2];
     Vec3f newVelocity;
@@ -2732,298 +2732,298 @@ void RunKartSimple(Player* player, UNUSED Camera* camera, s8 screenId, s8 player
     f32 toSqrt;
     f32 topSpeedMultiplier;
     f32 nextY;
-    player->slip_flag |= CENTER_LINE;
-    player->handling_flag |= CPU_SIMPLE_KART;
-    nextY = enemy_tenuki_y[playerId];
-    player->drift_count = 0;
-    player->slip_flag &= ~DRIFT;
-    WeaponStatus(player, playerId, screenId);
-    SetStrategy(player, playerId, screenId);
-    sp84 = 0 * player->gravity_xz[0] + spDC[0];
-    sp7C = 0 * player->gravity_xz[2] + spDC[2];
-    player->hitcount = 0;
-    player->wallhitcount = 0;
-    player->slip_flag &= ~CARHIT;
-    spF4[2] = PowerCheck(player, playerId);
-    MultipleMatrixByVector(spF4, player->align);
-    newVelocity[0] = player->velocity[0];
+    Player->SlipFlag |= CENTER_LINE;
+    Player->HandlingFlag |= CPU_SIMPLE_KART;
+    nextY = EnemyTenukiY[PlayerId];
+    Player->DriftCount = 0;
+    Player->SlipFlag &= ~DRIFT;
+    WeaponStatus(Player, PlayerId, screenId);
+    SetStrategy(Player, PlayerId, screenId);
+    sp84 = 0 * Player->GravityXz[0] + spDC[0];
+    sp7C = 0 * Player->GravityXz[2] + spDC[2];
+    Player->Hitcount = 0;
+    Player->Wallhitcount = 0;
+    Player->SlipFlag &= ~CARHIT;
+    spF4[2] = PowerCheck(Player, PlayerId);
+    MultipleMatrixByVector(spF4, Player->align);
+    newVelocity[0] = Player->Velocity[0];
     newVelocity[1] = 0;
-    newVelocity[2] = player->velocity[2];
-    newVelocity[0] += (((spF4[0] + sp84) + spD0[0]) - (newVelocity[0] * (0.12 * player->mass))) / 6000.0;
-    newVelocity[2] += (((spF4[2] + sp7C) + spD0[2]) - (newVelocity[2] * (0.12 * player->mass))) / 6000.0;
-    player->old_position[0] = player->position[0];
-    player->old_position[1] = nextY;
-    player->old_position[2] = player->position[2];
-    nextX = player->position[0] + player->velocity[0];
-    nextZ = player->position[2] + player->velocity[2];
-    player->slipang = 0;
-    player->jmp_acc = 0;
-    player->jmp_speed = 0;
-    player->jump = 0;
-    MakeAlignMatrix(player->align, player->up_vector[0], player->up_vector[1], player->up_vector[2],
-                                 player->direction[1]);
-    player->jumpcount = 0;
-    player->slip_flag &= ~D_JUMP;
-    player->slip_flag &= ~N_JUMP;
-    player->kartpitch = 0;
-    player->kartroll = 0;
+    newVelocity[2] = Player->Velocity[2];
+    newVelocity[0] += (((spF4[0] + sp84) + spD0[0]) - (newVelocity[0] * (0.12 * Player->Mass))) / 6000.0;
+    newVelocity[2] += (((spF4[2] + sp7C) + spD0[2]) - (newVelocity[2] * (0.12 * Player->Mass))) / 6000.0;
+    Player->OldPosition[0] = Player->Position[0];
+    Player->OldPosition[1] = nextY;
+    Player->OldPosition[2] = Player->Position[2];
+    nextX = Player->Position[0] + Player->Velocity[0];
+    nextZ = Player->Position[2] + Player->Velocity[2];
+    Player->Slipang = 0;
+    Player->JmpAcc = 0;
+    Player->JmpSpeed = 0;
+    Player->Jump = 0;
+    MakeAlignMatrix(Player->align, Player->UpVector[0], Player->UpVector[1], Player->UpVector[2],
+                                 Player->Direction[1]);
+    Player->Jumpcount = 0;
+    Player->SlipFlag &= ~D_JUMP;
+    Player->SlipFlag &= ~N_JUMP;
+    Player->Kartpitch = 0;
+    Player->Kartroll = 0;
     toSqrt = (newVelocity[0] * newVelocity[0]) + (newVelocity[2] * newVelocity[2]);
-    player->old_speed = player->speed;
-    player->speed = sqrtf(toSqrt);
-    player->position[0] = nextX;
-    player->position[2] = nextZ;
-    player->position[1] = nextY;
-    player->gravity_xz[0] = 0;
-    player->gravity_xz[2] = 0;
-    player->velocity[0] = newVelocity[0];
-    player->velocity[1] = newVelocity[1];
-    player->velocity[2] = newVelocity[2];
-    old_velocity[playerId][0] = newVelocity[0];
-    old_velocity[playerId][1] = newVelocity[1];
-    old_velocity[playerId][2] = newVelocity[2];
-    if (gKartTopSpeedTable[player->kart] < player->speed) {
-        topSpeedMultiplier = gKartTopSpeedTable[player->kart] / player->speed;
-        player->velocity[0] *= topSpeedMultiplier;
-        player->velocity[1] *= topSpeedMultiplier;
-        player->velocity[2] *= topSpeedMultiplier;
-        player->speed = gKartTopSpeedTable[player->kart];
+    Player->OldSpeed = Player->Speed;
+    Player->Speed = sqrtf(toSqrt);
+    Player->Position[0] = nextX;
+    Player->Position[2] = nextZ;
+    Player->Position[1] = nextY;
+    Player->GravityXz[0] = 0;
+    Player->GravityXz[2] = 0;
+    Player->Velocity[0] = newVelocity[0];
+    Player->Velocity[1] = newVelocity[1];
+    Player->Velocity[2] = newVelocity[2];
+    OldVelocity[PlayerId][0] = newVelocity[0];
+    OldVelocity[PlayerId][1] = newVelocity[1];
+    OldVelocity[PlayerId][2] = newVelocity[2];
+    if (gKartTopSpeedTable[Player->Kart] < Player->Speed) {
+        topSpeedMultiplier = gKartTopSpeedTable[Player->Kart] / Player->Speed;
+        Player->Velocity[0] *= topSpeedMultiplier;
+        Player->Velocity[1] *= topSpeedMultiplier;
+        Player->Velocity[2] *= topSpeedMultiplier;
+        Player->Speed = gKartTopSpeedTable[Player->Kart];
     }
 }
 
-void openkart(Player* player, UNUSED Camera* camera, UNUSED s8 screenId, s8 playerId) {
+void Openkart(Player* Player, UNUSED Camera* Camera, UNUSED s8 screenId, s8 PlayerId) {
     Vec3f spF4 = { 0.0f, 0.0f, 1.0f };
     Vec3f spE8 = { 0.0f, 0.0f, 0.0f };
     UNUSED Vec3f spDC = { 0.0f, 0.0f, 0.0f };
     Vec3f spD0 = { 0.0f, 0.0f, 0.0f };
-    // Next position is current position + current velocity
+    // Next Position is Current Position + Current Velocity
     f32 nextX;
     f32 nextY;
     f32 nextZ;
 
-    f32 posX;
-    f32 posY;
-    f32 posZ;
+    f32 PosX;
+    f32 PosY;
+    f32 PosZ;
     f32 topSpeedMultiplier;
     UNUSED s32 pad[11];
     f32 sp84;
-    UNUSED s32 pad2;
+    UNUSED s32 Pad2;
     f32 sp7C;
     f32 surfaceDistance;
     f32 sqrt;
     Vec3f newVelocity;
     Vec3f sp5C;
-    UNUSED s32 pad3[3];
+    UNUSED s32 Pad3[3];
 
-    yoko_g(player, spD0);
-    sp84 = player->gravity_xz[0] * 0;
-    sp7C = player->gravity_xz[2] * 0;
-    spF4[2] = PowerCheck(player, playerId);
+    YokoG(Player, spD0);
+    sp84 = Player->GravityXz[0] * 0;
+    sp7C = Player->GravityXz[2] * 0;
+    spF4[2] = PowerCheck(Player, PlayerId);
 
-    MultipleMatrixByVector(spF4, player->align);
+    MultipleMatrixByVector(spF4, Player->align);
 
-    newVelocity[0] = player->velocity[0];
-    newVelocity[1] = player->velocity[1];
-    newVelocity[2] = player->velocity[2];
+    newVelocity[0] = Player->Velocity[0];
+    newVelocity[1] = Player->Velocity[1];
+    newVelocity[2] = Player->Velocity[2];
 
     newVelocity[0] += (((f64) (spF4[0] + sp84) - (newVelocity[0] * 780.0)) / 6500.0);
     newVelocity[2] += (((f64) (spF4[2] + sp7C) - (newVelocity[2] * 780.0)) / 6500.0);
     newVelocity[1] += (((f64) (spF4[1] + -1100.0f) - (newVelocity[1] * 780.0)) / 6500.0);
 
-    posX = player->position[0];
-    posY = player->position[1];
-    posZ = player->position[2];
+    PosX = Player->Position[0];
+    PosY = Player->Position[1];
+    PosZ = Player->Position[2];
 
-    player->old_position[0] = player->position[0];
-    player->old_position[1] = player->position[1];
-    player->old_position[2] = player->position[2];
+    Player->OldPosition[0] = Player->Position[0];
+    Player->OldPosition[1] = Player->Position[1];
+    Player->OldPosition[2] = Player->Position[2];
 
-    nextX = player->velocity[0] + posX;
-    nextY = player->velocity[1] + posY;
-    nextZ = player->velocity[2] + posZ;
+    nextX = Player->Velocity[0] + PosX;
+    nextY = Player->Velocity[1] + PosY;
+    nextZ = Player->Velocity[2] + PosZ;
 
-    DriftJump(player);
+    DriftJump(Player);
 
-    nextY += player->jump;
-    custom_check_bump_2(&player->bump, player->radius, nextX, nextY, nextZ, player->old_position[0],
-                            player->old_position[1], player->old_position[2]);
-    player->up_vector[0] = 0.0f;
-    player->up_vector[1] = 1.0f;
-    player->up_vector[2] = 0.0f;
-    MakeAlignMatrix(player->align, 0.0f, 1.0f, 0.0f, (s16) (s32) player->direction[1]);
-    player->slip_flag &= ~N_JUMP;
-    surfaceDistance = player->bump.distance_zx;
+    nextY += Player->Jump;
+    CustomCheckBump2(&Player->Bump, Player->Radius, nextX, nextY, nextZ, Player->OldPosition[0],
+                            Player->OldPosition[1], Player->OldPosition[2]);
+    Player->UpVector[0] = 0.0f;
+    Player->UpVector[1] = 1.0f;
+    Player->UpVector[2] = 0.0f;
+    MakeAlignMatrix(Player->align, 0.0f, 1.0f, 0.0f, (s16) (s32) Player->Direction[1]);
+    Player->SlipFlag &= ~N_JUMP;
+    surfaceDistance = Player->Bump.DistanceZX;
     if (surfaceDistance <= 0.0f) {
         if (1) {};
-        CheckMapBG_ZX_Hook(player, sp5C, newVelocity, spE8, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckMapBGZXHook(Player, sp5C, newVelocity, spE8, &surfaceDistance, &nextX, &nextY, &nextZ);
     }
-    player->ground = CalcHeight(nextX, nextY, nextZ, player->bump.last_zx);
-    if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((g_ScreenSplitA == SCREEN_MODE_1P) || (g_ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_VERTICAL) ||
-         (g_ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL))) {
-        TirePosition(player, nextX, nextY, nextZ);
+    Player->Ground = CalcHeight(nextX, nextY, nextZ, Player->Bump.LastZX);
+    if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((ScreenSplitA == SCREEN_MODE_1P) || (ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_VERTICAL) ||
+         (ScreenSplitA == SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL))) {
+        TirePosition(Player, nextX, nextY, nextZ);
     } else {
-        EnemyTirePosition(player, nextX, nextY, nextZ);
+        EnemyTirePosition(Player, nextX, nextY, nextZ);
     }
-    SetSlipAngle(player, playerId, posX, posZ, nextX, nextZ);
+    SetSlipAngle(Player, PlayerId, PosX, PosZ, nextX, nextZ);
     sqrt = (newVelocity[0] * newVelocity[0]) + (newVelocity[1] * newVelocity[1]) + (newVelocity[2] * newVelocity[2]);
-    player->old_speed = player->speed;
-    player->speed = sqrtf(sqrt);
-    if (((player->force <= 0.0f) && ((f64) player->speed < 0.13)) ||
-        ((player->force <= 0.0f) && ((f64) player->speed < 0.2) &&
-         ((player->slip_flag & BREAKE) == BREAKE))) {
+    Player->OldSpeed = Player->Speed;
+    Player->Speed = sqrtf(sqrt);
+    if (((Player->Force <= 0.0f) && ((f64) Player->Speed < 0.13)) ||
+        ((Player->Force <= 0.0f) && ((f64) Player->Speed < 0.2) &&
+         ((Player->SlipFlag & BREAKE) == BREAKE))) {
         newVelocity[0] = newVelocity[0] + (newVelocity[0] * -1.0f);
         newVelocity[2] = newVelocity[2] + (newVelocity[2] * -1.0f);
     } else {
-        player->position[0] = nextX;
-        player->position[2] = nextZ;
+        Player->Position[0] = nextX;
+        Player->Position[2] = nextZ;
     }
-    player->position[1] = nextY - 0.018;
+    Player->Position[1] = nextY - 0.018;
 
-    player->gravity_xz[0] = spE8[0];
-    player->gravity_xz[2] = spE8[2];
+    Player->GravityXz[0] = spE8[0];
+    Player->GravityXz[2] = spE8[2];
 
-    player->velocity[0] = newVelocity[0];
-    player->velocity[1] = newVelocity[1];
-    player->velocity[2] = newVelocity[2];
+    Player->Velocity[0] = newVelocity[0];
+    Player->Velocity[1] = newVelocity[1];
+    Player->Velocity[2] = newVelocity[2];
 
-    old_velocity[playerId][0] = newVelocity[0];
-    old_velocity[playerId][1] = newVelocity[1];
-    old_velocity[playerId][2] = newVelocity[2];
+    OldVelocity[PlayerId][0] = newVelocity[0];
+    OldVelocity[PlayerId][1] = newVelocity[1];
+    OldVelocity[PlayerId][2] = newVelocity[2];
 
-    if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-        if (gKartTopSpeedTable[player->kart] < player->speed) {
-            topSpeedMultiplier = gKartTopSpeedTable[player->kart] / player->speed;
-            player->velocity[0] *= topSpeedMultiplier;
-            player->velocity[1] *= topSpeedMultiplier;
-            player->velocity[2] *= topSpeedMultiplier;
-            player->speed = gKartTopSpeedTable[player->kart];
+    if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+        if (gKartTopSpeedTable[Player->Kart] < Player->Speed) {
+            topSpeedMultiplier = gKartTopSpeedTable[Player->Kart] / Player->Speed;
+            Player->Velocity[0] *= topSpeedMultiplier;
+            Player->Velocity[1] *= topSpeedMultiplier;
+            Player->Velocity[2] *= topSpeedMultiplier;
+            Player->Speed = gKartTopSpeedTable[Player->Kart];
         }
     }
 }
 
-void SlipCheck(Player* player, s8 playerIndex) {
+void SlipCheck(Player* Player, s8 playerIndex) {
     f32 var_f0;
     f32 var_f12;
     s32 temp_lo;
     s32 var_v1;
 
     var_f0 = 0.0f;
-    if ((player->slip_flag & STAR) != STAR) {
-        if ((s32) player->tire_RR.Status < 0xF) {
-            var_f0 += D_800E2A90[player->kart][player->tire_RR.Status];
+    if ((Player->SlipFlag & STAR) != STAR) {
+        if ((s32) Player->TireRR.Status < 0xF) {
+            var_f0 += D_800E2A90[Player->Kart][Player->TireRR.Status];
         }
-        if ((s32) player->tire_RL.Status < 0xF) {
-            var_f0 += D_800E2A90[player->kart][player->tire_RL.Status];
+        if ((s32) Player->TireRL.Status < 0xF) {
+            var_f0 += D_800E2A90[Player->Kart][Player->TireRL.Status];
         }
-        if ((s32) player->tire_FR.Status < 0xF) {
-            var_f0 += D_800E2AB0[player->kart][player->tire_FR.Status];
+        if ((s32) Player->TireFR.Status < 0xF) {
+            var_f0 += D_800E2AB0[Player->Kart][Player->TireFR.Status];
         }
-        if ((s32) player->tire_FL.Status < 0xF) {
-            var_f0 += D_800E2AB0[player->kart][player->tire_FL.Status];
+        if ((s32) Player->TireFL.Status < 0xF) {
+            var_f0 += D_800E2AB0[Player->Kart][Player->TireFL.Status];
         }
     }
-    if (sterr_counter[playerIndex] & 4) {
+    if (SterrCounter[playerIndex] & 4) {
         var_v1 = 2;
     } else {
         var_v1 = 0;
     }
-    if ((player->accelcount >= 200.0f) && (var_v1 == 2)) {
-        temp_lo = (s16) player->slipang / DEGREES(1);
+    if ((Player->Accelcount >= 200.0f) && (var_v1 == 2)) {
+        temp_lo = (s16) Player->Slipang / DEGREES(1);
         if ((temp_lo > 0xF) || (temp_lo < -0xF)) {
             var_f0 += 1.0;
         }
     }
-    if (((player->slip_flag & SLIP_STREAM) == SLIP_STREAM) && ((player->flag & IS_PLAYER) != IS_PLAYER)) {
+    if (((Player->SlipFlag & SLIP_STREAM) == SLIP_STREAM) && ((Player->Flag & IS_PLAYER) != IS_PLAYER)) {
         var_f0 = -3.0f;
     }
 
-    if (player->r_grip >= 0.0f) {
-        var_f12 = player->r_grip * var_f0;
+    if (Player->RGrip >= 0.0f) {
+        var_f12 = Player->RGrip * var_f0;
     } else {
-        var_f12 = -player->r_grip * var_f0;
+        var_f12 = -Player->RGrip * var_f0;
     }
-    player->allrear_grip = player->r_grip - var_f12;
+    Player->AllrearGrip = Player->RGrip - var_f12;
 }
 
-void make_taco(Player* player, f32 arg1) {
+void MakeTaco(Player* Player, f32 arg1) {
     f32 temp_f0_3;
     f32 var_f0;
     s16 temp_lo;
     s32 test;
 
-    if ((player->slip_flag & RAPID_ACC) == RAPID_ACC) {
-        player->taco = ((player->accelcount * player->accelcount) / 25.0f) * 1.1;
+    if ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC) {
+        Player->Taco = ((Player->Accelcount * Player->Accelcount) / 25.0f) * 1.1;
         return;
     }
 
     // Huh?
-    if (((player->slip_flag & ALL_EFFECTS) & N_JUMP) == N_JUMP) {
-        player->taco = ((player->accelcount * player->accelcount) / 25.0f) * 1.1;
+    if (((Player->SlipFlag & ALL_EFFECTS) & N_JUMP) == N_JUMP) {
+        Player->Taco = ((Player->Accelcount * Player->Accelcount) / 25.0f) * 1.1;
         return;
     }
 
     var_f0 = 0.0f;
-    player->taco = arg1;
-    temp_lo = player->kartpitch / DEGREES(1);
+    Player->Taco = arg1;
+    temp_lo = Player->Kartpitch / DEGREES(1);
     if ((temp_lo > 0x11) || (temp_lo < -0x11)) {
         var_f0 += (temp_lo * 0.0125) / 1.2;
     } else {
         var_f0 += (temp_lo * 0.025) / 1.2;
     }
-    player->taco = arg1 * (1.0f - var_f0);
-    if (player->tire_RR.Status == GRASS) {
-        var_f0 += D_800E2E90[player->kart][player->tire_RR.Status] * 0.7;
+    Player->Taco = arg1 * (1.0f - var_f0);
+    if (Player->TireRR.Status == GRASS) {
+        var_f0 += D_800E2E90[Player->Kart][Player->TireRR.Status] * 0.7;
     }
-    if (player->tire_RL.Status == GRASS) {
-        // The unecessary "* 1.0" here is to force the compiler to save this 0.7 as a separate RO value from the 0.7
+    if (Player->TireRL.Status == GRASS) {
+        // The unecessary "* 1.0" here is to Force the compiler to save this 0.7 as a separate RO Value from the 0.7
         // just above this comment
-        var_f0 += D_800E2E90[player->kart][player->tire_RL.Status] * (0.7 * 1.0);
+        var_f0 += D_800E2E90[Player->Kart][Player->TireRL.Status] * (0.7 * 1.0);
     }
-    test = player->slipang / DEGREES(1);
+    test = Player->Slipang / DEGREES(1);
     if (test < 0) {
         var_f0 += -test * 0.004;
     } else {
         var_f0 += test * 0.004;
     }
-    player->taco = arg1 * (1.0 + (var_f0 * 0.7));
-    if ((player->slip_flag & SPIN_TURN) == SPIN_TURN) {
-        temp_f0_3 = player->accelcount + 180.0f;
-        player->taco = (temp_f0_3 * temp_f0_3) / 25.0f;
+    Player->Taco = arg1 * (1.0 + (var_f0 * 0.7));
+    if ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) {
+        temp_f0_3 = Player->Accelcount + 180.0f;
+        Player->Taco = (temp_f0_3 * temp_f0_3) / 25.0f;
     }
 }
 
-f32 PowerCheck(Player* player, s8 playerIndex) {
+f32 PowerCheck(Player* Player, s8 playerIndex) {
     f32 var_f0;
     s16 temp_lo;
     f32 var_f2;
     s32 var_v0;
 
     var_f0 = 0.0f;
-    var_f2 = (player->speed / 18.0f) * 216.0f;
+    var_f2 = (Player->Speed / 18.0f) * 216.0f;
     if (var_f2 >= 8.0f) {
-        if ((player->slip_flag & STAR) != STAR) {
-            if ((s32) player->tire_RR.Status >= 0xF) {
+        if ((Player->SlipFlag & STAR) != STAR) {
+            if ((s32) Player->TireRR.Status >= 0xF) {
                 // ???????
                 if (1) {}
             } else {
-                var_f0 += D_800E2E90[player->kart][player->tire_RR.Status];
+                var_f0 += D_800E2E90[Player->Kart][Player->TireRR.Status];
             }
 
-            if ((s32) player->tire_RL.Status < 0xF) {
-                var_f0 += D_800E2E90[player->kart][player->tire_RL.Status];
+            if ((s32) Player->TireRL.Status < 0xF) {
+                var_f0 += D_800E2E90[Player->Kart][Player->TireRL.Status];
             }
 
-            if ((s32) player->tire_FR.Status < 0xF) {
-                var_f0 += D_800E2EB0[player->kart][player->tire_FR.Status];
+            if ((s32) Player->TireFR.Status < 0xF) {
+                var_f0 += D_800E2EB0[Player->Kart][Player->TireFR.Status];
             }
 
-            if ((s32) player->tire_FL.Status < 0xF) {
-                var_f0 += D_800E2E90[player->kart][player->tire_FL.Status];
+            if ((s32) Player->TireFL.Status < 0xF) {
+                var_f0 += D_800E2E90[Player->Kart][Player->TireFL.Status];
             }
         }
-        if (((player->slip_flag & N_JUMP) != N_JUMP) &&
-            ((player->jugemu_flag & ON_LAKITU_ROD) != ON_LAKITU_ROD)) {
-            temp_lo = player->kartpitch / DEGREES(1);
+        if (((Player->SlipFlag & N_JUMP) != N_JUMP) &&
+            ((Player->JugemuFlag & ON_LAKITU_ROD) != ON_LAKITU_ROD)) {
+            temp_lo = Player->Kartpitch / DEGREES(1);
             if (var_f2 >= 20.0f) {
                 if ((temp_lo > 0x11) || (temp_lo < -0x11)) {
                     var_f0 -= ((temp_lo * 0.0126) / 3.0);
@@ -3032,123 +3032,123 @@ f32 PowerCheck(Player* player, s8 playerIndex) {
                 }
             } else {
                 var_f0 += -0.2;
-                if ((player->slip_flag & THUNDER) == THUNDER) {
+                if ((Player->SlipFlag & THUNDER) == THUNDER) {
                     var_f0 += -0.55;
                 }
             }
-            if (((player->slip_flag & DRIFT) == DRIFT) || (player->drift_count > 0)) {
-                var_v0 = (s16) player->slipang / DEGREES(1);
+            if (((Player->SlipFlag & DRIFT) == DRIFT) || (Player->DriftCount > 0)) {
+                var_v0 = (s16) Player->Slipang / DEGREES(1);
                 if (var_v0 < 0) {
                     var_f0 += -var_v0 * 0.004;
                 } else {
                     var_f0 += var_v0 * 0.004;
                 }
             } else {
-                var_v0 = (s16) player->slipang / DEGREES(1);
+                var_v0 = (s16) Player->Slipang / DEGREES(1);
                 if (var_v0 < 0) {
-                    var_f0 += -var_v0 * (0.01 + gKartTurnSpeedReductionTable0[player->kart]);
+                    var_f0 += -var_v0 * (0.01 + gKartTurnSpeedReductionTable0[Player->Kart]);
                 } else {
-                    var_f0 += var_v0 * (0.01 + gKartTurnSpeedReductionTable0[player->kart]);
+                    var_f0 += var_v0 * (0.01 + gKartTurnSpeedReductionTable0[Player->Kart]);
                 }
             }
-            if (((player->slip_flag & STOPSTERR) == STOPSTERR) && (player->stopsetrr_count < 10)) {
+            if (((Player->SlipFlag & STOPSTERR) == STOPSTERR) && (Player->StopsetrrCount < 10)) {
                 if (var_v0 < 0) {
                     var_f0 += -var_v0 * 0.008;
                 } else {
                     var_f0 += var_v0 * 0.008;
                 }
             }
-            if ((player->slip_flag & STAR) == STAR) {
+            if ((Player->SlipFlag & STAR) == STAR) {
                 var_f0 += -0.25;
             }
         }
-        if ((player->water_flag & SUBMERGED) == SUBMERGED) {
+        if ((Player->WaterFlag & SUBMERGED) == SUBMERGED) {
             var_f0 += 0.3;
         } else {
-            if ((player->water_flag & HALF_SUBMERGED) == HALF_SUBMERGED) {
+            if ((Player->WaterFlag & HALF_SUBMERGED) == HALF_SUBMERGED) {
                 var_f0 += 0.15;
             }
-            if (((g_waterlevelPlayer[playerIndex] - player->tire_RL.Height) >= 3.5) ||
-                ((g_waterlevelPlayer[playerIndex] - player->tire_RR.Height) >= 3.5)) {
+            if (((WaterlevelPlayer[playerIndex] - Player->TireRL.Height) >= 3.5) ||
+                ((WaterlevelPlayer[playerIndex] - Player->TireRR.Height) >= 3.5)) {
                 var_f0 += 0.05;
             }
         }
-        if ((player->slip_flag & N_JUMP) != 0) {
-            chase_Fnumber(&player->power_down, player->force * 0.04, 0.15f);
+        if ((Player->SlipFlag & N_JUMP) != 0) {
+            ChaseFnumber(&Player->PowerDown, Player->Force * 0.04, 0.15f);
         } else {
-            chase_Fnumber(&player->power_down, 0.0f, 0.1f);
+            ChaseFnumber(&Player->PowerDown, 0.0f, 0.1f);
         }
     } else {
-        player->power_down = 0.0f;
-        player->maxadd_power = 0.0f;
-        if (((s16) player->kartpitch / DEGREES(1)) < 0) {
+        Player->PowerDown = 0.0f;
+        Player->MaxaddPower = 0.0f;
+        if (((s16) Player->Kartpitch / DEGREES(1)) < 0) {
             var_f0 += -0.85;
-            if (player->slip_flag & THUNDER) {
+            if (Player->SlipFlag & THUNDER) {
                 var_f0 += -0.55;
             }
         }
     }
-    if ((player->flag & IS_PLAYER) != IS_PLAYER) {
-        if ((player->slip_flag & SLIP_STREAM) == SLIP_STREAM) {
-            chase_Fnumber(&player->maxadd_power, 380.0f, 0.5f);
+    if ((Player->Flag & IS_PLAYER) != IS_PLAYER) {
+        if ((Player->SlipFlag & SLIP_STREAM) == SLIP_STREAM) {
+            ChaseFnumber(&Player->MaxaddPower, 380.0f, 0.5f);
         } else {
-            chase_Fnumber(&player->maxadd_power, 0.0f, 0.1f);
+            ChaseFnumber(&Player->MaxaddPower, 0.0f, 0.1f);
         }
     }
-    if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-        if (((player->slip_flag & DRIFT_TURBO) == DRIFT_TURBO) &&
-            ((player->slip_flag & DRIFT) != DRIFT)) {
-            chase_Fnumber(&player->maxadd_power, 580.0f, 0.2f);
+    if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+        if (((Player->SlipFlag & DRIFT_TURBO) == DRIFT_TURBO) &&
+            ((Player->SlipFlag & DRIFT) != DRIFT)) {
+            ChaseFnumber(&Player->MaxaddPower, 580.0f, 0.2f);
         } else {
-            chase_Fnumber(&player->maxadd_power, 0.0f, 0.01f);
+            ChaseFnumber(&Player->MaxaddPower, 0.0f, 0.01f);
         }
-        if ((player->slip_flag & SLIP_STREAM) == SLIP_STREAM) {
-            chase_Fnumber(&player->slipstream_power, 580.0f, 0.01f);
+        if ((Player->SlipFlag & SLIP_STREAM) == SLIP_STREAM) {
+            ChaseFnumber(&Player->SlipstreamPower, 580.0f, 0.01f);
         } else {
-            chase_Fnumber(&player->slipstream_power, 0.0f, 0.01f);
+            ChaseFnumber(&Player->SlipstreamPower, 0.0f, 0.01f);
         }
     }
-    chase_Fnumber(&player->power_cont, var_f0, gKartTurnSpeedReductionTable1[player->kart] + 0.05);
-    var_f2 = (player->force + player->maxadd_power + player->turbo_power + player->slipstream_power) - player->power_down;
+    ChaseFnumber(&Player->PowerCont, var_f0, gKartTurnSpeedReductionTable1[Player->Kart] + 0.05);
+    var_f2 = (Player->Force + Player->MaxaddPower + Player->TurboPower + Player->SlipstreamPower) - Player->PowerDown;
     if (var_f2 < 0.0f) {
         var_f2 = 0.0f;
     }
-    if (((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
-        ((player->jugemu_flag & LAKITU_SCENE) == LAKITU_SCENE) ||
-        ((player->flag & NO_CONTROLS) == NO_CONTROLS)) {
-        return (1.0f - player->power_cont) * var_f2;
+    if (((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
+        ((Player->JugemuFlag & LAKITU_SCENE) == LAKITU_SCENE) ||
+        ((Player->Flag & NO_CONTROLS) == NO_CONTROLS)) {
+        return (1.0f - Player->PowerCont) * var_f2;
     }
-    if (((player->slip_flag & SPIN_L) == SPIN_L) ||
-        ((player->slip_flag & SPIN_R) == SPIN_R) ||
-        ((player->slip_flag & EXPLODE) == EXPLODE) ||
-        ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE)) {
-        return (1.0f - player->power_cont) * var_f2;
+    if (((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+        ((Player->SlipFlag & SPIN_R) == SPIN_R) ||
+        ((Player->SlipFlag & EXPLODE) == EXPLODE) ||
+        ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE)) {
+        return (1.0f - Player->PowerCont) * var_f2;
     }
-    if (((player->slip_flag & TURBO) == TURBO) ||
-        ((player->slip_flag & DASH_JUMP) == DASH_JUMP) ||
-        ((player->slip_flag & DASH_MIDJUMP) == DASH_MIDJUMP)) {
-        make_taco(player, player->turbo_power + player->force);
-        return player->turbo_power + player->force;
+    if (((Player->SlipFlag & TURBO) == TURBO) ||
+        ((Player->SlipFlag & DASH_JUMP) == DASH_JUMP) ||
+        ((Player->SlipFlag & DASH_MIDJUMP) == DASH_MIDJUMP)) {
+        MakeTaco(Player, Player->TurboPower + Player->Force);
+        return Player->TurboPower + Player->Force;
     }
-    make_taco(player, var_f2);
-    return (1.0f - player->power_cont) * var_f2;
+    MakeTaco(Player, var_f2);
+    return (1.0f - Player->PowerCont) * var_f2;
 }
 
-void shake_set(Player* player) {
+void ShakeSet(Player* Player) {
     f32 var_f0;
     f32 var_f2;
 
-    if (((player->jugemu_flag & ON_LAKITU_ROD) != ON_LAKITU_ROD) &&
-        ((player->jugemu_flag & LAKITU_SCENE) != LAKITU_SCENE)) {
-        if ((((player->speed / 18.0f) * 216.0f) >= 8.0f) && (player->sus.bound_firstspeed < 1.0f)) {
-            switch (player->bump_status) { /* irregular */
+    if (((Player->JugemuFlag & ON_LAKITU_ROD) != ON_LAKITU_ROD) &&
+        ((Player->JugemuFlag & LAKITU_SCENE) != LAKITU_SCENE)) {
+        if ((((Player->Speed / 18.0f) * 216.0f) >= 8.0f) && (Player->sus.BoundFirstspeed < 1.0f)) {
+            switch (Player->BumpStatus) { /* irregular */
                 case ASPHALT:
                     if (MakeRandomLimmit(0x000AU) != 8) {
                         var_f0 = 0.35f;
                         var_f2 = 0.55f;
                     } else {
-                        player->shake_flag = 0;
-                        player->shake = 0.0f;
+                        Player->ShakeFlag = 0;
+                        Player->Shake = 0.0f;
                         var_f0 = 0.0f;
                         var_f2 = 0.0f;
                     }
@@ -3168,748 +3168,748 @@ void shake_set(Player* player) {
             var_f0 = 0.3f;
             var_f2 = 0.54f;
         } else {
-            player->shake_flag = 0;
-            player->shake = 0.0f;
+            Player->ShakeFlag = 0;
+            Player->Shake = 0.0f;
             var_f0 = 0.0f;
             var_f2 = 0.0f;
         }
-        player->shake_flag += 1;
-        player->shake = (player->shake_flag * var_f0) - (0.5 * var_f2 * (player->shake_flag * player->shake_flag));
-        if ((player->shake_flag != 0) && (player->shake < 0.0f)) {
-            player->shake_flag = 0;
+        Player->ShakeFlag += 1;
+        Player->Shake = (Player->ShakeFlag * var_f0) - (0.5 * var_f2 * (Player->ShakeFlag * Player->ShakeFlag));
+        if ((Player->ShakeFlag != 0) && (Player->Shake < 0.0f)) {
+            Player->ShakeFlag = 0;
         }
-        if (player->shake <= 0.0f) {
-            player->shake = 0.0f;
+        if (Player->Shake <= 0.0f) {
+            Player->Shake = 0.0f;
         }
     }
 }
 
-void check_accele_off(Player* player) {
+void CheckAcceleOff(Player* Player) {
     s32 playerIndex;
 
-    if (player == gPlayerOne) {
+    if (Player == PlayerOne) {
         playerIndex = 0;
     }
-    if (player == gPlayerTwo) {
+    if (Player == PlayerTwo) {
         playerIndex = 1;
     }
-    if (player == gPlayerThree) {
+    if (Player == PlayerThree) {
         playerIndex = 2;
     }
-    if (player == gPlayerFour) {
+    if (Player == PlayerFour) {
         playerIndex = 3;
     }
-    if (player == gPlayerFive) {
+    if (Player == PlayerFive) {
         playerIndex = 4;
     }
-    if (player == gPlayerSix) {
+    if (Player == PlayerSix) {
         playerIndex = 5;
     }
-    if (player == gPlayerSeven) {
+    if (Player == PlayerSeven) {
         playerIndex = 6;
     }
-    if (player == gPlayerEight) {
+    if (Player == PlayerEight) {
         playerIndex = 7;
     }
-    if (power_band_accele[playerIndex] == false) {
-        if (accele_onoff_flag[playerIndex] == true) {
-            if ((accele_time[playerIndex] < 2) || (accele_time[playerIndex] >= 9)) {
-                accele_flag[playerIndex] = 0;
+    if (PowerBandAccele[playerIndex] == false) {
+        if (AcceleOnoffFlag[playerIndex] == true) {
+            if ((AcceleTime[playerIndex] < 2) || (AcceleTime[playerIndex] >= 9)) {
+                AcceleFlag[playerIndex] = 0;
             }
-            accele_time[playerIndex] = 0;
-            accele_inc_flag[playerIndex] = 0;
+            AcceleTime[playerIndex] = 0;
+            AcceleIncFlag[playerIndex] = 0;
         }
-        accele_onoff_flag[playerIndex] = false;
-        accele_time[playerIndex]++;
-        if (accele_time[playerIndex] >= 9) {
-            accele_time[playerIndex] = 9;
+        AcceleOnoffFlag[playerIndex] = false;
+        AcceleTime[playerIndex]++;
+        if (AcceleTime[playerIndex] >= 9) {
+            AcceleTime[playerIndex] = 9;
         }
-        if ((accele_time[playerIndex] >= 2) && (accele_time[playerIndex] < 9)) {
-            if (accele_inc_flag[playerIndex] == 0) {
-                accele_flag[playerIndex] += 1;
+        if ((AcceleTime[playerIndex] >= 2) && (AcceleTime[playerIndex] < 9)) {
+            if (AcceleIncFlag[playerIndex] == 0) {
+                AcceleFlag[playerIndex] += 1;
             }
-            accele_inc_flag[playerIndex] = 1;
+            AcceleIncFlag[playerIndex] = 1;
         }
-        if (accele_flag[playerIndex] == 5) {
-            power_band_accele[playerIndex] = true;
-            power_band_timer[playerIndex] = 120;
-            accele_flag[playerIndex] = 0;
-            accele_time[playerIndex] = 0;
+        if (AcceleFlag[playerIndex] == 5) {
+            PowerBandAccele[playerIndex] = true;
+            PowerBandTimer[playerIndex] = 120;
+            AcceleFlag[playerIndex] = 0;
+            AcceleTime[playerIndex] = 0;
         }
     } else {
-        power_band_timer[playerIndex]--;
-        if (power_band_timer[playerIndex] <= 0) {
-            power_band_accele[playerIndex] = false;
+        PowerBandTimer[playerIndex]--;
+        if (PowerBandTimer[playerIndex] <= 0) {
+            PowerBandAccele[playerIndex] = false;
         }
     }
 }
 
-void check_accele_on(Player* player) {
+void CheckAcceleOn(Player* Player) {
     s32 playerIndex;
 
-    if (player == gPlayerOne) {
+    if (Player == PlayerOne) {
         playerIndex = 0;
     }
-    if (player == gPlayerTwo) {
+    if (Player == PlayerTwo) {
         playerIndex = 1;
     }
-    if (player == gPlayerThree) {
+    if (Player == PlayerThree) {
         playerIndex = 2;
     }
-    if (player == gPlayerFour) {
+    if (Player == PlayerFour) {
         playerIndex = 3;
     }
-    if (player == gPlayerFive) {
+    if (Player == PlayerFive) {
         playerIndex = 4;
     }
-    if (player == gPlayerSix) {
+    if (Player == PlayerSix) {
         playerIndex = 5;
     }
-    if (player == gPlayerSeven) {
+    if (Player == PlayerSeven) {
         playerIndex = 6;
     }
-    if (player == gPlayerEight) {
+    if (Player == PlayerEight) {
         playerIndex = 7;
     }
-    if (power_band_accele[playerIndex] == false) {
-        if (accele_onoff_flag[playerIndex] == false) {
-            if ((accele_time[playerIndex] < 2) || (accele_time[playerIndex] >= 9)) {
-                accele_flag[playerIndex] = 0;
+    if (PowerBandAccele[playerIndex] == false) {
+        if (AcceleOnoffFlag[playerIndex] == false) {
+            if ((AcceleTime[playerIndex] < 2) || (AcceleTime[playerIndex] >= 9)) {
+                AcceleFlag[playerIndex] = 0;
             }
-            accele_time[playerIndex] = 0;
-            accele_inc_flag[playerIndex] = 0;
+            AcceleTime[playerIndex] = 0;
+            AcceleIncFlag[playerIndex] = 0;
         }
-        accele_onoff_flag[playerIndex] = true;
-        accele_time[playerIndex]++;
-        if (accele_time[playerIndex] >= 9) {
-            accele_time[playerIndex] = 9;
+        AcceleOnoffFlag[playerIndex] = true;
+        AcceleTime[playerIndex]++;
+        if (AcceleTime[playerIndex] >= 9) {
+            AcceleTime[playerIndex] = 9;
         }
-        if ((accele_time[playerIndex] >= 2) && (accele_time[playerIndex] < 9)) {
-            if (accele_inc_flag[playerIndex] == 0) {
-                accele_flag[playerIndex] += 1;
+        if ((AcceleTime[playerIndex] >= 2) && (AcceleTime[playerIndex] < 9)) {
+            if (AcceleIncFlag[playerIndex] == 0) {
+                AcceleFlag[playerIndex] += 1;
             }
-            accele_inc_flag[playerIndex] = 1;
+            AcceleIncFlag[playerIndex] = 1;
         }
-        if (accele_flag[playerIndex] == 5) {
-            power_band_accele[playerIndex] = true;
-            power_band_timer[playerIndex] = 120;
-            accele_flag[playerIndex] = 0;
-            accele_time[playerIndex] = 0;
+        if (AcceleFlag[playerIndex] == 5) {
+            PowerBandAccele[playerIndex] = true;
+            PowerBandTimer[playerIndex] = 120;
+            AcceleFlag[playerIndex] = 0;
+            AcceleTime[playerIndex] = 0;
         }
     } else {
-        power_band_timer[playerIndex]--;
-        if (power_band_timer[playerIndex] <= 0) {
-            power_band_accele[playerIndex] = false;
+        PowerBandTimer[playerIndex]--;
+        if (PowerBandTimer[playerIndex] <= 0) {
+            PowerBandAccele[playerIndex] = false;
         }
     }
 }
 
-void AccelOn(Player* player) {
+void AccelOn(Player* Player) {
     s32 player_index;
 
-    player_index = check_kart_number(player);
-    if (power_band_accele[player_index] == false) {
-        if ((0.0 <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.1))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][0] + (0.05 * (player->kartpitch / DEGREES(1)));
+    player_index = CheckKartNumber(Player);
+    if (PowerBandAccele[player_index] == false) {
+        if ((0.0 <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.1))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][0] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.1) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.2))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][1] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.1) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.2))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][1] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.2) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.3))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][2] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.2) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.3))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][2] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.3) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.4))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][3] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.3) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.4))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][3] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.4) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.5))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][4] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.4) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.5))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][4] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.5) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.6))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][5] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.5) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.6))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][5] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.6) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.7))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][6] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.6) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.7))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][6] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.7) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.8))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][7] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.7) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.8))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][7] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.8) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.9))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][8] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.8) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.9))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][8] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
-        if (((player->acc_maxcount * 0.9) <= player->accelcount) && (player->accelcount <= (player->acc_maxcount * 1.0))) {
-            player->accelcount +=
-                gKartAccelerationTables[player->kart][9] + (0.05 * (player->kartpitch / DEGREES(1)));
+        if (((Player->AccMaxcount * 0.9) <= Player->Accelcount) && (Player->Accelcount <= (Player->AccMaxcount * 1.0))) {
+            Player->Accelcount +=
+                gKartAccelerationTables[Player->Kart][9] + (0.05 * (Player->Kartpitch / DEGREES(1)));
         }
     } else {
-        if ((0.0 <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.1))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][0] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if ((0.0 <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.1))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][0] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.1) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.2))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][1] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.1) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.2))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][1] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.2) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.3))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][2] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.2) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.3))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][2] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.3) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.4))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][3] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.3) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.4))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][3] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.4) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.5))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][4] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.4) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.5))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][4] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.5) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.6))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][5] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.5) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.6))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][5] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.6) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.7))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][6] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.6) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.7))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][6] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.7) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.8))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][7] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.7) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.8))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][7] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.8) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.9))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][8] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.8) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.9))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][8] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
-        if (((player->acc_maxcount * 0.9) <= player->accelcount) && (player->accelcount <= (player->acc_maxcount * 1.0))) {
-            player->accelcount +=
-                (gKartAccelerationTables[player->kart][9] + (0.05 * (player->kartpitch / DEGREES(1)))) *
-                gKartTripleABoost[player->kart];
+        if (((Player->AccMaxcount * 0.9) <= Player->Accelcount) && (Player->Accelcount <= (Player->AccMaxcount * 1.0))) {
+            Player->Accelcount +=
+                (gKartAccelerationTables[Player->Kart][9] + (0.05 * (Player->Kartpitch / DEGREES(1)))) *
+                gKartTripleABoost[Player->Kart];
         }
     }
-    if (player->accelcount < 0.0f) {
-        player->accelcount = 0.0f;
+    if (Player->Accelcount < 0.0f) {
+        Player->Accelcount = 0.0f;
     }
-    if (player->acc_maxcount <= player->accelcount) {
-        player->accelcount = player->acc_maxcount;
+    if (Player->AccMaxcount <= Player->Accelcount) {
+        Player->Accelcount = Player->AccMaxcount;
     }
-    if (!((player->slip_flag & N_JUMP)) || ((player->slip_flag & THUNDER))) {
-        player->force = (player->accelcount * player->accelcount) / 25.0f;
+    if (!((Player->SlipFlag & N_JUMP)) || ((Player->SlipFlag & THUNDER))) {
+        Player->Force = (Player->Accelcount * Player->Accelcount) / 25.0f;
     }
-    player->handling_flag |= ACCELERATE;
+    Player->HandlingFlag |= ACCELERATE;
     // Hacky way to check for PRESS_STARTSPIN
-    if ((player->weapon * 8) < 0) {
-        set_rapidacc(player, player_index);
-        player->weapon &= ~PRESS_STARTSPIN;
+    if ((Player->Weapon * 8) < 0) {
+        SetRapidacc(Player, player_index);
+        Player->Weapon &= ~PRESS_STARTSPIN;
     }
 }
 
-void AccelOff(Player* player, f32 speed) {
+void AccelOff(Player* Player, f32 Speed) {
     s32 player_index;
-    player_index = check_kart_number(player);
+    player_index = CheckKartNumber(Player);
 
-    player->accelcount -= speed;
-    if (player->accelcount <= 0.0f) {
-        player->accelcount = 0.0f;
+    Player->Accelcount -= Speed;
+    if (Player->Accelcount <= 0.0f) {
+        Player->Accelcount = 0.0f;
     }
-    if (player->speed < 0.2) {
-        player->force = 0.0f;
+    if (Player->Speed < 0.2) {
+        Player->Force = 0.0f;
     }
-    if (player->acc_maxcount <= player->accelcount) {
-        player->accelcount = player->acc_maxcount;
+    if (Player->AccMaxcount <= Player->Accelcount) {
+        Player->Accelcount = Player->AccMaxcount;
     }
-    if ((player->slip_flag & N_JUMP) != N_JUMP) {
-        player->force = (player->accelcount * player->accelcount) / 25.0f;
+    if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+        Player->Force = (Player->Accelcount * Player->Accelcount) / 25.0f;
     }
-    player->handling_flag &= ~ACCELERATE;
+    Player->HandlingFlag &= ~ACCELERATE;
     // Hacky way to check for PRESS_STARTSPIN
-    if ((player->weapon * 8) < 0) {
-        set_rapidacc(player, player_index);
-        player->weapon &= ~PRESS_STARTSPIN;
+    if ((Player->Weapon * 8) < 0) {
+        SetRapidacc(Player, player_index);
+        Player->Weapon &= ~PRESS_STARTSPIN;
     }
 }
 
-void check_brake_off(Player* player) {
+void CheckBrakeOff(Player* Player) {
     s32 playerIndex;
 
-    if (player == gPlayerOne) {
+    if (Player == PlayerOne) {
         playerIndex = 0;
     }
-    if (player == gPlayerTwo) {
+    if (Player == PlayerTwo) {
         playerIndex = 1;
     }
-    if (player == gPlayerThree) {
+    if (Player == PlayerThree) {
         playerIndex = 2;
     }
-    if (player == gPlayerFour) {
+    if (Player == PlayerFour) {
         playerIndex = 3;
     }
-    if (player == gPlayerFive) {
+    if (Player == PlayerFive) {
         playerIndex = 4;
     }
-    if (player == gPlayerSix) {
+    if (Player == PlayerSix) {
         playerIndex = 5;
     }
-    if (player == gPlayerSeven) {
+    if (Player == PlayerSeven) {
         playerIndex = 6;
     }
-    if (player == gPlayerEight) {
+    if (Player == PlayerEight) {
         playerIndex = 7;
     }
 
-    if (full_brake_accele[playerIndex] == false) {
-        if (brake_onoff_flag[playerIndex] == true) {
-            if ((brake_timer[playerIndex] < 2) || (brake_timer[playerIndex] >= 9)) {
-                brake_flag[playerIndex] = 0;
+    if (FullBrakeAccele[playerIndex] == false) {
+        if (BrakeOnoffFlag[playerIndex] == true) {
+            if ((BrakeTimer[playerIndex] < 2) || (BrakeTimer[playerIndex] >= 9)) {
+                BrakeFlag[playerIndex] = 0;
             }
-            brake_timer[playerIndex] = 0;
-            brake_inc_flag[playerIndex] = 0;
+            BrakeTimer[playerIndex] = 0;
+            BrakeIncFlag[playerIndex] = 0;
         }
-        brake_onoff_flag[playerIndex] = false;
-        brake_timer[playerIndex]++;
-        if (brake_timer[playerIndex] >= 9) {
-            brake_timer[playerIndex] = 9;
+        BrakeOnoffFlag[playerIndex] = false;
+        BrakeTimer[playerIndex]++;
+        if (BrakeTimer[playerIndex] >= 9) {
+            BrakeTimer[playerIndex] = 9;
         }
-        if ((brake_timer[playerIndex] >= 2) && (brake_timer[playerIndex] < 9)) {
-            if (brake_inc_flag[playerIndex] == 0) {
-                brake_flag[playerIndex]++;
+        if ((BrakeTimer[playerIndex] >= 2) && (BrakeTimer[playerIndex] < 9)) {
+            if (BrakeIncFlag[playerIndex] == 0) {
+                BrakeFlag[playerIndex]++;
             }
-            brake_inc_flag[playerIndex] = 1;
+            BrakeIncFlag[playerIndex] = 1;
         }
-        if (brake_flag[playerIndex] == 5) {
-            full_brake_accele[playerIndex] = true;
-            full_brake_timer[playerIndex] = 120;
-            brake_flag[playerIndex] = 0;
-            brake_timer[playerIndex] = 0;
+        if (BrakeFlag[playerIndex] == 5) {
+            FullBrakeAccele[playerIndex] = true;
+            FullBrakeTimer[playerIndex] = 120;
+            BrakeFlag[playerIndex] = 0;
+            BrakeTimer[playerIndex] = 0;
         }
     } else {
-        full_brake_timer[playerIndex]--;
-        if (full_brake_timer[playerIndex] <= 0) {
-            full_brake_accele[playerIndex] = false;
+        FullBrakeTimer[playerIndex]--;
+        if (FullBrakeTimer[playerIndex] <= 0) {
+            FullBrakeAccele[playerIndex] = false;
         }
     }
 }
 
-void check_brake_on(Player* player) {
+void CheckBrakeOn(Player* Player) {
     s32 playerIndex;
 
-    if (player == gPlayerOne) {
+    if (Player == PlayerOne) {
         playerIndex = 0;
     }
-    if (player == gPlayerTwo) {
+    if (Player == PlayerTwo) {
         playerIndex = 1;
     }
-    if (player == gPlayerThree) {
+    if (Player == PlayerThree) {
         playerIndex = 2;
     }
-    if (player == gPlayerFour) {
+    if (Player == PlayerFour) {
         playerIndex = 3;
     }
-    if (player == gPlayerFive) {
+    if (Player == PlayerFive) {
         playerIndex = 4;
     }
-    if (player == gPlayerSix) {
+    if (Player == PlayerSix) {
         playerIndex = 5;
     }
-    if (player == gPlayerSeven) {
+    if (Player == PlayerSeven) {
         playerIndex = 6;
     }
-    if (player == gPlayerEight) {
+    if (Player == PlayerEight) {
         playerIndex = 7;
     }
 
-    if (full_brake_accele[playerIndex] == false) {
-        if (brake_onoff_flag[playerIndex] == false) {
-            if ((brake_timer[playerIndex] < 2) || (brake_timer[playerIndex] >= 9)) {
-                brake_flag[playerIndex] = 0;
+    if (FullBrakeAccele[playerIndex] == false) {
+        if (BrakeOnoffFlag[playerIndex] == false) {
+            if ((BrakeTimer[playerIndex] < 2) || (BrakeTimer[playerIndex] >= 9)) {
+                BrakeFlag[playerIndex] = 0;
             }
-            brake_timer[playerIndex] = 0;
-            brake_inc_flag[playerIndex] = 0;
+            BrakeTimer[playerIndex] = 0;
+            BrakeIncFlag[playerIndex] = 0;
         }
-        brake_onoff_flag[playerIndex] = true;
-        brake_timer[playerIndex]++;
-        if (brake_timer[playerIndex] >= 9) {
-            brake_timer[playerIndex] = 9;
+        BrakeOnoffFlag[playerIndex] = true;
+        BrakeTimer[playerIndex]++;
+        if (BrakeTimer[playerIndex] >= 9) {
+            BrakeTimer[playerIndex] = 9;
         }
-        if ((brake_timer[playerIndex] >= 2) && (brake_timer[playerIndex] < 9)) {
-            if (brake_inc_flag[playerIndex] == 0) {
-                brake_flag[playerIndex]++;
+        if ((BrakeTimer[playerIndex] >= 2) && (BrakeTimer[playerIndex] < 9)) {
+            if (BrakeIncFlag[playerIndex] == 0) {
+                BrakeFlag[playerIndex]++;
             }
-            brake_inc_flag[playerIndex] = 1;
+            BrakeIncFlag[playerIndex] = 1;
         }
-        if (brake_flag[playerIndex] == 5) {
-            full_brake_accele[playerIndex] = true;
-            full_brake_timer[playerIndex] = 120;
-            brake_flag[playerIndex] = 0;
-            brake_timer[playerIndex] = 0;
+        if (BrakeFlag[playerIndex] == 5) {
+            FullBrakeAccele[playerIndex] = true;
+            FullBrakeTimer[playerIndex] = 120;
+            BrakeFlag[playerIndex] = 0;
+            BrakeTimer[playerIndex] = 0;
         }
     } else {
-        full_brake_timer[playerIndex]--;
-        if (full_brake_timer[playerIndex] <= 0) {
-            full_brake_accele[playerIndex] = false;
+        FullBrakeTimer[playerIndex]--;
+        if (FullBrakeTimer[playerIndex] <= 0) {
+            FullBrakeAccele[playerIndex] = false;
         }
     }
 }
 
-void breake_on(Player* player) {
+void BreakeOn(Player* Player) {
     s32 playerIndex;
     f32 test;
     f32 var_f2;
 
     var_f2 = 0.0f;
-    if (player == gPlayerOne) {
+    if (Player == PlayerOne) {
         playerIndex = 0;
     }
-    if (player == gPlayerTwo) {
+    if (Player == PlayerTwo) {
         playerIndex = 1;
     }
-    if (player == gPlayerThree) {
+    if (Player == PlayerThree) {
         playerIndex = 2;
     }
-    if (player == gPlayerFour) {
+    if (Player == PlayerFour) {
         playerIndex = 3;
     }
-    if (player == gPlayerFive) {
+    if (Player == PlayerFive) {
         playerIndex = 4;
     }
-    if (player == gPlayerSix) {
+    if (Player == PlayerSix) {
         playerIndex = 5;
     }
-    if (player == gPlayerSeven) {
+    if (Player == PlayerSeven) {
         playerIndex = 6;
     }
-    if (player == gPlayerEight) {
+    if (Player == PlayerEight) {
         playerIndex = 7;
     }
-    player->slip_flag |= BREAKE;
+    Player->SlipFlag |= BREAKE;
     // This check will never be true, why is it here?
-    if ((player->slip_flag & SPIN_TURN) == SPIN_TURN) {
-        AccelOff(player, 1.0f);
-        player->brake_time = var_f2;
+    if ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) {
+        AccelOff(Player, 1.0f);
+        Player->BrakeTime = var_f2;
     } else {
-        if ((s32) player->tire_RR.Status < 0xF) {
-            var_f2 += D_800E3210[player->kart][player->tire_RR.Status];
+        if ((s32) Player->TireRR.Status < 0xF) {
+            var_f2 += D_800E3210[Player->Kart][Player->TireRR.Status];
         }
-        if ((s32) player->tire_RL.Status < 0xF) {
-            var_f2 += D_800E3210[player->kart][player->tire_RL.Status];
+        if ((s32) Player->TireRL.Status < 0xF) {
+            var_f2 += D_800E3210[Player->Kart][Player->TireRL.Status];
         }
-        test = player->old_speed - player->speed;
+        test = Player->OldSpeed - Player->Speed;
         if (test <= 0.0f) {
-            player->brake_time = 0.0f;
+            Player->BrakeTime = 0.0f;
         } else {
-            player->brake_time += 0.02;
-            if (player->brake_time >= 2.0f) {
-                player->brake_time = 2.0f;
+            Player->BrakeTime += 0.02;
+            if (Player->BrakeTime >= 2.0f) {
+                Player->BrakeTime = 2.0f;
             }
         }
-        if (full_brake_accele[playerIndex] == true) {
-            if (player->brake_time >= 2.0f) {
-                AccelOff(player, (1.0f - var_f2) * 5.0f);
+        if (FullBrakeAccele[playerIndex] == true) {
+            if (Player->BrakeTime >= 2.0f) {
+                AccelOff(Player, (1.0f - var_f2) * 5.0f);
             } else {
-                AccelOff(player, (1.0f - var_f2) * 3.0f);
+                AccelOff(Player, (1.0f - var_f2) * 3.0f);
             }
         } else {
-            if (((player->speed / 18.0f) * 216.0f) <= 20.0f) {
-                AccelOff(player, (1.0f - var_f2) * 4.0f);
+            if (((Player->Speed / 18.0f) * 216.0f) <= 20.0f) {
+                AccelOff(Player, (1.0f - var_f2) * 4.0f);
             }
-            if (player->brake_time >= 2.0f) {
-                AccelOff(player, (1.0f - var_f2) * 2.5);
+            if (Player->BrakeTime >= 2.0f) {
+                AccelOff(Player, (1.0f - var_f2) * 2.5);
             } else {
-                AccelOff(player, (1.0f - var_f2) * 1.2);
+                AccelOff(Player, (1.0f - var_f2) * 1.2);
             }
         }
     }
 }
 
-void player_nocontaccele_on(Player* player) {
+void PlayerNocontacceleOn(Player* Player) {
     s32 playerIndex;
     s32 var_v0;
     s32 time_delta;
 
-    playerIndex = check_kart_number(player);
-    if ((player->accelcount >= 0.0) && (player->accelcount < (player->acc_maxcount * 0.1))) {
-        player->accelcount += gKartAccelerationTables[player->kart][0] * 3.0;
+    playerIndex = CheckKartNumber(Player);
+    if ((Player->Accelcount >= 0.0) && (Player->Accelcount < (Player->AccMaxcount * 0.1))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][0] * 3.0;
     }
-    if (((player->acc_maxcount * 0.1) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.2))) {
-        player->accelcount += gKartAccelerationTables[player->kart][1] * 3.0;
+    if (((Player->AccMaxcount * 0.1) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.2))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][1] * 3.0;
     }
-    if (((player->acc_maxcount * 0.2) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.3))) {
-        player->accelcount += gKartAccelerationTables[player->kart][2] * 3.0;
+    if (((Player->AccMaxcount * 0.2) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.3))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][2] * 3.0;
     }
-    if (((player->acc_maxcount * 0.3) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.4))) {
-        player->accelcount += gKartAccelerationTables[player->kart][3] * 3.0;
+    if (((Player->AccMaxcount * 0.3) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.4))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][3] * 3.0;
     }
-    if (((player->acc_maxcount * 0.4) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.5))) {
-        player->accelcount += gKartAccelerationTables[player->kart][4] * 3.0;
+    if (((Player->AccMaxcount * 0.4) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.5))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][4] * 3.0;
     }
-    if (((player->acc_maxcount * 0.5) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.6))) {
-        player->accelcount += gKartAccelerationTables[player->kart][5] * 3.0;
+    if (((Player->AccMaxcount * 0.5) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.6))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][5] * 3.0;
     }
-    if (((player->acc_maxcount * 0.6) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.7))) {
-        player->accelcount += gKartAccelerationTables[player->kart][6] * 2.5;
+    if (((Player->AccMaxcount * 0.6) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.7))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][6] * 2.5;
     }
-    if (((player->acc_maxcount * 0.7) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.8))) {
-        player->accelcount += gKartAccelerationTables[player->kart][7] * 2.5;
+    if (((Player->AccMaxcount * 0.7) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.8))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][7] * 2.5;
     }
-    if (((player->acc_maxcount * 0.8) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.9))) {
-        player->accelcount += gKartAccelerationTables[player->kart][8] * 2.5;
+    if (((Player->AccMaxcount * 0.8) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.9))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][8] * 2.5;
     }
-    if (((player->acc_maxcount * 0.9) <= player->accelcount) && (player->accelcount <= player->acc_maxcount * 1.0)) {
-        player->accelcount += gKartAccelerationTables[player->kart][9] * 2.5;
+    if (((Player->AccMaxcount * 0.9) <= Player->Accelcount) && (Player->Accelcount <= Player->AccMaxcount * 1.0)) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][9] * 2.5;
     }
     if (D_801656F0 == 1) {
-        time_delta = kwvideoframetimer - green_timer[playerIndex];
-        if (g_gameMode == TIME_TRIALS) {
+        time_delta = Kwvideoframetimer - GreenTimer[playerIndex];
+        if (GameMode == TIME_TRIALS) {
             var_v0 = 0x14;
         } else {
             var_v0 = 8;
         }
-        if ((time_delta < var_v0) && ((player->handling_flag & ACCELERATE) != ACCELERATE)) {
-            player->weapon |= USE_STARTDASH;
-        } else if ((player->acc_maxcount * 0.9f) <= player->accelcount) {
-            if ((player->weapon & USE_STARTDASH) != USE_STARTDASH) {
-                player->weapon |= PRESS_STARTSPIN;
-                player->weapon &= ~USE_STARTDASH;
+        if ((time_delta < var_v0) && ((Player->HandlingFlag & ACCELERATE) != ACCELERATE)) {
+            Player->Weapon |= USE_STARTDASH;
+        } else if ((Player->AccMaxcount * 0.9f) <= Player->Accelcount) {
+            if ((Player->Weapon & USE_STARTDASH) != USE_STARTDASH) {
+                Player->Weapon |= PRESS_STARTSPIN;
+                Player->Weapon &= ~USE_STARTDASH;
             }
         }
     }
-    player->handling_flag |= ACCELERATE;
-    player->taco = (player->accelcount * player->accelcount) / 25.0f;
+    Player->HandlingFlag |= ACCELERATE;
+    Player->Taco = (Player->Accelcount * Player->Accelcount) / 25.0f;
 }
 
-void player_nocontaccele_off(Player* player, f32 speedReduction) {
-    player->accelcount -= speedReduction;
-    if (player->accelcount <= 0.0f) {
-        player->accelcount = 0.0f;
+void PlayerNocontacceleOff(Player* Player, f32 speedReduction) {
+    Player->Accelcount -= speedReduction;
+    if (Player->Accelcount <= 0.0f) {
+        Player->Accelcount = 0.0f;
     }
-    if (player->speed < 0.2) {
-        player->force = 0.0f;
+    if (Player->Speed < 0.2) {
+        Player->Force = 0.0f;
     }
-    if (player->acc_maxcount <= player->accelcount) {
-        player->accelcount = player->acc_maxcount;
+    if (Player->AccMaxcount <= Player->Accelcount) {
+        Player->Accelcount = Player->AccMaxcount;
     }
-    if ((f64) player->accelcount <= (player->acc_maxcount * 0.7)) {
-        player->weapon &= ~PRESS_STARTSPIN;
+    if ((f64) Player->Accelcount <= (Player->AccMaxcount * 0.7)) {
+        Player->Weapon &= ~PRESS_STARTSPIN;
     }
-    player->weapon &= ~USE_STARTDASH;
-    player->handling_flag &= ~ACCELERATE;
-    player->taco = (player->accelcount * player->accelcount) / 25.0f;
+    Player->Weapon &= ~USE_STARTDASH;
+    Player->HandlingFlag &= ~ACCELERATE;
+    Player->Taco = (Player->Accelcount * Player->Accelcount) / 25.0f;
 }
 
-void jugemu_accele_on(Player* player) {
+void JugemuAcceleOn(Player* Player) {
     UNUSED s32 player_index;
 
-    player_index = check_kart_number(player);
-    if ((0.0 <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.1))) {
-        player->accelcount += gKartAccelerationTables[player->kart][0] * 3.2;
+    player_index = CheckKartNumber(Player);
+    if ((0.0 <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.1))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][0] * 3.2;
     }
-    if (((player->acc_maxcount * 0.1) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.2))) {
-        player->accelcount += gKartAccelerationTables[player->kart][1] * 3.2;
+    if (((Player->AccMaxcount * 0.1) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.2))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][1] * 3.2;
     }
-    if (((player->acc_maxcount * 0.2) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.3))) {
-        player->accelcount += gKartAccelerationTables[player->kart][2] * 3.2;
+    if (((Player->AccMaxcount * 0.2) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.3))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][2] * 3.2;
     }
-    if (((player->acc_maxcount * 0.3) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.4))) {
-        player->accelcount += gKartAccelerationTables[player->kart][3] * 3.2;
+    if (((Player->AccMaxcount * 0.3) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.4))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][3] * 3.2;
     }
-    if (((player->acc_maxcount * 0.4) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.5))) {
-        player->accelcount += gKartAccelerationTables[player->kart][4] * 3.2;
+    if (((Player->AccMaxcount * 0.4) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.5))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][4] * 3.2;
     }
-    if (((player->acc_maxcount * 0.5) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.6))) {
-        player->accelcount += gKartAccelerationTables[player->kart][5] * 3.2;
+    if (((Player->AccMaxcount * 0.5) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.6))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][5] * 3.2;
     }
-    if (((player->acc_maxcount * 0.6) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.7))) {
-        player->accelcount += gKartAccelerationTables[player->kart][6] * 3.2;
+    if (((Player->AccMaxcount * 0.6) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.7))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][6] * 3.2;
     }
-    if (((player->acc_maxcount * 0.7) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.8))) {
-        player->accelcount += gKartAccelerationTables[player->kart][7] * 2.8;
+    if (((Player->AccMaxcount * 0.7) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.8))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][7] * 2.8;
     }
-    if (((player->acc_maxcount * 0.8) <= player->accelcount) && (player->accelcount < (player->acc_maxcount * 0.9))) {
-        player->accelcount += gKartAccelerationTables[player->kart][8] * 2.8;
+    if (((Player->AccMaxcount * 0.8) <= Player->Accelcount) && (Player->Accelcount < (Player->AccMaxcount * 0.9))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][8] * 2.8;
     }
-    if (((player->acc_maxcount * 0.9) <= player->accelcount) && (player->accelcount <= (player->acc_maxcount * 1.0))) {
-        player->accelcount += gKartAccelerationTables[player->kart][9] * 2.8;
+    if (((Player->AccMaxcount * 0.9) <= Player->Accelcount) && (Player->Accelcount <= (Player->AccMaxcount * 1.0))) {
+        Player->Accelcount += gKartAccelerationTables[Player->Kart][9] * 2.8;
     }
-    if (player->accelcount < 0.0f) {
-        player->accelcount = 0.0f;
+    if (Player->Accelcount < 0.0f) {
+        Player->Accelcount = 0.0f;
     }
-    player->taco = (player->accelcount * player->accelcount) / 25.0f;
+    Player->Taco = (Player->Accelcount * Player->Accelcount) / 25.0f;
 }
 
-void jugemu_accele_off(Player* player, f32 speedReduction) {
-    player->accelcount -= speedReduction;
-    if (player->accelcount <= 0.0f) {
-        player->accelcount = 0.0f;
+void JugemuAcceleOff(Player* Player, f32 speedReduction) {
+    Player->Accelcount -= speedReduction;
+    if (Player->Accelcount <= 0.0f) {
+        Player->Accelcount = 0.0f;
     }
-    if (player->acc_maxcount <= player->accelcount) {
-        player->accelcount = player->acc_maxcount;
+    if (Player->AccMaxcount <= Player->Accelcount) {
+        Player->Accelcount = Player->AccMaxcount;
     }
-    player->taco = (player->accelcount * player->accelcount) / 25.0f;
+    Player->Taco = (Player->Accelcount * Player->Accelcount) / 25.0f;
 }
 
-void empty_accele_on(Player* player, s32 playerIndex) {
-    if ((accele_count[playerIndex] >= 0.0) && (accele_count[playerIndex] < ((f64) player->acc_maxcount * 0.1))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][0] * 3.2;
+void EmptyAcceleOn(Player* Player, s32 playerIndex) {
+    if ((AcceleCount[playerIndex] >= 0.0) && (AcceleCount[playerIndex] < ((f64) Player->AccMaxcount * 0.1))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][0] * 3.2;
     }
-    if (((player->acc_maxcount * 0.1) <= accele_count[playerIndex]) &&
-        (accele_count[playerIndex] < (player->acc_maxcount * 0.2))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][1] * 3.2;
+    if (((Player->AccMaxcount * 0.1) <= AcceleCount[playerIndex]) &&
+        (AcceleCount[playerIndex] < (Player->AccMaxcount * 0.2))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][1] * 3.2;
     }
-    if (((player->acc_maxcount * 0.2) <= accele_count[playerIndex]) &&
-        (accele_count[playerIndex] < (player->acc_maxcount * 0.3))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][2] * 3.2;
+    if (((Player->AccMaxcount * 0.2) <= AcceleCount[playerIndex]) &&
+        (AcceleCount[playerIndex] < (Player->AccMaxcount * 0.3))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][2] * 3.2;
     }
-    if (((player->acc_maxcount * 0.3) <= accele_count[playerIndex]) &&
-        (accele_count[playerIndex] < (player->acc_maxcount * 0.4))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][3] * 3.2;
+    if (((Player->AccMaxcount * 0.3) <= AcceleCount[playerIndex]) &&
+        (AcceleCount[playerIndex] < (Player->AccMaxcount * 0.4))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][3] * 3.2;
     }
-    if (((player->acc_maxcount * 0.4) <= accele_count[playerIndex]) &&
-        (accele_count[playerIndex] < (player->acc_maxcount * 0.5))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][4] * 3.2;
+    if (((Player->AccMaxcount * 0.4) <= AcceleCount[playerIndex]) &&
+        (AcceleCount[playerIndex] < (Player->AccMaxcount * 0.5))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][4] * 3.2;
     }
-    if (((player->acc_maxcount * 0.5) <= accele_count[playerIndex]) && (accele_count[playerIndex] < (player->acc_maxcount * 0.6))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][5] * 3.2;
+    if (((Player->AccMaxcount * 0.5) <= AcceleCount[playerIndex]) && (AcceleCount[playerIndex] < (Player->AccMaxcount * 0.6))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][5] * 3.2;
     }
-    if (((player->acc_maxcount * 0.6) <= accele_count[playerIndex]) && (accele_count[playerIndex] < (player->acc_maxcount * 0.7))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][6] * 3.2;
+    if (((Player->AccMaxcount * 0.6) <= AcceleCount[playerIndex]) && (AcceleCount[playerIndex] < (Player->AccMaxcount * 0.7))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][6] * 3.2;
     }
-    if (((player->acc_maxcount * 0.7) <= accele_count[playerIndex]) && (accele_count[playerIndex] < (player->acc_maxcount * 0.8))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][7] * 2.8;
+    if (((Player->AccMaxcount * 0.7) <= AcceleCount[playerIndex]) && (AcceleCount[playerIndex] < (Player->AccMaxcount * 0.8))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][7] * 2.8;
     }
-    if (((player->acc_maxcount * 0.8) <= accele_count[playerIndex]) && (accele_count[playerIndex] < (player->acc_maxcount * 0.9))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][8] * 2.8;
+    if (((Player->AccMaxcount * 0.8) <= AcceleCount[playerIndex]) && (AcceleCount[playerIndex] < (Player->AccMaxcount * 0.9))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][8] * 2.8;
     }
-    if (((player->acc_maxcount * 0.9) <= accele_count[playerIndex]) && (accele_count[playerIndex] <= (player->acc_maxcount * 1.0))) {
-        accele_count[playerIndex] += gKartAccelerationTables[player->kart][9] * 2.8;
+    if (((Player->AccMaxcount * 0.9) <= AcceleCount[playerIndex]) && (AcceleCount[playerIndex] <= (Player->AccMaxcount * 1.0))) {
+        AcceleCount[playerIndex] += gKartAccelerationTables[Player->Kart][9] * 2.8;
     }
-    player->handling_flag |= ACCELERATE;
-    if (accele_count[playerIndex] < 0.0f) {
-        accele_count[playerIndex] = 0.0f;
+    Player->HandlingFlag |= ACCELERATE;
+    if (AcceleCount[playerIndex] < 0.0f) {
+        AcceleCount[playerIndex] = 0.0f;
     }
-    player->taco = (accele_count[playerIndex] * accele_count[playerIndex]) / 25.0f;
+    Player->Taco = (AcceleCount[playerIndex] * AcceleCount[playerIndex]) / 25.0f;
 }
 
-void empty_accele_off(Player* player, f32 speedReduction, s32 playerIndex) {
-    player->handling_flag &= ~ACCELERATE;
-    accele_count[playerIndex] -= speedReduction;
-    if (accele_count[playerIndex] <= 0.0f) {
-        accele_count[playerIndex] = 0.0f;
+void EmptyAcceleOff(Player* Player, f32 speedReduction, s32 playerIndex) {
+    Player->HandlingFlag &= ~ACCELERATE;
+    AcceleCount[playerIndex] -= speedReduction;
+    if (AcceleCount[playerIndex] <= 0.0f) {
+        AcceleCount[playerIndex] = 0.0f;
     }
-    if (player->acc_maxcount <= accele_count[playerIndex]) {
-        accele_count[playerIndex] = player->acc_maxcount;
+    if (Player->AccMaxcount <= AcceleCount[playerIndex]) {
+        AcceleCount[playerIndex] = Player->AccMaxcount;
     }
-    player->taco = (accele_count[playerIndex] * accele_count[playerIndex]) / 25.0f;
+    Player->Taco = (AcceleCount[playerIndex] * AcceleCount[playerIndex]) / 25.0f;
 }
 
-void recover_grip(Player* arg0, f32 arg1) {
-    arg0->grip += arg1;
-    if (arg0->grip >= 0.0f) {
-        arg0->grip = 0.0f;
+void RecoverGrip(Player* arg0, f32 arg1) {
+    arg0->Grip += arg1;
+    if (arg0->Grip >= 0.0f) {
+        arg0->Grip = 0.0f;
     }
 }
 
-void check_sterr_speedgrip(Player* player, s32* desired_steering_change, s32* current_steering, s32 desired_steering, s32 steering_change_threshold, s32 steering_change_minimum, s32 arg6) {
+void CheckSterrSpeedgrip(Player* Player, s32* desired_steering_change, s32* current_steering, s32 desired_steering, s32 steering_change_threshold, s32 steering_change_minimum, s32 arg6) {
     s32 current_steering_change_increment;
 
     // if (abs(desired_steering_change) >= steering_change_threshold)
     if ((*desired_steering_change >= steering_change_threshold) || (-steering_change_threshold >= *desired_steering_change)) {
-        current_steering_change_increment = player->chasesp_sterr;
-        player->chasesp_sterr -= 1 << 11;
+        current_steering_change_increment = Player->ChasespSterr;
+        Player->ChasespSterr -= 1 << 11;
         //signed vs unsigned weirdness, actually checking if negative
-        if (player->chasesp_sterr >= 0xF0000000) {
-            player->chasesp_sterr = current_steering_change_increment;
+        if (Player->ChasespSterr >= 0xF0000000) {
+            Player->ChasespSterr = current_steering_change_increment;
         }
-        if (steering_change_minimum >= (s32) player->chasesp_sterr) {
-            player->chasesp_sterr = steering_change_minimum;
+        if (steering_change_minimum >= (s32) Player->ChasespSterr) {
+            Player->ChasespSterr = steering_change_minimum;
         }
 
         // move current_steering toward desired_steering
-        *current_steering = (desired_steering < *current_steering) ? *current_steering - player->chasesp_sterr : *current_steering + player->chasesp_sterr;
+        *current_steering = (desired_steering < *current_steering) ? *current_steering - Player->ChasespSterr : *current_steering + Player->ChasespSterr;
 
         //arg6 is always positive and unk_090 is 0 or negative, so this if statement is always true
-        if (player->grip < ((f32) arg6)) {
-            player->grip = (f32) -arg6;
+        if (Player->Grip < ((f32) arg6)) {
+            Player->Grip = (f32) -arg6;
         }
     }
 }
 
-UNUSED void check_sterr_speedgrip1(Player* player, s32* arg1, s32 arg2, s32 arg3, f32 arg4) {
+UNUSED void CheckSterrSpeedgrip1(Player* Player, s32* arg1, s32 Arg2, s32 Arg3, f32 arg4) {
     u32 temp_v1;
 
-    temp_v1 = player->chasesp_sterr;
-    player->chasesp_sterr -= 0x800;
-    if (!(player->chasesp_sterr < 0xF0000000)) {
-        player->chasesp_sterr = temp_v1;
+    temp_v1 = Player->ChasespSterr;
+    Player->ChasespSterr -= 0x800;
+    if (!(Player->ChasespSterr < 0xF0000000)) {
+        Player->ChasespSterr = temp_v1;
     }
-    if (arg3 >= (s32) player->chasesp_sterr) {
-        player->chasesp_sterr = arg3;
+    if (Arg3 >= (s32) Player->ChasespSterr) {
+        Player->ChasespSterr = Arg3;
     }
 
-    *arg1 = (arg2 < *arg1) ? *arg1 - player->chasesp_sterr : *arg1 + player->chasesp_sterr;
+    *arg1 = (Arg2 < *arg1) ? *arg1 - Player->ChasespSterr : *arg1 + Player->ChasespSterr;
 
-    if (player->grip < arg4) {
-        player->grip = (f32) -arg4;
+    if (Player->Grip < arg4) {
+        Player->Grip = (f32) -arg4;
     }
 }
 
-UNUSED void check_sterr_speed1(Player* player, s32* arg1, s32 arg2, s32 arg3, f32 arg4) {
+UNUSED void CheckSterrSpeed1(Player* Player, s32* arg1, s32 Arg2, s32 Arg3, f32 arg4) {
     s32 temp_v0;
 
-    temp_v0 = player->chasesp_sterr;
-    player->chasesp_sterr -= 0x800;
-    if (player->chasesp_sterr >= 0xF0000000) {
-        player->chasesp_sterr = temp_v0;
+    temp_v0 = Player->ChasespSterr;
+    Player->ChasespSterr -= 0x800;
+    if (Player->ChasespSterr >= 0xF0000000) {
+        Player->ChasespSterr = temp_v0;
     }
-    if (arg3 >= (s32) player->chasesp_sterr) {
-        player->chasesp_sterr = arg3;
+    if (Arg3 >= (s32) Player->ChasespSterr) {
+        Player->ChasespSterr = Arg3;
     }
 
-    *arg1 = (arg2 < *arg1) ? *arg1 - player->chasesp_sterr : *arg1 + player->chasesp_sterr;
+    *arg1 = (Arg2 < *arg1) ? *arg1 - Player->ChasespSterr : *arg1 + Player->ChasespSterr;
 
-    recover_grip(player, arg4);
+    RecoverGrip(Player, arg4);
 }
 
-void check_sterr_speed(Player* player, s32* desired_steering_change, s32* current_steering, s32 desired_steering, s32 steering_change_threshold, s32 steering_change_minimum, f32 arg6) {
+void CheckSterrSpeed(Player* Player, s32* desired_steering_change, s32* current_steering, s32 desired_steering, s32 steering_change_threshold, s32 steering_change_minimum, f32 arg6) {
     s32 current_steering_change_increment;
 
     if ((*desired_steering_change >= steering_change_threshold) || (-steering_change_threshold >= *desired_steering_change)) {
-        current_steering_change_increment = player->chasesp_sterr;
-        player->chasesp_sterr -= 1 << 11;
-        if (player->chasesp_sterr >= 0xF0000000) {
-            player->chasesp_sterr = current_steering_change_increment;
+        current_steering_change_increment = Player->ChasespSterr;
+        Player->ChasespSterr -= 1 << 11;
+        if (Player->ChasespSterr >= 0xF0000000) {
+            Player->ChasespSterr = current_steering_change_increment;
         }
-        if (steering_change_minimum >= (s32) player->chasesp_sterr) {
-            player->chasesp_sterr = steering_change_minimum;
+        if (steering_change_minimum >= (s32) Player->ChasespSterr) {
+            Player->ChasespSterr = steering_change_minimum;
         }
 
-        *current_steering = (desired_steering < *current_steering) ? *current_steering - player->chasesp_sterr : *current_steering + player->chasesp_sterr;
-        // identical to check_sterr_speedgrip before this point
+        *current_steering = (desired_steering < *current_steering) ? *current_steering - Player->ChasespSterr : *current_steering + Player->ChasespSterr;
+        // identical to CheckSterrSpeedgrip before this Point
 
-        // set player->grip = min(0, player->unk_90 + arg6)
-        recover_grip(player, arg6);
+        // set Player->Grip = min(0, Player->unk_90 + arg6)
+        RecoverGrip(Player, arg6);
     }
 }
 
-//On or near ground
-void ProStickAngle(Player* player, struct Controller* controller, s8 playerIndex) {
+//On or near Ground
+void ProStickAngle(Player* Player, struct Controller* controller, s8 playerIndex) {
     s32 steer_position;
     s32 clamped_x;
     UNUSED s32 pad[2];
-    UNUSED s16 pad2;
+    UNUSED s16 Pad2;
     s16 var_s1_2;
     s32 steer_position_delta;
     s32 steer_resistance_small_turn;
@@ -3917,7 +3917,7 @@ void ProStickAngle(Player* player, struct Controller* controller, s8 playerIndex
     f32 var_f2_2;
     f32 var_f12 = 0.0f;
     f32 zero = 0;
-    UNUSED s32 pad3;
+    UNUSED s32 Pad3;
     s32 var_a0;
     f32 sp44[156] = { 0.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.6, 0.6, 0.6, 0.6, 0.6, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7,
                       0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6,
@@ -3931,84 +3931,84 @@ void ProStickAngle(Player* player, struct Controller* controller, s8 playerIndex
 
     if ( 
          (
-           ((player->slip_flag & D_JUMP) != D_JUMP) &&
+           ((Player->SlipFlag & D_JUMP) != D_JUMP) &&
            (
-             ((player->slipang / DEGREES(1) <= 6) && (player->slipang / DEGREES(1) >= -6)) ||
+             ((Player->Slipang / DEGREES(1) <= 6) && (Player->Slipang / DEGREES(1) >= -6)) ||
              ((controller->ButtonHeld & R_TRIG) != R_TRIG)
            )
          ) ||
-         (((player->speed / 18.0f) * 216.0f) <= 20.0f) ||
-         ((player->slip_flag & CARHIT) == CARHIT)
+         (((Player->Speed / 18.0f) * 216.0f) <= 20.0f) ||
+         ((Player->SlipFlag & CARHIT) == CARHIT)
        ) {
-       drift_reset(player);
+       DriftReset(Player);
     }
-    if ((player->slipang / DEGREES(1)) < (-5)) {
-        player->handling_flag |= STEER_LEFT;
-        player->handling_flag &= ~STEER_RIGHT;
-        sterr_counter[playerIndex]++;
-    } else if ((player->slipang / DEGREES(1)) > 5) {
-        player->handling_flag |= STEER_RIGHT;
-        player->handling_flag &= ~STEER_LEFT;
-        sterr_counter[playerIndex]++;
+    if ((Player->Slipang / DEGREES(1)) < (-5)) {
+        Player->HandlingFlag |= STEER_LEFT;
+        Player->HandlingFlag &= ~STEER_RIGHT;
+        SterrCounter[playerIndex]++;
+    } else if ((Player->Slipang / DEGREES(1)) > 5) {
+        Player->HandlingFlag |= STEER_RIGHT;
+        Player->HandlingFlag &= ~STEER_LEFT;
+        SterrCounter[playerIndex]++;
     } else {
-        player->handling_flag &= ~(STEER_LEFT | STEER_RIGHT);
-        sterr_counter[playerIndex] = 0;
+        Player->HandlingFlag &= ~(STEER_LEFT | STEER_RIGHT);
+        SterrCounter[playerIndex] = 0;
     }
-    if (((player->slip_flag & D_JUMP) == D_JUMP) || ((player->slip_flag & DRIFT) == DRIFT)) {
-        player->handling_flag &= ~(STEER_LEFT | STEER_RIGHT);
+    if (((Player->SlipFlag & D_JUMP) == D_JUMP) || ((Player->SlipFlag & DRIFT) == DRIFT)) {
+        Player->HandlingFlag &= ~(STEER_LEFT | STEER_RIGHT);
     }
-    steer_position = player->nowsterr;
-    clamped_x = check_stickX(controller);
-    if (((player->handling_flag & REVERSE_GEAR) == REVERSE_GEAR) || ((player->handling_flag & REVERSE_ACCEL) == REVERSE_ACCEL)) {
+    steer_position = Player->Nowsterr;
+    clamped_x = CheckStickX(controller);
+    if (((Player->HandlingFlag & REVERSE_GEAR) == REVERSE_GEAR) || ((Player->HandlingFlag & REVERSE_ACCEL) == REVERSE_ACCEL)) {
         clamped_x = -clamped_x;
     }
-    player->nowsterr = (clamped_x << 16) & 0xFFFF0000;
-    steer_position_delta = steer_position - player->nowsterr; // x change
+    Player->Nowsterr = (clamped_x << 16) & 0xFFFF0000;
+    steer_position_delta = steer_position - Player->Nowsterr; // x change
     steer_position_delta = steer_position_delta >> 16;
-    player->sterracc = (s16) steer_position_delta;
-    if (((steer_position_delta >= 90) || (steer_position_delta <= -90)) && (!(player->handling_flag & SPINOUT_SWERVE))) {
-        if ((((((!(player->slip_flag & DRIFT)) && (g_raceClass == CC_150)) && (g_gameMode != BATTLE)) &&
-              (!(player->slip_flag & N_JUMP))) &&
-             (((player->speed / 18.0f) * 216.0f) >= 40.0f)) &&
-            (player->drift_count == 0)) {
-            player->weapon |= PRESS_SAVESPIN;
+    Player->Sterracc = (s16) steer_position_delta;
+    if (((steer_position_delta >= 90) || (steer_position_delta <= -90)) && (!(Player->HandlingFlag & SPINOUT_SWERVE))) {
+        if ((((((!(Player->SlipFlag & DRIFT)) && (RaceClass == CC_150)) && (GameMode != BATTLE)) &&
+              (!(Player->SlipFlag & N_JUMP))) &&
+             (((Player->Speed / 18.0f) * 216.0f) >= 40.0f)) &&
+            (Player->DriftCount == 0)) {
+            Player->Weapon |= PRESS_SAVESPIN;
         }
     }
-    if (((s32) player->tire_RR.Status) < 0xF) {
-        //this table is just zeros
-        zero += D_800E3610[player->kart][player->tire_RR.Status];
+    if (((s32) Player->TireRR.Status) < 0xF) {
+        //this Table is just zeros
+        zero += D_800E3610[Player->Kart][Player->TireRR.Status];
     }
-    if (((s32) player->tire_RL.Status) < 0xF) {
-        zero += D_800E3610[player->kart][player->tire_RL.Status];
+    if (((s32) Player->TireRL.Status) < 0xF) {
+        zero += D_800E3610[Player->Kart][Player->TireRL.Status];
     }
-    if ((player->slip_flag & SPIN_TURN) == SPIN_TURN) {
+    if ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) {
         steer_resistance_large_turn = 10;
         steer_resistance_small_turn = 10;
     } else {
-        if (((player->slip_flag & DRIFT) == DRIFT) &&
-            ((player->slip_flag & D_JUMP) != D_JUMP)) {
+        if (((Player->SlipFlag & DRIFT) == DRIFT) &&
+            ((Player->SlipFlag & D_JUMP) != D_JUMP)) {
             var_a0 = 3;
         } else {
             var_a0 = 0;
         }
-        if (((player->speed / 18.0f) * 216.0f) >= 15.0f) {
-            if ((player->handling_flag & STEER_RIGHT) == STEER_RIGHT) {
+        if (((Player->Speed / 18.0f) * 216.0f) >= 15.0f) {
+            if ((Player->HandlingFlag & STEER_RIGHT) == STEER_RIGHT) {
                 if ((steer_position_delta <= 35) && (steer_position_delta >= 0)) {
                     //gKartTable800E3650 is always 0
                     steer_resistance_large_turn =
-                        (gKartTable800E3650[player->kart] + 1.0f) * (((f32) (var_a0 + 15)) * (1.0f + zero)); //18 or 15
+                        (gKartTable800E3650[Player->Kart] + 1.0f) * (((f32) (var_a0 + 15)) * (1.0f + zero)); //18 or 15
                     steer_resistance_small_turn =
-                        (gKartTable800E3650[player->kart] + 1.0f) * (((f32) (var_a0 + 15)) * (1.0f + zero));
+                        (gKartTable800E3650[Player->Kart] + 1.0f) * (((f32) (var_a0 + 15)) * (1.0f + zero));
                 } else {
                     steer_resistance_large_turn = (s32) (((f32) (var_a0 + 5)) * (1.0f + zero)); // 8 or 5
                     steer_resistance_small_turn = (s32) (((f32) (var_a0 + 9)) * (1.0f + zero)); //12 or 9
                 }
-            } else if ((player->handling_flag & STEER_LEFT) == STEER_LEFT) {
+            } else if ((Player->HandlingFlag & STEER_LEFT) == STEER_LEFT) {
                 if ((steer_position_delta >= -35) && (steer_position_delta <= 0)) {
                     steer_resistance_large_turn =
-                        (gKartTable800E3650[player->kart] + 1.0f) * (((f32) (var_a0 + 15)) * (1.0f + zero)); // 18 or 15
+                        (gKartTable800E3650[Player->Kart] + 1.0f) * (((f32) (var_a0 + 15)) * (1.0f + zero)); // 18 or 15
                     steer_resistance_small_turn =
-                        (gKartTable800E3650[player->kart] + 1.0f) * (((f32) (var_a0 + 15)) * (1.0f + zero));
+                        (gKartTable800E3650[Player->Kart] + 1.0f) * (((f32) (var_a0 + 15)) * (1.0f + zero));
                 } else {
                     steer_resistance_large_turn = (s32) (((f32) (var_a0 + 5)) * (1.0f + zero)); // 8 or 5
                     steer_resistance_small_turn = (s32) (((f32) (var_a0 + 9)) * (1.0f + zero)); // 12 or 9
@@ -4022,17 +4022,17 @@ void ProStickAngle(Player* player, struct Controller* controller, s8 playerIndex
             steer_resistance_small_turn = 8;
         }
     }
-    if ((player->water_flag & SUBMERGED) == SUBMERGED) {
+    if ((Player->WaterFlag & SUBMERGED) == SUBMERGED) {
         steer_resistance_large_turn *= 1.5;
         steer_resistance_small_turn *= 1.5;
     } else {
-        if ((player->water_flag & HALF_SUBMERGED) == HALF_SUBMERGED) {
+        if ((Player->WaterFlag & HALF_SUBMERGED) == HALF_SUBMERGED) {
             steer_resistance_large_turn *= 1.2;
             steer_resistance_small_turn *= 1.2;
         }
         // Driving in water?
-        if ((((f64) (g_waterlevelPlayer[playerIndex] - player->tire_RL.Height)) >= 3.5) ||
-            (((f64) (g_waterlevelPlayer[playerIndex] - player->tire_RR.Height)) >= 3.5)) {
+        if ((((f64) (WaterlevelPlayer[playerIndex] - Player->TireRL.Height)) >= 3.5) ||
+            (((f64) (WaterlevelPlayer[playerIndex] - Player->TireRR.Height)) >= 3.5)) {
             steer_resistance_large_turn *= 1.05;
             steer_resistance_small_turn *= 1.05;
         }
@@ -4040,215 +4040,215 @@ void ProStickAngle(Player* player, struct Controller* controller, s8 playerIndex
 
     /*
     This big group of function calls does 2 things. 
-    First, when you steer it sets steer_position (which starts as just your x input) part way between your x input and your previous player->nowsterr
-    (basically, you cannot go from full left to right steering instantaneously)
-    Second, it sets the value of player->grip, which has to do with your karts sideways velocity. The code looks like it is intended
-    to set this to larger negative values when you have a large steer_position_delta. However, due to an apparent bug, check_sterr_speedgrip
-    overwrites this too frequently. The end effect is that player->grip ends up always getting set to -59.85 when steer_position_delta > 30
-    and set to 0 otherwise. -59.85 is -100 (the last value provided to check_sterr_speedgrip) + the sum of the values provided to check_sterr_speed
+    First, when you steer it sets steer_position (which starts as just your x Input) part way between your x Input and your previous Player->Nowsterr
+    (basically, you cannot go from full Left to Right steering instantaneously)
+    Second, it sets the Value of Player->Grip, which has to do with your karts sideways Velocity. The Code looks like it is intended
+    to set this to larger negative values when you have a large steer_position_delta. However, due to an apparent bug, CheckSterrSpeedgrip
+    overwrites this too frequently. The end effect is that Player->Grip ends up always getting set to -59.85 when steer_position_delta > 30
+    and set to 0 otherwise. -59.85 is -100 (the last Value provided to CheckSterrSpeedgrip) + the sum of the values provided to CheckSterrSpeed
     */
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 90, (120 << 12) / steer_resistance_large_turn, 450);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 89, (118 << 12) / steer_resistance_large_turn, 440);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 88, (116 << 12) / steer_resistance_large_turn, 430);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 87, (114 << 12) / steer_resistance_large_turn, 420);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 86, (112 << 12) / steer_resistance_large_turn, 410);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 85,  (88 << 12) / steer_resistance_large_turn, 400);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 84,  (86 << 12) / steer_resistance_large_turn, 395);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 83,  (80 << 12) / steer_resistance_large_turn, 390);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 82,  (79 << 12) / steer_resistance_large_turn, 390);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 81,  (78 << 12) / steer_resistance_large_turn, 380);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 80,  (77 << 12) / steer_resistance_large_turn, 370);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 79,  (76 << 12) / steer_resistance_large_turn, 360);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 78,  (76 << 12) / steer_resistance_large_turn, 360);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 77,  (75 << 12) / steer_resistance_large_turn, 350);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 76,  (74 << 12) / steer_resistance_large_turn, 340);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 75,  (73 << 12) / steer_resistance_large_turn, 330);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 74,  (73 << 12) / steer_resistance_large_turn, 330);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 73,  (73 << 12) / steer_resistance_large_turn, 330);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 72,  (72 << 12) / steer_resistance_large_turn, 320);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 71,  (71 << 12) / steer_resistance_large_turn, 315);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 70,  (71 << 12) / steer_resistance_large_turn, 315);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 69,  (70 << 12) / steer_resistance_large_turn, 305);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 68,  (70 << 12) / steer_resistance_large_turn, 305);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 67,  (69 << 12) / steer_resistance_large_turn, 280);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 66,  (70 << 12) / steer_resistance_large_turn, 270);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 65,  (69 << 12) / steer_resistance_large_turn, 270);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 64,  (68 << 12) / steer_resistance_large_turn, 260);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 63,  (67 << 12) / steer_resistance_large_turn, 250);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 62,  (67 << 12) / steer_resistance_large_turn, 250);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 61,  (67 << 12) / steer_resistance_large_turn, 250);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 60,  (61 << 12) / steer_resistance_large_turn, 245);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 59,  (60 << 12) / steer_resistance_large_turn, 245);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 58,  (59 << 12) / steer_resistance_large_turn, 245);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 57,  (58 << 12) / steer_resistance_large_turn, 245);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 56,  (56 << 12) / steer_resistance_large_turn, 245);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 55,  (56 << 12) / steer_resistance_large_turn, 230);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 54,  (56 << 12) / steer_resistance_large_turn, 230);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 53,  (56 << 12) / steer_resistance_large_turn, 230);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 52,  (56 << 12) / steer_resistance_large_turn, 230);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 51,  (56 << 12) / steer_resistance_large_turn, 230);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 50,  (50 << 12) / steer_resistance_large_turn, 220);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 49,  (50 << 12) / steer_resistance_large_turn, 220);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 48,  (50 << 12) / steer_resistance_large_turn, 220);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 47,  (50 << 12) / steer_resistance_large_turn, 220);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 46,  (50 << 12) / steer_resistance_large_turn, 220);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 45,  (48 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 44,  (46 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 43,  (46 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 42,  (46 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 41,  (46 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 40,  (46 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 39,  (44 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 38,  (40 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 37,  (40 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 36,  (36 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 35,  (36 << 12) / steer_resistance_large_turn, 110);
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 34,  (34 << 12) / steer_resistance_large_turn, 110); 
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 32,  (32 << 12) / steer_resistance_large_turn, 100); // this skips 33
-    check_sterr_speedgrip(player, &steer_position_delta, &steer_position, player->nowsterr, 31,  (32 << 12) / steer_resistance_large_turn, 100);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 90, (120 << 12) / steer_resistance_large_turn, 450);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 89, (118 << 12) / steer_resistance_large_turn, 440);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 88, (116 << 12) / steer_resistance_large_turn, 430);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 87, (114 << 12) / steer_resistance_large_turn, 420);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 86, (112 << 12) / steer_resistance_large_turn, 410);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 85,  (88 << 12) / steer_resistance_large_turn, 400);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 84,  (86 << 12) / steer_resistance_large_turn, 395);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 83,  (80 << 12) / steer_resistance_large_turn, 390);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 82,  (79 << 12) / steer_resistance_large_turn, 390);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 81,  (78 << 12) / steer_resistance_large_turn, 380);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 80,  (77 << 12) / steer_resistance_large_turn, 370);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 79,  (76 << 12) / steer_resistance_large_turn, 360);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 78,  (76 << 12) / steer_resistance_large_turn, 360);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 77,  (75 << 12) / steer_resistance_large_turn, 350);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 76,  (74 << 12) / steer_resistance_large_turn, 340);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 75,  (73 << 12) / steer_resistance_large_turn, 330);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 74,  (73 << 12) / steer_resistance_large_turn, 330);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 73,  (73 << 12) / steer_resistance_large_turn, 330);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 72,  (72 << 12) / steer_resistance_large_turn, 320);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 71,  (71 << 12) / steer_resistance_large_turn, 315);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 70,  (71 << 12) / steer_resistance_large_turn, 315);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 69,  (70 << 12) / steer_resistance_large_turn, 305);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 68,  (70 << 12) / steer_resistance_large_turn, 305);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 67,  (69 << 12) / steer_resistance_large_turn, 280);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 66,  (70 << 12) / steer_resistance_large_turn, 270);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 65,  (69 << 12) / steer_resistance_large_turn, 270);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 64,  (68 << 12) / steer_resistance_large_turn, 260);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 63,  (67 << 12) / steer_resistance_large_turn, 250);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 62,  (67 << 12) / steer_resistance_large_turn, 250);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 61,  (67 << 12) / steer_resistance_large_turn, 250);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 60,  (61 << 12) / steer_resistance_large_turn, 245);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 59,  (60 << 12) / steer_resistance_large_turn, 245);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 58,  (59 << 12) / steer_resistance_large_turn, 245);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 57,  (58 << 12) / steer_resistance_large_turn, 245);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 56,  (56 << 12) / steer_resistance_large_turn, 245);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 55,  (56 << 12) / steer_resistance_large_turn, 230);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 54,  (56 << 12) / steer_resistance_large_turn, 230);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 53,  (56 << 12) / steer_resistance_large_turn, 230);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 52,  (56 << 12) / steer_resistance_large_turn, 230);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 51,  (56 << 12) / steer_resistance_large_turn, 230);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 50,  (50 << 12) / steer_resistance_large_turn, 220);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 49,  (50 << 12) / steer_resistance_large_turn, 220);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 48,  (50 << 12) / steer_resistance_large_turn, 220);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 47,  (50 << 12) / steer_resistance_large_turn, 220);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 46,  (50 << 12) / steer_resistance_large_turn, 220);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 45,  (48 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 44,  (46 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 43,  (46 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 42,  (46 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 41,  (46 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 40,  (46 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 39,  (44 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 38,  (40 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 37,  (40 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 36,  (36 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 35,  (36 << 12) / steer_resistance_large_turn, 110);
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 34,  (34 << 12) / steer_resistance_large_turn, 110); 
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 32,  (32 << 12) / steer_resistance_large_turn, 100); // this skips 33
+    CheckSterrSpeedgrip(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 31,  (32 << 12) / steer_resistance_large_turn, 100);
 
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 30,  (31 << 12) / steer_resistance_small_turn, 0.9f); // 0.9 * 5
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 29,  (30 << 12) / steer_resistance_small_turn, 0.9f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 28,  (29 << 12) / steer_resistance_small_turn, 0.9f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 27,  (28 << 12) / steer_resistance_small_turn, 0.9f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 26,  (27 << 12) / steer_resistance_small_turn, 0.9f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 25,  (26 << 12) / steer_resistance_small_turn, 1.0f); // 1.0 * 5
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 24,  (25 << 12) / steer_resistance_small_turn, 1.0f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 23,  (24 << 12) / steer_resistance_small_turn, 1.0f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 22,  (23 << 12) / steer_resistance_small_turn, 1.0f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 21,  (22 << 12) / steer_resistance_small_turn, 1.0f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 20,  (21 << 12) / steer_resistance_small_turn, 1.05f);// 1.05* 5
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 19,  (20 << 12) / steer_resistance_small_turn, 1.05f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 18,  (19 << 12) / steer_resistance_small_turn, 1.05f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 17,  (18 << 12) / steer_resistance_small_turn, 1.05f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 16,  (17 << 12) / steer_resistance_small_turn, 1.05f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 15,  (16 << 12) / steer_resistance_small_turn, 1.2f); // 1.2 * 5
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 14,  (15 << 12) / steer_resistance_small_turn, 1.2f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 13,  (14 << 12) / steer_resistance_small_turn, 1.2f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 12,  (13 << 12) / steer_resistance_small_turn, 1.2f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 11,  (12 << 12) / steer_resistance_small_turn, 1.2f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr, 10,  (14 << 12) / steer_resistance_small_turn, 1.6f); // 1.6 * 5
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  9,  (13 << 12) / steer_resistance_small_turn, 1.6f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  8,  (12 << 12) / steer_resistance_small_turn, 1.6f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  7,  (11 << 12) / steer_resistance_small_turn, 1.6f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  6,  (10 << 12) / steer_resistance_small_turn, 1.6f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  5,   (9 << 12) / steer_resistance_small_turn, 1.9f); // 1.9 * 6
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  4,   (8 << 12) / steer_resistance_small_turn, 1.9f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  3,   (7 << 12) / steer_resistance_small_turn, 1.9f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  2,   (6 << 12) / steer_resistance_small_turn, 1.9f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  1,   (5 << 12) / steer_resistance_small_turn, 1.9f);
-    check_sterr_speed(player, &steer_position_delta, &steer_position, player->nowsterr,  0,           0 / steer_resistance_small_turn, 1.9f); // sum is 40.15
-    if ((player->slip_flag & DRIFT) == DRIFT) {
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 30,  (31 << 12) / steer_resistance_small_turn, 0.9f); // 0.9 * 5
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 29,  (30 << 12) / steer_resistance_small_turn, 0.9f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 28,  (29 << 12) / steer_resistance_small_turn, 0.9f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 27,  (28 << 12) / steer_resistance_small_turn, 0.9f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 26,  (27 << 12) / steer_resistance_small_turn, 0.9f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 25,  (26 << 12) / steer_resistance_small_turn, 1.0f); // 1.0 * 5
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 24,  (25 << 12) / steer_resistance_small_turn, 1.0f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 23,  (24 << 12) / steer_resistance_small_turn, 1.0f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 22,  (23 << 12) / steer_resistance_small_turn, 1.0f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 21,  (22 << 12) / steer_resistance_small_turn, 1.0f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 20,  (21 << 12) / steer_resistance_small_turn, 1.05f);// 1.05* 5
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 19,  (20 << 12) / steer_resistance_small_turn, 1.05f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 18,  (19 << 12) / steer_resistance_small_turn, 1.05f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 17,  (18 << 12) / steer_resistance_small_turn, 1.05f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 16,  (17 << 12) / steer_resistance_small_turn, 1.05f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 15,  (16 << 12) / steer_resistance_small_turn, 1.2f); // 1.2 * 5
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 14,  (15 << 12) / steer_resistance_small_turn, 1.2f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 13,  (14 << 12) / steer_resistance_small_turn, 1.2f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 12,  (13 << 12) / steer_resistance_small_turn, 1.2f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 11,  (12 << 12) / steer_resistance_small_turn, 1.2f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr, 10,  (14 << 12) / steer_resistance_small_turn, 1.6f); // 1.6 * 5
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  9,  (13 << 12) / steer_resistance_small_turn, 1.6f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  8,  (12 << 12) / steer_resistance_small_turn, 1.6f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  7,  (11 << 12) / steer_resistance_small_turn, 1.6f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  6,  (10 << 12) / steer_resistance_small_turn, 1.6f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  5,   (9 << 12) / steer_resistance_small_turn, 1.9f); // 1.9 * 6
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  4,   (8 << 12) / steer_resistance_small_turn, 1.9f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  3,   (7 << 12) / steer_resistance_small_turn, 1.9f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  2,   (6 << 12) / steer_resistance_small_turn, 1.9f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  1,   (5 << 12) / steer_resistance_small_turn, 1.9f);
+    CheckSterrSpeed(Player, &steer_position_delta, &steer_position, Player->Nowsterr,  0,           0 / steer_resistance_small_turn, 1.9f); // sum is 40.15
+    if ((Player->SlipFlag & DRIFT) == DRIFT) {
         var_f2_2 = (f32) ((steer_position >> 16) / 8);
-    } else if (((player->speed / 18.0f) * 216.0f) <= 25.0f) {
+    } else if (((Player->Speed / 18.0f) * 216.0f) <= 25.0f) {
         var_f2_2 = (f32) ((steer_position >> 16) / 12);
     } else {
-        var_f2_2 = ((f32) (steer_position >> 16)) / (8.0f + (player->accelcount / 50.0f));
+        var_f2_2 = ((f32) (steer_position >> 16)) / (8.0f + (Player->Accelcount / 50.0f));
     }
     if (var_f2_2 < 0.0f) {
         var_f2_2 = -var_f2_2;
     }
-    if ((player->slip_flag & SPIN_TURN) == SPIN_TURN) {
-        var_f2_2 = var_f2_2 * (sp44[((s16) ((player->speed / 18.0f) * 216.0f)) + 10] * 1.5f);
-    } else if ((player->slip_flag & DRIFT) == DRIFT) {
-        var_f2_2 = var_f2_2 * sp44[(s16) ((player->speed / 18.0f) * 216.0f)];
+    if ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) {
+        var_f2_2 = var_f2_2 * (sp44[((s16) ((Player->Speed / 18.0f) * 216.0f)) + 10] * 1.5f);
+    } else if ((Player->SlipFlag & DRIFT) == DRIFT) {
+        var_f2_2 = var_f2_2 * sp44[(s16) ((Player->Speed / 18.0f) * 216.0f)];
     } else {
-        var_f2_2 = var_f2_2 * (sp44[(s16) ((player->speed / 18.0f) * 216.0f)] * 1.5f);
+        var_f2_2 = var_f2_2 * (sp44[(s16) ((Player->Speed / 18.0f) * 216.0f)] * 1.5f);
     }
-    player->nowsterr = steer_position;
-    if (player->hitcount != 0) {
-        check_impactsterr(player);
+    Player->Nowsterr = steer_position;
+    if (Player->Hitcount != 0) {
+        CheckImpactsterr(Player);
     }
-    player->slip_flag &= ~STOPSTERR;
-    if (((s32) player->tire_RR.Status) > 0xE) {
+    Player->SlipFlag &= ~STOPSTERR;
+    if (((s32) Player->TireRR.Status) > 0xE) {
         var_f12 = var_f12;
     } else {
-        var_f12 += D_800E3410[player->kart][player->tire_RR.Status];
+        var_f12 += D_800E3410[Player->Kart][Player->TireRR.Status];
     }
-    if (((s32) player->tire_RL.Status) < 0xF) {
-        var_f12 += D_800E3410[player->kart][player->tire_RL.Status];
+    if (((s32) Player->TireRL.Status) < 0xF) {
+        var_f12 += D_800E3410[Player->Kart][Player->TireRL.Status];
     }
-    if (((player->slip_flag & D_JUMP) != D_JUMP) && ((player->slip_flag & DRIFT) != DRIFT)) {
-        if ((player->slip_flag & SPIN_TURN) == SPIN_TURN) {
-            player->sterrangle = (player->nowsterr >> 16) * 5 * var_f2_2;
+    if (((Player->SlipFlag & D_JUMP) != D_JUMP) && ((Player->SlipFlag & DRIFT) != DRIFT)) {
+        if ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) {
+            Player->Sterrangle = (Player->Nowsterr >> 16) * 5 * var_f2_2;
         } else {
-            if ((player->slip_flag & BREAKE) != BREAKE) {
-                if (((player->nowsterr >> 16) >= 45) || ((player->nowsterr >> 16) <= -45)) {
-                    player->sterrangle = ((player->nowsterr >> 16) * (var_f2_2 + (var_f2_2 * var_f12))) *
-                                      (0.15 + gKartHandlingTable[player->kart]);
+            if ((Player->SlipFlag & BREAKE) != BREAKE) {
+                if (((Player->Nowsterr >> 16) >= 45) || ((Player->Nowsterr >> 16) <= -45)) {
+                    Player->Sterrangle = ((Player->Nowsterr >> 16) * (var_f2_2 + (var_f2_2 * var_f12))) *
+                                      (0.15 + gKartHandlingTable[Player->Kart]);
                 } else {
-                    player->sterrangle = ((player->nowsterr >> 16) * (var_f2_2 + (var_f2_2 * var_f12))) *
-                                      gKartHandlingTable[player->kart];
+                    Player->Sterrangle = ((Player->Nowsterr >> 16) * (var_f2_2 + (var_f2_2 * var_f12))) *
+                                      gKartHandlingTable[Player->Kart];
                 }
             } else {
-                if ((((player->speed / 18.0f) * 216.0f) >= 0.0f) && (((player->speed / 18.0f) * 216.0f) < 8.0f)) {
-                    player->sterrangle = (player->nowsterr >> 16) * (var_f2_2 + (var_f2_2 * var_f12));
+                if ((((Player->Speed / 18.0f) * 216.0f) >= 0.0f) && (((Player->Speed / 18.0f) * 216.0f) < 8.0f)) {
+                    Player->Sterrangle = (Player->Nowsterr >> 16) * (var_f2_2 + (var_f2_2 * var_f12));
                 }
-                if ((((player->speed / 18.0f) * 216.0f) >= 8.0f) && (((player->speed / 18.0f) * 216.0f) < 65.0f)) {
-                    player->sterrangle = (player->nowsterr >> 16) * ((var_f2_2 + 1.5) + (var_f2_2 * var_f12));
+                if ((((Player->Speed / 18.0f) * 216.0f) >= 8.0f) && (((Player->Speed / 18.0f) * 216.0f) < 65.0f)) {
+                    Player->Sterrangle = (Player->Nowsterr >> 16) * ((var_f2_2 + 1.5) + (var_f2_2 * var_f12));
                 }
-                if (((player->speed / 18.0f) * 216.0f) >= 65.0f) {
-                    player->sterrangle = (player->nowsterr >> 16) * ((var_f2_2 + 1.6) + (var_f2_2 * var_f12));
+                if (((Player->Speed / 18.0f) * 216.0f) >= 65.0f) {
+                    Player->Sterrangle = (Player->Nowsterr >> 16) * ((var_f2_2 + 1.6) + (var_f2_2 * var_f12));
                 }
             }
-            player->stopsetrr_count = 0;
-            if (player->powerstack_count < 2) {
-                player->powerstack_count = 0;
+            Player->StopsetrrCount = 0;
+            if (Player->PowerstackCount < 2) {
+                Player->PowerstackCount = 0;
             }
         }
-    } else if (((player->slip_flag & N_JUMP) != N_JUMP) && ((player->slip_flag & D_JUMP) != D_JUMP)) {
-        if ((((s16) player->slipang) / DEGREES(1)) > 0) {
-            // linear map, sets -53 to 40 and 53 to 53
-            var_s1_2 = (((s32) (((player->nowsterr >> 16) * 13) + (13 * 53))) / (2 * 53)) + 40;
-            if ((player->nowsterr >> 16) <= -40) {
-                player->slip_flag |= STOPSTERR;
-                if ((player->nowsterr >> 16) <= -50) { // always true, but has no effect
-                    player->slip_flag |= STOPSTERR;
+    } else if (((Player->SlipFlag & N_JUMP) != N_JUMP) && ((Player->SlipFlag & D_JUMP) != D_JUMP)) {
+        if ((((s16) Player->Slipang) / DEGREES(1)) > 0) {
+            // linear Map, sets -53 to 40 and 53 to 53
+            var_s1_2 = (((s32) (((Player->Nowsterr >> 16) * 13) + (13 * 53))) / (2 * 53)) + 40;
+            if ((Player->Nowsterr >> 16) <= -40) {
+                Player->SlipFlag |= STOPSTERR;
+                if ((Player->Nowsterr >> 16) <= -50) { // always true, but has no effect
+                    Player->SlipFlag |= STOPSTERR;
                 }
             }
-            check_drift_turbo(player, playerIndex);
+            CheckDriftTurbo(Player, playerIndex);
         } else {
-            // linear map, sets -53 to -53 and 53 to -40
-            var_s1_2 = (((s32) (((player->nowsterr >> 16) * 13) + (13 * 53))) / (2 * 53)) - 53;
-            if ((player->nowsterr >> 16) >= 40) {
-                player->slip_flag |= STOPSTERR;
-                if ((player->nowsterr >> 16) <= -50) { // never true, but would have no effect
-                    player->slip_flag |= STOPSTERR;
+            // linear Map, sets -53 to -53 and 53 to -40
+            var_s1_2 = (((s32) (((Player->Nowsterr >> 16) * 13) + (13 * 53))) / (2 * 53)) - 53;
+            if ((Player->Nowsterr >> 16) >= 40) {
+                Player->SlipFlag |= STOPSTERR;
+                if ((Player->Nowsterr >> 16) <= -50) { // never true, but would have no effect
+                    Player->SlipFlag |= STOPSTERR;
                 }
             }
-            check_drift_turbo(player, playerIndex);
+            CheckDriftTurbo(Player, playerIndex);
         }
-        if ((((player->speed / 18.0f) * 216.0f) >= 0.0f) && (((player->speed / 18.0f) * 216.0f) < 8.0f)) {
-            player->sterrangle = (s16) ((s32) (var_s1_2 * ((var_f2_2 + 2.0f) + (var_f2_2 * var_f12))));
+        if ((((Player->Speed / 18.0f) * 216.0f) >= 0.0f) && (((Player->Speed / 18.0f) * 216.0f) < 8.0f)) {
+            Player->Sterrangle = (s16) ((s32) (var_s1_2 * ((var_f2_2 + 2.0f) + (var_f2_2 * var_f12))));
         }
-        if ((((player->speed / 18.0f) * 216.0f) >= 8.0f) && (((player->speed / 18.0f) * 216.0f) < 65.0f)) {
-            player->sterrangle = var_s1_2 * ((var_f2_2 + 3) + (var_f2_2 * var_f12));
+        if ((((Player->Speed / 18.0f) * 216.0f) >= 8.0f) && (((Player->Speed / 18.0f) * 216.0f) < 65.0f)) {
+            Player->Sterrangle = var_s1_2 * ((var_f2_2 + 3) + (var_f2_2 * var_f12));
         }
-        if (((player->speed / 18.0f) * 216.0f) >= 65.0f) {
-            player->sterrangle = var_s1_2 * ((((f64) var_f2_2) + 3.5) + (var_f2_2 * var_f12));
+        if (((Player->Speed / 18.0f) * 216.0f) >= 65.0f) {
+            Player->Sterrangle = var_s1_2 * ((((f64) var_f2_2) + 3.5) + (var_f2_2 * var_f12));
         }
-        if ((player->slip_flag & STOPSTERR) == STOPSTERR) {
-            player->sterrangle *= 0.9;
+        if ((Player->SlipFlag & STOPSTERR) == STOPSTERR) {
+            Player->Sterrangle *= 0.9;
         } else {
-            player->sterrangle *= 0.65;
+            Player->Sterrangle *= 0.65;
         }
     } else {
-        var_s1_2 = player->nowsterr >> 16;
+        var_s1_2 = Player->Nowsterr >> 16;
         if (clamped_x == 0) {
             var_s1_2 = 0;
         }
-        if (((player->speed / 18.0f) * 216.0f) <= 5.0f) {
-            player->sterrangle = (s16) ((s32) (((f32) var_s1_2) * (var_f2_2 + 6.0f)));
+        if (((Player->Speed / 18.0f) * 216.0f) <= 5.0f) {
+            Player->Sterrangle = (s16) ((s32) (((f32) var_s1_2) * (var_f2_2 + 6.0f)));
         } else {
-            player->sterrangle = ((s16) var_s1_2) * (var_f2_2 + 1.5f);
+            Player->Sterrangle = ((s16) var_s1_2) * (var_f2_2 + 1.5f);
         }
     }
-    if (g_gameMode == BATTLE) {
-        player->sterrangle *= 1.7;
+    if (GameMode == BATTLE) {
+        Player->Sterrangle *= 1.7;
     }
 }
 
-void enemy_stick_angle(Player* player, s16 targetAngle) {
+void EnemyStickAngle(Player* Player, s16 targetAngle) {
     s32 sp304 = 0;
     UNUSED f32 pad[6];
     f32 var_f0;
@@ -4269,500 +4269,500 @@ void enemy_stick_angle(Player* player, s16 targetAngle) {
         3.0f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f, 3.0f,
     };
 
-    if (!((player->slip_flag & SPIN_L) || (player->slip_flag & SPIN_R) ||
-          (player->slip_flag & ROLLOVER) || (player->slip_flag & ROLLOVER_FALL) ||
-          (player->slip_flag & THUNDER_SPIN) || (player->slip_flag & EXPLODE) ||
-          (player->slip_flag & THROW_EXPLODE) || (player->slip_flag & BROKEN))) {
-        if (!(((player->speed / 18.0f) * 216.0f) >= 110.0f)) {
-            player->slip_flag &= ~STOPSTERR;
-            player->stopsetrr_count = 0;
-            if (!(player->slip_flag & SPIN_L) && !(player->slip_flag & SPIN_R)) {
-                sp304 = (s32) player->nowsterr >> 16;
-                chase_Inumber(&sp304, (s32) targetAngle, 0.35f);
+    if (!((Player->SlipFlag & SPIN_L) || (Player->SlipFlag & SPIN_R) ||
+          (Player->SlipFlag & ROLLOVER) || (Player->SlipFlag & ROLLOVER_FALL) ||
+          (Player->SlipFlag & THUNDER_SPIN) || (Player->SlipFlag & EXPLODE) ||
+          (Player->SlipFlag & THROW_EXPLODE) || (Player->SlipFlag & BROKEN))) {
+        if (!(((Player->Speed / 18.0f) * 216.0f) >= 110.0f)) {
+            Player->SlipFlag &= ~STOPSTERR;
+            Player->StopsetrrCount = 0;
+            if (!(Player->SlipFlag & SPIN_L) && !(Player->SlipFlag & SPIN_R)) {
+                sp304 = (s32) Player->Nowsterr >> 16;
+                ChaseInumber(&sp304, (s32) targetAngle, 0.35f);
                 sp304 <<= 0x10;
-                if ((player->slip_flag & DRIFT) == DRIFT) {
+                if ((Player->SlipFlag & DRIFT) == DRIFT) {
                     var_f0 = (sp304 >> 0x10) / 5;
                 } else {
-                    var_f0 = (f32) (sp304 >> 0x10) / (8.0f + (player->accelcount / 50.0f));
+                    var_f0 = (f32) (sp304 >> 0x10) / (8.0f + (Player->Accelcount / 50.0f));
                 }
                 if (var_f0 < 0.0f) {
                     var_f0 = -var_f0;
                 }
 
-                // Apply speed and character multipliers
-                if ((player->slip_flag & DRIFT) == DRIFT) {
-                    var_f0 = speedTurn[(s16) ((player->speed / 18.0f) * 216.0f)] * var_f0;
+                // Apply Speed and character multipliers
+                if ((Player->SlipFlag & DRIFT) == DRIFT) {
+                    var_f0 = speedTurn[(s16) ((Player->Speed / 18.0f) * 216.0f)] * var_f0;
                 } else {
-                    var_f0 = speedTurn[(s16) ((player->speed / 18.0f) * 216.0f)] * characterTurn[player->kart] *
+                    var_f0 = speedTurn[(s16) ((Player->Speed / 18.0f) * 216.0f)] * characterTurn[Player->Kart] *
                              var_f0;
                 }
-                player->nowsterr = sp304;
-                if (((player->slip_flag & D_JUMP) != D_JUMP) &&
-                    ((player->slip_flag & DRIFT) != DRIFT)) {
-                    if ((player->slip_flag & BREAKE) != BREAKE) {
-                        player->sterrangle = (player->nowsterr >> 16) * var_f0;
+                Player->Nowsterr = sp304;
+                if (((Player->SlipFlag & D_JUMP) != D_JUMP) &&
+                    ((Player->SlipFlag & DRIFT) != DRIFT)) {
+                    if ((Player->SlipFlag & BREAKE) != BREAKE) {
+                        Player->Sterrangle = (Player->Nowsterr >> 16) * var_f0;
                     } else {
-                        player->sterrangle = (player->nowsterr >> 16) * (var_f0 + 1.5);
+                        Player->Sterrangle = (Player->Nowsterr >> 16) * (var_f0 + 1.5);
                     }
-                } else if ((player->slip_flag & N_JUMP) != N_JUMP) {
-                    if (((s16) player->slipang / DEGREES(1)) > 0) {
-                        var_v0 = player->nowsterr >> 16;
+                } else if ((Player->SlipFlag & N_JUMP) != N_JUMP) {
+                    if (((s16) Player->Slipang / DEGREES(1)) > 0) {
+                        var_v0 = Player->Nowsterr >> 16;
                     } else {
-                        var_v0 = player->nowsterr >> 16;
+                        var_v0 = Player->Nowsterr >> 16;
                     }
-                    player->sterrangle = var_v0 * (var_f0 + 3.0);
-                    player->sterrangle *= 0.8;
+                    Player->Sterrangle = var_v0 * (var_f0 + 3.0);
+                    Player->Sterrangle *= 0.8;
                 } else {
-                    var_v0 = (s16) ((s32) player->nowsterr >> 16);
+                    var_v0 = (s16) ((s32) Player->Nowsterr >> 16);
                     if (targetAngle == 0) {
                         var_v0 = 0;
                     }
-                    player->sterrangle = var_v0 * var_f0;
+                    Player->Sterrangle = var_v0 * var_f0;
                 }
-                if ((((player->slip_flag & D_JUMP) != D_JUMP) && (player->slipang <= 60) && (player->slipang >= -60)) ||
-                    (((player->speed / 18.0f) * 216.0f) <= 20.0f) ||
-                    ((player->slip_flag & CARHIT) == CARHIT)) {
-                    drift_reset(player);
+                if ((((Player->SlipFlag & D_JUMP) != D_JUMP) && (Player->Slipang <= 60) && (Player->Slipang >= -60)) ||
+                    (((Player->Speed / 18.0f) * 216.0f) <= 20.0f) ||
+                    ((Player->SlipFlag & CARHIT) == CARHIT)) {
+                    DriftReset(Player);
                 }
             }
         }
     }
 }
 
-void drift_set(Player* player) {
-    if (((player->speed / 18.0f) * 216.0f) > 20.0f) {
-        player->drift_count = 0;
-        player->slip_flag |= DRIFT;
-        player->talk |= BOING;
+void DriftSet(Player* Player) {
+    if (((Player->Speed / 18.0f) * 216.0f) > 20.0f) {
+        Player->DriftCount = 0;
+        Player->SlipFlag |= DRIFT;
+        Player->Talk |= BOING;
     }
 }
 
-void drift_reset(Player* player) {
+void DriftReset(Player* Player) {
     s32 steer_position_new;
 
-    if (((player->slip_flag & DRIFT) == DRIFT) && ((player->flag & IS_PLAYER) == IS_PLAYER)) {
-        if ((player->slipang / DEGREES(1)) > 0) {
-            // linear map, sets -53 to 40 and 53 to 53
-            steer_position_new = ((((player->nowsterr >> 16) * 13) + (13*53)) / (2*53)) + 40;
-            player->nowsterr = steer_position_new << 16;
+    if (((Player->SlipFlag & DRIFT) == DRIFT) && ((Player->Flag & IS_PLAYER) == IS_PLAYER)) {
+        if ((Player->Slipang / DEGREES(1)) > 0) {
+            // linear Map, sets -53 to 40 and 53 to 53
+            steer_position_new = ((((Player->Nowsterr >> 16) * 13) + (13*53)) / (2*53)) + 40;
+            Player->Nowsterr = steer_position_new << 16;
         }
-        if ((player->slipang / DEGREES(1)) < 0) {
-            // linear map, sets -53 to -53 and 53 to -40
-            steer_position_new = ((((player->nowsterr >> 16) * 13) + (13*53)) / (2*53)) - 53;
-            player->nowsterr = steer_position_new << 16;
+        if ((Player->Slipang / DEGREES(1)) < 0) {
+            // linear Map, sets -53 to -53 and 53 to -40
+            steer_position_new = ((((Player->Nowsterr >> 16) * 13) + (13*53)) / (2*53)) - 53;
+            Player->Nowsterr = steer_position_new << 16;
         }
-        player->slip_flag &= ~DRIFT;
+        Player->SlipFlag &= ~DRIFT;
     }
-    if (((player->slip_flag & DRIFT) == DRIFT) && ((player->flag & IS_PLAYER) != IS_PLAYER)) {
-        player->slip_flag &= ~DRIFT;
+    if (((Player->SlipFlag & DRIFT) == DRIFT) && ((Player->Flag & IS_PLAYER) != IS_PLAYER)) {
+        Player->SlipFlag &= ~DRIFT;
     }
 }
 
-void setvector_l(Player* player, Vec3f arg1, Vec3f arg2) {
+void SetvectorL(Player* Player, Vec3f arg1, Vec3f Arg2) {
     s16 steer_position_delta;
     UNUSED s16 pad;
     f32 sp20;
     f32 var_f18;
     s32 steer_position;
 
-    if (((player->slip_flag & CENTER_LINE) == CENTER_LINE) ||
-        ((player->slip_flag & SPIN_TURN) == SPIN_TURN)) {
+    if (((Player->SlipFlag & CENTER_LINE) == CENTER_LINE) ||
+        ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN)) {
         arg1[0] = 0.0f;
         arg1[1] = 0.0f;
         arg1[2] = 0.0f;
-        MultipleMatrixByVector(arg1, player->align);
+        MultipleMatrixByVector(arg1, Player->align);
     } else {
-        if (((player->slip_flag & DRIFT) == DRIFT) &&
-            ((player->slip_flag & D_JUMP) != D_JUMP)) {
-            var_f18 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) * 3.0f) + (-player->brake_time * 10.0f);
-            sp20 = player->f_grip * 3.0f;
-        } else if (!(player->slip_flag & WHEELSPIN) && !(player->handling_flag & SPINOUT_SWERVE)) {
-            steer_position_delta = player->sterracc;
+        if (((Player->SlipFlag & DRIFT) == DRIFT) &&
+            ((Player->SlipFlag & D_JUMP) != D_JUMP)) {
+            var_f18 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) * 3.0f) + (-Player->BrakeTime * 10.0f);
+            sp20 = Player->FGrip * 3.0f;
+        } else if (!(Player->SlipFlag & WHEELSPIN) && !(Player->HandlingFlag & SPINOUT_SWERVE)) {
+            steer_position_delta = Player->Sterracc;
             if (steer_position_delta > 0) {
                 steer_position_delta *= -1;
             }
-            steer_position = player->nowsterr >> 16;
+            steer_position = Player->Nowsterr >> 16;
             if ((steer_position <= 20) && (steer_position >= -20)) {
                 if (steer_position_delta < 20) {
-                    var_f18 = (player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 3.0f)) +
-                              (-player->accelcount * 0.02) + (-player->brake_time * 50.0f);
+                    var_f18 = (Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 3.0f)) +
+                              (-Player->Accelcount * 0.02) + (-Player->BrakeTime * 50.0f);
                 } else {
-                    var_f18 = (player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 3.0f)) +
-                              ((steer_position * 0.01) + (-player->accelcount * 0.05)) + (-player->brake_time * 50.0f);
+                    var_f18 = (Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 3.0f)) +
+                              ((steer_position * 0.01) + (-Player->Accelcount * 0.05)) + (-Player->BrakeTime * 50.0f);
                 }
             } else {
-                var_f18 = (player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 3.0f)) +
-                          ((steer_position * 0.1) + (-player->accelcount * 0.15)) + (-player->brake_time * 50.0f);
+                var_f18 = (Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 3.0f)) +
+                          ((steer_position * 0.1) + (-Player->Accelcount * 0.15)) + (-Player->BrakeTime * 50.0f);
             }
-            sp20 = player->f_grip;
+            sp20 = Player->FGrip;
         } else {
-            var_f18 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) * 1.5) +
-                      (((player->nowsterr >> 16) * 0.1) + (-player->accelcount * 0.05)) + (-player->brake_time * 50.0f);
-            sp20 = player->f_grip;
+            var_f18 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) * 1.5) +
+                      (((Player->Nowsterr >> 16) * 0.1) + (-Player->Accelcount * 0.05)) + (-Player->BrakeTime * 50.0f);
+            sp20 = Player->FGrip;
         }
-        if ((player->slip_flag & STAR) == STAR) {
-            if (((player->slip_flag & DRIFT) == DRIFT) &&
-                ((player->slip_flag & D_JUMP) != D_JUMP)) {
-                var_f18 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) * 3.0f) + (-player->brake_time * 10.0f);
-                sp20 = player->f_grip * 3.0f;
+        if ((Player->SlipFlag & STAR) == STAR) {
+            if (((Player->SlipFlag & DRIFT) == DRIFT) &&
+                ((Player->SlipFlag & D_JUMP) != D_JUMP)) {
+                var_f18 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) * 3.0f) + (-Player->BrakeTime * 10.0f);
+                sp20 = Player->FGrip * 3.0f;
             } else {
-                var_f18 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 3.0f);
-                sp20 = player->f_grip;
+                var_f18 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 3.0f);
+                sp20 = Player->FGrip;
             }
         }
-        arg1[0] = (player->grip + var_f18) * player->speed;
+        arg1[0] = (Player->Grip + var_f18) * Player->Speed;
         arg1[1] = 0.0f;
-        arg1[2] = player->speed * sp20;
-        MultipleMatrixByVector(arg1, player->align);
+        arg1[2] = Player->Speed * sp20;
+        MultipleMatrixByVector(arg1, Player->align);
     }
-    arg2[0] = arg1[0];
-    arg2[1] = arg1[1];
-    arg2[2] = arg1[2];
+    Arg2[0] = arg1[0];
+    Arg2[1] = arg1[1];
+    Arg2[2] = arg1[2];
 }
 
-void setvector_r(Player* player, Vec3f arg1, Vec3f arg2) {
+void SetvectorR(Player* Player, Vec3f arg1, Vec3f Arg2) {
     s16 steer_position_delta;
     f32 sp20;
     f32 var_f18;
     s32 steer_position;
 
-    if (((player->slip_flag & CENTER_LINE) == CENTER_LINE) ||
-        ((player->slip_flag & SPIN_TURN) == SPIN_TURN)) {
+    if (((Player->SlipFlag & CENTER_LINE) == CENTER_LINE) ||
+        ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN)) {
         arg1[0] = 0.0f;
         arg1[1] = 0.0f;
         arg1[2] = 0.0f;
-        MultipleMatrixByVector(arg1, player->align);
+        MultipleMatrixByVector(arg1, Player->align);
     } else {
-        if (((player->slip_flag & DRIFT) == DRIFT) &&
-            ((player->slip_flag & D_JUMP) != D_JUMP)) {
-            var_f18 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) * 3.0f) + (-player->brake_time * 50.0f);
-            sp20 = player->f_grip * 3.0f;
-        } else if (!(player->slip_flag & WHEELSPIN) && !(player->handling_flag & SPINOUT_SWERVE)) {
-            steer_position_delta = player->sterracc;
+        if (((Player->SlipFlag & DRIFT) == DRIFT) &&
+            ((Player->SlipFlag & D_JUMP) != D_JUMP)) {
+            var_f18 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) * 3.0f) + (-Player->BrakeTime * 50.0f);
+            sp20 = Player->FGrip * 3.0f;
+        } else if (!(Player->SlipFlag & WHEELSPIN) && !(Player->HandlingFlag & SPINOUT_SWERVE)) {
+            steer_position_delta = Player->Sterracc;
             if (steer_position_delta > 0) {
                 steer_position_delta *= -1;
             }
-            steer_position = (s32) player->nowsterr >> 16;
+            steer_position = (s32) Player->Nowsterr >> 16;
             if ((steer_position <= 20) && (steer_position >= -20)) {
                 if (steer_position_delta < 20) {
-                    var_f18 = (player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 3.0f)) +
-                              (-player->accelcount * 0.02) + (-player->brake_time * 50.0f);
+                    var_f18 = (Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 3.0f)) +
+                              (-Player->Accelcount * 0.02) + (-Player->BrakeTime * 50.0f);
                 } else {
-                    var_f18 = ((player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 3.0f)) -
-                               ((steer_position * 0.01) + (player->accelcount * 0.05))) +
-                              (-player->brake_time * 50.0f);
+                    var_f18 = ((Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 3.0f)) -
+                               ((steer_position * 0.01) + (Player->Accelcount * 0.05))) +
+                              (-Player->BrakeTime * 50.0f);
                 }
             } else {
-                var_f18 = ((player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 3.0f)) -
-                           ((steer_position * 0.1) + (player->accelcount * 0.15))) +
-                          (-player->brake_time * 50.0f);
+                var_f18 = ((Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 3.0f)) -
+                           ((steer_position * 0.1) + (Player->Accelcount * 0.15))) +
+                          (-Player->BrakeTime * 50.0f);
             }
-            sp20 = player->f_grip;
+            sp20 = Player->FGrip;
         } else {
-            var_f18 = ((player->allrear_grip + ((f64) (-(player->speed / 18.0f) * 216.0f) * 1.5)) -
-                       (((player->nowsterr >> 0x10) * 0.1) + (player->accelcount * 0.05))) +
-                      (-player->brake_time * 50.0f);
-            sp20 = player->f_grip;
+            var_f18 = ((Player->AllrearGrip + ((f64) (-(Player->Speed / 18.0f) * 216.0f) * 1.5)) -
+                       (((Player->Nowsterr >> 0x10) * 0.1) + (Player->Accelcount * 0.05))) +
+                      (-Player->BrakeTime * 50.0f);
+            sp20 = Player->FGrip;
         }
-        if ((player->slip_flag & STAR) == STAR) {
-            if (((player->slip_flag & DRIFT) == DRIFT) &&
-                ((player->slip_flag & D_JUMP) != D_JUMP)) {
-                var_f18 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) * 3.0f) + (-player->brake_time * 50.0f);
-                sp20 = player->f_grip * 3.0f;
+        if ((Player->SlipFlag & STAR) == STAR) {
+            if (((Player->SlipFlag & DRIFT) == DRIFT) &&
+                ((Player->SlipFlag & D_JUMP) != D_JUMP)) {
+                var_f18 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) * 3.0f) + (-Player->BrakeTime * 50.0f);
+                sp20 = Player->FGrip * 3.0f;
             } else {
-                var_f18 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 3.0f);
-                sp20 = player->f_grip;
+                var_f18 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 3.0f);
+                sp20 = Player->FGrip;
             }
         }
-        arg1[0] = -(player->grip + var_f18) * player->speed;
+        arg1[0] = -(Player->Grip + var_f18) * Player->Speed;
         arg1[1] = 0.0f;
-        arg1[2] = player->speed * sp20;
-        MultipleMatrixByVector(arg1, player->align);
+        arg1[2] = Player->Speed * sp20;
+        MultipleMatrixByVector(arg1, Player->align);
     }
-    arg2[0] = arg1[0];
-    arg2[1] = arg1[1];
-    arg2[2] = arg1[2];
+    Arg2[0] = arg1[0];
+    Arg2[1] = arg1[1];
+    Arg2[2] = arg1[2];
 }
 
-void enemy_setvector_l(Player* player, Vec3f arg1, Vec3f arg2) {
+void EnemySetvectorL(Player* Player, Vec3f arg1, Vec3f Arg2) {
     f32 var_f12;
     f32 var_f2;
 
-    if (((player->slip_flag & CENTER_LINE) == CENTER_LINE) ||
-        ((player->slip_flag & SPIN_TURN) == SPIN_TURN)) {
+    if (((Player->SlipFlag & CENTER_LINE) == CENTER_LINE) ||
+        ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN)) {
         arg1[0] = 0.0f;
         arg1[1] = 0.0f;
         arg1[2] = 0.0f;
-        MultipleMatrixByVector(arg1, player->align);
+        MultipleMatrixByVector(arg1, Player->align);
     } else {
-        if (((player->slip_flag & DRIFT) == DRIFT) &&
-            ((player->slip_flag & D_JUMP) != D_JUMP)) {
-            var_f2 = ((-(player->speed / 18.0f) * 216.0f) * 2) + -80.0f;
+        if (((Player->SlipFlag & DRIFT) == DRIFT) &&
+            ((Player->SlipFlag & D_JUMP) != D_JUMP)) {
+            var_f2 = ((-(Player->Speed / 18.0f) * 216.0f) * 2) + -80.0f;
             var_f12 = -80.0f;
         } else {
-            var_f2 = ((-(player->speed / 18.0f) * 216.0f) / 2) + -20.0f;
+            var_f2 = ((-(Player->Speed / 18.0f) * 216.0f) / 2) + -20.0f;
             var_f12 = -40.0f;
         }
-        arg1[0] = (var_f2 + 28.0f) * player->speed;
+        arg1[0] = (var_f2 + 28.0f) * Player->Speed;
         arg1[1] = 0.0f;
-        arg1[2] = var_f12 * player->speed;
-        MultipleMatrixByVector(arg1, player->align);
+        arg1[2] = var_f12 * Player->Speed;
+        MultipleMatrixByVector(arg1, Player->align);
     }
-    arg2[0] = arg1[0];
-    arg2[1] = arg1[1];
-    arg2[2] = arg1[2];
+    Arg2[0] = arg1[0];
+    Arg2[1] = arg1[1];
+    Arg2[2] = arg1[2];
 }
 
 
-void enemy_setvector_r(Player* player, Vec3f arg1, Vec3f arg2) {
+void EnemySetvectorR(Player* Player, Vec3f arg1, Vec3f Arg2) {
     f32 var_f12;
     f32 var_f2;
 
-    if (((player->slip_flag & CENTER_LINE) == CENTER_LINE) ||
-        ((player->slip_flag & SPIN_TURN) == SPIN_TURN)) {
+    if (((Player->SlipFlag & CENTER_LINE) == CENTER_LINE) ||
+        ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN)) {
         arg1[0] = 0.0f;
         arg1[1] = 0.0f;
         arg1[2] = 0.0f;
-        MultipleMatrixByVector(arg1, player->align);
+        MultipleMatrixByVector(arg1, Player->align);
     } else {
-        if (((player->slip_flag & DRIFT) == DRIFT) &&
-            ((player->slip_flag & D_JUMP) != D_JUMP)) {
-            var_f2 = ((-(player->speed / 18.0f) * 216.0f) * 2) + -80.0f;
+        if (((Player->SlipFlag & DRIFT) == DRIFT) &&
+            ((Player->SlipFlag & D_JUMP) != D_JUMP)) {
+            var_f2 = ((-(Player->Speed / 18.0f) * 216.0f) * 2) + -80.0f;
             var_f12 = -80.0f;
         } else {
-            var_f2 = ((-(player->speed / 18.0f) * 216.0f) / 2) + -20.0f;
+            var_f2 = ((-(Player->Speed / 18.0f) * 216.0f) / 2) + -20.0f;
             var_f12 = -40.0f;
         }
-        arg1[0] = -(var_f2 + 28.0f) * player->speed;
+        arg1[0] = -(var_f2 + 28.0f) * Player->Speed;
         arg1[1] = 0.0f;
-        arg1[2] = var_f12 * player->speed;
-        MultipleMatrixByVector(arg1, player->align);
+        arg1[2] = var_f12 * Player->Speed;
+        MultipleMatrixByVector(arg1, Player->align);
     }
-    arg2[0] = arg1[0];
-    arg2[1] = arg1[1];
-    arg2[2] = arg1[2];
+    Arg2[0] = arg1[0];
+    Arg2[1] = arg1[1];
+    Arg2[2] = arg1[2];
 }
 
-void battle_setvector_l(Player* player, Vec3f arg1, Vec3f arg2) {
+void BattleSetvectorL(Player* Player, Vec3f arg1, Vec3f Arg2) {
     f32 var_f12;
     f32 var_f2;
 
-    if ((player->slip_flag & SPIN_TURN) == SPIN_TURN) {
+    if ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) {
         arg1[0] = 0.0f;
         arg1[1] = 0.0f;
         arg1[2] = 0.0f;
-        MultipleMatrixByVector(arg1, player->align);
+        MultipleMatrixByVector(arg1, Player->align);
     } else {
-        if ((player->slip_flag & DRIFT) == DRIFT) {
-            var_f2 = player->allrear_grip + (-(player->speed / 18.0f) * 216.0f * 5.0f) + (-player->brake_time * 10.0f);
+        if ((Player->SlipFlag & DRIFT) == DRIFT) {
+            var_f2 = Player->AllrearGrip + (-(Player->Speed / 18.0f) * 216.0f * 5.0f) + (-Player->BrakeTime * 10.0f);
             var_f12 = -100.0f;
         } else {
-            var_f2 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 40.0f) + (-player->brake_time * 50.0f);
-            var_f12 = player->f_grip;
+            var_f2 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 40.0f) + (-Player->BrakeTime * 50.0f);
+            var_f12 = Player->FGrip;
         }
-        arg1[0] = (player->grip + var_f2) * player->speed;
+        arg1[0] = (Player->Grip + var_f2) * Player->Speed;
         arg1[1] = 0.0f;
-        arg1[2] = player->speed * var_f12;
-        MultipleMatrixByVector(arg1, player->align);
+        arg1[2] = Player->Speed * var_f12;
+        MultipleMatrixByVector(arg1, Player->align);
     }
-    arg2[0] = arg1[0];
-    arg2[1] = arg1[1];
-    arg2[2] = arg1[2];
+    Arg2[0] = arg1[0];
+    Arg2[1] = arg1[1];
+    Arg2[2] = arg1[2];
 }
 
-void battle_setvector_r(Player* player, Vec3f arg1, Vec3f arg2) {
+void BattleSetvectorR(Player* Player, Vec3f arg1, Vec3f Arg2) {
     f32 var_f12;
     f32 var_f2;
 
-    if ((player->slip_flag & SPIN_TURN) == SPIN_TURN) {
+    if ((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) {
         arg1[0] = 0.0f;
         arg1[1] = 0.0f;
         arg1[2] = 0.0f;
-        MultipleMatrixByVector(arg1, player->align);
+        MultipleMatrixByVector(arg1, Player->align);
     } else {
-        if ((player->slip_flag & DRIFT) == DRIFT) {
-            var_f2 = player->allrear_grip + (-(player->speed / 18.0f) * 216.0f * 5.0f) + (-player->brake_time * 50.0f);
+        if ((Player->SlipFlag & DRIFT) == DRIFT) {
+            var_f2 = Player->AllrearGrip + (-(Player->Speed / 18.0f) * 216.0f * 5.0f) + (-Player->BrakeTime * 50.0f);
             var_f12 = -100.0f;
         } else {
-            var_f2 = player->allrear_grip + ((-(player->speed / 18.0f) * 216.0f) / 40.0f) + (-player->brake_time * 50.0f);
-            var_f12 = player->f_grip;
+            var_f2 = Player->AllrearGrip + ((-(Player->Speed / 18.0f) * 216.0f) / 40.0f) + (-Player->BrakeTime * 50.0f);
+            var_f12 = Player->FGrip;
         }
-        arg1[0] = -(player->grip + var_f2) * player->speed;
+        arg1[0] = -(Player->Grip + var_f2) * Player->Speed;
         arg1[1] = 0.0f;
-        arg1[2] = player->speed * var_f12;
-        MultipleMatrixByVector(arg1, player->align);
+        arg1[2] = Player->Speed * var_f12;
+        MultipleMatrixByVector(arg1, Player->align);
     }
-    arg2[0] = arg1[0];
-    arg2[1] = arg1[1];
-    arg2[2] = arg1[2];
+    Arg2[0] = arg1[0];
+    Arg2[1] = arg1[1];
+    Arg2[2] = arg1[2];
 }
 
-void yoko_g(Player* player, Vec3f arg1) {
+void YokoG(Player* Player, Vec3f arg1) {
     UNUSED s32 pad[3];
     Vec3f sp20;
 
-    if (player->sterrangle == 0) {
+    if (Player->Sterrangle == 0) {
         arg1[0] = 0.0f;
         arg1[1] = 0.0f;
         arg1[2] = 0.0f;
     } else {
-        if (player->sterrangle < 0) {
-            if (((player->slip_flag & STOPSTERR) != STOPSTERR) || (player->stopsetrr_count >= 100)) {
-                player->direction[1] += player->sterrangle;
+        if (Player->Sterrangle < 0) {
+            if (((Player->SlipFlag & STOPSTERR) != STOPSTERR) || (Player->StopsetrrCount >= 100)) {
+                Player->Direction[1] += Player->Sterrangle;
             }
-            if (!(player->flag & IS_CPU_PLAYER)) {
-                if (g_gameMode == BATTLE) {
-                    battle_setvector_l(player, sp20, arg1);
+            if (!(Player->Flag & IS_CPU_PLAYER)) {
+                if (GameMode == BATTLE) {
+                    BattleSetvectorL(Player, sp20, arg1);
                 } else {
-                    setvector_l(player, sp20, arg1);
+                    SetvectorL(Player, sp20, arg1);
                 }
             } else {
-                enemy_setvector_l(player, sp20, arg1);
+                EnemySetvectorL(Player, sp20, arg1);
             }
         } else {
-            if (((player->slip_flag & STOPSTERR) != STOPSTERR) || (player->stopsetrr_count >= 100)) {
-                player->direction[1] += player->sterrangle;
+            if (((Player->SlipFlag & STOPSTERR) != STOPSTERR) || (Player->StopsetrrCount >= 100)) {
+                Player->Direction[1] += Player->Sterrangle;
             }
-            if (!(player->flag & IS_CPU_PLAYER)) {
-                if (g_gameMode == BATTLE) {
-                    battle_setvector_r(player, sp20, arg1);
+            if (!(Player->Flag & IS_CPU_PLAYER)) {
+                if (GameMode == BATTLE) {
+                    BattleSetvectorR(Player, sp20, arg1);
                 } else {
-                    setvector_r(player, sp20, arg1);
+                    SetvectorR(Player, sp20, arg1);
                 }
             } else {
-                enemy_setvector_r(player, sp20, arg1);
+                EnemySetvectorR(Player, sp20, arg1);
             }
         }
     }
 }
 
-void manual_stick_drive(Player* player, struct Controller* controller, s8 playerIndex) {
-    if (((player->slip_flag & SPIN_L) != SPIN_L) &&
-        ((player->slip_flag & SPIN_R) != SPIN_R) &&
-        ((player->slip_flag & ROLLOVER) != ROLLOVER) &&
-        ((player->slip_flag & RAPID_ACC) != RAPID_ACC) &&
-        ((player->slip_flag & EXPLODE) != EXPLODE) &&
-        ((player->slip_flag & THROW_EXPLODE) != THROW_EXPLODE) &&
-        ((player->slip_flag & ROLLOVER_FALL) != ROLLOVER_FALL) &&
-        ((player->slip_flag & THUNDER_SPIN) != THUNDER_SPIN)) {
-        if (((player->slip_flag & BROKEN) != BROKEN) &&
-            ((player->slip_flag & N_JUMP) != N_JUMP) && ((player->slip_flag & D_JUMP) != D_JUMP) &&
-            ((player->slip_flag & DRIFT) != DRIFT) && (controller->ButtonPressed & R_TRIG)) {
-            jump_set(player);
-            if (((player->flag & IS_PLAYER) == IS_PLAYER) &&
-                ((player->flag & IS_GHOST) != IS_GHOST)) {
+void ManualStickDrive(Player* Player, struct Controller* controller, s8 playerIndex) {
+    if (((Player->SlipFlag & SPIN_L) != SPIN_L) &&
+        ((Player->SlipFlag & SPIN_R) != SPIN_R) &&
+        ((Player->SlipFlag & ROLLOVER) != ROLLOVER) &&
+        ((Player->SlipFlag & RAPID_ACC) != RAPID_ACC) &&
+        ((Player->SlipFlag & EXPLODE) != EXPLODE) &&
+        ((Player->SlipFlag & THROW_EXPLODE) != THROW_EXPLODE) &&
+        ((Player->SlipFlag & ROLLOVER_FALL) != ROLLOVER_FALL) &&
+        ((Player->SlipFlag & THUNDER_SPIN) != THUNDER_SPIN)) {
+        if (((Player->SlipFlag & BROKEN) != BROKEN) &&
+            ((Player->SlipFlag & N_JUMP) != N_JUMP) && ((Player->SlipFlag & D_JUMP) != D_JUMP) &&
+            ((Player->SlipFlag & DRIFT) != DRIFT) && (controller->ButtonPressed & R_TRIG)) {
+            JumpSet(Player);
+            if (((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+                ((Player->Flag & IS_GHOST) != IS_GHOST)) {
                 NAPlyTrgStart(playerIndex, 0x19008000);
             }
         }
-        ProStickAngleHook(player, controller, playerIndex);
-        player->slip_flag &= ~BREAKE;
-        if ((!(player->slip_flag & DASH_JUMP)) && (!(player->slip_flag & DASH_MIDJUMP))) {
-            if (((player->speed / 18.0f) * 216.0f) <= 12.0f) {
+        ProStickAngleHook(Player, controller, playerIndex);
+        Player->SlipFlag &= ~BREAKE;
+        if ((!(Player->SlipFlag & DASH_JUMP)) && (!(Player->SlipFlag & DASH_MIDJUMP))) {
+            if (((Player->Speed / 18.0f) * 216.0f) <= 12.0f) {
                 if (controller->ButtonHeld & A_BUTTON) {
                     if (controller->ButtonHeld & B_BUTTON) {
-                        player->slip_flag |= SPIN_TURN;
-                        if ((player->slip_flag & SPIN_TURN) != SPIN_TURN) {
-                            player->accelcount += 100.0f;
+                        Player->SlipFlag |= SPIN_TURN;
+                        if ((Player->SlipFlag & SPIN_TURN) != SPIN_TURN) {
+                            Player->Accelcount += 100.0f;
                         }
                     }
                 }
             }
-            if (((player->slip_flag & SPIN_TURN) == SPIN_TURN) &&
+            if (((Player->SlipFlag & SPIN_TURN) == SPIN_TURN) &&
                 (((controller->ButtonHeld & B_BUTTON) == 0) || (!(controller->ButtonHeld & A_BUTTON)))) {
-                player->slip_flag &= ~SPIN_TURN;
+                Player->SlipFlag &= ~SPIN_TURN;
             }
         }
-        if ((player->handling_flag & REVERSE_GEAR) != REVERSE_GEAR) {
+        if ((Player->HandlingFlag & REVERSE_GEAR) != REVERSE_GEAR) {
             if (controller->ButtonHeld & A_BUTTON) {
-                AccelOn(player);
-                check_accele_on(player);
+                AccelOn(Player);
+                CheckAcceleOn(Player);
             } else {
-                if (g_gameMode == BATTLE) {
-                    AccelOff(player, 2.0f);
+                if (GameMode == BATTLE) {
+                    AccelOff(Player, 2.0f);
                 } else {
-                    AccelOff(player, 1.0f);
+                    AccelOff(Player, 1.0f);
                 }
-                check_accele_off(player);
+                CheckAcceleOff(Player);
             }
             if (controller->ButtonHeld & B_BUTTON) {
-                breake_on(player);
-                check_brake_on(player);
+                BreakeOn(Player);
+                CheckBrakeOn(Player);
             } else {
-                player->brake_time = 0.0f;
-                check_brake_off(player);
+                Player->BrakeTime = 0.0f;
+                CheckBrakeOff(Player);
             }
         }
-        if ((!(player->slip_flag & DASH_JUMP)) && (!(player->slip_flag & DASH_MIDJUMP))) {
-            if (((check_stickY(controller) < (-0x31)) && (((player->speed / 18.0f) * 216.0f) <= 5.0f)) &&
+        if ((!(Player->SlipFlag & DASH_JUMP)) && (!(Player->SlipFlag & DASH_MIDJUMP))) {
+            if (((CheckStickY(controller) < (-0x31)) && (((Player->Speed / 18.0f) * 216.0f) <= 5.0f)) &&
                 (controller->ButtonHeld & B_BUTTON)) {
-                player->accelcount = 140.0f;
-                player->handling_flag |= REVERSE_GEAR;
-                player->force = (player->accelcount * player->accelcount) / 25.0f;
-                player->brake_time = 0.0f;
+                Player->Accelcount = 140.0f;
+                Player->HandlingFlag |= REVERSE_GEAR;
+                Player->Force = (Player->Accelcount * Player->Accelcount) / 25.0f;
+                Player->BrakeTime = 0.0f;
             }
-            if ((check_stickY(controller) >= -0x1D) || (!(controller->ButtonHeld & B_BUTTON))) {
-                if ((player->handling_flag & REVERSE_GEAR) == REVERSE_GEAR) {
-                    player->handling_flag &= ~(REVERSE_GEAR);
-                    player->accelcount = 0.0f;
+            if ((CheckStickY(controller) >= -0x1D) || (!(controller->ButtonHeld & B_BUTTON))) {
+                if ((Player->HandlingFlag & REVERSE_GEAR) == REVERSE_GEAR) {
+                    Player->HandlingFlag &= ~(REVERSE_GEAR);
+                    Player->Accelcount = 0.0f;
                 }
             }
         }
     } else {
-        if ((player->slip_flag & RAPID_ACC) == RAPID_ACC) {
+        if ((Player->SlipFlag & RAPID_ACC) == RAPID_ACC) {
             if (controller->ButtonHeld & A_BUTTON) {
-                AccelOn(player);
+                AccelOn(Player);
             } else {
-                AccelOff(player, 5.0f);
+                AccelOff(Player, 5.0f);
             }
         }
-        if (((((player->slip_flag & SPIN_L) == SPIN_L) ||
-              ((player->slip_flag & SPIN_R) == SPIN_R)) ||
-             ((player->slip_flag & EXPLODE) == EXPLODE)) ||
-            ((player->slip_flag & THROW_EXPLODE) == THROW_EXPLODE)) {
+        if (((((Player->SlipFlag & SPIN_L) == SPIN_L) ||
+              ((Player->SlipFlag & SPIN_R) == SPIN_R)) ||
+             ((Player->SlipFlag & EXPLODE) == EXPLODE)) ||
+            ((Player->SlipFlag & THROW_EXPLODE) == THROW_EXPLODE)) {
             if (controller->ButtonHeld & A_BUTTON) {
-                check_accele_on(player);
-                empty_accele_on(player, playerIndex);
+                CheckAcceleOn(Player);
+                EmptyAcceleOn(Player, playerIndex);
                 return;
             }
-            check_accele_off(player);
-            empty_accele_off(player, 5.0f, playerIndex);
+            CheckAcceleOff(Player);
+            EmptyAcceleOff(Player, 5.0f, playerIndex);
         }
     }
 }
 
-void drive_stick_kindcontrol(Player* player, struct Controller* controller, s8 playerIndex) {
-    if (((player->flag & EXISTS) == EXISTS) && ((player->flag & IS_PLAYER) == IS_PLAYER) &&
-        ((player->flag & IS_CPU_PLAYER) != IS_CPU_PLAYER)) {
-        // If not start sequence
-        if ((player->flag & NO_CONTROLS) != NO_CONTROLS) {
-            if (((player->jugemu_flag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
-                ((player->jugemu_flag & LAKITU_SCENE) == LAKITU_SCENE)) {
+void DriveStickKindcontrol(Player* Player, struct Controller* controller, s8 playerIndex) {
+    if (((Player->Flag & EXISTS) == EXISTS) && ((Player->Flag & IS_PLAYER) == IS_PLAYER) &&
+        ((Player->Flag & IS_CPU_PLAYER) != IS_CPU_PLAYER)) {
+        // If not Start sequence
+        if ((Player->Flag & NO_CONTROLS) != NO_CONTROLS) {
+            if (((Player->JugemuFlag & ON_LAKITU_ROD) == ON_LAKITU_ROD) ||
+                ((Player->JugemuFlag & LAKITU_SCENE) == LAKITU_SCENE)) {
                 if (controller->ButtonHeld & A_BUTTON) {
-                    jugemu_accele_on(player);
+                    JugemuAcceleOn(Player);
                 } else {
-                    jugemu_accele_off(player, 5.0f);
+                    JugemuAcceleOff(Player, 5.0f);
                 }
             } else {
-                manual_stick_drive(player, controller, playerIndex);
+                ManualStickDrive(Player, controller, playerIndex);
             }
             D_80164A89 = 1;
-            // If start sequence and unknown condition
+            // If Start sequence and Unknown condition
         } else if (D_8018D168 == 1) {
             if (D_801656F0 == 1) {
-                if (green_timer[playerIndex] == 0) {
-                    green_timer[playerIndex] = kwvideoframetimer;
+                if (GreenTimer[playerIndex] == 0) {
+                    GreenTimer[playerIndex] = Kwvideoframetimer;
                 }
             }
             if (controller->ButtonHeld & A_BUTTON) {
-                player_nocontaccele_on(player);
+                PlayerNocontacceleOn(Player);
             } else {
-                player_nocontaccele_off(player, 5.0f);
+                PlayerNocontacceleOff(Player, 5.0f);
             }
         }
     }
 }
 
-void drive_stick_control(void) {
+void DriveStickControl(void) {
     u16 temp_v0_3;
     u16 temp_v0_4;
     u16 temp_v0_5;
@@ -4771,39 +4771,39 @@ void drive_stick_control(void) {
     if (FlyCamToggle > 0) {
         return;
     }
-    switch (g_ScreenSplitA) {
+    switch (ScreenSplitA) {
         case SCREEN_MODE_1P:
-            switch (g_gameMode) {
+            switch (GameMode) {
                 case GRAND_PRIX:
-                    drive_stick_kindcontrol(gPlayerOne, gControllerOne, 0);
+                    DriveStickKindcontrol(PlayerOne, ControllerOne, 0);
                     return;
                 case TIME_TRIALS:
-                    if (replay_flag != 1) {
-                        drive_stick_kindcontrol(gPlayerOne, gControllerOne, 0);
-                        temp_v0_3 = gPlayerTwo->flag;
+                    if (ReplayFlag != 1) {
+                        DriveStickKindcontrol(PlayerOne, ControllerOne, 0);
+                        temp_v0_3 = PlayerTwo->Flag;
                         if (((temp_v0_3 & IS_GHOST) == IS_GHOST) &&
                             ((temp_v0_3 & IS_RACE_FINISH) != IS_RACE_FINISH)) {
-                            drive_stick_kindcontrol(gPlayerTwo, gControllerSix, 1);
+                            DriveStickKindcontrol(PlayerTwo, ControllerSix, 1);
                         }
-                        temp_v0_4 = gPlayerThree->flag;
+                        temp_v0_4 = PlayerThree->Flag;
                         if (((temp_v0_4 & IS_GHOST) == IS_GHOST) &&
                             ((temp_v0_4 & IS_RACE_FINISH) != IS_RACE_FINISH)) {
-                            drive_stick_kindcontrol(gPlayerThree, gControllerSeven, 2);
+                            DriveStickKindcontrol(PlayerThree, ControllerSeven, 2);
                             return;
                         }
                     } else {
-                        if ((gPlayerOne->flag & IS_RACE_FINISH) != IS_RACE_FINISH) {
-                            drive_stick_kindcontrol(gPlayerOne, gControllerEight, 0);
+                        if ((PlayerOne->Flag & IS_RACE_FINISH) != IS_RACE_FINISH) {
+                            DriveStickKindcontrol(PlayerOne, ControllerEight, 0);
                         }
-                        temp_v0_5 = gPlayerTwo->flag;
+                        temp_v0_5 = PlayerTwo->Flag;
                         if (((temp_v0_5 & IS_GHOST) == IS_GHOST) &&
                             ((temp_v0_5 & IS_RACE_FINISH) != IS_RACE_FINISH)) {
-                            drive_stick_kindcontrol(gPlayerTwo, gControllerSix, 1);
+                            DriveStickKindcontrol(PlayerTwo, ControllerSix, 1);
                         }
-                        temp_v0_6 = gPlayerThree->flag;
+                        temp_v0_6 = PlayerThree->Flag;
                         if (((temp_v0_6 & IS_GHOST) == IS_GHOST) &&
                             ((temp_v0_6 & IS_RACE_FINISH) != IS_RACE_FINISH)) {
-                            drive_stick_kindcontrol(gPlayerThree, gControllerSeven, 2);
+                            DriveStickKindcontrol(PlayerThree, ControllerSeven, 2);
                             return;
                         }
                         return;
@@ -4814,21 +4814,21 @@ void drive_stick_control(void) {
             break;
         case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
         case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
-            drive_stick_kindcontrol(gPlayerOne, gControllerOne, 0);
-            drive_stick_kindcontrol(gPlayerTwo, gControllerTwo, 1);
+            DriveStickKindcontrol(PlayerOne, ControllerOne, 0);
+            DriveStickKindcontrol(PlayerTwo, ControllerTwo, 1);
             return;
         case SCREEN_MODE_3P_4P_SPLITSCREEN:
-            drive_stick_kindcontrol(gPlayerOne, gControllerOne, 0);
-            drive_stick_kindcontrol(gPlayerTwo, gControllerTwo, 1);
-            drive_stick_kindcontrol(gPlayerThree, gControllerThree, 2);
-            if (g_playerCount == 4) {
-                drive_stick_kindcontrol(gPlayerFour, gControllerFour, 3);
+            DriveStickKindcontrol(PlayerOne, ControllerOne, 0);
+            DriveStickKindcontrol(PlayerTwo, ControllerTwo, 1);
+            DriveStickKindcontrol(PlayerThree, ControllerThree, 2);
+            if (PlayerCount == 4) {
+                DriveStickKindcontrol(PlayerFour, ControllerFour, 3);
             }
             break;
     }
 }
 
-s16 check_stickX(struct Controller* controller) {
+s16 CheckStickX(struct Controller* controller) {
     s16 temp_stickY;
     s16 temp_stickX2;
     s16 temp_stickY2;
@@ -4881,7 +4881,7 @@ s16 check_stickX(struct Controller* controller) {
     return temp_stickX;
 }
 
-s16 check_stickY(struct Controller* controller) {
+s16 CheckStickY(struct Controller* controller) {
     s16 temp_StickY;
     s16 temp_StickX2;
     s16 temp_StickY2;
@@ -4935,19 +4935,19 @@ s16 check_stickY(struct Controller* controller) {
     return temp_StickY;
 }
 
-void result_accele_on(Player* player, s16 arg1) {
-    player->accelcount += (f32) arg1;
-    if (player->accelcount < 0.0f) {
-        player->accelcount = 0.0f;
+void ResultAcceleOn(Player* Player, s16 arg1) {
+    Player->Accelcount += (f32) arg1;
+    if (Player->Accelcount < 0.0f) {
+        Player->Accelcount = 0.0f;
     }
-    if (player->accelcount >= 250.0f) {
-        player->accelcount = 250.0f;
+    if (Player->Accelcount >= 250.0f) {
+        Player->Accelcount = 250.0f;
     }
-    player->handling_flag |= ACCELERATE;
-    player->force = (player->accelcount * player->accelcount) / 25.0f;
+    Player->HandlingFlag |= ACCELERATE;
+    Player->Force = (Player->Accelcount * Player->Accelcount) / 25.0f;
 }
 
-void result_runkart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playerId) {
+void ResultRunkart(Player* Player, UNUSED Camera* Camera, s8 screenId, s8 PlayerId) {
     Vec3f sp114 = { 0.0, 0.0, 1.0 };
     Vec3f sp108 = { 0.0, 0.0, 0.0 };
     Vec3f spFC = { 0.0, 0.0, 0.0 };
@@ -4955,148 +4955,148 @@ void result_runkart(Player* player, UNUSED Camera* camera, s8 screenId, s8 playe
     f32 nextX;
     f32 nextY;
     f32 nextZ;
-    f32 posX;
-    f32 posY;
-    f32 posZ;
+    f32 PosX;
+    f32 PosY;
+    f32 PosZ;
     f32 sqrt;
 
     f32 divOptimize;
-    UNUSED s32 pad2[10];
+    UNUSED s32 Pad2[10];
     f32 spA4;
     f32 spA0;
     f32 sp9C;
     f32 surfaceDistance;
-    UNUSED s32 pad3;
+    UNUSED s32 Pad3;
     Vec3f newVelocity;
     Vec3f sp7C;
     UNUSED s32 pad[10];
 
-    player->f_grip = -10.0f;
-    player->r_grip = 28.0f;
-    player->acc_maxcount = 250.0f;
-    WeaponStatus(player, playerId, screenId);
-    SetStrategy(player, playerId, screenId);
-    player->direction[1] += player->sterrangle;
+    Player->FGrip = -10.0f;
+    Player->RGrip = 28.0f;
+    Player->AccMaxcount = 250.0f;
+    WeaponStatus(Player, PlayerId, screenId);
+    SetStrategy(Player, PlayerId, screenId);
+    Player->Direction[1] += Player->Sterrangle;
     spF0[0] = 0;
     spF0[1] = 0;
     spF0[2] = 0;
-    AddGravityEdit(player);
-    spA4 = 0 * (player->gravity_xz[0] + spFC[0]);
-    spA0 = -1 * player->gravity;
-    sp9C = 0 * (player->gravity_xz[2] + spFC[2]);
+    AddGravityEdit(Player);
+    spA4 = 0 * (Player->GravityXz[0] + spFC[0]);
+    spA0 = -1 * Player->Gravity;
+    sp9C = 0 * (Player->GravityXz[2] + spFC[2]);
     sp108[2] = 0;
     sp108[1] = 0;
     sp108[0] = 0;
-    MultipleMatrixByVector(sp108, player->align);
+    MultipleMatrixByVector(sp108, Player->align);
     spA4 += sp108[0];
     sp9C += sp108[2];
-    sp114[2] = player->force;
-    MultipleMatrixByVector(sp114, player->align);
+    sp114[2] = Player->Force;
+    MultipleMatrixByVector(sp114, Player->align);
 
-    newVelocity[0] = player->velocity[0];
-    newVelocity[1] = player->velocity[1];
-    newVelocity[2] = player->velocity[2];
+    newVelocity[0] = Player->Velocity[0];
+    newVelocity[1] = Player->Velocity[1];
+    newVelocity[2] = Player->Velocity[2];
 
-    newVelocity[0] += ((((((sp114[0] + spA4) + spF0[0])) - (newVelocity[0] * (0.12 * (player->mass)))) / 6000.0) / 1);
-    newVelocity[2] += ((((((sp114[2] + sp9C) + spF0[2])) - (newVelocity[2] * (0.12 * (player->mass)))) / 6000.0) / 1);
-    newVelocity[1] += ((((((sp114[1] + spA0) + spF0[1])) - (newVelocity[1] * (0.12 * (player->mass)))) / 6000.0) / 1);
-    if ((player->handling_flag & CPU_SIMPLE_KART) == CPU_SIMPLE_KART) {
-        player->handling_flag &= ~CPU_SIMPLE_KART;
+    newVelocity[0] += ((((((sp114[0] + spA4) + spF0[0])) - (newVelocity[0] * (0.12 * (Player->Mass)))) / 6000.0) / 1);
+    newVelocity[2] += ((((((sp114[2] + sp9C) + spF0[2])) - (newVelocity[2] * (0.12 * (Player->Mass)))) / 6000.0) / 1);
+    newVelocity[1] += ((((((sp114[1] + spA0) + spF0[1])) - (newVelocity[1] * (0.12 * (Player->Mass)))) / 6000.0) / 1);
+    if ((Player->HandlingFlag & CPU_SIMPLE_KART) == CPU_SIMPLE_KART) {
+        Player->HandlingFlag &= ~CPU_SIMPLE_KART;
     }
 
-    posX = player->position[0];
-    posY = player->position[1];
-    posZ = player->position[2];
+    PosX = Player->Position[0];
+    PosY = Player->Position[1];
+    PosZ = Player->Position[2];
 
-    player->old_position[0] = player->position[0];
-    player->old_position[1] = player->position[1];
-    player->old_position[2] = player->position[2];
+    Player->OldPosition[0] = Player->Position[0];
+    Player->OldPosition[1] = Player->Position[1];
+    Player->OldPosition[2] = Player->Position[2];
 
-    nextX = posX + player->velocity[0];
-    nextY = posY + player->velocity[1];
-    nextZ = posZ + player->velocity[2];
-    DriftJump(player);
-    nextY += player->jump;
+    nextX = PosX + Player->Velocity[0];
+    nextY = PosY + Player->Velocity[1];
+    nextZ = PosZ + Player->Velocity[2];
+    DriftJump(Player);
+    nextY += Player->Jump;
     nextY -= 0.02;
-    custom_check_bump_2(&player->bump, player->radius, nextX, nextY, nextZ, player->old_position[0],
-                            player->old_position[1], player->old_position[2]);
-    player->up_vector[0] = 0;
-    player->up_vector[2] = 0;
-    player->up_vector[1] = 1.0f;
-    MakeAlignMatrix(player->align, 0, 1.0f, 0, player->direction[1]);
-    player->slip_flag |= N_JUMP;
-    player->jumpcount += 1;
-    surfaceDistance = player->bump.distance_zx;
+    CustomCheckBump2(&Player->Bump, Player->Radius, nextX, nextY, nextZ, Player->OldPosition[0],
+                            Player->OldPosition[1], Player->OldPosition[2]);
+    Player->UpVector[0] = 0;
+    Player->UpVector[2] = 0;
+    Player->UpVector[1] = 1.0f;
+    MakeAlignMatrix(Player->align, 0, 1.0f, 0, Player->Direction[1]);
+    Player->SlipFlag |= N_JUMP;
+    Player->Jumpcount += 1;
+    surfaceDistance = Player->Bump.DistanceZX;
     if (surfaceDistance <= 0) {
-        player->jumpcount = 0;
-        player->slip_flag &= ~D_JUMP;
-        player->slip_flag &= ~N_JUMP;
-        player->jump = player->jumpcount;
+        Player->Jumpcount = 0;
+        Player->SlipFlag &= ~D_JUMP;
+        Player->SlipFlag &= ~N_JUMP;
+        Player->Jump = Player->Jumpcount;
     }
-    surfaceDistance = player->bump.distance_zx;
+    surfaceDistance = Player->Bump.DistanceZX;
     if (surfaceDistance <= 0) {
-        CheckMapBG_ZX_Hook(player, sp7C, newVelocity, sp108, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckMapBGZXHook(Player, sp7C, newVelocity, sp108, &surfaceDistance, &nextX, &nextY, &nextZ);
     }
-    surfaceDistance = player->bump.distance_xy;
+    surfaceDistance = Player->Bump.DistanceXY;
     if (surfaceDistance < 0) {
-        CheckMapBG_XY(player, sp7C, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
-        CheckWall(player, playerId, newVelocity);
+        CheckMapBGXY(Player, sp7C, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckWall(Player, PlayerId, newVelocity);
     }
-    surfaceDistance = player->bump.distance_yz;
+    surfaceDistance = Player->Bump.DistanceYZ;
     if (surfaceDistance < 0) {
-        CheckMapBG_YZ(player, sp7C, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
-        CheckWall(player, playerId, newVelocity);
+        CheckMapBGYZ(Player, sp7C, newVelocity, &surfaceDistance, &nextX, &nextY, &nextZ);
+        CheckWall(Player, PlayerId, newVelocity);
     }
-    surfaceDistance = player->bump.distance_xy;
+    surfaceDistance = Player->Bump.DistanceXY;
     if (surfaceDistance >= 0) {
-        surfaceDistance = player->bump.distance_yz;
+        surfaceDistance = Player->Bump.DistanceYZ;
         if (surfaceDistance >= 0) {
-            player->hit_flag &= 0xFFDF;
+            Player->HitFlag &= 0xFFDF;
         }
     }
-    player->ground = CalcHeight(nextX, nextY, nextZ, player->bump.last_zx);
-    TirePosition(player, nextX, nextY, nextZ);
-    SetSlipAngle(player, playerId, posX, posZ, nextX, nextZ);
+    Player->Ground = CalcHeight(nextX, nextY, nextZ, Player->Bump.LastZX);
+    TirePosition(Player, nextX, nextY, nextZ);
+    SetSlipAngle(Player, PlayerId, PosX, PosZ, nextX, nextZ);
     sqrt = (newVelocity[0] * newVelocity[0]) + (newVelocity[2] * newVelocity[2]);
-    player->old_speed = player->speed;
-    player->speed = sqrtf(sqrt);
+    Player->OldSpeed = Player->Speed;
+    Player->Speed = sqrtf(sqrt);
 
-    player->position[0] = nextX;
-    player->position[2] = nextZ;
-    player->position[1] = nextY;
+    Player->Position[0] = nextX;
+    Player->Position[2] = nextZ;
+    Player->Position[1] = nextY;
 
-    player->gravity_xz[0] = sp108[0];
-    player->gravity_xz[2] = sp108[2];
+    Player->GravityXz[0] = sp108[0];
+    Player->GravityXz[2] = sp108[2];
 
-    player->velocity[0] = newVelocity[0];
-    player->velocity[1] = newVelocity[1];
-    player->velocity[2] = newVelocity[2];
+    Player->Velocity[0] = newVelocity[0];
+    Player->Velocity[1] = newVelocity[1];
+    Player->Velocity[2] = newVelocity[2];
 
-    old_velocity[playerId][0] = newVelocity[0];
-    old_velocity[playerId][1] = newVelocity[1];
-    old_velocity[playerId][2] = newVelocity[2];
+    OldVelocity[PlayerId][0] = newVelocity[0];
+    OldVelocity[PlayerId][1] = newVelocity[1];
+    OldVelocity[PlayerId][2] = newVelocity[2];
 
-    if ((player->flag & IS_PLAYER) == IS_PLAYER) {
-        if (gKartTopSpeedTable[player->kart] < player->speed) {
-            divOptimize = gKartTopSpeedTable[player->kart] / player->speed;
-            player->velocity[0] *= divOptimize;
-            player->velocity[1] *= divOptimize;
-            player->velocity[2] *= divOptimize;
-            player->speed = gKartTopSpeedTable[player->kart];
+    if ((Player->Flag & IS_PLAYER) == IS_PLAYER) {
+        if (gKartTopSpeedTable[Player->Kart] < Player->Speed) {
+            divOptimize = gKartTopSpeedTable[Player->Kart] / Player->Speed;
+            Player->Velocity[0] *= divOptimize;
+            Player->Velocity[1] *= divOptimize;
+            Player->Velocity[2] *= divOptimize;
+            Player->Speed = gKartTopSpeedTable[Player->Kart];
         }
     }
-    if ((player->handling_flag & REVERSE_GEAR) == REVERSE_GEAR) {
-        if (player->speed > 1.0f) {
-            player->velocity[0] *= 1.0f / player->speed;
-            player->velocity[1] *= 1.0f / player->speed;
-            player->velocity[2] *= 1.0f / player->speed;
-            player->speed = 1.0f;
+    if ((Player->HandlingFlag & REVERSE_GEAR) == REVERSE_GEAR) {
+        if (Player->Speed > 1.0f) {
+            Player->Velocity[0] *= 1.0f / Player->Speed;
+            Player->Velocity[1] *= 1.0f / Player->Speed;
+            Player->Velocity[2] *= 1.0f / Player->Speed;
+            Player->Speed = 1.0f;
         }
     }
-    if (player->bump.distance_zx >= 500.0f) {
-        player->sterrangle /= 2;
+    if (Player->Bump.DistanceZX >= 500.0f) {
+        Player->Sterrangle /= 2;
     }
-    if (ok_CheckSplashEnabled) {
-        CheckSplash(player, playerId);
+    if (OKCheckSplashEnabled) {
+        CheckSplash(Player, PlayerId);
     }
 }

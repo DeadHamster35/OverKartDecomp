@@ -2,7 +2,7 @@
 #include <macros.h>
 
 /**
- * Trig tables get loaded into memory at this location.
+ * Trig tables get Loaded into memory at this location.
  * See trig_tables.c for the real file.
  */
 

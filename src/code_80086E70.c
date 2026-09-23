@@ -17,416 +17,416 @@
 #include "code_80057C60.h"
 #include "defines.h"
 
-void kwmv_start(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].mvptr = 1; // * 0xE0)) = 1;
-    kwanm_clrflag(objectIndex, 8);
+void KwmvStart(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].Mvptr = 1; // * 0xE0)) = 1;
+    KwanmClrflag(ObjectIndex, 8);
 }
 
-void kwmv_start_normal(s32 objectIndex, s32 arg1, s16 arg2) {
-    g_DynamicObjects[objectIndex].spptr = arg1;
-    g_DynamicObjects[objectIndex].mvptr = arg2;
-    kwanm_clrflag(objectIndex, 8);
+void KwmvStartNormal(s32 ObjectIndex, s32 arg1, s16 Arg2) {
+    DynamicObjects[ObjectIndex].Spptr = arg1;
+    DynamicObjects[ObjectIndex].Mvptr = Arg2;
+    KwanmClrflag(ObjectIndex, 8);
 }
 
-void kwmv_start_strategy(s32 objectIndex) {
-    kwmv_start(objectIndex);
+void KwmvStartStrategy(s32 ObjectIndex) {
+    KwmvStart(ObjectIndex);
 }
 
-void kwmv_start_spline(s32 objectIndex, s32 arg1, SplineData* spline) {
-    kwmv_start(objectIndex);
-    g_DynamicObjects[objectIndex].mappoint = arg1;
-    g_DynamicObjects[objectIndex].sptbtopaddr = spline;
+void KwmvStartSpline(s32 ObjectIndex, s32 arg1, SplineData* spline) {
+    KwmvStart(ObjectIndex);
+    DynamicObjects[ObjectIndex].Mappoint = arg1;
+    DynamicObjects[ObjectIndex].Sptbtopaddr = spline;
 }
 
-void kwmv_finish(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].mvptr = 0;
-    g_DynamicObjects[objectIndex].spptr = 0;
-    g_DynamicObjects[objectIndex].mappoint = 0;
-    kwanm_clrflag(objectIndex, 8);
+void KwmvFinish(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].Mvptr = 0;
+    DynamicObjects[ObjectIndex].Spptr = 0;
+    DynamicObjects[ObjectIndex].Mappoint = 0;
+    KwanmClrflag(ObjectIndex, 8);
 }
 
-bool kwmv_checkfinish(s32 objectIndex) {
+bool KwmvCheckfinish(s32 ObjectIndex) {
     bool ret = false;
-    if (g_DynamicObjects[objectIndex].mvptr == 0) {
+    if (DynamicObjects[ObjectIndex].Mvptr == 0) {
         ret = true;
     }
     return ret;
 }
 
-void KWAnmNext(s32 objectIndex) {
-    kwanm_clrflag(objectIndex, 8);
-    g_DynamicObjects[objectIndex].mvptr += 1;
+void KWAnmNext(s32 ObjectIndex) {
+    KwanmClrflag(ObjectIndex, 8);
+    DynamicObjects[ObjectIndex].Mvptr += 1;
 }
 
-void kwmv_jump(s32 objectIndex, s32 arg1) {
-    kwanm_clrflag(objectIndex, 8);
-    g_DynamicObjects[objectIndex].mvptr = arg1;
+void KwmvJump(s32 ObjectIndex, s32 arg1) {
+    KwanmClrflag(ObjectIndex, 8);
+    DynamicObjects[ObjectIndex].Mvptr = arg1;
 }
 
-s32 kwmv_wait(s32 objectIndex, s32 arg1) {
+s32 KwmvWait(s32 ObjectIndex, s32 arg1) {
     s32 sp1C;
 
     sp1C = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != false) {
-        kwanm_setflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].mvtm = arg1;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != false) {
+        KwanmSetflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].Mvtm = arg1;
     }
-    g_DynamicObjects[objectIndex].mvtm--;
-    if (g_DynamicObjects[objectIndex].mvtm < 0) {
-        kwanm_clrflag(objectIndex, 8);
+    DynamicObjects[ObjectIndex].Mvtm--;
+    if (DynamicObjects[ObjectIndex].Mvtm < 0) {
+        KwanmClrflag(ObjectIndex, 8);
         sp1C = 1;
     }
     return sp1C;
 }
 
-s32 kwmv_randomwait(s32 objectIndex, u16 arg1) {
+s32 KwmvRandomwait(s32 ObjectIndex, u16 arg1) {
     s32 sp24;
 
     sp24 = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != false) {
-        kwanm_setflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].mvtm = MakeRandomLimmit(arg1);
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != false) {
+        KwanmSetflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].Mvtm = MakeRandomLimmit(arg1);
     }
-    g_DynamicObjects[objectIndex].mvtm--;
-    if (g_DynamicObjects[objectIndex].mvtm < 0) {
-        kwanm_clrflag(objectIndex, 8);
+    DynamicObjects[ObjectIndex].Mvtm--;
+    if (DynamicObjects[ObjectIndex].Mvtm < 0) {
+        KwanmClrflag(ObjectIndex, 8);
         sp24 = 1;
     }
     return sp24;
 }
 
-s32 kwmv_waitnext(s32 objectIndex, s32 arg1) {
+s32 KwmvWaitnext(s32 ObjectIndex, s32 arg1) {
     s32 sp24;
 
     sp24 = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != false) {
-        kwanm_setflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].mvtm = (s16) arg1;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != false) {
+        KwanmSetflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].Mvtm = (s16) arg1;
     }
-    g_DynamicObjects[objectIndex].mvtm--;
-    if (g_DynamicObjects[objectIndex].mvtm < 0) {
-        kwanm_clrflag(objectIndex, 8);
-        KWAnmNext(objectIndex);
+    DynamicObjects[ObjectIndex].Mvtm--;
+    if (DynamicObjects[ObjectIndex].Mvtm < 0) {
+        KwanmClrflag(ObjectIndex, 8);
+        KWAnmNext(ObjectIndex);
         sp24 = 1;
     }
     return sp24;
 }
 
-UNUSED void kwmv_addfvar_cnt(s32 objectIndex, UNUSED s32 arg1, f32 arg2) {
-    g_DynamicObjects[objectIndex].pos_spline[1] += arg2;
-    g_DynamicObjects[objectIndex].pos_spline[2] -= arg2;
+UNUSED void KwmvAddfvarCnt(s32 ObjectIndex, UNUSED s32 arg1, f32 Arg2) {
+    DynamicObjects[ObjectIndex].PosSpline[1] += Arg2;
+    DynamicObjects[ObjectIndex].PosSpline[2] -= Arg2;
 }
 
-UNUSED s32 kwlookplayer_xz(s32 objectIndex, Player* player) {
-    return kwcalc_destangley(player->position[0], g_DynamicObjects[objectIndex].pos[0], player->position[2],
-                                g_DynamicObjects[objectIndex].pos[2]);
+UNUSED s32 KwlookplayerXz(s32 ObjectIndex, Player* Player) {
+    return KwcalcDestangley(Player->Position[0], DynamicObjects[ObjectIndex].pos[0], Player->Position[2],
+                                DynamicObjects[ObjectIndex].pos[2]);
 }
 
-s32 kwlookcamera_xz(s32 objectIndex, Camera* camera) {
-    return Atan2t(g_DynamicObjects[objectIndex].pos[0] - camera->camera_pos[0], g_DynamicObjects[objectIndex].pos[2] - camera->camera_pos[2]);
+s32 KwlookcameraXz(s32 ObjectIndex, Camera* Camera) {
+    return Atan2t(DynamicObjects[ObjectIndex].pos[0] - Camera->CameraPos[0], DynamicObjects[ObjectIndex].pos[2] - Camera->CameraPos[2]);
 }
 
-u16 kwmv_velyztoangx(s32 objectIndex) {
-    return -Atan2t(g_DynamicObjects[objectIndex].velocity[1], g_DynamicObjects[objectIndex].velocity[2]);
+u16 KwmvVelyztoangx(s32 ObjectIndex) {
+    return -Atan2t(DynamicObjects[ObjectIndex].Velocity[1], DynamicObjects[ObjectIndex].Velocity[2]);
 }
 
-s32 kwmv_velxztoangy(s32 objectIndex) {
-    return Atan2t(g_DynamicObjects[objectIndex].velocity[0], g_DynamicObjects[objectIndex].velocity[2]);
+s32 KwmvVelxztoangy(s32 ObjectIndex) {
+    return Atan2t(DynamicObjects[ObjectIndex].Velocity[0], DynamicObjects[ObjectIndex].Velocity[2]);
 }
 
-UNUSED void kwchase_velyztoangx(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].ang[0] =
-        kwchase_angle(g_DynamicObjects[objectIndex].ang[0], kwmv_velyztoangx(objectIndex));
+UNUSED void KwchaseVelyztoangx(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].ang[0] =
+        KwchaseAngle(DynamicObjects[ObjectIndex].ang[0], KwmvVelyztoangx(ObjectIndex));
 }
 
-void kwchase_velxztoangy(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].ang[1] =
-        kwchase_angle(g_DynamicObjects[objectIndex].ang[1], kwmv_velxztoangy(objectIndex));
+void KwchaseVelxztoangy(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].ang[1] =
+        KwchaseAngle(DynamicObjects[ObjectIndex].ang[1], KwmvVelxztoangy(ObjectIndex));
 }
 
-UNUSED void kwmv_vx(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].velocity[0] =
-        g_DynamicObjects[objectIndex].vel * sinT(g_DynamicObjects[objectIndex].ang[1]);
+UNUSED void KwmvVx(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].Velocity[0] =
+        DynamicObjects[ObjectIndex].vel * SinT(DynamicObjects[ObjectIndex].ang[1]);
 }
 
-UNUSED void kwmv_vy(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].velocity[1] =
-        g_DynamicObjects[objectIndex].vel * cosT(g_DynamicObjects[objectIndex].ang[0]);
+UNUSED void KwmvVy(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].Velocity[1] =
+        DynamicObjects[ObjectIndex].vel * CosT(DynamicObjects[ObjectIndex].ang[0]);
 }
 
-UNUSED void kwmv_vz(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].velocity[2] =
-        g_DynamicObjects[objectIndex].vel * cosT(g_DynamicObjects[objectIndex].ang[1]);
+UNUSED void KwmvVz(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].Velocity[2] =
+        DynamicObjects[ObjectIndex].vel * CosT(DynamicObjects[ObjectIndex].ang[1]);
 }
 
-void kwmv_vxz(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].velocity[0] =
-        g_DynamicObjects[objectIndex].vel * sinT(g_DynamicObjects[objectIndex].ang[1]);
-    g_DynamicObjects[objectIndex].velocity[2] =
-        g_DynamicObjects[objectIndex].vel * cosT(g_DynamicObjects[objectIndex].ang[1]);
+void KwmvVxz(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].Velocity[0] =
+        DynamicObjects[ObjectIndex].vel * SinT(DynamicObjects[ObjectIndex].ang[1]);
+    DynamicObjects[ObjectIndex].Velocity[2] =
+        DynamicObjects[ObjectIndex].vel * CosT(DynamicObjects[ObjectIndex].ang[1]);
 }
 
-void kwmv_vxyz(s32 objectIndex) {
+void KwmvVxyz(s32 ObjectIndex) {
     f32 sp24;
 
-    sp24 = cosT(g_DynamicObjects[objectIndex].ang[0]);
-    g_DynamicObjects[objectIndex].velocity[0] =
-        (g_DynamicObjects[objectIndex].vel * sp24) * sinT(g_DynamicObjects[objectIndex].ang[1]);
-    g_DynamicObjects[objectIndex].velocity[1] =
-        -g_DynamicObjects[objectIndex].vel * sinT(g_DynamicObjects[objectIndex].ang[0]);
-    sp24 = cosT(g_DynamicObjects[objectIndex].ang[0]);
-    g_DynamicObjects[objectIndex].velocity[2] =
-        (g_DynamicObjects[objectIndex].vel * sp24) * cosT(g_DynamicObjects[objectIndex].ang[1]);
+    sp24 = CosT(DynamicObjects[ObjectIndex].ang[0]);
+    DynamicObjects[ObjectIndex].Velocity[0] =
+        (DynamicObjects[ObjectIndex].vel * sp24) * SinT(DynamicObjects[ObjectIndex].ang[1]);
+    DynamicObjects[ObjectIndex].Velocity[1] =
+        -DynamicObjects[ObjectIndex].vel * SinT(DynamicObjects[ObjectIndex].ang[0]);
+    sp24 = CosT(DynamicObjects[ObjectIndex].ang[0]);
+    DynamicObjects[ObjectIndex].Velocity[2] =
+        (DynamicObjects[ObjectIndex].vel * sp24) * CosT(DynamicObjects[ObjectIndex].ang[1]);
 }
 
-void kwmv_vxz_reverse(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].velocity[0] =
-        g_DynamicObjects[objectIndex].vel * sinT(g_DynamicObjects[objectIndex].ang[1] + 0x8000);
-    g_DynamicObjects[objectIndex].velocity[2] =
-        g_DynamicObjects[objectIndex].vel * cosT(g_DynamicObjects[objectIndex].ang[1] + 0x8000);
+void KwmvVxzReverse(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].Velocity[0] =
+        DynamicObjects[ObjectIndex].vel * SinT(DynamicObjects[ObjectIndex].ang[1] + 0x8000);
+    DynamicObjects[ObjectIndex].Velocity[2] =
+        DynamicObjects[ObjectIndex].vel * CosT(DynamicObjects[ObjectIndex].ang[1] + 0x8000);
 }
 
-void kwmv_velangytopos(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].pos_spline[0] +=
-        g_DynamicObjects[objectIndex].vel * sinT(g_DynamicObjects[objectIndex].ang[1]);
-    g_DynamicObjects[objectIndex].pos_spline[2] +=
-        g_DynamicObjects[objectIndex].vel * cosT(g_DynamicObjects[objectIndex].ang[1]);
+void KwmvVelangytopos(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].PosSpline[0] +=
+        DynamicObjects[ObjectIndex].vel * SinT(DynamicObjects[ObjectIndex].ang[1]);
+    DynamicObjects[ObjectIndex].PosSpline[2] +=
+        DynamicObjects[ObjectIndex].vel * CosT(DynamicObjects[ObjectIndex].ang[1]);
 }
 
-void kwmv_addveltopos(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].pos_spline[0] += g_DynamicObjects[objectIndex].velocity[0];
-    g_DynamicObjects[objectIndex].pos_spline[1] += g_DynamicObjects[objectIndex].velocity[1];
-    g_DynamicObjects[objectIndex].pos_spline[2] += g_DynamicObjects[objectIndex].velocity[2];
+void KwmvAddveltopos(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].PosSpline[0] += DynamicObjects[ObjectIndex].Velocity[0];
+    DynamicObjects[ObjectIndex].PosSpline[1] += DynamicObjects[ObjectIndex].Velocity[1];
+    DynamicObjects[ObjectIndex].PosSpline[2] += DynamicObjects[ObjectIndex].Velocity[2];
 }
 
-void kwmv_addvelxztopos(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].pos_spline[0] += g_DynamicObjects[objectIndex].velocity[0];
-    g_DynamicObjects[objectIndex].pos_spline[2] += g_DynamicObjects[objectIndex].velocity[2];
+void KwmvAddvelxztopos(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].PosSpline[0] += DynamicObjects[ObjectIndex].Velocity[0];
+    DynamicObjects[ObjectIndex].PosSpline[2] += DynamicObjects[ObjectIndex].Velocity[2];
 }
 
-UNUSED void kwmv_addvelxtopos(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].pos_spline[0] += g_DynamicObjects[objectIndex].velocity[0];
+UNUSED void KwmvAddvelxtopos(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].PosSpline[0] += DynamicObjects[ObjectIndex].Velocity[0];
 }
 
-void kwmv_addvelytopos(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].pos_spline[1] += g_DynamicObjects[objectIndex].velocity[1];
+void KwmvAddvelytopos(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].PosSpline[1] += DynamicObjects[ObjectIndex].Velocity[1];
 }
 
-UNUSED void kwmv_addvelztopos(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].pos_spline[2] += g_DynamicObjects[objectIndex].velocity[2];
+UNUSED void KwmvAddvelztopos(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].PosSpline[2] += DynamicObjects[ObjectIndex].Velocity[2];
 }
 
-void kwmv_velangytoposxz(s32 arg0) {
-    kwmv_vxz(arg0);
-    kwmv_addvelxztopos(arg0);
+void KwmvVelangytoposxz(s32 arg0) {
+    KwmvVxz(arg0);
+    KwmvAddvelxztopos(arg0);
 }
 
-void kwmv_velangxytoposxyz(s32 arg0) {
-    kwmv_vxyz(arg0);
-    kwmv_addveltopos(arg0);
+void KwmvVelangxytoposxyz(s32 arg0) {
+    KwmvVxyz(arg0);
+    KwmvAddveltopos(arg0);
 }
 
-f32 kwmove_straight(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    return (((arg4 - arg2) / (arg3 - arg1)) * (arg0 - arg1)) + arg2;
+f32 KwmoveStraight(f32 arg0, f32 arg1, f32 Arg2, f32 Arg3, f32 arg4) {
+    return (((arg4 - Arg2) / (Arg3 - arg1)) * (arg0 - arg1)) + Arg2;
 }
 
-s32 kwmv_walkxz(s32 objectIndex, s32 arg1) {
+s32 KwmvWalkxz(s32 ObjectIndex, s32 arg1) {
     s32 sp24;
 
     sp24 = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != false) {
-        kwanm_setflag(objectIndex, 8);
-        kwmv_vxz(objectIndex);
-        g_DynamicObjects[objectIndex].mvtm = arg1;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != false) {
+        KwanmSetflag(ObjectIndex, 8);
+        KwmvVxz(ObjectIndex);
+        DynamicObjects[ObjectIndex].Mvtm = arg1;
     }
-    g_DynamicObjects[objectIndex].mvtm--;
-    if (g_DynamicObjects[objectIndex].mvtm < 0) {
-        kwanm_clrflag(objectIndex, 8);
+    DynamicObjects[ObjectIndex].Mvtm--;
+    if (DynamicObjects[ObjectIndex].Mvtm < 0) {
+        KwanmClrflag(ObjectIndex, 8);
         sp24 = 1;
     } else {
-        kwmv_addvelxztopos(objectIndex);
+        KwmvAddvelxztopos(ObjectIndex);
     }
     return sp24;
 }
 
-s32 kwmv_walkxz_reverse(s32 objectIndex, s32 arg1) {
+s32 KwmvWalkxzReverse(s32 ObjectIndex, s32 arg1) {
     s32 sp24;
 
     sp24 = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != false) {
-        kwanm_setflag(objectIndex, 8);
-        kwmv_vxz_reverse(objectIndex);
-        g_DynamicObjects[objectIndex].mvtm = arg1;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != false) {
+        KwanmSetflag(ObjectIndex, 8);
+        KwmvVxzReverse(ObjectIndex);
+        DynamicObjects[ObjectIndex].Mvtm = arg1;
     }
-    g_DynamicObjects[objectIndex].mvtm--;
-    if (g_DynamicObjects[objectIndex].mvtm < 0) {
-        kwanm_clrflag(objectIndex, 8);
+    DynamicObjects[ObjectIndex].Mvtm--;
+    if (DynamicObjects[ObjectIndex].Mvtm < 0) {
+        KwanmClrflag(ObjectIndex, 8);
         sp24 = 1;
     } else {
-        kwmv_addvelxztopos(objectIndex);
+        KwmvAddvelxztopos(ObjectIndex);
     }
     return sp24;
 }
 
-bool kwmv_walkxz_2pt(s32 objectIndex, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
+bool KwmvWalkxz2Pt(s32 ObjectIndex, s16 arg1, s16 Arg2, s16 Arg3, s16 arg4) {
     s16 dist;
     s16 temp_a0;
     s16 temp_v0;
     bool sp2C;
 
     sp2C = false;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != false) {
-        kwanm_setflag(objectIndex, 8);
-        temp_v0 = arg2 - arg1;
-        temp_a0 = arg4 - arg3;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != false) {
+        KwanmSetflag(ObjectIndex, 8);
+        temp_v0 = Arg2 - arg1;
+        temp_a0 = arg4 - Arg3;
         dist = sqrtf((temp_v0 * temp_v0) + (temp_a0 * temp_a0));
-        g_DynamicObjects[objectIndex].pos_start[1] = 0.0f;
-        g_DynamicObjects[objectIndex].ang[1] = Atan2t(temp_v0, temp_a0);
-        kwmv_vxz(objectIndex);
-        g_DynamicObjects[objectIndex].mvtm = dist / g_DynamicObjects[objectIndex].vel;
+        DynamicObjects[ObjectIndex].PosStart[1] = 0.0f;
+        DynamicObjects[ObjectIndex].ang[1] = Atan2t(temp_v0, temp_a0);
+        KwmvVxz(ObjectIndex);
+        DynamicObjects[ObjectIndex].Mvtm = dist / DynamicObjects[ObjectIndex].vel;
     }
-    g_DynamicObjects[objectIndex].mvtm--;
-    if (g_DynamicObjects[objectIndex].mvtm < 0) {
-        kwanm_clrflag(objectIndex, 8);
+    DynamicObjects[ObjectIndex].Mvtm--;
+    if (DynamicObjects[ObjectIndex].Mvtm < 0) {
+        KwanmClrflag(ObjectIndex, 8);
         sp2C = true;
     } else {
-        kwmv_addvelxztopos(objectIndex);
+        KwmvAddvelxztopos(ObjectIndex);
     }
     return sp2C;
 }
 
-s32 kwmv_trakka_ground(s32 objectIndex, f32 arg1, f32 arg2) {
+s32 KwmvTrakkaGround(s32 ObjectIndex, f32 arg1, f32 Arg2) {
     s32 sp24;
 
     sp24 = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != false) {
-        kwanm_setflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].velocity[1] = -arg1;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != false) {
+        KwanmSetflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].Velocity[1] = -arg1;
     }
-    kwmv_addvelytopos(objectIndex);
-    if (g_DynamicObjects[objectIndex].pos[1] <= arg2) {
-        kwanm_clrflag(objectIndex, 8);
-        KWAnmNext(objectIndex);
+    KwmvAddvelytopos(ObjectIndex);
+    if (DynamicObjects[ObjectIndex].pos[1] <= Arg2) {
+        KwanmClrflag(ObjectIndex, 8);
+        KWAnmNext(ObjectIndex);
         sp24 = 1;
     }
     return sp24;
 }
 
-s32 kwmv_nageage(s32 objectIndex, f32 arg1, f32 arg2, s32 arg3) {
+s32 KwmvNageage(s32 ObjectIndex, f32 arg1, f32 Arg2, s32 Arg3) {
     s32 sp24;
 
     sp24 = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != false) {
-        kwanm_setflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].velocity[1] = arg1;
-        g_DynamicObjects[objectIndex].mvtm = (s16) arg3;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != false) {
+        KwanmSetflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].Velocity[1] = arg1;
+        DynamicObjects[ObjectIndex].Mvtm = (s16) Arg3;
     }
-    g_DynamicObjects[objectIndex].mvtm--;
-    if (g_DynamicObjects[objectIndex].mvtm < 0) {
-        kwanm_clrflag(objectIndex, 8);
-        KWAnmNext(objectIndex);
+    DynamicObjects[ObjectIndex].Mvtm--;
+    if (DynamicObjects[ObjectIndex].Mvtm < 0) {
+        KwanmClrflag(ObjectIndex, 8);
+        KWAnmNext(ObjectIndex);
         sp24 = 1;
     } else {
-        g_DynamicObjects[objectIndex].velocity[1] -= arg2;
-        kwmv_addvelytopos(objectIndex);
+        DynamicObjects[ObjectIndex].Velocity[1] -= Arg2;
+        KwmvAddvelytopos(ObjectIndex);
     }
     return sp24;
 }
 
-s32 kwmv_nageage_ground(s32 objectIndex, f32 arg1, f32 arg2, f32 arg3) {
+s32 KwmvNageageGround(s32 ObjectIndex, f32 arg1, f32 Arg2, f32 Arg3) {
     s32 sp24;
 
     sp24 = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != 0) {
-        kwanm_setflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].velocity[1] = arg1;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != 0) {
+        KwanmSetflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].Velocity[1] = arg1;
     }
-    g_DynamicObjects[objectIndex].velocity[1] -= arg2;
-    kwmv_addvelytopos(objectIndex);
-    if (g_DynamicObjects[objectIndex].pos_spline[1] <= arg3) {
-        kwanm_clrflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].pos_spline[1] = arg3;
-        KWAnmNext(objectIndex);
+    DynamicObjects[ObjectIndex].Velocity[1] -= Arg2;
+    KwmvAddvelytopos(ObjectIndex);
+    if (DynamicObjects[ObjectIndex].PosSpline[1] <= Arg3) {
+        KwanmClrflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].PosSpline[1] = Arg3;
+        KWAnmNext(ObjectIndex);
         sp24 = 1;
     }
     return sp24;
 }
 
-bool kwmv_nanamenage(s32 objectIndex, f32 arg1, f32 arg2, f32 arg3, s16 arg4, s32 arg5) {
+bool KwmvNanamenage(s32 ObjectIndex, f32 arg1, f32 Arg2, f32 Arg3, s16 arg4, s32 arg5) {
     bool sp2C;
     UNUSED s32 pad;
 
     sp2C = false;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != 0) {
-        kwanm_setflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].pos_spline[2] = 0.0f;
-        g_DynamicObjects[objectIndex].pos_spline[1] = 0.0f;
-        g_DynamicObjects[objectIndex].pos_spline[0] = 0.0f;
-        g_DynamicObjects[objectIndex].vel = arg3;
-        g_DynamicObjects[objectIndex].velocity[1] = arg1;
-        g_DynamicObjects[objectIndex].ang[1] = arg4;
-        kwmv_vxz(objectIndex);
-        g_DynamicObjects[objectIndex].mvtm = arg5;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != 0) {
+        KwanmSetflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].PosSpline[2] = 0.0f;
+        DynamicObjects[ObjectIndex].PosSpline[1] = 0.0f;
+        DynamicObjects[ObjectIndex].PosSpline[0] = 0.0f;
+        DynamicObjects[ObjectIndex].vel = Arg3;
+        DynamicObjects[ObjectIndex].Velocity[1] = arg1;
+        DynamicObjects[ObjectIndex].ang[1] = arg4;
+        KwmvVxz(ObjectIndex);
+        DynamicObjects[ObjectIndex].Mvtm = arg5;
     }
-    g_DynamicObjects[objectIndex].mvtm--;
-    if (g_DynamicObjects[objectIndex].mvtm < 0) {
-        kwanm_clrflag(objectIndex, 8);
-        KWAnmNext(objectIndex);
+    DynamicObjects[ObjectIndex].Mvtm--;
+    if (DynamicObjects[ObjectIndex].Mvtm < 0) {
+        KwanmClrflag(ObjectIndex, 8);
+        KWAnmNext(ObjectIndex);
         sp2C = true;
     } else {
-        g_DynamicObjects[objectIndex].velocity[1] -= arg2;
-        kwmv_addveltopos(objectIndex);
+        DynamicObjects[ObjectIndex].Velocity[1] -= Arg2;
+        KwmvAddveltopos(ObjectIndex);
     }
     return sp2C;
 }
 
-UNUSED s32 kwmv_nanamenage_ground(s32 objectIndex, f32 arg1, f32 arg2, f32 arg3, s16 arg4, s32 arg5) {
+UNUSED s32 KwmvNanamenageGround(s32 ObjectIndex, f32 arg1, f32 Arg2, f32 Arg3, s16 arg4, s32 arg5) {
     s32 sp2C;
     UNUSED s32 stackPadding;
 
     sp2C = 0;
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != 0) {
-        kwanm_setflag(objectIndex, 8);
-        g_DynamicObjects[objectIndex].pos_spline[2] = 0.0f;
-        g_DynamicObjects[objectIndex].pos_spline[1] = 0.0f;
-        g_DynamicObjects[objectIndex].pos_spline[0] = 0.0f;
-        g_DynamicObjects[objectIndex].vel = arg3;
-        g_DynamicObjects[objectIndex].velocity[1] = arg1;
-        g_DynamicObjects[objectIndex].ang[1] = arg4;
-        kwmv_vxz(objectIndex);
-        g_DynamicObjects[objectIndex].mvtm = timer;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != 0) {
+        KwanmSetflag(ObjectIndex, 8);
+        DynamicObjects[ObjectIndex].PosSpline[2] = 0.0f;
+        DynamicObjects[ObjectIndex].PosSpline[1] = 0.0f;
+        DynamicObjects[ObjectIndex].PosSpline[0] = 0.0f;
+        DynamicObjects[ObjectIndex].vel = Arg3;
+        DynamicObjects[ObjectIndex].Velocity[1] = arg1;
+        DynamicObjects[ObjectIndex].ang[1] = arg4;
+        KwmvVxz(ObjectIndex);
+        DynamicObjects[ObjectIndex].Mvtm = Timer;
     }
-    if (g_DynamicObjects[objectIndex].pos_spline[1] <= arg5) {
-        kwanm_clrflag(objectIndex, 8);
-        KWAnmNext(objectIndex);
+    if (DynamicObjects[ObjectIndex].PosSpline[1] <= arg5) {
+        KwanmClrflag(ObjectIndex, 8);
+        KWAnmNext(ObjectIndex);
         sp2C = 1;
     } else {
-        g_DynamicObjects[objectIndex].velocity[1] -= arg2;
-        kwmv_addveltopos(objectIndex);
+        DynamicObjects[ObjectIndex].Velocity[1] -= Arg2;
+        KwmvAddveltopos(ObjectIndex);
     }
     return sp2C;
 }
 
-void kwmv_circle(s32 objectIndex, f32 arg1, u16 arg2) {
+void KwmvCircle(s32 ObjectIndex, f32 arg1, u16 Arg2) {
     f32 temp_f4;
     f32 sp20;
 
-    temp_f4 = g_DynamicObjects[objectIndex].pos_spline[0];
-    sp20 = g_DynamicObjects[objectIndex].pos_spline[2];
-    g_DynamicObjects[objectIndex].addangy += arg2;
-    g_DynamicObjects[objectIndex].pos_spline[0] = sinT(g_DynamicObjects[objectIndex].addangy) * arg1;
-    g_DynamicObjects[objectIndex].pos_spline[2] = cosT(g_DynamicObjects[objectIndex].addangy) * arg1;
-    g_DynamicObjects[objectIndex].velocity[0] = g_DynamicObjects[objectIndex].pos_spline[0] - temp_f4;
-    g_DynamicObjects[objectIndex].velocity[2] = g_DynamicObjects[objectIndex].pos_spline[2] - sp20;
+    temp_f4 = DynamicObjects[ObjectIndex].PosSpline[0];
+    sp20 = DynamicObjects[ObjectIndex].PosSpline[2];
+    DynamicObjects[ObjectIndex].Addangy += Arg2;
+    DynamicObjects[ObjectIndex].PosSpline[0] = SinT(DynamicObjects[ObjectIndex].Addangy) * arg1;
+    DynamicObjects[ObjectIndex].PosSpline[2] = CosT(DynamicObjects[ObjectIndex].Addangy) * arg1;
+    DynamicObjects[ObjectIndex].Velocity[0] = DynamicObjects[ObjectIndex].PosSpline[0] - temp_f4;
+    DynamicObjects[ObjectIndex].Velocity[2] = DynamicObjects[ObjectIndex].PosSpline[2] - sp20;
 }
 
-UNUSED void kwchase_circle(void) {
+UNUSED void KwchaseCircle(void) {
 }
 
-void kwmv_setchasepoint(s32 objectIndex) {
+void KwmvSetchasepoint(s32 ObjectIndex) {
     SplineControlPoint* phi_v0;
     s32 someIndex;
-    phi_v0 = g_DynamicObjects[objectIndex].sptbaddr;
+    phi_v0 = DynamicObjects[ObjectIndex].Sptbaddr;
     for (someIndex = 0; someIndex < 2; someIndex++, phi_v0++) {
         D_80165760[someIndex] = phi_v0->pos[0];
         D_80165770[someIndex] = phi_v0->pos[1];
@@ -434,15 +434,15 @@ void kwmv_setchasepoint(s32 objectIndex) {
     }
 }
 
-void kwmv_nextchasepoint(s32 arg0) {
-    g_DynamicObjects[arg0].sptbaddr++;
+void KwmvNextchasepoint(s32 arg0) {
+    DynamicObjects[arg0].Sptbaddr++;
 }
 
-void kwmv_setdirection(s32 objectIndex, s32 arg1) {
+void KwmvSetdirection(s32 ObjectIndex, s32 arg1) {
     s16 temp_a1;
     AnmObject* object;
 
-    object = &g_DynamicObjects[objectIndex];
+    object = &DynamicObjects[ObjectIndex];
     temp_a1 = Atan2t(D_80165760[1] - D_80165760[0], D_80165780[1] - D_80165780[0]);
     temp_a1 -= object->ang[1];
     if (temp_a1 > 0) {
@@ -452,532 +452,532 @@ void kwmv_setdirection(s32 objectIndex, s32 arg1) {
     }
 }
 
-// if the code is too ugly for you, then go fix it without tampering with the register allocations
-void kwmv_chase3D_init(s32 objectIndex) {
+// if the Code is too ugly for you, then go fix it without tampering with the register allocations
+void KwmvChase3DInit(s32 ObjectIndex) {
     AnmObject* object;
-    object = &g_DynamicObjects[objectIndex];
-    object->stack[9] = 0;
-    object->sptbaddr = object->sptbtopaddr->controlPoints;
+    object = &DynamicObjects[ObjectIndex];
+    object->Stack[9] = 0;
+    object->Sptbaddr = object->Sptbtopaddr->ControlPoints;
     /*
     This is INCREDIBLY stupid. This should really be
-    temp_v0->stack[8] = temp_v0->sptbtopaddr->numControlPoints;
+    temp_v0->Stack[8] = temp_v0->Sptbtopaddr->NumControlPoints;
     but for some unholy reason that doesn't match
     */
-    object->stack[8] = *((s16*) object->sptbaddr - 1);
-    object->pos_spline[0] = object->sptbaddr[0].pos[0];
-    object->pos_spline[1] = object->sptbaddr[0].pos[1];
-    object->pos_spline[2] = object->sptbaddr[0].pos[2];
-    KWAnmNext(objectIndex);
+    object->Stack[8] = *((s16*) object->Sptbaddr - 1);
+    object->PosSpline[0] = object->Sptbaddr[0].pos[0];
+    object->PosSpline[1] = object->Sptbaddr[0].pos[1];
+    object->PosSpline[2] = object->Sptbaddr[0].pos[2];
+    KWAnmNext(ObjectIndex);
 }
 
-s32 kwmv_checkcollision(s32 objectIndex, s32 arg1) {
+s32 KwmvCheckcollision(s32 ObjectIndex, s32 arg1) {
     s32 temp_f0;
     s32 temp_f12;
     s32 temp_f2;
     s32 var_v1;
 
     var_v1 = 0;
-    temp_f0 = (s32) ((D_80165760[1] - g_DynamicObjects[objectIndex].pos_spline[0]) *
-                     (D_80165760[1] - g_DynamicObjects[objectIndex].pos_spline[0]));
-    temp_f12 = (s32) ((D_80165770[1] - g_DynamicObjects[objectIndex].pos_spline[1]) *
-                      (D_80165770[1] - g_DynamicObjects[objectIndex].pos_spline[1]));
-    temp_f2 = (s32) ((D_80165780[1] - g_DynamicObjects[objectIndex].pos_spline[2]) *
-                     (D_80165780[1] - g_DynamicObjects[objectIndex].pos_spline[2]));
+    temp_f0 = (s32) ((D_80165760[1] - DynamicObjects[ObjectIndex].PosSpline[0]) *
+                     (D_80165760[1] - DynamicObjects[ObjectIndex].PosSpline[0]));
+    temp_f12 = (s32) ((D_80165770[1] - DynamicObjects[ObjectIndex].PosSpline[1]) *
+                      (D_80165770[1] - DynamicObjects[ObjectIndex].PosSpline[1]));
+    temp_f2 = (s32) ((D_80165780[1] - DynamicObjects[ObjectIndex].PosSpline[2]) *
+                     (D_80165780[1] - DynamicObjects[ObjectIndex].PosSpline[2]));
     if ((temp_f0 + temp_f12 + temp_f2 - (arg1 * arg1)) <= 0) {
         var_v1 = 1;
     }
     return var_v1;
 }
 
-void kwmv_chase3D(s32 objectIndex) {
+void KwmvChase3D(s32 ObjectIndex) {
     AnmObject* object;
 
-    kwmv_setchasepoint(objectIndex);
-    kwmv_setdirection(objectIndex, 1);
-    kwmv_velangytopos(objectIndex);
-    if (kwmv_checkcollision(objectIndex, 0x0000000A) != 0) {
-        object = &g_DynamicObjects[objectIndex];
-        object->stack[9] = (u16) object->stack[9] + 1;
-        if (((u16) object->stack[9] + 3) == (u16) object->stack[8]) {
-            object->mvptr += 1;
+    KwmvSetchasepoint(ObjectIndex);
+    KwmvSetdirection(ObjectIndex, 1);
+    KwmvVelangytopos(ObjectIndex);
+    if (KwmvCheckcollision(ObjectIndex, 0x0000000A) != 0) {
+        object = &DynamicObjects[ObjectIndex];
+        object->Stack[9] = (u16) object->Stack[9] + 1;
+        if (((u16) object->Stack[9] + 3) == (u16) object->Stack[8]) {
+            object->Mvptr += 1;
         } else {
-            kwmv_nextchasepoint(objectIndex);
+            KwmvNextchasepoint(ObjectIndex);
         }
     }
 }
 
-void kwchase_strategy3D(s32 objectIndex) {
-    switch (g_DynamicObjects[objectIndex].mvptr) {
+void KwchaseStrategy3D(s32 ObjectIndex) {
+    switch (DynamicObjects[ObjectIndex].Mvptr) {
         case 0:
             break;
         case 1:
-            kwmv_chase3D_init(objectIndex);
+            KwmvChase3DInit(ObjectIndex);
             break;
         case 2:
-            kwmv_chase3D(objectIndex);
+            KwmvChase3D(ObjectIndex);
             break;
         case 3:
-            kwmv_finish(objectIndex);
+            KwmvFinish(ObjectIndex);
             break;
     }
 }
 
-s32 kwanm_check_ground(s32 objectIndex) {
+s32 KwanmCheckGround(s32 ObjectIndex) {
     s32 sp2C;
 
     sp2C = 0;
-    kwanm_clrflag(objectIndex, 0x00800000);
-    if (kwanm_bitcheckflag(objectIndex, 0x00000400) != 0) {
-        CheckBump(&D_8018C3B0, 10.0f, g_DynamicObjects[objectIndex].pos[0], 20.0f,
-                                 g_DynamicObjects[objectIndex].pos[2]);
-        if (D_8018C3B0.flag_zx == 1) {
+    KwanmClrflag(ObjectIndex, 0x00800000);
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000400) != 0) {
+        CheckBump(&D_8018C3B0, 10.0f, DynamicObjects[ObjectIndex].pos[0], 20.0f,
+                                 DynamicObjects[ObjectIndex].pos[2]);
+        if (D_8018C3B0.FlagZX == 1) {
             sp2C = 1;
-            kwanm_setflag(objectIndex, 0x00800000);
+            KwanmSetflag(ObjectIndex, 0x00800000);
         }
-        g_DynamicObjects[objectIndex].ground = CalcHeight(
-            g_DynamicObjects[objectIndex].pos[0], 0.0f, g_DynamicObjects[objectIndex].pos[2], D_8018C3B0.last_zx);
+        DynamicObjects[ObjectIndex].Ground = CalcHeight(
+            DynamicObjects[ObjectIndex].pos[0], 0.0f, DynamicObjects[ObjectIndex].pos[2], D_8018C3B0.LastZX);
     }
     return sp2C;
 }
 
-s32 kwanm_seton_ground(s32 objectIndex) {
+s32 KwanmSetonGround(s32 ObjectIndex) {
     s32 sp2C;
 
     sp2C = 0;
-    kwanm_clrflag(objectIndex, 0x00800000);
-    if (kwanm_bitcheckflag(objectIndex, 0x00000400) != 0) {
-        CheckBump(&D_8018C3B0, 10.0f, g_DynamicObjects[objectIndex].pos[0], 20.0f,
-                                 g_DynamicObjects[objectIndex].pos[2]);
-        if (D_8018C3B0.flag_zx == 1) {
+    KwanmClrflag(ObjectIndex, 0x00800000);
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000400) != 0) {
+        CheckBump(&D_8018C3B0, 10.0f, DynamicObjects[ObjectIndex].pos[0], 20.0f,
+                                 DynamicObjects[ObjectIndex].pos[2]);
+        if (D_8018C3B0.FlagZX == 1) {
             sp2C = 1;
-            kwanm_setflag(objectIndex, 0x00800000);
+            KwanmSetflag(ObjectIndex, 0x00800000);
         }
-        g_DynamicObjects[objectIndex].ground = CalcHeight(
-            g_DynamicObjects[objectIndex].pos[0], 0.0f, g_DynamicObjects[objectIndex].pos[2], D_8018C3B0.last_zx);
-        g_DynamicObjects[objectIndex].kageang[0] =
-            Atan2t(D_8018C3B0.bump_zx[2], D_8018C3B0.bump_zx[1]) + 0x4000;
-        g_DynamicObjects[objectIndex].kageang[2] = Atan2t(D_8018C3B0.bump_zx[0], D_8018C3B0.bump_zx[1]);
+        DynamicObjects[ObjectIndex].Ground = CalcHeight(
+            DynamicObjects[ObjectIndex].pos[0], 0.0f, DynamicObjects[ObjectIndex].pos[2], D_8018C3B0.LastZX);
+        DynamicObjects[ObjectIndex].Kageang[0] =
+            Atan2t(D_8018C3B0.BumpZX[2], D_8018C3B0.BumpZX[1]) + 0x4000;
+        DynamicObjects[ObjectIndex].Kageang[2] = Atan2t(D_8018C3B0.BumpZX[0], D_8018C3B0.BumpZX[1]);
     }
     return sp2C;
 }
 
-s32 kwanm_seton_groundbump(s32 objectIndex) {
+s32 KwanmSetonGroundbump(s32 ObjectIndex) {
     s32 sp2C;
 
     sp2C = 0;
-    kwanm_clrflag(objectIndex, 0x00800000);
-    if (kwanm_bitcheckflag(objectIndex, 0x00000400) != 0) {
-        CheckBump(&D_8018C3B0, 10.0f, g_DynamicObjects[objectIndex].pos[0], 20.0f,
-                                 g_DynamicObjects[objectIndex].pos[2]);
-        if (D_8018C3B0.flag_zx == 1) {
+    KwanmClrflag(ObjectIndex, 0x00800000);
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000400) != 0) {
+        CheckBump(&D_8018C3B0, 10.0f, DynamicObjects[ObjectIndex].pos[0], 20.0f,
+                                 DynamicObjects[ObjectIndex].pos[2]);
+        if (D_8018C3B0.FlagZX == 1) {
             sp2C = 1;
-            kwanm_setflag(objectIndex, 0x00800000);
+            KwanmSetflag(ObjectIndex, 0x00800000);
         }
-        g_DynamicObjects[objectIndex].ground = CalcHeight(
-            g_DynamicObjects[objectIndex].pos[0], 0.0f, g_DynamicObjects[objectIndex].pos[2], D_8018C3B0.last_zx);
-        g_DynamicObjects[objectIndex].pos_ende[0] = D_8018C3B0.bump_zx[0];
-        g_DynamicObjects[objectIndex].pos_ende[1] = D_8018C3B0.bump_zx[1];
-        g_DynamicObjects[objectIndex].pos_ende[2] = D_8018C3B0.bump_zx[2];
+        DynamicObjects[ObjectIndex].Ground = CalcHeight(
+            DynamicObjects[ObjectIndex].pos[0], 0.0f, DynamicObjects[ObjectIndex].pos[2], D_8018C3B0.LastZX);
+        DynamicObjects[ObjectIndex].PosEnde[0] = D_8018C3B0.BumpZX[0];
+        DynamicObjects[ObjectIndex].PosEnde[1] = D_8018C3B0.BumpZX[1];
+        DynamicObjects[ObjectIndex].PosEnde[2] = D_8018C3B0.BumpZX[2];
     }
     return sp2C;
 }
 
-void kwanm_setkage_params(s32 objectIndex) {
-    CheckBump(&D_8018C3B0, 10.0f, g_DynamicObjects[objectIndex].pos[0], 20.0f,
-                             g_DynamicObjects[objectIndex].pos[2]);
-    if (D_8018C3B0.flag_zx == 1) {
-        kwanm_setflag(objectIndex, 0x00800000);
-        g_DynamicObjects[objectIndex].ground = CalcHeight(
-            g_DynamicObjects[objectIndex].pos[0], 0.0f, g_DynamicObjects[objectIndex].pos[2], D_8018C3B0.last_zx);
-        g_DynamicObjects[objectIndex].kageang[0] =
-            Atan2t(D_8018C3B0.bump_zx[2], D_8018C3B0.bump_zx[1]) + 0x4000;
-        g_DynamicObjects[objectIndex].kageang[2] = Atan2t(D_8018C3B0.bump_zx[0], D_8018C3B0.bump_zx[1]);
+void KwanmSetkageParams(s32 ObjectIndex) {
+    CheckBump(&D_8018C3B0, 10.0f, DynamicObjects[ObjectIndex].pos[0], 20.0f,
+                             DynamicObjects[ObjectIndex].pos[2]);
+    if (D_8018C3B0.FlagZX == 1) {
+        KwanmSetflag(ObjectIndex, 0x00800000);
+        DynamicObjects[ObjectIndex].Ground = CalcHeight(
+            DynamicObjects[ObjectIndex].pos[0], 0.0f, DynamicObjects[ObjectIndex].pos[2], D_8018C3B0.LastZX);
+        DynamicObjects[ObjectIndex].Kageang[0] =
+            Atan2t(D_8018C3B0.BumpZX[2], D_8018C3B0.BumpZX[1]) + 0x4000;
+        DynamicObjects[ObjectIndex].Kageang[2] = Atan2t(D_8018C3B0.BumpZX[0], D_8018C3B0.BumpZX[1]);
         return;
     }
-    kwanm_clrflag(objectIndex, 0x00800000);
+    KwanmClrflag(ObjectIndex, 0x00800000);
 }
 
-void kwanm_sethole_params(s32 objectIndex) {
-    CheckBump(&D_8018C3B0, 10.0f, g_DynamicObjects[objectIndex].pos[0], 20.0f,
-                             g_DynamicObjects[objectIndex].pos[2]);
-    if (D_8018C3B0.flag_zx == 1) {
-        kwanm_setflag(objectIndex, 0x00800000);
-        g_DynamicObjects[objectIndex].ground = CalcHeight(
-            g_DynamicObjects[objectIndex].pos[0], 0.0f, g_DynamicObjects[objectIndex].pos[2], D_8018C3B0.last_zx);
-        g_DynamicObjects[objectIndex].velocity[0] = D_8018C3B0.bump_zx[0];
-        g_DynamicObjects[objectIndex].velocity[1] = D_8018C3B0.bump_zx[1];
-        g_DynamicObjects[objectIndex].velocity[2] = D_8018C3B0.bump_zx[2];
+void KwanmSetholeParams(s32 ObjectIndex) {
+    CheckBump(&D_8018C3B0, 10.0f, DynamicObjects[ObjectIndex].pos[0], 20.0f,
+                             DynamicObjects[ObjectIndex].pos[2]);
+    if (D_8018C3B0.FlagZX == 1) {
+        KwanmSetflag(ObjectIndex, 0x00800000);
+        DynamicObjects[ObjectIndex].Ground = CalcHeight(
+            DynamicObjects[ObjectIndex].pos[0], 0.0f, DynamicObjects[ObjectIndex].pos[2], D_8018C3B0.LastZX);
+        DynamicObjects[ObjectIndex].Velocity[0] = D_8018C3B0.BumpZX[0];
+        DynamicObjects[ObjectIndex].Velocity[1] = D_8018C3B0.BumpZX[1];
+        DynamicObjects[ObjectIndex].Velocity[2] = D_8018C3B0.BumpZX[2];
         return;
     }
-    kwanm_clrflag(objectIndex, 0x00800000);
+    KwanmClrflag(ObjectIndex, 0x00800000);
 }
 
 /**
- * @brief Returns the distance between the object and the player.
+ * @brief Returns the Distance between the object and the Player.
  *
- * @param objectIndex
- * @param player
+ * @Param ObjectIndex
+ * @Param Player
  * @return UNUSED
  */
-UNUSED s32 kwanm_calc_distance_xz(s32 objectIndex, Player* player) {
+UNUSED s32 KwanmCalcDistanceXz(s32 ObjectIndex, Player* Player) {
     s32 x;
     s32 y;
 
-    x = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    y = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
+    x = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    y = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
     return (x * x) + (y * y);
 }
 
 /**
- * @brief Returns the distance between the object and the player.
+ * @brief Returns the Distance between the object and the Player.
  *
- * @param objectIndex
- * @param player
+ * @Param ObjectIndex
+ * @Param Player
  * @return UNUSED
  */
-UNUSED s32 kwanm_calc_distance_xyz(s32 objectIndex, Player* player) {
+UNUSED s32 KwanmCalcDistanceXYZ(s32 ObjectIndex, Player* Player) {
     s32 x;
     s32 z;
     s32 y;
 
-    x = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    y = g_DynamicObjects[objectIndex].pos[1] - player->position[1];
-    z = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
+    x = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    y = DynamicObjects[ObjectIndex].pos[1] - Player->Position[1];
+    z = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
     return (x * x) + (y * y) + (z * z);
 }
 
 /**
- * @brief Returns the distance between the object and the camera.
+ * @brief Returns the Distance between the object and the Camera.
  *
- * @param objectIndex
- * @param camera
+ * @Param ObjectIndex
+ * @Param Camera
  * @return UNUSED
  */
-u32 kwanm_calc_distance_camera_xz(s32 objectIndex, Camera* camera) {
+u32 KwanmCalcDistanceCameraXz(s32 ObjectIndex, Camera* Camera) {
     s32 x;
     s32 y;
 
-    x = g_DynamicObjects[objectIndex].pos[0] - camera->camera_pos[0];
-    y = g_DynamicObjects[objectIndex].pos[2] - camera->camera_pos[2];
+    x = DynamicObjects[ObjectIndex].pos[0] - Camera->CameraPos[0];
+    y = DynamicObjects[ObjectIndex].pos[2] - Camera->CameraPos[2];
     return (x * x) + (y * y);
 }
 
 /**
- * @brief Returns the distance between the object and the camera.
+ * @brief Returns the Distance between the object and the Camera.
  *
- * @param objectIndex
- * @param camera
+ * @Param ObjectIndex
+ * @Param Camera
  * @return UNUSED
  */
-UNUSED s32 kwanm_calc_distance_camera_xyz(s32 objectIndex, Camera* camera) {
+UNUSED s32 KwanmCalcDistanceCameraXYZ(s32 ObjectIndex, Camera* Camera) {
     s32 x;
     s32 z;
     s32 y;
 
-    x = g_DynamicObjects[objectIndex].pos[0] - camera->camera_pos[0];
-    y = g_DynamicObjects[objectIndex].pos[1] - camera->camera_pos[1];
-    z = g_DynamicObjects[objectIndex].pos[2] - camera->camera_pos[2];
+    x = DynamicObjects[ObjectIndex].pos[0] - Camera->CameraPos[0];
+    y = DynamicObjects[ObjectIndex].pos[1] - Camera->CameraPos[1];
+    z = DynamicObjects[ObjectIndex].pos[2] - Camera->CameraPos[2];
     return (x * x) + (y * y) + (z * z);
 }
 
 /**
- * @brief Returns if the object is closer than the distance to the player.
+ * @brief Returns if the object is closer than the Distance to the Player.
  *
- * @param objectIndex
- * @param player
- * @param distance
+ * @Param ObjectIndex
+ * @Param Player
+ * @Param Distance
  * @return true
  * @return false
  */
-bool kwanm_checkradius_player_xz(s32 objectIndex, Player* player, f32 distance) {
+bool KwanmCheckradiusPlayerXz(s32 ObjectIndex, Player* Player, f32 Distance) {
     f32 x;
     f32 y;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    y = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
-    if (((x * x) + (y * y)) <= (distance * distance)) {
+    x = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    y = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
+    if (((x * x) + (y * y)) <= (Distance * Distance)) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object is between the distance_min and distance_max to the player.
+ * @brief Returns if the object is between the distance_min and distance_max to the Player.
  *
- * @param objectIndex
- * @param player
- * @param distance_min
- * @param distance_max
+ * @Param ObjectIndex
+ * @Param Player
+ * @Param distance_min
+ * @Param distance_max
  * @return true
  * @return false
  */
-bool kwanm_checkradius2_player_xz(s32 objectIndex, Player* player, f32 distance_min, f32 distance_max) {
+bool KwanmCheckradius2PlayerXz(s32 ObjectIndex, Player* Player, f32 distance_min, f32 distance_max) {
     f32 x;
-    f32 distance;
+    f32 Distance;
     f32 z;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    z = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
-    distance = (x * x) + (z * z);
-    if (((distance_min * distance_min) <= distance) && (distance <= (distance_max * distance_max))) {
+    x = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    z = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
+    Distance = (x * x) + (z * z);
+    if (((distance_min * distance_min) <= Distance) && (Distance <= (distance_max * distance_max))) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object is closer than the distance to the player.
+ * @brief Returns if the object is closer than the Distance to the Player.
  *
- * @param objectIndex
- * @param player
- * @param distance
+ * @Param ObjectIndex
+ * @Param Player
+ * @Param Distance
  * @return true
  * @return false
  */
-bool kwanm_checkradius_player_xyz(s32 objectIndex, Player* player, f32 distance) {
+bool KwanmCheckradiusPlayerXYZ(s32 ObjectIndex, Player* Player, f32 Distance) {
     f32 x;
     f32 z;
     f32 y;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    y = g_DynamicObjects[objectIndex].pos[1] - player->position[1];
-    z = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
-    if (((x * x) + (y * y) + (z * z)) <= (distance * distance)) {
+    x = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    y = DynamicObjects[ObjectIndex].pos[1] - Player->Position[1];
+    z = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
+    if (((x * x) + (y * y) + (z * z)) <= (Distance * Distance)) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object is between the distance_min and distance_max to the camera.
+ * @brief Returns if the object is between the distance_min and distance_max to the Camera.
  *
- * @param objectIndex
- * @param camera
- * @param distance
+ * @Param ObjectIndex
+ * @Param Camera
+ * @Param Distance
  * @return true
  * @return false
  */
-bool kwanm_checkradius_camera_xz(s32 objectIndex, Camera* camera, f32 distance) {
+bool KwanmCheckradiusCameraXz(s32 ObjectIndex, Camera* Camera, f32 Distance) {
     f32 x;
     f32 y;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - camera->camera_pos[0];
-    y = g_DynamicObjects[objectIndex].pos[2] - camera->camera_pos[2];
-    if (((x * x) + (y * y)) <= (distance * distance)) {
+    x = DynamicObjects[ObjectIndex].pos[0] - Camera->CameraPos[0];
+    y = DynamicObjects[ObjectIndex].pos[2] - Camera->CameraPos[2];
+    if (((x * x) + (y * y)) <= (Distance * Distance)) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object is between the distance_min and distance_max to the camera.
+ * @brief Returns if the object is between the distance_min and distance_max to the Camera.
  *
- * @param objectIndex
- * @param camera
- * @param distance_min
- * @param distance_max
+ * @Param ObjectIndex
+ * @Param Camera
+ * @Param distance_min
+ * @Param distance_max
  * @return UNUSED
  */
-UNUSED bool kwanm_checkradius2_camera_xz(s32 objectIndex, Camera* camera, f32 distance_min, f32 distance_max) {
+UNUSED bool KwanmCheckradius2CameraXz(s32 ObjectIndex, Camera* Camera, f32 distance_min, f32 distance_max) {
     f32 x;
-    f32 distance;
+    f32 Distance;
     f32 z;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - camera->camera_pos[0];
-    z = g_DynamicObjects[objectIndex].pos[2] - camera->camera_pos[2];
-    distance = (x * x) + (z * z);
-    if (((distance_min * distance_min) <= distance) && (distance <= (distance_max * distance_max))) {
+    x = DynamicObjects[ObjectIndex].pos[0] - Camera->CameraPos[0];
+    z = DynamicObjects[ObjectIndex].pos[2] - Camera->CameraPos[2];
+    Distance = (x * x) + (z * z);
+    if (((distance_min * distance_min) <= Distance) && (Distance <= (distance_max * distance_max))) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object is closer than the distance to the camera.
+ * @brief Returns if the object is closer than the Distance to the Camera.
  *
- * @param objectIndex
- * @param camera
- * @param distance
+ * @Param ObjectIndex
+ * @Param Camera
+ * @Param Distance
  * @return UNUSED
  */
-UNUSED bool kwanm_checkradius_camera_xyz(s32 objectIndex, Camera* camera, f32 distance) {
+UNUSED bool KwanmCheckradiusCameraXYZ(s32 ObjectIndex, Camera* Camera, f32 Distance) {
     f32 x;
     f32 z;
     f32 y;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - camera->camera_pos[0];
-    y = g_DynamicObjects[objectIndex].pos[1] - camera->camera_pos[1];
-    z = g_DynamicObjects[objectIndex].pos[2] - camera->camera_pos[2];
-    if (((x * x) + (y * y) + (z * z)) <= (distance * distance)) {
+    x = DynamicObjects[ObjectIndex].pos[0] - Camera->CameraPos[0];
+    y = DynamicObjects[ObjectIndex].pos[1] - Camera->CameraPos[1];
+    z = DynamicObjects[ObjectIndex].pos[2] - Camera->CameraPos[2];
+    if (((x * x) + (y * y) + (z * z)) <= (Distance * Distance)) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object collided with the player.
+ * @brief Returns if the object collided with the Player.
  *
- * @param objectIndex
- * @param player
+ * @Param ObjectIndex
+ * @Param Player
  * @return true
  * @return false
  */
-bool kwanm_checkcoll_player_xz(s32 objectIndex, Player* player) {
+bool KwanmCheckcollPlayerXz(s32 ObjectIndex, Player* Player) {
     f32 x;
-    f32 distance;
+    f32 Distance;
     f32 z;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    z = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
-    distance = g_DynamicObjects[objectIndex].r + player->radius;
-    if (((x * x) + (z * z)) <= (distance * distance)) {
+    x = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    z = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
+    Distance = DynamicObjects[ObjectIndex].r + Player->Radius;
+    if (((x * x) + (z * z)) <= (Distance * Distance)) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object collided with the player.
+ * @brief Returns if the object collided with the Player.
  *
- * @param objectIndex
- * @param player
+ * @Param ObjectIndex
+ * @Param Player
  * @return true
  * @return false
  */
-bool kwanm_checkcoll_player_xyz(s32 objectIndex, Player* player) {
+bool KwanmCheckcollPlayerXYZ(s32 ObjectIndex, Player* Player) {
     f32 x;
     f32 z;
-    f32 distance;
+    f32 Distance;
     f32 y;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    y = g_DynamicObjects[objectIndex].pos[1] - player->position[1];
-    z = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
-    distance = g_DynamicObjects[objectIndex].r + player->radius;
-    if (((x * x) + (y * y) + (z * z)) <= (distance * distance)) {
+    x = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    y = DynamicObjects[ObjectIndex].pos[1] - Player->Position[1];
+    z = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
+    Distance = DynamicObjects[ObjectIndex].r + Player->Radius;
+    if (((x * x) + (y * y) + (z * z)) <= (Distance * Distance)) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object collided with the player.
+ * @brief Returns if the object collided with the Player.
  *
- * @param objectIndex
- * @param player
- * @param distance
+ * @Param ObjectIndex
+ * @Param Player
+ * @Param Distance
  * @return UNUSED
  */
-UNUSED bool kwanm_checkhight_player(s32 objectIndex, Player* player, f32 distance) {
+UNUSED bool KwanmCheckhightPlayer(s32 ObjectIndex, Player* Player, f32 Distance) {
     f32 x;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[1] - player->position[1];
-    if ((x * x) <= (distance * distance)) {
+    x = DynamicObjects[ObjectIndex].pos[1] - Player->Position[1];
+    if ((x * x) <= (Distance * Distance)) {
         var_v1 = true;
     }
     return var_v1;
 }
 
 /**
- * @brief Returns if the object collided with the player and is closer than the distance in the y axis.
+ * @brief Returns if the object collided with the Player and is closer than the Distance in the y axis.
  *
- * @param objectIndex
- * @param player
- * @param distance_y
+ * @Param ObjectIndex
+ * @Param Player
+ * @Param distance_y
  * @return true
  * @return false
  */
-bool kwanm_checkcoll_pillar_player(s32 objectIndex, Player* player, f32 distance_y) {
+bool KwanmCheckcollPillarPlayer(s32 ObjectIndex, Player* Player, f32 distance_y) {
     f32 x;
     f32 z;
-    f32 distance;
+    f32 Distance;
     f32 y;
     bool var_v1;
 
     var_v1 = false;
-    x = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    y = g_DynamicObjects[objectIndex].pos[1] - player->position[1];
-    z = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
-    distance = g_DynamicObjects[objectIndex].r + player->radius;
+    x = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    y = DynamicObjects[ObjectIndex].pos[1] - Player->Position[1];
+    z = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
+    Distance = DynamicObjects[ObjectIndex].r + Player->Radius;
     // abs(y)
     if (y < 0.0f) {
         y = -y;
     }
-    if ((((x * x) + (z * z)) <= (distance * distance)) && (y <= distance_y)) {
+    if ((((x * x) + (z * z)) <= (Distance * Distance)) && (y <= distance_y)) {
         var_v1 = true;
     }
     return var_v1;
 }
 
-f32 kwanm_setheight_ground(s32 objectIndex, Player* player) {
-    f32 distance;
+f32 KwanmSetheightGround(s32 ObjectIndex, Player* Player) {
+    f32 Distance;
 
-    distance = g_DynamicObjects[objectIndex].pos[1] - player->ground;
-    // abs(distance)
-    if (distance < 0.0f) {
-        distance = -distance;
+    Distance = DynamicObjects[ObjectIndex].pos[1] - Player->Ground;
+    // abs(Distance)
+    if (Distance < 0.0f) {
+        Distance = -Distance;
     }
-    return distance;
+    return Distance;
 }
 
-UNUSED bool kwanm_checkheight_ground(s32 objectIndex, Player* player, f32 arg2) {
-    f32 distance;
+UNUSED bool KwanmCheckheightGround(s32 ObjectIndex, Player* Player, f32 Arg2) {
+    f32 Distance;
     bool var_v1;
 
-    distance = g_DynamicObjects[objectIndex].pos[1] - player->ground;
+    Distance = DynamicObjects[ObjectIndex].pos[1] - Player->Ground;
     var_v1 = false;
-    // abs(distance)
-    if (distance < 0.0f) {
-        distance = -distance;
+    // abs(Distance)
+    if (Distance < 0.0f) {
+        Distance = -Distance;
     }
-    if (distance <= arg2) {
+    if (Distance <= Arg2) {
         var_v1 = true;
     }
     return var_v1;
 }
 
-void kwstop_kart(Player* player) {
-    player->force = 0.0f;
-    player->accelcount = 0.0f;
-    player->velocity[0] = 0.0f;
-    player->velocity[2] = 0.0f;
+void KwstopKart(Player* Player) {
+    Player->Force = 0.0f;
+    Player->Accelcount = 0.0f;
+    Player->Velocity[0] = 0.0f;
+    Player->Velocity[2] = 0.0f;
 }
 
-UNUSED void kwclear_accel_kart(Player* player) {
-    player->force = 0.0f;
-    player->accelcount = 0.0f;
+UNUSED void KwclearAccelKart(Player* Player) {
+    Player->Force = 0.0f;
+    Player->Accelcount = 0.0f;
 }
 
-void kwchase_boundvel_sub(s32 playerId, f32* arg1) {
+void KwchaseBoundvelSub(s32 PlayerId, f32* arg1) {
     f32 var_f0;
     f32 var_f2;
-    Player* player = &gPlayerOne[playerId];
+    Player* Player = &PlayerOne[PlayerId];
 
     if (*arg1 >= 0.0f) {
         var_f2 = *arg1;
     } else {
         var_f2 = -*arg1;
     }
-    if (player->slip_flag & (SPIN_L | SPIN_R)) {
-        if (g_courseID == COURSE_SHERBET_LAND) {
+    if (Player->SlipFlag & (SPIN_L | SPIN_R)) {
+        if (CourseID == COURSE_SHERBET_LAND) {
             if (var_f2 <= 0.5) {
                 var_f0 = 0.025f;
             } else if (var_f2 <= 2.0) {
@@ -998,7 +998,7 @@ void kwchase_boundvel_sub(s32 playerId, f32* arg1) {
                 var_f0 = 0.25f;
             }
         }
-    } else if (g_courseID == COURSE_SHERBET_LAND) {
+    } else if (CourseID == COURSE_SHERBET_LAND) {
         if (var_f2 <= 0.5) {
             var_f0 = 0.025f;
         } else if (var_f2 <= 2.0) {
@@ -1022,82 +1022,82 @@ void kwchase_boundvel_sub(s32 playerId, f32* arg1) {
     KWChaseFVal(arg1, 0.0f, var_f0);
 }
 
-void kwchase_boundvel_zero(s32 playerId) {
-    kwchase_boundvel_sub(playerId, &D_8018CE10[playerId].unk_04[0]);
-    kwchase_boundvel_sub(playerId, &D_8018CE10[playerId].unk_04[2]);
-    if (D_8018CE10[playerId].unk_18[6] > 0) {
-        D_8018CE10[playerId].unk_18[6]--;
+void KwchaseBoundvelZero(s32 PlayerId) {
+    KwchaseBoundvelSub(PlayerId, &D_8018CE10[PlayerId].unk_04[0]);
+    KwchaseBoundvelSub(PlayerId, &D_8018CE10[PlayerId].unk_04[2]);
+    if (D_8018CE10[PlayerId].unk_18[6] > 0) {
+        D_8018CE10[PlayerId].unk_18[6]--;
     }
 }
 
-f32 kwrebound_kartplas(Player* player, s32 objectIndex, f32 arg2, f32 arg3) {
+f32 KwreboundKartplas(Player* Player, s32 ObjectIndex, f32 Arg2, f32 Arg3) {
     f32 var_f2;
     f32 something;
-    s32 playerId;
+    s32 PlayerId;
     AnmObject* object;
     struct_D_8018CE10* temp_v1;
 
-    playerId = player - gPlayerOne;
-    temp_v1 = &D_8018CE10[playerId];
+    PlayerId = Player - PlayerOne;
+    temp_v1 = &D_8018CE10[PlayerId];
     var_f2 = 0.0f;
     if (temp_v1->unk_18[6] == 0) {
-        object = &g_DynamicObjects[objectIndex];
-        player->hit_flag |= CRITTER_TOUCH;
-        player->slip_flag |= CARHIT;
+        object = &DynamicObjects[ObjectIndex];
+        Player->HitFlag |= CRITTER_TOUCH;
+        Player->SlipFlag |= CARHIT;
         temp_v1->unk_18[6] = 4;
-        something = (player->position[0] - object->pos[0]) * object->velocity[0];
+        something = (Player->Position[0] - object->pos[0]) * object->Velocity[0];
         if (something >= 0.0f) {
-            temp_v1->unk_04[0] = (-player->velocity[0] * arg2) + (object->velocity[0] * arg3);
+            temp_v1->unk_04[0] = (-Player->Velocity[0] * Arg2) + (object->Velocity[0] * Arg3);
         } else {
-            temp_v1->unk_04[0] = -player->velocity[0] * arg2;
+            temp_v1->unk_04[0] = -Player->Velocity[0] * Arg2;
         }
-        something = (player->position[2] - object->pos[2]) * object->velocity[2];
+        something = (Player->Position[2] - object->pos[2]) * object->Velocity[2];
         if (something >= 0.0f) {
-            temp_v1->unk_04[2] = (-player->velocity[2] * arg2) + (object->velocity[2] * arg3);
+            temp_v1->unk_04[2] = (-Player->Velocity[2] * Arg2) + (object->Velocity[2] * Arg3);
         } else {
-            temp_v1->unk_04[2] = -player->velocity[2] * arg2;
+            temp_v1->unk_04[2] = -Player->Velocity[2] * Arg2;
         }
         var_f2 = (temp_v1->unk_04[0] * temp_v1->unk_04[0]) + (temp_v1->unk_04[2] * temp_v1->unk_04[2]);
     }
     return var_f2;
 }
 
-void kwreboundsnd_player(s32 objectIndex, s32 playerId, f32 arg2, f32 arg3, u32 soundBits) {
+void KwreboundsndPlayer(s32 ObjectIndex, s32 PlayerId, f32 Arg2, f32 Arg3, u32 SoundBits) {
     UNUSED s32 stackPadding;
-    Player* player;
+    Player* Player;
 
-    player = &gPlayerOne[playerId];
-    if (kwanm_bitcheckflag(objectIndex, 0x04000000) != 0) {
-        kwlost_ghost();
+    Player = &PlayerOne[PlayerId];
+    if (KwanmBitcheckflag(ObjectIndex, 0x04000000) != 0) {
+        KwlostGhost();
     }
-    if ((kwrebound_kartplas(player, objectIndex, arg2, arg3) >= 4.0) && ((player->flag & IS_CPU_PLAYER) != IS_CPU_PLAYER)) {
-        NAPlyTrgStart(playerId, soundBits);
+    if ((KwreboundKartplas(Player, ObjectIndex, Arg2, Arg3) >= 4.0) && ((Player->Flag & IS_CPU_PLAYER) != IS_CPU_PLAYER)) {
+        NAPlyTrgStart(PlayerId, SoundBits);
     }
 }
 
-void kwreboundsnd_player_nolostghost(s32 objectIndex, s32 playerId, f32 arg2, f32 arg3, u32 soundBits) {
+void KwreboundsndPlayerNolostghost(s32 ObjectIndex, s32 PlayerId, f32 Arg2, f32 Arg3, u32 SoundBits) {
     UNUSED s32 stackPadding;
-    Player* player;
+    Player* Player;
 
-    player = &gPlayerOne[playerId];
-    if ((kwrebound_kartplas(player, objectIndex, arg2, arg3) >= 4.0) && ((player->flag & IS_CPU_PLAYER) != IS_CPU_PLAYER)) {
-        NAPlyTrgStart((u8) playerId, soundBits);
+    Player = &PlayerOne[PlayerId];
+    if ((KwreboundKartplas(Player, ObjectIndex, Arg2, Arg3) >= 4.0) && ((Player->Flag & IS_CPU_PLAYER) != IS_CPU_PLAYER)) {
+        NAPlyTrgStart((u8) PlayerId, SoundBits);
     }
 }
 
-s32 kwhitcheck_player(s32 objectIndex) {
-    Player* player;
+s32 KwhitcheckPlayer(s32 ObjectIndex) {
+    Player* Player;
     s32 playerIndex;
     s32 var_s6;
 
     var_s6 = 0;
-    player = gPlayerOne;
-    if (kwanm_bitcheckflag(objectIndex, 0x00000200) != 0) {
-        for (playerIndex = 0; playerIndex < kwkartnum; playerIndex++, player++) {
-            if ((g_DynamicObjects[objectIndex].anmptr != 0) &&
-                (kwanm_checkcoll_player_xz(objectIndex, player) != 0)) {
-                if (kwanm_bitcheckflag(objectIndex, 0x04000000) != 0) {
-                    kwlost_ghost();
+    Player = PlayerOne;
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000200) != 0) {
+        for (playerIndex = 0; playerIndex < Kwkartnum; playerIndex++, Player++) {
+            if ((DynamicObjects[ObjectIndex].Anmptr != 0) &&
+                (KwanmCheckcollPlayerXz(ObjectIndex, Player) != 0)) {
+                if (KwanmBitcheckflag(ObjectIndex, 0x04000000) != 0) {
+                    KwlostGhost();
                 }
                 var_s6 = 1;
             }
@@ -1106,44 +1106,44 @@ s32 kwhitcheck_player(s32 objectIndex) {
     return var_s6;
 }
 
-void kwcheck_rebound_player_2D(s32 objectIndex, f32 arg1, f32 arg2) {
-    Player* player;
+void KwcheckReboundPlayer2D(s32 ObjectIndex, f32 arg1, f32 Arg2) {
+    Player* Player;
     s32 playerIndex;
 
-    player = gPlayerOne;
-    if (kwanm_bitcheckflag(objectIndex, 0x00000200) != 0) {
-        for (playerIndex = 0; playerIndex < kwkartnum; playerIndex++, player++) {
-            if ((g_DynamicObjects[objectIndex].anmptr != 0) && !(player->slip_flag & (STAR | TERESA)) &&
-                (kwanm_checkcoll_player_xz(objectIndex, player) != 0)) {
-                kwrebound_kartplas(player, objectIndex, arg1, arg2 * 1.1);
-                if (kwanm_bitcheckflag(objectIndex, 0x04000000) != 0) {
-                    kwlost_ghost();
+    Player = PlayerOne;
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000200) != 0) {
+        for (playerIndex = 0; playerIndex < Kwkartnum; playerIndex++, Player++) {
+            if ((DynamicObjects[ObjectIndex].Anmptr != 0) && !(Player->SlipFlag & (STAR | TERESA)) &&
+                (KwanmCheckcollPlayerXz(ObjectIndex, Player) != 0)) {
+                KwreboundKartplas(Player, ObjectIndex, arg1, Arg2 * 1.1);
+                if (KwanmBitcheckflag(ObjectIndex, 0x04000000) != 0) {
+                    KwlostGhost();
                 }
             }
         }
     }
 }
 
-void kwcheck_reboundsnd_player_2D(s32 objectIndex, f32 arg1, f32 arg2, u32 arg3) {
-    Player* player;
+void KwcheckReboundsndPlayer2D(s32 ObjectIndex, f32 arg1, f32 Arg2, u32 Arg3) {
+    Player* Player;
     s32 playerIndex;
 
-    player = gPlayerOne;
-    kwanm_clrflag(objectIndex, 0x02000000);
-    if (kwanm_bitcheckflag(objectIndex, 0x00000200) != 0) {
-        for (playerIndex = 0; playerIndex < kwkartnum; playerIndex++, player++) {
-            if ((g_DynamicObjects[objectIndex].anmptr != 0) && !(player->slip_flag & TERESA)) {
-                if ((player->flag & EXISTS) && !(player->flag & IS_GHOST) &&
-                    (kwanm_checkcoll_player_xz(objectIndex, player) != 0)) {
-                    if (player->slip_flag & STAR) {
-                        kwanm_setflag(objectIndex, 0x02000000);
+    Player = PlayerOne;
+    KwanmClrflag(ObjectIndex, 0x02000000);
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000200) != 0) {
+        for (playerIndex = 0; playerIndex < Kwkartnum; playerIndex++, Player++) {
+            if ((DynamicObjects[ObjectIndex].Anmptr != 0) && !(Player->SlipFlag & TERESA)) {
+                if ((Player->Flag & EXISTS) && !(Player->Flag & IS_GHOST) &&
+                    (KwanmCheckcollPlayerXz(ObjectIndex, Player) != 0)) {
+                    if (Player->SlipFlag & STAR) {
+                        KwanmSetflag(ObjectIndex, 0x02000000);
                     } else {
-                        if (kwanm_bitcheckflag(objectIndex, 0x04000000) != 0) {
-                            kwlost_ghost();
+                        if (KwanmBitcheckflag(ObjectIndex, 0x04000000) != 0) {
+                            KwlostGhost();
                         }
-                        if ((kwrebound_kartplas(player, objectIndex, arg1, arg2 * 1.1) >= 4.0) &&
-                            ((player->flag & IS_CPU_PLAYER) != IS_CPU_PLAYER)) {
-                            NAPlyTrgStart(playerIndex, arg3);
+                        if ((KwreboundKartplas(Player, ObjectIndex, arg1, Arg2 * 1.1) >= 4.0) &&
+                            ((Player->Flag & IS_CPU_PLAYER) != IS_CPU_PLAYER)) {
+                            NAPlyTrgStart(playerIndex, Arg3);
                         }
                     }
                 }
@@ -1152,42 +1152,42 @@ void kwcheck_reboundsnd_player_2D(s32 objectIndex, f32 arg1, f32 arg2, u32 arg3)
     }
 }
 
-void kwcheck_rebound_player_3D(s32 objectIndex, f32 arg1, f32 arg2) {
-    Player* player;
+void KwcheckReboundPlayer3D(s32 ObjectIndex, f32 arg1, f32 Arg2) {
+    Player* Player;
     s32 playerIndex;
 
-    player = gPlayerOne;
-    if (kwanm_bitcheckflag(objectIndex, 0x00000200) != 0) {
-        for (playerIndex = 0; playerIndex < kwkartnum; playerIndex++, player++) {
-            if ((g_DynamicObjects[objectIndex].anmptr != 0) && !(player->slip_flag & (TERESA | STAR)) &&
-                (kwanm_checkcoll_player_xyz(objectIndex, player) != 0)) {
-                kwrebound_kartplas(player, objectIndex, arg1, arg2 * 1.1);
-                if (kwanm_bitcheckflag(objectIndex, 0x04000000) != 0) {
-                    kwlost_ghost();
+    Player = PlayerOne;
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000200) != 0) {
+        for (playerIndex = 0; playerIndex < Kwkartnum; playerIndex++, Player++) {
+            if ((DynamicObjects[ObjectIndex].Anmptr != 0) && !(Player->SlipFlag & (TERESA | STAR)) &&
+                (KwanmCheckcollPlayerXYZ(ObjectIndex, Player) != 0)) {
+                KwreboundKartplas(Player, ObjectIndex, arg1, Arg2 * 1.1);
+                if (KwanmBitcheckflag(ObjectIndex, 0x04000000) != 0) {
+                    KwlostGhost();
                 }
             }
         }
     }
 }
 
-s32 kwcheck_bomb_player_2D(s32 objectIndex) {
-    Player* player;
+s32 KwcheckBombPlayer2D(s32 ObjectIndex) {
+    Player* Player;
     s32 sp40;
     s32 playerIndex;
     s32 test;
 
     test = 0;
     sp40 = 0;
-    player = gPlayerOne;
-    if (kwanm_bitcheckflag(objectIndex, 0x00000200) != 0) {
-        for (playerIndex = 0; playerIndex < kwkartnum; playerIndex++, player++, test++) {
-            if ((g_DynamicObjects[objectIndex].anmptr != 0) && !(player->slip_flag & (TERESA | EXPLODE)) &&
-                (player->flag & EXISTS) && !(player->flag & IS_GHOST) &&
-                (kwanm_checkcoll_player_xz(objectIndex, player) != 0)) {
-                if (!(player->slip_flag & STAR)) {
-                    player->weapon |= HIT_BOMB;
-                    if (kwanm_bitcheckflag(objectIndex, 0x04000000) != 0) {
-                        kwlost_ghost();
+    Player = PlayerOne;
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000200) != 0) {
+        for (playerIndex = 0; playerIndex < Kwkartnum; playerIndex++, Player++, test++) {
+            if ((DynamicObjects[ObjectIndex].Anmptr != 0) && !(Player->SlipFlag & (TERESA | EXPLODE)) &&
+                (Player->Flag & EXISTS) && !(Player->Flag & IS_GHOST) &&
+                (KwanmCheckcollPlayerXz(ObjectIndex, Player) != 0)) {
+                if (!(Player->SlipFlag & STAR)) {
+                    Player->Weapon |= HIT_BOMB;
+                    if (KwanmBitcheckflag(ObjectIndex, 0x04000000) != 0) {
+                        KwlostGhost();
                     }
                 } else {
                     NAPlyTrgStart(test, 0x19018010U);
@@ -1199,22 +1199,22 @@ s32 kwcheck_bomb_player_2D(s32 objectIndex) {
     return sp40;
 }
 
-s32 kwcheck_bomb_player_3D(s32 objectIndex, f32 arg1) {
-    Player* player;
+s32 KwcheckBombPlayer3D(s32 ObjectIndex, f32 arg1) {
+    Player* Player;
     s32 playerIndex;
     s32 var_s7;
 
     var_s7 = 0;
-    player = gPlayerOne;
-    if (kwanm_bitcheckflag(objectIndex, 0x00000200) != 0) {
-        for (playerIndex = 0; playerIndex < kwkartnum; playerIndex++, player++) {
-            if ((g_DynamicObjects[objectIndex].anmptr != 0) && !(player->slip_flag & (TERESA | EXPLODE))) {
-                if ((player->flag & EXISTS) && !(player->flag & IS_GHOST) &&
-                    (kwanm_checkcoll_pillar_player(objectIndex, player, arg1) != 0)) {
-                    if (!(player->slip_flag & STAR)) {
-                        player->weapon |= HIT_BOMB;
-                        if (kwanm_bitcheckflag(objectIndex, 0x04000000) != 0) {
-                            kwlost_ghost();
+    Player = PlayerOne;
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000200) != 0) {
+        for (playerIndex = 0; playerIndex < Kwkartnum; playerIndex++, Player++) {
+            if ((DynamicObjects[ObjectIndex].Anmptr != 0) && !(Player->SlipFlag & (TERESA | EXPLODE))) {
+                if ((Player->Flag & EXISTS) && !(Player->Flag & IS_GHOST) &&
+                    (KwanmCheckcollPillarPlayer(ObjectIndex, Player, arg1) != 0)) {
+                    if (!(Player->SlipFlag & STAR)) {
+                        Player->Weapon |= HIT_BOMB;
+                        if (KwanmBitcheckflag(ObjectIndex, 0x04000000) != 0) {
+                            KwlostGhost();
                         }
                     }
                     var_s7 = 1;
@@ -1225,22 +1225,22 @@ s32 kwcheck_bomb_player_3D(s32 objectIndex, f32 arg1) {
     return var_s7;
 }
 
-s32 kwcheck_slip_player(s32 objectIndex) {
-    Player* player;
+s32 KwcheckSlipPlayer(s32 ObjectIndex) {
+    Player* Player;
     s32 playerIndex;
     s32 var_s6;
 
     var_s6 = 0;
-    player = gPlayerOne;
-    if (kwanm_bitcheckflag(objectIndex, 0x00000200) != 0) {
-        for (playerIndex = 0; playerIndex < kwkartnum; playerIndex++, player++) {
-            if ((g_DynamicObjects[objectIndex].anmptr != 0) &&
-                !(player->slip_flag & (TERESA | SPIN_L | SPIN_R)) &&
-                (kwanm_checkcoll_player_xz(objectIndex, player) != 0)) {
-                if (player->slip_flag & STAR) {
+    Player = PlayerOne;
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000200) != 0) {
+        for (playerIndex = 0; playerIndex < Kwkartnum; playerIndex++, Player++) {
+            if ((DynamicObjects[ObjectIndex].Anmptr != 0) &&
+                !(Player->SlipFlag & (TERESA | SPIN_L | SPIN_R)) &&
+                (KwanmCheckcollPlayerXz(ObjectIndex, Player) != 0)) {
+                if (Player->SlipFlag & STAR) {
                     var_s6 = 1;
                 } else {
-                    player->weapon |= HIT_BANANA;
+                    Player->Weapon |= HIT_BANANA;
                 }
             }
         }
@@ -1248,24 +1248,24 @@ s32 kwcheck_slip_player(s32 objectIndex) {
     return var_s6;
 }
 
-s32 kwcheck_slip_kani_player(s32 objectIndex) {
-    Player* player;
+s32 KwcheckSlipKaniPlayer(s32 ObjectIndex) {
+    Player* Player;
     s32 playerIndex;
     s32 var_s7;
 
     var_s7 = 0;
-    player = gPlayerOne;
-    if (kwanm_bitcheckflag(objectIndex, 0x00000200) != 0) {
-        for (playerIndex = 0; playerIndex < kwkartnum; playerIndex++, player++) {
-            if ((g_DynamicObjects[objectIndex].anmptr != 0) &&
-                !(player->slip_flag & (TERESA | STAR | SPIN_L | SPIN_R))) {
-                if ((player->flag & EXISTS) && !(player->flag & IS_GHOST) &&
-                    (kwanm_checkcoll_player_xz(objectIndex, player) != 0)) {
+    Player = PlayerOne;
+    if (KwanmBitcheckflag(ObjectIndex, 0x00000200) != 0) {
+        for (playerIndex = 0; playerIndex < Kwkartnum; playerIndex++, Player++) {
+            if ((DynamicObjects[ObjectIndex].Anmptr != 0) &&
+                !(Player->SlipFlag & (TERESA | STAR | SPIN_L | SPIN_R))) {
+                if ((Player->Flag & EXISTS) && !(Player->Flag & IS_GHOST) &&
+                    (KwanmCheckcollPlayerXz(ObjectIndex, Player) != 0)) {
                     var_s7 = 1;
-                    if (kwanm_bitcheckflag(objectIndex, 0x04000000) != 0) {
-                        kwlost_ghost();
+                    if (KwanmBitcheckflag(ObjectIndex, 0x04000000) != 0) {
+                        KwlostGhost();
                     }
-                    player->weapon |= HIT_CRITTER;
+                    Player->Weapon |= HIT_CRITTER;
                 }
             }
         }
@@ -1273,59 +1273,59 @@ s32 kwcheck_slip_kani_player(s32 objectIndex) {
     return var_s7;
 }
 
-s32 kwanm_checkobjang_camera_xz(s32 objectIndex, Camera* camera, u16 arg2) {
+s32 KwanmCheckobjangCameraXz(s32 ObjectIndex, Camera* Camera, u16 Arg2) {
     u16 temp_t3;
     s32 var_v1;
 
     var_v1 = 0;
-    temp_t3 = (((u16) camera->camera_direction[1] - g_DynamicObjects[objectIndex].ang[1]) + (arg2 >> 1));
+    temp_t3 = (((u16) Camera->CameraDirection[1] - DynamicObjects[ObjectIndex].ang[1]) + (Arg2 >> 1));
 
     //! @warning Always true
-    if ((temp_t3 >= 0) && (arg2 >= temp_t3)) {
+    if ((temp_t3 >= 0) && (Arg2 >= temp_t3)) {
         var_v1 = 1;
     }
     return var_v1;
 }
 
-s32 kwanm_vischeck_player_xz(s32 objectIndex, Player* player, Camera* camera, u16 arg3) {
+s32 KwanmVischeckPlayerXz(s32 ObjectIndex, Player* Player, Camera* Camera, u16 Arg3) {
     u16 temp_t3;
     f32 x_diff;
     f32 z_diff;
     s32 var_t0;
 
     var_t0 = 0;
-    x_diff = g_DynamicObjects[objectIndex].pos[0] - player->position[0];
-    z_diff = g_DynamicObjects[objectIndex].pos[2] - player->position[2];
-    temp_t3 = ((u16) camera->camera_direction[1] - Atan2t(x_diff, z_diff)) + (arg3 >> 1);
-    if ((temp_t3 >= 0) && (arg3 >= temp_t3)) {
+    x_diff = DynamicObjects[ObjectIndex].pos[0] - Player->Position[0];
+    z_diff = DynamicObjects[ObjectIndex].pos[2] - Player->Position[2];
+    temp_t3 = ((u16) Camera->CameraDirection[1] - Atan2t(x_diff, z_diff)) + (Arg3 >> 1);
+    if ((temp_t3 >= 0) && (Arg3 >= temp_t3)) {
         var_t0 = 1;
     }
     return var_t0;
 }
 
-bool kwanm_vischeck_camera_xz(s32 objectIndex, Camera* camera, u16 angle) {
+bool KwanmVischeckCameraXz(s32 ObjectIndex, Camera* Camera, u16 Angle) {
     u16 temp_t2;
     s32 var_t0;
 
     var_t0 = false;
-    temp_t2 = (kwcalc_destangley(camera->camera_pos[0], g_DynamicObjects[objectIndex].pos[0], camera->camera_pos[2],
-                                    g_DynamicObjects[objectIndex].pos[2]) +
-               ((s32) angle / 2)) -
-              camera->camera_direction[1];
-    if ((temp_t2 >= 0) && (angle >= temp_t2)) {
+    temp_t2 = (KwcalcDestangley(Camera->CameraPos[0], DynamicObjects[ObjectIndex].pos[0], Camera->CameraPos[2],
+                                    DynamicObjects[ObjectIndex].pos[2]) +
+               ((s32) Angle / 2)) -
+              Camera->CameraDirection[1];
+    if ((temp_t2 >= 0) && (Angle >= temp_t2)) {
         var_t0 = true;
     }
     return var_t0;
 }
 
-void kwcheck_lod_texture(s32 objectIndex, s32 cameraId, s32 arg2, s32 arg3) {
+void KwcheckLODTexture(s32 ObjectIndex, s32 CameraId, s32 Arg2, s32 Arg3) {
     u32 temp_v0;
     u16 var_a2;
-    Camera* camera;
+    Camera* Camera;
 
-    camera = &camera1[cameraId];
-    kwanm_clrflag(objectIndex, 0x00100000 | VISIBLE);
-    temp_v0 = kwanm_calc_distance_camera_xz(objectIndex, camera);
+    Camera = &Camera1[CameraId];
+    KwanmClrflag(ObjectIndex, 0x00100000 | VISIBLE);
+    temp_v0 = KwanmCalcDistanceCameraXz(ObjectIndex, Camera);
     if (temp_v0 < 0x2711U) {
         var_a2 = 0x5555;
     } else if (temp_v0 < 0x9C41U) {
@@ -1333,147 +1333,147 @@ void kwcheck_lod_texture(s32 objectIndex, s32 cameraId, s32 arg2, s32 arg3) {
     } else {
         var_a2 = 0x2AAB;
     }
-    if ((kwanm_vischeck_camera_xz(objectIndex, camera, var_a2) != 0) && ((u32) (arg3 * arg3) >= temp_v0)) {
-        kwanm_setflag(objectIndex, VISIBLE);
-        if (temp_v0 >= (u32) (arg2 * arg2)) {
-            kwanm_setflag(objectIndex, 0x00100000);
+    if ((KwanmVischeckCameraXz(ObjectIndex, Camera, var_a2) != 0) && ((u32) (Arg3 * Arg3) >= temp_v0)) {
+        KwanmSetflag(ObjectIndex, VISIBLE);
+        if (temp_v0 >= (u32) (Arg2 * Arg2)) {
+            KwanmSetflag(ObjectIndex, 0x00100000);
         }
     }
 }
 
-// This function is really cool, it tests the value of an unitialized local variable
-UNUSED void kwcheck_visible(s32 objectIndex, s32 cameraId, u16 arg2) {
-    Camera* camera;
+// This function is really cool, it tests the Value of an unitialized local variable
+UNUSED void KwcheckVisible(s32 ObjectIndex, s32 CameraId, u16 Arg2) {
+    Camera* Camera;
     u32 no_init;
     u16 var_a2;
 
-    camera = &camera1[cameraId];
-    kwanm_clrflag(objectIndex, VISIBLE);
+    Camera = &Camera1[CameraId];
+    KwanmClrflag(ObjectIndex, VISIBLE);
     if (no_init < 0x2711U) {
         var_a2 = 0x5555;
     } else if (no_init < 0x9C41U) {
         var_a2 = 0x4000;
     } else {
-        var_a2 = arg2;
+        var_a2 = Arg2;
     }
-    if (kwanm_vischeck_camera_xz(objectIndex, camera, var_a2) != 0) {
-        kwanm_setflag(objectIndex, VISIBLE);
+    if (KwanmVischeckCameraXz(ObjectIndex, Camera, var_a2) != 0) {
+        KwanmSetflag(ObjectIndex, VISIBLE);
     }
 }
 
-s32 kwcheck_vis_area(s32 objectIndex, s32 cameraId, u16 arg2, s32 arg3) {
-    Camera* camera;
+s32 KwcheckVisArea(s32 ObjectIndex, s32 CameraId, u16 Arg2, s32 Arg3) {
+    Camera* Camera;
     u32 dist;
     u16 var_a2;
 
-    camera = &camera1[cameraId];
-    kwanm_clrflag(objectIndex, 0x00020000 | VISIBLE);
-    dist = kwanm_calc_distance_camera_xz(objectIndex, camera);
-    if (dist < (arg3 * arg3)) {
-        kwanm_setflag(objectIndex, 0x00020000);
+    Camera = &Camera1[CameraId];
+    KwanmClrflag(ObjectIndex, 0x00020000 | VISIBLE);
+    dist = KwanmCalcDistanceCameraXz(ObjectIndex, Camera);
+    if (dist < (Arg3 * Arg3)) {
+        KwanmSetflag(ObjectIndex, 0x00020000);
         if (dist < 0x2711U) {
             var_a2 = 0x5555;
         } else if (dist < 0x9C41U) {
             var_a2 = 0x4000;
         } else {
-            var_a2 = arg2;
+            var_a2 = Arg2;
         }
-        if (kwanm_vischeck_camera_xz(objectIndex, camera, var_a2) != 0) {
-            kwanm_setflag(objectIndex, VISIBLE);
+        if (KwanmVischeckCameraXz(ObjectIndex, Camera, var_a2) != 0) {
+            KwanmSetflag(ObjectIndex, VISIBLE);
         }
     }
     return dist;
 }
 
-void kwcheck_display_kage(s32 objectIndex, s32 cameraId, s32 arg2) {
-    if (kwanm_calc_distance_camera_xz(objectIndex, &camera1[cameraId]) < (u32) (arg2 * arg2)) {
-        kwanm_setflag(objectIndex, 0x00000020);
+void KwcheckDisplayKage(s32 ObjectIndex, s32 CameraId, s32 Arg2) {
+    if (KwanmCalcDistanceCameraXz(ObjectIndex, &Camera1[CameraId]) < (u32) (Arg2 * Arg2)) {
+        KwanmSetflag(ObjectIndex, 0x00000020);
     } else {
-        kwanm_clrflag(objectIndex, 0x00000020);
+        KwanmClrflag(ObjectIndex, 0x00000020);
     }
 }
 
-void kwcheck_areain_camera(s32 objectIndex) {
+void KwcheckAreainCamera(s32 ObjectIndex) {
     s32 loopIndex;
-    Camera* camera;
+    Camera* Camera;
 
-    kwanm_clrflag(objectIndex, 0x00070000);
-    for (loopIndex = 0, camera = camera1; loopIndex < g_playerCount; loopIndex++, camera++) {
-        if (g_DynamicObjects[objectIndex].anmptr != 0) {
-            if ((D_8018CF68[loopIndex] >= (g_DynamicObjects[objectIndex].unk_0DF - 1)) &&
-                ((g_DynamicObjects[objectIndex].unk_0DF + 1) >= D_8018CF68[loopIndex])) {
-                kwanm_setflag(objectIndex, 0x00010000);
-                if (D_8018CF68[loopIndex] == g_DynamicObjects[objectIndex].unk_0DF) {
-                    kwanm_setflag(objectIndex, 0x00020000);
+    KwanmClrflag(ObjectIndex, 0x00070000);
+    for (loopIndex = 0, Camera = Camera1; loopIndex < PlayerCount; loopIndex++, Camera++) {
+        if (DynamicObjects[ObjectIndex].Anmptr != 0) {
+            if ((D_8018CF68[loopIndex] >= (DynamicObjects[ObjectIndex].Unk0DF - 1)) &&
+                ((DynamicObjects[ObjectIndex].Unk0DF + 1) >= D_8018CF68[loopIndex])) {
+                KwanmSetflag(ObjectIndex, 0x00010000);
+                if (D_8018CF68[loopIndex] == DynamicObjects[ObjectIndex].Unk0DF) {
+                    KwanmSetflag(ObjectIndex, 0x00020000);
                 }
-                if (kwanm_vischeck_camera_xz(objectIndex, camera, 0x2AABU) != 0) {
-                    kwanm_setflag(objectIndex, VISIBLE);
+                if (KwanmVischeckCameraXz(ObjectIndex, Camera, 0x2AABU) != 0) {
+                    KwanmSetflag(ObjectIndex, VISIBLE);
                 }
             }
         }
     }
 }
 
-UNUSED void kwcheck_visible_camera(s32 objectIndex) {
+UNUSED void KwcheckVisibleCamera(s32 ObjectIndex) {
     s32 loopIndex;
-    Camera* camera;
+    Camera* Camera;
 
-    kwanm_clrflag(objectIndex, VISIBLE);
-    for (camera = camera1, loopIndex = 0; loopIndex < g_playerCount; loopIndex++, camera++) {
-        if ((g_DynamicObjects[objectIndex].anmptr != 0) && (kwanm_vischeck_camera_xz(objectIndex, camera, 0x2AABU) != 0)) {
-            kwanm_setflag(objectIndex, VISIBLE);
+    KwanmClrflag(ObjectIndex, VISIBLE);
+    for (Camera = Camera1, loopIndex = 0; loopIndex < PlayerCount; loopIndex++, Camera++) {
+        if ((DynamicObjects[ObjectIndex].Anmptr != 0) && (KwanmVischeckCameraXz(ObjectIndex, Camera, 0x2AABU) != 0)) {
+            KwanmSetflag(ObjectIndex, VISIBLE);
         }
     }
 }
 
-void kwcheck_visible_area_camera(s32 objectIndex, f32 arg1) {
+void KwcheckVisibleAreaCamera(s32 ObjectIndex, f32 arg1) {
     u16 var_a2;
     s32 loopIndex;
-    Camera* camera;
+    Camera* Camera;
 
-    kwanm_clrflag(objectIndex, 0x00060000);
-    for (camera = camera1, loopIndex = 0; loopIndex < g_playerCount; loopIndex++, camera++) {
-        if ((g_DynamicObjects[objectIndex].anmptr != 0) &&
-            (kwanm_checkradius_camera_xz(objectIndex, camera, arg1) != 0)) {
-            kwanm_setflag(objectIndex, 0x00020000);
+    KwanmClrflag(ObjectIndex, 0x00060000);
+    for (Camera = Camera1, loopIndex = 0; loopIndex < PlayerCount; loopIndex++, Camera++) {
+        if ((DynamicObjects[ObjectIndex].Anmptr != 0) &&
+            (KwanmCheckradiusCameraXz(ObjectIndex, Camera, arg1) != 0)) {
+            KwanmSetflag(ObjectIndex, 0x00020000);
             if (arg1 <= 500.0) {
                 var_a2 = 0x4000;
             } else {
                 var_a2 = 0x2AAB;
             }
-            if (kwanm_vischeck_camera_xz(objectIndex, camera, var_a2) != 0) {
-                kwanm_setflag(objectIndex, VISIBLE);
+            if (KwanmVischeckCameraXz(ObjectIndex, Camera, var_a2) != 0) {
+                KwanmSetflag(ObjectIndex, VISIBLE);
             }
         }
     }
 }
 
-UNUSED void kwcheck_visible_near_camera(s32 arg0) {
-    kwcheck_visible_area_camera(arg0, 500.0f);
+UNUSED void KwcheckVisibleNearCamera(s32 arg0) {
+    KwcheckVisibleAreaCamera(arg0, 500.0f);
 }
 
-UNUSED void kwcheck_visible_middle_camera(s32 arg0) {
-    kwcheck_visible_area_camera(arg0, 1000.0f);
+UNUSED void KwcheckVisibleMiddleCamera(s32 arg0) {
+    KwcheckVisibleAreaCamera(arg0, 1000.0f);
 }
 
-UNUSED void kwcheck_visible_far_camera(s32 arg0) {
-    kwcheck_visible_area_camera(arg0, 2000.0f);
+UNUSED void KwcheckVisibleFarCamera(s32 arg0) {
+    KwcheckVisibleAreaCamera(arg0, 2000.0f);
 }
 
-UNUSED s32 kwcheck_maparea_kart(Player* player) {
-    return CheckArea(player->bump.last_zx);
+UNUSED s32 KwcheckMapareaKart(Player* Player) {
+    return CheckArea(Player->Bump.LastZX);
 }
 
-s32 kwcheck_maparea_camera(Camera* camera) {
-    return CheckArea(camera->bump.last_zx);
+s32 KwcheckMapareaCamera(Camera* Camera) {
+    return CheckArea(Camera->Bump.LastZX);
 }
 
-s32 kwcheck_mapareain(s16 arg0, s16 arg1) {
+s32 KwcheckMapareain(s16 arg0, s16 arg1) {
     s32 var_v1;
     s16* var_v0;
     s32 i;
     var_v1 = 0;
-    for (i = 0; i < g_playerCount; i++) {
+    for (i = 0; i < PlayerCount; i++) {
         var_v0 = &D_8018CF68[i];
         if ((*var_v0 >= arg0) && (arg1 >= *var_v0)) {
             var_v1 = 1;
@@ -1482,202 +1482,202 @@ s32 kwcheck_mapareain(s16 arg0, s16 arg1) {
     return var_v1;
 }
 
-void kwmv_setvel_line(s32 objectIndex) {
+void KwmvSetvelLine(s32 ObjectIndex) {
     SplineControlPoint* temp_v0;
 
-    temp_v0 = g_DynamicObjects[objectIndex].sptbaddr;
-    g_DynamicObjects[objectIndex].velocity[0] = (f32) (temp_v0[1].pos[0] - temp_v0[0].pos[0]) / (f32) temp_v0[0].velocity;
-    g_DynamicObjects[objectIndex].velocity[1] = (f32) (temp_v0[1].pos[1] - temp_v0[0].pos[1]) / (f32) temp_v0[0].velocity;
-    g_DynamicObjects[objectIndex].velocity[2] = (f32) (temp_v0[1].pos[2] - temp_v0[0].pos[2]) / (f32) temp_v0[0].velocity;
+    temp_v0 = DynamicObjects[ObjectIndex].Sptbaddr;
+    DynamicObjects[ObjectIndex].Velocity[0] = (f32) (temp_v0[1].pos[0] - temp_v0[0].pos[0]) / (f32) temp_v0[0].Velocity;
+    DynamicObjects[ObjectIndex].Velocity[1] = (f32) (temp_v0[1].pos[1] - temp_v0[0].pos[1]) / (f32) temp_v0[0].Velocity;
+    DynamicObjects[ObjectIndex].Velocity[2] = (f32) (temp_v0[1].pos[2] - temp_v0[0].pos[2]) / (f32) temp_v0[0].Velocity;
 }
 
-void kwmv_nextlinepoint(s32 objectIndex) {
+void KwmvNextlinepoint(s32 ObjectIndex) {
     UNUSED s32 temp_t9;
     AnmObject* object;
 
-    object = &g_DynamicObjects[objectIndex];
-    object->sptbaddr++;
-    object->spstepadd = (s16) (10000 / (s16) (object->sptbaddr[0].velocity));
-    object->spstep = 0;
-    kwmv_setvel_line(objectIndex);
+    object = &DynamicObjects[ObjectIndex];
+    object->Sptbaddr++;
+    object->Spstepadd = (s16) (10000 / (s16) (object->Sptbaddr[0].Velocity));
+    object->Spstep = 0;
+    KwmvSetvelLine(ObjectIndex);
 }
 
-void kwmv_line3D_init(s32 objectIndex) {
+void KwmvLine3DInit(s32 ObjectIndex) {
     AnmObject* object;
-    object = &g_DynamicObjects[objectIndex];
-    object->sptbaddr = object->sptbtopaddr->controlPoints;
-    object->stack[9] = 0;
-    object->spstep = 0;
+    object = &DynamicObjects[ObjectIndex];
+    object->Sptbaddr = object->Sptbtopaddr->ControlPoints;
+    object->Stack[9] = 0;
+    object->Spstep = 0;
     /*
     This is INCREDIBLY stupid. This should really be
-    temp_v0->stack[8] = temp_v0->sptbtopaddr->numControlPoints;
+    temp_v0->Stack[8] = temp_v0->Sptbtopaddr->NumControlPoints;
     but for some unholy reason that doesn't match
     */
-    object->stack[8] = *((s16*) object->sptbaddr - 1);
-    object->pos_spline[0] = object->sptbaddr[0].pos[0];
-    object->pos_spline[1] = object->sptbaddr[0].pos[1];
-    object->pos_spline[2] = object->sptbaddr[0].pos[2];
-    object->spstepadd = (s16) (10000 / object->sptbaddr[0].velocity);
-    kwmv_setvel_line(objectIndex);
-    KWAnmNext(objectIndex);
+    object->Stack[8] = *((s16*) object->Sptbaddr - 1);
+    object->PosSpline[0] = object->Sptbaddr[0].pos[0];
+    object->PosSpline[1] = object->Sptbaddr[0].pos[1];
+    object->PosSpline[2] = object->Sptbaddr[0].pos[2];
+    object->Spstepadd = (s16) (10000 / object->Sptbaddr[0].Velocity);
+    KwmvSetvelLine(ObjectIndex);
+    KWAnmNext(ObjectIndex);
 }
 
-void kwmv_line3D(s32 objectIndex) {
+void KwmvLine3D(s32 ObjectIndex) {
     UNUSED s16 temp_t3;
     AnmObject* object;
 
-    object = &g_DynamicObjects[objectIndex];
-    object->pos_spline[0] += object->velocity[0];
-    object->pos_spline[1] += object->velocity[1];
-    object->pos_spline[2] += object->velocity[2];
-    object->spstep += (u16) object->spstepadd;
-    if (object->spstep >= 0x2710) {
-        object->stack[9] = (u16) object->stack[9] + 1;
-        if (((u16) object->stack[9] + 1) == (u16) object->stack[8]) {
-            object->mvptr += 1;
+    object = &DynamicObjects[ObjectIndex];
+    object->PosSpline[0] += object->Velocity[0];
+    object->PosSpline[1] += object->Velocity[1];
+    object->PosSpline[2] += object->Velocity[2];
+    object->Spstep += (u16) object->Spstepadd;
+    if (object->Spstep >= 0x2710) {
+        object->Stack[9] = (u16) object->Stack[9] + 1;
+        if (((u16) object->Stack[9] + 1) == (u16) object->Stack[8]) {
+            object->Mvptr += 1;
         } else {
-            kwmv_nextlinepoint(objectIndex);
+            KwmvNextlinepoint(ObjectIndex);
         }
     }
 }
 
-UNUSED void kwst_strategy3D(s32 arg0) {
-    switch (g_DynamicObjects[arg0].mvptr) {
+UNUSED void KwstStrategy3D(s32 arg0) {
+    switch (DynamicObjects[arg0].Mvptr) {
         case 1:
-            kwmv_line3D_init(arg0);
+            KwmvLine3DInit(arg0);
             break;
         case 2:
-            kwmv_line3D(arg0);
+            KwmvLine3D(arg0);
             break;
         case 3:
-            kwmv_finish(arg0);
+            KwmvFinish(arg0);
             /* fallthrough */
         case 0:
             break;
     }
 }
 
-UNUSED void kwst_strategy3D_loop(s32 arg0) {
-    switch (g_DynamicObjects[arg0].mvptr) {
+UNUSED void KwstStrategy3DLoop(s32 arg0) {
+    switch (DynamicObjects[arg0].Mvptr) {
         case 1:
-            kwmv_line3D_init(arg0);
+            KwmvLine3DInit(arg0);
             break;
         case 2:
-            kwmv_line3D(arg0);
+            KwmvLine3D(arg0);
             break;
         case 3:
-            kwmv_jump(arg0, 1);
+            KwmvJump(arg0, 1);
             /* fallthrough */
         case 0:
             break;
     }
 }
 
-UNUSED void kwbsplinemat1(void) {
+UNUSED void Kwbsplinemat1(void) {
 }
 
-UNUSED void kwbsplinemat2(void) {
+UNUSED void Kwbsplinemat2(void) {
 }
 
-UNUSED void kwbsplinematl2(void) {
+UNUSED void Kwbsplinematl2(void) {
 }
 
-UNUSED void kwbsplinematl1(void) {
+UNUSED void Kwbsplinematl1(void) {
 }
 
 // Evaluate the Bernstein polynomials for a B-spline at `arg1` (which is `t`)
-void kwbsplinematn(f32 arg0[], f32 arg1) {
+void Kwbsplinematn(f32 arg0[], f32 arg1) {
     arg0[0] = (f32) ((f64) ((f32) (1.0 - arg1) * (f32) (1.0 - arg1) * (f32) (1.0 - arg1)) / 6.0);
     arg0[1] = (f32) ((((f64) (arg1 * arg1 * arg1) * 0.5) - arg1 * arg1) + 0.6666666666666666);
     arg0[2] = (f32) (((f64) (arg1 * arg1 * arg1) * -0.5) + (0.5 * (arg1 * arg1)) + (0.5 * arg1) + 0.16666666666666666);
     arg0[3] = (f32) ((f64) (arg1 * arg1 * arg1) / 6.0);
 }
 
-UNUSED void kwbsplinevelmat1(void) {
+UNUSED void Kwbsplinevelmat1(void) {
 }
 
-UNUSED void kwbsplinevelmat2(void) {
+UNUSED void Kwbsplinevelmat2(void) {
 }
 
 // Evaluate the Bernstein polynomials for the derivative of a B-spline at `arg1` (which is `t`)
-void kwbsplinevelmatn(f32 arg0[], f32 arg1) {
+void Kwbsplinevelmatn(f32 arg0[], f32 arg1) {
     arg0[0] = (f32) (1.0 - arg1) * -0.5 * (f32) (1.0 - arg1);
     arg0[1] = arg1 * arg1 * 1.5 - 2.0 * arg1;
     arg0[2] = (arg1 * arg1 * 3.0 - 2.0 * arg1 - (f32) 1.0) * -0.5;
     arg0[3] = arg1 * arg1 * 0.5;
 }
 
-UNUSED void kwbsplinevelmatl2(void) {
+UNUSED void Kwbsplinevelmatl2(void) {
 }
 
-UNUSED void kwbsplinevelmatl1(void) {
+UNUSED void Kwbsplinevelmatl1(void) {
 }
 
 // D_80183DC8 is where the spline's derivative polynomial calculations are stored
-void kwset3Dsplinevel(s32 objectIndex) {
+void Kwset3Dsplinevel(s32 ObjectIndex) {
     AnmObject* object;
 
-    object = &g_DynamicObjects[objectIndex];
-    object->velocity[0] = (D_80183DC8[0] * D_80165760[0]) + (D_80183DC8[1] * D_80165760[1]) +
+    object = &DynamicObjects[ObjectIndex];
+    object->Velocity[0] = (D_80183DC8[0] * D_80165760[0]) + (D_80183DC8[1] * D_80165760[1]) +
                           (D_80183DC8[2] * D_80165760[2]) + (D_80183DC8[3] * D_80165760[3]);
-    object->velocity[1] = (D_80183DC8[0] * D_80165770[0]) + (D_80183DC8[1] * D_80165770[1]) +
+    object->Velocity[1] = (D_80183DC8[0] * D_80165770[0]) + (D_80183DC8[1] * D_80165770[1]) +
                           (D_80183DC8[2] * D_80165770[2]) + (D_80183DC8[3] * D_80165770[3]);
-    object->velocity[2] = (D_80183DC8[0] * D_80165780[0]) + (D_80183DC8[1] * D_80165780[1]) +
+    object->Velocity[2] = (D_80183DC8[0] * D_80165780[0]) + (D_80183DC8[1] * D_80165780[1]) +
                           (D_80183DC8[2] * D_80165780[2]) + (D_80183DC8[3] * D_80165780[3]);
 }
 
-void kw3Dsplinevel(s32 objectIndex, f32 arg1) {
-    kwbsplinevelmatn(D_80183DC8, arg1);
-    kwset3Dsplinevel(objectIndex);
+void KW3Dsplinevel(s32 ObjectIndex, f32 arg1) {
+    Kwbsplinevelmatn(D_80183DC8, arg1);
+    Kwset3Dsplinevel(ObjectIndex);
 }
 
-UNUSED void kw3Dsplinevel1(void) {
+UNUSED void KW3Dsplinevel1(void) {
 }
 
-UNUSED void kw3Dsplinevel2(void) {
+UNUSED void KW3Dsplinevel2(void) {
 }
 
-UNUSED void kw3Dsplinevell2(void) {
+UNUSED void KW3Dsplinevell2(void) {
 }
 
-UNUSED void kw3Dsplinevell1(void) {
+UNUSED void KW3Dsplinevell1(void) {
 }
 
 // D_80183DA8 is where the spline's polynomial calculations are stored
-void kwset3Dsplinezahyou(s32 objectIndex) {
+void Kwset3Dsplinezahyou(s32 ObjectIndex) {
     AnmObject* object;
 
-    object = &g_DynamicObjects[objectIndex];
-    object->pos_spline[0] = (D_80183DA8[0] * D_80165760[0]) + (D_80183DA8[1] * D_80165760[1]) +
+    object = &DynamicObjects[ObjectIndex];
+    object->PosSpline[0] = (D_80183DA8[0] * D_80165760[0]) + (D_80183DA8[1] * D_80165760[1]) +
                         (D_80183DA8[2] * D_80165760[2]) + (D_80183DA8[3] * D_80165760[3]);
-    object->pos_spline[1] = (D_80183DA8[0] * D_80165770[0]) + (D_80183DA8[1] * D_80165770[1]) +
+    object->PosSpline[1] = (D_80183DA8[0] * D_80165770[0]) + (D_80183DA8[1] * D_80165770[1]) +
                         (D_80183DA8[2] * D_80165770[2]) + (D_80183DA8[3] * D_80165770[3]);
-    object->pos_spline[2] = (D_80183DA8[0] * D_80165780[0]) + (D_80183DA8[1] * D_80165780[1]) +
+    object->PosSpline[2] = (D_80183DA8[0] * D_80165780[0]) + (D_80183DA8[1] * D_80165780[1]) +
                         (D_80183DA8[2] * D_80165780[2]) + (D_80183DA8[3] * D_80165780[3]);
 }
 
-void kw3Dsplinezahyou(s32 objectIndex, f32 arg1) {
-    kwbsplinematn(D_80183DA8, arg1);
-    kwset3Dsplinezahyou(objectIndex);
+void KW3Dsplinezahyou(s32 ObjectIndex, f32 arg1) {
+    Kwbsplinematn(D_80183DA8, arg1);
+    Kwset3Dsplinezahyou(ObjectIndex);
 }
 
-UNUSED void kw3Dsplinezahyou1(void) {
+UNUSED void KW3Dsplinezahyou1(void) {
 }
 
-UNUSED void kw3Dsplinezahyou2(void) {
+UNUSED void KW3Dsplinezahyou2(void) {
 }
 
-UNUSED void kw3Dsplinezahyoul2(void) {
+UNUSED void KW3Dsplinezahyoul2(void) {
 }
 
-UNUSED void kw3Dsplinezahyoul1(void) {
+UNUSED void KW3Dsplinezahyoul1(void) {
 }
 
-void kwmv_setsplinepoint(s32 objectIndex) {
+void KwmvSetsplinepoint(s32 ObjectIndex) {
     s32 someIndex;
     SplineControlPoint* test;
 
-    test = g_DynamicObjects[objectIndex].sptbaddr;
+    test = DynamicObjects[ObjectIndex].Sptbaddr;
     for (someIndex = 0; someIndex < 4; someIndex++) {
         D_80165760[someIndex] = test->pos[0];
         D_80165770[someIndex] = test->pos[1];
@@ -1686,16 +1686,16 @@ void kwmv_setsplinepoint(s32 objectIndex) {
     }
 }
 
-void kwmv_setsplinepoint_loop(s32 objectIndex) {
+void KwmvSetsplinepointLoop(s32 ObjectIndex) {
     s32 someIndex;
     s32 sp0;
     s32 temp_a1;
     s32 temp_a2;
     SplineControlPoint* test;
 
-    test = g_DynamicObjects[objectIndex].sptbaddr;
-    temp_a1 = g_DynamicObjects[objectIndex].stack[9];
-    temp_a2 = (u16) g_DynamicObjects[objectIndex].stack[8];
+    test = DynamicObjects[ObjectIndex].Sptbaddr;
+    temp_a1 = DynamicObjects[ObjectIndex].Stack[9];
+    temp_a2 = (u16) DynamicObjects[ObjectIndex].Stack[8];
     if ((temp_a2 - 4) >= temp_a1) {
         sp0 = 10000;
     } else if ((temp_a1 + 3) == temp_a2) {
@@ -1710,223 +1710,223 @@ void kwmv_setsplinepoint_loop(s32 objectIndex) {
         D_80165770[someIndex] = test->pos[1];
         D_80165780[someIndex] = test->pos[2];
         if (sp0 == someIndex) {
-            // Reset back to start of the spline path
-            test = g_DynamicObjects[objectIndex].sptbtopaddr->controlPoints;
+            // Reset back to Start of the spline path
+            test = DynamicObjects[ObjectIndex].Sptbtopaddr->ControlPoints;
         } else {
             test++;
         }
     }
 }
 
-void kwmv_spline3D_init(s32 objectIndex) {
+void KwmvSpline3DInit(s32 ObjectIndex) {
     AnmObject* object;
     UNUSED SplineData* spline;
 
-    if (kwanm_bitoffcheckflag(objectIndex, 8) != 0) {
-        object = &g_DynamicObjects[objectIndex];
-        object->stack[9] = 0;
-        object->spstep = 0;
-        object->sptbaddr = object->sptbtopaddr->controlPoints;
+    if (KwanmBitoffcheckflag(ObjectIndex, 8) != 0) {
+        object = &DynamicObjects[ObjectIndex];
+        object->Stack[9] = 0;
+        object->Spstep = 0;
+        object->Sptbaddr = object->Sptbtopaddr->ControlPoints;
         /*
         This is INCREDIBLY stupid. This should really be
-        temp_v0->stack[8] = temp_v0->sptbtopaddr->numControlPoints;
+        temp_v0->Stack[8] = temp_v0->Sptbtopaddr->NumControlPoints;
         but for some unholy reason that doesn't match
         */
-        object->stack[8] = *(((s16*) object->sptbaddr) - 1);
+        object->Stack[8] = *(((s16*) object->Sptbaddr) - 1);
 
-        kwanm_setflag(objectIndex, 8);
+        KwanmSetflag(ObjectIndex, 8);
     }
 }
 
-void kwmv_nextsplinepoint(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].spstep = 0;
-    g_DynamicObjects[objectIndex].sptbaddr++;
+void KwmvNextsplinepoint(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].Spstep = 0;
+    DynamicObjects[ObjectIndex].Sptbaddr++;
 }
 
-void kwmv_spline3D_common(s32 objectIndex, s32 arg1) {
+void KwmvSpline3DCommon(s32 ObjectIndex, s32 arg1) {
     f32 sp34;
     f32 temp;
     UNUSED f32 temp2;
     f32 var_f6;
 
-    kwmv_spline3D_init(objectIndex);
+    KwmvSpline3DInit(ObjectIndex);
     if (arg1 != 0) {
-        kwmv_setsplinepoint_loop(objectIndex);
+        KwmvSetsplinepointLoop(ObjectIndex);
     } else {
-        kwmv_setsplinepoint(objectIndex);
+        KwmvSetsplinepoint(ObjectIndex);
     }
 
     // I think the game treats each spline as being having a lenght of 10000
     // This is getting the percent along the spline we want to reach,
-    // which is then treated as the `t` value given to the curve calculations
-    sp34 = ((f32) g_DynamicObjects[objectIndex].spstep / 10000.0);
-    // Calculate the curve at `t`
-    kw3Dsplinezahyou(objectIndex, sp34);
-    if (kwanm_bitcheckflag(objectIndex, 0x800) != 0) {
-        // Calculate the curve's derivative at `t`
-        kw3Dsplinevel(objectIndex, sp34);
+    // which is then treated as the `t` Value given to the Curve calculations
+    sp34 = ((f32) DynamicObjects[ObjectIndex].Spstep / 10000.0);
+    // Calculate the Curve at `t`
+    KW3Dsplinezahyou(ObjectIndex, sp34);
+    if (KwanmBitcheckflag(ObjectIndex, 0x800) != 0) {
+        // Calculate the Curve's derivative at `t`
+        KW3Dsplinevel(ObjectIndex, sp34);
     }
 
-    // These values somehow control how fast we travel along the curve
-    var_f6 = g_DynamicObjects[objectIndex].sptbaddr[0].velocity;
-    temp = g_DynamicObjects[objectIndex].sptbaddr[1].velocity;
+    // These values somehow control how fast we travel along the Curve
+    var_f6 = DynamicObjects[ObjectIndex].Sptbaddr[0].Velocity;
+    temp = DynamicObjects[ObjectIndex].Sptbaddr[1].Velocity;
 
-    g_DynamicObjects[objectIndex].spstepadd = 10000.0 / (((temp - var_f6) * sp34) + var_f6);
-    g_DynamicObjects[objectIndex].spstep += g_DynamicObjects[objectIndex].spstepadd;
+    DynamicObjects[ObjectIndex].Spstepadd = 10000.0 / (((temp - var_f6) * sp34) + var_f6);
+    DynamicObjects[ObjectIndex].Spstep += DynamicObjects[ObjectIndex].Spstepadd;
 }
 
-void kwmv_spline3D(s32 objectIndex) {
+void KwmvSpline3D(s32 ObjectIndex) {
     UNUSED s16 temp_t0;
     AnmObject* object;
 
-    kwmv_spline3D_common(objectIndex, 0);
-    object = &g_DynamicObjects[objectIndex];
-    if (object->spstep >= 0x2710) {
+    KwmvSpline3DCommon(ObjectIndex, 0);
+    object = &DynamicObjects[ObjectIndex];
+    if (object->Spstep >= 0x2710) {
         // Have to do it this way due to the u16 cast
-        object->stack[9] = (u16) object->stack[9] + 1;
-        if (((u16) object->stack[9] + 3) == (u16) object->stack[8]) {
-            object->mvptr += 1;
+        object->Stack[9] = (u16) object->Stack[9] + 1;
+        if (((u16) object->Stack[9] + 3) == (u16) object->Stack[8]) {
+            object->Mvptr += 1;
         } else {
-            kwmv_nextsplinepoint(objectIndex);
+            KwmvNextsplinepoint(ObjectIndex);
         }
     }
 }
 
-void kwmv_spline3D_loop(s32 objectIndex) {
+void KwmvSpline3DLoop(s32 ObjectIndex) {
     AnmObject* object;
 
-    kwmv_spline3D_common(objectIndex, 1);
-    object = &g_DynamicObjects[objectIndex];
-    if (object->spstep >= 0x2710) {
+    KwmvSpline3DCommon(ObjectIndex, 1);
+    object = &DynamicObjects[ObjectIndex];
+    if (object->Spstep >= 0x2710) {
         // Have to do it this way due to the u16 cast
-        object->stack[9] = (u16) object->stack[9] + 1;
-        if ((u16) object->stack[9] == (u16) object->stack[8]) {
-            kwanm_clrflag(objectIndex, 8);
+        object->Stack[9] = (u16) object->Stack[9] + 1;
+        if ((u16) object->Stack[9] == (u16) object->Stack[8]) {
+            KwanmClrflag(ObjectIndex, 8);
         } else {
-            kwmv_nextsplinepoint(objectIndex);
+            KwmvNextsplinepoint(ObjectIndex);
         }
     }
 }
 
-void kwsp_strategy3D(s32 objectIndex) {
-    switch (g_DynamicObjects[objectIndex].mvptr) {
+void KwspStrategy3D(s32 ObjectIndex) {
+    switch (DynamicObjects[ObjectIndex].Mvptr) {
         case 0:
             break;
         case 1:
-            kwmv_spline3D(objectIndex);
+            KwmvSpline3D(ObjectIndex);
             break;
         case 2:
-            kwmv_finish(objectIndex);
+            KwmvFinish(ObjectIndex);
             break;
     }
 }
 
-void kwsp_strategy3D_loop(s32 objectIndex) {
-    switch (g_DynamicObjects[objectIndex].mvptr) {
+void KwspStrategy3DLoop(s32 ObjectIndex) {
+    switch (DynamicObjects[ObjectIndex].Mvptr) {
         case 0:
             break;
         case 1:
-            kwmv_spline3D_loop(objectIndex);
+            KwmvSpline3DLoop(ObjectIndex);
             break;
     }
 }
 
-void kwset_init3D_spos(s32 objectIndex, f32 arg1, f32 arg2, f32 arg3) {
-    g_DynamicObjects[objectIndex].pos_start[0] = arg1;
-    g_DynamicObjects[objectIndex].pos_start[1] = arg2;
-    g_DynamicObjects[objectIndex].pos_start[2] = arg3;
+void KwsetInit3DSpos(s32 ObjectIndex, f32 arg1, f32 Arg2, f32 Arg3) {
+    DynamicObjects[ObjectIndex].PosStart[0] = arg1;
+    DynamicObjects[ObjectIndex].PosStart[1] = Arg2;
+    DynamicObjects[ObjectIndex].PosStart[2] = Arg3;
 }
 
-void kwset_init3D_sppos(s32 objectIndex, f32 arg1, f32 arg2, f32 arg3) {
-    g_DynamicObjects[objectIndex].pos_spline[0] = arg1;
-    g_DynamicObjects[objectIndex].pos_spline[1] = arg2;
-    g_DynamicObjects[objectIndex].pos_spline[2] = arg3;
+void KwsetInit3DSppos(s32 ObjectIndex, f32 arg1, f32 Arg2, f32 Arg3) {
+    DynamicObjects[ObjectIndex].PosSpline[0] = arg1;
+    DynamicObjects[ObjectIndex].PosSpline[1] = Arg2;
+    DynamicObjects[ObjectIndex].PosSpline[2] = Arg3;
 }
 
-void kwset_init3D_pos(s32 objectIndex) {
-    f32 temp_f0 = g_DynamicObjects[objectIndex].pos_start[0];
+void KwsetInit3DPos(s32 ObjectIndex) {
+    f32 temp_f0 = DynamicObjects[ObjectIndex].PosStart[0];
 
-    g_DynamicObjects[objectIndex].pos[0] = g_DynamicObjects[objectIndex].pos_spline[0] + temp_f0;
-    g_DynamicObjects[objectIndex].pos[1] = g_DynamicObjects[objectIndex].pos_spline[1] + temp_f0;
-    g_DynamicObjects[objectIndex].pos[2] = g_DynamicObjects[objectIndex].pos_spline[2] + temp_f0;
+    DynamicObjects[ObjectIndex].pos[0] = DynamicObjects[ObjectIndex].PosSpline[0] + temp_f0;
+    DynamicObjects[ObjectIndex].pos[1] = DynamicObjects[ObjectIndex].PosSpline[1] + temp_f0;
+    DynamicObjects[ObjectIndex].pos[2] = DynamicObjects[ObjectIndex].PosSpline[2] + temp_f0;
 }
 
-void kwset_init3D_ang(s32 objectIndex, u16 arg1, u16 arg2, u16 arg3) {
-    g_DynamicObjects[objectIndex].ang[0] = arg1;
-    g_DynamicObjects[objectIndex].ang[1] = arg2;
-    g_DynamicObjects[objectIndex].ang[2] = arg3;
+void KwsetInit3DAng(s32 ObjectIndex, u16 arg1, u16 Arg2, u16 Arg3) {
+    DynamicObjects[ObjectIndex].ang[0] = arg1;
+    DynamicObjects[ObjectIndex].ang[1] = Arg2;
+    DynamicObjects[ObjectIndex].ang[2] = Arg3;
 }
 
-void kwset_init3D_texang(s32 objectIndex, u16 arg1, u16 arg2, u16 arg3) {
-    g_DynamicObjects[objectIndex].texang[0] = arg1;
-    g_DynamicObjects[objectIndex].texang[1] = arg2;
-    g_DynamicObjects[objectIndex].texang[2] = arg3;
+void KwsetInit3DTexang(s32 ObjectIndex, u16 arg1, u16 Arg2, u16 Arg3) {
+    DynamicObjects[ObjectIndex].Texang[0] = arg1;
+    DynamicObjects[ObjectIndex].Texang[1] = Arg2;
+    DynamicObjects[ObjectIndex].Texang[2] = Arg3;
 }
 
-void kwset_init3D_vel(s32 objectIndex, f32 arg1, f32 arg2, f32 arg3) {
-    g_DynamicObjects[objectIndex].velocity[0] = arg1;
-    g_DynamicObjects[objectIndex].velocity[1] = arg2;
-    g_DynamicObjects[objectIndex].velocity[2] = arg3;
+void KwsetInit3DVel(s32 ObjectIndex, f32 arg1, f32 Arg2, f32 Arg3) {
+    DynamicObjects[ObjectIndex].Velocity[0] = arg1;
+    DynamicObjects[ObjectIndex].Velocity[1] = Arg2;
+    DynamicObjects[ObjectIndex].Velocity[2] = Arg3;
 }
 
-void kwset_init3D_posang(s32 objectIndex, s16 arg1, s16 arg2, s16 arg3, SplineData* spline) {
+void KwsetInit3DPosang(s32 ObjectIndex, s16 arg1, s16 Arg2, s16 Arg3, SplineData* spline) {
     AnmObject* object;
 
-    object = &g_DynamicObjects[objectIndex];
-    object->pos_start[0] = (f32) arg1;
-    object->pos_start[1] = (f32) arg2;
-    object->sptbtopaddr = spline;
-    object->pos_start[2] = (f32) arg3;
-    object->velocity[0] = (f32) (spline->controlPoints[1].pos[0] - spline->controlPoints[0].pos[0]);
-    object->velocity[1] = (f32) (spline->controlPoints[1].pos[1] - spline->controlPoints[0].pos[1]);
-    object->velocity[2] = (f32) (spline->controlPoints[1].pos[2] - spline->controlPoints[0].pos[2]);
-    object->ang[1] = kwmv_velxztoangy(objectIndex);
-    object->velocity[2] = kwrotate2D_x(object->velocity[2], object->velocity[0], -object->ang[1]);
-    object->ang[0] = kwmv_velyztoangx(objectIndex);
+    object = &DynamicObjects[ObjectIndex];
+    object->PosStart[0] = (f32) arg1;
+    object->PosStart[1] = (f32) Arg2;
+    object->Sptbtopaddr = spline;
+    object->PosStart[2] = (f32) Arg3;
+    object->Velocity[0] = (f32) (spline->ControlPoints[1].pos[0] - spline->ControlPoints[0].pos[0]);
+    object->Velocity[1] = (f32) (spline->ControlPoints[1].pos[1] - spline->ControlPoints[0].pos[1]);
+    object->Velocity[2] = (f32) (spline->ControlPoints[1].pos[2] - spline->ControlPoints[0].pos[2]);
+    object->ang[1] = KwmvVelxztoangy(ObjectIndex);
+    object->Velocity[2] = Kwrotate2DX(object->Velocity[2], object->Velocity[0], -object->ang[1]);
+    object->ang[0] = KwmvVelyztoangx(ObjectIndex);
 }
 
-UNUSED void kwset_randomx(s32 objectIndex, s16 x, u16 arg2) {
+UNUSED void KwsetRandomx(s32 ObjectIndex, s16 x, u16 Arg2) {
     s16 offset_x;
 
-    offset_x = MakeRandomLimmit(arg2) - (arg2 / 2);
-    g_DynamicObjects[objectIndex].pos_start[0] = x + offset_x;
+    offset_x = MakeRandomLimmit(Arg2) - (Arg2 / 2);
+    DynamicObjects[ObjectIndex].PosStart[0] = x + offset_x;
 }
 
-void kwset_randomy(s32 objectIndex, s16 y, u16 arg2) {
+void KwsetRandomy(s32 ObjectIndex, s16 y, u16 Arg2) {
     s16 offset_y;
 
-    offset_y = MakeRandomLimmit(arg2) - (arg2 / 2);
-    g_DynamicObjects[objectIndex].pos_start[1] = y + offset_y;
+    offset_y = MakeRandomLimmit(Arg2) - (Arg2 / 2);
+    DynamicObjects[ObjectIndex].PosStart[1] = y + offset_y;
 }
 
-UNUSED void kwset_randomz(s32 objectIndex, s16 z, u16 arg2) {
+UNUSED void KwsetRandomz(s32 ObjectIndex, s16 z, u16 Arg2) {
     s16 offset_z;
 
-    offset_z = MakeRandomLimmit(arg2) - (arg2 / 2);
-    g_DynamicObjects[objectIndex].pos_start[2] = z + offset_z;
+    offset_z = MakeRandomLimmit(Arg2) - (Arg2 / 2);
+    DynamicObjects[ObjectIndex].PosStart[2] = z + offset_z;
 }
 
-UNUSED void kwset_randomxy(s32 objectIndex, s16 x, s16 y, u16 arg3, u16 arg4) {
+UNUSED void KwsetRandomxy(s32 ObjectIndex, s16 x, s16 y, u16 Arg3, u16 arg4) {
     s16 offset_x;
     s16 offset_y;
 
-    offset_x = MakeRandomLimmit(arg3) - ((s32) arg3 / 2);
+    offset_x = MakeRandomLimmit(Arg3) - ((s32) Arg3 / 2);
     offset_y = MakeRandomLimmit(arg4) - ((s32) arg4 / 2);
-    g_DynamicObjects[objectIndex].pos_start[0] = x + offset_x;
-    g_DynamicObjects[objectIndex].pos_start[1] = y + offset_y;
+    DynamicObjects[ObjectIndex].PosStart[0] = x + offset_x;
+    DynamicObjects[ObjectIndex].PosStart[1] = y + offset_y;
 }
 
-UNUSED void kwset_randomxz(s32 objectIndex, s16 x, s16 z, u16 arg3, u16 arg4) {
+UNUSED void KwsetRandomxz(s32 ObjectIndex, s16 x, s16 z, u16 Arg3, u16 arg4) {
     s16 offset_x;
     s16 offset_z;
 
-    offset_x = MakeRandomLimmit(arg3) - ((s32) arg3 / 2);
+    offset_x = MakeRandomLimmit(Arg3) - ((s32) Arg3 / 2);
     offset_z = MakeRandomLimmit(arg4) - ((s32) arg4 / 2);
-    g_DynamicObjects[objectIndex].pos_start[0] = x + offset_x;
-    g_DynamicObjects[objectIndex].pos_start[2] = z + offset_z;
+    DynamicObjects[ObjectIndex].PosStart[0] = x + offset_x;
+    DynamicObjects[ObjectIndex].PosStart[2] = z + offset_z;
 }
 
-void kwset_randomxyz(s32 objectIndex, s16 x, s16 y, s16 z, u16 arg4, u16 arg5, u16 arg6) {
+void KwsetRandomxyz(s32 ObjectIndex, s16 x, s16 y, s16 z, u16 arg4, u16 arg5, u16 arg6) {
     s16 offset_x;
     s16 offset_y;
     s16 offset_z;
@@ -1934,35 +1934,35 @@ void kwset_randomxyz(s32 objectIndex, s16 x, s16 y, s16 z, u16 arg4, u16 arg5, u
     offset_x = MakeRandomLimmit(arg4) - ((s32) arg4 / 2);
     offset_y = MakeRandomLimmit(arg5) - ((s32) arg5 / 2);
     offset_z = MakeRandomLimmit(arg6) - ((s32) arg6 / 2);
-    g_DynamicObjects[objectIndex].pos_start[0] = x + offset_x;
-    g_DynamicObjects[objectIndex].pos_start[1] = y + offset_y;
-    g_DynamicObjects[objectIndex].pos_start[2] = z + offset_z;
+    DynamicObjects[ObjectIndex].PosStart[0] = x + offset_x;
+    DynamicObjects[ObjectIndex].PosStart[1] = y + offset_y;
+    DynamicObjects[ObjectIndex].PosStart[2] = z + offset_z;
 }
 
-void kwset_relplayer_xz(s32 objectIndex, s16 dist, u16 angle) {
-    g_DynamicObjects[objectIndex].pos_start[0] = gPlayerOneCopy->position[0] + (sinT(angle) * dist);
-    g_DynamicObjects[objectIndex].pos_start[2] = gPlayerOneCopy->position[2] + (cosT(angle) * dist);
+void KwsetRelplayerXz(s32 ObjectIndex, s16 dist, u16 Angle) {
+    DynamicObjects[ObjectIndex].PosStart[0] = PlayerOneCopy->Position[0] + (SinT(Angle) * dist);
+    DynamicObjects[ObjectIndex].PosStart[2] = PlayerOneCopy->Position[2] + (CosT(Angle) * dist);
 }
 
-UNUSED void kwset_relplayer_randomxz(s32 objectIndex, u16 arg1, u16 arg2) {
+UNUSED void KwsetRelplayerRandomxz(s32 ObjectIndex, u16 arg1, u16 Arg2) {
     u16 thing;
     u16 thing2;
 
     thing = MakeRandomLimmit(arg1);
-    thing2 = camera1->camera_direction[1] + MakeRandomLimmit(arg2) - ((s32) arg2 / 2);
-    kwset_relplayer_xz(objectIndex, thing, thing2);
+    thing2 = Camera1->CameraDirection[1] + MakeRandomLimmit(Arg2) - ((s32) Arg2 / 2);
+    KwsetRelplayerXz(ObjectIndex, thing, thing2);
 }
 
-void kwset_splinepos3D(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].pos[0] = g_DynamicObjects[objectIndex].pos_start[0] + g_DynamicObjects[objectIndex].pos_spline[0];
-    g_DynamicObjects[objectIndex].pos[1] = g_DynamicObjects[objectIndex].pos_start[1] + g_DynamicObjects[objectIndex].pos_spline[1];
-    g_DynamicObjects[objectIndex].pos[2] = g_DynamicObjects[objectIndex].pos_start[2] + g_DynamicObjects[objectIndex].pos_spline[2];
+void KwsetSplinepos3D(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].pos[0] = DynamicObjects[ObjectIndex].PosStart[0] + DynamicObjects[ObjectIndex].PosSpline[0];
+    DynamicObjects[ObjectIndex].pos[1] = DynamicObjects[ObjectIndex].PosStart[1] + DynamicObjects[ObjectIndex].PosSpline[1];
+    DynamicObjects[ObjectIndex].pos[2] = DynamicObjects[ObjectIndex].PosStart[2] + DynamicObjects[ObjectIndex].PosSpline[2];
 }
 
-void kwset_posang3D(s32 objectIndex) {
+void KwsetPosang3D(s32 ObjectIndex) {
     AnmObject* object;
 
-    object = &g_DynamicObjects[objectIndex];
+    object = &DynamicObjects[ObjectIndex];
     D_80183E40[0] = object->pos[0];
     D_80183E40[1] = object->pos[1];
     D_80183E40[2] = object->pos[2];
@@ -1971,81 +1971,81 @@ void kwset_posang3D(s32 objectIndex) {
     D_80183E80[2] = object->ang[2];
 }
 
-void kwset_pos3Dto2D(s32 objectIndex) {
-    g_DynamicObjects[objectIndex].ix = g_DynamicObjects[objectIndex].pos[0];
-    g_DynamicObjects[objectIndex].iy = g_DynamicObjects[objectIndex].pos[1];
+void KwsetPos3Dto2D(s32 ObjectIndex) {
+    DynamicObjects[ObjectIndex].ix = DynamicObjects[ObjectIndex].pos[0];
+    DynamicObjects[ObjectIndex].iy = DynamicObjects[ObjectIndex].pos[1];
 }
 
-void kwjugemu_strategy3D(s32 objectIndex) {
+void KwjugemuStrategy3D(s32 ObjectIndex) {
     AnmObject* object;
 
-    object = &g_DynamicObjects[objectIndex];
-    switch (object->mappoint) {
+    object = &DynamicObjects[ObjectIndex];
+    switch (object->Mappoint) {
         case 1:
-            if (object->mvptr == 1) {
-                kwmv_spline3D(objectIndex);
+            if (object->Mvptr == 1) {
+                KwmvSpline3D(ObjectIndex);
             }
             break;
         case 2:
-            switch (object->mvptr) {
+            switch (object->Mvptr) {
                 case 0:
                     break;
                 case 1:
-                    kwmv_spline3D_loop(objectIndex);
+                    KwmvSpline3DLoop(ObjectIndex);
                     break;
             }
             break;
         case 3:
-            switch (object->mvptr) {
+            switch (object->Mvptr) {
                 case 0:
                     break;
                 case 1:
-                    kwmv_spline3D(objectIndex);
+                    KwmvSpline3D(ObjectIndex);
                     break;
             }
             break;
         case 4:
-            switch (object->mvptr) { /* switch 1; irregular */
+            switch (object->Mvptr) { /* switch 1; irregular */
                 case 0:                /* switch 1 */
                     break;
                 case 1: /* switch 1 */
-                    kwmv_spline3D(objectIndex);
+                    KwmvSpline3D(ObjectIndex);
                     break;
                 case 2: /* switch 1 */
-                    kwmv_finish(objectIndex);
+                    KwmvFinish(ObjectIndex);
                     break;
             }
             break;
         case 5:
-            switch (object->mvptr) { /* switch 2; irregular */
+            switch (object->Mvptr) { /* switch 2; irregular */
                 case 0:                /* switch 2 */
                     break;
                 case 1: /* switch 2 */
-                    kwmv_spline3D(objectIndex);
+                    KwmvSpline3D(ObjectIndex);
                     break;
                 case 2: /* switch 2 */
-                    kwmv_finish(objectIndex);
+                    KwmvFinish(ObjectIndex);
                     break;
             }
             break;
         case 6:
-            switch (object->mvptr) {
+            switch (object->Mvptr) {
                 case 0:
                     break;
                 case 1:
-                    kwmv_spline3D(objectIndex);
+                    KwmvSpline3D(ObjectIndex);
                     break;
             }
             break;
         case 7:
-            switch (object->mvptr) { /* switch 3; irregular */
+            switch (object->Mvptr) { /* switch 3; irregular */
                 case 0:                /* switch 3 */
                     break;
                 case 1: /* switch 3 */
-                    kwmv_chase3D_init(objectIndex);
+                    KwmvChase3DInit(ObjectIndex);
                     break;
                 case 2: /* switch 3 */
-                    kwmv_chase3D(objectIndex);
+                    KwmvChase3D(ObjectIndex);
                     break;
             }
             break;
@@ -2055,8 +2055,8 @@ void kwjugemu_strategy3D(s32 objectIndex) {
     }
 }
 
-UNUSED void kwmawaru_tellesa(UNUSED s32 arg0) {
+UNUSED void KwmawaruTellesa(UNUSED s32 arg0) {
 }
 
-UNUSED void kwmv_tellesa_oufuku(UNUSED s32 arg0) {
+UNUSED void KwmvTellesaOufuku(UNUSED s32 arg0) {
 }

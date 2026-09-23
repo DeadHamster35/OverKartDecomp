@@ -7,91 +7,91 @@ enum CeremonyActorType { Initial, Balloon, FireworkCone, FireworkBurst };
 
 // unk
 typedef struct {
-    /* 0x00 */ s32 mode; // Library short+pad; keep s32
-    /* 0x04 */ s32 timer;
-    /* 0x08 */ s32 total_timer;
-    /* 0x0C */ s32 timeend;
+    /* 0x00 */ s32 Mode; // Library short+pad; keep s32
+    /* 0x04 */ s32 Timer;
+    /* 0x08 */ s32 TotalTimer;
+    /* 0x0C */ s32 Timeend;
     /* 0x10 */ s32 pos[3];
-    /* 0x1C */ s8 carmove;
-    /* 0x1D */ s8 rank;
-    /* 0x1E */ s8 kart; // g_CharacterSelections
+    /* 0x1C */ s8 Carmove;
+    /* 0x1D */ s8 Rank;
+    /* 0x1E */ s8 Kart; // CharacterSelections
 } GpResult;
 typedef GpResult struct_D_802874D8;
 
 typedef struct {
-    s16 type;
-    Vec3s unk2;
-    s8 unk8;
-    s8 unk9;
-    s8 unkA;
-    s8 unkB;
+    s16 Type;
+    Vec3s Unk2;
+    s8 Unk8;
+    s8 Unk9;
+    s8 UnkA;
+    s8 UnkB;
 } ActorInitParams;
 
 // A generic actor, usually a balloon.
 typedef struct {
-    /* 0x00 */ s32 isActive;
-    /* 0x04 */ s16 type;
+    /* 0x00 */ s32 IsActive;
+    /* 0x04 */ s16 Type;
     /* 0x06 */ s16 unk6;
-    /* 0x08 */ s8 unk8;
-    /* 0x09 */ s8 unk9;
-    /* 0x0A */ s16 unkA;
-    /* 0x0C */ s16 unkC;
-    /* 0x0E */ s16 unkE;
+    /* 0x08 */ s8 Unk8;
+    /* 0x09 */ s8 Unk9;
+    /* 0x0A */ s16 UnkA;
+    /* 0x0C */ s16 UnkC;
+    /* 0x0E */ s16 UnkE;
     /* 0x10 */ Vec3f pos;
     /* 0x1C */ f32 unk1C;
     /* 0x20 */ f32 unk20;
     /* 0x24 */ f32 unk24;
-    /* 0x28 */ ActorInitParams* initParams;
+    /* 0x28 */ ActorInitParams* InitParams;
     /* 0x2C */ s16 unk2C;
     /* 0x2E */ s16 unk2E;
     /* 0x30 */ s16 unk30;
-    /* 0x32 */ s16 unk32;
+    /* 0x32 */ s16 Unk32;
     /* 0x34 */ s16 unk34;
-    /* 0x36 */ s16 unk36;
+    /* 0x36 */ s16 Unk36;
     /* 0x38 */ f32 unk38;
-    /* 0x3C */ s32 timer; // Used to delete the actor after some time.
-    /* 0x40 */ s32 unk40;
-    /* 0x44 */ s32 unk44;
+    /* 0x3C */ s32 Timer; // Used to delete the actor after some Time.
+    /* 0x40 */ s32 Unk40;
+    /* 0x44 */ s32 Unk44;
     /* 0x48 */ s32 unk48;
 } CeremonyActor;
 
 typedef struct {
-    /* 0x00 */ s32 isActive;
-    /* 0x04 */ s16 type;
+    /* 0x00 */ s32 IsActive;
+    /* 0x04 */ s16 Type;
     /* 0x06 */ s16 unk6;
-    /* 0x08 */ s8 unk8;
-    /* 0x09 */ s8 unk9;
-    /* 0x0A */ s16 unkA;
-    /* 0x0C */ s16 unkC;
-    /* 0x0E */ s16 unkE;
+    /* 0x08 */ s8 Unk8;
+    /* 0x09 */ s8 Unk9;
+    /* 0x0A */ s16 UnkA;
+    /* 0x0C */ s16 UnkC;
+    /* 0x0E */ s16 UnkE;
     /* 0x10 */ Vec3f pos;
     /* 0x1C */ f32 unk1C;
     /* 0x20 */ f32 unk20;
     /* 0x24 */ f32 unk24;
-    /* 0x28 */ ActorInitParams* initParams;
+    /* 0x28 */ ActorInitParams* InitParams;
     /* 0x2C */ s32 unk2C;
     /* 0x30 */ s32 unk30; // s32 instead of s16
     /* 0x34 */ f32 unk34; // f32 instead of s16
     /* 0x38 */ f32 unk38;
     /* 0x3C */ s32 unk3C;
-    /* 0x40 */ s32 unk40;
-    /* 0x44 */ s32 unk44;
+    /* 0x40 */ s32 Unk40;
+    /* 0x44 */ s32 Unk44;
     /* 0x48 */ s32 unk48;
 } Firework;
 
-void update_actors_loop(void);
+void UpdateActorsLoop(void);
 void func_80280650(void);
-void set_initial_position(CeremonyActor*);
-CeremonyActor* find_available_entry(void);
-CeremonyActor* new_actor(ActorInitParams*);
-u16 random_u16_credits(void);
-f32 random_float_between_0_and_1(void);
-f32 random_who_knows(f32);
+void SetInitialPosition(CeremonyActor*);
+CeremonyActor* FindAvailableEntry(void);
+CeremonyActor* NewActor(ActorInitParams*);
+u16 RandomU16Credits(void);
+f32 RandomFloatBetween0And1(void);
+f32 RandomWhoKnows(f32);
 void func_80280884(void);
-void firework_cone_update_and_spawn_burst(Firework*);
+void FireworkConeUpdateAndSpawnBurst(Firework*);
 void func_80280A28(Vec3f, Vec3s, f32);
-void render_fireworks(Vec3f, f32, s32, s16);
-void balloons_and_fireworks_init(void);
+void RenderFireworks(Vec3f, f32, s32, s16);
+void BalloonsAndFireworksInit(void);
 void func_80280FFC(void);
 void func_8028100C(s32, s32, s32);
 void func_8028150C(void);
@@ -102,14 +102,14 @@ void func_80281538(void);
 void func_80281540(void);
 void ResultsSequence(void);
 
-extern GpResult resultstat;
-extern CeremonyActor* sPodiumActorList;
+extern GpResult Resultstat;
+extern CeremonyActor* SPodiumActorList;
 extern s32 D_802874FC;
 
-extern ActorInitParams initBalloon;
-extern ActorInitParams initCone;
+extern ActorInitParams InitBalloon;
+extern ActorInitParams InitCone;
 extern ActorInitParams initInitUnk;
-extern ActorInitParams initBurst;
+extern ActorInitParams InitBurst;
 
 extern Gfx* D_802874D4;
 extern s32 D_802874FC;

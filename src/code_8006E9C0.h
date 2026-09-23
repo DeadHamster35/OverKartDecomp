@@ -4,35 +4,35 @@
 #include <common_structs.h>
 #include "update_objects.h"
 
-void initialize_params(void);
-void kwclear_ram(void);
-void kwfreeallocptr(void);
-void kwfreelist(void);
-u8* kwdma_melt(u8*, u8*, u32, u32);
-void kwmelt_titlelogo(void);
-void kwinit_itembox(s32);
-void kwmelt_roadmap(s32);
-void kwmelt_kawanoroadmap(void);
-void kwmelt_common(void);
-void kwbackup_gamestatus(s32);
-void kwscreen_init(void);
-void initialize_params_common(void);
-void initialize_params_common_after(void);
-void kwalloc_objram(void);
-void kwinit_kumo(s32, s32, CloudData*);
-void kwset_kumoram(CloudData*);
-void kwinit_star(s32, s32, StarData*);
-void kwset_starram(StarData*);
-void KWKumo_Alloc(void);
-void kwinit_fuusen(void);
-void kwalloc_effectram_1p(void);
-void initialize_params_1p(void);
-void initialize_params_2plr(void);
-void initialize_params_4p(void);
-void initialize_params_2pud(void);
+void InitializeParams(void);
+void KwclearRAM(void);
+void Kwfreeallocptr(void);
+void Kwfreelist(void);
+u8* KwdmaMelt(u8*, u8*, u32, u32);
+void KwmeltTitlelogo(void);
+void KwinitItembox(s32);
+void KwmeltRoadmap(s32);
+void KwmeltKawanoroadmap(void);
+void KwmeltCommon(void);
+void KwbackupGamestatus(s32);
+void KwscreenInit(void);
+void InitializeParamsCommon(void);
+void InitializeParamsCommonAfter(void);
+void KwallocObjram(void);
+void KwinitKumo(s32, s32, CloudData*);
+void KwsetKumoram(CloudData*);
+void KwinitStar(s32, s32, StarData*);
+void KwsetStarram(StarData*);
+void KWKumoAlloc(void);
+void KwinitFuusen(void);
+void KwallocEffectram1P(void);
+void InitializeParams1P(void);
+void InitializeParams2Plr(void);
+void InitializeParams4P(void);
+void InitializeParams2Pud(void);
 
 extern s16 D_800E5520[];
 extern s16 D_800E5548[];
-extern u8* gCourseOutlineTextures[0x14]; // 800e54d0
+extern u8* CourseOutlineTextures[0x14]; // 800e54d0
 
 #endif

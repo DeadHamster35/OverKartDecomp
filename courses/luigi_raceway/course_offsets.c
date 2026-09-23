@@ -43,7 +43,7 @@ extern u8 gTextureSignNintendoRed1[];
 extern u8 gTextureSignYoshi[];
 extern u8 gTextureCheckerboardBlueGray[];
 
-const course_texture luigi_raceway_textures[] = {
+const CourseTexture luigi_raceway_textures[] = {
     { gTextureSignShellShot0, 0x038C, 0x1000, 0x0 },
     { gTextureSignShellShot1, 0x0247, 0x1000, 0x0 },
     { gTextureCheckerboardYellowBlue, 0x013A, 0x0800, 0x0 },

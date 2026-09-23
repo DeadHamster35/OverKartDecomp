@@ -2925,7 +2925,7 @@ u8 d_course_choco_mountain_rock_texture[] = {
 #include "assets/courses/choco_mountain/gTextureChocoMountainRock.inc.c"
 };
 
-// Falling rocks model.
+// Falling rocks Model.
 Vtx d_course_choco_mountain_falling_rock_model[] = {
     { { { -6, -8, 6 }, 0, { 0, 990 }, { 0xE4, 0xE5, 0x70, 0x00 } } },
     { { { 4, -2, 10 }, 0, { -1346, 990 }, { 0xE4, 0xE5, 0x70, 0x00 } } },

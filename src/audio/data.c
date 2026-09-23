@@ -5,7 +5,7 @@
 #include "data.h"
 #include "effects.h"
 
-s16 sSawtoothWaves[256] = {
+s16 SSawtoothWaves[256] = {
     0,      1023,   2047,   3071,   4095,   5119,   6143,   7167,   8191,   9215,   10239,  11263,  12287,  13311,
     14335,  15359,  16383,  17407,  18431,  19455,  20479,  21503,  22527,  23551,  24575,  25599,  26623,  27647,
     28671,  29695,  30719,  31743,  -32767, -31743, -30719, -29695, -28671, -27647, -26623, -25599, -24575, -23551,
@@ -27,7 +27,7 @@ s16 sSawtoothWaves[256] = {
     -32767, -24575, -16383, -8191,
 };
 
-s16 sTriangleWaves[256] = {
+s16 STriangleWaves[256] = {
     0,      2047,   4095,   6143,   8191,   10239,  12287,  14335,  16383,  18431,  20479,  22527,  24575,  26623,
     28671,  30719,  32767,  30719,  28671,  26623,  24575,  22527,  20479,  18431,  16383,  14335,  12287,  10239,
     8191,   6143,   4095,   2047,   0,      -2047,  -4095,  -6143,  -8191,  -10239, -12287, -14335, -16383, -18431,
@@ -49,7 +49,7 @@ s16 sTriangleWaves[256] = {
     0,      -16383, -32767, -16383,
 };
 
-s16 sSineWaves[256] = {
+s16 SSineWaves[256] = {
     0,      3211,   6392,   9511,   12539,  15446,  18204,  20787,  23169,  25329,  27244,  28897,  30272,  31356,
     32137,  32609,  32767,  32609,  32137,  31356,  30272,  28897,  27244,  25329,  23169,  20787,  18204,  15446,
     12539,  9511,   6392,   3211,   0,      -3211,  -6392,  -9511,  -12539, -15446, -18204, -20787, -23169, -25329,
@@ -70,7 +70,7 @@ s16 sSineWaves[256] = {
     -32767, -23169, 0,      23169,  32767,  23169,  0,      -23169, -32767, -23169, 0,      23169,  32767,  23169,
     0,      -23169, -32767, -23169,
 };
-s16 sSquareWaves[256] = {
+s16 SSquareWaves[256] = {
     0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
     0,      0,      32767,  32767,  32767,  32767,  32767,  32767,  32767,  32767,  32767,  32767,  32767,  32767,
     32767,  32767,  32767,  32767,  0,      0,      0,      0,      0,      0,      0,      0,      0,      0,
@@ -91,7 +91,7 @@ s16 sSquareWaves[256] = {
     -32767, -32767, 0,      0,      32767,  32767,  0,      0,      -32767, -32767, 0,      0,      32767,  32767,
     0,      0,      -32767, -32767,
 };
-s16 sUnknownWave6[256] = {
+s16 SUnknownWave6[256] = {
     0,      -25689, -25791, 27803,  -27568, -21030, 22174,  6298,   27071,  -18531, 28649,  2284,   3380,   6890,
     -12682, -21114, 10000,  -24520, 32296,  12248,  15096,  15354,  -12021, -31545, -12929, 6388,   -11064, 30456,
     -30316, -21999, 29691,  27649,  0,      -27649, -29691, 21999,  30316,  -30457, 11064,  -6387,  12929,  31544,
@@ -113,7 +113,7 @@ s16 sUnknownWave6[256] = {
     0,      12929,  -10000, -27071,
 };
 
-s16 gUnknownWave7[256] = {
+s16 UnknownWave7[256] = {
     0,      16316,  20148,  20257,  27209,  -32657, 29264,  27259,  -29394, -21494, -26410, 30770,  30033,  29130,
     20206,  14129,  20000,  25677,  19024,  9146,   6921,   4506,   -5868,  -13122, -7858,  -1885,  -7042,  -14025,
     -11903, -8647,  -12346, -12396, 0,      12396,  12346,  8647,   11903,  14024,  7042,   1886,   7858,   13121,
@@ -135,15 +135,15 @@ s16 gUnknownWave7[256] = {
     0,      7858,   -20000, 29394,
 };
 
-s16* gWaveSamples[6] = { sSawtoothWaves, sTriangleWaves, sSineWaves, sSquareWaves, sUnknownWave6, gUnknownWave7 };
+s16* WaveSamples[6] = { SSawtoothWaves, STriangleWaves, SSineWaves, SSquareWaves, SUnknownWave6, UnknownWave7 };
 
 //! @todo file boundary?
-u32 fill[2] = { 0x00000000, 0x00000000 };
+u32 Fill[2] = { 0x00000000, 0x00000000 };
 
-// Transforms a pitch scale factor in -127..127 into a frequency scale factor
+// Transforms a Pitch Scale factor in -127..127 into a Frequency Scale factor
 // between -1 and +1 octave.
-// gPitchBendFrequencyScale[k] = 0.5 * 2^(k/127)
-f32 gPitchBendFrequencyScale[256] = {
+// PitchBendFrequencyScale[k] = 0.5 * 2^(k/127)
+f32 PitchBendFrequencyScale[256] = {
     0.5f,      0.5f,      0.502736f, 0.505488f, 0.508254f, 0.511036f, 0.513833f, 0.516645f, 0.519472f, 0.522315f,
     0.525174f, 0.528048f, 0.530938f, 0.533843f, 0.536765f, 0.539702f, 0.542656f, 0.545626f, 0.548612f, 0.551614f,
     0.554633f, 0.557669f, 0.560721f, 0.563789f, 0.566875f, 0.569977f, 0.573097f, 0.576233f, 0.579387f, 0.582558f,
@@ -172,13 +172,13 @@ f32 gPitchBendFrequencyScale[256] = {
     1.946159f, 1.95681f,  1.96752f,  1.978287f, 1.989114f, 2.0f
 };
 
-// Frequencies for notes using the standard twelve-tone equal temperament scale.
-// For indices 0..116, gNoteFrequencies[k] = 2^((k-39)/12).
-// For indices 117..128, gNoteFrequencies[k] = 0.5 * 2^((k-39)/12).
+// Frequencies for notes using the standard twelve-tone equal temperament Scale.
+// For indices 0..116, NoteFrequencies[k] = 2^((k-39)/12).
+// For indices 117..128, NoteFrequencies[k] = 0.5 * 2^((k-39)/12).
 // The 39 in the formula refers to piano key 40 (middle C, at 256 Hz) being
-// the reference frequency, which is assigned value 1.
+// the reference Frequency, which is assigned Value 1.
 // clang-format off
-f32 gNoteFrequencies[128] = {
+f32 NoteFrequencies[128] = {
     0.105112f,   0.111362f,  0.117984f,  0.125f,
     0.132433f,   0.140308f,  0.148651f,  0.15749f,
     0.166855f,   0.176777f,  0.187288f,  0.198425f,
@@ -214,32 +214,32 @@ f32 gNoteFrequencies[128] = {
 };
 
 // goes up by ~12 at each step for the first 4 values (starting from 0), then by ~6
-u8 gDefaultShortNoteVelocityTable[16] = {
+u8 DefaultShortNoteVelocityTable[16] = {
     12, 25, 38, 51, 57, 64, 71, 76, 83, 89, 96, 102, 109, 115, 121, 127,
 };
 
 // goes down by 26 at each step for the first 4 values (starting from 255), then by ~12
-u8 gDefaultShortNoteDurationTable[16] = {
+u8 DefaultShortNoteDurationTable[16] = {
     229, 203, 177, 151, 139, 126, 113, 100, 87, 74, 61, 48, 36, 23, 10, 0,
 };
 
-struct AdsrEnvelope gDefaultEnvelope[] = {
+struct AdsrEnvelope DefaultEnvelope[] = {
     { BSWAP16(4), BSWAP16(32000) },    // go from 0 to 32000 over the course of 16ms
-    { BSWAP16(1000), BSWAP16(32000) }, // stay there for 4.16 seconds
+    { BSWAP16(1000), BSWAP16(32000) }, // stay there for 4.16 Seconds
     { BSWAP16(ADSR_HANG), 0 }          // then continue staying there
 };
 
-//! @todo 0x00000000800f624c                fill2
-u32 fill2 = 0x00000000;
+//! @todo 0x00000000800f624c                Fill2
+u32 Fill2 = 0x00000000;
 
-struct NoteSubEu gZeroNoteSub = { 0 };
-struct NoteSubEu gDefaultNoteSub = { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, { NULL } };
+struct NoteSubEu ZeroNoteSub = { 0 };
+struct NoteSubEu DefaultNoteSub = { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, { NULL } };
 
-u16 gHeadsetPanQuantization[0x10] = {
+u16 HeadsetPanQuantization[0x10] = {
     0x40, 0x40, 0x30, 0x30, 0x20, 0x20, 0x10, 0, 0, 0,
 };
 
-s16 gUnknownData_800F6290[64] = { // maybe envelope of some kind?
+s16 UnknownData800F6290[64] = { // maybe Envelope of some Kind?
     0, 0, 0,   0, 0, 0, 0, 0, 0, 0,   0, 0, 0, 0, 0, 0, 0, 0, 0,   0, 0, 0, 0, 0, 0, 0, 0,   0, 0, 0, 0, 0,
     0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0, 500, 0, 0, 0, 0,
 };
@@ -248,7 +248,7 @@ s16 gUnknownData_800F6290[64] = { // maybe envelope of some kind?
 // f(0/2 * 127) = 1
 // f(1/2 * 127) = 1/sqrt(2)
 // f(2/2 * 127) = 0
-f32 gHeadsetPanVolume[128] = {
+f32 HeadsetPanVolume[128] = {
     1.0f,      0.995386f, 0.990772f, 0.986157f, 0.981543f, 0.976929f, 0.972315f, 0.967701f,
     0.963087f, 0.958472f, 0.953858f, 0.949244f, 0.94463f,  0.940016f, 0.935402f, 0.930787f,
     0.926173f, 0.921559f, 0.916945f, 0.912331f, 0.907717f, 0.903102f, 0.898488f, 0.893874f,
@@ -273,7 +273,7 @@ f32 gHeadsetPanVolume[128] = {
 // f(2/4 * 127) = 1/sqrt(2)
 // f(3/4 * 127) = 0
 // f(4/4 * 127) = 1/sqrt(8)
-f32 gStereoPanVolume[128] = {
+f32 StereoPanVolume[128] = {
     0.707f,    0.716228f, 0.725457f, 0.734685f, 0.743913f, 0.753142f, 0.76237f,  0.771598f,
     0.780827f, 0.790055f, 0.799283f, 0.808512f, 0.81774f,  0.826968f, 0.836197f, 0.845425f,
     0.854654f, 0.863882f, 0.87311f,  0.882339f, 0.891567f, 0.900795f, 0.910024f, 0.919252f,
@@ -293,7 +293,7 @@ f32 gStereoPanVolume[128] = {
 };
 
 // gDefaultVolume[k] = cos(pi/2 * k / 127)
-f32 gDefaultPanVolume[128] = {
+f32 DefaultPanVolume[128] = {
     1.0f,      0.999924f, 0.999694f, 0.999312f, 0.998776f, 0.998088f, 0.997248f, 0.996254f,
     0.995109f, 0.993811f, 0.992361f, 0.990759f, 0.989006f, 0.987101f, 0.985045f, 0.982839f,
     0.980482f, 0.977976f, 0.97532f,  0.972514f, 0.96956f,  0.966457f, 0.963207f, 0.959809f,
@@ -312,17 +312,17 @@ f32 gDefaultPanVolume[128] = {
     0.086471f, 0.074143f, 0.061803f, 0.049454f, 0.037097f, 0.024734f, 0.012368f, 0.0f
 };
 
-s32 gAudioTaskIndex;
-s32 gCurrAiBufferIndex;
-Acmd *gAudioCmdBuffers[2]; // probably wrong
-Acmd *gAudioCmd;
-struct SPTask *gAudioTask; // gAudioTask?
-struct SPTask gAudioTasks[2]; // gAudioTasks?
+s32 AudioTaskIndex;
+s32 CurrAiBufferIndex;
+Acmd *AudioCmdBuffers[2]; // probably wrong
+Acmd *AudioCmd;
+struct SPTask *AudioTask; // AudioTask?
+struct SPTask AudioTasks[2]; // AudioTasks?
 f32 D_803B7178;
-s32 gRefreshRate;
-s16 *gAiBuffers[NUMAIBUFFERS]; // unconfirmed, osAiSetNextBuffer vaddr
-s16 gAiBufferLengths[NUMAIBUFFERS]; // osAiSetNextBuffer nbytes
+s32 RefreshRate;
+s16 *AiBuffers[NUMAIBUFFERS]; // unconfirmed, osAiSetNextBuffer vaddr
+s16 AiBufferLengths[NUMAIBUFFERS]; // osAiSetNextBuffer nbytes
 u16 D_803B7192; // unconfirmed
-u32 gAudioRandom;
-s32 gAudioErrorFlags;
-u64 gAudioGlobalsEndMarker;
+u32 AudioRandom;
+s32 AudioErrorFlags;
+u64 AudioGlobalsEndMarker;

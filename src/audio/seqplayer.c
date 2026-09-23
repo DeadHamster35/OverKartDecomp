@@ -12,326 +12,326 @@
 
 /**
  * Given that (almost) all of these are format strings, it is highly likely
- * that they are meant to be used in some sort of printf variant. But I don't
+ * that they are meant to be Used in some sort of printf Variant. But I don't
  * care to try and figure out which function gets which string(s)
  * So I've place them all here instead.
  * This means some printf stubs have been commented out to avoid duplication
- * of some strings (i.e seqplayer_unused_string00)
+ * of some strings (i.e SeqplayerUnusedString00)
  **/
-char seqplayer_unused_string00[] = "Audio:Track:Warning: No Free Notetrack\n";
-char seqplayer_unused_string01[] = "SUBTRACK DIM\n";
-char seqplayer_unused_string02[] = "Audio:Track: Warning :SUBTRACK had been stolen by other Group.\n";
-char seqplayer_unused_string03[] = "SEQID %d,BANKID %d\n";
-char seqplayer_unused_string04[] = "ERR:SUBTRACK %d NOT ALLOCATED\n";
-char seqplayer_unused_string05[] = "Error:Same List Add\n";
+char SeqplayerUnusedString00[] = "Audio:Track:Warning: No Free Notetrack\n";
+char SeqplayerUnusedString01[] = "SUBTRACK DIM\n";
+char SeqplayerUnusedString02[] = "Audio:Track: Warning :SUBTRACK had been stolen by other Group.\n";
+char SeqplayerUnusedString03[] = "SEQID %d,BANKID %d\n";
+char SeqplayerUnusedString04[] = "ERR:SUBTRACK %d NOT ALLOCATED\n";
+char SeqplayerUnusedString05[] = "Error:Same List Add\n";
 #ifdef VERSION_EU_V10
 char seqplayer_unused_string_eu_01[] = "Wait Time out!\n";
 #endif
-char seqplayer_unused_string06[] = "Macro Level Over Error!\n";
-char seqplayer_unused_string07[] = "Macro Level Over Error!\n";
-char seqplayer_unused_string08[] = "WARNING: NPRG: cannot change %d\n";
-char seqplayer_unused_string09[] = "Audio:Track:NOTE:UNDEFINED NOTE COM. %x\n";
-char seqplayer_unused_string10[] = "Audio: Note:Velocity Error %d\n";
-char seqplayer_unused_string11[] = "Error: Subtrack no prg.\n";
-char seqplayer_unused_string12[] = "ERR %x\n";
-char seqplayer_unused_string13[] = "Error: Your assignchannel is stolen.\n";
-char seqplayer_unused_string14[] = "Audio:Track :Call Macro Level Over Error!\n";
-char seqplayer_unused_string15[] = "Audio:Track :Loops Macro Level Over Error!\n";
-char seqplayer_unused_string16[] = "SUB:ERR:BANK %d NOT CACHED.\n";
-char seqplayer_unused_string17[] = "SUB:ERR:BANK %d NOT CACHED.\n";
-char seqplayer_unused_string18[] = "Audio:Track: CTBLCALL Macro Level Over Error!\n";
-char seqplayer_unused_string19[] = "[%2x] \n";
-char seqplayer_unused_string20[] = "Err :Sub %x ,address %x:Undefined SubTrack Function %x";
-char seqplayer_unused_string21[] = "Disappear Sequence or Bank %d\n";
-char seqplayer_unused_string22[] = "Macro Level Over Error!\n";
-char seqplayer_unused_string23[] = "Macro Level Over Error!\n";
-char seqplayer_unused_string24[] = "Group:Undefine upper C0h command (%x)\n";
-char seqplayer_unused_string25[] = "Group:Undefined Command\n";
+char SeqplayerUnusedString06[] = "Macro Level Over Error!\n";
+char SeqplayerUnusedString07[] = "Macro Level Over Error!\n";
+char SeqplayerUnusedString08[] = "WARNING: NPRG: cannot change %d\n";
+char SeqplayerUnusedString09[] = "Audio:Track:NOTE:UNDEFINED NOTE COM. %x\n";
+char SeqplayerUnusedString10[] = "Audio: Note:Velocity Error %d\n";
+char SeqplayerUnusedString11[] = "Error: Subtrack no prg.\n";
+char SeqplayerUnusedString12[] = "ERR %x\n";
+char SeqplayerUnusedString13[] = "Error: Your assignchannel is stolen.\n";
+char SeqplayerUnusedString14[] = "Audio:Track :Call Macro Level Over Error!\n";
+char SeqplayerUnusedString15[] = "Audio:Track :Loops Macro Level Over Error!\n";
+char SeqplayerUnusedString16[] = "SUB:ERR:BANK %d NOT CACHED.\n";
+char SeqplayerUnusedString17[] = "SUB:ERR:BANK %d NOT CACHED.\n";
+char SeqplayerUnusedString18[] = "Audio:Track: CTBLCALL Macro Level Over Error!\n";
+char SeqplayerUnusedString19[] = "[%2x] \n";
+char SeqplayerUnusedString20[] = "Err :Sub %x ,address %x:Undefined SubTrack Function %x";
+char SeqplayerUnusedString21[] = "Disappear Sequence or Bank %d\n";
+char SeqplayerUnusedString22[] = "Macro Level Over Error!\n";
+char SeqplayerUnusedString23[] = "Macro Level Over Error!\n";
+char SeqplayerUnusedString24[] = "Group:Undefine upper C0h command (%x)\n";
+char SeqplayerUnusedString25[] = "Group:Undefined Command\n";
 
-// Nas_ChannelModInit
-void Nas_ChannelModInit(struct SequenceChannel* seqChannel) {
+// NasChannelModInit
+void NasChannelModInit(struct SequenceChannel* SEQChannel) {
     s32 i;
 
-    seqChannel->enabled = false;
-    seqChannel->finished = false;
-    seqChannel->stopScript = false;
-    seqChannel->stopSomething2 = false;
-    seqChannel->hasInstrument = false;
-    seqChannel->stereoHeadsetEffects = false;
-    seqChannel->transposition = 0;
-    seqChannel->largeNotes = false;
-    seqChannel->bookOffset = 0;
-    seqChannel->changes.as_u8 = 0xff;
-    seqChannel->scriptState.depth = 0;
-    seqChannel->newPan = 0x40;
-    seqChannel->panChannelWeight = 0x80;
-    seqChannel->noteUnused = NULL;
-    seqChannel->reverbIndex = 0;
-    seqChannel->reverbVol = 0;
-    seqChannel->notePriority = NOTE_PRIORITY_DEFAULT;
-    seqChannel->delay = 0;
-    seqChannel->adsr.envelope = gDefaultEnvelope;
-    seqChannel->adsr.releaseRate = 0x20;
-    seqChannel->adsr.sustain = 0;
-    seqChannel->vibratoRateTarget = 0x800;
-    seqChannel->vibratoRateStart = 0x800;
-    seqChannel->vibratoExtentTarget = 0;
-    seqChannel->vibratoExtentStart = 0;
-    seqChannel->vibratoRateChangeDelay = 0;
-    seqChannel->vibratoExtentChangeDelay = 0;
-    seqChannel->vibratoDelay = 0;
-    seqChannel->volume = 1.0f;
-    seqChannel->volumeScale = 1.0f;
-    seqChannel->freqScale = 1.0f;
+    SEQChannel->Enabled = false;
+    SEQChannel->Finished = false;
+    SEQChannel->stopScript = false;
+    SEQChannel->stopSomething2 = false;
+    SEQChannel->hasInstrument = false;
+    SEQChannel->StereoHeadsetEffects = false;
+    SEQChannel->Transposition = 0;
+    SEQChannel->largeNotes = false;
+    SEQChannel->bookOffset = 0;
+    SEQChannel->Changes.AsU8 = 0xff;
+    SEQChannel->ScriptState.Depth = 0;
+    SEQChannel->newPan = 0x40;
+    SEQChannel->panChannelWeight = 0x80;
+    SEQChannel->noteUnused = NULL;
+    SEQChannel->reverbIndex = 0;
+    SEQChannel->ReverbVol = 0;
+    SEQChannel->notePriority = NOTE_PRIORITY_DEFAULT;
+    SEQChannel->Delay = 0;
+    SEQChannel->Adsr.Envelope = DefaultEnvelope;
+    SEQChannel->Adsr.ReleaseRate = 0x20;
+    SEQChannel->Adsr.Sustain = 0;
+    SEQChannel->vibratoRateTarget = 0x800;
+    SEQChannel->vibratoRateStart = 0x800;
+    SEQChannel->vibratoExtentTarget = 0;
+    SEQChannel->vibratoExtentStart = 0;
+    SEQChannel->vibratoRateChangeDelay = 0;
+    SEQChannel->vibratoExtentChangeDelay = 0;
+    SEQChannel->vibratoDelay = 0;
+    SEQChannel->Volume = 1.0f;
+    SEQChannel->volumeScale = 1.0f;
+    SEQChannel->FreqScale = 1.0f;
     for (i = 0; i < 8; i++) {
-        seqChannel->soundScriptIO[i] = -1;
+        SEQChannel->soundScriptIO[i] = -1;
     }
-    seqChannel->unused = false;
-    Nas_WaveMemoryMake(&seqChannel->notePool);
+    SEQChannel->Unused = false;
+    NasWaveMemoryMake(&SEQChannel->NotePool);
 }
 
-s32 Nas_EnvInit(struct SequenceChannel* seqChannel, s32 layerIndex) {
+s32 NasEnvInit(struct SequenceChannel* SEQChannel, s32 layerIndex) {
     struct SequenceChannelLayer* layer;
 
-    if (seqChannel->layers[layerIndex] == NULL) {
+    if (SEQChannel->layers[layerIndex] == NULL) {
         struct SequenceChannelLayer* layer;
-        layer = Nas_DeAllocSub(&gLayerFreeList);
-        seqChannel->layers[layerIndex] = layer;
+        layer = NasDeAllocSub(&LayerFreeList);
+        SEQChannel->layers[layerIndex] = layer;
         if (layer == NULL) {
-            seqChannel->layers[layerIndex] = NULL;
+            SEQChannel->layers[layerIndex] = NULL;
             return -1;
         }
     } else {
-        L_CheckTerminate(seqChannel->layers[layerIndex]);
+        LCheckTerminate(SEQChannel->layers[layerIndex]);
     }
 
-    layer = seqChannel->layers[layerIndex];
-    layer->seqChannel = seqChannel;
-    layer->adsr = seqChannel->adsr;
-    layer->adsr.releaseRate = 0;
-    layer->enabled = true;
-    layer->stopSomething = false;
-    layer->continuousNotes = false;
-    layer->finished = false;
-    layer->ignoreDrumPan = false;
-    layer->portamento.mode = 0;
-    layer->scriptState.depth = 0;
-    layer->status = SOUND_LOAD_STATUS_NOT_LOADED;
-    layer->noteDuration = 0x80;
+    layer = SEQChannel->layers[layerIndex];
+    layer->SEQChannel = SEQChannel;
+    layer->Adsr = SEQChannel->Adsr;
+    layer->Adsr.ReleaseRate = 0;
+    layer->Enabled = true;
+    layer->StopSomething = false;
+    layer->ContinuousNotes = false;
+    layer->Finished = false;
+    layer->IgnoreDrumPan = false;
+    layer->Portamento.Mode = 0;
+    layer->ScriptState.Depth = 0;
+    layer->Status = SOUND_LOAD_STATUS_NOT_LOADED;
+    layer->NoteDuration = 0x80;
     layer->pan = 0x40;
-    layer->transposition = 0;
-    layer->delay = 0;
-    layer->duration = 0;
-    layer->delayUnused = 0;
-    layer->note = NULL;
-    layer->instrument = NULL;
-    layer->freqScale = 1.0f;
-    layer->velocitySquare = 0.0f;
-    layer->instOrWave = 0xff;
+    layer->Transposition = 0;
+    layer->Delay = 0;
+    layer->Duration = 0;
+    layer->DelayUnused = 0;
+    layer->Note = NULL;
+    layer->Instrument = NULL;
+    layer->FreqScale = 1.0f;
+    layer->VelocitySquare = 0.0f;
+    layer->InstOrWave = 0xff;
     return 0;
 }
 
-void Nas_EnvProcess(struct SequenceChannelLayer* layer) {
+void NasEnvProcess(struct SequenceChannelLayer* layer) {
     if (layer != NULL) {
-        L_CheckTerminate(layer);
-        layer->enabled = false;
-        layer->finished = true;
+        LCheckTerminate(layer);
+        layer->Enabled = false;
+        layer->Finished = true;
     }
 }
 
-void ENV_RETRY(struct SequenceChannel* seqChannel, s32 layerIndex) {
-    struct SequenceChannelLayer* layer = seqChannel->layers[layerIndex];
+void ENV_RETRY(struct SequenceChannel* SEQChannel, s32 layerIndex) {
+    struct SequenceChannelLayer* layer = SEQChannel->layers[layerIndex];
 
     if (layer != NULL) {
-        Nas_AllocSub(&gLayerFreeList, &layer->listItem);
-        Nas_EnvProcess(layer);
-        seqChannel->layers[layerIndex] = NULL;
+        NasAllocSub(&LayerFreeList, &layer->ListItem);
+        NasEnvProcess(layer);
+        SEQChannel->layers[layerIndex] = NULL;
     }
 }
 
-void Nas_InitSubTrack(struct SequenceChannel* seqChannel) {
+void NasInitSubTrack(struct SequenceChannel* SEQChannel) {
     s32 i;
     for (i = 0; i < LAYERS_MAX; i++) {
-        ENV_RETRY(seqChannel, i);
+        ENV_RETRY(SEQChannel, i);
     }
 
-    Nas_InitList(&seqChannel->notePool);
-    seqChannel->enabled = false;
-    seqChannel->finished = true;
+    NasInitList(&SEQChannel->NotePool);
+    SEQChannel->Enabled = false;
+    SEQChannel->Finished = true;
 }
 
-struct SequenceChannel* Nas_EntryNoteTrack(void) {
+struct SequenceChannel* NasEntryNoteTrack(void) {
     s32 i;
     for (i = 0; i < SEQUENCE_CHANNELS; i++) {
-        if (gSequenceChannels[i].seqPlayer == NULL) {
-            return &gSequenceChannels[i];
+        if (SequenceChannels[i].seqPlayer == NULL) {
+            return &SequenceChannels[i];
         }
     }
-    return &gSequenceChannelNone;
+    return &SequenceChannelNone;
 }
 
-void Nas_ReleaseNoteTrack(struct SequencePlayer* seqPlayer, u16 channelBits) {
-    struct SequenceChannel* seqChannel;
+void NasReleaseNoteTrack(struct SequencePlayer* seqPlayer, u16 channelBits) {
+    struct SequenceChannel* SEQChannel;
     s32 i;
 
     for (i = 0; i < CHANNELS_MAX; i++) {
         if (channelBits & 1) {
-            seqChannel = seqPlayer->channels[i];
-            if (IS_SEQUENCE_CHANNEL_VALID(seqChannel) == true && seqChannel->seqPlayer == seqPlayer) {
-                Nas_InitSubTrack(seqChannel);
-                seqChannel->seqPlayer = NULL;
+            SEQChannel = seqPlayer->Channels[i];
+            if (IS_SEQUENCE_CHANNEL_VALID(SEQChannel) == true && SEQChannel->seqPlayer == seqPlayer) {
+                NasInitSubTrack(SEQChannel);
+                SEQChannel->seqPlayer = NULL;
             }
-            seqChannel = Nas_EntryNoteTrack();
-            if (IS_SEQUENCE_CHANNEL_VALID(seqChannel) == false) {
+            SEQChannel = NasEntryNoteTrack();
+            if (IS_SEQUENCE_CHANNEL_VALID(SEQChannel) == false) {
                 // eu_stubbed_printf_0("Audio:Track:Warning: No Free Notetrack\n");
-                gAudioErrorFlags = i + 0x10000;
-                seqPlayer->channels[i] = seqChannel;
+                AudioErrorFlags = i + 0x10000;
+                seqPlayer->Channels[i] = SEQChannel;
             } else {
-                Nas_ChannelModInit(seqChannel);
-                seqPlayer->channels[i] = seqChannel;
-                seqChannel->seqPlayer = seqPlayer;
-                seqChannel->bankId = seqPlayer->defaultBank[0];
-                seqChannel->muteBehavior = seqPlayer->muteBehavior;
-                seqChannel->noteAllocPolicy = seqPlayer->noteAllocPolicy;
+                NasChannelModInit(SEQChannel);
+                seqPlayer->Channels[i] = SEQChannel;
+                SEQChannel->seqPlayer = seqPlayer;
+                SEQChannel->BankId = seqPlayer->DefaultBank[0];
+                SEQChannel->MuteBehavior = seqPlayer->MuteBehavior;
+                SEQChannel->NoteAllocPolicy = seqPlayer->NoteAllocPolicy;
             }
         }
         channelBits = channelBits >> 1;
     }
 }
 
-void Nas_CloseNoteTrack(struct SequencePlayer* seqPlayer, u16 channelBits) {
-    struct SequenceChannel* seqChannel;
+void NasCloseNoteTrack(struct SequencePlayer* seqPlayer, u16 channelBits) {
+    struct SequenceChannel* SEQChannel;
     s32 i;
 
     // eu_stubbed_printf_0("SUBTRACK DIM\n");
     for (i = 0; i < CHANNELS_MAX; i++) {
         if (channelBits & 1) {
-            seqChannel = seqPlayer->channels[i];
-            if (IS_SEQUENCE_CHANNEL_VALID(seqChannel) == true) {
-                if (seqChannel->seqPlayer == seqPlayer) {
-                    Nas_InitSubTrack(seqChannel);
-                    seqChannel->seqPlayer = NULL;
+            SEQChannel = seqPlayer->Channels[i];
+            if (IS_SEQUENCE_CHANNEL_VALID(SEQChannel) == true) {
+                if (SEQChannel->seqPlayer == seqPlayer) {
+                    NasInitSubTrack(SEQChannel);
+                    SEQChannel->seqPlayer = NULL;
                 } else {
                     // stubbed_printf("Audio:Track: Warning SUBTRACK PARENT CHANGED\n");
                 }
-                seqPlayer->channels[i] = &gSequenceChannelNone;
+                seqPlayer->Channels[i] = &SequenceChannelNone;
             }
         }
         channelBits = channelBits >> 1;
     }
 }
 
-void Nas_ReleaseSubTrack(struct SequencePlayer* seqPlayer, u8 channelIndex, void* script) {
-    struct SequenceChannel* seqChannel = seqPlayer->channels[channelIndex];
+void NasReleaseSubTrack(struct SequencePlayer* seqPlayer, u8 channelIndex, void* script) {
+    struct SequenceChannel* SEQChannel = seqPlayer->Channels[channelIndex];
     s32 i;
-    if (IS_SEQUENCE_CHANNEL_VALID(seqChannel) == false) {
-        // stubbed_printf("SEQID %d,BANKID %d\n", seqPlayer->seqId, seqPlayer->defaultBank[0]);
+    if (IS_SEQUENCE_CHANNEL_VALID(SEQChannel) == false) {
+        // stubbed_printf("SEQID %d,BANKID %d\n", seqPlayer->SEQId, seqPlayer->DefaultBank[0]);
         // stubbed_printf("ERR:SUBTRACK %d NOT ALLOCATED\n", channelIndex);
     } else {
-        seqChannel->enabled = true;
-        seqChannel->finished = false;
-        seqChannel->scriptState.depth = 0;
-        seqChannel->scriptState.pc = script;
-        seqChannel->delay = 0;
+        SEQChannel->Enabled = true;
+        SEQChannel->Finished = false;
+        SEQChannel->ScriptState.Depth = 0;
+        SEQChannel->ScriptState.pc = script;
+        SEQChannel->Delay = 0;
         for (i = 0; i < LAYERS_MAX; i++) {
-            if (seqChannel->layers[i] != NULL) {
-                ENV_RETRY(seqChannel, i);
+            if (SEQChannel->layers[i] != NULL) {
+                ENV_RETRY(SEQChannel, i);
             }
         }
     }
 }
 
-void Nas_GetNewSubTrack(struct SequencePlayer* seqPlayer) {
-    Nas_CloseNoteTrack(seqPlayer, 0xffff);
-    Nas_InitList(&seqPlayer->notePool);
-    seqPlayer->finished = true;
-    seqPlayer->enabled = false;
+void NasGetNewSubTrack(struct SequencePlayer* seqPlayer) {
+    NasCloseNoteTrack(seqPlayer, 0xffff);
+    NasInitList(&seqPlayer->NotePool);
+    seqPlayer->Finished = true;
+    seqPlayer->Enabled = false;
 
-    if (IS_SEQ_LOAD_COMPLETE(seqPlayer->seqId) && gSeqLoadStatus[seqPlayer->seqId] != 5) {
-        gSeqLoadStatus[seqPlayer->seqId] = SOUND_LOAD_STATUS_DISCARDABLE;
+    if (IS_SEQ_LOAD_COMPLETE(seqPlayer->SEQId) && SeqLoadStatus[seqPlayer->SEQId] != 5) {
+        SeqLoadStatus[seqPlayer->SEQId] = SOUND_LOAD_STATUS_DISCARDABLE;
     }
 
-    if (IS_BANK_LOAD_COMPLETE(seqPlayer->defaultBank[0]) && gBankLoadStatus[seqPlayer->defaultBank[0]] != 5) {
-        gBankLoadStatus[seqPlayer->defaultBank[0]] = 4;
+    if (IS_BANK_LOAD_COMPLETE(seqPlayer->DefaultBank[0]) && BankLoadStatus[seqPlayer->DefaultBank[0]] != 5) {
+        BankLoadStatus[seqPlayer->DefaultBank[0]] = 4;
     }
 
-    // (Note that if this is called from Nas_SzAutoDivide, the side will get swapped
+    // (Note that if this is called from NasSzAutoDivide, the side will get swapped
     // later in that function. Thus, we signal that we want to load into the slot
     // of the bank that we no longer need.)
-    if (seqPlayer->defaultBank[0] == gBankLoadedPool.temporary.entries[0].id) {
-        gBankLoadedPool.temporary.nextSide = 1;
-    } else if (seqPlayer->defaultBank[0] == gBankLoadedPool.temporary.entries[1].id) {
-        gBankLoadedPool.temporary.nextSide = 0;
+    if (seqPlayer->DefaultBank[0] == BankLoadedPool.Temporary.Entries[0].id) {
+        BankLoadedPool.Temporary.NextSide = 1;
+    } else if (seqPlayer->DefaultBank[0] == BankLoadedPool.Temporary.Entries[1].id) {
+        BankLoadedPool.Temporary.NextSide = 0;
     }
 }
 
-void Nas_AllocSub(struct AudioListItem* list, struct AudioListItem* item) {
-    if (item->prev != NULL) {
+void NasAllocSub(struct AudioListItem* list, struct AudioListItem* Item) {
+    if (Item->Prev != NULL) {
         // eu_stubbed_printf_0("Error:Same List Add\n");
     } else {
-        list->prev->next = item;
-        item->prev = list->prev;
-        item->next = list;
-        list->prev = item;
-        list->u.count++;
-        item->pool = list->pool;
+        list->Prev->Next = Item;
+        Item->Prev = list->Prev;
+        Item->Next = list;
+        list->Prev = Item;
+        list->u.Count++;
+        Item->Pool = list->Pool;
     }
 }
 
-void* Nas_DeAllocSub(struct AudioListItem* list) {
-    struct AudioListItem* item = list->prev;
-    if (item == list) {
+void* NasDeAllocSub(struct AudioListItem* list) {
+    struct AudioListItem* Item = list->Prev;
+    if (Item == list) {
         return NULL;
     }
-    item->prev->next = list;
-    list->prev = item->prev;
-    item->prev = NULL;
-    list->u.count--;
-    return item->u.value;
+    Item->Prev->Next = list;
+    list->Prev = Item->Prev;
+    Item->Prev = NULL;
+    list->u.Count--;
+    return Item->u.Value;
 }
 
-void Nas_OpenSub(void) {
+void NasOpenSub(void) {
     s32 i;
 
-    gLayerFreeList.prev = &gLayerFreeList;
-    gLayerFreeList.next = &gLayerFreeList;
-    gLayerFreeList.u.count = 0;
-    gLayerFreeList.pool = NULL;
+    LayerFreeList.Prev = &LayerFreeList;
+    LayerFreeList.Next = &LayerFreeList;
+    LayerFreeList.u.Count = 0;
+    LayerFreeList.Pool = NULL;
 
-    for (i = 0; i < ARRAY_COUNT(gSequenceLayers); i++) {
-        gSequenceLayers[i].listItem.u.value = &gSequenceLayers[i];
-        gSequenceLayers[i].listItem.prev = NULL;
-        Nas_AllocSub(&gLayerFreeList, &gSequenceLayers[i].listItem);
+    for (i = 0; i < ARRAY_COUNT(SequenceLayers); i++) {
+        SequenceLayers[i].ListItem.u.Value = &SequenceLayers[i];
+        SequenceLayers[i].ListItem.Prev = NULL;
+        NasAllocSub(&LayerFreeList, &SequenceLayers[i].ListItem);
     }
 }
 
-u8 Nas_ReleaseGroup(struct M64ScriptState* state) {
-    return *(state->pc++);
+u8 NasReleaseGroup(struct M64ScriptState* State) {
+    return *(State->pc++);
 }
 
-s16 Nas_AddList(struct M64ScriptState* state) {
-    s16 ret = *(state->pc++) << 8;
-    ret = *(state->pc++) | ret;
+s16 NasAddList(struct M64ScriptState* State) {
+    s16 ret = *(State->pc++) << 8;
+    ret = *(State->pc++) | ret;
     return ret;
 }
 
-u16 Nas_GetList(struct M64ScriptState* state) {
-    u16 ret = *(state->pc++);
+u16 NasGetList(struct M64ScriptState* State) {
+    u16 ret = *(State->pc++);
     if (ret & 0x80) {
         ret = (ret << 8) & 0x7f00;
-        ret = *(state->pc++) | ret;
+        ret = *(State->pc++) | ret;
     }
     return ret;
 }
 
-void Nas_InitNoteList(struct SequenceChannelLayer* layer) {
+void NasInitNoteList(struct SequenceChannelLayer* layer) {
     struct SequencePlayer* seqPlayer;
-    struct SequenceChannel* seqChannel;
-    UNUSED u32 pad0;
-    struct M64ScriptState* state;
-    struct Portamento* portamento;
-    struct AudioBankSound* sound;
-    struct Instrument* instrument;
+    struct SequenceChannel* SEQChannel;
+    UNUSED u32 Pad0;
+    struct M64ScriptState* State;
+    struct Portamento* Portamento;
+    struct AudioBankSound* Sound;
+    struct Instrument* Instrument;
     struct Drum* drum;
     s32 temp_a0_5;
     u16 sp3A;
@@ -339,50 +339,50 @@ void Nas_InitNoteList(struct SequenceChannelLayer* layer) {
     UNUSED u32 pad1;
     u8 cmd;
     UNUSED u8 cmdSemitone;
-    f32 tuning;
+    f32 Tuning;
     s32 vel;
     UNUSED s32 usedSemitone;
-    f32 freqScale;
+    f32 FreqScale;
     f32 temp_f12;
     f32 temp_f2;
 
     sameSound = true;
-    if (layer->enabled == false) {
+    if (layer->Enabled == false) {
         return;
     }
 
-    if (layer->delay > 1) {
-        layer->delay--;
-        if (!layer->stopSomething && layer->delay <= layer->duration) {
-            L_CheckTerminate(layer);
-            layer->stopSomething = true;
+    if (layer->Delay > 1) {
+        layer->Delay--;
+        if (!layer->StopSomething && layer->Delay <= layer->Duration) {
+            LCheckTerminate(layer);
+            layer->StopSomething = true;
         }
         return;
     }
 
-    if (!layer->continuousNotes) {
-        L_CheckTerminate(layer);
+    if (!layer->ContinuousNotes) {
+        LCheckTerminate(layer);
     }
 #ifdef VERSION_EU_V10
     else {
-        if ((layer->note != 0) && (layer == layer->note->wantedParentLayer)) {
-            L_CheckTerminate(layer);
+        if ((layer->Note != 0) && (layer == layer->Note->WantedParentLayer)) {
+            LCheckTerminate(layer);
         }
     }
 #endif
 
-    if (PORTAMENTO_MODE(layer->portamento) == PORTAMENTO_MODE_1 ||
-        PORTAMENTO_MODE(layer->portamento) == PORTAMENTO_MODE_2) {
-        layer->portamento.mode = 0;
+    if (PORTAMENTO_MODE(layer->Portamento) == PORTAMENTO_MODE_1 ||
+        PORTAMENTO_MODE(layer->Portamento) == PORTAMENTO_MODE_2) {
+        layer->Portamento.Mode = 0;
     }
 
-    seqChannel = layer->seqChannel;
-    seqPlayer = seqChannel->seqPlayer;
-    layer->notePropertiesNeedInit = true;
+    SEQChannel = layer->SEQChannel;
+    seqPlayer = SEQChannel->seqPlayer;
+    layer->NotePropertiesNeedInit = true;
 
     for (;;) {
-        state = &layer->scriptState;
-        cmd = Nas_ReleaseGroup(state);
+        State = &layer->ScriptState;
+        cmd = NasReleaseGroup(State);
 
         if (cmd <= 0xc0) {
             break;
@@ -390,147 +390,147 @@ void Nas_InitNoteList(struct SequenceChannelLayer* layer) {
 
         switch (cmd) {
             case 0xff: // layer_end; function return or end of script
-                if (state->depth == 0) {
+                if (State->Depth == 0) {
                     // N.B. this function call is *not* inlined even though it's
                     // within the same file, unlike in the rest of this function.
-                    Nas_EnvProcess(layer);
+                    NasEnvProcess(layer);
                     return;
                 }
-                state->pc = state->stack[--state->depth];
+                State->pc = State->Stack[--State->Depth];
                 break;
 
             case 0xfc: // layer_call
-                if (0 && state->depth >= 4) {}
-                sp3A = Nas_AddList(state);
-                state->stack[state->depth++] = state->pc;
-                state->pc = seqPlayer->seqData + sp3A;
+                if (0 && State->Depth >= 4) {}
+                sp3A = NasAddList(State);
+                State->Stack[State->Depth++] = State->pc;
+                State->pc = seqPlayer->SEQData + sp3A;
                 break;
 
-            case 0xf8: // layer_loop; loop start, N iterations (or 256 if N = 0)
-                if (0 && state->depth >= 4) {}
-                state->remLoopIters[state->depth] = Nas_ReleaseGroup(state);
-                state->stack[state->depth++] = state->pc;
+            case 0xf8: // layer_loop; Loop Start, N iterations (or 256 if N = 0)
+                if (0 && State->Depth >= 4) {}
+                State->RemLoopIters[State->Depth] = NasReleaseGroup(State);
+                State->Stack[State->Depth++] = State->pc;
                 break;
 
             case 0xf7: // layer_loopend
-                if (--state->remLoopIters[state->depth - 1] != 0) {
-                    state->pc = state->stack[state->depth - 1];
+                if (--State->RemLoopIters[State->Depth - 1] != 0) {
+                    State->pc = State->Stack[State->Depth - 1];
                 } else {
-                    state->depth--;
+                    State->Depth--;
                 }
                 break;
 
             case 0xfb: // layer_jump
-                sp3A = Nas_AddList(state);
-                state->pc = seqPlayer->seqData + sp3A;
+                sp3A = NasAddList(State);
+                State->pc = seqPlayer->SEQData + sp3A;
                 break;
 
             case 0xf4:
-                state->pc += (s8) Nas_ReleaseGroup(state);
+                State->pc += (s8) NasReleaseGroup(State);
                 break;
 
             case 0xc1: // layer_setshortnotevelocity
             case 0xca: // layer_setpan
-                temp_a0_5 = *(state->pc++);
+                temp_a0_5 = *(State->pc++);
                 if (cmd == 0xc1) {
-                    layer->velocitySquare = (f32) (temp_a0_5 * temp_a0_5) / 16129.0f;
+                    layer->VelocitySquare = (f32) (temp_a0_5 * temp_a0_5) / 16129.0f;
                 } else {
                     layer->pan = temp_a0_5;
                 }
                 break;
 
-            case 0xc2: // layer_transpose; set transposition in semitones
+            case 0xc2: // layer_transpose; set Transposition in semitones
             case 0xc9: // layer_setshortnoteduration
-                temp_a0_5 = *(state->pc++);
+                temp_a0_5 = *(State->pc++);
                 if (cmd == 0xc9) {
-                    layer->noteDuration = temp_a0_5;
+                    layer->NoteDuration = temp_a0_5;
                 } else {
-                    layer->transposition = temp_a0_5;
+                    layer->Transposition = temp_a0_5;
                 }
                 break;
 
             case 0xc4: // layer_somethingon
             case 0xc5: // layer_somethingoff
                 if (cmd == 0xc4) {
-                    layer->continuousNotes = true;
+                    layer->ContinuousNotes = true;
                 } else {
-                    layer->continuousNotes = false;
+                    layer->ContinuousNotes = false;
                 }
-                L_CheckTerminate(layer);
+                LCheckTerminate(layer);
                 break;
 
             case 0xc3: // layer_setshortnotedefaultplaypercentage
-                sp3A = Nas_GetList(state);
-                layer->shortNoteDefaultPlayPercentage = sp3A;
+                sp3A = NasGetList(State);
+                layer->ShortNoteDefaultPlayPercentage = sp3A;
                 break;
 
             case 0xc6: // layer_setinstr
-                cmd = Nas_ReleaseGroup(state);
+                cmd = NasReleaseGroup(State);
                 if (cmd >= 0x7f) {
                     if (cmd == 0x7f) {
-                        layer->instOrWave = 0;
+                        layer->InstOrWave = 0;
                     } else {
-                        layer->instOrWave = cmd;
-                        layer->instrument = NULL;
+                        layer->InstOrWave = cmd;
+                        layer->Instrument = NULL;
                     }
 
                     if (1) {}
 
                     if (cmd == 0xff) {
-                        layer->adsr.releaseRate = 0;
+                        layer->Adsr.ReleaseRate = 0;
                     }
                     break;
                 }
 
-                if ((layer->instOrWave = Nas_ReadByteData(seqChannel, cmd, &layer->instrument, &layer->adsr)) == 0) {
-                    layer->instOrWave = 0xff;
+                if ((layer->InstOrWave = NasReadByteData(SEQChannel, cmd, &layer->Instrument, &layer->Adsr)) == 0) {
+                    layer->InstOrWave = 0xff;
                 }
                 break;
 
             case 0xc7: // layer_portamento
-                layer->portamento.mode = Nas_ReleaseGroup(state);
+                layer->Portamento.Mode = NasReleaseGroup(State);
 
-                // cmd is reused for the portamento's semitone
-                cmd = Nas_ReleaseGroup(state) + seqChannel->transposition + layer->transposition + seqPlayer->transposition;
+                // cmd is reused for the Portamento's semitone
+                cmd = NasReleaseGroup(State) + SEQChannel->Transposition + layer->Transposition + seqPlayer->Transposition;
 
                 if (cmd >= 0x80) {
                     cmd = 0;
                 }
 
-                layer->portamentoTargetNote = cmd;
+                layer->PortamentoTargetNote = cmd;
 
-                // If special, the next param is u8 instead of var
-                if (PORTAMENTO_IS_SPECIAL(layer->portamento)) {
-                    layer->portamentoTime = *((state)->pc++);
+                // If special, the Next Param is u8 instead of var
+                if (PORTAMENTO_IS_SPECIAL(layer->Portamento)) {
+                    layer->PortamentoTime = *((State)->pc++);
                     break;
                 }
 
-                sp3A = Nas_GetList(state);
-                layer->portamentoTime = sp3A;
+                sp3A = NasGetList(State);
+                layer->PortamentoTime = sp3A;
                 break;
 
             case 0xc8: // layer_disableportamento
-                layer->portamento.mode = 0;
+                layer->Portamento.Mode = 0;
                 break;
 
             case 0xcb:
-                sp3A = Nas_AddList(state);
-                layer->adsr.envelope = (struct AdsrEnvelope*) (seqPlayer->seqData + sp3A);
-                layer->adsr.releaseRate = Nas_ReleaseGroup(state);
+                sp3A = NasAddList(State);
+                layer->Adsr.Envelope = (struct AdsrEnvelope*) (seqPlayer->SEQData + sp3A);
+                layer->Adsr.ReleaseRate = NasReleaseGroup(State);
                 break;
 
             case 0xcc:
-                layer->ignoreDrumPan = true;
+                layer->IgnoreDrumPan = true;
                 break;
 
             default:
                 switch (cmd & 0xf0) {
                     case 0xd0: // layer_setshortnotevelocityfromtable
-                        sp3A = seqPlayer->shortNoteVelocityTable[cmd & 0xf];
-                        layer->velocitySquare = (f32) (sp3A * sp3A) / 16129.0f;
+                        sp3A = seqPlayer->ShortNoteVelocityTable[cmd & 0xf];
+                        layer->VelocitySquare = (f32) (sp3A * sp3A) / 16129.0f;
                         break;
                     case 0xe0: // layer_setshortnotedurationfromtable
-                        layer->noteDuration = seqPlayer->shortNoteDurationTable[cmd & 0xf];
+                        layer->NoteDuration = seqPlayer->ShortNoteDurationTable[cmd & 0xf];
                         break;
                     default:
                         break;
@@ -539,281 +539,281 @@ void Nas_InitNoteList(struct SequenceChannelLayer* layer) {
     }
 
     if (cmd == 0xc0) { // layer_delay
-        layer->delay = Nas_GetList(state);
-        layer->stopSomething = true;
+        layer->Delay = NasGetList(State);
+        layer->StopSomething = true;
     } else {
-        layer->stopSomething = false;
+        layer->StopSomething = false;
 
-        if (seqChannel->largeNotes == true) {
+        if (SEQChannel->largeNotes == true) {
             switch (cmd & 0xc0) {
-                case 0x00: // layer_note0 (play percentage, velocity, duration)
-                    sp3A = Nas_GetList(state);
-                    vel = *(state->pc++);
-                    layer->noteDuration = *(state->pc++);
-                    layer->playPercentage = sp3A;
+                case 0x00: // layer_note0 (play percentage, Velocity, Duration)
+                    sp3A = NasGetList(State);
+                    vel = *(State->pc++);
+                    layer->NoteDuration = *(State->pc++);
+                    layer->PlayPercentage = sp3A;
                     break;
 
-                case 0x40: // layer_note1 (play percentage, velocity)
-                    sp3A = Nas_GetList(state);
-                    vel = *(state->pc++);
-                    layer->noteDuration = 0;
-                    layer->playPercentage = sp3A;
+                case 0x40: // layer_note1 (play percentage, Velocity)
+                    sp3A = NasGetList(State);
+                    vel = *(State->pc++);
+                    layer->NoteDuration = 0;
+                    layer->PlayPercentage = sp3A;
                     break;
 
-                case 0x80: // layer_note2 (velocity, duration; uses last play percentage)
-                    sp3A = layer->playPercentage;
-                    vel = *(state->pc++);
-                    layer->noteDuration = *(state->pc++);
+                case 0x80: // layer_note2 (Velocity, Duration; uses last play percentage)
+                    sp3A = layer->PlayPercentage;
+                    vel = *(State->pc++);
+                    layer->NoteDuration = *(State->pc++);
                     break;
             }
             if ((vel >= 0x80) || (vel < 0)) {
                 vel = 0x0000007F;
             }
-            // the remaining bits are used for the semitone
+            // the remaining bits are Used for the semitone
             cmd -= (cmd & 0xc0);
-            layer->velocitySquare = ((f32) (vel) * (f32) vel) / 16129.0f;
+            layer->VelocitySquare = ((f32) (vel) * (f32) vel) / 16129.0f;
         } else {
             switch (cmd & 0xc0) {
-                case 0x00: // play note, type 0 (play percentage)
-                    sp3A = Nas_GetList(state);
-                    layer->playPercentage = sp3A;
+                case 0x00: // play Note, Type 0 (play percentage)
+                    sp3A = NasGetList(State);
+                    layer->PlayPercentage = sp3A;
                     break;
 
-                case 0x40: // play note, type 1 (uses default play percentage)
-                    sp3A = layer->shortNoteDefaultPlayPercentage;
+                case 0x40: // play Note, Type 1 (uses default play percentage)
+                    sp3A = layer->ShortNoteDefaultPlayPercentage;
                     break;
 
-                case 0x80: // play note, type 2 (uses last play percentage)
-                    sp3A = layer->playPercentage;
+                case 0x80: // play Note, Type 2 (uses last play percentage)
+                    sp3A = layer->PlayPercentage;
                     break;
             }
 
-            // the remaining bits are used for the semitone
+            // the remaining bits are Used for the semitone
             cmd -= cmd & 0xc0;
         }
 
-        layer->delay = sp3A;
-        layer->duration = layer->noteDuration * sp3A >> 8;
-        if ((seqPlayer->muted && (seqChannel->muteBehavior & MUTE_BEHAVIOR_STOP_NOTES) != 0) ||
-            seqChannel->stopSomething2) {
-            layer->stopSomething = true;
+        layer->Delay = sp3A;
+        layer->Duration = layer->NoteDuration * sp3A >> 8;
+        if ((seqPlayer->Muted && (SEQChannel->MuteBehavior & MUTE_BEHAVIOR_STOP_NOTES) != 0) ||
+            SEQChannel->stopSomething2) {
+            layer->StopSomething = true;
 
         } else {
-            s32 temp = layer->instOrWave;
+            s32 temp = layer->InstOrWave;
             if (temp == 0xff) {
-                if (!seqChannel->hasInstrument) {
+                if (!SEQChannel->hasInstrument) {
                     return;
                 }
-                temp = seqChannel->instOrWave;
+                temp = SEQChannel->InstOrWave;
             }
             if (temp == 0) { // drum
                 // cmd is reused for the drum semitone
-                cmd += seqChannel->transposition + layer->transposition;
+                cmd += SEQChannel->Transposition + layer->Transposition;
 
-                drum = PercToPp(seqChannel->bankId, cmd);
+                drum = PercToPp(SEQChannel->BankId, cmd);
                 if (drum == NULL) {
-                    layer->stopSomething = true;
-                    layer->delayUnused = layer->delay;
+                    layer->StopSomething = true;
+                    layer->DelayUnused = layer->Delay;
                     return;
                 } else {
-                    layer->adsr.envelope = drum->envelope;
-                    layer->adsr.releaseRate = drum->releaseRate;
-                    if (!layer->ignoreDrumPan) {
+                    layer->Adsr.Envelope = drum->Envelope;
+                    layer->Adsr.ReleaseRate = drum->ReleaseRate;
+                    if (!layer->IgnoreDrumPan) {
                         layer->pan = drum->pan;
                     }
-                    layer->sound = &drum->sound;
-                    layer->freqScale = layer->sound->tuning;
+                    layer->Sound = &drum->Sound;
+                    layer->FreqScale = layer->Sound->Tuning;
                 }
-            } else { // instrument
-                // cmd is reused for the instrument semitone
-                cmd += seqPlayer->transposition + seqChannel->transposition + layer->transposition;
+            } else { // Instrument
+                // cmd is reused for the Instrument semitone
+                cmd += seqPlayer->Transposition + SEQChannel->Transposition + layer->Transposition;
 
                 if (cmd >= 0x80) {
-                    layer->stopSomething = true;
+                    layer->StopSomething = true;
                 } else {
-                    if (layer->instOrWave == 0xffu) {
-                        instrument = seqChannel->instrument;
+                    if (layer->InstOrWave == 0xffu) {
+                        Instrument = SEQChannel->Instrument;
                     } else {
-                        instrument = layer->instrument;
+                        Instrument = layer->Instrument;
                     }
 
-                    if (layer->portamento.mode != 0) {
-                        if (layer->portamentoTargetNote < cmd) {
+                    if (layer->Portamento.Mode != 0) {
+                        if (layer->PortamentoTargetNote < cmd) {
                             vel = cmd;
                         } else {
-                            vel = layer->portamentoTargetNote;
+                            vel = layer->PortamentoTargetNote;
                         }
 
-                        if (instrument != NULL) {
-                            sound = NoteToVoice(instrument, vel);
-                            sameSound = (sound == layer->sound);
-                            layer->sound = sound;
-                            tuning = sound->tuning;
+                        if (Instrument != NULL) {
+                            Sound = NoteToVoice(Instrument, vel);
+                            sameSound = (Sound == layer->Sound);
+                            layer->Sound = Sound;
+                            Tuning = Sound->Tuning;
                         } else {
-                            layer->sound = NULL;
-                            tuning = 1.0f;
+                            layer->Sound = NULL;
+                            Tuning = 1.0f;
                         }
 
-                        temp_f2 = gNoteFrequencies[cmd] * tuning;
-                        temp_f12 = gNoteFrequencies[layer->portamentoTargetNote] * tuning;
+                        temp_f2 = NoteFrequencies[cmd] * Tuning;
+                        temp_f12 = NoteFrequencies[layer->PortamentoTargetNote] * Tuning;
 
-                        portamento = &layer->portamento;
-                        switch (PORTAMENTO_MODE(layer->portamento)) {
+                        Portamento = &layer->Portamento;
+                        switch (PORTAMENTO_MODE(layer->Portamento)) {
                             case PORTAMENTO_MODE_1:
                             case PORTAMENTO_MODE_3:
                             case PORTAMENTO_MODE_5:
-                                freqScale = temp_f12;
+                                FreqScale = temp_f12;
                                 break;
 
                             case PORTAMENTO_MODE_2:
                             case PORTAMENTO_MODE_4:
                             default:
-                                freqScale = temp_f2;
+                                FreqScale = temp_f2;
                                 break;
                         }
 
-                        portamento->extent = temp_f2 / freqScale - 1.0f;
+                        Portamento->Extent = temp_f2 / FreqScale - 1.0f;
 
-                        if (PORTAMENTO_IS_SPECIAL(layer->portamento)) {
-                            portamento->speed = US_FLOAT(32512.0) * FLOAT_CAST(seqPlayer->tempo) /
-                                                ((f32) layer->delay * (f32) gTempoInternalToExternal *
-                                                 FLOAT_CAST(layer->portamentoTime));
+                        if (PORTAMENTO_IS_SPECIAL(layer->Portamento)) {
+                            Portamento->Speed = US_FLOAT(32512.0) * FLOAT_CAST(seqPlayer->Tempo) /
+                                                ((f32) layer->Delay * (f32) TempoInternalToExternal *
+                                                 FLOAT_CAST(layer->PortamentoTime));
                         } else {
-                            portamento->speed = US_FLOAT(127.0) / FLOAT_CAST(layer->portamentoTime);
+                            Portamento->Speed = US_FLOAT(127.0) / FLOAT_CAST(layer->PortamentoTime);
                         }
-                        portamento->cur = 0.0f;
-                        layer->freqScale = freqScale;
-                        if (PORTAMENTO_MODE(layer->portamento) == PORTAMENTO_MODE_5) {
-                            layer->portamentoTargetNote = cmd;
+                        Portamento->cur = 0.0f;
+                        layer->FreqScale = FreqScale;
+                        if (PORTAMENTO_MODE(layer->Portamento) == PORTAMENTO_MODE_5) {
+                            layer->PortamentoTargetNote = cmd;
                         }
-                    } else if (instrument != NULL) {
-                        sound = NoteToVoice(instrument, cmd);
-                        sameSound = (sound == layer->sound);
-                        layer->sound = sound;
-                        layer->freqScale = gNoteFrequencies[cmd] * sound->tuning;
+                    } else if (Instrument != NULL) {
+                        Sound = NoteToVoice(Instrument, cmd);
+                        sameSound = (Sound == layer->Sound);
+                        layer->Sound = Sound;
+                        layer->FreqScale = NoteFrequencies[cmd] * Sound->Tuning;
                     } else {
-                        layer->sound = NULL;
-                        layer->freqScale = gNoteFrequencies[cmd];
+                        layer->Sound = NULL;
+                        layer->FreqScale = NoteFrequencies[cmd];
                     }
                 }
             }
-            layer->delayUnused = layer->delay;
+            layer->DelayUnused = layer->Delay;
         }
     }
 
-    if (layer->stopSomething == true) {
-        if (layer->note != NULL || layer->continuousNotes) {
-            L_CheckTerminate(layer);
+    if (layer->StopSomething == true) {
+        if (layer->Note != NULL || layer->ContinuousNotes) {
+            LCheckTerminate(layer);
         }
         return;
     }
 
     cmd = false;
-    if (!layer->continuousNotes) {
+    if (!layer->ContinuousNotes) {
         cmd = true;
-    } else if (layer->note == NULL || layer->status == SOUND_LOAD_STATUS_NOT_LOADED) {
+    } else if (layer->Note == NULL || layer->Status == SOUND_LOAD_STATUS_NOT_LOADED) {
         cmd = true;
     } else if (sameSound == false) {
-        L_CheckTerminate(layer);
+        LCheckTerminate(layer);
         cmd = true;
-    } else if (layer != layer->note->parentLayer) {
+    } else if (layer != layer->Note->ParentLayer) {
         cmd = true;
-    } else if (layer->sound == NULL) {
-        Nas_Release_Channel(layer->note, layer);
+    } else if (layer->Sound == NULL) {
+        NasReleaseChannel(layer->Note, layer);
     }
 
     if (cmd != false) {
-        layer->note = Nas_ChLookFree(layer);
+        layer->Note = NasChLookFree(layer);
     }
 
-    if (layer->note != NULL && layer->note->parentLayer == layer) {
-        Nas_ModTableRead(layer->note);
+    if (layer->Note != NULL && layer->Note->ParentLayer == layer) {
+        NasModTableRead(layer->Note);
     }
-    if (seqChannel) {}
+    if (SEQChannel) {}
 }
 
-u8 Nas_ReadByteData(struct SequenceChannel* seqChannel, u8 instId, struct Instrument** instOut,
-                  struct AdsrSettings* adsr) {
+u8 NasReadByteData(struct SequenceChannel* SEQChannel, u8 instId, struct Instrument** instOut,
+                  struct AdsrSettings* Adsr) {
     struct Instrument* inst;
-    inst = ProgToVp(seqChannel->bankId, instId);
+    inst = ProgToVp(SEQChannel->BankId, instId);
     if (inst == NULL) {
         *instOut = NULL;
         return 0;
     }
-    adsr->envelope = inst->envelope;
-    adsr->releaseRate = inst->releaseRate;
+    Adsr->Envelope = inst->Envelope;
+    Adsr->ReleaseRate = inst->ReleaseRate;
     *instOut = inst;
     instId++;
     return instId;
 }
 
-void Nas_ReadWordData(struct SequenceChannel* seqChannel, u8 instId) {
+void NasReadWordData(struct SequenceChannel* SEQChannel, u8 instId) {
     if (instId >= 0x80) {
-        seqChannel->instOrWave = instId;
-        seqChannel->instrument = NULL;
+        SEQChannel->InstOrWave = instId;
+        SEQChannel->Instrument = NULL;
     } else if (instId == 0x7f) {
-        seqChannel->instOrWave = 0;
-        seqChannel->instrument = (struct Instrument*) 1;
+        SEQChannel->InstOrWave = 0;
+        SEQChannel->Instrument = (struct Instrument*) 1;
     } else {
-        if ((seqChannel->instOrWave = Nas_ReadByteData(seqChannel, instId, &seqChannel->instrument, &seqChannel->adsr)) ==
+        if ((SEQChannel->InstOrWave = NasReadByteData(SEQChannel, instId, &SEQChannel->Instrument, &SEQChannel->Adsr)) ==
             0) {
-            seqChannel->hasInstrument = false;
+            SEQChannel->hasInstrument = false;
             return;
         }
     }
-    seqChannel->hasInstrument = true;
+    SEQChannel->hasInstrument = true;
 }
 
-void Nas_ReadLengthData(struct SequenceChannel* seqChannel, u8 volume) {
-    seqChannel->volume = FLOAT_CAST(volume) / US_FLOAT(127.0);
+void NasReadLengthData(struct SequenceChannel* SEQChannel, u8 Volume) {
+    SEQChannel->Volume = FLOAT_CAST(Volume) / US_FLOAT(127.0);
 }
 
-void Nas_NoteSeq(struct SequenceChannel* seqChannel) {
-    struct M64ScriptState* state;
+void NasNoteSeq(struct SequenceChannel* SEQChannel) {
+    struct M64ScriptState* State;
     struct SequencePlayer* seqPlayer;
     u8 cmd;
     s8 temp;
     u8 loBits;
     u16 sp5A;
     s32 sp38;
-    s8 value;
+    s8 Value;
     s32 i;
-    u8* seqData;
+    u8* SEQData;
 
-    if (!seqChannel->enabled) {
+    if (!SEQChannel->Enabled) {
         return;
     }
-    if (seqChannel->stopScript) {
+    if (SEQChannel->stopScript) {
         for (i = 0; i < LAYERS_MAX; i++) {
-            if (seqChannel->layers[i] != NULL) {
-                Nas_InitNoteList(seqChannel->layers[i]);
+            if (SEQChannel->layers[i] != NULL) {
+                NasInitNoteList(SEQChannel->layers[i]);
             }
         }
         return;
     }
-    seqPlayer = seqChannel->seqPlayer;
-    if (seqPlayer->muted && ((seqChannel->muteBehavior & 0x80) != 0)) {
+    seqPlayer = SEQChannel->seqPlayer;
+    if (seqPlayer->Muted && ((SEQChannel->MuteBehavior & 0x80) != 0)) {
         return;
     }
-    if (seqChannel->delay != 0) {
-        seqChannel->delay--;
+    if (SEQChannel->Delay != 0) {
+        SEQChannel->Delay--;
     }
-    state = &seqChannel->scriptState;
-    if (seqChannel->delay == 0) {
+    State = &SEQChannel->ScriptState;
+    if (SEQChannel->Delay == 0) {
         for (;;) {
-            cmd = Nas_ReleaseGroup(state);
+            cmd = NasReleaseGroup(State);
             if (cmd > 0xc0) {
                 switch (cmd) {
                     case 0xFF:
-                        if (state->depth) {};
+                        if (State->Depth) {};
                         if (1) {};
                         if (1) {};
                         if (1) {};
-                        if (state->depth == 0) {
-                            Nas_InitSubTrack(seqChannel);
+                        if (State->Depth == 0) {
+                            NasInitSubTrack(SEQChannel);
                             goto out;
                         } else {
-                            state->pc = state->stack[--state->depth];
+                            State->pc = State->Stack[--State->Depth];
                         }
                         break;
 
@@ -821,368 +821,368 @@ void Nas_NoteSeq(struct SequenceChannel* seqChannel) {
                         goto out;
 
                     case 0xFD:
-                        seqChannel->delay = Nas_GetList(state);
+                        SEQChannel->Delay = NasGetList(State);
                         goto out;
 
                     case 0xEA:
-                        seqChannel->stopScript = 1;
+                        SEQChannel->stopScript = 1;
                         goto out;
 
                     case 0xFC:
-                        sp5A = Nas_AddList(state);
-                        state->stack[state->depth++] = state->pc;
-                        state->pc = seqPlayer->seqData + sp5A;
+                        sp5A = NasAddList(State);
+                        State->Stack[State->Depth++] = State->pc;
+                        State->pc = seqPlayer->SEQData + sp5A;
                         break;
 
                     case 0xF8:
-                        state->remLoopIters[state->depth] = Nas_ReleaseGroup(state);
-                        state->stack[state->depth] = state->pc;
-                        state->depth += 1;
+                        State->RemLoopIters[State->Depth] = NasReleaseGroup(State);
+                        State->Stack[State->Depth] = State->pc;
+                        State->Depth += 1;
                         break;
 
                     case 0xF7:
-                        state->remLoopIters[state->depth - 1]--;
-                        if (state->remLoopIters[state->depth - 1] != 0) {
-                            state->pc = state->stack[state->depth - 1];
+                        State->RemLoopIters[State->Depth - 1]--;
+                        if (State->RemLoopIters[State->Depth - 1] != 0) {
+                            State->pc = State->Stack[State->Depth - 1];
                         } else {
-                            state->depth--;
+                            State->Depth--;
                         }
                         break;
 
                     case 0xF6:
-                        state->depth -= 1;
+                        State->Depth -= 1;
                         break;
 
                     case 0xF5:
                     case 0xF9:
                     case 0xFA:
                     case 0xFB:
-                        sp5A = Nas_AddList(state);
-                        if ((cmd == 0xFA) && (value != 0)) {
+                        sp5A = NasAddList(State);
+                        if ((cmd == 0xFA) && (Value != 0)) {
                             break;
                         }
-                        if ((cmd == 0xF9) && (value >= 0)) {
+                        if ((cmd == 0xF9) && (Value >= 0)) {
                             break;
                         }
-                        if ((cmd == 0xF5) && (value < 0)) {
+                        if ((cmd == 0xF5) && (Value < 0)) {
                             break;
                         }
-                        state->pc = seqPlayer->seqData + sp5A;
+                        State->pc = seqPlayer->SEQData + sp5A;
                         break;
 
                     case 0xF2:
                     case 0xF3:
                     case 0xF4:
-                        temp = Nas_ReleaseGroup(state);
-                        if ((cmd == 0xF3) && (value != 0)) {
+                        temp = NasReleaseGroup(State);
+                        if ((cmd == 0xF3) && (Value != 0)) {
                             break;
                         }
-                        if ((cmd == 0xF2) && (value >= 0)) {
+                        if ((cmd == 0xF2) && (Value >= 0)) {
                             break;
                         }
-                        state->pc += temp;
+                        State->pc += temp;
                         break;
 
                     case 0xF1:
-                        Nas_InitList(&seqChannel->notePool);
-                        Nas_InitChNode(&seqChannel->notePool, Nas_ReleaseGroup(state));
+                        NasInitList(&SEQChannel->NotePool);
+                        NasInitChNode(&SEQChannel->NotePool, NasReleaseGroup(State));
                         break;
 
                     case 0xF0:
-                        Nas_InitList(&seqChannel->notePool);
+                        NasInitList(&SEQChannel->NotePool);
                         break;
 
                     case 0xC2:
-                        sp5A = Nas_AddList(state);
-                        seqChannel->dynTable = (void*) (seqPlayer->seqData + sp5A);
+                        sp5A = NasAddList(State);
+                        SEQChannel->dynTable = (void*) (seqPlayer->SEQData + sp5A);
                         break;
 
                     case 0xC5:
-                        if (value != (-1)) {
-                            seqData = (*seqChannel->dynTable)[value];
-                            sp38 = (u16) ((seqData[0] << 8) + seqData[1]);
-                            seqChannel->dynTable = (void*) (seqPlayer->seqData + sp38);
+                        if (Value != (-1)) {
+                            SEQData = (*SEQChannel->dynTable)[Value];
+                            sp38 = (u16) ((SEQData[0] << 8) + SEQData[1]);
+                            SEQChannel->dynTable = (void*) (seqPlayer->SEQData + sp38);
                         }
                         break;
 
                     case 0xEB:
-                        cmd = Nas_ReleaseGroup(state);
-                        sp38 = ((u16*) gAlBankSets)[seqPlayer->seqId];
-                        loBits = *(sp38 + gAlBankSets);
-                        cmd = gAlBankSets[(((s32) sp38) + loBits) - cmd];
-                        if (Nas_SzHeapAlloc(1, 2, cmd) != NULL) {
-                            seqChannel->bankId = cmd;
+                        cmd = NasReleaseGroup(State);
+                        sp38 = ((u16*) AlBankSets)[seqPlayer->SEQId];
+                        loBits = *(sp38 + AlBankSets);
+                        cmd = AlBankSets[(((s32) sp38) + loBits) - cmd];
+                        if (NasSzHeapAlloc(1, 2, cmd) != NULL) {
+                            SEQChannel->BankId = cmd;
                         }
 
                     case 0xC1:
-                        Nas_ReadWordData(seqChannel, Nas_ReleaseGroup(state));
+                        NasReadWordData(SEQChannel, NasReleaseGroup(State));
                         break;
 
                     case 0xC3:
-                        seqChannel->largeNotes = 0;
+                        SEQChannel->largeNotes = 0;
                         break;
 
                     case 0xC4:
-                        seqChannel->largeNotes = 1;
+                        SEQChannel->largeNotes = 1;
                         break;
 
                     case 0xDF:
-                        Nas_ReadLengthData(seqChannel, Nas_ReleaseGroup(state));
-                        seqChannel->changes.as_bitfields.volume = 1;
+                        NasReadLengthData(SEQChannel, NasReleaseGroup(State));
+                        SEQChannel->Changes.AsBitfields.Volume = 1;
                         break;
 
                     case 0xE0:
-                        seqChannel->volumeScale = ((f32) ((s32) Nas_ReleaseGroup(state))) / 128.0f;
-                        seqChannel->changes.as_bitfields.volume = 1;
+                        SEQChannel->volumeScale = ((f32) ((s32) NasReleaseGroup(State))) / 128.0f;
+                        SEQChannel->Changes.AsBitfields.Volume = 1;
                         break;
 
                     case 0xDE:
-                        sp5A = Nas_AddList(state);
-                        seqChannel->freqScale = ((f32) ((s32) sp5A)) / 32768.0f;
-                        seqChannel->changes.as_bitfields.freqScale = 1;
+                        sp5A = NasAddList(State);
+                        SEQChannel->FreqScale = ((f32) ((s32) sp5A)) / 32768.0f;
+                        SEQChannel->Changes.AsBitfields.FreqScale = 1;
                         break;
 
                     case 0xD3:
-                        cmd = Nas_ReleaseGroup(state) + 127;
-                        seqChannel->freqScale = gPitchBendFrequencyScale[cmd];
-                        seqChannel->changes.as_bitfields.freqScale = 1;
+                        cmd = NasReleaseGroup(State) + 127;
+                        SEQChannel->FreqScale = PitchBendFrequencyScale[cmd];
+                        SEQChannel->Changes.AsBitfields.FreqScale = 1;
                         break;
 
                     case 0xDD:
-                        seqChannel->newPan = Nas_ReleaseGroup(state);
-                        seqChannel->changes.as_bitfields.pan = 1;
+                        SEQChannel->newPan = NasReleaseGroup(State);
+                        SEQChannel->Changes.AsBitfields.pan = 1;
                         break;
 
                     case 0xDC:
-                        seqChannel->panChannelWeight = Nas_ReleaseGroup(state);
-                        seqChannel->changes.as_bitfields.pan = 1;
+                        SEQChannel->panChannelWeight = NasReleaseGroup(State);
+                        SEQChannel->Changes.AsBitfields.pan = 1;
                         break;
 
                     case 0xDB:
-                        temp = *(state->pc++);
-                        seqChannel->transposition = temp;
+                        temp = *(State->pc++);
+                        SEQChannel->Transposition = temp;
                         break;
 
                     case 0xDA:
-                        sp5A = Nas_AddList(state);
-                        seqChannel->adsr.envelope = (struct AdsrEnvelope*) (seqPlayer->seqData + sp5A);
+                        sp5A = NasAddList(State);
+                        SEQChannel->Adsr.Envelope = (struct AdsrEnvelope*) (seqPlayer->SEQData + sp5A);
                         break;
 
                     case 0xD9:
-                        seqChannel->adsr.releaseRate = Nas_ReleaseGroup(state);
+                        SEQChannel->Adsr.ReleaseRate = NasReleaseGroup(State);
                         break;
 
                     case 0xD8:
-                        seqChannel->vibratoExtentTarget = Nas_ReleaseGroup(state) * 8;
-                        seqChannel->vibratoExtentStart = 0;
-                        seqChannel->vibratoExtentChangeDelay = 0;
+                        SEQChannel->vibratoExtentTarget = NasReleaseGroup(State) * 8;
+                        SEQChannel->vibratoExtentStart = 0;
+                        SEQChannel->vibratoExtentChangeDelay = 0;
                         break;
 
                     case 0xD7:
-                        seqChannel->vibratoRateStart = seqChannel->vibratoRateTarget = Nas_ReleaseGroup(state) * 32;
-                        seqChannel->vibratoRateChangeDelay = 0;
+                        SEQChannel->vibratoRateStart = SEQChannel->vibratoRateTarget = NasReleaseGroup(State) * 32;
+                        SEQChannel->vibratoRateChangeDelay = 0;
                         break;
 
                     case 0xE2:
-                        seqChannel->vibratoExtentStart = Nas_ReleaseGroup(state) * 8;
-                        seqChannel->vibratoExtentTarget = Nas_ReleaseGroup(state) * 8;
-                        seqChannel->vibratoExtentChangeDelay = Nas_ReleaseGroup(state) * 0x10;
+                        SEQChannel->vibratoExtentStart = NasReleaseGroup(State) * 8;
+                        SEQChannel->vibratoExtentTarget = NasReleaseGroup(State) * 8;
+                        SEQChannel->vibratoExtentChangeDelay = NasReleaseGroup(State) * 0x10;
                         break;
 
                     case 0xE1:
-                        seqChannel->vibratoRateStart = Nas_ReleaseGroup(state) << 5;
-                        seqChannel->vibratoRateTarget = Nas_ReleaseGroup(state) << 5;
-                        seqChannel->vibratoRateChangeDelay = Nas_ReleaseGroup(state) * 0x10;
+                        SEQChannel->vibratoRateStart = NasReleaseGroup(State) << 5;
+                        SEQChannel->vibratoRateTarget = NasReleaseGroup(State) << 5;
+                        SEQChannel->vibratoRateChangeDelay = NasReleaseGroup(State) * 0x10;
                         break;
 
                     case 0xE3:
-                        seqChannel->vibratoDelay = Nas_ReleaseGroup(state) * 0x10;
+                        SEQChannel->vibratoDelay = NasReleaseGroup(State) * 0x10;
                         break;
 
                     case 0xD4:
-                        seqChannel->reverbVol = Nas_ReleaseGroup(state);
+                        SEQChannel->ReverbVol = NasReleaseGroup(State);
                         break;
 
                     case 0xC6:
-                        cmd = Nas_ReleaseGroup(state);
-                        sp5A = ((u16*) gAlBankSets)[seqPlayer->seqId];
-                        loBits = *(sp5A + gAlBankSets);
-                        cmd = gAlBankSets[(sp5A + loBits) - cmd];
-                        if (Nas_SzHeapAlloc(1, 2, cmd) != NULL) {
-                            seqChannel->bankId = cmd;
+                        cmd = NasReleaseGroup(State);
+                        sp5A = ((u16*) AlBankSets)[seqPlayer->SEQId];
+                        loBits = *(sp5A + AlBankSets);
+                        cmd = AlBankSets[(sp5A + loBits) - cmd];
+                        if (NasSzHeapAlloc(1, 2, cmd) != NULL) {
+                            SEQChannel->BankId = cmd;
                         }
                         break;
 
                     case 0xC7:
-                        cmd = Nas_ReleaseGroup(state);
-                        sp5A = Nas_AddList(state);
-                        seqData = seqPlayer->seqData + sp5A;
-                        *seqData = ((u8) value) + cmd;
+                        cmd = NasReleaseGroup(State);
+                        sp5A = NasAddList(State);
+                        SEQData = seqPlayer->SEQData + sp5A;
+                        *SEQData = ((u8) Value) + cmd;
                         break;
 
                     case 0xC8:
                     case 0xC9:
                     case 0xCC:
-                        temp = Nas_ReleaseGroup(state);
+                        temp = NasReleaseGroup(State);
                         if (cmd == 0xC8) {
-                            value -= temp;
+                            Value -= temp;
                         } else if (cmd == 0xCC) {
-                            value = temp;
+                            Value = temp;
                         } else {
-                            value &= temp;
+                            Value &= temp;
                         }
                         break;
 
                     case 0xCA:
-                        seqChannel->muteBehavior = Nas_ReleaseGroup(state);
+                        SEQChannel->MuteBehavior = NasReleaseGroup(State);
                         break;
 
                     case 0xCB:
-                        sp38 = ((u16) Nas_AddList(state)) + value;
-                        value = seqPlayer->seqData[sp38];
+                        sp38 = ((u16) NasAddList(State)) + Value;
+                        Value = seqPlayer->SEQData[sp38];
                         break;
 
                     case 0xD0:
-                        seqChannel->stereoHeadsetEffects = Nas_ReleaseGroup(state);
+                        SEQChannel->StereoHeadsetEffects = NasReleaseGroup(State);
                         break;
 
                     case 0xD1:
-                        seqChannel->noteAllocPolicy = Nas_ReleaseGroup(state);
+                        SEQChannel->NoteAllocPolicy = NasReleaseGroup(State);
                         break;
 
                     case 0xD2:
-                        seqChannel->adsr.sustain = Nas_ReleaseGroup(state);
+                        SEQChannel->Adsr.Sustain = NasReleaseGroup(State);
                         break;
 
                     case 0xE5:
-                        seqChannel->reverbIndex = Nas_ReleaseGroup(state);
+                        SEQChannel->reverbIndex = NasReleaseGroup(State);
                         break;
 
                     case 0xE4:
-                        if (value != (-1)) {
-                            if (state->depth) {};
-                            seqData = (*seqChannel->dynTable)[value];
-                            state->stack[state->depth++] = state->pc;
-                            sp38 = (u16) ((seqData[0] << 8) + seqData[1]);
-                            state->pc = seqPlayer->seqData + sp38;
+                        if (Value != (-1)) {
+                            if (State->Depth) {};
+                            SEQData = (*SEQChannel->dynTable)[Value];
+                            State->Stack[State->Depth++] = State->pc;
+                            sp38 = (u16) ((SEQData[0] << 8) + SEQData[1]);
+                            State->pc = seqPlayer->SEQData + sp38;
                         }
                         break;
 
                     case 0xE6:
-                        seqChannel->bookOffset = Nas_ReleaseGroup(state);
+                        SEQChannel->bookOffset = NasReleaseGroup(State);
                         break;
 
                     case 0xE7:
-                        sp5A = Nas_AddList(state);
-                        seqData = seqPlayer->seqData + sp5A;
-                        seqChannel->muteBehavior = *(seqData++);
-                        seqChannel->noteAllocPolicy = *(seqData++);
-                        seqChannel->notePriority = *(seqData++);
-                        seqChannel->transposition = (s8) (*(seqData++));
-                        seqChannel->newPan = *(seqData++);
-                        seqChannel->panChannelWeight = *(seqData++);
-                        seqChannel->reverbVol = *(seqData++);
-                        seqChannel->reverbIndex = *(seqData++);
-                        seqChannel->changes.as_bitfields.pan = 1;
+                        sp5A = NasAddList(State);
+                        SEQData = seqPlayer->SEQData + sp5A;
+                        SEQChannel->MuteBehavior = *(SEQData++);
+                        SEQChannel->NoteAllocPolicy = *(SEQData++);
+                        SEQChannel->notePriority = *(SEQData++);
+                        SEQChannel->Transposition = (s8) (*(SEQData++));
+                        SEQChannel->newPan = *(SEQData++);
+                        SEQChannel->panChannelWeight = *(SEQData++);
+                        SEQChannel->ReverbVol = *(SEQData++);
+                        SEQChannel->reverbIndex = *(SEQData++);
+                        SEQChannel->Changes.AsBitfields.pan = 1;
                         break;
 
                     case 0xE8:
-                        seqChannel->muteBehavior = Nas_ReleaseGroup(state);
-                        seqChannel->noteAllocPolicy = Nas_ReleaseGroup(state);
-                        seqChannel->notePriority = Nas_ReleaseGroup(state);
-                        seqChannel->transposition = (s8) Nas_ReleaseGroup(state);
-                        seqChannel->newPan = Nas_ReleaseGroup(state);
-                        seqChannel->panChannelWeight = Nas_ReleaseGroup(state);
-                        seqChannel->reverbVol = Nas_ReleaseGroup(state);
-                        seqChannel->reverbIndex = Nas_ReleaseGroup(state);
-                        seqChannel->changes.as_bitfields.pan = 1;
+                        SEQChannel->MuteBehavior = NasReleaseGroup(State);
+                        SEQChannel->NoteAllocPolicy = NasReleaseGroup(State);
+                        SEQChannel->notePriority = NasReleaseGroup(State);
+                        SEQChannel->Transposition = (s8) NasReleaseGroup(State);
+                        SEQChannel->newPan = NasReleaseGroup(State);
+                        SEQChannel->panChannelWeight = NasReleaseGroup(State);
+                        SEQChannel->ReverbVol = NasReleaseGroup(State);
+                        SEQChannel->reverbIndex = NasReleaseGroup(State);
+                        SEQChannel->Changes.AsBitfields.pan = 1;
                         break;
 
                     case 0xEC:
-                        seqChannel->vibratoExtentTarget = 0;
-                        seqChannel->vibratoExtentStart = 0;
-                        seqChannel->vibratoExtentChangeDelay = 0;
-                        seqChannel->vibratoRateTarget = 0;
-                        seqChannel->vibratoRateStart = 0;
-                        seqChannel->vibratoRateChangeDelay = 0;
-                        seqChannel->freqScale = 1.0f;
+                        SEQChannel->vibratoExtentTarget = 0;
+                        SEQChannel->vibratoExtentStart = 0;
+                        SEQChannel->vibratoExtentChangeDelay = 0;
+                        SEQChannel->vibratoRateTarget = 0;
+                        SEQChannel->vibratoRateStart = 0;
+                        SEQChannel->vibratoRateChangeDelay = 0;
+                        SEQChannel->FreqScale = 1.0f;
                         break;
 
                     case 0xE9:
-                        seqChannel->notePriority = Nas_ReleaseGroup(state);
+                        SEQChannel->notePriority = NasReleaseGroup(State);
                         break;
 
                     case 0xEF:
-                        Nas_AddList(state);
-                        Nas_ReleaseGroup(state);
+                        NasAddList(State);
+                        NasReleaseGroup(State);
                         break;
                 }
             } else {
                 loBits = cmd & 0xf;
                 switch (cmd & 0xF0) {
                     case 0x0:
-                        if (seqChannel->layers[loBits] != NULL) {
-                            value = seqChannel->layers[loBits]->finished;
+                        if (SEQChannel->layers[loBits] != NULL) {
+                            Value = SEQChannel->layers[loBits]->Finished;
                         } else {
-                            value = -1;
+                            Value = -1;
                         }
                         break;
 
                     case 0x70:
-                        seqChannel->soundScriptIO[loBits] = value;
+                        SEQChannel->soundScriptIO[loBits] = Value;
                         break;
 
                     case 0x80:
-                        value = seqChannel->soundScriptIO[loBits];
+                        Value = SEQChannel->soundScriptIO[loBits];
                         if (loBits < 4) {
-                            seqChannel->soundScriptIO[loBits] = -1;
+                            SEQChannel->soundScriptIO[loBits] = -1;
                         }
                         break;
 
                     case 0x50:
-                        value -= seqChannel->soundScriptIO[loBits];
+                        Value -= SEQChannel->soundScriptIO[loBits];
                         break;
 
                     case 0x60:
-                        seqChannel->delay = loBits;
+                        SEQChannel->Delay = loBits;
                         goto out;
 
                     case 0x90:
-                        sp5A = Nas_AddList(state);
-                        if (Nas_EnvInit(seqChannel, loBits) == 0) {
-                            seqChannel->layers[loBits]->scriptState.pc = seqPlayer->seqData + sp5A;
+                        sp5A = NasAddList(State);
+                        if (NasEnvInit(SEQChannel, loBits) == 0) {
+                            SEQChannel->layers[loBits]->ScriptState.pc = seqPlayer->SEQData + sp5A;
                         }
                         break;
 
                     case 0xA0:
-                        ENV_RETRY(seqChannel, loBits);
+                        ENV_RETRY(SEQChannel, loBits);
                         break;
 
                     case 0xB0:
-                        if ((value != (-1)) && (Nas_EnvInit(seqChannel, loBits) != (-1))) {
-                            seqData = (*seqChannel->dynTable)[value];
-                            sp5A = (seqData[0] << 8) + seqData[1];
-                            seqChannel->layers[loBits]->scriptState.pc = seqPlayer->seqData + sp5A;
+                        if ((Value != (-1)) && (NasEnvInit(SEQChannel, loBits) != (-1))) {
+                            SEQData = (*SEQChannel->dynTable)[Value];
+                            sp5A = (SEQData[0] << 8) + SEQData[1];
+                            SEQChannel->layers[loBits]->ScriptState.pc = seqPlayer->SEQData + sp5A;
                         }
                         break;
 
                     case 0x10:
-                        sp5A = Nas_AddList(state);
-                        Nas_ReleaseSubTrack(seqPlayer, loBits, seqPlayer->seqData + sp5A);
+                        sp5A = NasAddList(State);
+                        NasReleaseSubTrack(seqPlayer, loBits, seqPlayer->SEQData + sp5A);
                         break;
 
                     case 0x20:
-                        Nas_InitSubTrack(seqPlayer->channels[loBits]);
+                        NasInitSubTrack(seqPlayer->Channels[loBits]);
                         break;
 
                     case 0x30:
-                        cmd = Nas_ReleaseGroup(state);
-                        seqPlayer->channels[loBits]->soundScriptIO[cmd] = value;
+                        cmd = NasReleaseGroup(State);
+                        seqPlayer->Channels[loBits]->soundScriptIO[cmd] = Value;
                         break;
 
                     case 0x40:
-                        cmd = Nas_ReleaseGroup(state);
-                        value = seqPlayer->channels[loBits]->soundScriptIO[cmd];
+                        cmd = NasReleaseGroup(State);
+                        Value = seqPlayer->Channels[loBits]->soundScriptIO[cmd];
                         break;
                 }
             }
@@ -1190,8 +1190,8 @@ void Nas_NoteSeq(struct SequenceChannel* seqChannel) {
     }
 out:
     for (i = 0; i < LAYERS_MAX; i++) {
-        if (seqChannel->layers[i] != 0) {
-            Nas_InitNoteList(seqChannel->layers[i]);
+        if (SEQChannel->layers[i] != 0) {
+            NasInitNoteList(SEQChannel->layers[i]);
         }
     }
 }
@@ -1200,95 +1200,95 @@ void ERROR_EXIT(struct SequencePlayer* seqPlayer) {
     u8 cmd;
     u8 loBits;
     u8 temp;
-    s32 value;
+    s32 Value;
     s32 i;
     u16 u16v;
-    u8* seqData;
-    struct M64ScriptState* state;
+    u8* SEQData;
+    struct M64ScriptState* State;
     s32 temp32;
 
-    if (seqPlayer->enabled == false) {
+    if (seqPlayer->Enabled == false) {
         return;
     }
 
-    if (seqPlayer->bankDmaInProgress == true) {
-        if (osRecvMesg(&seqPlayer->bankDmaMesgQueue, NULL, 0) == -1) {
+    if (seqPlayer->BankDmaInProgress == true) {
+        if (osRecvMesg(&seqPlayer->BankDmaMesgQueue, NULL, 0) == -1) {
             return;
         }
-        if (seqPlayer->bankDmaRemaining == 0) {
-            seqPlayer->bankDmaInProgress = false;
-            Nas_smzBnkOfsToAdd(seqPlayer->loadingBankId);
-            if (gBankLoadStatus[seqPlayer->loadingBankId] != 5) {
-                gBankLoadStatus[seqPlayer->loadingBankId] = 2;
+        if (seqPlayer->BankDmaRemaining == 0) {
+            seqPlayer->BankDmaInProgress = false;
+            NasSmzBnkOfsToAdd(seqPlayer->LoadingBankId);
+            if (BankLoadStatus[seqPlayer->LoadingBankId] != 5) {
+                BankLoadStatus[seqPlayer->LoadingBankId] = 2;
             }
         } else {
-            Nas_SlowRomCopy(&seqPlayer->bankDmaCurrDevAddr, &seqPlayer->bankDmaCurrMemAddr,
-                                         &seqPlayer->bankDmaRemaining, &seqPlayer->bankDmaMesgQueue,
-                                         &seqPlayer->bankDmaIoMesg);
+            NasSlowRomCopy(&seqPlayer->BankDmaCurrDevAddr, &seqPlayer->BankDmaCurrMemAddr,
+                                         &seqPlayer->BankDmaRemaining, &seqPlayer->BankDmaMesgQueue,
+                                         &seqPlayer->BankDmaIoMesg);
         }
         return;
     }
 
-    if (seqPlayer->seqDmaInProgress == true) {
-        if (osRecvMesg(&seqPlayer->seqDmaMesgQueue, NULL, 0) == -1) {
+    if (seqPlayer->SEQDmaInProgress == true) {
+        if (osRecvMesg(&seqPlayer->SEQDmaMesgQueue, NULL, 0) == -1) {
             return;
         }
-        seqPlayer->seqDmaInProgress = false;
-        if (gSeqLoadStatus[seqPlayer->seqId] != 5) {
-            gSeqLoadStatus[seqPlayer->seqId] = 2;
+        seqPlayer->SEQDmaInProgress = false;
+        if (SeqLoadStatus[seqPlayer->SEQId] != 5) {
+            SeqLoadStatus[seqPlayer->SEQId] = 2;
         }
     }
 
     // If discarded, bail out.
     temp32 = 2; // I beg your pardon?
-    if (IS_SEQ_LOAD_COMPLETE(seqPlayer->seqId) == false ||
-        (IS_BANK_LOAD_COMPLETE(seqPlayer->defaultBank[0]) == false)) {
-        Nas_GetNewSubTrack(seqPlayer);
+    if (IS_SEQ_LOAD_COMPLETE(seqPlayer->SEQId) == false ||
+        (IS_BANK_LOAD_COMPLETE(seqPlayer->DefaultBank[0]) == false)) {
+        NasGetNewSubTrack(seqPlayer);
         return;
     }
 
     // Remove possible SOUND_LOAD_STATUS_DISCARDABLE marks.
-    if (gSeqLoadStatus[seqPlayer->seqId] != 5) {
-        gSeqLoadStatus[seqPlayer->seqId] = temp32;
+    if (SeqLoadStatus[seqPlayer->SEQId] != 5) {
+        SeqLoadStatus[seqPlayer->SEQId] = temp32;
     }
 
-    if (gBankLoadStatus[seqPlayer->defaultBank[0]] != 5) {
-        gBankLoadStatus[seqPlayer->defaultBank[0]] = temp32;
+    if (BankLoadStatus[seqPlayer->DefaultBank[0]] != 5) {
+        BankLoadStatus[seqPlayer->DefaultBank[0]] = temp32;
     }
 
-    if (seqPlayer->muted && (seqPlayer->muteBehavior & MUTE_BEHAVIOR_STOP_SCRIPT) != 0) {
+    if (seqPlayer->Muted && (seqPlayer->MuteBehavior & MUTE_BEHAVIOR_STOP_SCRIPT) != 0) {
         return;
     }
 
-    // Check if we surpass the number of ticks needed for a tatum, else stop.
-    seqPlayer->tempoAcc += seqPlayer->tempo;
-    if (seqPlayer->tempoAcc < gTempoInternalToExternal) {
+    // Check if we surpass the Number of ticks needed for a tatum, else stop.
+    seqPlayer->TempoAcc += seqPlayer->Tempo;
+    if (seqPlayer->TempoAcc < TempoInternalToExternal) {
         return;
     }
-    seqPlayer->tempoAcc -= (u16) gTempoInternalToExternal;
+    seqPlayer->TempoAcc -= (u16) TempoInternalToExternal;
 
-    state = &seqPlayer->scriptState;
-    if (seqPlayer->delay > 1) {
-        seqPlayer->delay--;
+    State = &seqPlayer->ScriptState;
+    if (seqPlayer->Delay > 1) {
+        seqPlayer->Delay--;
     } else {
-        seqPlayer->recalculateVolume = 1;
+        seqPlayer->RecalculateVolume = 1;
         for (;;) {
-            cmd = Nas_ReleaseGroup(state);
+            cmd = NasReleaseGroup(State);
             if (cmd == 0xff) { // seq_end
-                if (state->depth == 0) {
-                    Nas_GetNewSubTrack(seqPlayer);
+                if (State->Depth == 0) {
+                    NasGetNewSubTrack(seqPlayer);
                     break;
                 }
-                state->pc = state->stack[--state->depth];
+                State->pc = State->Stack[--State->Depth];
             }
 
             if (cmd == 0xfd) { // seq_delay
-                seqPlayer->delay = Nas_GetList(state);
+                seqPlayer->Delay = NasGetList(State);
                 break;
             }
 
             if (cmd == 0xfe) { // seq_delay1
-                seqPlayer->delay = 1;
+                seqPlayer->Delay = 1;
                 break;
             }
 
@@ -1298,186 +1298,186 @@ void ERROR_EXIT(struct SequencePlayer* seqPlayer) {
                         break;
 
                     case 0xfc: // seq_call
-                        u16v = Nas_AddList(state);
-                        if (0 && state->depth >= 4) {}
-                        state->stack[state->depth++] = state->pc;
-                        state->pc = seqPlayer->seqData + u16v;
+                        u16v = NasAddList(State);
+                        if (0 && State->Depth >= 4) {}
+                        State->Stack[State->Depth++] = State->pc;
+                        State->pc = seqPlayer->SEQData + u16v;
                         break;
 
-                    case 0xf8: // seq_loop; loop start, N iterations (or 256 if N = 0)
-                        if (0 && state->depth >= 4) {}
-                        state->remLoopIters[state->depth] = Nas_ReleaseGroup(state);
-                        state->stack[state->depth++] = state->pc;
+                    case 0xf8: // seq_loop; Loop Start, N iterations (or 256 if N = 0)
+                        if (0 && State->Depth >= 4) {}
+                        State->RemLoopIters[State->Depth] = NasReleaseGroup(State);
+                        State->Stack[State->Depth++] = State->pc;
                         break;
 
                     case 0xf7: // seq_loopend
-                        state->remLoopIters[state->depth - 1]--;
-                        if (state->remLoopIters[state->depth - 1] != 0) {
-                            state->pc = state->stack[state->depth - 1];
+                        State->RemLoopIters[State->Depth - 1]--;
+                        if (State->RemLoopIters[State->Depth - 1] != 0) {
+                            State->pc = State->Stack[State->Depth - 1];
                         } else {
-                            state->depth--;
+                            State->Depth--;
                         }
                         break;
 
                     case 0xfb: // seq_jump
-                    case 0xfa: // seq_beqz; jump if == 0
-                    case 0xf9: // seq_bltz; jump if < 0
-                    case 0xf5: // seq_bgez; jump if >= 0
-                        u16v = Nas_AddList(state);
-                        if (cmd == 0xfa && value != 0) {
+                    case 0xfa: // seq_beqz; Jump if == 0
+                    case 0xf9: // seq_bltz; Jump if < 0
+                    case 0xf5: // seq_bgez; Jump if >= 0
+                        u16v = NasAddList(State);
+                        if (cmd == 0xfa && Value != 0) {
                             break;
                         }
-                        if (cmd == 0xf9 && value >= 0) {
+                        if (cmd == 0xf9 && Value >= 0) {
                             break;
                         }
-                        if (cmd == 0xf5 && value < 0) {
+                        if (cmd == 0xf5 && Value < 0) {
                             break;
                         }
-                        state->pc = seqPlayer->seqData + u16v;
+                        State->pc = seqPlayer->SEQData + u16v;
                         break;
 
                     case 0xf4:
                     case 0xf3:
                     case 0xf2:
-                        temp = Nas_ReleaseGroup(state);
-                        if (cmd == 0xf3 && value != 0) {
+                        temp = NasReleaseGroup(State);
+                        if (cmd == 0xf3 && Value != 0) {
                             break;
                         }
-                        if (cmd == 0xf2 && value >= 0) {
+                        if (cmd == 0xf2 && Value >= 0) {
                             break;
                         }
-                        state->pc += (s8) temp;
+                        State->pc += (s8) temp;
                         break;
 
                     case 0xf1: // seq_reservenotes
-                        Nas_InitList(&seqPlayer->notePool);
-                        Nas_InitChNode(&seqPlayer->notePool, Nas_ReleaseGroup(state));
+                        NasInitList(&seqPlayer->NotePool);
+                        NasInitChNode(&seqPlayer->NotePool, NasReleaseGroup(State));
                         break;
 
                     case 0xf0: // seq_unreservenotes
-                        Nas_InitList(&seqPlayer->notePool);
+                        NasInitList(&seqPlayer->NotePool);
                         break;
 
-                    case 0xdf: // seq_transpose; set transposition in semitones
-                        seqPlayer->transposition = 0;
+                    case 0xdf: // seq_transpose; set Transposition in semitones
+                        seqPlayer->Transposition = 0;
                         // fallthrough
 
-                    case 0xde: // seq_transposerel; add transposition
-                        seqPlayer->transposition += (s8) Nas_ReleaseGroup(state);
+                    case 0xde: // seq_transposerel; add Transposition
+                        seqPlayer->Transposition += (s8) NasReleaseGroup(State);
                         break;
 
                     case 0xdc:
                     case 0xdd: // seq_settempo (bpm)
-                        temp = Nas_ReleaseGroup(state);
+                        temp = NasReleaseGroup(State);
                         if (cmd == 0xdd) {
-                            seqPlayer->tempo = temp * TEMPO_SCALE;
+                            seqPlayer->Tempo = temp * TEMPO_SCALE;
                         } else {
-                            seqPlayer->tempo += (s8) temp * TEMPO_SCALE;
+                            seqPlayer->Tempo += (s8) temp * TEMPO_SCALE;
                         }
 
-                        if (seqPlayer->tempo > gTempoInternalToExternal) {
-                            seqPlayer->tempo = gTempoInternalToExternal;
+                        if (seqPlayer->Tempo > TempoInternalToExternal) {
+                            seqPlayer->Tempo = TempoInternalToExternal;
                         }
 
                         // if (cmd) {}
 
-                        if ((s16) seqPlayer->tempo <= 0) {
-                            seqPlayer->tempo = 1;
+                        if ((s16) seqPlayer->Tempo <= 0) {
+                            seqPlayer->Tempo = 1;
                         }
                         break;
 
                     case 0xda:
-                        cmd = Nas_ReleaseGroup(state);
-                        u16v = Nas_AddList(state);
+                        cmd = NasReleaseGroup(State);
+                        u16v = NasAddList(State);
                         switch (cmd) {
                             case SEQUENCE_PLAYER_STATE_0:
                             case SEQUENCE_PLAYER_STATE_FADE_OUT:
-                                if (seqPlayer->state != SEQUENCE_PLAYER_STATE_2) {
-                                    seqPlayer->fadeTimerUnkEu = u16v;
-                                    seqPlayer->state = cmd;
+                                if (seqPlayer->State != SEQUENCE_PLAYER_STATE_2) {
+                                    seqPlayer->FadeTimerUnkEu = u16v;
+                                    seqPlayer->State = cmd;
                                 }
                                 break;
                             case SEQUENCE_PLAYER_STATE_2:
-                                seqPlayer->fadeRemainingFrames = u16v;
-                                seqPlayer->state = cmd;
-                                seqPlayer->fadeVelocity = (0.0f - seqPlayer->fadeVolume) / (s32) (u16v & 0xFFFFu);
+                                seqPlayer->FadeRemainingFrames = u16v;
+                                seqPlayer->State = cmd;
+                                seqPlayer->FadeVelocity = (0.0f - seqPlayer->FadeVolume) / (s32) (u16v & 0xFFFFu);
                                 break;
                         }
                         break;
 
                     case 0xdb:
-                        temp32 = Nas_ReleaseGroup(state);
-                        switch (seqPlayer->state) {
+                        temp32 = NasReleaseGroup(State);
+                        switch (seqPlayer->State) {
                             case SEQUENCE_PLAYER_STATE_2:
                                 break;
                             case SEQUENCE_PLAYER_STATE_FADE_OUT:
-                                seqPlayer->state = SEQUENCE_PLAYER_STATE_0;
-                                seqPlayer->fadeVolume = 0.0f;
+                                seqPlayer->State = SEQUENCE_PLAYER_STATE_0;
+                                seqPlayer->FadeVolume = 0.0f;
                                 // fallthrough
                             case SEQUENCE_PLAYER_STATE_0:
-                                seqPlayer->fadeRemainingFrames = seqPlayer->fadeTimerUnkEu;
-                                if (seqPlayer->fadeTimerUnkEu != 0) {
-                                    seqPlayer->fadeVelocity = (temp32 / 127.0f - seqPlayer->fadeVolume) /
-                                                              FLOAT_CAST(seqPlayer->fadeRemainingFrames);
+                                seqPlayer->FadeRemainingFrames = seqPlayer->FadeTimerUnkEu;
+                                if (seqPlayer->FadeTimerUnkEu != 0) {
+                                    seqPlayer->FadeVelocity = (temp32 / 127.0f - seqPlayer->FadeVolume) /
+                                                              FLOAT_CAST(seqPlayer->FadeRemainingFrames);
                                 } else {
-                                    seqPlayer->fadeVolume = temp32 / 127.0f;
+                                    seqPlayer->FadeVolume = temp32 / 127.0f;
                                 }
                         }
                         break;
 
                     case 0xd9:
-                        temp = Nas_ReleaseGroup(state);
-                        seqPlayer->fadeVolumeScale = (s8) temp / 127.0f;
+                        temp = NasReleaseGroup(State);
+                        seqPlayer->FadeVolumeScale = (s8) temp / 127.0f;
                         break;
 
                     case 0xd7: // seq_initchannels
-                        u16v = Nas_AddList(state);
-                        Nas_ReleaseNoteTrack(seqPlayer, u16v);
+                        u16v = NasAddList(State);
+                        NasReleaseNoteTrack(seqPlayer, u16v);
                         break;
 
                     case 0xd6: // seq_disablechannels
-                        u16v = Nas_AddList(state);
-                        Nas_CloseNoteTrack(seqPlayer, u16v);
+                        u16v = NasAddList(State);
+                        NasCloseNoteTrack(seqPlayer, u16v);
                         break;
 
                     case 0xd5: // seq_setmutescale
-                        temp = Nas_ReleaseGroup(state);
-                        seqPlayer->muteVolumeScale = (f32) (s8) temp / US_FLOAT(127.0);
+                        temp = NasReleaseGroup(State);
+                        seqPlayer->MuteVolumeScale = (f32) (s8) temp / US_FLOAT(127.0);
                         break;
 
                     case 0xd4: // seq_mute
-                        seqPlayer->muted = true;
+                        seqPlayer->Muted = true;
                         break;
 
                     case 0xd3: // seq_setmutebhv
-                        seqPlayer->muteBehavior = Nas_ReleaseGroup(state);
+                        seqPlayer->MuteBehavior = NasReleaseGroup(State);
                         break;
 
                     case 0xd2: // seq_setshortnotevelocitytable
                     case 0xd1: // seq_setshortnotedurationtable
-                        u16v = Nas_AddList(state);
-                        seqData = seqPlayer->seqData + u16v;
+                        u16v = NasAddList(State);
+                        SEQData = seqPlayer->SEQData + u16v;
                         if (cmd == 0xd2) {
-                            seqPlayer->shortNoteVelocityTable = seqData;
+                            seqPlayer->ShortNoteVelocityTable = SEQData;
                         } else {
-                            seqPlayer->shortNoteDurationTable = seqData;
+                            seqPlayer->ShortNoteDurationTable = SEQData;
                         }
                         break;
 
                     case 0xd0: // seq_setnoteallocationpolicy
-                        seqPlayer->noteAllocPolicy = Nas_ReleaseGroup(state);
+                        seqPlayer->NoteAllocPolicy = NasReleaseGroup(State);
                         break;
 
                     case 0xcc: // seq_setval
-                        value = Nas_ReleaseGroup(state);
+                        Value = NasReleaseGroup(State);
                         break;
 
                     case 0xc9: // seq_bitand
-                        value &= Nas_ReleaseGroup(state);
+                        Value &= NasReleaseGroup(State);
                         break;
 
                     case 0xc8: // seq_subtract
-                        value = value - Nas_ReleaseGroup(state);
+                        Value = Value - NasReleaseGroup(State);
                         break;
 
                     default:
@@ -1488,7 +1488,7 @@ void ERROR_EXIT(struct SequencePlayer* seqPlayer) {
                 loBits = cmd & 0xf;
                 switch (cmd & 0xf0) {
                     case 0x00: // seq_testchdisabled
-                        value = seqPlayer->channels[loBits]->finished;
+                        Value = seqPlayer->Channels[loBits]->Finished;
                         break;
                     case 0x10:
                         break;
@@ -1497,19 +1497,19 @@ void ERROR_EXIT(struct SequencePlayer* seqPlayer) {
                     case 0x40:
                         break;
                     case 0x50: // seq_subvariation
-                        value -= seqPlayer->seqVariationEu[0];
+                        Value -= seqPlayer->SEQVariationEu[0];
                         break;
                     case 0x60:
                         break;
                     case 0x70: // seq_setvariation
-                        seqPlayer->seqVariationEu[0] = value;
+                        seqPlayer->SEQVariationEu[0] = Value;
                         break;
                     case 0x80: // seq_getvariation
-                        value = seqPlayer->seqVariationEu[0];
+                        Value = seqPlayer->SEQVariationEu[0];
                         break;
                     case 0x90: // seq_startchannel
-                        u16v = Nas_AddList(state);
-                        Nas_ReleaseSubTrack(seqPlayer, loBits, seqPlayer->seqData + u16v);
+                        u16v = NasAddList(State);
+                        NasReleaseSubTrack(seqPlayer, loBits, seqPlayer->SEQData + u16v);
                         break;
                     case 0xa0:
                         break;
@@ -1523,84 +1523,84 @@ void ERROR_EXIT(struct SequencePlayer* seqPlayer) {
     }
 
     for (i = 0; i < CHANNELS_MAX; i++) {
-        if (IS_SEQUENCE_CHANNEL_VALID(seqPlayer->channels[i]) == true) {
-            Nas_NoteSeq(seqPlayer->channels[i]);
+        if (IS_SEQUENCE_CHANNEL_VALID(seqPlayer->Channels[i]) == true) {
+            NasNoteSeq(seqPlayer->Channels[i]);
         }
     }
 }
 
-void Nas_ProgramChanger(UNUSED s32 iterationsRemaining) {
+void NasProgramChanger(UNUSED s32 iterationsRemaining) {
     s32 i;
     for (i = 0; i < SEQUENCE_PLAYERS; i++) {
-        if (SeqPlayer[i].enabled == true) {
+        if (SeqPlayer[i].Enabled == true) {
             ERROR_EXIT(&SeqPlayer[i]);
-            Nas_AllocationOnRequest(&SeqPlayer[i]);
+            NasAllocationOnRequest(&SeqPlayer[i]);
         }
     }
-    Nas_UpdateChannel();
+    NasUpdateChannel();
 }
 
-void Nas_SubVoiceSet(u32 player) {
-    struct SequencePlayer* seqPlayer = &SeqPlayer[player];
-    Nas_GetNewSubTrack(seqPlayer);
-    seqPlayer->delay = 0;
-    seqPlayer->state = 1;
-    seqPlayer->fadeRemainingFrames = 0;
-    seqPlayer->fadeTimerUnkEu = 0;
-    seqPlayer->tempoAcc = 0;
-    seqPlayer->tempo = 120 * TEMPO_SCALE; // 120 BPM
-    seqPlayer->transposition = 0;
-    seqPlayer->noteAllocPolicy = 0;
-    seqPlayer->shortNoteVelocityTable = gDefaultShortNoteVelocityTable;
-    seqPlayer->shortNoteDurationTable = gDefaultShortNoteDurationTable;
-    seqPlayer->fadeVolume = 1.0f;
-    seqPlayer->fadeVolumeScale = 1.0f;
-    seqPlayer->fadeVelocity = 0.0f;
-    seqPlayer->volume = 0.0f;
-    seqPlayer->muteVolumeScale = 0.5f;
+void NasSubVoiceSet(u32 Player) {
+    struct SequencePlayer* seqPlayer = &SeqPlayer[Player];
+    NasGetNewSubTrack(seqPlayer);
+    seqPlayer->Delay = 0;
+    seqPlayer->State = 1;
+    seqPlayer->FadeRemainingFrames = 0;
+    seqPlayer->FadeTimerUnkEu = 0;
+    seqPlayer->TempoAcc = 0;
+    seqPlayer->Tempo = 120 * TEMPO_SCALE; // 120 BPM
+    seqPlayer->Transposition = 0;
+    seqPlayer->NoteAllocPolicy = 0;
+    seqPlayer->ShortNoteVelocityTable = DefaultShortNoteVelocityTable;
+    seqPlayer->ShortNoteDurationTable = DefaultShortNoteDurationTable;
+    seqPlayer->FadeVolume = 1.0f;
+    seqPlayer->FadeVolumeScale = 1.0f;
+    seqPlayer->FadeVelocity = 0.0f;
+    seqPlayer->Volume = 0.0f;
+    seqPlayer->MuteVolumeScale = 0.5f;
 }
 
-void Nas_SubVolumeSet(void) {
-    // Initialization function, called from Nas_InitAudio
+void NasSubVolumeSet(void) {
+    // Initialization function, called from NasInitAudio
     s32 i, j;
 
-    for (i = 0; i < ARRAY_COUNT(gSequenceChannels); i++) {
-        gSequenceChannels[i].seqPlayer = NULL;
-        gSequenceChannels[i].enabled = false;
+    for (i = 0; i < ARRAY_COUNT(SequenceChannels); i++) {
+        SequenceChannels[i].seqPlayer = NULL;
+        SequenceChannels[i].Enabled = false;
         /**
-         * @bug Size of wrong array. Zeroes out second half of gSequenceChannels[0],
-         * all of gSequenceChannels[1..31], and part of gSequenceLayers[0].
+         * @bug Size of wrong array. Zeroes out second half of SequenceChannels[0],
+         * all of SequenceChannels[1..31], and part of SequenceLayers[0].
          * However, this is only called at startup, so it's harmless.
          */
 #ifdef AVOID_UB
 #define LAYERS_SIZE LAYERS_MAX
 #else
-#define LAYERS_SIZE ARRAY_COUNT(gSequenceLayers)
+#define LAYERS_SIZE ARRAY_COUNT(SequenceLayers)
 #endif
         for (j = 0; j < LAYERS_SIZE; j++) {
-            gSequenceChannels[i].layers[j] = NULL;
+            SequenceChannels[i].layers[j] = NULL;
         }
     }
 
-    Nas_OpenSub();
+    NasOpenSub();
 
-    for (i = 0; i < ARRAY_COUNT(gSequenceLayers); i++) {
-        gSequenceLayers[i].seqChannel = NULL;
-        gSequenceLayers[i].enabled = false;
+    for (i = 0; i < ARRAY_COUNT(SequenceLayers); i++) {
+        SequenceLayers[i].SEQChannel = NULL;
+        SequenceLayers[i].Enabled = false;
     }
 
     for (i = 0; i < SEQUENCE_PLAYERS; i++) {
         for (j = 0; j < CHANNELS_MAX; j++) {
-            SeqPlayer[i].channels[j] = &gSequenceChannelNone;
+            SeqPlayer[i].Channels[j] = &SequenceChannelNone;
         }
 
-        SeqPlayer[i].seqVariationEu[0] = -1;
-        SeqPlayer[i].muteBehavior = MUTE_BEHAVIOR_STOP_SCRIPT | MUTE_BEHAVIOR_STOP_NOTES | MUTE_BEHAVIOR_SOFTEN;
-        SeqPlayer[i].enabled = false;
-        SeqPlayer[i].muted = false;
-        SeqPlayer[i].bankDmaInProgress = false;
-        SeqPlayer[i].seqDmaInProgress = false;
-        Nas_WaveMemoryMake(&SeqPlayer[i].notePool);
-        Nas_SubVoiceSet(i);
+        SeqPlayer[i].SEQVariationEu[0] = -1;
+        SeqPlayer[i].MuteBehavior = MUTE_BEHAVIOR_STOP_SCRIPT | MUTE_BEHAVIOR_STOP_NOTES | MUTE_BEHAVIOR_SOFTEN;
+        SeqPlayer[i].Enabled = false;
+        SeqPlayer[i].Muted = false;
+        SeqPlayer[i].BankDmaInProgress = false;
+        SeqPlayer[i].SEQDmaInProgress = false;
+        NasWaveMemoryMake(&SeqPlayer[i].NotePool);
+        NasSubVoiceSet(i);
     }
 }

@@ -1,8 +1,8 @@
 //These are new custom RAM values
 //The end of RAM is course data: faces 0x80625800 forward, verts from 0x80700000 back, DLs from 0x80800000.
-//This varies based on the size of data for the current course. Be cautious!
+//This varies based on the Size of data for the Current course. Be cautious!
 // Reference only — do not assemble. Live layout is mk64.ld .okheader.
-// Post-integration rewrite (OKHeader dest BSS + course-pool loader):
+// Post-integration rewrite (OKHeader dest BSS + course-Pool loader):
 //   symbols/library_next_phase.md "Post-integration rewrites".
 .definelabel ok_HeaderROM, 0xBE9178
 .definelabel ok_SaveSize, 0x28980
@@ -20,7 +20,7 @@
 .definelabel ok_Target, ok_CourseTable + 0x30
 .definelabel ok_Source, ok_Target + 0x4
 .definelabel ok_Pointer, ok_Source + 0x4
-.definelabel ok_FreePointer, ok_Pointer + 0x4  //set value after loading data.\
+.definelabel ok_FreePointer, ok_Pointer + 0x4  //set Value after loading data.\
 .definelabel ok_Credits, ok_FreePointer + 0x4
 .definelabel ok_CourseName, ok_Credits + 0x20
 .definelabel ok_SerialKey, ok_CourseName + 0x40
@@ -46,7 +46,7 @@
 .definelabel ok_Sequence, ok_Instrument + 0x10
 .definelabel ok_Bomb, ok_Sequence + 0x10
 
-//804396C4 targetAddress;?
+//804396C4 TargetAddress;?
 
 .definelabel lit_numberSprite, ok_Bomb + 0xB0
 .definelabel lit_numberSprite0, lit_numberSprite
