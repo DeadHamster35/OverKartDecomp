@@ -1,5 +1,7 @@
 #include "../MainInclude.h"
 #include <segments.h>
+#include "buffers.h"
+#include "replays.h"
 #include "textures.h"
 
 extern u16 *TexBuff;
@@ -180,90 +182,12 @@ void StockASM(void)
 	// they will Point to the custom setup we've implemented for HotSwap courses.
 	// this does not swap in the course header Table, only the ASM instructions.
 
-	highpolypipeA = 0x3C190700; // 3C190700
-	highpolypipeB = 0x373908E8; // 373908E8
-
-	lowpolypipeA = 0x3C0A0700; // 3C0A0700
-	lowpolypipeB = 0x354A2D68; // 354A2D68
-
-	uraGrpA = 0x3C0E0700;
-	uraGrpB = 0x35CE3050;
-
-	bigmushroomA = 0x3C180700; // 3C180700
-	bigmushroomB = 0x37181140; // 37181140
-
-	bigmushroomsurfaceA = 0x3C040700; // 3C040700
-	bigmushroomsurfaceB = 0x34841140; // 34841140
-
-	audienceA = 0x3C0F0700; // 3C0F0700
-	audienceB = 0x35EF14A0; // 35EF14A0
-
-	audienceflagsA = 0x3C0D0700; // 3C0D0700
-	audienceflagsB = 0x35AD0160; // 35AD0160
-
-	billboard1A = 0x3C0C0700; // 3C0C0700
-	billboard1B = 0x358C3240; // 358C3240
-
-	billboard2A = 0x3C0F0700; // 3C0E0700
-	billboard2B = 0x35EF3508; // 35CE0450
-
-	billboardpost1A = 0x3C190700; // 3C190700
-	billboardpost1B = 0x37390240; // 37390240
-
-	billboardpost2A = 0x3C0E0700; // 3C190700
-	billboardpost2B = 0x35CE0450; // 37390240
-
-	fencesA = 0x3C180700; // 3C180700
-	fencesB = 0x371800E0; // 371800E0
-
-	bigsignA = 0x3C0A0601; // 3C0A0601
-	bigsignB = 0x254A9330; // 254A9330
-
-	itemboxesA = 0x3C040601; // 8029DBD4
-	itemboxesB = 0x24849498; // 8029DBDC
-
-	battleItemBoxesA = 0x24840038;
-
-	treeslistA = 0x3C040601; // 8029DBBC
-	treeslistB = 0x24849570; // 8029DBC4
-
-	treesdisplayA = 0x3C180600; // 802992C8
-	treesdisplayB = 0x27186A68; // 802992E0
-
-	piranhalistA = 0x3C040601; // 8029DBC8
-	piranhalistB = 0x24849518; // 8029DBD0
-
-	piranhadisplayA = 0x3C0F0600; // 80298668
-	piranhadisplayB = 0x25EF6990; // 8029866C
-
-	sectionviewA = 0x3C040900; // 3C040900
-	sectionviewB = 0x248401F0; // 248401F0
-
-	battleDisplayA = 0x3C0F0700;
-	battleDisplayB = 0x35EF15C0;
-	battleSurfaceA = 0x3C040700;
-	battleSurfaceB = 0x348415C0;
-
-	surfacemapA = 0x3C040601; // 3C040601
-	surfacemapB = 0x24849650; // 24849650
-
-	unknownA1 = 0x3C190601; // 0x802927FC   ;;3C190601 -> 3C190600
-	unknownB1 = 0x3C040700; // 0x802927FC   ;;3C190601 -> 3C190600
-	unknownC1 = 0x3C040700; // 0x802927FC   ;;3C190601 -> 3C190600
-	unknownD1 = 0x3C040700; // 0x802927FC   ;;3C190601 -> 3C190600
-
-	unknownA2 = 0x27399348; // 0x80292810   ;;24849348 -> 24840000
-
-	unknownB = 0x34841140; // 0x802927FC   ;;34841140 -> 34840000
-	unknownC = 0x348408E8; // 0x80292810   ;;348408E8 -> 34840000
-	unknownD = 0x34842D68; // 0x80295E70   ;;34842D68 -> 34840000
+	/* highpolypipe*..surfacemap*: stock LUI/ORI of MR DLs and object lists.
+	 * Native: DisplayKT1Hook / InitialMapObjectCode / SearchListFileHook. */
 
 	g_pathLength = 0x0258;
 	pathOffset = 0x060057B0;
 	pathOffsetB = 0x06005568;
-
-	g_mapStartToggle = 0x0C0132B4;
-	asm_GPLevelSelect = 0xA42DC5A0;
 
 	CopyCourseTable(0);
 }
@@ -273,57 +197,7 @@ void OverkartASM(void)
 	// they will Point to the custom setup we've implemented for custom courses.
 	// this does not swap in the course header Table, only the ASM instructions.
 
-	highpolypipeA = 0x3C190600; // 3C190700
-	highpolypipeB = 0x37390000; // 373908E8
-
-	lowpolypipeA = 0x3C0A0600; // 3C0A0700
-	lowpolypipeB = 0x354A0000; // 354A2D68
-
-	uraGrpA = 0x3C0E0600;
-	uraGrpB = 0x35CE0000;
-
-	bigmushroomA = 0x3C180600; // 3C180700
-	bigmushroomB = 0x37180000; // 37181140
-
-	bigmushroomsurfaceA = 0x3C040600; // 3C040700
-	bigmushroomsurfaceB = 0x34840000; // 34841140
-
-	audienceA = 0x3C0F0600; // 3C0F0700
-	audienceB = 0x35EF0000; // 35EF14A0
-
-	audienceflagsA = 0x3C0D0600; // 3C0D0700
-	audienceflagsB = 0x35AD0000; // 35AD0160
-
-	billboard1A = 0x3C0C0600; //
-	billboard1B = 0x358C0000; //
-
-	billboard2A = 0x3C0F0600; //
-	billboard2B = 0x35EF0000; //
-
-	billboardpost1A = 0x3C190600; //
-	billboardpost1B = 0x37390000; //
-
-	billboardpost2A = 0x3C0E0600; //
-	billboardpost2B = 0x35CE0000; //
-
-	fencesA = 0x3C180600; // 3C180700
-	fencesB = 0x37180000; // 371800E0
-
-	bigsignA = 0x3C0A0600; // 3C0A0601
-	bigsignB = 0x254A0000; // 254A9330
-
-	unknownA1 = 0x3C190600; // 0x802927FC   ;;3C190601 -> 3C190600
-	unknownB1 = 0x3C040600; // 0x802927FC   ;;3C190601 -> 3C190600
-	unknownC1 = 0x3C040600; // 0x802927FC   ;;3C190601 -> 3C190600
-	unknownD1 = 0x3C040600; // 0x802927FC   ;;3C190601 -> 3C190600
-
-	unknownA2 = 0x27390000; // 0x80292810   ;;27399348 -> 27390000
-
-	unknownB = 0x34840000; // 0x802927FC   ;;34841140 -> 34840000
-	unknownC = 0x34840000; // 0x80292810   ;;348408E8 -> 34840000
-	unknownD = 0x34840000; // 0x80295E70   ;;34842D68 -> 34840000
-
-	g_mapStartToggle = 0x00000000;
+	/* highpolypipe*..unknown*: stock LUI/ORI of MR DLs. Native: DisplayKT1Hook. */
 
 	CopyCourseTable(1);
 	g_cup0Array0 = 0;
@@ -346,7 +220,6 @@ void OverkartASM(void)
 	g_cupBArray1 = 17;
 	g_cupBArray2 = 18;
 	g_cupBArray3 = 19;
-	asm_GPLevelSelect = 0xA420C5A0;
 }
 
 
@@ -371,18 +244,18 @@ void BackupStockAudioTables(void)
 	}
 
 	DataLength = 8;
-	*SourceAddress = (int)&g_MUSSequenceTable.Pointer[3].Address;
+	*SourceAddress = (int)&(*(SequenceTable *)MUSTablePointer).Pointer[3].Address;
 	*TargetAddress = (int)&ok_Sequence;
 	RunRAM();
 
-	*SourceAddress = (int)&g_MUSInstrumentTable.Pointer[3];
+	*SourceAddress = (int)&(*(InstrumentTable *)AlCtlHeader).Pointer[3];
 	*TargetAddress = (int)&ok_Instrument;
 	RunRAM();
 
 	*(long *)(&ok_USAudio) = g_MUSRawAudioTable.Pointer[0].Address;
-	*(long *)(&ok_USAudio + 1) = g_MUSInstrumentTable.Pointer[0].Address;
-	*(long *)(&ok_MRSong) = g_MUSSequenceTable.Pointer[3].Address;
-	*(long *)(&ok_MRSong + 1) = g_MUSSequenceTable.Pointer[3].Length;
+	*(long *)(&ok_USAudio + 1) = (*(InstrumentTable *)AlCtlHeader).Pointer[0].Address;
+	*(long *)(&ok_MRSong) = (*(SequenceTable *)MUSTablePointer).Pointer[3].Address;
+	*(long *)(&ok_MRSong + 1) = (*(SequenceTable *)MUSTablePointer).Pointer[3].Length;
 	sStockAudioSaved = 1;
 }
 
@@ -414,10 +287,10 @@ void SetSong(void)
 		{
 			DataLength = 8;
 			*SourceAddress = (int)&ok_Sequence;
-			*TargetAddress = (int)&g_MUSSequenceTable.Pointer[3].Address;
+			*TargetAddress = (int)&(*(SequenceTable *)MUSTablePointer).Pointer[3].Address;
 			RunRAM();
 			*SourceAddress = (int)&ok_Instrument;
-			*TargetAddress = (int)&g_MUSInstrumentTable.Pointer[3].Address;
+			*TargetAddress = (int)&(*(InstrumentTable *)AlCtlHeader).Pointer[3].Address;
 			RunRAM();
 		}
 		else
@@ -429,21 +302,21 @@ void SetSong(void)
 
 			SongData = (OK64AudioTable*)(long)&ok_FreeSpace;
 
-			g_MUSSequenceTable.Pointer[3].Address = SongData->SeqPointer;
-			g_MUSSequenceTable.Pointer[3].Length = SongData->SeqSize;
+			(*(SequenceTable *)MUSTablePointer).Pointer[3].Address = SongData->SeqPointer;
+			(*(SequenceTable *)MUSTablePointer).Pointer[3].Length = SongData->SeqSize;
 
-			g_MUSInstrumentTable.Pointer[3].Address = SongData->InsPointer;
-			g_MUSInstrumentTable.Pointer[3].Length = SongData->InsSize;
+			(*(InstrumentTable *)AlCtlHeader).Pointer[3].Address = SongData->InsPointer;
+			(*(InstrumentTable *)AlCtlHeader).Pointer[3].Length = SongData->InsSize;
 		}
 	}
 	else
 	{
 		DataLength = 8;
 		*SourceAddress = (int)&ok_Sequence;
-		*TargetAddress = (int)&g_MUSSequenceTable.Pointer[3].Address;
+		*TargetAddress = (int)&(*(SequenceTable *)MUSTablePointer).Pointer[3].Address;
 		RunRAM();
 		*SourceAddress = (int)&ok_Instrument;
-		*TargetAddress = (int)&g_MUSInstrumentTable.Pointer[3].Address;
+		*TargetAddress = (int)&(*(InstrumentTable *)AlCtlHeader).Pointer[3].Address;
 		RunRAM();
 	}
 }
@@ -454,6 +327,8 @@ void SetGhostData(void)
 	{
 		if (GameMode == GAMEMODE_TT)
 		{
+			u32 *staffGhost = (u32 *)&D_802BFB80.arraySize8[0][2][3];
+
 			if (OverKartHeader.Ghost != 0)
 			{
 				*SourceAddress = OverKartHeader.Ghost;
@@ -461,19 +336,21 @@ void SetGhostData(void)
 				DataLength = 0x3C00;
 				RunDMA();
 				*SourceAddress = (Uint)(&ok_FreeSpace);
-				*TargetAddress = (Uint)(&KeystockBuffer);
+				*TargetAddress = (Uint)staffGhost;
 				RunMIO();
-				KeystockCounter = KeystockBuffer & 0x00FF0000;
+				sCourseGhostReplay = staffGhost;
+				sCourseGhostReplayIdx = 0;
+				sCourseGhostFramesRemaining = *staffGhost & 0x00FF0000;
+				RomghostKart = OverKartHeader.GhostCharacter;
+				RomghostStatus = 0;
 			}
 			else
 			{
-				Uint *KeystockData = (Uint *)(&KeystockBuffer);
-				{
-				    int ThisPass;
+				int ThisPass;
+
 				for (ThisPass = 0; ThisPass < 64; ThisPass++)
 				{
-					KeystockData[ThisPass] = 0x00FF0000;
-				}
+					staffGhost[ThisPass] = 0x00FF0000;
 				}
 
 				// Should be 9 Minutes of idle.
@@ -526,11 +403,18 @@ void SetPath(void)
 		
 	{
 	    int ThisPath;
+	    int pathCourse;
+
+	pathCourse = CourseID;
+	if (HotSwapID > 0)
+	{
+		pathCourse = 0;
+	}
 	for (ThisPath = 0; ThisPath < 4; ThisPath++)
 	{
 		
-		Marker *PathArray = (Marker *)GetRealAddress(PathTable[CourseID][ThisPath]);
-		Marker *PathArrayB = (Marker *)GetRealAddress(PathTableB[CourseID][ThisPath]);
+		Marker *PathArray = (Marker *)GetRealAddress(PathTable[pathCourse][ThisPath]);
+		Marker *PathArrayB = (Marker *)GetRealAddress(PathTableB[pathCourse][ThisPath]);
 		if (ZFLIP)
 		{
 
@@ -888,12 +772,10 @@ void SetWeatherType(char WeatherType) // 0 = Snow // 1 = Rain
 			g_3DSnowVelocityUpLim = 1.035;
 			g_3DSnowVelocityLowLim = -2.5;
 			g_3DSnowSwayMovement = 0.01f;
-			g_3DSnowSpawnDistanceMin = (g_3DSnowSpawnDistanceMin & 0xFFFF0000) + (30 & 0x0000FFFF);
-			g_3DSnowSpawnDistanceMax = (g_3DSnowSpawnDistanceMax & 0xFFFF0000) + (600 & 0x0000FFFF);
-			g_3DSnowSpawnHeight = (g_3DSnowSpawnHeight & 0xFFFF0000) + (50 & 0x0000FFFF);
-			
-			//lol whatever
-			g_3DSnowSpawnCone = (g_3DSnowSpawnCone & 0xFFFF0000) + (0x6000 & 0x0000FFFF);
+			g_3DSnowSpawnDistanceMin = 30;
+			g_3DSnowSpawnDistanceMax = 600;
+			g_3DSnowSpawnHeight = 50;
+			g_3DSnowSpawnCone = 0x6000;
 			
 			break;
 		}
@@ -913,12 +795,10 @@ void SetWeatherType(char WeatherType) // 0 = Snow // 1 = Rain
 			g_3DSnowVelocityUpLim = 1.035;
 			g_3DSnowVelocityLowLim = -1.65;
 			g_3DSnowSwayMovement = 1.24;
-			g_3DSnowSpawnDistanceMin = (g_3DSnowSpawnDistanceMin & 0xFFFF0000) + (75 & 0x0000FFFF);
-			g_3DSnowSpawnDistanceMax = (g_3DSnowSpawnDistanceMax & 0xFFFF0000) + (600 & 0x0000FFFF);
-			g_3DSnowSpawnHeight = (g_3DSnowSpawnHeight & 0xFFFF0000) + (45 & 0x0000FFFF);
-
-			//lol whatever
-			g_3DSnowSpawnCone = (g_3DSnowSpawnCone & 0xFFFF0000) + (0x6000 & 0x0000FFFF);
+			g_3DSnowSpawnDistanceMin = 75;
+			g_3DSnowSpawnDistanceMax = 600;
+			g_3DSnowSpawnHeight = 45;
+			g_3DSnowSpawnCone = 0x6000;
 			break;
 		}
 	}
@@ -936,12 +816,10 @@ void SetWeatherType(char WeatherType) // 0 = Snow // 1 = Rain
 		g_3DSnowVelocityUpLim = 1.035;
 		g_3DSnowVelocityLowLim = -1.65;
 		g_3DSnowSwayMovement = 1.24;
-		g_3DSnowSpawnDistanceMin = (g_3DSnowSpawnDistanceMin & 0xFFFF0000) + (30 & 0x0000FFFF);
-		g_3DSnowSpawnDistanceMax = (g_3DSnowSpawnDistanceMax & 0xFFFF0000) + (300 & 0x0000FFFF);
-		g_3DSnowSpawnHeight = (g_3DSnowSpawnHeight & 0xFFFF0000) + (45 & 0x0000FFFF);
-
-		//lol whatever
-		g_3DSnowSpawnCone = (g_3DSnowSpawnCone & 0xFFFF0000) + (0x4000 & 0x0000FFFF);
+		g_3DSnowSpawnDistanceMin = 30;
+		g_3DSnowSpawnDistanceMax = 300;
+		g_3DSnowSpawnHeight = 45;
+		g_3DSnowSpawnCone = 0x4000;
 	}
 }
 
@@ -1043,26 +921,6 @@ void EventDisplayAfter(int Player)
 	}
 }
 
-void CommonGameEventChart(void)
-{
-	if (HotSwapID == 0)
-	{
-		KWGameEventCommon();
-	}
-	else
-	{
-		if (g_resetToggle != 4)
-		{
-			KWChartIceBlock();
-		}
-		KWGameEventCommon();
-	}
-
-	if (HotSwapID > 0)
-	{
-		MoveCustomParticle();
-	}
-}
 
 void KumoColorMode(Uint r, Uint g, Uint b)
 {
@@ -2552,32 +2410,10 @@ void InitFireParticles(long PathOffset)
 char FireRGBA[8][4] = {{150, 0, 25, 255}, {150, 20, 55, 255}, {50, 50, 255, 255}, {50, 255, 50, 255}, {150, 90, 255, 255}, {250, 55, 55, 155}, {100, 255, 25, 255}, {250, 105, 55, 255}};
 // 8 = TempFireParticleMax
 
-void DisplayFireParticleSub(int num, Uchar color, void *Camera)
-{
-	int realindex = num - FireParticleAllocArray[0];
-
-	if (HotSwapID > 0)
-	{
-		CaveFireColCheck = 0x24010004;
-	}
-	else
-	{
-		CaveFireColCheck = 0x24010003;
-	}
-
-	switch (color)
-	{
-	case 3:
-		KWSet2Color(FireRGBA[realindex][0], FireRGBA[realindex][1], FireRGBA[realindex][2], FireRGBA[realindex][0] / 3, FireRGBA[realindex][1] / 3, FireRGBA[realindex][2] / 3, FireRGBA[realindex][3]);
-		break;
-	}
-	KWDisplayFireParticleSub(num, color, Camera);
-}
-
 void EmptyActionData(void)
 {
-	GlobalAddressA = (Uint)ActionData_Pointer[19];
-	ActionData_Pointer[0] = ActionData_Pointer[19];
+	GlobalAddressA = (Uint)CoursesCPUBehaviour[19];
+	CoursesCPUBehaviour[0] = CoursesCPUBehaviour[19];
 
 	*(Ushort *)(GlobalAddressA) = 1;
 	*(Ushort *)(GlobalAddressA + (0x2)) = (Ushort)MaxPathPoints[0];
@@ -2735,4 +2571,13 @@ float HijackScaleMinimapY(float z)
 		z = z / LevelScales[(int) ScaleZMode];
 	}
 	return z;
+}
+
+short AddObjectBufferMKANBANHook(Vector pos, SVector angle, Vector velo, short category)
+{
+	if (HotSwapID != 0) {
+		return -1;
+	}
+
+	return AddObjectBuffer(pos, angle, velo, category);
 }

@@ -37,6 +37,7 @@ void TitleMenuDefault(void);
 void DisplayObjectDefault(void* car, Object* actor);
 void CollideObjectDefault(Player* car, Object* actor);
 void AllRunDefault(void);
+void UpdateRumbleHelper(void);
 void PrintMenuFunctionDefault(void);
 void CheckRomghostDefault(void);
 void DMAROMGhostDefault(void);
@@ -49,6 +50,17 @@ void RubberBandManDefault(s32 PlayerId, Player* Player);
 
 extern s16 EchoStart;
 extern s16 EchoStop;
+extern s32 g_SnowParticleTex[36];
+extern f32 g_skySnowScale;
+extern f32 g_skySnowVelocity;
+extern s32 g_3DSnowSpawnHeight;
+extern s32 g_3DSnowSpawnDistanceMin;
+extern s32 g_3DSnowSpawnDistanceMax;
+extern s32 g_3DSnowSpawnCone;
+extern f32 g_3DSnowSwayMovement;
+extern f32 g_3DSnowScale;
+extern f32 g_3DSnowVelocityUpLim;
+extern f32 g_3DSnowVelocityLowLim;
 
 int LoadPressDataBypass(unsigned int RomStart, unsigned int RomEnd);
 int LoadDataBypass(unsigned int RomStart, unsigned int RomEnd);
@@ -76,7 +88,6 @@ void KumoColorMode(s32 r, s32 g, s32 b);
 
 void EventDisplay(int Player);
 void EventDisplayAfter(int Player);
-void CommonGameEventChart(void);
 
 void DisplayKT1Hook(Screen* Display);
 void DisplayKT16Hook(Screen* Display);
@@ -119,6 +130,7 @@ void LoadBigFont(void);
 void RadarFinishLine(u32 ulx, u32 uly, u16* Addr);
 f32 HijackScaleMinimapX(f32 x);
 f32 HijackScaleMinimapY(f32 z);
+s16 AddObjectBufferMKANBANHook(Vec3f pos, Vec3s angle, Vec3f velo, s16 category);
 void KWDisplay2P1LR(void);
 void KWDisplay2P2LR(void);
 void KWDisplay2P1UD(void);

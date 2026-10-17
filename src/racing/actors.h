@@ -67,6 +67,8 @@ void DisplaySl1(Camera*, struct TrainCar*);
 void DisplaySl2(Camera*, struct TrainCar*);
 void DisplaySl3(Camera*, struct TrainCar*);
 void DisplayIwa(Camera*, struct FallingRock*);
+extern Gfx* FallingRockGFX;
+extern Gfx* FallingRockShadowGFX;
 void SetPakkunObject(struct ActorSpawnData*);
 void SetPalmtreeObject(struct ActorSpawnData*);
 void ResetIwa(struct ActorSpawnData*, struct FallingRock*);

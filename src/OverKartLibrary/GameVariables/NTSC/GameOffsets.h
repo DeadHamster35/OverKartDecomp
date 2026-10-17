@@ -268,8 +268,7 @@ extern void CheckSplash(void *Car,int PlayerIndex);
 /* CheckSplashJAL1/2/3: RunKart / SpinKart / ResultRunkart JALs; live C is OKCheckSplashEnabled */
 
 extern void LoadKeyStatus();
-extern long CheckFinalLapFanfareJAL;
-extern long CheckPlayStarBGMJAL;
+/* CheckFinalLapFanfareJAL / CheckPlayStarBGMJAL: race_logic / effects JALs; live C is PlayFinalLapMusicHook / PlayStarMusicHook */
 
 extern void KWKumoAlloc(void);
 extern void KWChartKumo(int screen_num);
@@ -369,12 +368,12 @@ extern Ushort PathLengthTable[21][8];
 
 /* g_CupArray / g_cup*Array* → CupCourseOrder in StockAliases.h */
 
-extern Uint64 g_DebugTextPalette;
+/* g_DebugTextPalette → common_tlut_debug_font (SetFontColor) */
 
 extern long g_bannerTexture;
 extern long g_previewTexture;
 /* MapTexture / MapX / MapY / MapR / MapG / MapB / MapScale / StartX / StartY / MapWidth / MapHeight: code_80057C60.h */
-extern long g_mapStartToggle;
+/* g_mapStartToggle: stock JAL vs NOP at map start; live C is InitialMapCode */
 extern short g_map2X; //0x8018D2C0
 extern short g_map2Y; //0x8018D2D8
 
@@ -498,10 +497,11 @@ extern float gravity_6;
 extern float gravity_7;
 extern float gravity_8;
 
-extern BalloonColor  BalloonColorArray[8]; //0x800E4934
-extern BalloonColor  BalloonAdjustArray[8]; //0x800E4954
-extern BalloonColor  BalloonColorArrayB[8]; //0x800E4974
-extern BalloonColor  BalloonAdjustArrayB[8]; //0x800E4994
+/* MakeBalloonCalc prim/env; DrawBalloon B tables. Live BSS: LibraryVariables.c */
+extern BalloonColor  BalloonColorArray[8];
+extern BalloonColor  BalloonAdjustArray[8];
+extern BalloonColor  BalloonColorArrayB[8];
+extern BalloonColor  BalloonAdjustArrayB[8];
 
 extern short surface_p0;
 
@@ -579,8 +579,7 @@ extern void ResultsSequence();
 /* asm_SongA / asm_SongB: StartRaceBGM / CheckPause 3P4P music guards; OKMusicIn3P4P */
 /* CullDL_Parameters: packed decoder overlay; live C is Decodespculldisplaylist gsSPCullDisplayList(0, 7) */
 extern long g_courseTable;
-extern Uint KeystockBuffer;
-extern Uint KeystockCounter;
+/* KeystockBuffer: staff ghost D_802BFB80.arraySize8[0][2][3]. KeystockCounter: sCourseGhostFramesRemaining */
 extern SOUKOU_ZURE_TYPE LaneData[8];
 extern float RoadWidth[21]; // MR default: 50.0f
 
@@ -660,8 +659,8 @@ extern char g_ReplayFlag;
 /* g_sfxPause is SequencePlayer overlay (gSequencePlayers+0x293); batch 6 */
 
 /* g_MUSSequenceTable / g_MUSInstrumentTable / g_MUSRawAudioTable → StockAliases.h heap pointers */
+/* g_MUSBankMapTable is AlBankSets (audio heap, not named BSS) */
 /* MUSTablePointer is ALSeqFile* in audio/load.c, not AudioTablePointers */
-extern BankMapTable g_MUSBankMapTable;
 extern SFXTempPointerStruct SFXPointer;
 
 extern short g_surfaceCheckP1;
@@ -726,24 +725,8 @@ extern int BombTable;
 extern long SkyColorTopTable;
 extern long SkyColorBotTable;
 
-extern long g_SnowParticleTex[36];
+/* g_SnowParticleTex / g_skySnow* / g_3DSnow*: LibraryVariables.c. Sky spawn/HitGoal were KWChartSnow SMC. */
 extern long *g_MRCloudTexPtr; // Set of four I4 cloud images; //0x400 Length each.
-
-extern float g_skySnowScale;
-extern float g_skySnowVelocity;
-/* g_skySnowSpawnHeight / RadiusDensity / CenterOffset / HitGoal: KWChartSnow path SMC; SetWeather3D no longer pokes */
-
-extern long g_3DSnowSpawnHeight;
-extern long g_3DSnowSpawnDistanceMin;
-extern long g_3DSnowSpawnDistanceMax;
-extern long g_3DSnowSpawnCone;
-extern long g_3DSnowSpawnRadius;
-extern long g_3DSnowSwayVelocity;
-extern long g_3DSnowSwayDistance;
-extern float g_3DSnowSwayMovement;
-extern float g_3DSnowScale;
-extern float g_3DSnowVelocityUpLim;
-extern float g_3DSnowVelocityLowLim;
 
 extern void KWChartSnow(void);
 extern void KWChartIceBlock(void);
@@ -830,7 +813,7 @@ extern short g_musicIDSnowy; // 0x8028ED66
 extern short g_musicIDRainbow; // 0x8028ED76
 extern short g_musicIDDK; // 0x8028ED86
 extern short g_musicIDBattle2; // 0x8028ED96
-extern Ushort g_musicTempo;
+/* g_musicTempo: audio BSS SeqPlayer tempo; live C is MusSeqTempoPercent / PlayFinalLapMusicHook */
 extern Ushort g_fanfareTempo;
 extern SeqPlayerStruct SeqPlayer[4];
 
@@ -840,7 +823,7 @@ extern Ushort NAIGetPlayingSeqFlag(Uchar seq);
 
 //Cave Fire Particle Stuff
 extern void KWGetCaveFire(int objnum);
-extern int CaveFireColCheck;
+/* CaveFireColCheck: KWDisplayFireParticleSub switch bound SMC; DisplayFireParticleSub no longer pokes */
 extern int KWChaseSVal(short *var,short val,short step);
 extern int KWChaseIVal(int   *var,int   val,int   step);
 extern int KWChaseFVal(float *var,float val,float step);
@@ -869,10 +852,7 @@ extern void SetTreeObject(Uint TargetAddress);  // 0x8029D584
 extern void SetPakkunObject(Uint TargetAddress);  // 0x8029CC14
 extern void SetItemBoxObject(Uint TargetAddress);  // 0x8029D830
 /* LoadMapData → LoadCourse in StockAliases.h */
-extern int FallingRockGFX_U; //default 0x3C0F0600
-extern int FallingRockGFX_L; //default 0x25EF6FE0
-extern int FallingRockShadowGFX_U; //default 0x3C0C0600
-extern int FallingRockShadowGFX_L; //default 0x258C6F88
+/* FallingRockGFX_U/L SMC → FallingRockGFX / FallingRockShadowGFX in actors.c */
 extern void DisplayGroupmap(int Address, Screen* PlayerScreen);
 extern int ShadowModel;
 extern int HoleModel;

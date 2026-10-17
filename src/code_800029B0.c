@@ -246,6 +246,9 @@ void InitialRaceSequence(void) {
 
 // Sound related
 void DelayInitialMap(void) {
+    if (HotSwapID != 0) {
+        return;
+    }
 #if !ENABLE_CUSTOM_COURSE_ENGINE
     switch (CourseID) {
         case COURSE_MARIO_RACEWAY:

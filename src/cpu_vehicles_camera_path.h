@@ -40,10 +40,10 @@ typedef struct {
 typedef EnemyItem CpuItemStrategyData;
 
 typedef struct {
-    s16 Unk0;
-    s16 Unk2;
-    s16 unk4;
-    u16 unk6;
+    s16 trg;
+    s16 Mode;
+    s16 Target;
+    s16 Dummy;
 } UnkStruct46D0;
 
 typedef struct {

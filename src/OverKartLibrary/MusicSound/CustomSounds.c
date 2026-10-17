@@ -396,14 +396,6 @@ char TotalLevelSounds = 8; //How many sounds are Used in level
     }
 }
 
-void MapDelayInit(void) //Removes standard audience sfx on custom courses 
-{
-    if(HotSwapID == 0)
-    {
-        DelayInitialMap();
-    }
-}
-
 void SetLevelSounds(void)
 {
     LevelSoundDistanceCheck();

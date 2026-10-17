@@ -41,6 +41,11 @@
 //! @warning this macro is undef'd at the end of this file
 #define MAKE_RGB(r, g, b) (((r) << 0x10) | ((g) << 0x08) | (b << 0x00))
 
+extern s32 BalloonColorArray[8];
+extern s32 BalloonAdjustArray[8];
+extern s32 BalloonColorArrayB[8];
+extern s32 BalloonAdjustArrayB[8];
+
 s32 KW16GFTimer;
 s32 KW8GFTimer;
 s32 KW4GFTimer;
@@ -1314,7 +1319,7 @@ void KwgameframesyoriSub(void) {
                     Kwplayerparams(PLAYER_TWO);
                     KWChartKumoHookDefault(2);
                 }
-                CommonGameEventChart();
+                KWGameEventCommon();
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_VERTICAL:
                 KwcheckRandomcnt(PLAYER_ONE);
@@ -1333,7 +1338,7 @@ void KwgameframesyoriSub(void) {
                 }
                 KWChartKumoHookDefault(2);
                 KwcheckNearbomb(1);
-                CommonGameEventChart();
+                KWGameEventCommon();
                 break;
             case SCREEN_MODE_2P_SPLITSCREEN_HORIZONTAL:
                 KwcheckRandomcnt(PLAYER_ONE);
@@ -1352,7 +1357,7 @@ void KwgameframesyoriSub(void) {
                 }
                 KWChartKumoHookDefault(4);
                 KwcheckNearbomb(1);
-                CommonGameEventChart();
+                KWGameEventCommon();
                 break;
             case SCREEN_MODE_3P_4P_SPLITSCREEN:
                 KwcheckRandomcnt(PLAYER_ONE);
@@ -1385,7 +1390,7 @@ void KwgameframesyoriSub(void) {
                     }
                     KwcheckNearbomb(3);
                 }
-                CommonGameEventChart();
+                KWGameEventCommon();
                 break;
         }
         KwdmaTexture();
@@ -1407,7 +1412,7 @@ void Kwgameframesyori(void) {
         } else if (GameState == CREDITS_SEQUENCE) {
             Kwplayerparams(PLAYER_ONE);
             KWChartKumoHookDefault(0);
-            CommonGameEventChart();
+            KWGameEventCommon();
         } else {
             KwgameframesyoriSub();
         }
@@ -1554,7 +1559,15 @@ void KWGameEventCommonVF(void) {
     }
 }
 
+extern void KWChartIceBlock(void);
+extern void MoveCustomParticle(void);
+
 void KWGameEventCommon(void) {
+    if (HotSwapID != 0) {
+        if (GameState != CREDITS_SEQUENCE) {
+            KWChartIceBlock();
+        }
+    }
 #if !ENABLE_CUSTOM_COURSE_ENGINE
     switch (CourseID) {
         case COURSE_MARIO_RACEWAY:
@@ -1634,6 +1647,9 @@ void KWGameEventCommon(void) {
     KwchartKameFire();
     if ((s16) CourseID != COURSE_FRAPPE_SNOWLAND) {
         KwchartLeaf();
+    }
+    if (HotSwapID > 0) {
+        MoveCustomParticle();
     }
 }
 
@@ -5920,21 +5936,12 @@ void MakeBalloonCalc(Player* Player, s8 playerIndex, s16 balloonIndex, s8 screen
     f32 xdiff;
     f32 zdiff;
     f32 var_f20;
-    s32 primColors[] = {
-        MAKE_RGB(0xC8, 0x01, 0x00), MAKE_RGB(0x00, 0x70, 0x01), MAKE_RGB(0x10, 0x79, 0x51), MAKE_RGB(0x00, 0x59, 0x70),
-        MAKE_RGB(0x70, 0x55, 0x00), MAKE_RGB(0x7A, 0x7E, 0x00), MAKE_RGB(0x77, 0x2C, 0x24), MAKE_RGB(0x30, 0x14, 0x58),
-    };
-    s32 envColors[] = {
-        MAKE_RGB(0xDC, 0x00, 0x00), MAKE_RGB(0x00, 0x8C, 0x06), MAKE_RGB(0x00, 0x00, 0x51), MAKE_RGB(0x00, 0x00, 0x00),
-        MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00),
-    };
-
-    primRed = (primColors[Player->Kart] >> 0x10) & 0xFF;
-    primGreen = (primColors[Player->Kart] >> 0x08) & 0xFF;
-    primBlue = (primColors[Player->Kart] >> 0x00) & 0xFF;
-    envRed = (envColors[Player->Kart] >> 0x10) & 0xFF;
-    envGreen = (envColors[Player->Kart] >> 0x08) & 0xFF;
-    envBlue = (envColors[Player->Kart] >> 0x00) & 0xFF;
+    primRed = (BalloonColorArray[Player->Kart] >> 0x10) & 0xFF;
+    primGreen = (BalloonColorArray[Player->Kart] >> 0x08) & 0xFF;
+    primBlue = (BalloonColorArray[Player->Kart] >> 0x00) & 0xFF;
+    envRed = (BalloonAdjustArray[Player->Kart] >> 0x10) & 0xFF;
+    envGreen = (BalloonAdjustArray[Player->Kart] >> 0x08) & 0xFF;
+    envBlue = (BalloonAdjustArray[Player->Kart] >> 0x00) & 0xFF;
     temp_t1 = (((Player->AngleY[screenId] + Player->Direction[1] + Player->Slipang) & 0xFFFF) / 128);
     temp_t1 <<= 7;
     if (screenId == playerIndex) {
@@ -6064,21 +6071,12 @@ void DrawBalloon(Vec3f arg0, f32 arg1, s16 Arg2, s16 Arg3) {
     s16 envRed;
     s16 envGreen;
     s16 envBlue;
-    s32 primColors[] = {
-        MAKE_RGB(0xC8, 0x01, 0x00), MAKE_RGB(0x00, 0x70, 0x01), MAKE_RGB(0x10, 0x79, 0x51), MAKE_RGB(0x00, 0x59, 0x70),
-        MAKE_RGB(0x70, 0x55, 0x00), MAKE_RGB(0x7A, 0x7E, 0x00), MAKE_RGB(0x77, 0x2C, 0x24), MAKE_RGB(0x30, 0x14, 0x58),
-    };
-    s32 envColors[] = {
-        MAKE_RGB(0xDC, 0x00, 0x00), MAKE_RGB(0x00, 0x8C, 0x06), MAKE_RGB(0x00, 0x00, 0x51), MAKE_RGB(0x00, 0x00, 0x00),
-        MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00), MAKE_RGB(0x00, 0x00, 0x00),
-    };
-
-    primRed = (primColors[Arg3] >> 0x10) & 0xFF;
-    primGreen = (primColors[Arg3] >> 0x08) & 0xFF;
-    primBlue = (primColors[Arg3] >> 0x00) & 0xFF;
-    envRed = (envColors[Arg3] >> 0x10) & 0xFF;
-    envGreen = (envColors[Arg3] >> 0x08) & 0xFF;
-    envBlue = (envColors[Arg3] >> 0x00) & 0xFF;
+    primRed = (BalloonColorArrayB[Arg3] >> 0x10) & 0xFF;
+    primGreen = (BalloonColorArrayB[Arg3] >> 0x08) & 0xFF;
+    primBlue = (BalloonColorArrayB[Arg3] >> 0x00) & 0xFF;
+    envRed = (BalloonAdjustArrayB[Arg3] >> 0x10) & 0xFF;
+    envGreen = (BalloonAdjustArrayB[Arg3] >> 0x08) & 0xFF;
+    envBlue = (BalloonAdjustArrayB[Arg3] >> 0x00) & 0xFF;
     spFC[0] = arg0[0];
     spFC[1] = arg0[1];
     spFC[2] = arg0[2];

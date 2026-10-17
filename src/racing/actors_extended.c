@@ -696,8 +696,15 @@ s32 SetRshell(Player* Player) {
 
 // Interestingly Blue shells Start their life as a red shell,
 // and then just change the Type from red to Blue shell
-void SetTshell(Player* Player) {
-    SimpleObjectArray[SetRshell(Player)].Category = ACTOR_BLUE_SPINY_SHELL;
+s32 SetTshell(Player* Player) {
+    s32 ActorIndex;
+
+    ActorIndex = SetRshell(Player);
+    if (ActorIndex < 0) {
+        return ActorIndex;
+    }
+    SimpleObjectArray[ActorIndex].Category = ACTOR_BLUE_SPINY_SHELL;
+    return ActorIndex;
 }
 
 #include "actors/banana/update.inc.c"

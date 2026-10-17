@@ -155,7 +155,7 @@ Uint GetRGB32(int R, int G, int B)
 
 void SetFontColor(int FontR, int FontG, int FontB, int ShadowR, int ShadowG, int ShadowB)
 {
-	Ushort *ColorValues = (Ushort*)&g_DebugTextPalette;
+	Ushort *ColorValues = (Ushort *) GetRealAddress((int) common_tlut_debug_font);
 	ColorValues[0] = 0; //0000 transparent
 	ColorValues[1] = GetRGBA16(FontR,FontG,FontB,1);
 	ColorValues[2] = GetRGBA16(ShadowR,ShadowG,ShadowB,1);

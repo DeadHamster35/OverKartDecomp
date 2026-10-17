@@ -24,6 +24,9 @@ extern bool LavaFloorRecoiling[];
 
 
 #define TRICK_GRAVITY				4000.0f
+#ifndef AMPED_GAP1
+#define AMPED_GAP1				TRICK_GRAVITY
+#endif
 #define TRICK_TRIGGER_SPEED_MIN		30
 
 #define GAP_GRAVITY				2000.0f

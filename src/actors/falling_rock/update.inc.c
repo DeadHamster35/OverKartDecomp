@@ -60,6 +60,9 @@ void UpdateActorFallingRocks(struct FallingRock* rock) {
     f32 Pad0;
     f32 pad1;
 
+    if (HotSwapID != 0) {
+        return;
+    }
     if (rock->RespawnTimer != 0) {
         rock->RespawnTimer -= 1;
         return;

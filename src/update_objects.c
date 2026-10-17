@@ -2551,13 +2551,13 @@ void KwanmSnow2DInit(s32 ObjectIndex) {
     AnmObject* object;
 
     object = &DynamicObjects[ObjectIndex];
-    object->Indexaddr = D_0D0293D8;
-    object->Sindexaddr = D_0D0293D8;
+    object->Indexaddr = (HotSwapID > 0) ? (u8*) g_SnowParticleTex : D_0D0293D8;
+    object->Sindexaddr = object->Indexaddr;
     // There's something up with the handling of Vtx_KTile16x16 and the loading of 0x10 Right here
     object->Vtxaddr = Vtx_KTile16x16;
     object->Fvalptr = 0x10;
     object->Texsizey = object->Fvalptr;
-    object->Scale = 0.15f;
+    object->Scale = g_skySnowScale;
     KwanmSetflag(ObjectIndex, 0x00000010);
     KwmvStartStrategy(ObjectIndex);
     object->Alpha = 0x00FF;
@@ -2588,7 +2588,7 @@ void KwmvSnow2D(s32 ObjectIndex, Camera* Camera) {
             KwsetRandomy(ObjectIndex, 0x00B4, 0x0014U);
             rand = MakeRandomLimmit(0x0064U);
 
-            DynamicObjects[ObjectIndex].Velocity[1] = (f32) (-0.75 - (f64) (f32) (rand * 0.01));
+            DynamicObjects[ObjectIndex].Velocity[1] = (f32) (-g_skySnowVelocity - (f64) (f32) (rand * 0.01));
             DynamicObjects[ObjectIndex].PosSpline[0] = 0.0f;
             DynamicObjects[ObjectIndex].PosSpline[1] = 0.0f;
             KWAnmNext(ObjectIndex);
@@ -2646,10 +2646,10 @@ void KwanmSnow3DInit(s32 ObjectIndex) {
     AnmObject* object;
 
     object = &DynamicObjects[ObjectIndex];
-    object->Indexaddr = D_0D0293D8;
-    object->Sindexaddr = D_0D0293D8;
+    object->Indexaddr = (HotSwapID > 0) ? (u8*) g_SnowParticleTex : D_0D0293D8;
+    object->Sindexaddr = object->Indexaddr;
     object->Vtxaddr = Vtx_KTile16x16;
-    object->Scale = 0.15f;
+    object->Scale = g_3DSnowScale;
     KwmvStartStrategy(ObjectIndex);
     KwanmNext(ObjectIndex);
 }
@@ -2667,15 +2667,15 @@ void KwmvSnow3D(s32 ObjectIndex) {
         case 1:
             if (GameState != 9) {
                 sp3A = ((PlayerOneCopy->Speed / 18) * 216) / 2;
-                sp3E = (MakeRandomLimmit(0x000FU) - sp3A) + 0x2D;
-                sp3C = MakeRandomLimmit(0x012CU) + 0x1E;
-                temp_t6 = Camera1->CameraDirection[1] + ((s32) (MakeRandomLimmit(0x3000U) - 0x1800) / (s16) ((sp3A / 15) + 1));
+                sp3E = (MakeRandomLimmit(0x000FU) - sp3A) + (s16) g_3DSnowSpawnHeight;
+                sp3C = MakeRandomLimmit((u16) g_3DSnowSpawnDistanceMax) + (s16) g_3DSnowSpawnDistanceMin;
+                temp_t6 = Camera1->CameraDirection[1] + ((s32) (MakeRandomLimmit((u16) g_3DSnowSpawnCone) - 0x1800) / (s16) ((sp3A / 15) + 1));
                 DynamicObjects[ObjectIndex].PosStart[0] = PlayerOneCopy->Position[0] + (SinT(temp_t6) * sp3C);
                 DynamicObjects[ObjectIndex].PosStart[1] = sp3E + PlayerOneCopy->Ground;
                 DynamicObjects[ObjectIndex].PosStart[2] = PlayerOneCopy->Position[2] + (CosT(temp_t6) * sp3C);
                 DynamicObjects[ObjectIndex].Addangy = MakeRandomLimmit(0x0400U) + 0x100;
                 DynamicObjects[ObjectIndex].PosEnde[0] = (f32) (((f32) MakeRandomLimmit(0x0064U) * 0.03) + 2.0);
-                DynamicObjects[ObjectIndex].Velocity[1] = (f32) (-0.3 - (f64) (f32) (MakeRandomLimmit(0x0032U) * 0.01));
+                DynamicObjects[ObjectIndex].Velocity[1] = (f32) (g_3DSnowVelocityLowLim - (f64) (f32) (MakeRandomLimmit(0x0032U) * 0.01));
                 DynamicObjects[ObjectIndex].PosSpline[0] = 0.0f;
                 DynamicObjects[ObjectIndex].PosSpline[1] = 0.0f;
                 KWAnmNext(ObjectIndex);
@@ -2683,7 +2683,7 @@ void KwmvSnow3D(s32 ObjectIndex) {
                 sp3C = MakeRandomLimmit(0x0064U) + 0x28;
                 temp_t6 = Camera1->CameraDirection[1] + MakeRandomLimmit(0x3000U) - 0x1800;
                 DynamicObjects[ObjectIndex].PosStart[0] = Camera1->CameraPos[0] + (SinT(temp_t6) * sp3C);
-                DynamicObjects[ObjectIndex].PosStart[1] = Camera1->CameraPos[1] + 45.0;
+                DynamicObjects[ObjectIndex].PosStart[1] = Camera1->CameraPos[1] + (f32) g_3DSnowSpawnHeight;
                 DynamicObjects[ObjectIndex].PosStart[2] = Camera1->CameraPos[2] + (CosT(temp_t6) * sp3C);
                 DynamicObjects[ObjectIndex].Addangy = MakeRandomLimmit(0x0400U) + 0x100;
                 DynamicObjects[ObjectIndex].PosEnde[0] = (f32) (((f32) MakeRandomLimmit(0x0064U) * 0.03) + 2.0);
@@ -2697,7 +2697,7 @@ void KwmvSnow3D(s32 ObjectIndex) {
             KwmvAddvelytopos(ObjectIndex);
             DynamicObjects[ObjectIndex].ang[0] += DynamicObjects[ObjectIndex].Addangy;
             DynamicObjects[ObjectIndex].PosSpline[0] =
-                SinT(DynamicObjects[ObjectIndex].ang[0]) * DynamicObjects[ObjectIndex].PosEnde[0];
+                SinT(DynamicObjects[ObjectIndex].ang[0]) * DynamicObjects[ObjectIndex].PosEnde[0] * g_3DSnowSwayMovement;
             KwsetSplinepos3D(ObjectIndex);
             if ((f64) DynamicObjects[ObjectIndex].pos[1] <= 0.0) {
                 KWAnmNext(ObjectIndex);

@@ -40,9 +40,9 @@ static s16 sPlayerGhostReplayIdx;
 static u32* sPlayerGhostReplay;
 
 static u16 sButtonsPrevCourseGhost;
-static u32 sCourseGhostFramesRemaining;
-static s16 sCourseGhostReplayIdx;
-static u32* sCourseGhostReplay;
+u32 sCourseGhostFramesRemaining;
+s16 sCourseGhostReplayIdx;
+u32* sCourseGhostReplay;
 
 static u16 sPostTTButtonsPrev;
 static s32 sPostTTFramesRemaining;
@@ -51,6 +51,30 @@ static u32* sPostTTReplay;
 
 static s16 sPlayerInputIdx;
 static u32* sPlayerInputs;
+
+void SaveStateGetReplayCursor(SaveStateReplayCursor *out) {
+    out->playerButtonsPrev = sPlayerGhostButtonsPrev;
+    out->playerFramesRemaining = sPlayerGhostFramesRemaining;
+    out->playerReplayIdx = sPlayerGhostReplayIdx;
+    out->courseButtonsPrev = sButtonsPrevCourseGhost;
+    out->courseFramesRemaining = sCourseGhostFramesRemaining;
+    out->courseReplayIdx = sCourseGhostReplayIdx;
+    out->postTTButtonsPrev = sPostTTButtonsPrev;
+    out->postTTFramesRemaining = sPostTTFramesRemaining;
+    out->postTTReplayIdx = sPostTTReplayIdx;
+}
+
+void SaveStateSetReplayCursor(SaveStateReplayCursor *in) {
+    sPlayerGhostButtonsPrev = in->playerButtonsPrev;
+    sPlayerGhostFramesRemaining = in->playerFramesRemaining;
+    sPlayerGhostReplayIdx = in->playerReplayIdx;
+    sButtonsPrevCourseGhost = in->courseButtonsPrev;
+    sCourseGhostFramesRemaining = in->courseFramesRemaining;
+    sCourseGhostReplayIdx = in->courseReplayIdx;
+    sPostTTButtonsPrev = in->postTTButtonsPrev;
+    sPostTTFramesRemaining = in->postTTFramesRemaining;
+    sPostTTReplayIdx = in->postTTReplayIdx;
+}
 
 static u16 sPrevCourseId;
 u32 Map;

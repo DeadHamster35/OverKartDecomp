@@ -126,7 +126,7 @@ void AddGravityEdit(Player *car)
 	{
 		if (car->Bump.DistanceZX >= 0.2f)
 		{
-			car->Gravity = TRICK_GRAVITY;
+			car->Gravity = AMPED_GAP1;
 		}
 		if (car->Jumpcount >= 40)
 		{

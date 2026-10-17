@@ -18,7 +18,7 @@ OUTPUT_ARCH (mips)
 
 #define LINKER_OVERKART    0x80400000
 #define OK_MODELDATA_MAX   0x10000
-#define ok_SaveSize        0x28980
+#define ok_SaveSize        0x2C000
 #define ok_HeaderSize      0x1400
 #define ok_MenuSize        0x2800
 #define ok_CourseHeaderSize 0xD0
@@ -43,6 +43,7 @@ OUTPUT_ARCH (mips)
     M(MarioKartObjects) \
     M(SharedFunctions) \
     M(OverKartDefaults) \
+    M(OKRumble) \
     M(CustomCourses/CustomLevels) \
     M(CustomCourses/CustomSurfaces) \
     M(CustomObjects/OKBehaviors) \

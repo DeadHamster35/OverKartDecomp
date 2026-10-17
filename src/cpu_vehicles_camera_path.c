@@ -2266,9 +2266,9 @@ void OgawaCameraInit(s32 cameraIndex) {
     OgaCameraWatchNum = 0;
     KatamukiTheta[cameraIndex] = 0;
     OgaGoalCounter = 0;
-    OgaSoundCamera[cameraIndex].Unk0 = 0;
-    OgaSoundCamera[cameraIndex].Unk2 = 0;
-    OgaSoundCamera[cameraIndex].unk4 = 0;
+    OgaSoundCamera[cameraIndex].trg = 0;
+    OgaSoundCamera[cameraIndex].Mode = 0;
+    OgaSoundCamera[cameraIndex].Target = 0;
     if ((GameMode == 1) && (InGame == 0)) {
         KoteiGakakuMode[cameraIndex] = 0;
     }
@@ -3824,11 +3824,11 @@ void Func8001A588(UNUSED u16* localD_80152300, Camera* Camera, Player* Player, s
             break;
         default:
             temp_v0_4 = &OgaSoundCamera[cameraIndex];
-            if (temp_v0_4->Unk0 == (s16) 1) {
-                PlayerId = temp_v0_4->unk4;
-                temp_v0_4->Unk0 = 0;
+            if (temp_v0_4->trg == (s16) 1) {
+                PlayerId = temp_v0_4->Target;
+                temp_v0_4->trg = 0;
                 Cameras[cameraIndex].Watch = PlayerId;
-                OgaDemoCameraSoundInit(cameraIndex, 0.0f, (s32) temp_v0_4->Unk2);
+                OgaDemoCameraSoundInit(cameraIndex, 0.0f, (s32) temp_v0_4->Mode);
             }
             break;
     }
@@ -3876,10 +3876,10 @@ void Func8001A588(UNUSED u16* localD_80152300, Camera* Camera, Player* Player, s
 }
 
 void OgawaSoundCameraSet(s16 arg0, s16 arg1, s16 Arg2) {
-    if (OgaSoundCamera[arg0].Unk0 == 0) {
-        OgaSoundCamera[arg0].Unk0 = 1;
-        OgaSoundCamera[arg0].Unk2 = arg1;
-        OgaSoundCamera[arg0].unk4 = Arg2;
+    if (OgaSoundCamera[arg0].trg == 0) {
+        OgaSoundCamera[arg0].trg = 1;
+        OgaSoundCamera[arg0].Mode = arg1;
+        OgaSoundCamera[arg0].Target = Arg2;
     }
 }
 

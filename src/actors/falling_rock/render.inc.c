@@ -41,12 +41,12 @@ void DisplayIwa(Camera* Camera, struct FallingRock* rock) {
             if (SetMatrix(sp4C, 0) == 0) {
                 return;
             }
-            gSPDisplayList(DisplayListHead++, d_course_choco_mountain_dl_6F88);
+            gSPDisplayList(DisplayListHead++, FallingRockShadowGFX);
         }
     }
     CreateModelingMatrix(sp4C, rock->Position, rock->Angle);
     if (SetMatrix(sp4C, 0) == 0) {
         return;
     }
-    gSPDisplayList(DisplayListHead++, d_course_choco_mountain_dl_falling_rock);
+    gSPDisplayList(DisplayListHead++, FallingRockGFX);
 }

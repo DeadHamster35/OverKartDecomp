@@ -7,4 +7,6 @@ extern void DrawInputDisplay();
 extern void ModCheck();
 extern void RunFlyCam();
 extern void FlyCamInit();
+extern void SaveState(void);
+extern void LoadState(void);
 #endif

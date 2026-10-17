@@ -23,7 +23,7 @@ s32 SetSuperShell(Player*, s16);
 s32 SetRollingShell(TripleShellParent*, Player*, s16, u16);
 s32 SetGshell(Player*);
 s32 SetRshell(Player*);
-void SetTshell(Player*);
+s32 SetTshell(Player*);
 void MoveBanana(struct BananaActor*);
 void PutSBanana(struct BananaBunchParent*, Player*, s16);
 s32 PutFakeItembox(Player*);

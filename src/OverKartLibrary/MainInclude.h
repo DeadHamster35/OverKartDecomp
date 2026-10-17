@@ -71,6 +71,7 @@ typedef struct GfxPool Dynamic;
 #include "MarioKartObjects.h"
 #include "OKExternal.h"
 #include "OKHeader.h"
+#include "OKRumble.h"
 #include "SharedFunctions.h"
 #include "OverKartDefaults.h"
 #include "SubProgram.h"

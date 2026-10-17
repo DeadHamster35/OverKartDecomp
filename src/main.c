@@ -373,7 +373,7 @@ void ReadControllers(void) {
     ControllerFive->AnalogReleased =
         (s16) (((ControllerOne->AnalogReleased | ControllerTwo->AnalogReleased) | ControllerThree->AnalogReleased) |
                ControllerFour->AnalogReleased);
-    //MotorActive[0] = (ControllerOne->ButtonHeld & L_TRIG) != 0;
+    UpdateRumbleHelper();
     UpdateMotors();
 }
 

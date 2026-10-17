@@ -3076,7 +3076,7 @@ void KwdisplaySnow(void) {
 
     gSPDisplayList(DisplayListHead++, D_0D007AE0);
     gDPSetCombineLERP(DisplayListHead++, 1, 0, SHADE, 0, 0, 0, 0, TEXEL0, 1, 0, SHADE, 0, 0, 0, 0, TEXEL0);
-    KwloadtextureblockA4B(D_0D0293D8, 0x10, 0x10);
+    KwloadtextureblockA4B((HotSwapID > 0) ? (u8*) g_SnowParticleTex : D_0D0293D8, 0x10, 0x10);
     for (someIndex = 0; someIndex < NUM_SNOWFLAKES; someIndex++) {
         snowflakeIndex = EffectAllocArray1[someIndex];
         if (DynamicObjects[snowflakeIndex].Anmptr >= 2) {
@@ -3870,7 +3870,11 @@ void KwdisplayFire(s32 CameraId) {
     }
 }
 
+extern char FireRGBA[8][4];
+
 void KWDisplayFireParticleSub(s32 ObjectIndex, u8 arg1, Vec3f Arg2) {
+    s32 realindex;
+
     if (Modelingnum <= MTX_HUD_POOL_SIZE_MAX) {
         switch (arg1) { /* irregular */
             case 0:
@@ -3883,7 +3887,14 @@ void KWDisplayFireParticleSub(s32 ObjectIndex, u8 arg1, Vec3f Arg2) {
                 SetColorRender(0xFF, 0xE6, 0xFF, 0xFF, 0x00, 0x96, (s32) DynamicObjects[ObjectIndex].Alpha);
                 break;
             case 3:
-                SetColorRender(0xFF, 0xFF, 0x1E, 0xFF, 0x00, 0x00, (s32) DynamicObjects[ObjectIndex].Alpha);
+                if (HotSwapID != 0) {
+                    realindex = ObjectIndex - FireParticleAllocArray[0];
+                    SetColorRender(FireRGBA[realindex][0], FireRGBA[realindex][1], FireRGBA[realindex][2],
+                                   FireRGBA[realindex][0] / 3, FireRGBA[realindex][1] / 3, FireRGBA[realindex][2] / 3,
+                                   FireRGBA[realindex][3]);
+                } else {
+                    SetColorRender(0xFF, 0xFF, 0x1E, 0xFF, 0x00, 0x00, (s32) DynamicObjects[ObjectIndex].Alpha);
+                }
                 break;
             default:
                 break;

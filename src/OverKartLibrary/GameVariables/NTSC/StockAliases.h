@@ -45,7 +45,7 @@ u8 *LoadCourse(s32);
 void UpdateActorFallingRocks(struct FallingRock *);
 void SprDrawClip(s32, s32, s32, s32, s32);
 
-#define InitMKCode InitMkcode
+void InitMKCode(void);
 #define ramCopy(dst, src, n) memcpy((void *) (uintptr_t) (dst), (const void *) (uintptr_t) (src), (size_t) (n))
 #define MemCpyN64 ramCopy
 

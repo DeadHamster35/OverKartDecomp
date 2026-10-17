@@ -247,7 +247,7 @@ void ChangePlayerSize(char PlayerID, float ScaleFactor)
 	}
 	GlobalPlayer[(int)PlayerID].Offsetsize = (float)ScaleFactor;
 
-	if (PlayerID <= 3)
+	if (GlobalPlayer[(int)PlayerID].Flag&IS_PLAYER)
 	{
 		GlobalCamera[(int)PlayerID]->CameraVector[1] = 9 * (float)ScaleFactor;
 	}

@@ -545,7 +545,6 @@ void EffectBGMReplace(void)
 					if (!((HotSwapID > 0) && (OverKartHeader.LapCount == SPRINT_LAPCOUNT)))
 					{
 						FinalLapActive = true;
-						g_musicTempo = g_musicTempo * 1.25;
 					}
 				}
 				if ((AnimatedLakituStruct[(int)PlayerID].EventFlag == LAKITU_LAPFINAL))
@@ -606,8 +605,6 @@ void EffectBGMReplace(void)
 
 void NopPlayEffectBGMCode(void) //Run at custom Code init
 {
-	CheckFinalLapFanfareJAL = 0;
-	CheckPlayStarBGMJAL = 0;
 }
 
 void CheckJugemuMarker(void)

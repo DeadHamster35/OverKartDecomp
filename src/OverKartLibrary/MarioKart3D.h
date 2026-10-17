@@ -4,19 +4,9 @@
 
 
 extern Vtx V64x32[];
-extern Vtx V64[];
 extern Vtx V1632[];
 extern Vtx V6432B[];
-extern Vtx V6432BMirror[];
-extern Vtx V12832B[];
-extern Vtx V128[];
-extern Vtx V256x32[];
-extern Vtx V128Mirror[];
-extern Vtx V256[];
-extern Vtx V25632B[];
 extern Vtx V256x12832B[];
-extern Vtx V512x24032B[];
-extern Vtx V352x24032B[];
 extern Vtx Tree1V[];
 
 extern void WaveRace(Vtx_t *VertexBuffer, int Count, float Intensity);

@@ -812,6 +812,9 @@ UNUSED void func_8029AE14() {
 
 #include "actors/train/render.inc.c"
 
+Gfx* FallingRockGFX = d_course_choco_mountain_dl_falling_rock;
+Gfx* FallingRockShadowGFX = d_course_choco_mountain_dl_6F88;
+
 #include "actors/falling_rock/render.inc.c"
 
 void SetPakkunObject(struct ActorSpawnData* spawnData) {
@@ -1062,10 +1065,10 @@ void InitialMapObject(void) {
             PlaceIBoxes((long) d_course_mario_raceway_item_box_spawns);
             Vec3FSet(Position, 150.0f, 40.0f, -1300.0f);
             Position[0] *= MirrorValue;
-            AddObjectBuffer(Position, Rotation, Velocity, ACTOR_MARIO_SIGN);
+            AddObjectBufferMKANBANHook(Position, Rotation, Velocity, ACTOR_MARIO_SIGN);
             Vec3FSet(Position, 2520.0f, 0.0f, 1240.0f);
             Position[0] *= MirrorValue;
-            actor = &SimpleObjectArray[AddObjectBuffer(Position, Rotation, Velocity, ACTOR_MARIO_SIGN)];
+            actor = &SimpleObjectArray[AddObjectBufferMKANBANHook(Position, Rotation, Velocity, ACTOR_MARIO_SIGN)];
             actor->Flag |= HITOBJ;
             break;
         case COURSE_CHOCO_MOUNTAIN:

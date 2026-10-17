@@ -15,7 +15,7 @@
 
 extern int ok_HeaderROM; //0xBE9178
 extern Uint OKHeaderEND;
-#define ok_SaveSize 0x28980
+#define ok_SaveSize 0x2C000
 #define ok_HeaderSize 0x1400
 #define ok_MenuSize 0x2800
 #define ok_CourseHeaderSize 0xD0

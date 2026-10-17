@@ -1,10 +1,10 @@
 # OverKartDecomp build warnings summary
 
-- **When:** 2026-09-23 05:08 EDT
+- **When:** 2026-09-28 19:15 EDT
 - **MAKE_EXIT:** 0
 - **Result:** SUCCESS
 - **Unique : error: count:** 0
-- **ROM SHA1:** 1110e6f269d17da52acd524bd1476388149a58da
+- **ROM SHA1:** 98110961a480d97237a36d24e97dcbd8f3544222
 
 ## Suggested Cursor fixes (do not apply unless asked)
 
