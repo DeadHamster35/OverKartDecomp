@@ -57,11 +57,7 @@ OUTPUT_ARCH (mips)
     M(Player/Pathfinding) \
     M(Player/PlayerChecks) \
     M(Player/PlayerEffects) \
-    M(Gametypes/CTF) \
-    M(Gametypes/Soccer) \
-    M(Gametypes/GameTypesGeneric) \
-    M(Gametypes/Slayer) \
-    M(Gametypes/GBI/SNet)
+    M(Gametypes/GameTypesGeneric)
 
 /* Host objects after Library so Library layout does not shift.
  * Cheat.o is personal OverKart only — community link must not require it. */
@@ -80,6 +76,10 @@ OUTPUT_ARCH (mips)
     M(MarioKartPractice) \
     M(OverKart) \
     M(data/ModelData/ModelData) \
+    M(Gametypes/CTF) \
+    M(Gametypes/Soccer) \
+    M(Gametypes/Slayer) \
+    M(Gametypes/GBI/SNet) \
     OK5_CHEAT(M)
 
 // End of Jumper pak memory

@@ -16,9 +16,9 @@
 #define GLUE(a, b) a##b
 #define GLUE2(a, b) GLUE(a, b)
 
-// Avoid compiler warnings for Unused variables
+// Avoid compiler warnings for unused variables
 #ifdef __GNUC__
-#define UNUSED __attribute__((Unused))
+#define UNUSED __attribute__((unused))
 #else
 #define UNUSED
 #endif

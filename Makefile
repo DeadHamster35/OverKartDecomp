@@ -258,13 +258,14 @@ OVERKART_SRC_DIRS := \
   src/OverKartLibrary/CustomParticles \
   src/OverKartLibrary/MusicSound \
   src/OverKartLibrary/Player \
-  src/OverKartLibrary/Gametypes \
-  src/OverKartLibrary/Gametypes/GBI
+  src/OverKartLibrary/Gametypes
 # ROM blobs live in assets/OverKartLibrary/; assembled via data/overkart/*.s.
 
 # OverKart5 host C. Do not flatten into OverKartLibrary.
 OVERKART5_SRC_DIRS := \
   src/OverKart5 \
+  src/OverKart5/Gametypes \
+  src/OverKart5/Gametypes/GBI \
   src/OverKart5/data/ModelData
 
 SRC_DIRS       := src src/data src/buffers src/racing src/ending src/audio src/debug src/os src/os/math courses assets/code/ceremony_data assets/code/startup_logo $(SRC_ASSETS_DIR) $(OVERKART_SRC_DIRS) $(OVERKART5_SRC_DIRS)
