@@ -23,10 +23,10 @@ extern short EchoStop;
  * DisplayKT1Hook, InitialMapObjectCode, SearchListFileHook. */
 
 /* Vanilla RAM 0x800DD9D0 / 0x800DDB10. COMPARE=0 those slots are gKartWheels0[3]. */
-#define g_pathLength (PathLengthTable[0][0])
-#define g_pathBLength (PathLengthTable[20][0])
-/* Vanilla PathTable / PathTableB / PathTable[BLOCK_FORT]. */
-#define pathOffset (PathTable[0][0])
-#define pathOffsetB (PathTableB[0][0])
-#define pathOffsetBlock (PathTable[15][0])
+#define g_pathLength (PathLengthTable[0].FirstPath)
+#define g_pathBLength (PathLengthTable[20].FirstPath)
+/* Vanilla PathTable / PathTableB / PathTable[BLOCK_FORT]. Integer overlay so StockASM/SetPath keep byte addresses. */
+#define pathOffset (*(u32 *) &PathTable[0][0])
+#define pathOffsetB (*(u32 *) &PathTableB[0][0])
+#define pathOffsetBlock (*(u32 *) &PathTable[15][0])
 #endif

@@ -75,7 +75,7 @@ void SetSprintFinish(void)
         return;
     }
 
-    PathArray = (Marker *)GetRealAddress(PathTable[0][0]);
+    PathArray = (Marker *)GetRealAddress((int) PathTable[0][0]);
     LastMarker = OverKartHeader.PathLength[0] - 1;
 
     SprintStartBanner[0] = GoalBannerPos[0];
@@ -294,13 +294,13 @@ void CheckSplashRepl(char WaterType)
 
 			if((GlobalPlayer[(int)PlayerID].Flag&IS_CPU_PLAYER) && (OoBCheck(GlobalPlayer[(int)PlayerID].Bump.LastZX) || (GlobalPlayer[(int)PlayerID].JugemuFlag&IS_IN_WATER)) && !(GlobalPlayer[(int)PlayerID].JugemuFlag&ON_LAKITU_ROD) && !(GlobalPlayer[(int)PlayerID].JugemuFlag&OUT_OF_BOUNDS) && !(GlobalPlayer[(int)PlayerID].SlipFlag&ON_CENTER_LINE))
 			{
-				SetLakitu((void*)&GlobalPlayer[(int)PlayerID]);
+				SetLakitu(&GlobalPlayer[(int)PlayerID]);
 				CallLakitu((void*)&GlobalPlayer[(int)PlayerID]);
 			}
 
 			if((GlobalPlayer[(int)PlayerID].Flag&IS_CPU_PLAYER) && GlobalPlayer[(int)PlayerID].BumpStatus == 253 && !(GlobalPlayer[(int)PlayerID].SlipFlag&IS_IN_AIR))
 			{
-				SetLakitu((void*)&GlobalPlayer[(int)PlayerID]);
+				SetLakitu(&GlobalPlayer[(int)PlayerID]);
 				CallLakitu((void*)&GlobalPlayer[(int)PlayerID]);
 			}
 
@@ -838,7 +838,7 @@ short CalcOGAAreaSubBPWrapper(float mx, float my, float mz, Ushort t_group, int 
         int ThisPath;
     for (ThisPath = 0; ThisPath < LocalPathCount; ThisPath++)
     {
-        Marker* Point = (Marker*)GetRealAddress(PathTable[0][ThisPath]);
+        Marker* Point = (Marker*)GetRealAddress((int) PathTable[0][ThisPath]);
         {
             int ThisMark;
         for (ThisMark = 0; ThisMark < PathLengths[ThisPath]; ThisMark++)

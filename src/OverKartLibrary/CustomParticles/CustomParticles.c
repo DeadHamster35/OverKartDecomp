@@ -494,7 +494,7 @@ void ParticleDrawCommon32X32(CustomParticle *particle, int Player, bool RGBAMode
 	if (InGame)
 	{
 	    particle->Angle[2] = particle->Angle[2] + particle->Sparam1;
-	    particle->Angle[1] = KWLookCamera(particle->Position[0],particle->Position[2],GlobalCamera[Player]);
+	    particle->Angle[1] = KWLookCamera(particle->Position[0],particle->Position[2],GlobalCamera[Player]->CameraPos);
 	}
 	
 

@@ -211,38 +211,10 @@
 //MARK: - Player
 
 
-typedef struct EnemyItem //SIZE: 8* 0x10 = 0x80 | LOCATION: 801642D8 | 801642E8 | 801642F8 | 80164308 | 80164318 | 80164328 | 80164338 | 80164348
-{   
-	short	ItemNum;		//0
-	short	ObjNum;		//2
-	short	Time;			//4
-	short	Limit;			//6
-	short	Count1;			//8
-	short	Count2;			//A
-	short	Count3;			//C
-	short	Count4;			//E
-}EnemyItem;
-
-
 typedef struct BalloonColor{
 	char Blank;
 	char R,G,B;
 } BalloonColor;
-
-typedef struct GpResult //Size: 0x20 | location: 0x802874D8
-{
-	short Mode;			//00 802874D8 result Mode 
-	//empty short
-	long  Timer;		//04 802874DC result_timer 
-	long  TotalTimer;	//08 802874E0 result_timer 
-	long  Timeend;		//0C 802874E4 Timeend 		
-	long  pos[3];		//10 802874E8
-	char  Carmove;		//1C 802874F4 move along trophy path
-	char  Rank;			//1D 802874F5 result Rank 0,1,2,3 			| equals Player num in trophy	   
-	Uchar  Kart;		//1E 802874F6 result Rank 0,1,2,3,4,5,6,7 
-	// empty char
-} GpResult;
-
 
 typedef unsigned long Hierarchy;
 
@@ -460,13 +432,6 @@ typedef struct ObjBlock //Size: 0x28 * 32 = 0x500 | location: 0x8018D9E0
     int 		Work1,Work2;		//1C 20
     float 		Workf1;				//24
 } ObjBlock;
-
-typedef struct SOUKOU_ZURE_TYPE{        // 128 bit  (16)byte
-    float Lane;                            // 32 bit    (4)
-    float LaneTarget;                    // 32 bit    (4)
-    float Speed;                        // 32 bit    (4)
-    float LaneFreeDrive;                // 32 bit    (4)
-}SOUKOU_ZURE_TYPE;
 
 #define CHANNEL_MUTE		0x10000000
 #define CHANNEL_PAUSE		0x20000000

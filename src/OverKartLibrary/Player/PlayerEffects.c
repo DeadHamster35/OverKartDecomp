@@ -129,7 +129,7 @@ void SetStarMan(char PlayerID, bool Active)
 	if (!Active)
 	{
 		StarUseCounter[(int)PlayerID]  = 0;
-		ResetStar((void*)&GlobalPlayer[(int)PlayerID], PlayerID);
+		ResetStar(&GlobalPlayer[(int)PlayerID], PlayerID);
 		NAEnmTrgStop(GlobalPlayer[(int)PlayerID].Position,0x0100ff2c);
 	}
 

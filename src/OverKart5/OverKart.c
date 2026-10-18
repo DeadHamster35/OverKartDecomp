@@ -307,15 +307,15 @@ void StartRace()
 
 			if (CourseID != 4)
 			{
-				GoldCoinChallenge(GetRealAddress(PathTable[CourseID][0]), GlobalIntA);
+				GoldCoinChallenge(GetRealAddress((int) PathTable[CourseID][0]), GlobalIntA);
 			}
 			else
 			{
 				GlobalIntA = (int)(GlobalIntA * 0.3f);
-				GoldCoinChallenge(GetRealAddress(PathTable[CourseID][0]), GlobalIntA);
-				GoldCoinChallenge(GetRealAddress(PathTable[CourseID][1]), GlobalIntA);
-				GoldCoinChallenge(GetRealAddress(PathTable[CourseID][2]), GlobalIntA);
-				GoldCoinChallenge(GetRealAddress(PathTable[CourseID][3]), GlobalIntA);
+				GoldCoinChallenge(GetRealAddress((int) PathTable[CourseID][0]), GlobalIntA);
+				GoldCoinChallenge(GetRealAddress((int) PathTable[CourseID][1]), GlobalIntA);
+				GoldCoinChallenge(GetRealAddress((int) PathTable[CourseID][2]), GlobalIntA);
+				GoldCoinChallenge(GetRealAddress((int) PathTable[CourseID][3]), GlobalIntA);
 			}
 			
 			CoinCount[0] = 0;

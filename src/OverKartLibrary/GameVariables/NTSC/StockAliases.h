@@ -31,7 +31,7 @@ extern ALSeqFile *AlTbl;
 extern Hud PlayerHUD[];
 extern s32 LapCountByPlayerId[];
 extern s32 GPCurrentRaceRankByPlayerId[];
-extern void *CoursesCPUBehaviour[];
+extern ActionData *CoursesCPUBehaviour[];
 extern s16 KoteiGakakuMode[];
 extern struct ObjBlock MenuItems[];
 #define GlobalMenuHUD MenuItems

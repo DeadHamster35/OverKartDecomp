@@ -413,8 +413,8 @@ void SetPath(void)
 	for (ThisPath = 0; ThisPath < 4; ThisPath++)
 	{
 		
-		Marker *PathArray = (Marker *)GetRealAddress(PathTable[pathCourse][ThisPath]);
-		Marker *PathArrayB = (Marker *)GetRealAddress(PathTableB[pathCourse][ThisPath]);
+		Marker *PathArray = (Marker *)GetRealAddress((int) PathTable[pathCourse][ThisPath]);
+		Marker *PathArrayB = (Marker *)GetRealAddress((int) PathTableB[pathCourse][ThisPath]);
 		if (ZFLIP)
 		{
 
@@ -1575,16 +1575,16 @@ void SetCourseNames(bool custom)
 	{
 		for (strtbl = 0; strtbl < 20; strtbl++)
 		{
-			StringTableCourse[strtbl] = (long)&ok_CourseName + 0x4;
-			StringTableCourseGP[strtbl] = (long)&ok_CourseName + 0x4;
+			StringTableCourse[strtbl] = (char *) ((long) &ok_CourseName + 0x4);
+			StringTableCourseGP[strtbl] = (char *) ((long) &ok_CourseName + 0x4);
 		}
 	}
 	else
 	{
 		for (strtbl = 0; strtbl < 20; strtbl++)
 		{
-			StringTableCourse[strtbl] = (long)StockCourseNames[strtbl];
-			StringTableCourseGP[strtbl] = (long)StockCourseNames[strtbl];
+			StringTableCourse[strtbl] = StockCourseNames[strtbl];
+			StringTableCourseGP[strtbl] = StockCourseNames[strtbl];
 		}
 	}
 }
@@ -1724,14 +1724,14 @@ void InitialMapObjectCode(void)
 		if (OverKartHeader.Version <= 6)
 		{
 			PlaceIBoxes(0x06001910);
-			SetTreeObject(0x06001B18);
-			SetPakkunObject(0x06001D20);
+			SetTreeObject((struct ActorSpawnData *) 0x06001B18);
+			SetPakkunObject((struct ActorSpawnData *) 0x06001D20);
 		}
 		else
 		{
 			PlaceIBoxes(0x06000008);
-			SetTreeObject(0x06000210);
-			SetPakkunObject(0x06000418);
+			SetTreeObject((struct ActorSpawnData *) 0x06000210);
+			SetPakkunObject((struct ActorSpawnData *) 0x06000418);
 		}
 		StaticObjectCount = SimpleObjectCount;
 	}
