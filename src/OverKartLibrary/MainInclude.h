@@ -47,6 +47,20 @@ typedef struct GfxPool Dynamic;
 #include "CustomParticles/CustomParticles.h"
 
 #include "GameVariables/NTSC/4.1Header.h"
+
+/* Decomp owners for Class A names removed from GameOffsets.h in Stage 1.5b. */
+#include "render_player.h"
+#include "code_8003DC40.h"
+#include "race_logic.h"
+#include "buffers/trig_tables.h"
+#include "code_80280000.h"
+#include "actors_extended.h"
+#include "buffers.h"
+#include "code_80086E70.h"
+#include "profiler.h"
+#include "replays.h"
+#include "collision.h"
+
 #include "GameVariables/NTSC/GameOffsets.h"
 #include "GameVariables/NTSC/OKAssembly.h"
 #include "GameVariables/NTSC/StatsOffsets.h"

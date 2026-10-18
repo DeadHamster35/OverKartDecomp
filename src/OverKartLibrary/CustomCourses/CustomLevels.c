@@ -1066,7 +1066,7 @@ void RunTextureScroll(void)
 
 
 		// Run stock func
-		ScrollMapImage(GlobalAddressB, ScrollValues[CurrentScroll][0], ScrollValues[CurrentScroll][1]);
+		ScrollMapImage((uintptr_t) GlobalAddressB, ScrollValues[CurrentScroll][0], ScrollValues[CurrentScroll][1]);
 	}
 	}
 }
@@ -1405,7 +1405,7 @@ void RunKillDisplayObjects(void)
                         Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
-                        KillDisplayList(0x07000000 | MeshList[ThisMesh]);
+                        KillDisplayList((uintptr_t) (0x07000000 | MeshList[ThisMesh]));
                     }
                     }
                 }
@@ -1420,7 +1420,7 @@ void RunKillDisplayObjects(void)
                         Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
-                        KillDisplayList(0x07000000 | MeshList[ThisMesh]);
+                        KillDisplayList((uintptr_t) (0x07000000 | MeshList[ThisMesh]));
                     }
                     }
                 }
@@ -1435,7 +1435,7 @@ void RunKillDisplayObjects(void)
                         Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
-                        KillDisplayList(0x07000000 | MeshList[ThisMesh]);
+                        KillDisplayList((uintptr_t) (0x07000000 | MeshList[ThisMesh]));
                     }
                     }
                 }
@@ -1450,7 +1450,7 @@ void RunKillDisplayObjects(void)
                         Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
-                        KillDisplayList(0x07000000 | MeshList[ThisMesh]);
+                        KillDisplayList((uintptr_t) (0x07000000 | MeshList[ThisMesh]));
                     }
                     }
                 }
@@ -1469,7 +1469,7 @@ void RunKillDisplayObjects(void)
                         Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
-                        KillDisplayList(0x07000000 | MeshList[ThisMesh]);
+                        KillDisplayList((uintptr_t) (0x07000000 | MeshList[ThisMesh]));
                     }
                     }
                 }
@@ -1484,7 +1484,7 @@ void RunKillDisplayObjects(void)
                         Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
-                        KillDisplayList(0x07000000 | MeshList[ThisMesh]);
+                        KillDisplayList((uintptr_t) (0x07000000 | MeshList[ThisMesh]));
                     }
                     }
                 }
@@ -1499,7 +1499,7 @@ void RunKillDisplayObjects(void)
                         Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
-                        KillDisplayList(0x07000000 | MeshList[ThisMesh]);
+                        KillDisplayList((uintptr_t) (0x07000000 | MeshList[ThisMesh]));
                     }
                     }
                 }
@@ -1514,7 +1514,7 @@ void RunKillDisplayObjects(void)
                         Uint ThisMesh;
                     for (ThisMesh = 0; ThisMesh < DisplayKill->MeshCount; ThisMesh++)
                     {
-                        KillDisplayList(0x07000000 | MeshList[ThisMesh]);
+                        KillDisplayList((uintptr_t) (0x07000000 | MeshList[ThisMesh]));
                     }
                     }
                 }
@@ -2427,7 +2427,7 @@ void SearchListHook(Uint Addr)
 		return;
 	}
 	
-	SearchList(Addr);
+	SearchList((Gfx *) Addr);
 }
 
 void SearchListFileHook(Uint Addr)
@@ -2450,7 +2450,7 @@ void SearchList2Hook(Uint Addr, char Surface)
         SearchListFile(0x06000000 | OverKartHeader.SurfaceMapPosition);
         return;
     }
-	SearchList2(Addr, Surface);
+	SearchList2((Gfx *) Addr, Surface);
 }
 
 void DisplayKT1Hook(Screen *Display)

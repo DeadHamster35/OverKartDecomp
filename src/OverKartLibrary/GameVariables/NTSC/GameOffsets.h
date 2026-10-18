@@ -9,50 +9,24 @@ extern short spriteKillB;
 extern short spriteKillD;
 
 
-extern void DrawKart(); //0x0x800212B4
-extern void DrawKart2P(); //0x0x800215DC
-extern void DrawKart3P(); //0x0x8002186C
-extern void DrawKart4P(); //0x0x800219BC
 
-extern void DrawKartAfter(); //0x0x80021B0C
-extern void DrawKart2PAfter(); //0x0x80021C78
-extern void DrawKart3PAfter(); //0x0x80021D40
-extern void DrawKart4PAfter(); //0x0x80021DA8
 
 
 /* BalloonDisp / SmokeDisp* / OBJCalculation: code_80057C60.h */
 
 extern void CrashScreenDrawInfo(Ushort* Framebuffer, OSThread* Thread);
-extern void DMAROMGhost();
 extern void decodeTKMK(int Input, int *temp, int Output, int transparent);
 
 extern void GetFramebuffer(int PixelX,int PixelY,int Width,int Height,unsigned short *Source,unsigned short *Destination);
-extern void InitialBump(Bump *Bump);
-extern Ushort CheckBump(Bump *Bump,float Radius,float PositionX,float PositionY,float PositionZ);
-extern Ushort CheckBump2(Bump *Bump,float Radius,float PositionX,float PositionY,float PositionZ,float LastX, float LastY,float LastZ);
 
 extern void LoadMap(int courseID);
-extern void KillDisplayList (Uint Pointer);
-extern void BumpVelocity(Vector Bump,float Distance ,Vector Velocity,float co);
-extern void CalcBumpVelocity(Bump* InputBump, Vector Velocity);
-extern void ScrollMapImage(int ObjectAddress,int ScrollS,int ScrollT);
-extern void MakeWaterVertex(int ObjectAddress, char Alpha, char red, char Green, char Blue);
 extern void ClearFramebuffer();
-extern short CheckArea(Ushort Pointer);
-extern void CheckMapBGZX(Player *car,Vector normal,Vector Velocity,Vector g_vector,float *dist,float *new_x,float *new_y,float *new_z);
-extern void CheckMapBGXY(Player *car,Vector normal,Vector Velocity,float *dist,float *new_x,float *new_y,float *new_z);
-extern void CheckMapBGYZ(Player *car,Vector normal,Vector Velocity,float *dist,float *new_x,float *new_y,float *new_z);
 
 
 extern void DMABuffer(void* Car, void* Camera, char kno, char place); //0x80020000
 extern void DrawBuffer(void* Car, char kno, char place); //0x80021244
 
-extern void CheckDMA(); //0x80020524
-extern void CheckDMA2P(); //0x8002088C
-extern void CheckDMA3P(); //0x80020BF4
-extern void CheckDMA4P(); //0x80020F1C
 
-extern float CheckHight(float X_value, float Y_value, float Z_value);
 extern int KWCheckRadiusXZ(float x1,float y1,float x2,float y2,float Radius);
 extern void DisplayKT1(Screen* Display);
 extern void DisplayKT16(Screen* Display);
@@ -130,7 +104,6 @@ extern Ushort MakeRandom(void);
 extern Ushort MakeRandomLimmit(Ushort Limit);
 extern short MakeDirection(float x1,float y1,float x2,float y2);
 extern void MakeDirection3D(Vector Camera,Vector lookat,SVector ans);
-extern int ChaseDir(short *org, short obj, short Rate);
 
 extern float SinT(Ushort inputAngle);
 extern float CosT(Ushort inputAngle);
@@ -144,8 +117,6 @@ extern float CheckDisplayRange(Vector basepos, Vector markpos, Ushort CameraDire
 extern void RotateLightMatrix(Uint lpointer,AffineMtx m,short yaw,short Pitch,int Count);
 extern void SetUpVector(void *Car);
 extern float SinTable[1024];
-extern float CosTable[4096];
-extern short AtnTable[1024];	
 extern double Ipower(double x,int n);
 extern double Power(double x,double y);
 extern double Llog(double x);
@@ -171,15 +142,8 @@ extern void SetWord4AP(int x,int y,char *printText,int interval,float mulx,float
 
 extern void KawanoDrawFinal(void);
 
-extern void KWSetViewportFull(); //0x80057C60
-extern void KWReturnViewport(); //0x80057CE4
 
 /* PrintNumber / PrintStringBinary / PrintStringHex: render_objects.h */
-extern void PrintString(int xPosition, int yPosition, char *printText);
-extern void PrintStringNumber(int xPosition, int yPosition, char *printText, int printValue);
-extern void PrintStringUnsignedNumber(int xPosition, int yPosition, char *printText, Uint printValue); //0x80057814
-extern void PrintStringUnsignedHex(int xPosition, int yPosition, char *printText, Uint printValue); //0x800578B0
-extern void PrintStringUnsignedBinary(int xPosition, int yPosition, char *printText, Uint printValue); //0x80057960
 /* KWDisplay2D / KWDisplay2DAfter: code_80057C60.h */
 extern void SetFadeOutB();
 extern void SetObjBlock(int Kind, int x, int y, char pri);
@@ -194,8 +158,6 @@ extern void DOBPSelTurnOut(ObjBlock Target); //0x800AAA9C
 
 /* Camera.ScreenViewAngle is the member; global FOV array is CameraZoom */
 
-extern void BumpRoutin(Vector bu,float dist ,Vector velo ,float co);
-extern long OoBCheck(Ushort Pointer);
 
 
 extern long SetStar(void *Car, int PlayerIndex);
@@ -262,12 +224,10 @@ extern u8 common_versus_4_player_item_curve[][100];
 extern u8 common_battle_item_curve[][100];
 
 
-extern float CheckWaterLevel(void *Car);
 extern void CheckSplash(void *Car,int PlayerIndex);
 
 /* CheckSplashJAL1/2/3: RunKart / SpinKart / ResultRunkart JALs; live C is OKCheckSplashEnabled */
 
-extern void LoadKeyStatus();
 /* CheckFinalLapFanfareJAL / CheckPlayStarBGMJAL: race_logic / effects JALs; live C is PlayFinalLapMusicHook / PlayStarMusicHook */
 
 extern void KWKumoAlloc(void);
@@ -278,7 +238,6 @@ extern long CloudAmountMapCheck1;
 extern long CloudAmountMapCheck2;
 /* Snow3DAllocMapCheck1/2: KwallocEffectram1P CourseID LUI/ORI; live C is Snow3DCourseID */
 /* Snow3DDisplayAfterMapCheck1/2: RenderSnowingEffect CourseID LUI/ORI; live C is Snow3DCourseID */
-extern void KWDisplayJugemu(int Player);
 
 
 extern void DMABase729A30(int Input, int Length, long Output);
@@ -303,12 +262,7 @@ extern Ushort KWLookCameraPitch(float y,float z,Camera *Camera);
 extern void KWRectangle(int sx,int sy,int sizex,int sizey,int s ,int t,int Mode);
 /* KWTexture2D* / KWTexture3DRGBA32AAZBBL: render_objects.h */
 
-extern void KWSpriteTile32B(short cx,short cy,Uchar *Addr,Uint sizex,Uint sizey);
-extern void KWDisplayTotalTime(int Player);
 /* KWPrintLapTimeXLU: render_objects.h */
-extern void DrawLineHorizontal(short tx,short ty,short Length,Ushort r,Ushort g,Ushort b,Ushort a);
-extern void DrawLineVertical(short tx,short ty,short Length,Ushort r,Ushort g,Ushort b,Ushort a);
-extern void KWLoadTextureBlockI4b(Uchar *Texaddr,int cutx,int cuty);
 /* KWLoadTextureBlockRGBA16B: render_objects.h */
 /* SPRDrawClip → SprDrawClip in StockAliases.h */
 extern void SprDrawClipST(int sx,int sy,int sizex,int sizey,int ss,int tt,int Mode);
@@ -323,10 +277,7 @@ extern void	KWCreateAffine3DHole(Vector Position,Vector Direction,float Scale);
 extern void	KWCreateAffine3DAnm(int num);
 
 /* KWSetPrimColor / KWSetEnvColor / Sub*Mode / *Mode (except ToumeIMode / Color2Mode): render_objects.h */
-extern void ToumeIMode(Uint r,Uint g,Uint b,Uint a);
-extern void Color2Mode(Uint prim_r,Uint prim_g,Uint prim_b,Uint env_r,Uint env_g,Uint env_b,Uint a);
 
-extern void BumpObject(Object* InputObject);
 
 extern void InitializePlayer(int playerStructure, int characterID, float deltaX, float deltaZ, int characterID2, int unknown0xB000);
 extern void DrawLocalSkeletonShape(Hierarchy* Skeleton,AnimePtr* Anime,short AnimeNumber,short CurrentFrame);
@@ -340,7 +291,6 @@ extern long asm_itemJump2B;// 0x8007AFD4  //84A543BA
 /* Sqrtf → sqrtf in StockAliases.h */
 
 extern void colorFont(int color);
-extern void LoadFont();
 
 extern long g_SegmentA;
 extern long gIntMesgQueue;
@@ -349,7 +299,6 @@ extern long gIntMesgQueue;
 
 
 /* g_resetToggle / g_SequenceMode → GameState in StockAliases.h */
-extern int DispTimeFlag;
 extern long NextSequenceModeUnused;
 extern long g_gameType;
 extern short CourseID;
@@ -507,16 +456,9 @@ extern short surface_p0;
 
 /* g_GameLapTable / g_gameLapPlayer* → LapCountByPlayerId in StockAliases.h */
 
-extern void KWAnmNext(int num); //0x80086FD4
 
-void KWDisplayEvent(int Player);
 /* KWDisplayEvent_After → RenderSnowingEffect in StockAliases.h */
-void KWGameEventCommonVF();
-void KWGameEventCommon();
 
-void KWDisplayIceBlock(int Player);
-void KWDisplayIceBlockShadow(int Player);
-void KWDisplayBombKartBT(int Player);
 
 
 extern char itemBoolean; //0x80165F5F
@@ -539,7 +481,6 @@ extern short g_hudMapToggle; // 0x80165800
 //hud all players
 extern char HUDToggle; // 0x800DC5B9 
 extern char g_mapPlayers; // 0x8018D15B
-extern int KWScreenEnable;
 
 //hud p1 only
 extern char g_hudCharpicRankToggle; // 0x8018D2BF
@@ -554,10 +495,7 @@ extern float g_hudCharpicRankY4; // 0x8018D05C
 
 
 extern short asm_DisableHUD; //0x80059D08
-extern void KWDisplayAfter4PSub(int Player);
-extern void KWDisplay2D2PLeftAfter();
 
-extern void KWVideoFramesYori();
 
 extern short g_GhostHUDID; //0x8018DAAA
 
@@ -568,9 +506,6 @@ extern long g_mracewayTime;// 0x8018DA80
 
 /* KBGNumberNext / MenuScreenA/B/C / TitleDemo / CupSelect / CourseSelect / InGameTT / InGame: menus.h */
 
-extern void InitializeEndingSequence();
-extern void EndingSequence();
-extern void CheckFinish();
 /* AsmCupCount: CheckFinish last-course immediate; live BSS is LibraryVariables.c */
 
 extern void ResultsSequence();
@@ -634,15 +569,12 @@ extern char g_player4Character;
 
 extern int GFXCounter;
 extern int PKCounter;
-extern unsigned short RNG;
-extern void ExecuteItem(Player* PlayerID);
 
 /* MenuMultiplayerSelection: menus.h */
 
 extern char g_placedBadGPadvance;
 extern short g_P1TopSpeed;
 
-extern short BalloonCount[4];
 
 extern char g_menuUpdateTimer1;
 extern char g_menuUpdateTimer2;
@@ -667,7 +599,6 @@ extern short g_surfaceCheckP1;
 /* PlayerSurfaceSoundID: audio/external.h */
 
 /* GamePausedFlag comes from audio/external.h */
-extern Uint64 osClockRate;
 
 /* MakePos / MakeStartup / MakeRDP / InitRndSmoke / InitRapidSmoke / InitSpinSmoke: code_80057C60.h */
 extern void MakeRandomRDP(Smoke *data,int col,short A);
@@ -753,7 +684,6 @@ extern short g_offroadFlagPlayer3; // 0x80165334
 extern short g_offroadFlagPlayer4; // 0x80165336 
 
 //waterlevel checks
-extern float WaterlevelPlayer[8]; // 0x801652A0
 
 //wrongway flags 
 extern short WrongwayFlagPlayer1; // 0x80163270 
@@ -793,10 +723,7 @@ extern short MonitorCounter;
 /* ColorPlayer0R is u16[8] in render_player.c; 1R–7R are StockAliases.h */
 
 //Sound and music
-extern void PlaySound(int SoundID);
-extern void NAMusicVolume(unsigned char Volume); //0-Mute 75-Half 127 Full
 /* NAPlyTrgStart / NAPlyVoiceStart / NAEnmTrgStart / NaSeqStart / NaPlyLevel* / NaSceneLevel*: audio/external.h */
-extern void NAEnmTrgStop(Vector ObjectPosition, int SoundID);
 extern void playMusic(int MusicID);
 extern void playMusic2(int musicID);
 /* BattleSongID / g_musicIDBattle1: StartRaceBGM NaSeqStart immediate; StartRaceBGMCustom */
@@ -817,8 +744,6 @@ extern short g_musicIDBattle2; // 0x8028ED96
 extern Ushort g_fanfareTempo;
 extern SeqPlayerStruct SeqPlayer[4];
 
-extern void NAISeqFlagEntry(Uint entry);
-extern Ushort NAIGetPlayingSeqFlag(Uchar seq);
 /* NAIFxFlagEntry: audio/external.h */
 
 //Cave Fire Particle Stuff
@@ -830,19 +755,13 @@ extern int KWChaseFVal(float *var,float val,float step);
 extern void KW2DMatrixInit(void);
 /* KWSet2Color → SetColorRender in StockAliases.h */
 /* SprDrawSubCI8 / KWDisplayFireParticleSub: render_objects.h */
-extern void KWDisplayRank(int Player);
 
-extern short KWRank[8];
 extern void KWGetStar(Vector Position,int Type);
 extern void KWChartStar(void);
-extern void KWDisplayStar(int Player);
 
 extern Ushort RGBAFallingLeaf[];
 extern Ushort RGBAQuestionMark[];
-extern void GoToGameSelect();
 extern void DisplayMap2();
-extern void SearchList(Uint Addr);
-extern void SearchList2(Uint Addr, char Surface);
 extern void SearchListFile(Uint Addr);
 extern void MakeCollision();
 extern Ushort RGBALeaf[];
@@ -859,9 +778,6 @@ extern int HoleModel;
 extern int ItemBoxModel;
 extern void MoveFallingRock(Object *obj);
 
-extern int CheckTriangleZX(Bump *Bump, float Radius,float p1x,float p1y, float p1z, Ushort Pointer);
-extern int CheckTriangleXY(Bump *Bump, float Radius,float p1x,float p1y, float p1z, Ushort Pointer);
-extern int CheckTriangleYZ(Bump *Bump, float Radius,float p1x,float p1y, float p1z, Ushort Pointer);
 extern int CheckTriangleZXV(Bump *Bump,float Radius,float p1x,float p1y, float p1z, Ushort Pointer ,float lastx,float lasty,float lastz);
 extern int CheckTriangleXYV(Bump *Bump,float Radius,float p1x, float p1y, float p1z ,Ushort Pointer ,float lastx,float lasty,float lastz);
 extern int CheckTriangleYZV(Bump *Bump,float Radius,float p1x ,float p1y, float p1z, Ushort Pointer ,float lastx,float lasty,float lastz);
@@ -875,10 +791,8 @@ extern void DriftJump(Player* Car);
 extern void CheckWall(Player* Car, char kno, Vector Velocity);
 extern void AccelOn(Player* Car);
 extern void AccelOff(Player* Car, float accelOff);
-extern short CheckSlope(Ushort Pointer);
 extern void SetRolloverFall(Player* Car, char kno);
 extern void ResetRolloverFall(Player* Car, char kno);
-extern float CalcHeight(float px, float py, float pz, Ushort Pointer);
 extern void TirePosition(Player* Car, float new_x, float new_y, float new_z);
 extern void EnemyTirePosition(Player* Car, float new_x, float new_y, float new_z);
 extern void SetSlipAngle(Player* Car, char kno, float old_x, float old_z, float new_x, float new_z);

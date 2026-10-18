@@ -220,7 +220,7 @@ void CheckSplashRepl(char WaterType)
 		{
 			if(!CustomWaterHeight[(int)PlayerID])
 			{
-				WaterlevelPlayer[(int)PlayerID] = CheckWaterLevel((void*)&GlobalPlayer[(int)PlayerID]);
+				WaterlevelPlayer[(int)PlayerID] = CheckWaterLevel(&GlobalPlayer[(int)PlayerID]);
 			}
 			if(WaterType != ZVOID || (HotSwapID == 0))
 			{
