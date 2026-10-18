@@ -74,6 +74,7 @@ OUTPUT_ARCH (mips)
     M(OverKartObjectHandler) \
     M(OKMenu) \
     M(MarioKartPractice) \
+    M(SaveState) \
     M(OverKart) \
     M(data/ModelData/ModelData) \
     M(Gametypes/CTF) \
