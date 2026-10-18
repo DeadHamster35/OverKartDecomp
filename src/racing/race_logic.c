@@ -149,6 +149,10 @@ void CheckGoalinTime(void) {
 
 void CheckFinish(void) {
 
+    /* GameCode skips fade frames, so EndRace never saw StartingIndicator 7 on a GP win. */
+    EndRace();
+    RaceStatus = 7;
+
     if (RaceClearFlag) {
 
         if (CourseSelect == AsmCupCount) {
