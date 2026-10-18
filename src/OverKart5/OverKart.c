@@ -333,15 +333,6 @@ void StartRace()
 void EndRace()
 {
 	ScrollLock = false;
-	if (GameMode == GAMEMODE_GP)
-	{		
-		if (CheckEndGame())
-		{
-			GPCourseIndex++;
-			LoadedcourseFlag = 0xF0;		
-		}
-		
-	}
 }
 
 void CheckIFrames()

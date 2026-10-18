@@ -146,7 +146,6 @@ void MapStartupDefault(short InputID)
 			CourseID = 15;
 		}
 		InputID = CourseID;
-		LoadedcourseFlag = CourseID;
 	}
 	LoadCustomHeader(CourseValue + GPCourseIndex);
 	SetCustomData();

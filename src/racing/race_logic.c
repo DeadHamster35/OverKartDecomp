@@ -149,7 +149,13 @@ void CheckGoalinTime(void) {
 
 void CheckFinish(void) {
 
-    /* GameCode skips fade frames, so EndRace never saw StartingIndicator 7 on a GP win. */
+    /* Qualify confirm: bump the HotSwap header index here. EndRace's CheckEndGame
+     * gate left GPCourseIndex at 0, so the next mesh stayed on course 0. */
+    if (GameMode == GRAND_PRIX) {
+        GPCourseIndex++;
+        LoadedcourseFlag = 0xF0;
+        ScrollLock = false;
+    }
     EndRace();
     RaceStatus = 7;
 

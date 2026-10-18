@@ -19,6 +19,7 @@ extern short GPCourseIndex;
 extern short CourseValue;
 extern short AsmCupCount;
 extern short RaceStatus;
+extern int ScrollLock;
 extern short Snow3DCourseID;
 extern s32 OKCheckSplashEnabled;
 extern s32 OKLakituIce;

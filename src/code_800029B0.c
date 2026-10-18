@@ -193,7 +193,9 @@ void InitialRaceSequence(void) {
         CourseID = CupCourseOrder[CupSelect][CourseSelect];
     }
     ScreenSplitA = ScreenSplitB;
-    if (CourseID != LoadedcourseFlag) {
+    /* HotSwap GP pins CourseID to 0, so the stock skip would reuse the first
+     * course's decoded verts while CourseSelect-driven objects still update. */
+    if ((HotSwapID > 0) || (CourseID != LoadedcourseFlag)) {
         RaceClearFlag = 0;
         LoadedcourseFlag = CourseID;
         MapStartupDefault(CourseID);
