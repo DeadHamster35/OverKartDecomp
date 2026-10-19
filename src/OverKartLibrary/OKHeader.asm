@@ -5,7 +5,7 @@
 // Post-integration rewrite (OKHeader dest BSS + course-Pool loader):
 //   symbols/library_next_phase.md "Post-integration rewrites".
 .definelabel ok_HeaderROM, 0xBE9178
-.definelabel ok_SaveSize, 0x2C000
+.definelabel ok_SaveSize, 0x28980
 .definelabel ok_HeaderSize, 0x1400
 .definelabel ok_MenuSize, 0x2800
 .definelabel ok_CourseHeaderSize, 0xD0
@@ -80,4 +80,3 @@
 .definelabel ok_FreeSpace, ok_TKMSpace + 0x2010
 
 .definelabel OKHeaderEND, ok_FreeSpace + 0x20000
-; Host overflow after OKHeaderEND is mk64.ld ok5_MenuStorage (0x3C000). Not ok_Storage.

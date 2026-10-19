@@ -1206,8 +1206,7 @@ void DecodeVertex2OK(char *ramaddress, Uint Number)
 	ROMVertex *VtxROMData = (ROMVertex*) FreeMemoryPointer;
 	int Size = (Number * sizeof(Vtx));
 
-	VertexMemoryPointer -= Size;
-	VtxRAMBuffer = (Vtx *)(VertexMemoryPointer);
+	VtxRAMBuffer = AllocCourseVerticesDefault(Size);
 	for (i = 0; i < Number; i++)
 	{
 		if (ScreenFlip)

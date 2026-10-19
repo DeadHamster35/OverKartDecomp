@@ -586,3 +586,9 @@ void DrawButtonInputDisplayDefault(bool FullMenu)
 	}
 	}
 }
+
+Vtx *AllocCourseVerticesDefault(int Size)
+{
+	VertexMemoryPointer -= Size;
+	return (Vtx *)VertexMemoryPointer;
+}

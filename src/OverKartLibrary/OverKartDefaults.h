@@ -28,6 +28,7 @@ extern void KumoColorModeDefault(Uint r, Uint g, Uint b);
 extern void ResetLaneDefaultOffsetDefault(int PlayerID);
 extern void MakeAlternativePathDefault(Marker *altPath, short Length, char pathID);
 extern void DrawButtonInputDisplayDefault(bool FullMenu);
+extern Vtx *AllocCourseVerticesDefault(int Size);
 
 extern void MapStartupDefault(short InputID);
 extern void KWKumoAllocHookDefault(void);

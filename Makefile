@@ -372,7 +372,7 @@ OBJCOPY := $(CROSS)objcopy
 OPT_FLAGS := -O2
 
 ifeq ($(TARGET_N64),1)
-  TARGET_CFLAGS := -nostdinc -DTARGET_N64 -D_LANGUAGE_C
+  TARGET_CFLAGS := -nostdinc -DTARGET_N64 -D_LANGUAGE_C -Dok_SaveSize=0x2C000
   CC_CFLAGS := -fno-builtin
 endif
 
