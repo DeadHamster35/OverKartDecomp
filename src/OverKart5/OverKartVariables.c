@@ -33,8 +33,8 @@ int ItemChance[8];
 
 int FlyCamPosition[3];
 
-char GenericInput, MiniMapMode = 0, FlyCamToggle, FlyCamCheck;
-short FlyCamSection, FlyCamSectionCheck;
+char GenericInput, MiniMapMode = 0, FlyCamCheck;
+short FlyCamSectionCheck;
 short FlyCamView, FlyCamViewCheck;
 short FlyCamPilot,FlyCamDirection;
 float FlyCamBackupPosition[3];

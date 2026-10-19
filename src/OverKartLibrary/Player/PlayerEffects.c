@@ -157,6 +157,11 @@ void SetGhostEffect(char PlayerID, bool Active, int UseCount)
 
 }
 
+void SetGhostEffectSimple(char PlayerID, bool Active)
+{
+	SetGhostEffect(PlayerID, Active, Active ? 0xFFFF : 0);
+}
+
 void SetBooTranslucent(char PlayerID)
 {
 	GlobalPlayer[(int)PlayerID].Weapon |= USE_BOO;

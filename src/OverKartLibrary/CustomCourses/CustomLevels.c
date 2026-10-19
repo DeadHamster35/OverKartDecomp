@@ -2307,6 +2307,38 @@ void SwapHS(int Direction)
 	CourseValue = -1;
 }
 
+void SetHS(int HS_ID)
+{
+	int Index;
+
+	if (HS_ID == 0)
+	{
+		if (HotSwapID > 0)
+		{
+			CopyCourseTable(0);
+		}
+		HotSwapID = 0;
+	}
+	else
+	{
+		if (HotSwapID == 0)
+		{
+			CopyCourseTable(1);
+		}
+		HotSwapID = HS_ID;
+		for (Index = 0; Index < 20; Index++)
+		{
+			g_CupArray[Index] = Index;
+		}
+	}
+
+	SetSky();
+	SetPreviews();
+	PreviewRefresh();
+	SetBanners();
+	CourseValue = -1;
+}
+
 
 
 typedef struct MiniMapStruct{

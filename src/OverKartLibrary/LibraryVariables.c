@@ -47,6 +47,8 @@ s8 OKPSelSkipCursor[4] = { 0, 0, 0, 0 };
 s8 OKPSelSkipPortrait[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 s32 OKPSelSkipAnime = 0;
 s32 OKMusicIn3P4P = 0;
+char FlyCamToggle = 0;
+short FlyCamSection = 0;
 char CloudCourseValue, Snow3DCourseValue, WeatherCourseValue, Toggle3DSnow;
 short BattleGametype;
 

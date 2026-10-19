@@ -45,6 +45,8 @@ extern s8 OKPSelSkipCursor[4];
 extern s8 OKPSelSkipPortrait[8];
 extern s32 OKPSelSkipAnime;
 extern s32 OKMusicIn3P4P;
+extern char FlyCamToggle;
+extern short FlyCamSection;
 extern char CloudCourseValue, Snow3DCourseValue, WeatherCourseValue, Toggle3DSnow;
 extern short BattleGametype;
 

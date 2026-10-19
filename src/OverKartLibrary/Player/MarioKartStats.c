@@ -19,6 +19,107 @@ static void RestoreStockSpeedCap(void)
      }
 }
 
+void RestoreKartStatPointers(void)
+{
+     D_800E2400[0] = GlobalStat;
+     D_800E2400[1] = D_800E2380;
+     D_800E2400[2] = D_800E23A0;
+     D_800E2400[3] = D_800E23C0;
+     D_800E2400[4] = D_800E23E0;
+
+     D_800E24B4[0] = D_800E2414;
+     D_800E24B4[1] = D_800E2434;
+     D_800E24B4[2] = D_800E2454;
+     D_800E24B4[3] = D_800E2474;
+     D_800E24B4[4] = D_800E2494;
+
+     D_800E2568[0] = D_800E24C8;
+     D_800E2568[1] = D_800E24E8;
+     D_800E2568[2] = D_800E2508;
+     D_800E2568[3] = D_800E2528;
+     D_800E2568[4] = D_800E2548;
+
+     TopSpeedTable[0] = TopSpeed50CC;
+     TopSpeedTable[1] = TopSpeed100CC;
+     TopSpeedTable[2] = TopSpeed150CC;
+     TopSpeedTable[3] = TopSpeedExtra;
+     TopSpeedTable[4] = TopSpeedBattle;
+
+     D_800E2A90[0] = D_800E28B0;
+     D_800E2A90[1] = D_800E28EC;
+     D_800E2A90[2] = D_800E2928;
+     D_800E2A90[3] = D_800E2964;
+     D_800E2A90[4] = D_800E29A0;
+     D_800E2A90[5] = D_800E29DC;
+     D_800E2A90[6] = D_800E2A18;
+     D_800E2A90[7] = D_800E2A54;
+
+     D_800E2AB0[0] = D_800E26D0;
+     D_800E2AB0[1] = D_800E270C;
+     D_800E2AB0[2] = D_800E2748;
+     D_800E2AB0[3] = D_800E2784;
+     D_800E2AB0[4] = D_800E27C0;
+     D_800E2AB0[5] = D_800E27FC;
+     D_800E2AB0[6] = D_800E2838;
+     D_800E2AB0[7] = D_800E2874;
+
+     D_800E2E90[0] = D_800E2CB0;
+     D_800E2E90[1] = D_800E2CEC;
+     D_800E2E90[2] = D_800E2D28;
+     D_800E2E90[3] = D_800E2D64;
+     D_800E2E90[4] = D_800E2DA0;
+     D_800E2E90[5] = D_800E2DDC;
+     D_800E2E90[6] = D_800E2E18;
+     D_800E2E90[7] = D_800E2E54;
+
+     D_800E2EB0[0] = D_800E2AD0;
+     D_800E2EB0[1] = D_800E2B0C;
+     D_800E2EB0[2] = D_800E2B48;
+     D_800E2EB0[3] = D_800E2B84;
+     D_800E2EB0[4] = D_800E2BC0;
+     D_800E2EB0[5] = D_800E2BFC;
+     D_800E2EB0[6] = D_800E2C38;
+     D_800E2EB0[7] = D_800E2C74;
+
+     gKartAccelerationTables[0] = gKartAccelerationMario;
+     gKartAccelerationTables[1] = gKartAccelerationLuigi;
+     gKartAccelerationTables[2] = gKartAccelerationYoshi;
+     gKartAccelerationTables[3] = gKartAccelerationToad;
+     gKartAccelerationTables[4] = gKartAccelerationDK;
+     gKartAccelerationTables[5] = gKartAccelerationWario;
+     gKartAccelerationTables[6] = gKartAccelerationPeach;
+     gKartAccelerationTables[7] = gKartAccelerationBowser;
+
+     D_800E3210[0] = D_800E3030;
+     D_800E3210[1] = D_800E306C;
+     D_800E3210[2] = D_800E30A8;
+     D_800E3210[3] = D_800E30E4;
+     D_800E3210[4] = D_800E3120;
+     D_800E3210[5] = D_800E315C;
+     D_800E3210[6] = D_800E3198;
+     D_800E3210[7] = D_800E31D4;
+
+     D_800E3410[0] = D_800E3230;
+     D_800E3410[1] = D_800E326C;
+     D_800E3410[2] = D_800E32A8;
+     D_800E3410[3] = D_800E32E4;
+     D_800E3410[4] = D_800E3320;
+     D_800E3410[5] = D_800E335C;
+     D_800E3410[6] = D_800E3398;
+     D_800E3410[7] = D_800E33D4;
+
+     D_800E3610[0] = D_800E3430;
+     D_800E3610[1] = D_800E346C;
+     D_800E3610[2] = D_800E34A8;
+     D_800E3610[3] = D_800E34E4;
+     D_800E3610[4] = D_800E3520;
+     D_800E3610[5] = D_800E355C;
+     D_800E3610[6] = D_800E3598;
+     D_800E3610[7] = D_800E35D4;
+
+     RestoreStockSpeedCap();
+}
+
 void SetEngine(int CharacterID, int ThisEngine)
 {
      int ThisAccel;
@@ -214,6 +315,9 @@ void EqualStats(int Mode)
      Unknown33Func(Mode);
      Unknown41Func(Mode);
 }
+
+
+
 
 void RandomStats(int Mode)
 {

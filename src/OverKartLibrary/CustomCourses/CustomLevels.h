@@ -45,6 +45,7 @@ extern void SnowCustomCheck(int SnowIndex);
 extern void SetBanners(void);
 extern void SetPreviews(void);
 extern void SwapHS(int Direction);
+extern void SetHS(int HS_ID);
 extern void PreviewRefresh(void);
 extern void SetCourseNames(bool custom);
 extern void InitFireParticles(long PathOffset);

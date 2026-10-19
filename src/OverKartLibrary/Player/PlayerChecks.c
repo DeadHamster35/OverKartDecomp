@@ -634,7 +634,7 @@ void CheckJugemuMarker(void)
 				{
 					continue;
 				}
-				if (GlobalPlayer[0].JugemuFlag == 0)
+				if (GlobalPlayer[(int)PlayerID].JugemuFlag == 0)
 				{
 					continue;
 				}
