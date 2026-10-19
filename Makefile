@@ -817,10 +817,13 @@ LDFLAGS += -R $(BUILD_DIR)/assets/code/common_data/common_data.elf
 # Finalize and Link                                                            #
 #==============================================================================#
 
-# Run linker script through the C preprocessor
-$(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
+# Run linker script through the C preprocessor.
+# FORCE_LD: OVERKART_BUILD is a command-line define, not a file. Stale
+# build/us/mk64.ld from OVERKART_BUILD=0 omits Cheat.o and leaves
+# KartCheck / CameraCheck / Cheat symbols undefined.
+$(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT) FORCE_LD
 	$(call print,Preprocessing linker script:,$<,$@)
-	$(V)$(CPP) $(CPPFLAGS) -DBUILD_DIR=$(BUILD_DIR) -MMD -MP -MT $@ -MF $@.d -o $@ $<
+	$(V)$(CPP) $(CPPFLAGS) -DBUILD_DIR=$(BUILD_DIR) -DOverKartBuild=$(OVERKART_BUILD) -MMD -MP -MT $@ -MF $@.d -o $@ $<
 
 # Link MK64 ELF file
 $(ELF): $(O_FILES) $(COURSE_DATA_TARGETS) $(BUILD_DIR)/$(LD_SCRIPT) $(BUILD_DIR)/assets/code/startup_logo/startup_logo.mio0.o $(BUILD_DIR)/assets/code/ceremony_data/ceremony_data.mio0.o $(BUILD_DIR)/assets/code/common_data/common_data.mio0.o $(COURSE_GEOGRAPHY_TARGETS) undefined_syms.txt
@@ -841,7 +844,8 @@ $(BUILD_DIR)/$(TARGET).objdump: $(ELF)
 	$(V)$(OBJDUMP) -D $< > $@
 
 
-.PHONY: all clean distclean distclean_assets default diff test load assets
+.PHONY: all clean distclean distclean_assets default diff test load assets FORCE_LD
+FORCE_LD:
 # with no prerequisites, .SECONDARY causes no intermediate target to be removed
 .SECONDARY:
 

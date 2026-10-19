@@ -77,6 +77,7 @@ void WrapPathIndexAtFinishCheck(float PosX, float PosY, float PosZ, short* wayPo
 void InitRndSmokeHook(Player* car, short Count, int kk, char kno, char place);
 void InitRapidSmokeHook(Player* car, short Count, int kk, char kno, char place);
 void InitSpinSmokeHook(Player* car, short Count, int kk, char kno, char place);
+void InitCustomSmoke(Player* car, Vec3f pos_R, Vec3f pos_F, s16 Count, s32 kk, s32 surface, s32 LR_flag);
 
 void DisplayTree1Bypass(Camera* PlayerCamera, AffineMtx Affine, Object* TreeObj);
 void DisplayPiranhaBypass(Camera* PlayerCamera, AffineMtx Affine, Object* PiranhaObject);
