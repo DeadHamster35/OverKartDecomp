@@ -285,3 +285,13 @@ void RubberBandManDefault(s32 PlayerId, Player* Player)
 {
 	RubberBandMan(PlayerId, Player);
 }
+
+bool PlaceIBoxesAllowedDefault(void)
+{
+	return true;
+}
+
+void EventDisplayAfterHookDefault(int Player)
+{
+	(void) Player;
+}

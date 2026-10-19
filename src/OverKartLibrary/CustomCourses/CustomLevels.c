@@ -606,6 +606,10 @@ void PlaceIBoxes(long BoxOffset)
 {
 	Marker *BoxArray;
 
+	if (!PlaceIBoxesAllowedDefault())
+	{
+		return;
+	}
 	if ((ItemSetFlag == 0) || (GameMode == GAMEMODE_TT))
 	{
 		return;
@@ -919,6 +923,7 @@ void EventDisplayAfter(int Player)
 	{
 		DrawCustomParticle(Player);
 	}
+	EventDisplayAfterHookDefault(Player);
 }
 
 

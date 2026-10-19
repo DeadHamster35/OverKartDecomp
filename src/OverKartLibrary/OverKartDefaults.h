@@ -20,6 +20,8 @@ extern void ExecuteItemHookDefault(Player* Car);
 extern void MiniMapDrawDefault(void);
 extern void BalloonCheckDefault(Player* Player, f32 arg1, f32 Arg2, s8 playerIndex, s8 balloonIndex, s16 Rotation);
 extern void ItemboxCollideCheckDefault(Player* Car, Object* Target);
+extern bool PlaceIBoxesAllowedDefault(void);
+extern void EventDisplayAfterHookDefault(int Player);
 
 extern void MapStartupDefault(short InputID);
 extern void KWKumoAllocHookDefault(void);
