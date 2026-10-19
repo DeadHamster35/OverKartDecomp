@@ -295,3 +295,294 @@ void EventDisplayAfterHookDefault(int Player)
 {
 	(void) Player;
 }
+
+void FPSCheckDefault(void)
+{
+	static Uint ClockCycle, OldCycle;
+	static float CycleCount;
+	static float FPS;
+	short FPSCheck;
+
+	ClockCycle = osGetCount();
+	CycleCount = (ClockCycle - OldCycle);
+	/* CPU2SEC */
+	FPS = (1 * 0x2CB5E16) / CycleCount;
+
+	FPSCheck = (short)FPS;
+	OldCycle = ClockCycle;
+
+	/* Modifiers for FPS drops */
+	/* Those values work well already, but can be tweaked further */
+	if (FPSCheck >= 22)
+	{
+		DynFPSModifier = 2;
+	}
+
+	else if (FPSCheck >= 15)
+	{
+		DynFPSModifier = 3;
+	}
+
+	else if (FPSCheck >= 11)
+	{
+		DynFPSModifier = 4;
+	}
+
+	else if (FPSCheck >= 8)
+	{
+		DynFPSModifier = 5;
+	}
+
+	else
+	{
+		DynFPSModifier = 6;
+	}
+}
+
+void DynamicTempoDefault(void)
+{
+	FPSCheck();
+}
+
+void KumoColorModeDefault(Uint r, Uint g, Uint b)
+{
+	short OKR;
+	short OKG;
+	short OKB;
+
+	(void) r;
+	(void) g;
+	(void) b;
+
+	/* Get the Colors from the OK Header */
+	if (HotSwapID == 0)
+	{
+		SparkMode(255, 255, 255);
+		return;
+	}
+	OKR = OverKartHeader.FogRGBA[0];
+	OKG = OverKartHeader.FogRGBA[1];
+	OKB = OverKartHeader.FogRGBA[2];
+
+	SparkMode(OKR, OKG, OKB);
+}
+
+void ResetLaneDefaultOffsetDefault(int PlayerID)
+{
+	switch (MakeRandomLimmit(3))
+	{
+	case 0:
+		LaneData[PlayerID].LaneFreeDrive = -(RoadWidth[0] * 0.005f);
+		break;
+	case 1:
+		LaneData[PlayerID].LaneFreeDrive = 0;
+		break;
+	case 2:
+		LaneData[PlayerID].LaneFreeDrive = (RoadWidth[0] * 0.005f);
+		break;
+	default:
+		break;
+	}
+	LaneData[PlayerID].Speed = 10.0f;
+}
+
+void MakeAlternativePathDefault(Marker *altPath, short Length, char pathID)
+{
+	CenterPathBP[(int)pathID] = (CenterPathStruct *) altPath;
+	CourseTotalPathPoints[(int)pathID] = Length;
+	MaxPathPoints[(int)pathID] = Length;
+
+	{
+		int i;
+		for (i = 0; i < Length; i++)
+		{
+			CenterPathBP[(int)pathID][i].Pointx *= MirrorValue;
+		}
+	}
+
+	SideLPathBP[(int)pathID] = (CenterPathStruct *) AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(CenterPathStruct)));
+	SideRPathBP[(int)pathID] = (CenterPathStruct *) AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(CenterPathStruct)));
+	CurvePathDataBP[(int)pathID] = (short *)AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(short)));
+	AnglePathDataBP[(int)pathID] = (short *)AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(short)));
+	ShortCutPathDataBP[(int)pathID] = (short *)AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(short)));
+
+	SidePointCalcBP((int)pathID);
+	CurveDataCalcBP((int)pathID);
+	AngleDataCalcBP((int)pathID);
+	ShortcutDataCalcBP((int)pathID);
+}
+
+void DrawButtonInputDisplayDefault(bool FullMenu)
+{
+	short PosX[4], PosY[4];
+	short OffsetX;
+	short OffsetY;
+	float Scale;
+	int i;
+
+	if (StartingIndicator < 3 || StartingIndicator > 4 || PlayerCount > 2)
+	{
+		return;
+	}
+
+	OffsetX = 85;
+	OffsetY = 55;
+	Scale = 0.5f;
+	switch (PlayerCount)
+	{
+	case 2:
+		OffsetY = 30;
+		break;
+	}
+
+	{
+	for (i = 0; i < PlayerCount; i++)
+	{
+
+		if (GlobalPlayer[i].Flag&IS_CPU_PLAYER)
+		{
+			continue;
+		}
+
+		PosX[i] = GlobalScreen[i]->Posx-GlobalScreen[i]->Width/2 +OffsetX;
+		PosY[i] = GlobalScreen[i]->Posy-GlobalScreen[i]->Height/2 +OffsetY;
+
+		GraphPtr = FillRect1ColorF(GraphPtr,
+		PosX[i] - 20, PosY[i] - 22, PosX[i] + 40, PosY[i] + 10,
+		0, 0, 0, 64);
+
+		if (GlobalController[i]->ButtonHeld&BTN_A)
+		{
+			SpriteBtnA(PosX[i]+21,PosY[i]+3,Scale,1);
+		}
+		else
+		{
+			SpriteBtnA(PosX[i]+21,PosY[i]+3,Scale,0);
+		}
+
+		if (GlobalController[i]->ButtonHeld&BTN_B)
+		{
+			SpriteBtnB(PosX[i]+15,PosY[i]-3,Scale,1);
+		}
+		else
+		{
+			SpriteBtnB(PosX[i]+15,PosY[i]-3,Scale,0);
+		}
+
+		if (GlobalController[i]->ButtonHeld&BTN_START)
+		{
+			SpriteBtnStart(PosX[i]+4,PosY[i]+5,Scale,1);
+		}
+		else
+		{
+			SpriteBtnStart(PosX[i]+4,PosY[i]+5,Scale,0);
+		}
+
+		if (GlobalController[i]->ButtonHeld&BTN_CDOWN)
+		{
+			SpriteBtnCDown(PosX[i]+30,PosY[i],Scale,1);
+		}
+		else
+		{
+			SpriteBtnCDown(PosX[i]+30,PosY[i],Scale,0);
+		}
+
+		if (GlobalController[i]->ButtonHeld&BTN_CLEFT)
+		{
+			SpriteBtnCLeft(PosX[i]+25,PosY[i]-5,Scale,1);
+		}
+		else
+		{
+			SpriteBtnCLeft(PosX[i]+25,PosY[i]-5,Scale,0);
+		}
+
+		if (GlobalController[i]->ButtonHeld&BTN_CRIGHT)
+		{
+			SpriteBtnCRight(PosX[i]+35,PosY[i]-5,Scale,1);
+		}
+		else
+		{
+			SpriteBtnCRight(PosX[i]+35,PosY[i]-5,Scale,0);
+		}
+
+		if (GlobalController[i]->ButtonHeld&BTN_CUP)
+		{
+			SpriteBtnCUp(PosX[i]+30,PosY[i]-10,Scale,1);
+		}
+		else
+		{
+			SpriteBtnCUp(PosX[i]+30,PosY[i]-10,Scale,0);
+		}
+
+		if (GlobalController[i]->ButtonHeld&BTN_R)
+		{
+			SpriteBtnR(PosX[i]+35,PosY[i]-17,Scale,1);
+		}
+		else
+		{
+			SpriteBtnR(PosX[i]+35,PosY[i]-17,Scale,0);
+		}
+
+		if (GlobalController[i]->ButtonHeld&BTN_Z)
+		{
+			SpriteBtnZ(PosX[i]+17,PosY[i]-17,Scale,1);
+		}
+		else
+		{
+			SpriteBtnZ(PosX[i]+17,PosY[i]-17,Scale,0);
+		}
+
+		if (FullMenu)
+		{
+			SpriteBtnDMid(PosX[i]-10,PosY[i],Scale);
+
+			if (GlobalController[i]->ButtonHeld&BTN_DDOWN)
+			{
+				SpriteBtnDDown(PosX[i]-10,PosY[i]+7,Scale,1);
+			}
+			else
+			{
+				SpriteBtnDDown(PosX[i]-10,PosY[i]+7,Scale,0);
+			}
+
+			if (GlobalController[i]->ButtonHeld&BTN_DUP)
+			{
+				SpriteBtnDUp(PosX[i]-10,PosY[i]-7,Scale,1);
+			}
+			else
+			{
+				SpriteBtnDUp(PosX[i]-10,PosY[i]-7,Scale,0);
+			}
+
+			if (GlobalController[i]->ButtonHeld&BTN_DLEFT)
+			{
+				SpriteBtnDLeft(PosX[i]-17,PosY[i],Scale,1);
+			}
+			else
+			{
+				SpriteBtnDLeft(PosX[i]-17,PosY[i],Scale,0);
+			}
+
+			if (GlobalController[i]->ButtonHeld&BTN_DRIGHT)
+			{
+				SpriteBtnDRight(PosX[i]-3,PosY[i],Scale,1);
+			}
+			else
+			{
+				SpriteBtnDRight(PosX[i]-3,PosY[i],Scale,0);
+			}
+
+			if (GlobalController[i]->ButtonHeld&BTN_L)
+			{
+				SpriteBtnL(PosX[i]-10,PosY[i]-17,Scale,1);
+			}
+			else
+			{
+				SpriteBtnL(PosX[i]-10,PosY[i]-17,Scale,0);
+			}
+		}
+
+		SpriteAnalogStick(PosX[i]+4+(GlobalController[i]->AnalogX*0.05f),PosY[i]-10+(GlobalController[i]->AnalogY*-0.05f),Scale,0);
+	}
+	}
+}

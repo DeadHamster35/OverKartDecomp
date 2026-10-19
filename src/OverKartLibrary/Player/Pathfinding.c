@@ -560,21 +560,7 @@ void UpdateBKPath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker *P
 
 void ResetLaneDefaultOffset(int PlayerID)
 {
-    switch (MakeRandomLimmit(3))
-    {
-    case 0:
-        LaneData[PlayerID].LaneFreeDrive = -(RoadWidth[0] * 0.005f);
-        break;
-    case 1:
-        LaneData[PlayerID].LaneFreeDrive = 0;
-        break;
-    case 2:
-        LaneData[PlayerID].LaneFreeDrive = (RoadWidth[0] * 0.005f);
-        break;        
-    default:
-        break;
-    }
-    LaneData[PlayerID].Speed = 10.0f;
+    ResetLaneDefaultOffsetDefault(PlayerID);
 }
 
 void ChooseAlternativePathRandm(int PlayerID, short pointCheckMin, short pointCheckMax, Ushort maxPathIDs)
@@ -604,30 +590,7 @@ void ChangePathAndPoint(int PlayerID, short pointCheckMin, short pointCheckMax, 
 
 void MakeAlternativePath(Marker *altPath, short Length, char pathID)
 {
-
-    CenterPathBP[(int)pathID] = (CenterPathStruct *) altPath;
-    CourseTotalPathPoints[(int)pathID] = Length;
-    MaxPathPoints[(int)pathID] = Length;
-
-    {
-        int i;
-    for (i = 0; i < Length; i++)
-    {
-        CenterPathBP[(int)pathID][i].Pointx *= MirrorValue;
-        //CenterPathBP[(int)pathID][i].Speed = CenterPathBP[0][i].Speed;
-    }
-    }
-
-    SideLPathBP[(int)pathID] = (CenterPathStruct *) AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(CenterPathStruct)));
-    SideRPathBP[(int)pathID] = (CenterPathStruct *) AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(CenterPathStruct)));
-    CurvePathDataBP[(int)pathID] = (short *)AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(short)));
-    AnglePathDataBP[(int)pathID] = (short *)AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(short)));
-    ShortCutPathDataBP[(int)pathID] = (short *)AllocateMemory(MaxPathPoints[(int)pathID]*(sizeof(short)));
-
-    SidePointCalcBP((int)pathID);
-    CurveDataCalcBP((int)pathID);
-    AngleDataCalcBP((int)pathID);
-    ShortcutDataCalcBP((int)pathID);
+    MakeAlternativePathDefault(altPath, Length, pathID);
 }
 
 

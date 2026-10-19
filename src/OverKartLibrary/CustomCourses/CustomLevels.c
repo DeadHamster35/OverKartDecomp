@@ -34,50 +34,12 @@ short ZFLIP, YFLIP;
 
 void FPSCheck(void)
 {
-	static Uint ClockCycle, OldCycle;
-	static float CycleCount;
-	static float FPS;
-	short FPSCheck;
-
-	ClockCycle = osGetCount();
-	CycleCount = (ClockCycle - OldCycle);
-	/* CPU2SEC */
-	FPS = (1 * 0x2CB5E16) / CycleCount;
-
-	FPSCheck = (short)FPS;
-	OldCycle = ClockCycle;
-
-	/* Modifiers for FPS drops */
-	/* Those values work well already, but can be tweaked further */
-	if (FPSCheck >= 22)
-	{
-		DynFPSModifier = 2;
-	}
-
-	else if (FPSCheck >= 15)
-	{
-		DynFPSModifier = 3;
-	}
-
-	else if (FPSCheck >= 11)
-	{
-		DynFPSModifier = 4;
-	}
-
-	else if (FPSCheck >= 8)
-	{
-		DynFPSModifier = 5;
-	}
-
-	else
-	{
-		DynFPSModifier = 6;
-	}
+	FPSCheckDefault();
 }
 
 void DynamicTempo(void)
 {
-	FPSCheck();
+	DynamicTempoDefault();
 }
 
 void StaticTempo(int Tempo)
@@ -929,22 +891,7 @@ void EventDisplayAfter(int Player)
 
 void KumoColorMode(Uint r, Uint g, Uint b)
 {
-    short OKR;
-    short OKG;
-    short OKB;
-
-    // Get the Colors from the OK Header
-    if (HotSwapID == 0)
-    {
-        SparkMode(255,255,255);
-        return;
-    }
-    OKR = OverKartHeader.FogRGBA[0];
-    OKG = OverKartHeader.FogRGBA[1];
-    OKB = OverKartHeader.FogRGBA[2];
-
-    SparkMode(OKR,OKG,OKB);
-	
+	KumoColorModeDefault(r, g, b);
 }
 
 void SetSky(void)
