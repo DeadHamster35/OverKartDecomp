@@ -614,7 +614,7 @@ void MakeAlternativePath(Marker *altPath, short Length, char pathID)
     for (i = 0; i < Length; i++)
     {
         CenterPathBP[(int)pathID][i].Pointx *= MirrorValue;
-        //CenterPathBP[(int)pathID][i].Unknown = CenterPathBP[0][i].Unknown;
+        //CenterPathBP[(int)pathID][i].Speed = CenterPathBP[0][i].Speed;
     }
     }
 

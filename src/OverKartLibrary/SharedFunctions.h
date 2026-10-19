@@ -72,6 +72,7 @@ extern void PrintDecimal(int X, int Y, float Value, int Length);
 extern void PrintFloat(int X, int Y, float Value);
 extern int GetRealAddress(int RSPAddress);
 
+extern void loadNiceFont(void);
 extern void LoadBigFont(void);
 
 extern Ushort CalcVerticalDirection(Vector origin,Vector object);

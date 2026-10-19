@@ -1,5 +1,6 @@
-#ifndef PlayerPaddingH
-#define PlayerPaddingH
+#ifndef PLAYER_PADDING_H
+#define PLAYER_PADDING_H
+
 #include <common_structs.h>
 
 /*

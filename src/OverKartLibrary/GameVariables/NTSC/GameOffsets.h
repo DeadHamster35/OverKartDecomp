@@ -25,12 +25,12 @@ extern void DMABuffer(void* Car, void* Camera, char kno, char place); //0x800200
 extern void DrawBuffer(void* Car, char kno, char place); //0x80021244
 
 
+/* KWCheckRadiusXZ: math_util_2.h */
 /* MoveIWA → UpdateActorFallingRocks in StockAliases.h */
-
 
 //float Radius,float hight,float Param
 
-
+/* RouletteStart / KWAnmStart: update_objects.h */
 
 //math
 extern void BrkProgram();
@@ -140,10 +140,11 @@ extern u8 common_battle_item_curve[][100];
 
 
 
-/* CheckSplashJAL1/2/3: RunKart / SpinKart / ResultRunkart JALs; live C is OKCheckSplashEnabled */
+/* CheckSplashJAL1/2/3: RunKart / SpinKart / ResultRunkart JALs; live C is CheckSplash */
 
 /* CheckFinalLapFanfareJAL / CheckPlayStarBGMJAL: race_logic / effects JALs; live C is PlayFinalLapMusicHook / PlayStarMusicHook */
 
+/* KWChartKumo: update_objects.h */
 extern long CloudTypeMapCheck1;
 extern long CloudTypeMapCheck2;
 extern long CloudAmountMapCheck1;
@@ -166,6 +167,7 @@ extern int FadeCounter[5];
 extern int FadeCounter2[5];
 
 
+/* KWLookCamera / KWLookCameraPitch: math_util_2.h (third arg is Camera->CameraPos) */
 
 extern void KWRectangle(int sx,int sy,int sizex,int sizey,int s ,int t,int Mode);
 /* KWTexture2D* / KWTexture3DRGBA32AAZBBL: render_objects.h */
@@ -178,10 +180,12 @@ extern void SprDrawClipST(int sx,int sy,int sizex,int sizey,int ss,int tt,int Mo
 
 /* KWTexture*_Sub*: render_objects.h */
 
+/* KWCreateAffine3D / IceKage / Board / Hole / Anm: math_util_2.h */
 
 /* KWSetPrimColor / KWSetEnvColor / Sub*Mode / *Mode (except ToumeIMode / Color2Mode): render_objects.h */
 
-
+/* InitializePlayer: spawn_players.h */
+/* DrawLocalSkeletonShape: animation.h (Armature*, Animation**) */
 
 extern long asm_itemJump1A;// 0x8007B084  //3C058016
 extern long asm_itemJump1B;// 0x8007B098  //84A543BA
@@ -528,6 +532,7 @@ extern long SkyColorBotTable;
 /* g_SnowParticleTex / g_skySnow* / g_3DSnow*: LibraryVariables.c. Sky spawn/HitGoal were KWChartSnow SMC. */
 extern long *g_MRCloudTexPtr; // Set of four I4 cloud images; //0x400 Length each.
 
+/* KWChartSnow: update_objects.h */
 extern void KWChartIceBlock(void);
 
 //racer values
@@ -542,6 +547,7 @@ extern void KWChartIceBlock(void);
 /* LightningFlag / LightningFlagPlayer1 come from audio/external.h */
 
 //Offroad flags
+/* OffroadFlagPlayer1[]: spawn_players.h */
 extern short g_offroadFlagPlayer2; // 0x80165332 
 extern short g_offroadFlagPlayer3; // 0x80165334 
 extern short g_offroadFlagPlayer4; // 0x80165336 
@@ -604,9 +610,13 @@ extern SeqPlayerStruct SeqPlayer[4];
 /* NAIFxFlagEntry: audio/external.h */
 
 //Cave Fire Particle Stuff
+/* KWGetCaveFire: update_objects.h */
 /* CaveFireColCheck: KWDisplayFireParticleSub switch bound SMC; DisplayFireParticleSub no longer pokes */
+/* KWChaseSVal / KWChaseIVal / KWChaseFVal / KW2DMatrixInit: math_util_2.h */
 /* KWSet2Color → SetColorRender in StockAliases.h */
 /* SprDrawSubCI8 / KWDisplayFireParticleSub: render_objects.h */
+
+/* KWGetStar: update_objects.h */
 
 
 extern Ushort RGBAFallingLeaf[];
