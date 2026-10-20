@@ -510,13 +510,13 @@ typedef struct BankMapTable{
 } BankMapTable;
 
 typedef struct AudioTablePointers{
-    SequenceTable SequenceTableP;
-    InstrumentTable InstrumentTableP;
-    RawAudioTable RawAudioTableP;
-    BankMapTable BankMapTableP;
+    int SequenceTableP;
+    int InstrumentTableP;
+    int RawAudioTableP;
+    int BankMapTableP;
     short SongAmount;
     short Free;
-    SFXTempPointerStruct SFXAllocP;
+    int SFXAllocP;
 } AudioTablePointers;
 
 

@@ -652,11 +652,6 @@ void InitCustomSmoke(Player *car, Vector pos_R, Vector pos_F, short Count, int k
 	char Alpha;
 	short car_number = car-&GlobalPlayer[0];
 
-	if (HotSwapID == 0)
-	{
-		return;
-	}
-
 	switch (surface)
 	{
 	case Mud:

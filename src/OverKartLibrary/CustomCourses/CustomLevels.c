@@ -374,9 +374,22 @@ void SetPath(void)
 	}
 	for (ThisPath = 0; ThisPath < 4; ThisPath++)
 	{
-		
-		Marker *PathArray = (Marker *)GetRealAddress((int) PathTable[pathCourse][ThisPath]);
-		Marker *PathArrayB = (Marker *)GetRealAddress((int) PathTableB[pathCourse][ThisPath]);
+		Marker *PathArray;
+		Marker *PathArrayB;
+
+		if (HotSwapID > 0)
+		{
+			if (OverKartHeader.PathLength[ThisPath] < 1)
+			{
+				continue;
+			}
+		}
+		if (PathTable[pathCourse][ThisPath] == 0)
+		{
+			continue;
+		}
+		PathArray = (Marker *)GetRealAddress((int) PathTable[pathCourse][ThisPath]);
+		PathArrayB = (Marker *)GetRealAddress((int) PathTableB[pathCourse][ThisPath]);
 		if (ZFLIP)
 		{
 
@@ -881,10 +894,7 @@ void EventDisplayAfter(int Player)
 		KWDisplayEvent_After(Player);
 	}
 
-	if (HotSwapID > 0)
-	{
-		DrawCustomParticle(Player);
-	}
+	DrawCustomParticle(Player);
 	EventDisplayAfterHookDefault(Player);
 }
 
@@ -950,6 +960,7 @@ void LoadTextureScrollTranslucent(void)
 			*TargetAddress = (long)&ok_scrolltranslucent;
 			DataLength = OverKartHeader.ScrollSize;
 			DataLength += 4;
+			DataLength = (DataLength + 7) & ~7;
 			RunDMA();
 		}
 	}
@@ -1020,6 +1031,19 @@ void RunTextureScroll(void)
 		// Run stock func
 		ScrollMapImage((uintptr_t) GlobalAddressB, ScrollValues[CurrentScroll][0], ScrollValues[CurrentScroll][1]);
 	}
+	}
+}
+
+void RunHotSwapScroll(void)
+{
+	if ((HotSwapID > 0) && (GamePausedFlag == 0) && (ScrollLock))
+	{
+		RunTextureScroll();
+		CheckOKObjects();
+		RunDisplayScreen();
+		RunWaterVertex();
+		LavaFloorRecoil();
+		CheckPaths();
 	}
 }
 
@@ -1672,18 +1696,9 @@ void InitialMapObjectCode(void)
 	{
 		StaticObjectCount = 0;
 		SimpleObjectCount = 0;
-		if (OverKartHeader.Version <= 6)
-		{
-			PlaceIBoxes(0x06001910);
-			SetTreeObject((struct ActorSpawnData *) 0x06001B18);
-			SetPakkunObject((struct ActorSpawnData *) 0x06001D20);
-		}
-		else
-		{
-			PlaceIBoxes(0x06000008);
-			SetTreeObject((struct ActorSpawnData *) 0x06000210);
-			SetPakkunObject((struct ActorSpawnData *) 0x06000418);
-		}
+		PlaceIBoxes(0x06000008);
+		SetTreeObject((struct ActorSpawnData *) 0x06000210);
+		SetPakkunObject((struct ActorSpawnData *) 0x06000418);
 		StaticObjectCount = SimpleObjectCount;
 	}
 	{
@@ -1767,7 +1782,7 @@ void LoadBomb(void)
 #define COURSE_TABLE_BATTLE_OFFSET 0x2D0
 #define OK_HEADER_OLD_SIZE 0xC0
 
-/* Amped Up / Version <= 5 packed layout. File-local; do not replace live OKHeader (0xD0). */
+/* Version 6 packed layout. File-local; do not replace live OKHeader (0xD0). */
 typedef struct OKHeaderOld {
 	int Version;
 	CourseHeader MapHeader;
@@ -1881,6 +1896,12 @@ static void CopyOKHeaderOld(OKHeaderOld *oldHeader)
 	}
 }
 
+/* PI DMA dest must be 8-byte aligned. Stack `int` / locals are not. */
+static union {
+	u64 Align;
+	OKHeaderOld Old;
+} sOkHeaderDma;
+
 static void ClearStockCourseHeader(void)
 {
 	unsigned char *p;
@@ -1906,19 +1927,14 @@ void LoadCustomHeader(int inputID)
 		if ((Uint)headerROM != 0xFFFFFFFFu)
 		{
 			*SourceAddress = headerROM;
-			*TargetAddress = (long)&version;
-			DataLength = 4;
+			*TargetAddress = (long)&sOkHeaderDma;
+			DataLength = OK_HEADER_OLD_SIZE;
 			RunDMA();
+			version = sOkHeaderDma.Old.Version;
 
-			if (version <= 5)
+			if (version <= 6)
 			{
-				OKHeaderOld oldHeader;
-
-				*SourceAddress = headerROM;
-				*TargetAddress = (long)&oldHeader;
-				DataLength = OK_HEADER_OLD_SIZE;
-				RunDMA();
-				CopyOKHeaderOld(&oldHeader);
+				CopyOKHeaderOld(&sOkHeaderDma.Old);
 			}
 			else
 			{

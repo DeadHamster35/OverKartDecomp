@@ -1559,13 +1559,12 @@ void KWGameEventCommonVF(void) {
     }
 }
 
-extern void KWChartIceBlock(void);
 extern void MoveCustomParticle(void);
 
 void KWGameEventCommon(void) {
     if (HotSwapID != 0) {
         if (GameState != CREDITS_SEQUENCE) {
-            KWChartIceBlock();
+            KWChartIceBlockB();
         }
     }
 #if !ENABLE_CUSTOM_COURSE_ENGINE
@@ -1623,7 +1622,7 @@ void KWGameEventCommon(void) {
             break;
         case COURSE_SHERBET_LAND:
             if (GameState != CREDITS_SEQUENCE) {
-                KwchartIceblock();
+                KWChartIceBlockB();
             }
             KwchartPing();
             break;

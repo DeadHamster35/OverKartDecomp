@@ -599,6 +599,7 @@ void RaceSequence(void) {
         return;
     }
 
+    StoreSegments();
     GameCodeDefault();
 
     if (Videoframe >= 6) {
@@ -608,6 +609,7 @@ void RaceSequence(void) {
         Videoframe = 1;
     }
     SetupPerspective();
+    RunHotSwapScroll();
 
     switch (ScreenSplitA) {
         case SCREEN_MODE_1P:

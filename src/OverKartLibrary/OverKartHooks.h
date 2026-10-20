@@ -35,6 +35,7 @@ void InitialMapCode(void);
 void InitialMapObjectCode(void);
 void PlaceIBoxes(long BoxOffset);
 void GameCodeDefault(void);
+void RunHotSwapScroll(void);
 void EndRace(void);
 void TitleMenuDefault(void);
 void DisplayObjectDefault(void* car, Object* actor);

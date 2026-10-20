@@ -1,7 +1,6 @@
 #ifndef OKCustomObjectH
 #define OKCustomObjectH
 #include "../MainInclude.h"
-extern void Draw3DRacer(Uint ModelAddress, Uint Player);
 extern void DisplayRedCoin(void *Camera, void *Object);
 extern void DisplayCoinSprite(void);
 extern void DisplayAfterEffects(void);

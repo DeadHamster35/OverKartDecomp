@@ -1103,7 +1103,7 @@
 .definelabel g_3DSnowVelocityLowLim, 0x800EEB60 
 
 .definelabel KWChartSnow, 0x80078838
-.definelabel KWChartIceBlock, 0x80079D44
+.definelabel KWChartIceBlockA, 0x80079D44
 
 //racer values
 .definelabel g_timeLapChange, 0x8015F898

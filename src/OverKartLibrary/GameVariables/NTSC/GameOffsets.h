@@ -532,8 +532,8 @@ extern long SkyColorBotTable;
 /* g_SnowParticleTex / g_skySnow* / g_3DSnow*: LibraryVariables.c. Sky spawn/HitGoal were KWChartSnow SMC. */
 extern long *g_MRCloudTexPtr; // Set of four I4 cloud images; //0x400 Length each.
 
-/* KWChartSnow: update_objects.h */
-extern void KWChartIceBlock(void);
+/* KWChartSnow / KWChartIceBlockA: update_objects.h */
+extern void KWChartIceBlockA(s32 ObjectIndex, s32 PlayerId);
 
 //racer values
 /* g_timeLapChange → TimePlayerLastTouchedFinishLine in StockAliases.h */

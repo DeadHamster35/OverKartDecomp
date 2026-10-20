@@ -324,7 +324,7 @@ void SetWaterType(char WaterType)
 	
 	if (StartingIndicator >= 0x01 && StartingIndicator <= 0x06)
 	{
-		//CheckSplashRepl(WaterType);
+		CheckSplashRepl(WaterType);
 
 		if(WaterType != 0 && HotSwapID != 0)
 		{

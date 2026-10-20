@@ -3254,7 +3254,7 @@ void KwanmJgmT(s32 ObjectIndex, s32 PlayerId) {
     KwmvJgmT(ObjectIndex, Player);
 }
 
-void KWChartIceBlock(s32 ObjectIndex, s32 PlayerId) {
+void KWChartIceBlockA(s32 ObjectIndex, s32 PlayerId) {
     Player* Player = &PlayerOne[PlayerId];
 
     switch (DynamicObjects[ObjectIndex].Anmptr) { /* switch 1; irregular */
@@ -3573,7 +3573,7 @@ void KwchartJugemuVf(s32 PlayerId) {
             KwjugemuStrategy3D(ObjectIndex);
             break;
         case 7:
-            KWChartIceBlock(ObjectIndex, PlayerId);
+            KWChartIceBlockA(ObjectIndex, PlayerId);
             break;
     }
 }
@@ -7146,7 +7146,7 @@ void KwgetIcekakera(UNUSED s32 arg0, s32 PlayerId) {
     }
 }
 
-void KwchartIceblock(void) {
+void KWChartIceBlockB(void) {
     s32 ObjectIndex;
     s32 PlayerId;
 

@@ -672,23 +672,6 @@ void GameCode(void)
 	}
 
 	
-	if (HotSwapID > 0)   //Version 4 Texture Scroll Function
-	{			
-		if ((GamePausedFlag == 0) && (ScrollLock))
-		{
-			RunTextureScroll();
-			CheckOKObjects();
-			RunDisplayScreen();
-
-			//Dynamic WaveRace Water 
-			RunWaterVertex();
-			
-			LavaFloorRecoil();
-			CheckPaths();
-		}	
-	}
-	
-
 	if ((HotSwapID > 0) || (SaveGame.RenderSettings.DrawMode == 1))
 	{
 		FarClip = 20000;

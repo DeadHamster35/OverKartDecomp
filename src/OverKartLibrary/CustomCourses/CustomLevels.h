@@ -14,6 +14,7 @@ extern void ApplyRaceTempo(void);
 extern void StockASM(void);
 extern void OverkartASM(void);
 extern void RunTextureScroll(void);
+extern void RunHotSwapScroll(void);
 extern void RunWaterVertex(void);
 
 extern void DecodeSP1TriangleOK(Gfx *gfx,unsigned char *pp,char Code );

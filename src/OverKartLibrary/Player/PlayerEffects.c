@@ -233,6 +233,10 @@ void ChangeMaxSpeed(char PlayerID, float SpeedGain)
 
 void SetCamShiftUp(char PlayerID, float shift)
 {
+	if (PlayerID > 3)
+	{
+		return;
+	}
 	if (!(GlobalPlayer[(int)PlayerID].Flag & IS_PLAYER))
 	{
 		return;
@@ -252,7 +256,7 @@ void ChangePlayerSize(char PlayerID, float ScaleFactor)
 	}
 	GlobalPlayer[(int)PlayerID].Offsetsize = (float)ScaleFactor;
 
-	if (GlobalPlayer[(int)PlayerID].Flag&IS_PLAYER)
+	if ((PlayerID <= 3) && (GlobalPlayer[(int)PlayerID].Flag&IS_PLAYER))
 	{
 		GlobalCamera[(int)PlayerID]->CameraVector[1] = 9 * (float)ScaleFactor;
 	}
