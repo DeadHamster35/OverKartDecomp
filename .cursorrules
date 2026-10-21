@@ -54,6 +54,13 @@ Do not modify existing code or add new code until that approval is given.
 
 After approval, every new file and every change to existing code still requires a **manual code review by the user** before it is treated as done. Present the diff clearly. Do not skip review, self-approve, or treat a prior “go ahead and implement” as a waiver of review.
 
+## Prefer original implementation
+
+When fixing bugs or inconsistencies, follow the original working code. Do not
+invent new codepaths unless that original is fundamentally mistaken.
+
+Full rule: `.cursor/rules/prefer-original-implementation.mdc`.
+
 ## OverKart bridge
 
 Preserve compatibility with Library/OverKart/Tarmac unless the task is to change that contract — and then update the sibling projects in the same effort, or stop and ask.

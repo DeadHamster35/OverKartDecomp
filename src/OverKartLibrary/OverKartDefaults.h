@@ -21,6 +21,7 @@ extern void MiniMapDrawDefault(void);
 extern void BalloonCheckDefault(Player* Player, f32 arg1, f32 Arg2, s8 playerIndex, s8 balloonIndex, s16 Rotation);
 extern void ItemboxCollideCheckDefault(Player* Car, Object* Target);
 extern bool PlaceIBoxesAllowedDefault(void);
+extern int BannerDestCourseDefault(int slot);
 extern void EventDisplayAfterHookDefault(int Player);
 extern void FPSCheckDefault(void);
 extern void DynamicTempoDefault(void);

@@ -83,6 +83,10 @@ DEFINES += OverKartBuild=$(OVERKART_BUILD)
 
 TARGET := mk64.$(VERSION)
 
+PROJECT_NAME ?= OverKart
+PROJECT_VERSION ?= 8
+ROM_NAME := $(PROJECT_NAME)_V$(PROJECT_VERSION)
+
 BASEROM := baserom.$(VERSION).z64
 
 
@@ -173,6 +177,7 @@ ifeq ($(filter clean distclean,$(MAKECMDGOALS)),)
   $(info Version:        $(VERSION))
   $(info Microcode:      $(GRUCODE))
   $(info Target:         $(TARGET))
+  $(info ROM:            $(ROM_NAME).z64)
   ifeq ($(COMPARE),1)
     $(info Compare ROM:    yes)
   else
@@ -239,7 +244,7 @@ endif
 BUILD_DIR_BASE := build
 # BUILD_DIR is location where all build artifacts are placed
 BUILD_DIR      := $(BUILD_DIR_BASE)/$(VERSION)
-ROM            := $(BUILD_DIR)/$(TARGET).z64
+ROM            := $(BUILD_DIR)/$(ROM_NAME).z64
 ELF            := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT      := mk64.ld
 ASSET_DIR      := assets

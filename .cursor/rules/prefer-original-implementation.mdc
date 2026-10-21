@@ -1,0 +1,21 @@
+---
+description: Prefer the original working implementation for bugfixes; do not invent new codepaths
+alwaysApply: true
+---
+
+# Prefer Original Implementation
+
+When addressing bugfixes or inconsistencies, start from the master / original
+working code and fix based on that implementation.
+
+The master is the existing working codebase being integrated: historical Library,
+the host's original sources, or vanilla mk64 — whichever the current path came from.
+Read that code first. Match its control flow, data flow, and side effects unless
+something in it is fundamentally mistaken.
+
+Do not invent a new codepath, helper, or parallel implementation to paper over a
+bug. New paths complicate the tree and introduce bugs the original never had.
+
+Only write a different approach when the original is clearly wrong for this tree
+(wrong ABI, broken RAM contract, or a real logic error) — and say so in the
+approval proposal, citing what is mistaken and why a new path is required.

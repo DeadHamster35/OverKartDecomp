@@ -1996,9 +1996,6 @@ void SetCustomData(void)
 	}
 }
 
-/* Original: dest = g_CourseBannerOffsets + slot * 5056 (140x18 + pad). */
-#define BANNER_STRIDE 5056
-
 static u16 *BannerPixels(int CourseIndex)
 {
 	MenuTexture *ram;
@@ -2023,24 +2020,10 @@ static u16 *BannerPixels(int CourseIndex)
 	return NULL;
 }
 
-/* Live g_CourseBannerOffsets / g_BattleBannerOffsets: first bank, then +5056. */
-static u16 *BannerBank(int slot)
+/* Host dest: OverKart g_CupArray; Amped stock cup IDs (name bars). */
+static int BannerDestCourse(int slot)
 {
-	u16 *base;
-
-	if (GameMode == GAMEMODE_BATTLE)
-	{
-		base = BannerPixels(16);
-	}
-	else
-	{
-		base = BannerPixels(8);
-	}
-	if (base == NULL)
-	{
-		return NULL;
-	}
-	return (u16 *) ((char *) base + (slot * BANNER_STRIDE));
+	return BannerDestCourseDefault(slot);
 }
 
 static void LoadCustomBanner(int slot)
@@ -2048,8 +2031,10 @@ static void LoadCustomBanner(int slot)
 	u16 *dest;
 	long Length;
 	int customIndex;
+	int destCourse;
 
-	dest = BannerBank(slot);
+	destCourse = BannerDestCourse(slot);
+	dest = BannerPixels(destCourse);
 	if (dest == NULL)
 	{
 		return;
@@ -2098,26 +2083,15 @@ static void RestoreStockBanner(int slot)
 {
 	MenuTexture *ram;
 	u16 *dest;
-	int CourseIndex;
+	int destCourse;
 
-	dest = BannerBank(slot);
+	destCourse = BannerDestCourse(slot);
+	dest = BannerPixels(destCourse);
 	if (dest == NULL)
 	{
 		return;
 	}
-	if (GameMode == GAMEMODE_BATTLE)
-	{
-		CourseIndex = g_CupArray[16 + slot];
-	}
-	else
-	{
-		CourseIndex = g_CupArray[slot];
-	}
-	if ((CourseIndex < 0) || (CourseIndex >= 20))
-	{
-		return;
-	}
-	ram = (MenuTexture *) GetTBPointer(D_800E7DC4[CourseIndex]);
+	ram = (MenuTexture *) GetTBPointer(D_800E7DC4[destCourse]);
 	if ((ram == NULL) || (ram->TextureData == NULL))
 	{
 		return;

@@ -8,6 +8,15 @@ extern unsigned short Net[];
 int DPRTester;
 int RandomDPR;
 
+int BannerDestCourseDefault(int slot)
+{
+	if (GameMode == GAMEMODE_BATTLE)
+	{
+		return g_CupArray[16 + slot];
+	}
+	return g_CupArray[slot];
+}
+
 void LoadLogo()
 {
 
