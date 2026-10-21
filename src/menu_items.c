@@ -38,7 +38,7 @@
 //! @todo Move DynamicP out of Main.h
 // Unfortunately that's not a small effort due to weird import structure in this project
 #include "main.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 void guMtxCatL(Mtx* m, Mtx* n, Mtx* res);
 

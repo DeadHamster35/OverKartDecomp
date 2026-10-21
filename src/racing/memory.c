@@ -11,7 +11,7 @@
 #include "math_util.h"
 #include "courses/courseTable.h"
 #include "defines.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 s32 GFXCounter;
 s32 PKCounter;

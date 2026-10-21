@@ -39,7 +39,7 @@
 #include <debug.h>
 #include "crash_screen.h"
 #include "buffers/gfx_output_buffer.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 #include "save.h"
 
 void InitMKCode(void);

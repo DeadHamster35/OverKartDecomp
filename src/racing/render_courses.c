@@ -17,7 +17,7 @@
 #include "courses/all_course_data.h"
 #include "courses/all_course_packed.h"
 #include "courses/all_course_offsets.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 s16 Startfog = 995;
 s16 Endfog = 1000;

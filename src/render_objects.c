@@ -35,7 +35,7 @@
 #include "courses/all_course_data.h"
 #include <vehicles.h>
 #include "data/some_data.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 void KwsetTile(Vec3f pos, Vec3su orientation, f32 Scale, Vtx* vtx) {
     KWCreateAffine3D(pos, orientation, Scale);

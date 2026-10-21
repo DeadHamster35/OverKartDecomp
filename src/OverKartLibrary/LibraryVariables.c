@@ -39,10 +39,10 @@ float g_3DSnowSwayMovement = 1.0f;
 float g_3DSnowScale = 0.15f;
 float g_3DSnowVelocityUpLim = 1.035f;
 float g_3DSnowVelocityLowLim = -0.3f;
-short AsmCupCount = 3;
-s32 OKCheckSplashEnabled = 1;
 s32 OKLakituIce = 0;
+s32 OKCheckSplashEnabled = 1;
 s32 OKForceRoulette = 0;
+short AsmCupCount = 3;
 s8 OKPSelSkipCursor[4] = { 0, 0, 0, 0 };
 s8 OKPSelSkipPortrait[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 s32 OKPSelSkipAnime = 0;
@@ -330,5 +330,21 @@ char      ScoreToWin, ObjectiveCount;
 short     SpawnTime, HitstunTime;
 short     TeamScore[2];
 
-SkyColor sGlobalSkyColor;
-SkyColor *GlobalSkyColorTop[20] = { &sGlobalSkyColor };
+/* Two stock tables (20 x SkyColor). Do not overlay Bot onto Top. */
+#define SKY_TOP(i) ((SkyColor *) &SkyColorTopTable + (i))
+#define SKY_BOT(i) ((SkyColor *) &SkyColorBotTable + (i))
+
+SkyColor *GlobalSkyColorTop[20] = {
+	SKY_TOP(0), SKY_TOP(1), SKY_TOP(2), SKY_TOP(3),
+	SKY_TOP(4), SKY_TOP(5), SKY_TOP(6), SKY_TOP(7),
+	SKY_TOP(8), SKY_TOP(9), SKY_TOP(10), SKY_TOP(11),
+	SKY_TOP(12), SKY_TOP(13), SKY_TOP(14), SKY_TOP(15),
+	SKY_TOP(16), SKY_TOP(17), SKY_TOP(18), SKY_TOP(19),
+};
+SkyColor *GlobalSkyColorBot[20] = {
+	SKY_BOT(0), SKY_BOT(1), SKY_BOT(2), SKY_BOT(3),
+	SKY_BOT(4), SKY_BOT(5), SKY_BOT(6), SKY_BOT(7),
+	SKY_BOT(8), SKY_BOT(9), SKY_BOT(10), SKY_BOT(11),
+	SKY_BOT(12), SKY_BOT(13), SKY_BOT(14), SKY_BOT(15),
+	SKY_BOT(16), SKY_BOT(17), SKY_BOT(18), SKY_BOT(19),
+};

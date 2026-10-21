@@ -25,7 +25,7 @@
 #include "courses/all_course_data.h"
 #include "main.h"
 #include "data/other_textures.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 // Appears to be Textures
 // or tluts

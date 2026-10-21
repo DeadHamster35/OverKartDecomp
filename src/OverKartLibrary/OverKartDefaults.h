@@ -3,8 +3,8 @@
 
 /*
  * Base-project hook layer. Vanilla and Library call these *Default Names.
- * Bodies live in OverKartDefaults.c. Later a host project replaces this
- * file to bypass stock behavior (save, race tick, menu print, …).
+ * Bodies live in host OverKartDefaults.c (src/AmpedUp/, src/OverKart5/,
+ * or LibraryDecomp src/OverKartDefaults.c).
  */
 #include "MainInclude.h"
 
@@ -21,6 +21,7 @@ extern void MiniMapDrawDefault(void);
 extern void BalloonCheckDefault(Player* Player, f32 arg1, f32 Arg2, s8 playerIndex, s8 balloonIndex, s16 Rotation);
 extern void ItemboxCollideCheckDefault(Player* Car, Object* Target);
 extern bool PlaceIBoxesAllowedDefault(void);
+extern f32 TrickHangGravityDefault(int store);
 extern int BannerDestCourseDefault(int slot);
 extern void EventDisplayAfterHookDefault(int Player);
 extern void FPSCheckDefault(void);

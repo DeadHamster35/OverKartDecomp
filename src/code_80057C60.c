@@ -36,7 +36,7 @@
 #include "spawn_players.h"
 #include "sounds.h"
 #include "data/some_data.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 //! @warning this macro is undef'd at the end of this file
 #define MAKE_RGB(r, g, b) (((r) << 0x10) | ((g) << 0x08) | (b << 0x00))

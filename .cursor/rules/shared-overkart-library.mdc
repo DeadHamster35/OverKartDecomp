@@ -1,0 +1,21 @@
+---
+description: src/OverKartLibrary must be identical across AmpedUpDecomp, OverKartDecomp, and LibraryDecomp
+alwaysApply: true
+---
+
+# Shared OverKartLibrary
+
+`src/OverKartLibrary/` is one Library. AmpedUpDecomp, OverKartDecomp, and
+LibraryDecomp must keep that directory identical.
+
+Do not fork, specialize, or host-patch files under `src/OverKartLibrary/`.
+If a host needs different behavior, put it outside that directory
+(`src/AmpedUp/`, `src/OverKart5/`, vanilla hooks, or other host-owned files).
+
+`OverKartDefaults.h` stays in Library (identical `*Default` prototypes).
+`OverKartDefaults.c` is stepped out of this directory. Bodies live in
+`src/AmpedUp/OverKartDefaults.c`, `src/OverKart5/OverKartDefaults.c`, or
+LibraryDecomp `src/OverKartDefaults.c`.
+
+A Library bugfix or contract change is made the same way in all three copies
+in the same effort, or not at all. Do not "fix it only in this host."

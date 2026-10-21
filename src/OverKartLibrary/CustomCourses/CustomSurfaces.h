@@ -24,9 +24,6 @@ extern bool LavaFloorRecoiling[];
 
 
 #define TRICK_GRAVITY				4000.0f
-#ifndef AMPED_GAP1
-#define AMPED_GAP1				TRICK_GRAVITY
-#endif
 #define TRICK_TRIGGER_SPEED_MIN		30
 
 #define GAP_GRAVITY				2000.0f
@@ -96,6 +93,8 @@ extern bool LavaFloorRecoiling[];
 #define STORE_NONE 	0
 #define STORE_TRICK 1
 #define	STORE_GAP	2
+#define STORE_TRICK2 4
+#define STORE_TRICK3 8
 
 /* Sound IDs for SurfaceSFX. Not Tarmac surface types. */
 #define SFX_STOP_ALL			21

@@ -8,6 +8,7 @@
 #include "LitroFunc.h"
 #include "OverKartObjectHandler.h"
 #include "OKMenu.h"
+#include "OKMenuVtx.h"
 #include "MarioKartPractice.h"
 #include "data/ModelData/ModelData.h"
 #include "OverKart.h"

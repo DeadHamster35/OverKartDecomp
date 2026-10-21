@@ -291,6 +291,21 @@ bool PlaceIBoxesAllowedDefault(void)
 	return true;
 }
 
+f32 TrickHangGravityDefault(int store)
+{
+	(void) store;
+	return TRICK_GRAVITY;
+}
+
+int BannerDestCourseDefault(int slot)
+{
+	if (GameMode == GAMEMODE_BATTLE)
+	{
+		return g_CupArray[16 + slot];
+	}
+	return g_CupArray[slot];
+}
+
 void EventDisplayAfterHookDefault(int Player)
 {
 	(void) Player;

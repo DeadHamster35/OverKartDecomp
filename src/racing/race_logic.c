@@ -24,7 +24,7 @@
 #include "math.h"
 #include "menus.h"
 #include "seq_ids.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 #include "OverKartStruct.h"
 
 extern SaveData SaveGame;

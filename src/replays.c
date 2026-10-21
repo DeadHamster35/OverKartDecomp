@@ -25,7 +25,7 @@
 #include "menu_items.h"
 #include "code_80057C60.h"
 #include "kart_dma.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 extern s32 encpass2(s32 Input, s32, s32);
 extern s32 encpass1(void*, s32, s32);

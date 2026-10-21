@@ -3,10 +3,7 @@
 #include "MainInclude.h"
 
 
-extern Vtx V64x32[];
 extern Vtx V1632[];
-extern Vtx V6432B[];
-extern Vtx V256x12832B[];
 extern Vtx Tree1V[];
 
 extern void WaveRace(Vtx_t *VertexBuffer, int Count, float Intensity);

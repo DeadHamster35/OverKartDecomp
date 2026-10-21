@@ -311,6 +311,9 @@ typedef struct AnmObjectLakitu{
 } AnmObjectLakitu;
 
 
+/* One course record. Stock has two arrays of these: SkyColorTopTable and
+ * SkyColorBotTable. Do not overlay Bot onto Top with Dummy[120] — COMPARE=0
+ * does not keep a fixed gap. */
 typedef struct SkyColor{
 		short	RedHi, GreenHi, BlueHi;
 		short	RedLo, GreenLo, BlueLo;

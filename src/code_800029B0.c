@@ -23,7 +23,7 @@
 #include "courses/all_course_packed.h"
 #include "menus.h"
 #include "data/other_textures.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 extern s32 FinishCount;
 extern s16 Check2PGP;

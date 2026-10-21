@@ -19,3 +19,6 @@ bug. New paths complicate the tree and introduce bugs the original never had.
 Only write a different approach when the original is clearly wrong for this tree
 (wrong ABI, broken RAM contract, or a real logic error) — and say so in the
 approval proposal, citing what is mistaken and why a new path is required.
+
+Library fixes follow the shared `src/OverKartLibrary/` copy in all three trees,
+not a host-only rewrite inside that folder.

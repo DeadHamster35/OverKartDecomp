@@ -15,7 +15,7 @@
 #include "update_objects.h"
 #include "effects.h"
 #include "sounds.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 void CopyCollisionBump(Collision* src, Collision* dest) {
     dest->FlagXY = src->FlagXY;

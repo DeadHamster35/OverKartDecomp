@@ -1,0 +1,16 @@
+---
+description: End lengthy replies with a separator line, then a short paragraph summarizing the discussion
+alwaysApply: true
+---
+
+# Response Summary
+
+End every lengthy reply with one short paragraph that summarizes the
+discussion: what was asked, what was decided or done, and what is still open.
+
+Put a markdown separator line (`---`) between the response and that summary
+paragraph.
+
+Skip the summary on short replies (a yes/no, a single fact, or a brief
+approval wait). Do not use a bullet list or a heading for it; one paragraph
+at the end is enough.

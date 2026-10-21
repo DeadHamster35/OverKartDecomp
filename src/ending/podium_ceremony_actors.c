@@ -16,7 +16,7 @@
 #include "cpu_vehicles_camera_path.h"
 #include "code_80281C40.h"
 #include "math_util.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 s32 FireworkConeColour[] = {
     0x00FF4080, // pink

@@ -25,7 +25,7 @@
 #include "menu_items.h"
 #include "src/data/some_data.h"
 #include "effects.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 void InitializeParams(void) {
 

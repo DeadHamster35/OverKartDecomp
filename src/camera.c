@@ -16,7 +16,7 @@
 #include "cpu_vehicles_camera_path.h"
 #include "main.h"
 #include "spawn_players.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 #include <course.h>
 

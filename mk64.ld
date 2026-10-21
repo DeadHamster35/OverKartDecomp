@@ -42,7 +42,6 @@ OUTPUT_ARCH (mips)
     M(MarioKartMenu) \
     M(MarioKartObjects) \
     M(SharedFunctions) \
-    M(OverKartDefaults) \
     M(OKRumble) \
     M(CustomCourses/CustomLevels) \
     M(CustomCourses/CustomSurfaces) \
@@ -75,6 +74,7 @@ OUTPUT_ARCH (mips)
     M(OKMenu) \
     M(MarioKartPractice) \
     M(OverKart) \
+    M(OverKartDefaults) \
     M(data/ModelData/ModelData) \
     M(Gametypes/CTF) \
     M(Gametypes/Soccer) \

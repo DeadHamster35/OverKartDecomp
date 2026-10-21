@@ -35,7 +35,7 @@
 #include "data/other_textures.h"
 #include "data/some_data.h"
 #include "memory.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 //! @todo Unused?
 f32 D_800E43B0[] = { 65536.0, 0.0, 1.0, 0.0, 0.0, 65536.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };

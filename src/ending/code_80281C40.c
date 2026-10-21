@@ -15,7 +15,7 @@
 #include "podium_ceremony_actors.h"
 #include "render_player.h"
 #include "defines.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 struct UnkStruct80287560 {
     s16 Unk0;

@@ -126,7 +126,7 @@ void AddGravityEdit(Player *car)
 	{
 		if (car->Bump.DistanceZX >= 0.2f)
 		{
-			car->Gravity = AMPED_GAP1;
+			car->Gravity = TrickHangGravityDefault(STORE_TRICK);
 		}
 		if (car->Jumpcount >= 40)
 		{
@@ -158,7 +158,77 @@ void AddGravityEdit(Player *car)
 		}
 	}
 
+	if (SurfaceStorage[car_number]&STORE_TRICK2)
+	{
+		if (car->Bump.DistanceZX >= 0.2f)
+		{
+			car->Gravity = TrickHangGravityDefault(STORE_TRICK2);
+		}
+		if (car->Jumpcount >= 40)
+		{
+			car->SlipFlag &= ~IS_FEATHER_JUMPING;
+			car->OldDirection = car->Direction[1];
+		}
+		if (car->Jumpcount == 0)
+		{
+			ResetWing(car);
+		}
+		if (!(car->Flag&0x80))
+		{
+			SetAnimMusicNote(car_number);
+			if (car->SlipFlag&IS_TURBO_BOOSTING)
+			{
+				car->TurboTimer += 15;
+			}
+			else
+			{
+				if (!(car->SlipFlag&IS_BROKEN))
+				{
+					SetTurbo(car, car_number);
+					car->TurboTimer = 3;
+				}
+			}
+			SurfaceStorage[car_number] = STORE_NONE;
+			car->Velocity[1] = 0;
+			MakeBodyColor(car,car_number,0x00500050,2.0f);
+		}
+	}
 
+	if (SurfaceStorage[car_number]&STORE_TRICK3)
+	{
+		if (car->Bump.DistanceZX >= 0.2f)
+		{
+			car->Gravity = TrickHangGravityDefault(STORE_TRICK3);
+		}
+		if (car->Jumpcount >= 40)
+		{
+			car->SlipFlag &= ~IS_FEATHER_JUMPING;
+			car->OldDirection = car->Direction[1];
+		}
+		if (car->Jumpcount == 0)
+		{
+			ResetWing(car);
+		}
+		if (!(car->Flag&0x80))
+		{
+			SetAnimMusicNote(car_number);
+			if (car->SlipFlag&IS_TURBO_BOOSTING)
+			{
+				car->TurboTimer += 15;
+			}
+			else
+			{
+				if (!(car->SlipFlag&IS_BROKEN))
+				{
+					SetTurbo(car, car_number);
+					car->TurboTimer = 3;
+				}
+			}
+			SurfaceStorage[car_number] = STORE_NONE;
+			car->Velocity[1] = 0;
+			MakeBodyColor(car,car_number,0x00500050,2.0f);
+		}
+	}
 
 	if (SurfaceStorage[car_number]&STORE_GAP)
 	{
@@ -242,6 +312,90 @@ void AddGravityEdit(Player *car)
 						car->MaxPower = car->BumpStatus;
 					}
 					SurfaceStorage[car_number] = STORE_TRICK;
+				}
+			}
+			break;
+		}
+
+		case TrickJump2:
+		{
+			if (car->Jumpcount <= 10 && GlobalController[cont_number]->ButtonPressed&BTN_R && SPEEDMETER(car->Speed) >= TRICK_TRIGGER_SPEED_MIN && !(car->SlipFlag&IS_BROKEN) && !(car->SlipFlag&IS_FEATHER_JUMPING) && !(SurfaceStorage[car_number]&STORE_TRICK2))
+			{
+				car->Flag |= 0x80;
+				SetAnimBonkStars(car_number);
+				if (car->SlipFlag&IS_TURBO_BOOSTING)
+				{
+					short turbo_store = car->TurboTimer;
+					SetWing(car, car_number);
+					car->SlipFlag |= IS_TURBO_BOOSTING;
+					car->TurboTimer = turbo_store;
+				}
+				else
+				{
+					SetWing(car, car_number);
+				}
+				car->Jumpcount = 0;
+				if (car->MaxPower != car->BumpStatus)
+				{
+					car->MaxPower = car->BumpStatus;
+				}
+				SurfaceStorage[car_number] = STORE_TRICK2;
+			}
+			else if (car->Flag & IS_CPU_PLAYER)
+			{
+				if (car->TireFL.Status != TrickJump2)
+				{
+					car->Flag |= 0x80;
+					SetAnimBonkStars(car_number);
+					SetWing(car, car_number);
+					car->Jumpcount = 0;
+					if (car->MaxPower != car->BumpStatus)
+					{
+						car->MaxPower = car->BumpStatus;
+					}
+					SurfaceStorage[car_number] = STORE_TRICK2;
+				}
+			}
+			break;
+		}
+
+		case TrickJump3:
+		{
+			if (car->Jumpcount <= 10 && GlobalController[cont_number]->ButtonPressed&BTN_R && SPEEDMETER(car->Speed) >= TRICK_TRIGGER_SPEED_MIN && !(car->SlipFlag&IS_BROKEN) && !(car->SlipFlag&IS_FEATHER_JUMPING) && !(SurfaceStorage[car_number]&STORE_TRICK3))
+			{
+				car->Flag |= 0x80;
+				SetAnimBonkStars(car_number);
+				if (car->SlipFlag&IS_TURBO_BOOSTING)
+				{
+					short turbo_store = car->TurboTimer;
+					SetWing(car, car_number);
+					car->SlipFlag |= IS_TURBO_BOOSTING;
+					car->TurboTimer = turbo_store;
+				}
+				else
+				{
+					SetWing(car, car_number);
+				}
+				car->Jumpcount = 0;
+				if (car->MaxPower != car->BumpStatus)
+				{
+					car->MaxPower = car->BumpStatus;
+				}
+				SurfaceStorage[car_number] = STORE_TRICK3;
+			}
+			else if (car->Flag & IS_CPU_PLAYER)
+			{
+				if (car->TireFL.Status != TrickJump3)
+				{
+					car->Flag |= 0x80;
+					SetAnimBonkStars(car_number);
+					SetWing(car, car_number);
+					car->Jumpcount = 0;
+					if (car->MaxPower != car->BumpStatus)
+					{
+						car->MaxPower = car->BumpStatus;
+					}
+					SurfaceStorage[car_number] = STORE_TRICK3;
 				}
 			}
 			break;

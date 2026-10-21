@@ -16,11 +16,7 @@
 extern short HotSwapID;
 extern short HotSwapGP;
 extern short GPCourseIndex;
-extern short CourseValue;
 extern short AsmCupCount;
-extern short RaceStatus;
-extern int ScrollLock;
-extern short Snow3DCourseID;
 extern s32 OKCheckSplashEnabled;
 extern s32 OKLakituIce;
 extern s32 OKForceRoulette;
@@ -36,7 +32,6 @@ void InitialMapObjectCode(void);
 void PlaceIBoxes(long BoxOffset);
 void GameCodeDefault(void);
 void RunHotSwapScroll(void);
-void EndRace(void);
 void TitleMenuDefault(void);
 void DisplayObjectDefault(void* car, Object* actor);
 void CollideObjectDefault(Player* car, Object* actor);
@@ -54,6 +49,7 @@ void RubberBandManDefault(s32 PlayerId, Player* Player);
 
 extern s16 EchoStart;
 extern s16 EchoStop;
+extern short Snow3DCourseID;
 extern s32 g_SnowParticleTex[36];
 extern f32 g_skySnowScale;
 extern f32 g_skySnowVelocity;
@@ -113,10 +109,6 @@ void DisplayFlagGateCheck(Camera* Camera);
 void DrawPerScreenDefault(Camera* Camera);
 s32 StartRaceBGMCustom(void);
 void ApplyRaceTempo(void);
-void DataMenuController(Controller* controller, u16 controllerIdx);
-void TitleMenuSwitch(Controller* controller, u16 controllerIdx);
-void GameSelectSwitch(Controller* controller, u16 controllerIdx);
-void MapSelectSwitch(Controller* controller, u16 controllerIdx);
 
 void PlayStarMusicHook(u8 PlayerID);
 void StopStarMusicHook(u8 PlayerID);
@@ -155,16 +147,5 @@ void CheckDirectionFunc(int Null, Screen* display);
 u16 CustomCheckBump2(Collision* Bump, f32 Radius, f32 px, f32 py, f32 pz, f32 lastx, f32 lasty, f32 lastz);
 void CustomSpinKart(Player* Car, Camera* Camera, s8 place, s8 kno);
 void CheckMapBGZXHook(Player* car, Vec3f normal, Vec3f Velocity, Vec3f g_vector, f32* dist, f32* new_x, f32* new_y, f32* new_z);
-
-void CameraCheckFunc(Player* Player, Camera* Camera, s8 Index);
-void KartCheckFuncA(void);
-void KartCheckFuncB(void);
-void KartCheckFuncC(void);
-void KartCheckFuncD(void);
-void KartCheckFuncA2(void);
-void KartCheckFuncB2(void);
-void KartCheckFuncC2(void);
-void KartCheckFuncD2(void);
-void ResultsCheck(void);
 
 #endif

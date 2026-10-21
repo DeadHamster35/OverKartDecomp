@@ -21,7 +21,7 @@
 #include "code_80057C60.h"
 #include "cpu_vehicles_camera_path.h"
 #include "sounds.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 extern s32 D_8018D168;
 

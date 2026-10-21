@@ -1,5 +1,8 @@
 #include "MainInclude.h"
 
+extern void KWDisplayItembox(s32 Player);
+extern void KWDisplayItemboxs(s32 Player);
+
 
 
 

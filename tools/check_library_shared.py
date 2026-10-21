@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
-"""Fail if src/OverKartLibrary/ differs across the three trees outside the host-owned list.
+"""Fail if src/OverKartLibrary/ differs across the three trees.
 
     python tools/check_library_shared.py
 
 Baseline is LibraryDecomp. AmpedUpDecomp and OverKartDecomp are compared to it
 and to each other. Generated .s files are skipped. CRLF is treated as equal to LF.
 
-Host-owned allow-list (Stage 5 S0): OverKartDefaults.c only. Those files may
-differ; every other difference is a failure.
-
-S0 expected: exit 1 with the current drift lists.
+OverKartDefaults.c is host-owned and lives outside this subtree.
 S9 expected: exit 0.
 """
 
@@ -21,7 +18,7 @@ import sys
 
 REPOS = ("LibraryDecomp", "AmpedUpDecomp", "OverKartDecomp")
 SUBTREE = os.path.join("src", "OverKartLibrary")
-ALLOW = frozenset({"OverKartDefaults.c"})
+ALLOW = frozenset()
 SKIP_EXT = frozenset({".s"})
 SKIP_NAMES = frozenset({".DS_Store"})
 
@@ -115,9 +112,9 @@ def main():
             failures += 1
 
     if failures:
-        print("\nFAIL: %d Library file(s) differ outside OverKartDefaults.c" % failures)
+        print("\nFAIL: %d Library file(s) differ" % failures)
         return 1
-    print("\nPASS: Library copies match except the host-owned list")
+    print("\nPASS: Library copies match")
     return 0
 
 

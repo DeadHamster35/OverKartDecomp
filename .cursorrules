@@ -61,6 +61,19 @@ invent new codepaths unless that original is fundamentally mistaken.
 
 Full rule: `.cursor/rules/prefer-original-implementation.mdc`.
 
+## Shared OverKartLibrary
+
+`src/OverKartLibrary/` must be identical across the three decomp trees.
+Host discrepancies are handled outside that directory.
+
+Full rule: `.cursor/rules/shared-overkart-library.mdc`.
+
+## Response summary
+
+End lengthy replies with a separator line (`---`), then one short paragraph summarizing the discussion.
+
+Full rule: `.cursor/rules/response-summary.mdc`.
+
 ## OverKart bridge
 
 Preserve compatibility with Library/OverKart/Tarmac unless the task is to change that contract — and then update the sibling projects in the same effort, or stop and ask.

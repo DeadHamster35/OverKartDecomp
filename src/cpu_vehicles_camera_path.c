@@ -31,7 +31,7 @@
 #include "sounds.h"
 #include "data/path_spawn_metadata.h"
 #include "math_util_2.h"
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 s32 UnkCPUVehiclesCameraPathPad[24];
 Collision D_80162E70;

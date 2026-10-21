@@ -2,7 +2,7 @@
 
 This directory is the live OverKart Library, compiled with **IDO** and linked into the mk64 ELF. It is not the GCC/Armips sibling `Library/` tree.
 
-Host projects override behavior by replacing `OverKartDefaults.c` (same `*Default` names). Vanilla already calls those symbols. See **`docs/host_overrides.md`**.
+This directory must match the same folder in AmpedUpDecomp, OverKartDecomp, and LibraryDecomp. `OverKartDefaults.c` stays the shared `*Default` trampolines; host bodies forward from there and live outside this folder. Vanilla already calls those symbols. See **`docs/host_overrides.md`**.
 
 Vanilla C must include `OverKartHooks.h`, not `MainInclude.h`.
 
@@ -35,6 +35,6 @@ Do not clean, modernize, or delete "unused" Library code. Other hosts may still 
 
 N64 C is IDO. Do not switch to GCC. Do not change ABI or microcode unless asked.
 
-## Hosts
+## Shared copy
 
-Amped Up / OverKart5 / new projects stay guests. Do not overlay another project's Library onto this copy. KartCheck and CameraCheck belong in the host.
+This directory must match the same folder in AmpedUpDecomp, OverKartDecomp, and LibraryDecomp. Do not fork, specialize, or host-patch files here. Host differences belong outside this directory (`src/AmpedUp/`, `src/OverKart5/`, vanilla hooks). KartCheck and CameraCheck are host-owned.

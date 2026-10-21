@@ -18,7 +18,7 @@
 #include "spawn_players.h"
 #include "menu_items.h"
 #include <course.h>
-#include "OverKartHooks.h"
+#include "OverKart5Hooks.h"
 
 s32 D_8018D900[8];
 s16 D_8018D920[8];
