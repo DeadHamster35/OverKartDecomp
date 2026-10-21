@@ -425,9 +425,7 @@ void GFXPiranha(int PakkunAddress, float Distance)
 {
 	//Load Texture Block
 	//
-	gDPLoadTextureBlock
-	(
-		GraphPtrOffset++, PakkunAddress, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
+	gDPLoadTextureBlock(GraphPtrOffset++, PakkunAddress, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
 		G_TX_MIRROR,   G_TX_CLAMP ,
 		G_TX_NOMASK, G_TX_NOMASK,     G_TX_NOLOD, G_TX_NOLOD
 	);
@@ -510,9 +508,7 @@ void GFXTree1(float Distance)
 	
 	//Load Texture Block
 	//
-	gDPLoadTextureBlock
-	(
-		GraphPtrOffset++, 0x03009000, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
+	gDPLoadTextureBlock(GraphPtrOffset++, 0x03009000, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
 		G_TX_CLAMP | G_TX_NOMIRROR,   G_TX_CLAMP | G_TX_NOMIRROR,
 		G_TX_NOMASK, G_TX_NOMASK,     G_TX_NOLOD, G_TX_NOLOD
 	);

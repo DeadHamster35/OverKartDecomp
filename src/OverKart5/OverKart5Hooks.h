@@ -9,6 +9,7 @@
 #include "OverKartHooks.h"
 
 extern short RaceStatus;
+extern bool ScrollLock;
 
 void EndRace(void);
 void DataMenuController(Controller* controller, u16 controllerIdx);

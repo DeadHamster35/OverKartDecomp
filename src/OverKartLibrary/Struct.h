@@ -553,8 +553,7 @@ typedef struct SeqChannelStruct{
 		int *Audiotask2loop;
 		int *Unknown15;
 		int Unknown16;
-		int Unknown17;
-		int Unknown18;
+		char QValue[8];
 		int *Currenttracknote;
 		int Unknown19;
 		int Unknown20;
@@ -588,11 +587,13 @@ typedef struct SeqPlayerStruct{
 		int Playflag; 
 		Uchar CurrentID; 
 		Uchar SubID; 
-		short Unknown1;
+		char Unknown;
+		char QValue;
 		Ushort Tempo;
 		short Unknown2;
 		int Loopcount;
-		int Unknown3;
+		short FadingCount;
+		short Unknown3;
 		int *RawSequence;
 		float VolumeFull;
 		float Unknown5;

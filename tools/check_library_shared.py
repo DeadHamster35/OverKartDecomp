@@ -7,6 +7,8 @@ Baseline is LibraryDecomp. AmpedUpDecomp and OverKartDecomp are compared to it
 and to each other. Generated .s files are skipped. CRLF is treated as equal to LF.
 
 OverKartDefaults.c is host-owned and lives outside this subtree.
+StockAliases.h stays host-owned until Stage 7 deletes it.
+Amped MainInclude.h omits actors.h / actors_extended.h (Stage 1.5 Object* item actors).
 S9 expected: exit 0.
 """
 
@@ -18,7 +20,7 @@ import sys
 
 REPOS = ("LibraryDecomp", "AmpedUpDecomp", "OverKartDecomp")
 SUBTREE = os.path.join("src", "OverKartLibrary")
-ALLOW = frozenset()
+ALLOW = frozenset({"StockAliases.h", "MainInclude.h"})
 SKIP_EXT = frozenset({".s"})
 SKIP_NAMES = frozenset({".DS_Store"})
 

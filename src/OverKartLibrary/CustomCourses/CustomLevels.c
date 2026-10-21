@@ -19,18 +19,15 @@ typedef struct {
 
 extern OKTexMap SMenuTextureMap[];
 
-static int sStockAudioSaved = 0;
-static int sCourseTableSaved = 0;
-static int sCustomMenuLive = 0;
-
-
-
 unsigned char ScaleXMode = 2, ScaleYMode = 2, ScaleZMode = 2, ScalePad = 0;
 float LevelScales[7] =
 {
 	0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f
 };
 short ZFLIP, YFLIP;
+static int sStockAudioSaved = 0;
+static int sCustomMenuLive = 0;
+static int sCourseTableSaved = 0;
 
 void FPSCheck(void)
 {
@@ -214,7 +211,7 @@ void BackupStockAudioTables(void)
 	*TargetAddress = (int)&ok_Instrument;
 	RunRAM();
 
-	*(long *)(&ok_USAudio) = g_MUSRawAudioTable.Pointer[0].Address;
+	*(long *)(&ok_USAudio) = (*(RawAudioTable *) AlTbl).Pointer[0].Address;
 	*(long *)(&ok_USAudio + 1) = (*(InstrumentTable *)AlCtlHeader).Pointer[0].Address;
 	*(long *)(&ok_MRSong) = (*(SequenceTable *)MUSTablePointer).Pointer[3].Address;
 	*(long *)(&ok_MRSong + 1) = (*(SequenceTable *)MUSTablePointer).Pointer[3].Length;
@@ -376,14 +373,18 @@ void SetPath(void)
 	{
 		Marker *PathArray;
 		Marker *PathArrayB;
+		int aLimit;
+		int bLimit;
+		short *stockLengths;
 
-		if (HotSwapID > 0)
+		/* HotSwap already wrote OverKartHeader.PathLength into PathLengthTable[0]. */
+		stockLengths = (short *) &PathLengthTable[pathCourse];
+		aLimit = stockLengths[ThisPath];
+		if (aLimit < 1)
 		{
-			if (OverKartHeader.PathLength[ThisPath] < 1)
-			{
-				continue;
-			}
+			continue;
 		}
+		bLimit = aLimit;
 		if (PathTable[pathCourse][ThisPath] == 0)
 		{
 			continue;
@@ -398,7 +399,7 @@ void SetPath(void)
 			GlobalIntA = -1;
 			{
 			    int ThisMark;
-			for (ThisMark = 0; ThisMark < 3000; ThisMark++)
+			for (ThisMark = 0; ThisMark < aLimit; ThisMark++)
 			{
 				if (PathArray[ThisMark].Position[0] == -32768)
 				{
@@ -445,7 +446,7 @@ void SetPath(void)
 			GlobalIntA = -1;
 			{
 			    int ThisMark;
-			for (ThisMark = 0; ThisMark < 9999; ThisMark++)
+			for (ThisMark = 0; ThisMark < bLimit; ThisMark++)
 			{
 				if (PathArrayB[ThisMark].Position[0] == -32768)
 				{
@@ -490,7 +491,7 @@ void SetPath(void)
 			GlobalIntA = -1;
 			{
 			    int ThisMark;
-			for (ThisMark = 0; ThisMark < 3000; ThisMark++)
+			for (ThisMark = 0; ThisMark < aLimit; ThisMark++)
 			{
 				if (PathArray[ThisMark].Position[0] == -32768)
 				{
@@ -530,7 +531,7 @@ void SetPath(void)
 			GlobalIntA = -1;
 			{
 			    int ThisMark;
-			for (ThisMark = 0; ThisMark < 3000; ThisMark++)
+			for (ThisMark = 0; ThisMark < bLimit; ThisMark++)
 			{
 				if (PathArrayB[ThisMark].Position[0] == -32768)
 				{
@@ -1921,6 +1922,7 @@ void LoadCustomHeader(int inputID)
 	if ((HotSwapID > 0) && (inputID != -1))
 	{
 		int version;
+		int dmaSize;
 		long headerROM;
 
 		headerROM = *(long *)(&ok_HeaderOffsets + ((inputID)*1) + ((HotSwapID - 1) * 0x14));
@@ -1938,9 +1940,15 @@ void LoadCustomHeader(int inputID)
 			}
 			else
 			{
+				dmaSize = (int)sizeof(OKHeader);
+				dmaSize = (dmaSize + 7) & ~7;
+				if (dmaSize > ok_CourseHeaderSize)
+				{
+					dmaSize = ok_CourseHeaderSize;
+				}
 				*SourceAddress = headerROM;
 				*TargetAddress = (long)&ok_CourseHeader;
-				DataLength = sizeof(OKHeader);
+				DataLength = dmaSize;
 				RunDMA();
 			}
 
@@ -2267,6 +2275,9 @@ void SetHS(int HS_ID)
 			CopyCourseTable(1);
 		}
 		HotSwapID = HS_ID;
+		/* Always refill. HsTableSet zeros the cups for a race; returning
+		 * with HotSwapID already 1 used to skip this and leave every
+		 * map-select preview on course 0. */
 		for (Index = 0; Index < 20; Index++)
 		{
 			g_CupArray[Index] = Index;

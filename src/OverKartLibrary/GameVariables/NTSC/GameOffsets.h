@@ -26,9 +26,16 @@ extern void DrawBuffer(void* Car, char kno, char place); //0x80021244
 
 
 /* KWCheckRadiusXZ: math_util_2.h */
+extern void DisplayShadow(Vec3f Position, Vec3s Angle, f32 Size);
+extern void DisplayFlagGate(Camera* PlayerCamera);
 /* MoveIWA → UpdateActorFallingRocks in StockAliases.h */
+extern void DeleteObjectBuffer(Object *Object);
+extern s16 AddObjectBuffer(Vec3f Position, Vec3s Angle, Vec3f Velocity, s16 objectID);
 
 //float Radius,float hight,float Param
+extern bool CollisionCylinder(Player *Car, Vec3f Position, f32 Radius, f32 Height, f32 Parameter); //0x8029EEB8
+extern bool CollisionSphere(Player *Car, Object *Object); //0x8029FB80
+extern void KillObject(Object* ObjectTarget);
 
 /* RouletteStart / KWAnmStart: update_objects.h */
 
@@ -161,6 +168,7 @@ extern void FadeMain();
 extern void FadeMain2(int i);
 extern void SetFadeOut(int Fade);
 extern short PutPylon(Vector pos,short Number);
+extern s16 PutObject(Vec3f pos, s16 Category);
 
 extern char FadingFlag[5];
 extern int FadeCounter[5];
@@ -183,6 +191,8 @@ extern void SprDrawClipST(int sx,int sy,int sizex,int sizey,int ss,int tt,int Mo
 /* KWCreateAffine3D / IceKage / Board / Hole / Anm: math_util_2.h */
 
 /* KWSetPrimColor / KWSetEnvColor / Sub*Mode / *Mode (except ToumeIMode / Color2Mode): render_objects.h */
+
+extern void BumpObject(Object* InputObject);
 
 /* InitializePlayer: spawn_players.h */
 /* DrawLocalSkeletonShape: animation.h (Armature*, Animation**) */
@@ -213,7 +223,8 @@ extern short g_DebugBars;
 /* KartVtx: render_player.h */
 
 
-/* antialiasToggle / antialiasToggleB → __osViCurr/Next->features (sViContexts[].features) */
+extern long antialiasToggle;
+extern long antialiasToggleB;
 
 
 /* g_CupArray / g_cup*Array* → CupCourseOrder in StockAliases.h */
@@ -235,32 +246,22 @@ extern long g_DEBUG;
 /* g_CourseBannerOffsets / g_BattleBannerOffsets → TexBuff slots via D_800E7DC4[] + SMenuTextureMap */
 /* g_cup*preview* were stock RAM copies of the same MenuTexture[2] rows */
 
-/* g_NintendoLogoOffset (sMemoryPool+0x7fbc) / g_NintendoLogoBorder (func_800942D0+0x1dc): batch 6 overlay/SMC */
+extern long 	g_NintendoLogoOffset; //0x8019F88C
 extern int	CheckContPackMenu();
+extern long 	g_NintendoLogoBorder;
 
 extern char g_lakituStatus; // 0x80165DCE
 
 
-extern short p_Input; //
-extern char d_Input; //
+/* p_Input / d_Input / player1input* / p1Button → Controllers[0] in StockAliases.h */
 extern char c_Input;
 
-extern short player1inputX;
-extern short player1inputY;
-extern short p1Button;
-
-
-extern float g_player1LocationX;
-extern float g_player1LocationY;
-extern float g_player1LocationZ;
+/* g_player1Location* / g_player1Speed* → GamePlayers[0] in StockAliases.h */
 extern float g_player1LastLocationX;
 extern float g_player1LastLocationY;
 extern float g_player1LastLocationZ;
-extern long g_player1LocationA;
-extern float g_player1SpeedX;
-extern float g_player1SpeedY;
-extern float g_player1SpeedZ;
-extern float g_player1SpeedA;
+/* g_player1LocationA → GamePlayers[0].Direction[0] in StockAliases.h */
+/* g_player1SpeedX/Y/Z/A → GamePlayers[0] in StockAliases.h */
 extern float g_player1SpeedU1;
 extern float g_player1SpeedU2;
 extern long g_playerStatus;
@@ -294,12 +295,10 @@ extern void GULookAt(Mtx *m, float xEye, float yEye, float zEye,
 	       float xUp,  float yUp,  float zUp);
 extern void GUPerspective(Mtx *m, u16 *perspNorm, float fovy, float aspect, float near, float far, float Scale);
 
-/* g_player1ScreenWidth → GlobalScreen[0]->Width in StockAliases.h */
+/* g_player1ScreenWidth / g_player1View / g_player1Section → StockAliases.h */
 extern short g_player1ScreenHeight; //0x8015F4AE
 extern short g_player1ScreenX; //0x8015F4B0
 extern short g_player1ScreenY; //0x8015F4B2
-extern short g_player1View; //0x8015F4B4
-extern short g_player1Section; //0x8015F4B8
 
 extern short g_player2ScreenWidth; //0x8015F4AC
 extern short g_player2ScreenHeight; //0x8015F4AE
@@ -323,13 +322,15 @@ extern short g_player4View; //0x8015F434
 extern short g_player4Section; //0x8015F438
 
 
-/* g_TrialTime / g_lap2Time / g_lap3Time → TimePlayerLastTouchedFinishLine in StockAliases.h */
+/* g_TrialTime → TimePlayerLastTouchedFinishLine in StockAliases.h */
+extern float g_lap2Time;
+extern float g_lap3Time;
 
 
-extern short g_progressValue;
+/* g_progressValue → NearestPathPointByPlayerId[0] in StockAliases.h */
 
 
-/* g_PlayerRankTable / g_playerPosition1–8 → GPCurrentRaceRankByPlayerId in StockAliases.h */
+/* g_PlayerRankTable / g_playerPosition1-8 → GPCurrentRaceRankByPlayerId in StockAliases.h */
 
 /* Gravity1: kart_attributes.h (f32[8]) */
 extern float gravity_2;
@@ -394,9 +395,7 @@ extern short asm_DisableHUD; //0x80059D08
 extern short g_GhostHUDID; //0x8018DAAA
 
 extern long g_mlogoY;// 0x8018D9F0
-extern long g_mflagID;// 0x8018DA30
-extern long g_mpressstartID;// 0x8018DA58
-extern long g_mracewayTime;// 0x8018DA80
+/* g_mflagID / g_mpressstartID / g_mracewayTime → MenuItems[].Kind in StockAliases.h */
 
 /* KBGNumberNext / MenuScreenA/B/C / TitleDemo / CupSelect / CourseSelect / InGameTT / InGame: menus.h */
 
@@ -405,7 +404,8 @@ extern long g_mracewayTime;// 0x8018DA80
 
 /* songID / g_musicIDRaceways: StartRaceBGM NaSeqStart immediate; StartRaceBGMCustom */
 /* asm_SongA / asm_SongB: StartRaceBGM / CheckPause 3P4P music guards; OKMusicIn3P4P */
-/* CullDL_Parameters: packed decoder overlay; live C is Decodespculldisplaylist gsSPCullDisplayList(0, 7) */
+
+extern Uint CullDL_Parameters;
 extern long g_courseTable;
 /* KeystockBuffer: staff ghost D_802BFB80.arraySize8[0][2][3]. KeystockCounter: sCourseGhostFramesRemaining */
 
@@ -426,7 +426,7 @@ extern long g_courseTable;
 #define OGA_ACT_TENUKI_KYOKA        10 // Avoid Hectic
 #define OGA_ACT_TURBO            11 // Allow Boost
 
-extern ActionData *ActData_Pointer;
+/* ActData_Pointer → CoursesCPUBehaviour[0] in StockAliases.h */
 extern Ushort ActionDataNumCustom[8];
 
 
@@ -450,6 +450,7 @@ extern char g_player4Character;
 
 extern int GFXCounter;
 extern int PKCounter;
+extern void ExecuteItem(Player* PlayerID);
 
 /* MenuMultiplayerSelection: menus.h */
 
@@ -457,10 +458,7 @@ extern char g_placedBadGPadvance;
 extern short g_P1TopSpeed;
 
 
-extern char g_menuUpdateTimer1;
-extern char g_menuUpdateTimer2;
-extern char g_menuUpdateTimer3;
-extern char g_menuUpdateTimer4;
+/* g_menuUpdateTimer* → SEQDataBlock[].FrameCountDown LSB in StockAliases.h */
 
 /* g_menuPreviewValue* / g_BattlePreviewValue* → MenuItems[].Work1 LSB in StockAliases.h */
 
@@ -469,11 +467,17 @@ extern char g_menuUpdateTimer4;
 extern char g_ReplayFlag;
 /* g_screenViewAngle → CameraZoom in StockAliases.h */
 
-/* g_sfxPause is SequencePlayer overlay (gSequencePlayers+0x293); batch 6 */
+extern char g_sfxPause;
 
-/* g_MUSSequenceTable / g_MUSInstrumentTable / g_MUSRawAudioTable → StockAliases.h heap pointers */
-/* g_MUSBankMapTable is AlBankSets (audio heap, not named BSS) */
-/* MUSTablePointer is ALSeqFile* in audio/load.c, not AudioTablePointers */
+extern long g_RawAudio; //0x803B9260
+
+#include <PR/libaudio.h>
+extern ALSeqFile *MUSTablePointer;
+extern ALSeqFile *AlCtlHeader;
+extern ALSeqFile *AlTbl;
+extern u16 SequenceCount;
+/* g_MUSSequenceTable is MUSTablePointer; g_MUSInstrumentTable is AlCtlHeader */
+/* g_MUSRawAudioTable is AlTbl; g_MUSBankMapTable is AlBankSets (audio heap, not named BSS) */
 extern SFXTempPointerStruct SFXPointer;
 
 extern short g_surfaceCheckP1;
@@ -618,10 +622,12 @@ extern SeqPlayerStruct SeqPlayer[4];
 
 /* KWGetStar: update_objects.h */
 
-
 extern Ushort RGBAFallingLeaf[];
 extern Ushort RGBAQuestionMark[];
 extern Ushort RGBALeaf[];
+extern void InitialMapObject(void);
+extern void SetTreeObject(struct ActorSpawnData *);
+extern void SetPakkunObject(struct ActorSpawnData *);
 /* LoadMapData → LoadCourse in StockAliases.h */
 /* FallingRockGFX_U/L SMC → FallingRockGFX / FallingRockShadowGFX in actors.c */
 extern int ShadowModel;

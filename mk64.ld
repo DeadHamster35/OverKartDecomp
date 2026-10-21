@@ -72,6 +72,7 @@ OUTPUT_ARCH (mips)
     M(LitroFunc) \
     M(OverKartObjectHandler) \
     M(OKMenu) \
+    M(OKMenuVtx) \
     M(MarioKartPractice) \
     M(OverKart) \
     M(OverKartDefaults) \
