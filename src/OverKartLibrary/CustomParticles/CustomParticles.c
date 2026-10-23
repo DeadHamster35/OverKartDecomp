@@ -126,11 +126,11 @@ void ParticleFiltermode(CustomParticle *particle)
 	{
 	case KWMODE_BL:
 	case KWMODE_BL_FLASH:
-		gSPSetOtherMode(GraphPtrOffset++,G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, G_TF_BILERP);
+		gSPSetOtherMode(DisplayListHead++,G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, G_TF_BILERP);
 		break;
 	case KWMODE_PT:
 	case KWMODE_PT_FLASH:
-		gSPSetOtherMode(GraphPtrOffset++,G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, G_TF_POINT);
+		gSPSetOtherMode(DisplayListHead++,G_SETOTHERMODE_H, G_MDSFT_TEXTFILT, 2, G_TF_POINT);
 		break;
 	default:
 		break;
@@ -421,7 +421,7 @@ void ParticleDrawCommon32X32(CustomParticle *particle, int Player, bool RGBAMode
 
 	rdist= particle->Renderdistance;
 
-	Distance=CheckDisplayRange(GlobalCamera[Player]->CameraPos,particle->Position,GlobalCamera[Player]->CameraDirection[1],20*20,g_screenViewAngle[Player],rdist*rdist);
+	Distance=CheckDisplayRange(GlobalCamera[Player]->CameraPos,particle->Position,GlobalCamera[Player]->CameraDirection[1],20*20,CameraZoom[Player],rdist*rdist);
 	
 	if(Distance<0 && InGame == 1) // Not on screen
 	{
@@ -429,20 +429,20 @@ void ParticleDrawCommon32X32(CustomParticle *particle, int Player, bool RGBAMode
 	}
 
 	// Setup //
-	GFXTile = KWTextureIA_AAZBBL_Init;
+	GFXTile = D_0D007B00;
 	SpriteMode = 0;
 
 	if (RGBAMode)
 	{
-		GFXTile = kwtexture_rgba_xlu_aa_zb_bl_init;
+		GFXTile = KWTextureRGBAXLUAAZBBlInit;
 		SpriteMode = 1;
 	}
 
-	VTXTile = (Vtx_t *) Vtx_KTile32x32;
+	VTXTile = (Vtx_t *) VtxKTile32X32;
 
 	if (particle->Xflip)
 	{
-		VTXTile = (Vtx_t *) Vtx_KTile32x32XFlip;
+		VTXTile = (Vtx_t *) VtxKTile32X32XFlip;
 	}
 
 	// Sheets //
@@ -504,14 +504,14 @@ void ParticleDrawCommon32X32(CustomParticle *particle, int Player, bool RGBAMode
 	{
 	default:
 	case 0:
-		gSPDisplayList(GraphPtrOffset++, GFXTile);
+		gSPDisplayList(DisplayListHead++, GFXTile);
 		ParticleColormode(particle);
 		ParticleFiltermode(particle);
 		KWTextureIA16Sub(sprite_sheet, (Vtx *) VTXTile,32,32,32,32);
 		break;
 
 	case 1:
-		gSPDisplayList(GraphPtrOffset++, GFXTile);
+		gSPDisplayList(DisplayListHead++, GFXTile);
 		ParticleColormode(particle);
 		ParticleFiltermode(particle);
 		KWTextureRGBASubBL(sprite_sheet, (Vtx *) VTXTile,32,32,32);

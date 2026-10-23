@@ -46,9 +46,9 @@ void SlayerInit(void)
             int ThisPlayer;
         for (ThisPlayer = 0; ThisPlayer < PlayerCount; ThisPlayer++)
         {
-            LocalPosition[0] = (short)GlobalPlayer[ThisPlayer].Position[0];
-            LocalPosition[1] = (short)GlobalPlayer[ThisPlayer].Position[1];
-            LocalPosition[2] = (short)GlobalPlayer[ThisPlayer].Position[2];
+            LocalPosition[0] = (short)GamePlayers[ThisPlayer].Position[0];
+            LocalPosition[1] = (short)GamePlayers[ThisPlayer].Position[1];
+            LocalPosition[2] = (short)GamePlayers[ThisPlayer].Position[2];
             PlacePlayerSpawn(LocalPosition, ThisPlayer);
         }
         }        

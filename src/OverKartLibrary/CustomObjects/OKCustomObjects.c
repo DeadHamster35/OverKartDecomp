@@ -235,14 +235,14 @@ void OKObjectReaction(OKObject* InputObject, short ResultType, int Player)
 			{
 				InputObject->ObjectData.Velocity[0] = 0;
 				InputObject->ObjectData.Velocity[1] = 5;
-				//InputObject->ObjectData.Velocity[2] = ObjectType->Hitbox + GlobalPlayer[Player].Radius;
+				//InputObject->ObjectData.Velocity[2] = ObjectType->Hitbox + GamePlayers[Player].Radius;
 				
-				MakeAlignVector(InputObject->ObjectData.Velocity, GlobalPlayer[Player].Direction[1] + GlobalPlayer[Player].Slipang);
+				MakeAlignVector(InputObject->ObjectData.Velocity, GamePlayers[Player].Direction[1] + GamePlayers[Player].Slipang);
 
 				ObjectVelocity[0] = 0;
 				ObjectVelocity[1] = 0;
 				ObjectVelocity[2] = 5;
-				MakeAlignVector(ObjectVelocity, GlobalPlayer[Player].Direction[1] + GlobalPlayer[Player].Slipang);
+				MakeAlignVector(ObjectVelocity, GamePlayers[Player].Direction[1] + GamePlayers[Player].Slipang);
 				InputObject->AngularVelocity[0] = ObjectVelocity[0];
 				InputObject->AngularVelocity[1] = ObjectVelocity[1];
 				InputObject->AngularVelocity[2] = ObjectVelocity[2];
@@ -300,7 +300,7 @@ void SetSimpleBump(int PlayerID, Vector SourcePosition, Vector SourceRadius, sho
 	    int CurrentVector;
 	for (CurrentVector = 0; CurrentVector < 3; CurrentVector++)
 	{
-		TempPosition[CurrentVector] = SourcePosition[CurrentVector] - GlobalPlayer[PlayerID].Position[CurrentVector];
+		TempPosition[CurrentVector] = SourcePosition[CurrentVector] - GamePlayers[PlayerID].Position[CurrentVector];
 	}
 	}	
 	if (Angle != 0)
@@ -318,9 +318,9 @@ void SetSimpleBump(int PlayerID, Vector SourcePosition, Vector SourceRadius, sho
 	}	
 	
 
-	GlobalPlayer[PlayerID].Velocity[0] = 0;
-	GlobalPlayer[PlayerID].Velocity[1] = 0;
-	GlobalPlayer[PlayerID].Velocity[2] = 0;
+	GamePlayers[PlayerID].Velocity[0] = 0;
+	GamePlayers[PlayerID].Velocity[1] = 0;
+	GamePlayers[PlayerID].Velocity[2] = 0;
 
 	ObjectPosition[0] = SourceRadius[0] * DScale[0] * 1.1f;
 	ObjectPosition[1] = SourceRadius[1] * DScale[1] * 1.1f;
@@ -334,7 +334,7 @@ void SetSimpleBump(int PlayerID, Vector SourcePosition, Vector SourceRadius, sho
 	    int CurrentVector;
 	for (CurrentVector = 0; CurrentVector < 3; CurrentVector++)
 	{
-		GlobalPlayer[PlayerID].Position[CurrentVector] = SourcePosition[CurrentVector] - ObjectPosition[CurrentVector];
+		GamePlayers[PlayerID].Position[CurrentVector] = SourcePosition[CurrentVector] - ObjectPosition[CurrentVector];
 	}
 	}
 }
@@ -411,12 +411,12 @@ void OKObjectCollision(OKObject *InputObject)
 		
 			// run collision check for Player
 			
-			if ( (GlobalPlayer[CurrentPlayer].SlipFlag & IS_STAR) != 0)
+			if ( (GamePlayers[CurrentPlayer].SlipFlag & IS_STAR) != 0)
 			{
 				continue;
 			}
 
-			if ( (GlobalPlayer[CurrentPlayer].SlipFlag & IS_GHOST) != 0)
+			if ( (GamePlayers[CurrentPlayer].SlipFlag & IS_GHOST) != 0)
 			{
 				continue;
 			}
@@ -429,13 +429,13 @@ void OKObjectCollision(OKObject *InputObject)
 					TempPosition,
 					TempBoxSize,
 					BoxAngles,
-					GlobalPlayer[CurrentPlayer].Position, 
-					GlobalPlayer[CurrentPlayer].Radius
+					GamePlayers[CurrentPlayer].Position, 
+					GamePlayers[CurrentPlayer].Radius
 				)
 			) //Complex Boolean
 			{
 				
-				if(GlobalPlayer[CurrentPlayer].SlipFlag & STAR)
+				if(GamePlayers[CurrentPlayer].SlipFlag & STAR)
 				{
 					OKObjectReaction(InputObject, (short) HitBox[ThisBox].DamagedResult, CurrentPlayer);
 				}
@@ -578,7 +578,7 @@ void DrawOKObjectLoop(OKModel* ThisModel, int Player, int Type, int ForceRender)
 {
 	// Add the Texture Draw F3D Code
     
-    gSPDisplayList(GraphPtrOffset++,(ObjectSegment | ThisModel->TextureAddress) )
+    gSPDisplayList(DisplayListHead++,(ObjectSegment | ThisModel->TextureAddress) )
 	
 	//Now we have to parse for each individual object, and normalize the Model to the location and Angle.
 
@@ -592,7 +592,7 @@ void DrawOKObjectLoop(OKModel* ThisModel, int Player, int Type, int ForceRender)
 			{
 				//We use the sphere collision test to see if the character is within render Radius.
 
-				if( (ForceRender != 0) || (TestCollideSphere(OKObjectArray[CurrentObject].ObjectData.Position, (float)(OverKartRAMHeader.ObjectTypeList[Type].RenderRadius) ,GlobalPlayer[Player].Position, GlobalPlayer[Player].Radius)) )
+				if( (ForceRender != 0) || (TestCollideSphere(OKObjectArray[CurrentObject].ObjectData.Position, (float)(OverKartRAMHeader.ObjectTypeList[Type].RenderRadius) ,GamePlayers[Player].Position, GamePlayers[Player].Radius)) )
 				{
 					Uint* MeshAddress = (Uint*)GetRealAddress(ObjectSegment |ThisModel->MeshAddress);
 
@@ -607,7 +607,7 @@ void DrawOKObjectLoop(OKModel* ThisModel, int Player, int Type, int ForceRender)
 						    int CurrentMesh;
 						for (CurrentMesh = 0; CurrentMesh < ThisModel->MeshCount; CurrentMesh++)
 						{
-							gSPDisplayList(GraphPtrOffset++, (ObjectSegment | MeshAddress[CurrentMesh]) );
+							gSPDisplayList(DisplayListHead++, (ObjectSegment | MeshAddress[CurrentMesh]) );
 						}
 						}	
 					}
@@ -624,8 +624,8 @@ void DrawOKObjects(Camera* LocalCamera, int ForceRender)
 	GlobalUIntB = 0;
 	if (ScrollLock)
 	{
-		int CurrentPlayer = (*(long*)&LocalCamera - (long)&g_Camera1) / 0xB8;
-        gSPSetGeometryMode(GraphPtrOffset++,G_CULL_BACK | G_ZBUFFER | G_SHADING_SMOOTH | G_SHADE);
+		int CurrentPlayer = (*(long*)&LocalCamera - (long)&Cameras[0]) / 0xB8;
+        gSPSetGeometryMode(DisplayListHead++,G_CULL_BACK | G_ZBUFFER | G_SHADING_SMOOTH | G_SHADE);
 
 		//For efficiency, we sort the objects by Textures when possible.
 		//This means running through each object TYPE, and drawing each piece of the Model.
@@ -691,7 +691,7 @@ void DrawOKObjects(Camera* LocalCamera, int ForceRender)
 
 			if (OverKartRAMHeader.ObjectTypeList[OKObjectArray[ThisObject].TypeIndex].ZSortToggle != 0)
 			{			
-				OKObjectArray[ThisObject].ZBuffer = CalcDistance(GlobalPlayer[CurrentPlayer].Position, OKObjectArray[ThisObject].ObjectData.Position);
+				OKObjectArray[ThisObject].ZBuffer = CalcDistance(GamePlayers[CurrentPlayer].Position, OKObjectArray[ThisObject].ObjectData.Position);
 			}
 			else
 			{
@@ -763,7 +763,7 @@ void CheckSoundObject(OKObject* InputObject)
             int ThisPlayer;
         for (ThisPlayer = 0; ThisPlayer < PlayerCount; ThisPlayer++)
         {
-            if (CalcDistance(GlobalPlayer[ThisPlayer].Position, InputObject->ObjectData.Position) < TypeData->SoundRadius)
+            if (CalcDistance(GamePlayers[ThisPlayer].Position, InputObject->ObjectData.Position) < TypeData->SoundRadius)
             {
                 GlobalBoolA = true;
             }

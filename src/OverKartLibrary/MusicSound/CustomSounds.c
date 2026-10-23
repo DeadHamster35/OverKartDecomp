@@ -281,9 +281,9 @@ bool IsAnyPlayerNear(float targetpos[], float Radius)
         int PlayerID;
     for (PlayerID = 0; PlayerID < 4; PlayerID++)		
     {
-        if(((GlobalPlayer[(int)PlayerID].Flag & IS_PLAYER) != 0) && ((GlobalPlayer[(int)PlayerID].Flag & IS_GHOST) == 0))
+        if(((GamePlayers[(int)PlayerID].Flag & IS_PLAYER) != 0) && ((GamePlayers[(int)PlayerID].Flag & IS_GHOST) == 0))
         {
-            if(KWCheckRadiusXZ(GlobalPlayer[(int)PlayerID].Position[0],GlobalPlayer[(int)PlayerID].Position[2],targetpos[0],targetpos[2],Radius) == 1)
+            if(KWCheckRadiusXZ(GamePlayers[(int)PlayerID].Position[0],GamePlayers[(int)PlayerID].Position[2],targetpos[0],targetpos[2],Radius) == 1)
             {
                 near[(int)PlayerID] = 1;
             }

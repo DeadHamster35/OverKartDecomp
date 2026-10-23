@@ -72,8 +72,9 @@ extern float ZeroVector[3];
 
 extern POSXY PlayerSelectPositions[];
 extern struct PlayerTextureTable SelectNamePlateTable;
-extern struct PlayerTextureTable SelectPortraitTable[9];
-extern struct ObjBlock GlobalMenuHUD[32];
+extern struct PlayerTextureTable D_800E8320[9];
+extern struct ObjBlock MenuItems[];
+void UpdateActorFallingRocks(struct FallingRock *);
 /* Overlay of kart_attributes tables that begin at stock GlobalStat[]. */
 #define KartStats (*(struct Stats *) GlobalStat)
 extern float GlobalWeight[];

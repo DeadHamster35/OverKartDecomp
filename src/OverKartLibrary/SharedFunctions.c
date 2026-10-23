@@ -13,15 +13,15 @@ void DisplayFlagGateCheck(Camera* LocalCamera)
         
         if (OverKartHeader.FogStart > 0)
 		{
-			g_fogToggleBanshee = 1;
-			g_fogR = (Uint)OverKartHeader.FogRGBA[0];
-			g_fogG = (Uint)OverKartHeader.FogRGBA[1];
-			g_fogB = (Uint)OverKartHeader.FogRGBA[2];
-			gDPSetCycleType(GraphPtrOffset++, G_CYC_2CYCLE);
-			gDPSetFogColor(GraphPtrOffset++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], (Uint)OverKartHeader.FogRGBA[3]);
-			gSPFogPosition(GraphPtrOffset++, OverKartHeader.FogStart, OverKartHeader.FogStop);
-			gDPSetRenderMode(GraphPtrOffset++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE);
-			gSPSetGeometryMode(GraphPtrOffset++, (G_FOG | G_SHADING_SMOOTH));
+			SkyToggle = 1;
+			FogRed = (Uint)OverKartHeader.FogRGBA[0];
+			FogGreen = (Uint)OverKartHeader.FogRGBA[1];
+			FogBlue = (Uint)OverKartHeader.FogRGBA[2];
+			gDPSetCycleType(DisplayListHead++, G_CYC_2CYCLE);
+			gDPSetFogColor(DisplayListHead++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], (Uint)OverKartHeader.FogRGBA[3]);
+			gSPFogPosition(DisplayListHead++, OverKartHeader.FogStart, OverKartHeader.FogStop);
+			gDPSetRenderMode(DisplayListHead++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE);
+			gSPSetGeometryMode(DisplayListHead++, (G_FOG | G_SHADING_SMOOTH));
 		}
 		DisplayFlagGate(LocalCamera);
 		if (SprintFinishArmed)
@@ -38,7 +38,7 @@ void DisplayFlagGateCheck(Camera* LocalCamera)
 			GoalBannerPos[1] = SavedBanner[1];
 			GoalBannerPos[2] = SavedBanner[2];
 		}
-        gSPClearGeometryMode(GraphPtrOffset++, (G_FOG));
+        gSPClearGeometryMode(DisplayListHead++, (G_FOG));
         
 	}
 }
@@ -119,6 +119,11 @@ void DMABase729A30Bypass(int Input, int Length, long Output)
 	}
 }
 
+void ramCopy(Uint dst, Uint src, Uint n)
+{
+	memcpy((void *) (uintptr_t) dst, (const void *) (uintptr_t) src, (size_t) n);
+}
+
 void RunRAM(void)
 {
 	ramCopy(*TargetAddress, *SourceAddress, DataLength);
@@ -155,7 +160,7 @@ Uint GetRGB32(int R, int G, int B)
 
 void SetFontColor(int FontR, int FontG, int FontB, int ShadowR, int ShadowG, int ShadowB)
 {
-	Ushort *ColorValues = (Ushort *) GetRealAddress((int) common_tlut_debug_font);
+	Ushort *ColorValues = (Ushort *) GetRealAddress((int) CommonTLUTDebugFont);
 	ColorValues[0] = 0; //0000 transparent
 	ColorValues[1] = GetRGBA16(FontR,FontG,FontB,1);
 	ColorValues[2] = GetRGBA16(ShadowR,ShadowG,ShadowB,1);
@@ -173,9 +178,9 @@ void SetFontColorPalette(Uint Address, int FontR, int FontG, int FontB, int Shad
 
 void LoadFontF3D(Uint Address)
 {
-	gSPDisplayList(GraphPtrOffset++, 0x0D008108);
-	gSPDisplayList(GraphPtrOffset++, Address);
-	gDPSetAlphaCompare	(GraphPtrOffset++ ,G_AC_THRESHOLD);
+	gSPDisplayList(DisplayListHead++, 0x0D008108);
+	gSPDisplayList(DisplayListHead++, Address);
+	gDPSetAlphaCompare	(DisplayListHead++ ,G_AC_THRESHOLD);
 }
 
 void SetupFontF3D(void)
@@ -374,7 +379,7 @@ int GetRealAddress(int RSPAddress)
 
 void DrawBox(int X, int Y, int SizeX, int SizeY, int R, int G, int B, int A)
 {
-	GraphPtr = FillRect1ColorF(GraphPtr, X, Y, X + SizeX, Y + SizeY, R, G, B, A);
+	DisplayListHead = FillRect1ColorF(DisplayListHead, X, Y, X + SizeX, Y + SizeY, R, G, B, A);
 }
 
 
@@ -449,7 +454,7 @@ Ushort CalcVerticalDirection(Vector Origin,Vector Target)
 	uy = 	Target[1] - Origin[1];
 	uz =	Target[2] - Origin[2];
 
-	dist = Sqrtf((ux*ux)+(uz*uz));
+	dist = sqrtf((ux*ux)+(uz*uz));
 	
 	return ((Atan2t(dist,uy)));
 }
@@ -564,7 +569,7 @@ void SpriteDrawWave(int cx,int cy,Ushort *Addr,int sizex,int sizey,float WaveXSc
 	{
 		KWLoadTextureBlockRGBA16B(tmpaddr+sizex*i,sizex,1);
 		sx = (int)(intsx + (WaveXScale) * SinT(Angle+angstep*i));
-		SPRDrawClip(sx,sy,sizex,1,1);
+		SprDrawClip(sx,sy,sizex,1,1);
 		sy++;
 	}
 	}

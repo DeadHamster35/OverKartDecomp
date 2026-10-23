@@ -3,6 +3,7 @@
 #include "MainInclude.h"
 #include "OKInclude.h"
 extern void DrawPerScreen(Camera* LocalCamera);
+extern void ItemboxCollideCheck(Player* Car, Object* Target);
 extern void LoadCoin(void);
 extern void DisplayObject(void* Car, Object* InputObject);
 extern void RedCoinChallenge(long PathOffset);

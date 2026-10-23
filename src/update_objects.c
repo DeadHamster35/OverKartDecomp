@@ -65,51 +65,51 @@ Vtx DvtxTellesa48X40Xflip[] = {
     { { { -24, 20, 0 }, 0, { 3008, 2496 }, { 0xFF, 0xFF, 0xFF, 0xFF } } },
 };
 
-u16* ItemboxtblPAL[] = { common_tlut_item_window_none,
-                            common_tlut_item_window_banana,
-                            common_tlut_item_window_banana_bunch,
-                            common_tlut_item_window_green_shell,
-                            common_tlut_item_window_triple_green_shell,
-                            common_tlut_item_window_red_shell,
-                            common_tlut_item_window_triple_red_shell,
-                            common_tlut_item_window_blue_shell,
-                            common_tlut_item_window_thunder_bolt,
-                            common_tlut_item_window_fake_item_box,
-                            common_tlut_item_window_star,
-                            common_tlut_item_window_boo,
-                            common_tlut_item_window_mushroom,
-                            common_tlut_item_window_double_mushroom,
-                            common_tlut_item_window_triple_mushroom,
-                            common_tlut_item_window_super_mushroom };
+u16* ItemboxtblPAL[] = { CommonTLUTItemWindowNone,
+                            CommonTLUTItemWindowBanana,
+                            CommonTLUTItemWindowBananaBunch,
+                            CommonTLUTItemWindowGreenShell,
+                            CommonTLUTItemWindowTripleGreenShell,
+                            CommonTLUTItemWindowRedShell,
+                            CommonTLUTItemWindowTripleRedShell,
+                            CommonTLUTItemWindowBlueShell,
+                            CommonTLUTItemWindowThunderBolt,
+                            CommonTLUTItemWindowFakeItemBox,
+                            CommonTLUTItemWindowStar,
+                            CommonTLUTItemWindowBoo,
+                            CommonTLUTItemWindowMushroom,
+                            CommonTLUTItemWindowDoubleMushroom,
+                            CommonTLUTItemWindowTripleMushroom,
+                            CommonTLUTItemWindowSuperMushroom };
 
-u8* ItemboxtblIdx[] = { common_texture_item_window_none,
-                              common_texture_item_window_banana,
-                              common_texture_item_window_banana_bunch,
-                              common_texture_item_window_green_shell,
-                              common_texture_item_window_triple_green_shell,
-                              common_texture_item_window_red_shell,
-                              common_texture_item_window_triple_red_shell,
-                              common_texture_item_window_blue_shell,
-                              common_texture_item_window_thunder_bolt,
-                              common_texture_item_window_fake_item_box,
-                              common_texture_item_window_star,
-                              common_texture_item_window_boo,
-                              common_texture_item_window_mushroom,
-                              common_texture_item_window_double_mushroom,
-                              common_texture_item_window_triple_mushroom,
-                              common_texture_item_window_super_mushroom };
+u8* ItemboxtblIdx[] = { CommonTextureItemWindowNone,
+                              CommonTextureItemWindowBanana,
+                              CommonTextureItemWindowBananaBunch,
+                              CommonTextureItemWindowGreenShell,
+                              CommonTextureItemWindowTripleGreenShell,
+                              CommonTextureItemWindowRedShell,
+                              CommonTextureItemWindowTripleRedShell,
+                              CommonTextureItemWindowBlueShell,
+                              CommonTextureItemWindowThunderBolt,
+                              CommonTextureItemWindowFakeItemBox,
+                              CommonTextureItemWindowStar,
+                              CommonTextureItemWindowBoo,
+                              CommonTextureItemWindowMushroom,
+                              CommonTextureItemWindowDoubleMushroom,
+                              CommonTextureItemWindowTripleMushroom,
+                              CommonTextureItemWindowSuperMushroom };
 
-u16* LapList[] = { common_texture_hud_lap_1_on_3, common_texture_hud_lap_2_on_3,
-                           common_texture_hud_lap_3_on_3 };
+u16* LapList[] = { CommonTextureHUDLap1On3, CommonTextureHUDLap2On3,
+                           CommonTextureHUDLap3On3 };
 
-u16* KaoColpalList[] = { common_tlut_portrait_mario, common_tlut_portrait_luigi,       common_tlut_portrait_yoshi,
-                          common_tlut_portrait_toad,  common_tlut_portrait_donkey_kong, common_tlut_portrait_wario,
-                          common_tlut_portrait_peach, common_tlut_portrait_bowser };
+u16* KaoColpalList[] = { CommonTLUTPortraitMario, CommonTLUTPortraitLuigi,       CommonTLUTPortraitYoshi,
+                          CommonTLUTPortraitToad,  CommonTLUTPortraitDonkeyKong, CommonTLUTPortraitWario,
+                          CommonTLUTPortraitPeach, CommonTLUTPortraitBowser };
 
-u8* KaoIndexList[] = { common_texture_portrait_mario,       common_texture_portrait_luigi,
-                            common_texture_portrait_yoshi,       common_texture_portrait_toad,
-                            common_texture_portrait_donkey_kong, common_texture_portrait_wario,
-                            common_texture_portrait_peach,       common_texture_portrait_bowser };
+u8* KaoIndexList[] = { CommonTexturePortraitMario,       CommonTexturePortraitLuigi,
+                            CommonTexturePortraitYoshi,       CommonTexturePortraitToad,
+                            CommonTexturePortraitDonkeyKong, CommonTexturePortraitWario,
+                            CommonTexturePortraitPeach,       CommonTexturePortraitBowser };
 
 s32 Kwalloc(s32* arg0) {
     s32 temp_v0;
@@ -2412,8 +2412,8 @@ void KwinitTreeLeaf(s32 ObjectIndex, Vec3f arg1, s32 num) {
 
     KWAnmStart(ObjectIndex, 0);
     DynamicObjects[ObjectIndex].Chartptr = 7;
-    DynamicObjects[ObjectIndex].Texaddr = (u8*) common_texture_particle_leaf;
-    DynamicObjects[ObjectIndex].Stexaddr = (u8*) common_texture_particle_leaf;
+    DynamicObjects[ObjectIndex].Texaddr = (u8*) CommonTextureParticleLeaf;
+    DynamicObjects[ObjectIndex].Stexaddr = (u8*) CommonTextureParticleLeaf;
     DynamicObjects[ObjectIndex].Scale = 0.1f;
     DynamicObjects[ObjectIndex].Ground = arg1[1];
     switch (CourseID) {
@@ -2553,8 +2553,8 @@ void KwanmSnow2DInit(s32 ObjectIndex) {
     object = &DynamicObjects[ObjectIndex];
     object->Indexaddr = (HotSwapID > 0) ? (u8*) g_SnowParticleTex : D_0D0293D8;
     object->Sindexaddr = object->Indexaddr;
-    // There's something up with the handling of Vtx_KTile16x16 and the loading of 0x10 Right here
-    object->Vtxaddr = Vtx_KTile16x16;
+    // There's something up with the handling of VtxKTile16X16 and the loading of 0x10 Right here
+    object->Vtxaddr = VtxKTile16X16;
     object->Fvalptr = 0x10;
     object->Texsizey = object->Fvalptr;
     object->Scale = g_skySnowScale;
@@ -2648,7 +2648,7 @@ void KwanmSnow3DInit(s32 ObjectIndex) {
     object = &DynamicObjects[ObjectIndex];
     object->Indexaddr = (HotSwapID > 0) ? (u8*) g_SnowParticleTex : D_0D0293D8;
     object->Sindexaddr = object->Indexaddr;
-    object->Vtxaddr = Vtx_KTile16x16;
+    object->Vtxaddr = VtxKTile16X16;
     object->Scale = g_3DSnowScale;
     KwmvStartStrategy(ObjectIndex);
     KwanmNext(ObjectIndex);
@@ -2997,9 +2997,9 @@ void KwanmJgmSInit(s32 ObjectIndex, s32 arg1) {
         D_801656F0 = 0;
         D_8018D168 = 0;
     }
-    KwanmInitCI8(ObjectIndex, (u8*) common_tlut_lakitu_countdown, gTextureLakituNoLights1, 0x38U,
+    KwanmInitCI8(ObjectIndex, (u8 *) common_tlut_lakitu_countdown[0], gTextureLakituNoLights1, 0x38U,
                         (u16) 0x00000048);
-    DynamicObjects[ObjectIndex].Vtxaddr = common_vtx_lakitu;
+    DynamicObjects[ObjectIndex].Vtxaddr = CommonVTXLakitu;
     DynamicObjects[ObjectIndex].Scale = 0.15f;
     KwanmClrflag(ObjectIndex, 0x00000010);
     KwanmNext(ObjectIndex);
@@ -3089,11 +3089,11 @@ void KwanmJgmGInit(s32 ObjectIndex, s32 playerIndex) {
     AnmObject* object;
 
     KwanmJgmBreak(ObjectIndex, playerIndex);
-    KwanmInitCI8(ObjectIndex, (u8*) common_tlut_lakitu_checkered_flag, gTextureLakituCheckeredFlag01, 0x48U,
+    KwanmInitCI8(ObjectIndex, (u8*) CommonTLUTLakituCheckeredFlag, gTextureLakituCheckeredFlag01, 0x48U,
                         (u16) 0x00000038);
     object = &DynamicObjects[ObjectIndex];
     object->Indexaddr = LakituTexturePtr;
-    object->Vtxaddr = common_vtx_also_lakitu;
+    object->Vtxaddr = CommonVTXAlsoLakitu;
     object->pos[2] = 5000.0f;
     object->pos[1] = 5000.0f;
     object->pos[0] = 5000.0f;
@@ -3164,7 +3164,7 @@ void KwcheckJugemuWarp(s32 ObjectIndex, Player* Player) {
 
 void KwanmJgmTInit(s32 ObjectIndex, s32 arg1) {
     KwanmJgmBreak(ObjectIndex, arg1);
-    KwanmInitCI8(ObjectIndex, (u8*) common_tlut_lakitu_fishing, gTextureLakituFishing1, 0x38U, (u16) 0x00000048);
+    KwanmInitCI8(ObjectIndex, (u8*) CommonTLUTLakituFishing, gTextureLakituFishing1, 0x38U, (u16) 0x00000048);
     DynamicObjects[ObjectIndex].Vtxaddr = D_0D005F30;
     DynamicObjects[ObjectIndex].Scale = 0.15f;
     KwmvStart(ObjectIndex);
@@ -3336,11 +3336,11 @@ void KwanmJgmLInit(s32 ObjectIndex, s32 playerIndex) {
     AnmObject* object;
 
     KwanmJgmBreak(ObjectIndex, playerIndex);
-    KwanmInitCI8(ObjectIndex, (u8*) common_tlut_lakitu_second_lap, gTextureLakituSecondLap01, 0x48U,
+    KwanmInitCI8(ObjectIndex, (u8*) CommonTLUTLakituSecondLap, gTextureLakituSecondLap01, 0x48U,
                         (u16) 0x00000038);
     object = &DynamicObjects[ObjectIndex];
     object->Indexaddr = LakituTexturePtr;
-    object->Vtxaddr = common_vtx_also_lakitu;
+    object->Vtxaddr = CommonVTXAlsoLakitu;
     object->pos[2] = 5000.0f;
     object->pos[1] = 5000.0f;
     object->pos[0] = 5000.0f;
@@ -3385,11 +3385,11 @@ void KwanmJgmFInit(s32 ObjectIndex, s32 playerIndex) {
     AnmObject* object;
 
     KwanmJgmBreak(ObjectIndex, playerIndex);
-    KwanmInitCI8(ObjectIndex, (u8*) common_tlut_lakitu_final_lap, gTextureLakituFinalLap01, 0x48U,
+    KwanmInitCI8(ObjectIndex, (u8*) CommonTLUTLakituFinalLap, gTextureLakituFinalLap01, 0x48U,
                         (u16) 0x00000038);
     object = &DynamicObjects[ObjectIndex];
     object->Indexaddr = LakituTexturePtr;
-    object->Vtxaddr = common_vtx_also_lakitu;
+    object->Vtxaddr = CommonVTXAlsoLakitu;
     object->pos[2] = 5000.0f;
     object->pos[1] = 5000.0f;
     object->pos[0] = 5000.0f;
@@ -3433,10 +3433,10 @@ void KwanmJgmF(s32 ObjectIndex, s32 playerIndex) {
 void KwanmJgmRInit(s32 ObjectIndex, s32 arg1) {
     f32 var = 5000.0f;
     KwanmJgmBreak(ObjectIndex, arg1);
-    KwanmInitCI8(ObjectIndex, (u8*) common_tlut_lakitu_reverse, gTextureLakituReverse01, 0x48U,
+    KwanmInitCI8(ObjectIndex, (u8*) CommonTLUTLakituReverse, gTextureLakituReverse01, 0x48U,
                         (u16) 0x00000038);
     DynamicObjects[ObjectIndex].Indexaddr = LakituTexturePtr;
-    DynamicObjects[ObjectIndex].Vtxaddr = common_vtx_also_lakitu;
+    DynamicObjects[ObjectIndex].Vtxaddr = CommonVTXAlsoLakitu;
     DynamicObjects[ObjectIndex].pos[2] = var;
     DynamicObjects[ObjectIndex].pos[1] = var;
     DynamicObjects[ObjectIndex].pos[0] = var;
@@ -3675,25 +3675,25 @@ u8 KwgetitemSub(s16 Rank, s16 isCpu) {
     if (GameMode == VERSUS) {
         switch (PlayerCount) {
             case TWO_PLAYERS_SELECTED:
-                Curve = SegmentToVirtual((void*) common_versus_2_player_item_curve);
+                Curve = SegmentToVirtual((void*) CommonVersus2PlayerItemCurve);
                 break;
             case THREE_PLAYERS_SELECTED:
-                Curve = SegmentToVirtual((void*) common_versus_3_player_item_curve);
+                Curve = SegmentToVirtual((void*) CommonVersus3PlayerItemCurve);
                 break;
             case FOUR_PLAYERS_SELECTED:
-                Curve = SegmentToVirtual((void*) common_versus_4_player_item_curve);
+                Curve = SegmentToVirtual((void*) CommonVersus4PlayerItemCurve);
                 break;
         }
         randomItem = *((Rank * 100) + Curve + SRandomItemIndex);
 
     } else if (GameMode == BATTLE) {
-        Curve = SegmentToVirtual((void*) common_battle_item_curve);
+        Curve = SegmentToVirtual((void*) CommonBattleItemCurve);
         randomItem = Curve[SRandomItemIndex];
     } else { // GP Mode
         if (isCpu == 0) {
-            Curve = SegmentToVirtual((void*) common_grand_prix_human_item_curve);
+            Curve = SegmentToVirtual((void*) CommonGrandPrixHumanItemCurve);
         } else {
-            Curve = SegmentToVirtual((void*) common_grand_prix_cpu_item_curve);
+            Curve = SegmentToVirtual((void*) CommonGrandPrixCPUItemCurve);
         }
         randomItem = *((Rank * 100) + Curve + SRandomItemIndex);
     }
@@ -3788,8 +3788,8 @@ void KwanmRouletteInit(s32 ObjectIndex, s32 arg1) {
     KwanmFinish(ObjectIndex);
     DynamicObjects[ObjectIndex].Anmptr = 2;
     DynamicObjects[ObjectIndex].Output = 0;
-    DynamicObjects[ObjectIndex].Stexaddr = (u8*) common_tlut_item_window_none;
-    DynamicObjects[ObjectIndex].Sindexaddr = common_texture_item_window_none;
+    DynamicObjects[ObjectIndex].Stexaddr = (u8*) CommonTLUTItemWindowNone;
+    DynamicObjects[ObjectIndex].Sindexaddr = CommonTextureItemWindowNone;
     DynamicObjects[ObjectIndex].Texsizey = 0x28;
     DynamicObjects[ObjectIndex].Fvalptr = 0x20;
     DynamicObjects[ObjectIndex].Timer = 0x00000032;
@@ -6785,7 +6785,7 @@ void KwanmHarinezumiInit(s32 ObjectIndex, s32 arg1) {
     object = &DynamicObjects[ObjectIndex];
     object->Texaddr = d_course_yoshi_valley_hedgehog_tlut;
     object->Indexaddr = d_course_yoshi_valley_hedgehog;
-    object->Vtxaddr = Vtx_KTile64x64BL;
+    object->Vtxaddr = VtxKTile64X64BL;
     object->Scale = 0.2f;
     object->Anmnumbak = 0;
     KwanmNext(ObjectIndex);
@@ -6843,7 +6843,7 @@ void KwanmHarinezumi(s32 ObjectIndex, s32 arg1) {
             break;
     }
     if (DynamicObjects[ObjectIndex].Anmnumbak == 0) {
-        DynamicObjects[ObjectIndex].Vtxaddr = Vtx_KTile64x64BL;
+        DynamicObjects[ObjectIndex].Vtxaddr = VtxKTile64X64BL;
     } else {
         DynamicObjects[ObjectIndex].Vtxaddr = D_0D006130;
     }
@@ -6992,7 +6992,7 @@ void KwanmSnowmanFace(s32 ObjectIndex) {
 void KwanmSnowmanBodyInit(s32 ObjectIndex) {
     KwanmInitCI8(ObjectIndex, d_course_frappe_snowland_snowman_tlut, d_course_frappe_snowland_snowman_body,
                         0x40U, (u16) 0x00000040);
-    DynamicObjects[ObjectIndex].Vtxaddr = Vtx_KTile64x64BL;
+    DynamicObjects[ObjectIndex].Vtxaddr = VtxKTile64X64BL;
     DynamicObjects[ObjectIndex].Scale = 0.1f;
     DynamicObjects[ObjectIndex].Anmnumbak = 0;
     KwanmNext(ObjectIndex);
@@ -7861,15 +7861,15 @@ void KwchartNeon(void) {
 void KwanmDaiInit(s32 ObjectIndex, s32 arg1) {
     switch (arg1) { /* irregular */
         case 0:
-            DynamicObjects[ObjectIndex].Shape = podium_dl3;
+            DynamicObjects[ObjectIndex].Shape = PodiumDL3;
             DynamicObjects[ObjectIndex].Timer = 0x00000038;
             break;
         case 1:
-            DynamicObjects[ObjectIndex].Shape = podium2_dl3;
+            DynamicObjects[ObjectIndex].Shape = Podium2DL3;
             DynamicObjects[ObjectIndex].Timer = 0x0000002B;
             break;
         case 2:
-            DynamicObjects[ObjectIndex].Shape = podium3_dl3;
+            DynamicObjects[ObjectIndex].Shape = Podium3DL3;
             DynamicObjects[ObjectIndex].Timer = 0x0000001E;
             break;
         default:
@@ -7955,13 +7955,13 @@ void KwanmCupInit(s32 ObjectIndex) {
     if (RaceClass < CC_150) {
         switch (Resultstat.Rank) { /* switch 1; irregular */
             case 0:                 /* switch 1 */
-                DynamicObjects[ObjectIndex].Shape = gold_trophy_dl10;
+                DynamicObjects[ObjectIndex].Shape = GoldTrophyDL10;
                 break;
             case 1: /* switch 1 */
-                DynamicObjects[ObjectIndex].Shape = gold_trophy_dl12;
+                DynamicObjects[ObjectIndex].Shape = GoldTrophyDL12;
                 break;
             case 2: /* switch 1 */
-                DynamicObjects[ObjectIndex].Shape = gold_trophy_dl14;
+                DynamicObjects[ObjectIndex].Shape = GoldTrophyDL14;
                 break;
             default: /* switch 1 */
                 break;
@@ -7969,13 +7969,13 @@ void KwanmCupInit(s32 ObjectIndex) {
     } else {
         switch (Resultstat.Rank) { /* irregular */
             case 0:
-                DynamicObjects[ObjectIndex].Shape = gold_trophy_dl11;
+                DynamicObjects[ObjectIndex].Shape = GoldTrophyDL11;
                 break;
             case 1:
-                DynamicObjects[ObjectIndex].Shape = gold_trophy_dl13;
+                DynamicObjects[ObjectIndex].Shape = GoldTrophyDL13;
                 break;
             case 2:
-                DynamicObjects[ObjectIndex].Shape = gold_trophy_dl15;
+                DynamicObjects[ObjectIndex].Shape = GoldTrophyDL15;
                 break;
             default:
                 break;

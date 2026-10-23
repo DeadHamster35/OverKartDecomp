@@ -70,30 +70,30 @@ char OKStaticTempoOnly = 1;
 
 Controller *GlobalController[8] = 
 {
-     &g_Controller1,
-     &g_Controller2,
-     &g_Controller3,
-     &g_Controller4,
-     &g_ControllerMenu,
-     &g_ControllerGhost1,
-     &g_ControllerGhost2,
-     &g_ControllerGhost3,
+     &Controllers[0],
+     &Controllers[1],
+     &Controllers[2],
+     &Controllers[3],
+     &Controllers[4],
+     &Controllers[5],
+     &Controllers[6],
+     &Controllers[7],
 };
 
 Screen *GlobalScreen[4] = 
 {
-     &g_Screen1,
-     &g_Screen2,
-     &g_Screen3,
-     &g_Screen4
+     &D_8015F480[0],
+     &D_8015F480[1],
+     &D_8015F480[2],
+     &D_8015F480[3]
 };
 
 Camera *GlobalCamera[4] = 
 {
-     &g_Camera1,
-     &g_Camera2,
-     &g_Camera3,
-     &g_Camera4
+     &Cameras[0],
+     &Cameras[1],
+     &Cameras[2],
+     &Cameras[3]
 };
 
 u16 *GlobalPath[8] =
@@ -122,10 +122,10 @@ s32 *GlobalLap[8] =
 
 Hud *GlobalHud[4] =
 {
-     &g_hudPlayer1,
-     &g_hudPlayer2,
-     &g_hudPlayer3,
-     &g_hudPlayer4,
+     &PlayerHUD[0],
+     &PlayerHUD[1],
+     &PlayerHUD[2],
+     &PlayerHUD[3],
 };
 
 char *GlobalLightning[8] =
@@ -204,7 +204,7 @@ long DataLength = 0; //
 int *TargetAddress = &ok_Target;
 int *SourceAddress = &ok_Source;
 int *TempPointer = &ok_Pointer;
-long *GraphPointer = (long*)&GraphPtrOffset;
+long *GraphPointer = (long*)&DisplayListHead;
 int *TkmPoint = &ok_TKMSpace;
 int RSPNumber;
 int RSPOffset;

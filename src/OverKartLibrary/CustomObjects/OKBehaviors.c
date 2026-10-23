@@ -42,7 +42,7 @@ float ObjectSubBehaviorLookTarget(OKObject* InputObject, float TargetPosition[3]
 
 float ObjectSubBehaviorLookedAt(OKObject* InputObject, int PlayerIndex, short LookAngle, short Range)
 {
-	Player ThisPlayer = GlobalPlayer[PlayerIndex];
+	Player ThisPlayer = GamePlayers[PlayerIndex];
 	GlobalFloatA = (float)Range;	
 	GlobalFloatB = (ThisPlayer.Position[0] - InputObject->ObjectData.Position[0]);
 	GlobalFloatC = (ThisPlayer.Position[2] - InputObject->ObjectData.Position[2]);
@@ -356,10 +356,10 @@ void ObjectBehaviorFlee(OKObject* InputObject)
 		case(SUBBEHAVIOR_CHASE):
 		{
 			
-			GlobalFloatD = ObjectSubBehaviorLookTarget(InputObject, GlobalPlayer[InputObject->PlayerTarget].Position, Sight, Viewcone);
+			GlobalFloatD = ObjectSubBehaviorLookTarget(InputObject, GamePlayers[InputObject->PlayerTarget].Position, Sight, Viewcone);
 			if (GlobalFloatD < 2)
 			{
-				GlobalShortC = ObjectSubBehaviorTurnTarget(InputObject->ObjectData.Position, InputObject->ObjectData.Angle[1], GlobalPlayer[InputObject->PlayerTarget].Position, 4);
+				GlobalShortC = ObjectSubBehaviorTurnTarget(InputObject->ObjectData.Position, InputObject->ObjectData.Angle[1], GamePlayers[InputObject->PlayerTarget].Position, 4);
 				InputObject->ObjectData.Angle[1] += (DEG1 * -4 * GlobalShortC);
 				GlobalFloatA = (InputObject->ObjectData.Velocity[0] * InputObject->ObjectData.Velocity[0]) + (InputObject->ObjectData.Velocity[2] * InputObject->ObjectData.Velocity[2]);
                 GlobalFloatB = (Speed * 0.01f);
@@ -371,7 +371,7 @@ void ObjectBehaviorFlee(OKObject* InputObject)
 					}
 					else
 					{
-						GlobalFloatA = Sqrtf(GlobalFloatA) + 0.25f;
+						GlobalFloatA = sqrtf(GlobalFloatA) + 0.25f;
 					}
 				}
 				else
@@ -439,7 +439,7 @@ void ObjectBehaviorSearch(OKObject* InputObject)
 			    int CurrentPlayer;
 			for (CurrentPlayer = 0; CurrentPlayer < GlobalIntA; CurrentPlayer++)
 			{
-				GlobalFloatD = ObjectSubBehaviorLookTarget(InputObject, GlobalPlayer[CurrentPlayer].Position, Sight, Viewcone);					
+				GlobalFloatD = ObjectSubBehaviorLookTarget(InputObject, GamePlayers[CurrentPlayer].Position, Sight, Viewcone);					
 				if ((GlobalFloatD < 1) && (GlobalFloatD < InputObject->TargetDistance))
 				{
 
@@ -480,10 +480,10 @@ void ObjectBehaviorSearch(OKObject* InputObject)
 		case(SUBBEHAVIOR_CHASE):
 		{
 			
-			GlobalFloatD = ObjectSubBehaviorLookTarget(InputObject, GlobalPlayer[InputObject->PlayerTarget].Position, Sight, Viewcone);
+			GlobalFloatD = ObjectSubBehaviorLookTarget(InputObject, GamePlayers[InputObject->PlayerTarget].Position, Sight, Viewcone);
 			if (GlobalFloatD < 2)
 			{
-				GlobalShortC = ObjectSubBehaviorTurnTarget(InputObject->ObjectData.Position, InputObject->ObjectData.Angle[1], GlobalPlayer[InputObject->PlayerTarget].Position, 4);
+				GlobalShortC = ObjectSubBehaviorTurnTarget(InputObject->ObjectData.Position, InputObject->ObjectData.Angle[1], GamePlayers[InputObject->PlayerTarget].Position, 4);
 				InputObject->ObjectData.Angle[1] += (DEG1 * 4 * GlobalShortC);
 				GlobalFloatA = (InputObject->ObjectData.Velocity[0] * InputObject->ObjectData.Velocity[0]) + (InputObject->ObjectData.Velocity[2] * InputObject->ObjectData.Velocity[2]);
 				GlobalFloatB = (Speed * 0.01f);
@@ -497,7 +497,7 @@ void ObjectBehaviorSearch(OKObject* InputObject)
 					}
 					else
 					{
-						GlobalFloatA = Sqrtf(GlobalFloatA) + 0.25;
+						GlobalFloatA = sqrtf(GlobalFloatA) + 0.25;
 					}
 				}
 				else
@@ -694,7 +694,7 @@ void ObjectBehaviorFollowPath(OKObject* InputObject)
 
 void ObjectBehaviorBounce(OKObject* InputObject)
 {
-	MoveIWA((Object*)&InputObject->ObjectData);
+	UpdateActorFallingRocks((struct FallingRock *) ((Object*)&InputObject->ObjectData));
 }
 
 

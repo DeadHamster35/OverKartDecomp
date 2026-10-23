@@ -50,7 +50,7 @@ void DisplayFakeItembox(Camera* Camera, struct FakeItemBox* fakeItemBox) {
             return;
         }
 
-        gSPDisplayList(DisplayListHead++, common_model_fake_itembox);
+        gSPDisplayList(DisplayListHead++, CommonModelFakeItembox);
         CreateModelingMatrix(someMatrix2, fakeItemBox->Position, fakeItemBox->Angle);
         ScalingMatrix(someMatrix2, fakeItemBox->SizeScaling);
 

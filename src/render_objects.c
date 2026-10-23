@@ -40,7 +40,7 @@
 void KwsetTile(Vec3f pos, Vec3su orientation, f32 Scale, Vtx* vtx) {
     KWCreateAffine3D(pos, orientation, Scale);
     gSPVertex(DisplayListHead++, vtx, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 void Kwpolygon3D(Vec3f pos, Vec3su orientation, f32 Scale, Gfx* gfx) {
@@ -118,7 +118,7 @@ UNUSED void KwshadeTile(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, Vtx* vtx) {
     Kwcreateaffine2D(arg0, arg1, Arg2, Arg3);
     gSPDisplayList(DisplayListHead++, D_0D0078A0);
     gSPVertex(DisplayListHead++, vtx, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 UNUSED void KwshadeXLUTile(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, Vtx* vtx, s32 arg5) {
@@ -131,7 +131,7 @@ UNUSED void KwshadeXLUTile(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, Vtx* vtx, s32
     vtx[2].v.cn[3] = arg5;
     vtx[3].v.cn[3] = arg5;
     gSPVertex(DisplayListHead++, vtx, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 UNUSED void KWShutter1(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, Vtx* vtx, s32 arg5) {
@@ -141,7 +141,7 @@ UNUSED void KWShutter1(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, Vtx* vtx, s32 arg
     gSPDisplayList(DisplayListHead++, D_0D0078A0);
     gDPSetRenderMode(DisplayListHead++, G_RM_CLD_SURF, G_RM_CLD_SURF2);
     gSPVertex(DisplayListHead++, vtx, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 UNUSED void KWShutter2(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, Vtx* vtx, s32 arg5) {
@@ -151,7 +151,7 @@ UNUSED void KWShutter2(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, Vtx* vtx, s32 arg
     gSPDisplayList(DisplayListHead++, D_0D0078A0);
     gDPSetRenderMode(DisplayListHead++, G_RM_CLD_SURF, G_RM_CLD_SURF2);
     gSPVertex(DisplayListHead++, vtx, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 s32 KwgetMaskval(s32 arg0) {
@@ -365,7 +365,7 @@ UNUSED void KwloadtextureblockMulti16B(u8* image1, u8* image2, s32 Width, s32 He
 
 void Kwsettexturetile(Vtx* arg0) {
     gSPVertex(DisplayListHead++, arg0, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 void Kwsettexturetriangle(Vtx* arg0) {
@@ -377,7 +377,7 @@ UNUSED void Kwtile3DShade(Vec3f arg0, Vec3su arg1, f32 Arg2, Vtx* Arg3) {
     KWCreateAffine3D(arg0, arg1, Arg2);
     gSPDisplayList(DisplayListHead++, D_0D0078A0);
     gSPVertex(DisplayListHead++, Arg3, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 UNUSED void Kwline3DShade(Vec3f arg0, Vec3su arg1, f32 Arg2, Vtx* Arg3) {
@@ -385,7 +385,7 @@ UNUSED void Kwline3DShade(Vec3f arg0, Vec3su arg1, f32 Arg2, Vtx* Arg3) {
     gSPDisplayList(DisplayListHead++, D_0D0078D0);
     gSPClearGeometryMode(DisplayListHead++, G_CULL_BOTH);
     gSPVertex(DisplayListHead++, Arg3, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
     gSPSetGeometryMode(DisplayListHead++, G_CULL_BACK);
 }
 
@@ -559,21 +559,21 @@ void Kwtexture3DRGBABl(Vec3f arg0, Vec3su arg1, f32 Arg2, u16* Texture, Vtx* arg
 UNUSED void Kwtexture3DRGBAAAZBBl(Vec3f arg0, Vec3su arg1, f32 Arg2, u16* Texture, Vtx* arg4, s32 arg5, s32 arg6,
                           UNUSED s32 arg7, s32 arg8) {
     KWCreateAffine3D(arg0, arg1, Arg2);
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     KWTextureRGBASubBL(Texture, arg4, arg5, arg6, arg8);
 }
 
 void Kwtexture3DRGBAAAZBBlMr(Vec3f arg0, Vec3su arg1, f32 Arg2, u16* Texture, Vtx* arg4, s32 arg5, s32 arg6, UNUSED s32 arg7,
                    s32 arg8, s32 arg9) {
     KWCreateAffine3D(arg0, arg1, Arg2);
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     KWTextureRGBASubBLMR(Texture, arg4, arg5, arg6, arg8, arg9);
 }
 
 UNUSED void Kwtexture3DRGBAAAZBBlBt(Vec3f arg0, Vec3su arg1, f32 Arg2, u16* Texture, Vtx* arg4, s32 arg5, s32 arg6,
                           UNUSED s32 arg7, s32 arg8) {
     KWCreateAffine3D(arg0, arg1, Arg2);
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     gSPClearGeometryMode(DisplayListHead++, G_CULL_BOTH);
     KWTextureRGBASubBL(Texture, arg4, arg5, arg6, arg8);
     gSPSetGeometryMode(DisplayListHead++, G_CULL_BACK);
@@ -589,20 +589,20 @@ void Kwtexture3DTriangleRGBA(Vec3f arg0, Vec3su arg1, f32 Arg2, u16* Texture, Vt
 UNUSED void KWTexture3DRGBA32AAZBBL(Vec3f arg0, Vec3su arg1, f32 Arg2, u8* Texture, Vtx* arg4, s32 arg5, s32 arg6,
                           UNUSED s32 arg7, s32 arg8) {
     KWCreateAffine3D(arg0, arg1, Arg2);
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     KWTextureRGBA32SubBL(Texture, arg4, arg5, arg6, arg8);
 }
 
 UNUSED void Kwtexture8X8RGBABl(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, u16* Texture) {
-    Kwtexture2DRGBABl(arg0, arg1, Arg2, Arg3, Texture, Vtx_KTile8x8, 8, 8, 8, 8);
+    Kwtexture2DRGBABl(arg0, arg1, Arg2, Arg3, Texture, VtxKTile8X8, 8, 8, 8, 8);
 }
 
 UNUSED void Kwtexture2D16X16RGBABl(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, u16* Texture) {
-    Kwtexture2DRGBABl(arg0, arg1, Arg2, Arg3, Texture, Vtx_KTile16x16, 16, 16, 16, 16);
+    Kwtexture2DRGBABl(arg0, arg1, Arg2, Arg3, Texture, VtxKTile16X16, 16, 16, 16, 16);
 }
 
 UNUSED void Kwtexture3D16X16RGBABl(Vec3f arg0, Vec3su arg1, f32 Arg2, u16* Texture) {
-    Kwtexture3DRGBABl(arg0, arg1, Arg2, Texture, Vtx_KTile16x16, 16, 16, 16, 16);
+    Kwtexture3DRGBABl(arg0, arg1, Arg2, Texture, VtxKTile16X16, 16, 16, 16, 16);
 }
 
 UNUSED void KwtextureTriangle16X16RGBA(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, u16* Texture, Vtx* arg5) {
@@ -614,7 +614,7 @@ UNUSED void Kwtexture3DTriangle16X16RGBA(Vec3f arg0, Vec3su arg1, f32 Arg2, u16*
 }
 
 UNUSED void Kwtexture2D32X32RGBA(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, u16* Texture) {
-    Kwtexture2DRGBABl(arg0, arg1, Arg2, Arg3, Texture, Vtx_KTile32x32, 32, 32, 32, 32);
+    Kwtexture2DRGBABl(arg0, arg1, Arg2, Arg3, Texture, VtxKTile32X32, 32, 32, 32, 32);
 }
 
 UNUSED void Kwtexture2D64X32RGBABl(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, u16* Texture) {
@@ -626,11 +626,11 @@ UNUSED void Kwtexture3D64X32RGBABl(Vec3f arg0, Vec3su arg1, f32 Arg2, u16* Textu
 }
 
 UNUSED void Kwtexture2D64X64RGBABl(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, u16* Texture) {
-    Kwtexture2DRGBABl(arg0, arg1, Arg2, Arg3, Texture, Vtx_KTile64x64BL, 64, 64, 64, 32);
+    Kwtexture2DRGBABl(arg0, arg1, Arg2, Arg3, Texture, VtxKTile64X64BL, 64, 64, 64, 32);
 }
 
 UNUSED void Kwtexture2D64X64RGBAXLU(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, s32 arg4, u16* Texture) {
-    Kwtexture2DRGBAXLU(arg0, arg1, Arg2, Arg3, arg4, Texture, Vtx_KTile64x64BL, 64, 64, 64, 32);
+    Kwtexture2DRGBAXLU(arg0, arg1, Arg2, Arg3, arg4, Texture, VtxKTile64X64BL, 64, 64, 64, 32);
 }
 
 void KwloadtextureCI8AAZBBl(u8* tlut, u8* Texture, s32 Width, s32 Height) {
@@ -654,7 +654,7 @@ void KWTextureCI8SubPT(u8* tlut, u8* Texture, Vtx* Arg2, UNUSED s32 Arg3, s32 ar
     for (heightIndex = 0; heightIndex < arg4 / Height; heightIndex++) {
         KwloadtextureblockCI8B(img, Width, Height);
         gSPVertex(DisplayListHead++, &Arg2[vertexIndex], 4, 0);
-        gSPDisplayList(DisplayListHead++, common_rectangle_display);
+        gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
         img += Width * Height;
         vertexIndex += 4;
     }
@@ -671,7 +671,7 @@ void KWTextureCI8SubBL(u8* tlut, u8* Texture, Vtx* Arg2, UNUSED s32 Arg3, s32 ar
     for (heightIndex = 0; heightIndex < arg4 / Height; heightIndex++) {
         KwloadtextureblockCI8B(img, Width, Height);
         gSPVertex(DisplayListHead++, &Arg2[vertexIndex], 4, 0);
-        gSPDisplayList(DisplayListHead++, common_rectangle_display);
+        gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
         img += Width * (Height - 1);
         vertexIndex += 4;
     }
@@ -687,7 +687,7 @@ void KWTextureCI8SubBLMR(u8* tlut, u8* Texture, Vtx* Arg2, UNUSED s32 Arg3, s32 
     for (heightIndex = 0; heightIndex < arg4 / Height; heightIndex++) {
         KwloadtextureblockCI8BMr(img, Width, Height, someMask);
         gSPVertex(DisplayListHead++, &Arg2[vertexIndex], 4, 0);
-        gSPDisplayList(DisplayListHead++, common_rectangle_display);
+        gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
         img += Width * (Height - 1);
         vertexIndex += 4;
     }
@@ -704,7 +704,7 @@ void KWTextureCI8SubBLCutX(u8* tlut, u8* Texture, Vtx* Arg2, s32 Arg3, s32 Width
         // Something seems off about arguments here, but if it matches it matches
         KwloadtextureblockCI8B(img, Height, Width);
         gSPVertex(DisplayListHead++, &Arg2[vertexIndex], 4, 0);
-        gSPDisplayList(DisplayListHead++, common_rectangle_display);
+        gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
         img += Height * Width;
         vertexIndex += 4;
     }
@@ -714,14 +714,14 @@ void KWTextureCI8SubBLCutX(u8* tlut, u8* Texture, Vtx* Arg2, s32 Arg3, s32 Width
 void Kwtexture2DCI8Pt(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, u8* tlut, u8* Texture, Vtx* arg6, s32 arg7, s32 arg8,
                    s32 arg9, s32 argA) {
     Kwcreateaffine2D(arg0, arg1, Arg2, Arg3);
-    gSPDisplayList(DisplayListHead++, kwsprite_rgba_pt_init);
+    gSPDisplayList(DisplayListHead++, KWSpriteRGBAPtInit);
     KWTextureCI8SubPT(tlut, Texture, arg6, arg7, arg8, arg9, argA);
 }
 
 void KWTexture2DCI8BL(s32 x, s32 y, u16 Angle, f32 Size, u8* tlut, u8* Texture, Vtx* arg6, s32 arg7, s32 arg8, s32 arg9,
                    s32 argA) {
     Kwcreateaffine2D(x, y, Angle, Size);
-    gSPDisplayList(DisplayListHead++, kwsprite_rgba_aa_bl_init);
+    gSPDisplayList(DisplayListHead++, KWSpriteRGBAAABlInit);
     KWTextureCI8SubBL(tlut, Texture, arg6, arg7, arg8, arg9, argA);
 }
 
@@ -788,14 +788,14 @@ UNUSED void Kwtexture2DCI8AAXLUBl(s32 arg0, s32 arg1, u16 Arg2, f32 Arg3, s32 ar
 UNUSED void Kwtexture3DCI8Pt(Vec3f arg0, Vec3su arg1, f32 Arg2, u8* tlut, u8* Texture, Vtx* arg5, s32 arg6, s32 arg7,
                           s32 arg8, s32 arg9) {
     KWCreateAffine3D(arg0, arg1, Arg2);
-    gSPDisplayList(DisplayListHead++, kwsprite_rgba_pt_init);
+    gSPDisplayList(DisplayListHead++, KWSpriteRGBAPtInit);
     KWTextureCI8SubPT(tlut, Texture, arg5, arg6, arg7, arg8, arg9);
 }
 
 void Kwtexture3DCI8Bl(Vec3f arg0, Vec3su arg1, f32 Arg2, u8* tlut, u8* Texture, Vtx* arg5, s32 arg6, s32 arg7, s32 arg8,
                    s32 arg9) {
     KWCreateAffine3D(arg0, arg1, Arg2);
-    gSPDisplayList(DisplayListHead++, kwsprite_rgba_aa_bl_init);
+    gSPDisplayList(DisplayListHead++, KWSpriteRGBAAABlInit);
     KWTextureCI8SubBL(tlut, Texture, arg5, arg6, arg7, arg8, arg9);
 }
 
@@ -1019,7 +1019,7 @@ void KWTextureIA16Sub(u16* Texture, Vtx* arg1, s32 Arg2, s32 Arg3, s32 Width, s3
         for (widthIndex = 0; widthIndex < Arg2 / Width; widthIndex++) {
             KwloadtextureblockIA16B(img, Width, Height);
             gSPVertex(DisplayListHead++, &arg1[vertexIndex], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_rectangle_display);
+            gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
             img += Width * Height * 2;
             vertexIndex += 4;
         }
@@ -1037,7 +1037,7 @@ void KwtextiledrawIA16(u8* Texture, Vtx* arg1, s32 Arg2, s32 Arg3, s32 Width, s3
         for (widthIndex = 0; widthIndex < Arg2 / Width; widthIndex++) {
             KwloadtexturetileIA16B(img, Width, Height);
             gSPVertex(DisplayListHead++, &arg1[vertexIndex], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_rectangle_display);
+            gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
             img += Width * Height * 2;
             vertexIndex += 4;
         }
@@ -1055,7 +1055,7 @@ void KWTextureIA8Sub(u8* Texture, Vtx* arg1, s32 Arg2, s32 Arg3, s32 Width, s32 
         for (widthIndex = 0; widthIndex < Arg2 / Width; widthIndex++) {
             KwloadtextureblockIA8B(img, Width, Height);
             gSPVertex(DisplayListHead++, &arg1[vertexIndex], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_rectangle_display);
+            gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
             img += Width * Height;
             vertexIndex += 4;
         }
@@ -1073,7 +1073,7 @@ void KwtextiledrawIA8(u8* Texture, Vtx* arg1, s32 Arg2, s32 Arg3, s32 Width, s32
         for (widthIndex = 0; widthIndex < Arg2 / Width; widthIndex++) {
             KwloadtexturetileIA8B(img, Width, Height);
             gSPVertex(DisplayListHead++, &arg1[vertexIndex], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_rectangle_display);
+            gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
             img += Width * Height;
             vertexIndex += 4;
         }
@@ -1092,7 +1092,7 @@ void KWTextureIA4Sub(u8* Texture, Vtx* arg1, s32 Arg2, s32 Arg3, s32 Width, s32 
 
             KwloadtextureblockIA4B(img, Width, Height);
             gSPVertex(DisplayListHead++, &arg1[var_s2], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_rectangle_display);
+            gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
             img += (Width * Height) / 2;
             var_s2 += 4;
         }
@@ -1111,7 +1111,7 @@ void KWTextureA8Sub(u8* Texture, Vtx* arg1, s32 Arg2, s32 Arg3, s32 Width, s32 H
         for (widthIndex = 0; widthIndex < Arg2 / Width; widthIndex++) {
             KwloadtextureblockI8B(img, Width, Height);
             gSPVertex(DisplayListHead++, &arg1[vertexIndex], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_rectangle_display);
+            gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
             img += Width * Height;
             vertexIndex += 4;
         }
@@ -1129,7 +1129,7 @@ void KWTextureA4Sub(u8* Texture, Vtx* arg1, s32 Arg2, s32 Arg3, s32 Width, s32 H
         for (j = 0; j < Arg2 / Width; j++) {
             KWLoadTextureBlockI4b(img, Width, Height);
             gSPVertex(DisplayListHead++, &arg1[var_s2], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_rectangle_display);
+            gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
             img += (Width * Height) / 2;
             var_s2 += 4;
         }
@@ -2238,7 +2238,7 @@ UNUSED void func_8004E238(void) {
 }
 
 void SprDrawSubCI8(s32 arg0, s32 arg1, u8* tlut, u8* Texture, s32 arg4, s32 arg5, s32 arg6) {
-    gSPDisplayList(DisplayListHead++, kwsprite_rgba_pt_init);
+    gSPDisplayList(DisplayListHead++, KWSpriteRGBAPtInit);
     InitcolpalCI8(tlut);
     SprDrawCI8(arg0, arg1, Texture, arg4, arg5, arg6);
 }
@@ -2333,14 +2333,14 @@ void KWDisplayItemboxs(s32 PlayerId) {
     if (object->Anmptr >= 2) {
         temp_v0 = &PlayerHUD[PlayerId];
         KWTexture2DCI8BL(temp_v0->Addix + temp_v0->ix, temp_v0->Addiy + temp_v0->iy, 0U,
-                      temp_v0->is, (u8*) object->Texaddr, (u8*) object->Indexaddr, Vtx_KTile40x32,
+                      temp_v0->is, (u8*) object->Texaddr, (u8*) object->Indexaddr, VtxKTile40X32,
                       0x00000028, 0x00000020, 0x00000028, 0x00000020);
     }
 }
 
 void KwdisplaySyuukai(s32 PlayerId) {
     Kwsprite32X8((s32) PlayerHUD[PlayerId].cx, PlayerHUD[PlayerId].cy + 3,
-                             common_texture_hud_lap);
+                             CommonTextureHUDLap);
     Kwsprite32X16(PlayerHUD[PlayerId].cx + 0x1C, (s32) PlayerHUD[PlayerId].cy,
                               LapList[PlayerHUD[PlayerId].Lapcnt]);
 }
@@ -2391,22 +2391,22 @@ void KwdisplayZanzou(s32 PlayerId) {
     temp_s0 = &PlayerHUD[PlayerId];
     if ((u8) temp_s0->Tptr2 != 0) {
         KWSpriteXLU(temp_s0->Lap1CompletionTimeX - 0x13, temp_s0->ty + 8, 0x00000080,
-                      common_texture_hud_time, 0x00000020, 0x00000010, 0x00000020, 0x00000010);
+                      CommonTextureHUDTime, 0x00000020, 0x00000010, 0x00000020, 0x00000010);
         KWPrintLapTimeXLU((s32) temp_s0->Lap1CompletionTimeX, (s32) temp_s0->ty, 0x00000080, (s32) temp_s0->Totaltime);
     }
     if ((u8) temp_s0->Tptr3 != 0) {
         KWSpriteXLU(temp_s0->Lap2CompletionTimeX - 0x13, temp_s0->ty + 8, 0x00000050,
-                      common_texture_hud_time, 0x00000020, 0x00000010, 0x00000020, 0x00000010);
+                      CommonTextureHUDTime, 0x00000020, 0x00000010, 0x00000020, 0x00000010);
         KWPrintLapTimeXLU((s32) temp_s0->Lap2CompletionTimeX, (s32) temp_s0->ty, 0x00000050, (s32) temp_s0->Totaltime);
     }
     if ((u8) temp_s0->Cptr2 != 0) {
-        KWSpriteXLU((s32) temp_s0->cx2, temp_s0->cy + 3, 0x00000080, common_texture_hud_lap,
+        KWSpriteXLU((s32) temp_s0->cx2, temp_s0->cy + 3, 0x00000080, CommonTextureHUDLap,
                       0x00000020, 8, 0x00000020, 8);
         KWSpriteXLU(temp_s0->cx2 + 0x1C, (s32) temp_s0->cy, 0x00000080,
                       LapList[temp_s0->Lapcnt], 0x00000020, 0x00000010, 0x00000020, 0x00000010);
     }
     if ((u8) temp_s0->Cptr3 != 0) {
-        KWSpriteXLU((s32) temp_s0->cx3, temp_s0->cy + 3, 0x00000050, common_texture_hud_lap,
+        KWSpriteXLU((s32) temp_s0->cx3, temp_s0->cy + 3, 0x00000050, CommonTextureHUDLap,
                       0x00000020, 8, 0x00000020, 8);
         KWSpriteXLU(temp_s0->cx3 + 0x1C, (s32) temp_s0->cy, 0x00000050,
                       LapList[temp_s0->Lapcnt], 0x00000020, 0x00000010, 0x00000020, 0x00000010);
@@ -2415,8 +2415,8 @@ void KwdisplayZanzou(s32 PlayerId) {
 
 void KwdisplaySpeedmeter(s32 arg0) {
     Kwtexture2DA4XLUPt(PlayerHUD[arg0].mx, PlayerHUD[arg0].my, 0U, 1.0f, MapR, MapG,
-                  MapB, 0xFF, common_texture_speedometer, D_0D0064B0, 64, 96, 64, 48);
-    Kwtexture2DA4Bl(D_8018CFEC, D_8018CFF4, D_8016579E, 1.0f, common_texture_speedometer_needle, D_0D005FF0, 0x40, 0x20,
+                  MapB, 0xFF, CommonTextureSpeedometer, D_0D0064B0, 64, 96, 64, 48);
+    Kwtexture2DA4Bl(D_8018CFEC, D_8018CFF4, D_8016579E, 1.0f, CommonTextureSpeedometerNeedle, D_0D005FF0, 0x40, 0x20,
                   0x40, 0x20);
 }
 
@@ -2460,7 +2460,7 @@ void KwdisplayRadarsline(s32 arg0) {
             var_f0 = var_f0 + 4.0;
             break;
     }
-    RadarFinishLine(var_f2, var_f0, common_texture_minimap_finish_line);
+    RadarFinishLine(var_f2, var_f0, CommonTextureMinimapFinishLine);
 #else
 
 #endif
@@ -2481,15 +2481,15 @@ void KwdisplayRadarplayerSub(s32 arg0, s32 PlayerId, s32 CharacterId) {
         // huh?
         if (CharacterId != 8) {
             if ((GPCurrentRaceRankByPlayerId[PlayerId] == 0) && (GameMode != 3) && (GameMode != 1)) {
-                Kwtexture2DFlashRGBAPt(x, y, Player->Direction[1] + DEGREES(180), 1.0f, &common_texture_minimap_kart_mario[CharacterId * 64], Vtx_KTile8x8, 8, 8, 8, 8);
+                Kwtexture2DFlashRGBAPt(x, y, Player->Direction[1] + DEGREES(180), 1.0f, &CommonTextureMinimapKartMario[CharacterId * 64], VtxKTile8X8, 8, 8, 8, 8);
             } else {
-                KWTexture2DRGBA(x, y, Player->Direction[1] + DEGREES(180), 1.0f, &common_texture_minimap_kart_mario[CharacterId * 64], Vtx_KTile8x8, 8, 8, 8, 8);
+                KWTexture2DRGBA(x, y, Player->Direction[1] + DEGREES(180), 1.0f, &CommonTextureMinimapKartMario[CharacterId * 64], VtxKTile8X8, 8, 8, 8, 8);
             }
         } else {
             if (GPCurrentRaceRankByPlayerId[PlayerId] == 0) {
-                KwspriteFlash(x, y, 8, 8, common_texture_minimap_progress_dot);
+                KwspriteFlash(x, y, 8, 8, CommonTextureMinimapProgressDot);
             } else {
-                KWSprite(x, y, 8, 8, common_texture_minimap_progress_dot);
+                KWSprite(x, y, 8, 8, CommonTextureMinimapProgressDot);
             }
         }
     }
@@ -2588,7 +2588,7 @@ void Kwprintlaptime(s32 arg0, s32 arg1, s32 Arg2) {
     gSPDisplayList(DisplayListHead++, D_0D008108);
     gSPDisplayList(DisplayListHead++, D_0D007EF8);
     gDPSetAlphaCompare(DisplayListHead++, G_AC_THRESHOLD);
-    KWLoadTextureBlockRGBA16B(common_texture_hud_normal_digit, 104, 16);
+    KWLoadTextureBlockRGBA16B(CommonTextureHUDNormalDigit, 104, 16);
     Kwgettimer(Arg2);
     KwprintlaptimeSub(arg0, arg1);
     gSPDisplayList(DisplayListHead++, D_0D007EB8);
@@ -2607,7 +2607,7 @@ void KwprintlaptimeXLUSub(s32 arg0, s32 arg1) {
 void KWPrintLapTimeXLU(s32 arg0, s32 arg1, s32 Arg2, s32 Arg3) {
     gSPDisplayList(DisplayListHead++, D_0D007F38);
     SubAlphaMode(Arg2);
-    KWLoadTextureBlockRGBA16B(common_texture_hud_normal_digit, 104, 16);
+    KWLoadTextureBlockRGBA16B(CommonTextureHUDNormalDigit, 104, 16);
     Kwgettimer(Arg3);
     KwprintlaptimeXLUSub(arg0, arg1);
 }
@@ -2615,7 +2615,7 @@ void KWPrintLapTimeXLU(s32 arg0, s32 arg1, s32 Arg2, s32 Arg3) {
 void KwprintlaptimeFlash(s32 arg0, s32 arg1, s32 Arg2) {
     gSPDisplayList(DisplayListHead++, D_0D007F38);
     IceMode(KwflashR, KwflashG, KwflashB, 128, 128, 128, 255);
-    KWLoadTextureBlockRGBA16B(common_texture_hud_normal_digit, 104, 16);
+    KWLoadTextureBlockRGBA16B(CommonTextureHUDNormalDigit, 104, 16);
     Kwgettimer(Arg2);
     KwprintlaptimeXLUSub(arg0, arg1);
 }
@@ -2638,7 +2638,7 @@ void KWDisplayTotalTime(s32 PlayerId) {
                     }
                 }
                 Kwsprite32X16(PlayerHUD[PlayerId].totalTimeX - 0x13, PlayerHUD[PlayerId].ty + 0x38,
-                                          common_texture_hud_total_time);
+                                          CommonTextureHUDTotalTime);
                 if (D_801657E5 != 0) {
                     KwprintlaptimeFlash(PlayerHUD[PlayerId].totalTimeX, PlayerHUD[PlayerId].ty + 0x30,
                                         PlayerHUD[PlayerId].Totaltime);
@@ -2650,11 +2650,11 @@ void KWDisplayTotalTime(s32 PlayerId) {
         } else {
             if (PlayerHUD[PlayerId].Flashtm == 0) {
                 Kwsprite32X16(PlayerHUD[PlayerId].timerX - 0x13, PlayerHUD[PlayerId].ty + 8,
-                                          common_texture_hud_time);
+                                          CommonTextureHUDTime);
                 Kwprintlaptime(PlayerHUD[PlayerId].timerX, PlayerHUD[PlayerId].ty, PlayerHUD[PlayerId].Totaltime);
             } else {
                 Kwsprite32X16(PlayerHUD[PlayerId].timerX - 0x13, PlayerHUD[PlayerId].ty + 8,
-                                          common_texture_hud_lap_time);
+                                          CommonTextureHUDLapTime);
                 if (D_801657E3 != 0) {
                     KwprintlaptimeFlash(PlayerHUD[PlayerId].timerX, PlayerHUD[PlayerId].ty,
                                         PlayerHUD[PlayerId].Laptime);
@@ -2670,7 +2670,7 @@ void KwdisplayLap88(s16 lapX, s16 lapY, s8 lap) {
     gSPDisplayList(DisplayListHead++, D_0D008108);
     gSPDisplayList(DisplayListHead++, D_0D007EF8);
     gDPSetAlphaCompare(DisplayListHead++, G_AC_THRESHOLD);
-    KWLoadTextureBlockRGBA16B(common_texture_hud_123, 32, 8);
+    KWLoadTextureBlockRGBA16B(CommonTextureHUD123, 32, 8);
     // Display Current lap. Ex. 1/3
 
     SprDrawClipST(lapX, lapY, 8, 8, lap * 8, 0, 0); // display the digit
@@ -2684,8 +2684,8 @@ void KwdisplayKaopanelSub(f32 arg0, f32 arg1, s16 Arg2, s16 Arg3, s16 CharacterI
         Kwcreateaffine2D((s32) arg0, (s32) arg1, 0U, 1.0f);
         gSPDisplayList(DisplayListHead++, D_0D007DB8);
         ToumeIMode(0x000000FF, 0x000000FF, 0x000000FF, Kwa);
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_portrait_bomb_kart_and_question_mark);
-        KwloadtextureblockCI8B(common_texture_portrait_question_mark, 0x00000020, 0x00000020);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTPortraitBombKartAndQuestionMark);
+        KwloadtextureblockCI8B(CommonTexturePortraitQuestionMark, 0x00000020, 0x00000020);
         gSPDisplayList(DisplayListHead++, KWSetTile32x32);
     } else {
         Kwcreateaffine2D(arg0, arg1, 0U, 1.0f);
@@ -2702,13 +2702,13 @@ void KwdisplayKaopanelSub(f32 arg0, f32 arg1, s16 Arg2, s16 Arg3, s16 CharacterI
             Kwcreateaffine2D(arg0, arg1, 0U, 1.0f);
             gSPDisplayList(DisplayListHead++, D_0D007A60);
             ToumeIMode(Wakur, Wakug, Wakub, 0x000000FF);
-            KwloadtextureblockIA4B(common_texture_character_portrait_border, 0x20, 0x20);
+            KwloadtextureblockIA4B(CommonTextureCharacterPortraitBorder, 0x20, 0x20);
             gSPDisplayList(DisplayListHead++, KWSetTile32x32);
         }
         gSPDisplayList(DisplayListHead++, D_0D007DB8);
         ToumeIMode(0x000000FF, 0x000000FF, 0x000000FF, arg5);
-        gSPDisplayList(DisplayListHead++, kwsprite_rgba_pt_init);
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_hud_type_C_rank_font);
+        gSPDisplayList(DisplayListHead++, KWSpriteRGBAPtInit);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTHUDTypeCRankFont);
         KwloadtextureblockCI8B(common_texture_hud_type_C_rank_font[Arg2], 0x00000010, 0x00000010);
         if (arg7 != 0) {
             Kwcreateaffine2D((s32) (arg0 + 9.0f), (s32) (arg1 + 7.0f), 0U, 1.0f);
@@ -2933,8 +2933,8 @@ void KwdisplayBombpanel(void) {
         if ((Bom[var_s1].State != BOMB_STATE_EXPLODED) && (Bom[var_s1].State != BOMB_STATE_INACTIVE)) {
             KwcalcBombkartZahyou(var_s1, &sp88, &sp84);
             gSPDisplayList(DisplayListHead++, D_0D007DB8);
-            gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_portrait_bomb_kart_and_question_mark);
-            KwloadtextureblockCI8B(common_texture_portrait_bomb_kart, 0x00000020, 0x00000020);
+            gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTPortraitBombKartAndQuestionMark);
+            KwloadtextureblockCI8B(CommonTexturePortraitBombKart, 0x00000020, 0x00000020);
             Kwcreateaffine2D(sp88 + 0x20, sp84 + 0x12, 0U, 0.6f);
             gSPDisplayList(DisplayListHead++, KWSetTile32x32);
         }
@@ -2973,8 +2973,8 @@ void KwdisplayEnemycarSub(s32 PlayerId, s32 arg1) {
 
     if ((CourseID == COURSE_YOSHI_VALLEY) && (lapCount < 3)) {
         gSPDisplayList(DisplayListHead++, D_0D007DB8);
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_portrait_bomb_kart_and_question_mark);
-        KwloadtextureblockCI8B(common_texture_portrait_question_mark, 0x00000020, 0x00000020);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTPortraitBombKartAndQuestionMark);
+        KwloadtextureblockCI8B(CommonTexturePortraitQuestionMark, 0x00000020, 0x00000020);
         object = &DynamicObjects[ObjectIndex];
         object->pos[0] = object->PosSpline[0] + ((f32) (spD0 + 0x20));
         object->pos[1] = object->PosSpline[1] + ((f32) (spC4 + spCC));
@@ -3001,7 +3001,7 @@ void KwdisplayEnemycarSub(s32 PlayerId, s32 arg1) {
         } else {
             gSPDisplayList(DisplayListHead++, KWSetTile32x32);
         }
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_hud_type_C_rank_tiny_font);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTHUDTypeCRankTinyFont);
         KwloadtextureblockCI8B(common_texture_hud_type_C_rank_tiny_font[arg1 + 1], 8, 8);
         if (spB8 != 0) {
             Kwcreateaffine2D(spD0 + 0x26, (spC4 + spCC) + 4, 0U, 1.0f);
@@ -3012,7 +3012,7 @@ void KwdisplayEnemycarSub(s32 PlayerId, s32 arg1) {
         if ((Player == PlayerOne) && (ScreenSplitB == SCREEN_MODE_1P)) {
             gSPDisplayList(DisplayListHead++, D_0D007A40);
             ToumeIMode(Wakur, Wakug, Wakub, 0x000000FF);
-            KwloadtextureblockIA4B(common_texture_character_portrait_border, 0x00000020, 0x00000020);
+            KwloadtextureblockIA4B(CommonTextureCharacterPortraitBorder, 0x00000020, 0x00000020);
             KWCreateAffine3D(object->pos, object->ang, object->Scale);
             gSPDisplayList(DisplayListHead++, KWSetTile32x32);
         }
@@ -3053,9 +3053,9 @@ void KwdisplayLeaf(UNUSED s32 CameraId) {
     s32 leafIndex;
     AnmObject* object;
 
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     gSPClearGeometryMode(DisplayListHead++, G_CULL_BOTH);
-    KWLoadTextureBlockRGBA16B(common_texture_particle_leaf, 0x00000020, 0x00000010);
+    KWLoadTextureBlockRGBA16B(CommonTextureParticleLeaf, 0x00000020, 0x00000010);
     for (someIndex = 0; someIndex < gLeafParticle_SIZE; someIndex++) {
         leafIndex = Leafallocptr[someIndex];
         if (leafIndex != -1) {
@@ -3097,7 +3097,7 @@ void KwdisplayKumoDraw(s32 ObjectIndex, s16 arg1, s16 Arg2) {
         }
         Kwcreateaffine2D(arg1, Arg2, 0U, DynamicObjects[ObjectIndex].Scale);
         gSPVertex(DisplayListHead++, DynamicObjects[ObjectIndex].Vtxaddr, 4, 0);
-        gSPDisplayList(DisplayListHead++, common_rectangle_display);
+        gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
     }
 }
 
@@ -3111,7 +3111,7 @@ void KwdisplayStarDraw(s32 ObjectIndex, s16 arg1, s16 Arg2) {
         KWSetPrimColor(0x000000FF, 0x000000FF, 0x000000FF, DynamicObjects[ObjectIndex].Alpha);
         Kwcreateaffine2D(arg1, Arg2, 0U, DynamicObjects[ObjectIndex].Scale);
         gSPVertex(DisplayListHead++, DynamicObjects[ObjectIndex].Vtxaddr, 4, 0);
-        gSPDisplayList(DisplayListHead++, common_rectangle_display);
+        gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
     }
 }
 
@@ -3225,19 +3225,19 @@ void KwdisplayKumo2Pd(void) {
 
 void KwsetPukupukuLight(s32 arg0) {
     if (DynamicObjects[arg0].Chartptr == 0) {
-        pukupuku_material[0].l[0].l.dir[0] = pukupuku_material[1].l[0].l.dir[0] = pukupuku_material[2].l[0].l.dir[0] =
-            pukupuku_material[3].l[0].l.dir[0] = 0;
-        pukupuku_material[0].l[0].l.dir[1] = pukupuku_material[1].l[0].l.dir[1] = pukupuku_material[2].l[0].l.dir[1] =
-            pukupuku_material[3].l[0].l.dir[1] = -0x78;
-        pukupuku_material[0].l[0].l.dir[2] = pukupuku_material[1].l[0].l.dir[2] = pukupuku_material[2].l[0].l.dir[2] =
-            pukupuku_material[3].l[0].l.dir[2] = 0;
+        PukupukuMaterial[0].l[0].l.dir[0] = PukupukuMaterial[1].l[0].l.dir[0] = PukupukuMaterial[2].l[0].l.dir[0] =
+            PukupukuMaterial[3].l[0].l.dir[0] = 0;
+        PukupukuMaterial[0].l[0].l.dir[1] = PukupukuMaterial[1].l[0].l.dir[1] = PukupukuMaterial[2].l[0].l.dir[1] =
+            PukupukuMaterial[3].l[0].l.dir[1] = -0x78;
+        PukupukuMaterial[0].l[0].l.dir[2] = PukupukuMaterial[1].l[0].l.dir[2] = PukupukuMaterial[2].l[0].l.dir[2] =
+            PukupukuMaterial[3].l[0].l.dir[2] = 0;
     } else {
-        pukupuku_material[0].l[0].l.dir[0] = pukupuku_material[1].l[0].l.dir[0] = pukupuku_material[2].l[0].l.dir[0] =
-            pukupuku_material[3].l[0].l.dir[0] = 0x63;
-        pukupuku_material[0].l[0].l.dir[1] = pukupuku_material[1].l[0].l.dir[1] = pukupuku_material[2].l[0].l.dir[1] =
-            pukupuku_material[3].l[0].l.dir[1] = 0x42;
-        pukupuku_material[0].l[0].l.dir[2] = pukupuku_material[1].l[0].l.dir[2] = pukupuku_material[2].l[0].l.dir[2] =
-            pukupuku_material[3].l[0].l.dir[2] = 0;
+        PukupukuMaterial[0].l[0].l.dir[0] = PukupukuMaterial[1].l[0].l.dir[0] = PukupukuMaterial[2].l[0].l.dir[0] =
+            PukupukuMaterial[3].l[0].l.dir[0] = 0x63;
+        PukupukuMaterial[0].l[0].l.dir[1] = PukupukuMaterial[1].l[0].l.dir[1] = PukupukuMaterial[2].l[0].l.dir[1] =
+            PukupukuMaterial[3].l[0].l.dir[1] = 0x42;
+        PukupukuMaterial[0].l[0].l.dir[2] = PukupukuMaterial[1].l[0].l.dir[2] = PukupukuMaterial[2].l[0].l.dir[2] =
+            PukupukuMaterial[3].l[0].l.dir[2] = 0;
     }
 }
 
@@ -3253,17 +3253,17 @@ void KwdisplayPukupuku(UNUSED s32 arg0) {
             KwsetPukupukuLight(temp_a3);
 
             gSPDisplayList(DisplayListHead++, D_0D007828);
-            gSPLight(DisplayListHead++, &pukupuku_material[0].l[0], LIGHT_1);
-            gSPLight(DisplayListHead++, &pukupuku_material[0].a, LIGHT_2);
+            gSPLight(DisplayListHead++, &PukupukuMaterial[0].l[0], LIGHT_1);
+            gSPLight(DisplayListHead++, &PukupukuMaterial[0].a, LIGHT_2);
             gSPDisplayList(DisplayListHead++, d_course_banshee_boardwalk_dl_7B38);
-            gSPLight(DisplayListHead++, &pukupuku_material[1].l[0], LIGHT_1);
-            gSPLight(DisplayListHead++, &pukupuku_material[1].a, LIGHT_2);
+            gSPLight(DisplayListHead++, &PukupukuMaterial[1].l[0], LIGHT_1);
+            gSPLight(DisplayListHead++, &PukupukuMaterial[1].a, LIGHT_2);
             gSPDisplayList(DisplayListHead++, d_course_banshee_boardwalk_dl_7978);
-            gSPLight(DisplayListHead++, &pukupuku_material[2].l[0], LIGHT_1);
-            gSPLight(DisplayListHead++, &pukupuku_material[2].a, LIGHT_2);
+            gSPLight(DisplayListHead++, &PukupukuMaterial[2].l[0], LIGHT_1);
+            gSPLight(DisplayListHead++, &PukupukuMaterial[2].a, LIGHT_2);
             gSPDisplayList(DisplayListHead++, d_course_banshee_boardwalk_dl_78C0);
-            gSPLight(DisplayListHead++, &pukupuku_material[3].l[0], LIGHT_1);
-            gSPLight(DisplayListHead++, &pukupuku_material[3].a, LIGHT_2);
+            gSPLight(DisplayListHead++, &PukupukuMaterial[3].l[0], LIGHT_1);
+            gSPLight(DisplayListHead++, &PukupukuMaterial[3].a, LIGHT_2);
             gSPDisplayList(DisplayListHead++, d_course_banshee_boardwalk_dl_7650);
         }
     }
@@ -3380,8 +3380,8 @@ void KwdisplayIceblockKakera(s32 arg0) {
     D_80183E80[2] = D_8016582C[2];
     gSPDisplayList(DisplayListHead++, D_0D007B00);
     gSPNumLights(DisplayListHead++, 1);
-    gSPLight(DisplayListHead++, &iceblock3_material.l[0], LIGHT_1);
-    gSPLight(DisplayListHead++, &iceblock3_material.a, LIGHT_2);
+    gSPLight(DisplayListHead++, &Iceblock3Material.l[0], LIGHT_1);
+    gSPLight(DisplayListHead++, &Iceblock3Material.a, LIGHT_2);
     gDPSetCombineMode(DisplayListHead++, G_CC_MODULATEIA, G_CC_MODULATEIA);
     gSPClearGeometryMode(DisplayListHead++, G_CULL_BOTH);
     gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_LIGHTING | G_SHADING_SMOOTH);
@@ -3420,11 +3420,11 @@ void KWDisplayIceBlock(s32 arg0) {
     s32 PlayerId;
     s32 ObjectIndex;
 
-    iceblock3_material.l[0].l.dir[0] = D_80165840[0];
-    iceblock3_material.l[0].l.dir[1] = D_80165840[1];
-    iceblock3_material.l[0].l.dir[2] = D_80165840[2];
-    gSPLight(DisplayListHead++, &iceblock3_material.l[0], LIGHT_1);
-    gSPLight(DisplayListHead++, &iceblock3_material.a, LIGHT_2);
+    Iceblock3Material.l[0].l.dir[0] = D_80165840[0];
+    Iceblock3Material.l[0].l.dir[1] = D_80165840[1];
+    Iceblock3Material.l[0].l.dir[2] = D_80165840[2];
+    gSPLight(DisplayListHead++, &Iceblock3Material.l[0], LIGHT_1);
+    gSPLight(DisplayListHead++, &Iceblock3Material.a, LIGHT_2);
     for (PlayerId = 0; PlayerId < PlayerCount; PlayerId++) {
         ObjectIndex = Jugemuallocptr[PlayerId];
         if (ObjectIndex) {}
@@ -3453,11 +3453,11 @@ void KwdisplayIceblockKageSub(s32 PlayerId) {
 void KWDisplayIceBlockShadow(UNUSED s32 arg0) {
     s32 var_s0;
 
-    iceblock3_material.l[0].l.dir[0] = D_80165840[0];
-    iceblock3_material.l[0].l.dir[1] = D_80165840[1];
-    iceblock3_material.l[0].l.dir[2] = D_80165840[2];
-    gSPLight(DisplayListHead++, &iceblock3_material.l[0], LIGHT_1);
-    gSPLight(DisplayListHead++, &iceblock3_material.a, LIGHT_2);
+    Iceblock3Material.l[0].l.dir[0] = D_80165840[0];
+    Iceblock3Material.l[0].l.dir[1] = D_80165840[1];
+    Iceblock3Material.l[0].l.dir[2] = D_80165840[2];
+    gSPLight(DisplayListHead++, &Iceblock3Material.l[0], LIGHT_1);
+    gSPLight(DisplayListHead++, &Iceblock3Material.a, LIGHT_2);
     D_80183E80[0] = 0;
     D_80183E80[1] = 0;
     D_80183E80[2] = 0;
@@ -3575,17 +3575,17 @@ void KWDisplayJugemu(s32 CameraId) {
 
 void KwsetDoshinLightvec(UNUSED s32 arg0) {
     KwcalcLightvector();
-    dosun_material.l[0].l.dir[0] = D_80165840[0];
-    dosun_material.l[0].l.dir[1] = D_80165840[1];
-    dosun_material.l[0].l.dir[2] = D_80165840[2];
+    DosunMaterial.l[0].l.dir[0] = D_80165840[0];
+    DosunMaterial.l[0].l.dir[1] = D_80165840[1];
+    DosunMaterial.l[0].l.dir[2] = D_80165840[2];
 }
 
 void KwsetDoshinLight(s32 ObjectIndex) {
     // Why these don't just use `gSPSetLights1` calls...
     switch (DynamicObjects[ObjectIndex].Output) { // hmm very strange 80165C18
         case 0:
-            gSPLight(DisplayListHead++, &dosun_material.l[0], LIGHT_1);
-            gSPLight(DisplayListHead++, &dosun_material.a, LIGHT_2);
+            gSPLight(DisplayListHead++, &DosunMaterial.l[0], LIGHT_1);
+            gSPLight(DisplayListHead++, &DosunMaterial.a, LIGHT_2);
             break;
         case 1:
             gSPLight(DisplayListHead++, &D_800E4650.l[0], LIGHT_1);
@@ -3653,7 +3653,7 @@ void KwdisplayDoshin(s32 CameraId) {
             KwdisplayDoshinSub(ObjectIndex);
         }
     }
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     gDPSetCombineMode(DisplayListHead++, G_CC_MODULATEIA, G_CC_MODULATEIA);
     gSPNumLights(DisplayListHead++, 1);
     gSPLight(DisplayListHead++, &D_800E4668.l[0], LIGHT_1);
@@ -3687,7 +3687,7 @@ void KwdisplayDoshin(s32 CameraId) {
             if ((object->Anmptr >= 2) && (object->Chartptr == 2) && (Modelingnum <= MTX_HUD_POOL_SIZE_MAX)) {
                 KWSetPrimColor(0x000000FF, 0x000000FF, 0x000000FF, (s32) object->Alpha);
                 D_80183E80[1] = KWLookCamera(object->pos[0], object->pos[2], Camera->CameraPos);
-                KwsetTile(object->pos, D_80183E80, object->Scale, Vtx_KTile32x32);
+                KwsetTile(object->pos, D_80183E80, object->Scale, VtxKTile32X32);
             }
         }
     }
@@ -3703,8 +3703,8 @@ void KwdisplayFuusenSub(s32 ObjectIndex, UNUSED s32 arg1, s32 vertexIndex) {
         SetColorRender((s32) object->Stack[0], (s32) object->Stack[1], (s32) object->Stack[2],
                          (s32) object->Stack[3], (s32) object->Stack[4], (s32) object->Stack[5],
                          (s32) object->Alpha);
-        gSPVertex(DisplayListHead++, &Vtx_KTile64x64BL[vertexIndex], 4, 0);
-        gSPDisplayList(DisplayListHead++, common_rectangle_display);
+        gSPVertex(DisplayListHead++, &VtxKTile64X64BL[vertexIndex], 4, 0);
+        gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
     }
 }
 
@@ -3744,7 +3744,7 @@ void KwdisplayTrainSmokeSub(s32 ObjectIndex, s32 CameraId) {
                              (s32) DynamicObjects[ObjectIndex].Output, 0, 0, 0, (s32) DynamicObjects[ObjectIndex].Alpha);
             D_80183E80[1] =
                 KWLookCamera(DynamicObjects[ObjectIndex].pos[0], DynamicObjects[ObjectIndex].pos[2], Camera->CameraPos);
-            KwsetTile(DynamicObjects[ObjectIndex].pos, D_80183E80, DynamicObjects[ObjectIndex].Scale, Vtx_KTile32x32);
+            KwsetTile(DynamicObjects[ObjectIndex].pos, D_80183E80, DynamicObjects[ObjectIndex].Scale, VtxKTile32X32);
         }
     }
 }
@@ -3806,7 +3806,7 @@ void KwdisplayShipSmokeSub(s32 ObjectIndex, s32 CameraId) {
                              (s32) DynamicObjects[ObjectIndex].Alpha);
             D_80183E80[1] =
                 KWLookCamera(DynamicObjects[ObjectIndex].pos[0], DynamicObjects[ObjectIndex].pos[2], Camera->CameraPos);
-            KwsetTile(DynamicObjects[ObjectIndex].pos, D_80183E80, DynamicObjects[ObjectIndex].Scale, Vtx_KTile32x32);
+            KwsetTile(DynamicObjects[ObjectIndex].pos, D_80183E80, DynamicObjects[ObjectIndex].Scale, VtxKTile32X32);
         }
     }
 }
@@ -3849,7 +3849,7 @@ void KwdisplayKoopaFireSub(s32 ObjectIndex, s32 CameraId) {
             KWSetPrimColor(0xFF, (s32) object->Output, 0, (s32) object->Alpha);
         }
         D_80183E80[1] = KWLookCamera(object->pos[0], object->pos[2], Camera->CameraPos);
-        KwsetTile(object->pos, D_80183E80, object->Scale, Vtx_KTile32x32);
+        KwsetTile(object->pos, D_80183E80, object->Scale, VtxKTile32X32);
     }
 }
 
@@ -3900,7 +3900,7 @@ void KWDisplayFireParticleSub(s32 ObjectIndex, u8 arg1, Vec3f Arg2) {
                 break;
         }
         D_80183E80[1] = KWLookCamera(DynamicObjects[ObjectIndex].pos[0], DynamicObjects[ObjectIndex].pos[2], Arg2);
-        KwsetTile(DynamicObjects[ObjectIndex].pos, D_80183E80, DynamicObjects[ObjectIndex].Scale, Vtx_KTile32x32);
+        KwsetTile(DynamicObjects[ObjectIndex].pos, D_80183E80, DynamicObjects[ObjectIndex].Scale, VtxKTile32X32);
     }
 }
 
@@ -3943,8 +3943,8 @@ void KwdisplayStarSub(s32 ObjectIndex, Vec3f arg1) {
                   (s32) DynamicObjects[ObjectIndex].Stack[2], (s32) DynamicObjects[ObjectIndex].Alpha);
     KWCreateAffine3D(DynamicObjects[ObjectIndex].pos, (u16*) D_80183E80,
                                   DynamicObjects[ObjectIndex].Scale);
-    gSPVertex(DisplayListHead++, Vtx_KTile32x32, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPVertex(DisplayListHead++, VtxKTile32X32, 4, 0);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 void KWDisplayStar(s32 CameraId) {
@@ -4013,7 +4013,7 @@ void KwdisplayTuchi(s32 CameraId) {
     AnmObject* object;
 
     sp44 = &Camera1[CameraId];
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     KWLoadTextureBlockRGBA16B((u16 *) d_course_moo_moo_farm_mole_dirt, 0x00000010, 0x00000010);
     for (var_s2 = 0; var_s2 < gObjectParticle2_SIZE; var_s2++) {
         ObjectIndex = EffectAllocArray2[var_s2];
@@ -4117,7 +4117,7 @@ void KwdisplayKaniSub(s32 ObjectIndex, s32 CameraId) {
             KWLookCamera(DynamicObjects[ObjectIndex].pos[0], DynamicObjects[ObjectIndex].pos[2], Camera->CameraPos);
         Kwtexture3DCI8AAZBBl(DynamicObjects[ObjectIndex].pos, DynamicObjects[ObjectIndex].Texang,
                            DynamicObjects[ObjectIndex].Scale, (u8*) DynamicObjects[ObjectIndex].Texaddr,
-                           DynamicObjects[ObjectIndex].Indexaddr, Vtx_KTile64x64BL, 0x00000040, 0x00000040,
+                           DynamicObjects[ObjectIndex].Indexaddr, VtxKTile64X64BL, 0x00000040, 0x00000040,
                            0x00000040, 0x00000020);
     }
 }
@@ -4263,7 +4263,7 @@ void KwdisplayWanwanSub(s32 ObjectIndex, s32 CameraId) {
             D_80183E80[1] =
                 KWLookCamera(DynamicObjects[ObjectIndex].pos[0], DynamicObjects[ObjectIndex].pos[2], Camera->CameraPos);
             D_80183E80[2] = 0x8000;
-            Kwtexture3DRGBAAAZBBlMr(D_80183E40, D_80183E80, 0.54f, d_course_rainbow_road_sphere, D_0D0062B0, 0x00000020,
+            Kwtexture3DRGBAAAZBBlMr(D_80183E40, D_80183E80, 0.54f, (u16 *) d_course_rainbow_road_sphere, D_0D0062B0, 0x00000020,
                           0x00000040, 0x00000020, 0x00000040, 5);
         } else {
             KWCreateAffine3D(DynamicObjects[ObjectIndex].pos, DynamicObjects[ObjectIndex].ang,
@@ -4393,7 +4393,7 @@ void KwdisplayNeon(s32 CameraId) {
                 (KwanmVischeckCameraXz(ObjectIndex, Camera, 0x2AABU) != 0)) {
                 object->Texang[1] = KwlookcameraXz(ObjectIndex, Camera);
                 Kwtexture3DCI8AAZBBl(object->pos, object->Texang, object->Scale, (u8*) object->Texaddr,
-                                   object->Indexaddr, Vtx_KTile64x64BL, 0x00000040, 0x00000040, 0x00000040,
+                                   object->Indexaddr, VtxKTile64X64BL, 0x00000040, 0x00000040, 0x00000040,
                                    0x00000020);
             }
         }
@@ -4407,8 +4407,8 @@ void KwdisplayBombsparkBt(s32 arg0, s32 arg1, s32 Arg2) {
     KWSetPrimColor(D_80165860, D_8016586C, D_80165878, Arg2);
     KWCreateAffine3D(D_80183E40, D_80183E80, 0.2f);
     KwloadtextureblockI8B(common_texture_particle_spark[arg1], 0x00000020, 0x00000020);
-    gSPVertex(DisplayListHead++, Vtx_KTile32x32, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_rectangle_display);
+    gSPVertex(DisplayListHead++, VtxKTile32X32, 4, 0);
+    gSPDisplayList(DisplayListHead++, CommonRectangleDisplay);
 }
 
 void KwdisplayBombbodyBt(s32 ObjectIndex, s32 CameraId, s32 Arg2) {
@@ -4430,7 +4430,7 @@ void KwdisplayBombbodyBt(s32 ObjectIndex, s32 CameraId, s32 Arg2) {
     KWCreateAffine3D(D_80183E40, D_80183E80, 0.2f);
     gSPDisplayList(DisplayListHead++, D_0D007E98);
     ToumeIAMode(Arg2);
-    KWTextureCI8SubBL((u8*) common_tlut_bomb, common_texture_bomb[residue], Vtx_KTile32x32, 0x00000020,
+    KWTextureCI8SubBL((u8*) CommonTLUTBomb, common_texture_bomb[residue], VtxKTile32X32, 0x00000020,
                                    0x00000020, 0x00000020, 0x00000020);
     temp_s0 = Kwgameframetimer;
     gSPDisplayList(DisplayListHead++, D_0D007B00);
@@ -4454,16 +4454,16 @@ void KwdisplayBombtireBt(s32 ObjectIndex, UNUSED s32 arg1, s32 Arg2) {
     D_80183E40[1] = DynamicObjects[ObjectIndex].pos[1] - 2.0;
     D_80183E40[0] = DynamicObjects[ObjectIndex].pos[0] + 2.0;
     D_80183E40[2] = DynamicObjects[ObjectIndex].pos[2] + 2.0;
-    KwsetTile(D_80183E40, D_80183E80, 0.15f, Vtx_KTile16x16);
+    KwsetTile(D_80183E40, D_80183E80, 0.15f, VtxKTile16X16);
     D_80183E40[0] = DynamicObjects[ObjectIndex].pos[0] + 2.0;
     D_80183E40[2] = DynamicObjects[ObjectIndex].pos[2] - 2.0;
-    KwsetTile(D_80183E40, D_80183E80, 0.15f, Vtx_KTile16x16);
+    KwsetTile(D_80183E40, D_80183E80, 0.15f, VtxKTile16X16);
     D_80183E40[0] = DynamicObjects[ObjectIndex].pos[0] - 2.0;
     D_80183E40[2] = DynamicObjects[ObjectIndex].pos[2] - 2.0;
-    KwsetTile(D_80183E40, D_80183E80, 0.15f, Vtx_KTile16x16);
+    KwsetTile(D_80183E40, D_80183E80, 0.15f, VtxKTile16X16);
     D_80183E40[0] = DynamicObjects[ObjectIndex].pos[0] - 2.0;
     D_80183E40[2] = DynamicObjects[ObjectIndex].pos[2] + 2.0;
-    KwsetTile(D_80183E40, D_80183E80, 0.15f, Vtx_KTile16x16);
+    KwsetTile(D_80183E40, D_80183E80, 0.15f, VtxKTile16X16);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
 }
 
@@ -4540,7 +4540,7 @@ void KwdisplayBombkartSub(s32 bombIndex) {
     D_80183E40[0] = sp40.BombPos[0];
     D_80183E40[1] = sp40.BombPos[1] + 1.0;
     D_80183E40[2] = sp40.BombPos[2];
-    Kwtexture3DCI8AAZBBl(D_80183E40, D_80183E80, 0.25f, (u8*) common_tlut_bomb, bombFrame, Vtx_KTile32x32, 0x20, 0x20, 0x20,
+    Kwtexture3DCI8AAZBBl(D_80183E40, D_80183E80, 0.25f, (u8*) CommonTLUTBomb, bombFrame, VtxKTile32X32, 0x20, 0x20, 0x20,
                        0x20);
     temp_s0 = Kwgameframetimer;
     gSPDisplayList(DisplayListHead++, D_0D007B00);
@@ -4562,16 +4562,16 @@ void KwdisplayBombtire(s32 bombIndex, Vec3f arg1) {
 
     D_80183E80[0] = 0;
     D_80183E80[2] = 0x8000;
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     KWLoadTextureBlockRGBA16B(D_0D02AA58, 0x00000010, 0x00000010);
     D_80183E80[1] = KWLookCamera(sp2C.Wheel1Pos[0], sp2C.Wheel1Pos[2], arg1);
-    KwsetTile(sp2C.Wheel1Pos, D_80183E80, 0.15f, Vtx_KTile16x16);
+    KwsetTile(sp2C.Wheel1Pos, D_80183E80, 0.15f, VtxKTile16X16);
     D_80183E80[1] = KWLookCamera(sp2C.Wheel2Pos[0], sp2C.Wheel2Pos[2], arg1);
-    KwsetTile(sp2C.Wheel2Pos, D_80183E80, 0.15f, Vtx_KTile16x16);
+    KwsetTile(sp2C.Wheel2Pos, D_80183E80, 0.15f, VtxKTile16X16);
     D_80183E80[1] = KWLookCamera(sp2C.Wheel3Pos[0], sp2C.Wheel3Pos[2], arg1);
-    KwsetTile(sp2C.Wheel3Pos, D_80183E80, 0.15f, Vtx_KTile16x16);
+    KwsetTile(sp2C.Wheel3Pos, D_80183E80, 0.15f, VtxKTile16X16);
     D_80183E80[1] = KWLookCamera(sp2C.Wheel4Pos[0], sp2C.Wheel4Pos[2], arg1);
-    KwsetTile(sp2C.Wheel4Pos, D_80183E80, 0.15f, Vtx_KTile16x16);
+    KwsetTile(sp2C.Wheel4Pos, D_80183E80, 0.15f, VtxKTile16X16);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
 }
 
@@ -4644,7 +4644,7 @@ UNUSED void func_80057330(void) {
 
 UNUSED void KwdisplayTyphoon(void) {
 
-    gSPDisplayList(DisplayListHead++, kwtexture_rgba_xlu_aa_zb_bl_init);
+    gSPDisplayList(DisplayListHead++, KWTextureRGBAXLUAAZBBlInit);
     gSPClearGeometryMode(DisplayListHead++, G_CULL_BOTH);
     gSPDisplayList(DisplayListHead++, D_0D007AE0);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);

@@ -40,27 +40,27 @@ void FastAI()
           {
                case 0x01 :
                {
-                    GlobalPlayer[1].Weapon |= USE_MUSHROOM;
-                    GlobalPlayer[2].Weapon |= USE_MUSHROOM;
-                    GlobalPlayer[3].Weapon |= USE_MUSHROOM;
+                    GamePlayers[1].Weapon |= USE_MUSHROOM;
+                    GamePlayers[2].Weapon |= USE_MUSHROOM;
+                    GamePlayers[3].Weapon |= USE_MUSHROOM;
                     break;
                }
                case 0x02 :
                {
-                    GlobalPlayer[1].Weapon |= USE_MUSHROOM;
+                    GamePlayers[1].Weapon |= USE_MUSHROOM;
                     break;
                }
                case 0x03 :
                {
-                    GlobalPlayer[1].Weapon |= USE_MUSHROOM;
-                    GlobalPlayer[2].Weapon |= USE_MUSHROOM;
+                    GamePlayers[1].Weapon |= USE_MUSHROOM;
+                    GamePlayers[2].Weapon |= USE_MUSHROOM;
                     break;
                }
                case 0x04 :
                {
-                    GlobalPlayer[1].Weapon |= USE_MUSHROOM;
-                    GlobalPlayer[2].Weapon |= USE_MUSHROOM;
-                    GlobalPlayer[3].Weapon |= USE_MUSHROOM;
+                    GamePlayers[1].Weapon |= USE_MUSHROOM;
+                    GamePlayers[2].Weapon |= USE_MUSHROOM;
+                    GamePlayers[3].Weapon |= USE_MUSHROOM;
                     break;
                }
           }
@@ -71,30 +71,30 @@ void FastAI()
           {
                case 0x01 :
                {
-                    GlobalPlayer[1].AccMaxcount = GlobalFloatA;
-                    GlobalPlayer[2].AccMaxcount = GlobalFloatA;
-                    GlobalPlayer[3].AccMaxcount = GlobalFloatA;
+                    GamePlayers[1].AccMaxcount = GlobalFloatA;
+                    GamePlayers[2].AccMaxcount = GlobalFloatA;
+                    GamePlayers[3].AccMaxcount = GlobalFloatA;
 
                     break;
                }
                case 0x02 :
                {
-                    GlobalPlayer[1].AccMaxcount = GlobalFloatA;
+                    GamePlayers[1].AccMaxcount = GlobalFloatA;
 
                     break;
                }
                case 0x03 :
                {
-                    GlobalPlayer[1].AccMaxcount = GlobalFloatA;
-                    GlobalPlayer[2].AccMaxcount = GlobalFloatA;
+                    GamePlayers[1].AccMaxcount = GlobalFloatA;
+                    GamePlayers[2].AccMaxcount = GlobalFloatA;
 
                     break;
                }
                case 0x04 :
                {
-                    GlobalPlayer[1].AccMaxcount = GlobalFloatA;
-                    GlobalPlayer[2].AccMaxcount = GlobalFloatA;
-                    GlobalPlayer[3].AccMaxcount = GlobalFloatA;
+                    GamePlayers[1].AccMaxcount = GlobalFloatA;
+                    GamePlayers[2].AccMaxcount = GlobalFloatA;
+                    GamePlayers[3].AccMaxcount = GlobalFloatA;
 
                     break;
                }
@@ -112,8 +112,8 @@ void RubberBandMan(int EnemyID, Player* EnemyKart)
 {
      if (ScrollLock)
      {
-          short ThisIndex = (short)g_playerPathPointTable[EnemyID];
-          short TargetIndex = (short)g_playerPathPointTable[EnemyTargetPlayer];
+          short ThisIndex = (short)NearestPathPointByPlayerId[EnemyID];
+          short TargetIndex = (short)NearestPathPointByPlayerId[EnemyTargetPlayer];
 
           if (EnemyKart->Speed < SPEED_KM(SpeedMin[RaceClass]))
           {
@@ -122,14 +122,14 @@ void RubberBandMan(int EnemyID, Player* EnemyKart)
                return;
           }
 
-          if (g_GameLapTable[EnemyID] < g_GameLapTable[EnemyTargetPlayer])
+          if (LapCountByPlayerId[EnemyID] < LapCountByPlayerId[EnemyTargetPlayer])
           {
                AccelOn(EnemyKart);
                RubberChar[EnemyID] = 1;
                return;
           }
 
-          if (g_GameLapTable[EnemyID] == g_GameLapTable[EnemyTargetPlayer])
+          if (LapCountByPlayerId[EnemyID] == LapCountByPlayerId[EnemyTargetPlayer])
           {
                if (ThisIndex < TargetIndex + RubberCheck[RaceClass])
                {
@@ -145,7 +145,7 @@ void RubberBandMan(int EnemyID, Player* EnemyKart)
                }
           }
 
-          if (g_GameLapTable[EnemyID] > g_GameLapTable[EnemyTargetPlayer])
+          if (LapCountByPlayerId[EnemyID] > LapCountByPlayerId[EnemyTargetPlayer])
           {
                if (ThisIndex < RubberCheck[RaceClass])
                {
@@ -169,7 +169,7 @@ void SetAIDifficulty(int Difficulty)
      int ThisPlayer;
      for (ThisPlayer = PlayerCount; ThisPlayer < 8; ThisPlayer++)
      {
-          GlobalPlayer[ThisPlayer].AccMaxcount += DifficultyCurve[Difficulty];
+          GamePlayers[ThisPlayer].AccMaxcount += DifficultyCurve[Difficulty];
      }
 }
 
@@ -186,20 +186,20 @@ void AISetup()
         }
         case 1:
         {
-            PlayerOK[1] = 0x01;
-            PlayerOK[2] = 0x01;
-            PlayerOK[3] = 0x01;
+            CharacterGridIsSelected[1] = 0x01;
+            CharacterGridIsSelected[2] = 0x01;
+            CharacterGridIsSelected[3] = 0x01;
             break;
         }
         case 2:
         {
-            PlayerOK[2] = 0x01;
-            PlayerOK[3] = 0x01;
+            CharacterGridIsSelected[2] = 0x01;
+            CharacterGridIsSelected[3] = 0x01;
             break;
         }
         case 3:
         {
-            PlayerOK[3] = 0x01;
+            CharacterGridIsSelected[3] = 0x01;
             break;
         }
 
@@ -210,8 +210,8 @@ void AISetup()
         {
             if (*GlobalLap[ThisPlayer] < 3)
             {
-                GlobalPlayer[ThisPlayer].Flag |= EXISTS;
-                GlobalPlayer[ThisPlayer].Flag |= IS_CPU_PLAYER;
+                GamePlayers[ThisPlayer].Flag |= EXISTS;
+                GamePlayers[ThisPlayer].Flag |= IS_CPU_PLAYER;
             }
         }
 

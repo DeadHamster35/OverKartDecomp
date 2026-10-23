@@ -1117,15 +1117,15 @@ void Kwdisplay2D2PDownAfter(void) {
 void KWDisplayAfter4PSub(s32 PlayerId) {
     if (GameMode != BATTLE) {
         if (KWLapSW && KWScreenEnable) {
-            Kwsprite32X8(PlayerHUD[PlayerId].cx, PlayerHUD[PlayerId].cy, common_texture_hud_lap);
+            Kwsprite32X8(PlayerHUD[PlayerId].cx, PlayerHUD[PlayerId].cy, CommonTextureHUDLap);
             KwdisplayLap88(PlayerHUD[PlayerId].cx - 12, PlayerHUD[PlayerId].cy + 4,
                            PlayerHUD[PlayerId].Lapcnt);
         }
         if (HUDLapToggle == 2) {
             if (PlayerHUD[PlayerId].Bomb && KWFlash8) {
                 KWTexture2DCI8BL(PlayerHUD[PlayerId].Bombx, PlayerHUD[PlayerId].Bomby, 0, 1.0f,
-                              (u8*) common_tlut_portrait_bomb_kart_and_question_mark, common_texture_portrait_bomb_kart,
-                              Vtx_KTile32x32, 0x20, 0x20, 0x20, 0x20);
+                              (u8*) CommonTLUTPortraitBombKartAndQuestionMark, CommonTexturePortraitBombKart,
+                              VtxKTile32X32, 0x20, 0x20, 0x20, 0x20);
             }
         }
     }
@@ -5202,7 +5202,7 @@ void SetTurboCalc(Player* Player, UNUSED s32 arg1, s16 Arg2, s8 Arg3) {
         CommonMTXCalc(sp5C, sp54, Player->smoke[Arg2].Scale * Player->Offsetsize);
         gSPDisplayList(DisplayListHead++, D_0D008C90);
         gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
-        gDPLoadTextureBlock(DisplayListHead++, common_texture_particle_fire, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 64, 0,
+        gDPLoadTextureBlock(DisplayListHead++, CommonTextureParticleFire, G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, 64, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
         ToumeIMode(red, Green, Blue, Alpha);
@@ -5273,7 +5273,7 @@ void SetThunderCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
             gSPVertex(DisplayListHead++, &D_800E8900[0][Player->Gass[Arg2].Swork1], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_square_plain_render);
+            gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
             gDPLoadTextureBlock(DisplayListHead++, ThunderB, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
@@ -5287,7 +5287,7 @@ void SetThunderCalc(Player* Player, UNUSED s8 arg1, s16 Arg2, s8 Arg3) {
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
             gSPVertex(DisplayListHead++, &D_800E8900[0][Player->Gass[Arg2].Swork1], 4, 0);
-            gSPDisplayList(DisplayListHead++, common_square_plain_render);
+            gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
             gDPLoadTextureBlock(DisplayListHead++, ThunderA, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                                 G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                                 G_TX_NOLOD, G_TX_NOLOD);
@@ -5392,7 +5392,7 @@ void SetSpinCalc(Player* Player, UNUSED s8 arg1, f32 Arg2, UNUSED s8 Arg3, s8 ar
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
         gSPVertex(DisplayListHead++, D_800E8840, 4, 0);
-        gSPDisplayList(DisplayListHead++, common_square_plain_render);
+        gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
         gDPLoadTextureBlock(DisplayListHead++, Whir2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
@@ -5478,7 +5478,7 @@ void SetCrashCalc(Player* Player, UNUSED s8 arg1, UNUSED f32 Arg2, s8 Arg3, s8 a
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
         gSPVertex(DisplayListHead++, D_800E8880, 4, 0);
-        gSPDisplayList(DisplayListHead++, common_square_plain_render);
+        gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
         gDPLoadTextureBlock(DisplayListHead++, Crash2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
@@ -5508,7 +5508,7 @@ void SetHitCalc(Player* Player, UNUSED s8 arg1, UNUSED f32 Arg2, s8 Arg3, s8 arg
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
         gSPVertex(DisplayListHead++, D_800E8A00, 4, 0);
-        gSPDisplayList(DisplayListHead++, common_square_plain_render);
+        gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
         gDPLoadTextureBlock(DisplayListHead++, ThunderB, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 64, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
@@ -5562,7 +5562,7 @@ void SetPoompCalc(Player* Player, UNUSED s8 arg1, UNUSED f32 Arg2, s8 Arg3, s8 a
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
         gSPVertex(DisplayListHead++, D_800E8B80, 4, 0);
-        gSPDisplayList(DisplayListHead++, common_square_plain_render);
+        gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
         gDPLoadTextureBlock(DisplayListHead++, Poomp2, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
@@ -5989,12 +5989,12 @@ void MakeBalloonCalc(Player* Player, s8 playerIndex, s16 balloonIndex, s8 screen
     gDPLoadTextureBlock(DisplayListHead++, Balloon1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
     gSPVertex(DisplayListHead++, BalloonVertexPlane1, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gDPLoadTextureBlock(DisplayListHead++, Balloon2 - 0x40, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, BalloonVertexPlane2, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gSPTexture(DisplayListHead++, 0x0001, 0x0001, 0, G_TX_RENDERTILE, G_OFF);
     Effectcount++;
 }
@@ -6099,14 +6099,14 @@ void DrawBalloon(Vec3f arg0, f32 arg1, s16 Arg2, s16 Arg3) {
     gDPLoadTextureBlock(DisplayListHead++, Balloon1, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
     gSPVertex(DisplayListHead++, BalloonVertexPlane1, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     // Balloon2 is correct. But interestingly, IDO seems to set "-0x40" to a different register so the Texture still
     // looks fine.
     gDPLoadTextureBlock(DisplayListHead++, Balloon2 - 0x40, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, BalloonVertexPlane2, 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
     Effectcount += 1;
 }

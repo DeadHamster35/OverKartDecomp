@@ -34,7 +34,7 @@ void DisplayCourseTree1(Camera* Camera, Mat4 arg1, Object* Arg2) {
     arg1[3][2] = Arg2->Position[2];
 
     if (SetMatrix(arg1, 0) != 0) {
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_trees_import);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTTreesImport);
         gSPDisplayList(DisplayListHead++, d_course_mario_raceway_dl_tree);
     }
 }
@@ -69,7 +69,7 @@ void DisplayCourseTree2(Camera* Camera, Mat4 arg1, Object* Arg2) {
     arg1[3][2] = Arg2->Position[2];
 
     if (SetMatrix(arg1, 0) != 0) {
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_trees_import);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTTreesImport);
         gSPDisplayList(DisplayListHead++, d_course_yoshi_valley_dl_tree);
     }
 }
@@ -104,7 +104,7 @@ void DisplayTree3(Camera* Camera, Mat4 arg1, Object* Arg2) {
     arg1[3][2] = Arg2->Position[2];
 
     if (SetMatrix(arg1, 0) != 0) {
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_trees_import);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTTreesImport);
         gSPDisplayList(DisplayListHead++, d_course_royal_raceway_dl_tree);
     }
 }
@@ -139,7 +139,7 @@ void DisplayTree4(Camera* Camera, Mat4 arg1, Object* Arg2) {
     arg1[3][2] = Arg2->Position[2];
 
     if (SetMatrix(arg1, 0) != 0) {
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_trees_import);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTTreesImport);
         gSPDisplayList(DisplayListHead++, d_course_moo_moo_farm_dl_tree);
     }
 }
@@ -168,7 +168,7 @@ void DisplayTree5(Camera* Camera, Mat4 arg1, Object* Arg2) {
     arg1[3][2] = Arg2->Position[2];
 
     if (SetMatrix(arg1, 0) != 0) {
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_trees_import);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTTreesImport);
         // Why is a TLUT being Used a DL here? That makes no sense
         // Based on the TLUT being Loaded above, this ought to be be another
         // tree related DL, presumably one found in a course other than Moo Moo farm
@@ -207,7 +207,7 @@ void DisplayTree7(Camera* Camera, Mat4 arg1, Object* Arg2) {
     arg1[3][2] = Arg2->Position[2];
 
     if (SetMatrix(arg1, 0) != 0) {
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_trees_import);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTTreesImport);
         gSPDisplayList(DisplayListHead++, d_course_royal_raceway_dl_castle_tree);
     }
 }
@@ -242,7 +242,7 @@ void DisplayTree8(Camera* Camera, Mat4 arg1, Object* Arg2) {
     arg1[3][2] = Arg2->Position[2];
 
     if (SetMatrix(arg1, 0) != 0) {
-        gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_trees_import);
+        gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTTreesImport);
         gSPDisplayList(DisplayListHead++, d_course_bowsers_castle_dl_bush);
     }
 }

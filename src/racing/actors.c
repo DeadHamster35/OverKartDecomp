@@ -402,8 +402,8 @@ void ResetShadowFlag(Player* arg0) {
 // Invert Green and red on Green shell Texture
 void InitialRedShellColor(void) {
     s16* red_shell_texture = (s16*) &TLUTRedShell[0];
-    s16* green_shell_texture = (s16*) VIRTUAL_TO_PHYSICAL2(SegmentTable[SEGMENT_NUMBER2(common_tlut_green_shell)] +
-                                                           SEGMENT_OFFSET(common_tlut_green_shell));
+    s16* green_shell_texture = (s16*) VIRTUAL_TO_PHYSICAL2(SegmentTable[SEGMENT_NUMBER2(CommonTLUTGreenShell)] +
+                                                           SEGMENT_OFFSET(CommonTLUTGreenShell));
     s16 color_pixel, red_color, green_color, blue_color, alpha_color;
     s32 i;
     for (i = 0; i < 256; i++) {

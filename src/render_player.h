@@ -87,7 +87,7 @@ extern s32 ColorTimer[];
 
 extern s32 StarUseCounter[];
 
-extern Gfx common_square_plain_render[];
+extern Gfx CommonSquarePlainRender[];
 extern Gfx D_0D008D58[];
 
 extern s32 PlayersToRenderCount;

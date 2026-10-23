@@ -175,23 +175,23 @@ void DrawStereoscopic3D(short FocusValue)
 	GlobalScreen[0]->Height = 240;
 	GlobalScreen[0]->Posx = 80;
 	GlobalScreen[0]->Posy = 120;
-	KWLap[0].cx = 80;
-	KWLap[0].cx2 = 80;
-	KWLap[0].cx3 = 80;
-	KWLap[0].timerX = 80;
-	KWLap[0].Lap1CompletionTimeX = 80;
-	KWLap[0].Lap2CompletionTimeX = 80;
-	KWLap[0].Lap3CompletionTimeX = 80;
-	KWLap[0].totalTimeX = 80;
-	KWLap[0].ty = 20;
-	KWLap[0].cy = 40;
-	KWLap[0].ix = 40 - KWLap[0].Addix;
-	KWLap[0].iy = 55;
-	KWLap[0].rgx = 0;
-	KWLap[0].rx = 40;
-	KWLap[0].ry = 0;
-	KWLap[0].rgy = 200;
-	KWLap[0].Ranksw = 1;
+	PlayerHUD[0].cx = 80;
+	PlayerHUD[0].cx2 = 80;
+	PlayerHUD[0].cx3 = 80;
+	PlayerHUD[0].timerX = 80;
+	PlayerHUD[0].Lap1CompletionTimeX = 80;
+	PlayerHUD[0].Lap2CompletionTimeX = 80;
+	PlayerHUD[0].Lap3CompletionTimeX = 80;
+	PlayerHUD[0].totalTimeX = 80;
+	PlayerHUD[0].ty = 20;
+	PlayerHUD[0].cy = 40;
+	PlayerHUD[0].ix = 40 - PlayerHUD[0].Addix;
+	PlayerHUD[0].iy = 55;
+	PlayerHUD[0].rgx = 0;
+	PlayerHUD[0].rx = 40;
+	PlayerHUD[0].ry = 0;
+	PlayerHUD[0].rgy = 200;
+	PlayerHUD[0].Ranksw = 1;
 
 	KWRank[1] = KWRank[0];
 	
@@ -200,59 +200,59 @@ void DrawStereoscopic3D(short FocusValue)
 	GlobalScreen[1]->Height = 240;
 	GlobalScreen[1]->Posx = 240;
 	GlobalScreen[1]->Posy = 120;
-	KWLap[1].cx = 240;
-	KWLap[1].cx2 = 240;
-	KWLap[1].cx3 = 240;
-	KWLap[1].timerX = 240;
-	KWLap[1].Lap1CompletionTimeX = 240;
-	KWLap[1].Lap2CompletionTimeX = 240;
-	KWLap[1].Lap3CompletionTimeX = 240;
-	KWLap[1].totalTimeX = 240;
-	KWLap[1].ty = 20;
-	KWLap[1].cy = 40;
-	KWLap[1].ix = 200 - KWLap[1].Addix;
-	KWLap[1].iy = 55;
-	KWLap[1].rgx = 0;
-	KWLap[1].rx = 200;
-	KWLap[1].ry = 0;
-	KWLap[1].rgy = 200;
-	KWLap[1].Ranksw = 1;
+	PlayerHUD[1].cx = 240;
+	PlayerHUD[1].cx2 = 240;
+	PlayerHUD[1].cx3 = 240;
+	PlayerHUD[1].timerX = 240;
+	PlayerHUD[1].Lap1CompletionTimeX = 240;
+	PlayerHUD[1].Lap2CompletionTimeX = 240;
+	PlayerHUD[1].Lap3CompletionTimeX = 240;
+	PlayerHUD[1].totalTimeX = 240;
+	PlayerHUD[1].ty = 20;
+	PlayerHUD[1].cy = 40;
+	PlayerHUD[1].ix = 200 - PlayerHUD[1].Addix;
+	PlayerHUD[1].iy = 55;
+	PlayerHUD[1].rgx = 0;
+	PlayerHUD[1].rx = 200;
+	PlayerHUD[1].ry = 0;
+	PlayerHUD[1].rgy = 200;
+	PlayerHUD[1].Ranksw = 1;
 	
 	
 
-	GlobalPlayer[1].Position[0] = GlobalPlayer[0].Position[0];
-	GlobalPlayer[1].Position[1] = GlobalPlayer[0].Position[1] + 20;
-	GlobalPlayer[1].Position[2] = GlobalPlayer[0].Position[2];
+	GamePlayers[1].Position[0] = GamePlayers[0].Position[0];
+	GamePlayers[1].Position[1] = GamePlayers[0].Position[1] + 20;
+	GamePlayers[1].Position[2] = GamePlayers[0].Position[2];
 	
-	GlobalPlayer[1].Direction[1] = GlobalPlayer[0].Direction[1];
-	GlobalPlayer[1].Radius = 0.0001;
-	GlobalPlayer[1].Offsetsize = 0.0001;
+	GamePlayers[1].Direction[1] = GamePlayers[0].Direction[1];
+	GamePlayers[1].Radius = 0.0001;
+	GamePlayers[1].Offsetsize = 0.0001;
 	/*
-	GlobalPlayer[1].Bump.BumpXY[0] = GlobalPlayer[0].Bump.BumpXY[0];
-	GlobalPlayer[1].Bump.BumpXY[1] = GlobalPlayer[0].Bump.BumpXY[1];
-	GlobalPlayer[1].Bump.BumpXY[2] = GlobalPlayer[0].Bump.BumpXY[2];
-	GlobalPlayer[1].Bump.BumpYZ[0] = GlobalPlayer[0].Bump.BumpYZ[0];
-	GlobalPlayer[1].Bump.BumpYZ[1] = GlobalPlayer[0].Bump.BumpYZ[1];
-	GlobalPlayer[1].Bump.BumpYZ[2] = GlobalPlayer[0].Bump.BumpYZ[2];
-	GlobalPlayer[1].Bump.BumpZX[0] = GlobalPlayer[0].Bump.BumpZX[0];
-	GlobalPlayer[1].Bump.BumpZX[1] = GlobalPlayer[0].Bump.BumpZX[1];
-	GlobalPlayer[1].Bump.BumpZX[2] = GlobalPlayer[0].Bump.BumpZX[2];
+	GamePlayers[1].Bump.BumpXY[0] = GamePlayers[0].Bump.BumpXY[0];
+	GamePlayers[1].Bump.BumpXY[1] = GamePlayers[0].Bump.BumpXY[1];
+	GamePlayers[1].Bump.BumpXY[2] = GamePlayers[0].Bump.BumpXY[2];
+	GamePlayers[1].Bump.BumpYZ[0] = GamePlayers[0].Bump.BumpYZ[0];
+	GamePlayers[1].Bump.BumpYZ[1] = GamePlayers[0].Bump.BumpYZ[1];
+	GamePlayers[1].Bump.BumpYZ[2] = GamePlayers[0].Bump.BumpYZ[2];
+	GamePlayers[1].Bump.BumpZX[0] = GamePlayers[0].Bump.BumpZX[0];
+	GamePlayers[1].Bump.BumpZX[1] = GamePlayers[0].Bump.BumpZX[1];
+	GamePlayers[1].Bump.BumpZX[2] = GamePlayers[0].Bump.BumpZX[2];
 	
-	GlobalPlayer[1].Bump.LastXY = GlobalPlayer[0].Bump.LastXY;
-	GlobalPlayer[1].Bump.LastYZ = GlobalPlayer[0].Bump.LastYZ;
-	GlobalPlayer[1].Bump.LastZX = GlobalPlayer[0].Bump.LastZX;
-	GlobalPlayer[1].Bump.FlagXY = GlobalPlayer[0].Bump.FlagXY;
-	GlobalPlayer[1].Bump.FlagYZ = GlobalPlayer[0].Bump.FlagYZ;
+	GamePlayers[1].Bump.LastXY = GamePlayers[0].Bump.LastXY;
+	GamePlayers[1].Bump.LastYZ = GamePlayers[0].Bump.LastYZ;
+	GamePlayers[1].Bump.LastZX = GamePlayers[0].Bump.LastZX;
+	GamePlayers[1].Bump.FlagXY = GamePlayers[0].Bump.FlagXY;
+	GamePlayers[1].Bump.FlagYZ = GamePlayers[0].Bump.FlagYZ;
 	
-	GlobalPlayer[1].Bump.FlagZX = GlobalPlayer[0].Bump.FlagZX;
+	GamePlayers[1].Bump.FlagZX = GamePlayers[0].Bump.FlagZX;
 	*/
-	g_zoomFOVPlayer2 = g_zoomFOVPlayer1;
-	g_zoomLevelPlayer2 = g_zoomLevelPlayer1;
+	CameraZoom[1] = CameraZoom[0];
+	KoteiGakakuMode[1] = KoteiGakakuMode[0];
 
 	ObjectVelocity[0] = (float)(FocusValue * -0.1);
 	ObjectVelocity[1] = 0;
 	ObjectVelocity[2] = -5;
-	MakeAlignVector(ObjectVelocity,GlobalPlayer[0].Direction[1]);
+	MakeAlignVector(ObjectVelocity,GamePlayers[0].Direction[1]);
 
 	GlobalCamera[0]->CameraPos[0] +=ObjectVelocity[0];
 	GlobalCamera[0]->CameraPos[1] +=ObjectVelocity[1];
@@ -262,7 +262,7 @@ void DrawStereoscopic3D(short FocusValue)
 	ObjectVelocity[0] = (float)(FocusValue * 0.2);	
 	ObjectVelocity[1] = 0;
 	ObjectVelocity[2] = 0;
-	MakeAlignVector(ObjectVelocity,GlobalPlayer[0].Direction[1]);
+	MakeAlignVector(ObjectVelocity,GamePlayers[0].Direction[1]);
 
 	GlobalCamera[1]->CameraPos[0] = GlobalCamera[0]->CameraPos[0] + (ObjectVelocity[0]);
 	GlobalCamera[1]->CameraPos[1] = GlobalCamera[0]->CameraPos[1] + (ObjectVelocity[1]);
@@ -279,20 +279,20 @@ void DrawStereoscopic3D(short FocusValue)
 	ObjectVelocity[0] = (float)(FocusValue * 0.1);
 	ObjectVelocity[1] = 0;
 	ObjectVelocity[2] = 50;
-	MakeAlignVector(ObjectVelocity,GlobalPlayer[0].Direction[1]);
+	MakeAlignVector(ObjectVelocity,GamePlayers[0].Direction[1]);
 
-	GlobalCamera[1]->LookatPos[0] = GlobalPlayer[0].Position[0] + ObjectVelocity[0];
-	GlobalCamera[1]->LookatPos[1] = GlobalPlayer[0].Position[1] + ObjectVelocity[1];
-	GlobalCamera[1]->LookatPos[2] = GlobalPlayer[0].Position[2] + ObjectVelocity[2];
+	GlobalCamera[1]->LookatPos[0] = GamePlayers[0].Position[0] + ObjectVelocity[0];
+	GlobalCamera[1]->LookatPos[1] = GamePlayers[0].Position[1] + ObjectVelocity[1];
+	GlobalCamera[1]->LookatPos[2] = GamePlayers[0].Position[2] + ObjectVelocity[2];
 
 	ObjectVelocity[0] = (float)(FocusValue * -0.1);
 	ObjectVelocity[1] = 0;
 	ObjectVelocity[2] = 50;
-	MakeAlignVector(ObjectVelocity,GlobalPlayer[0].Direction[1]);
+	MakeAlignVector(ObjectVelocity,GamePlayers[0].Direction[1]);
 
-	GlobalCamera[0]->LookatPos[0] = GlobalPlayer[0].Position[0] + ObjectVelocity[0];
-	GlobalCamera[0]->LookatPos[1] = GlobalPlayer[0].Position[1] + ObjectVelocity[1];
-	GlobalCamera[0]->LookatPos[2] = GlobalPlayer[0].Position[2] + ObjectVelocity[2];
+	GlobalCamera[0]->LookatPos[0] = GamePlayers[0].Position[0] + ObjectVelocity[0];
+	GlobalCamera[0]->LookatPos[1] = GamePlayers[0].Position[1] + ObjectVelocity[1];
+	GlobalCamera[0]->LookatPos[2] = GamePlayers[0].Position[2] + ObjectVelocity[2];
 
 	GlobalCamera[1]->LookatVector[0] = GlobalCamera[0]->LookatVector[0];
 	GlobalCamera[1]->LookatVector[1] = GlobalCamera[0]->LookatVector[1];
@@ -330,7 +330,7 @@ void DrawGeometryScale(float localPosition[], short localAngle[], int localAddre
 	{
 		return;
 	}
-	gSPDisplayList(GraphPtrOffset++,localAddress);		
+	gSPDisplayList(DisplayListHead++,localAddress);		
 	
 }
 
@@ -364,10 +364,10 @@ void DrawRedCoin(float localPosition[], short localAngle[], int localAddress, fl
 	{
 		return;
 	}
-    gSPClearGeometryMode(GraphPtrOffset++,G_LIGHTING);
-    gSPVertex(GraphPtrOffset++, &CoinBounds[0], 8, 0);
-    gSPCullDisplayList(GraphPtrOffset++, 0, 7);
-	gSPDisplayList(GraphPtrOffset++,localAddress);		
+    gSPClearGeometryMode(DisplayListHead++,G_LIGHTING);
+    gSPVertex(DisplayListHead++, &CoinBounds[0], 8, 0);
+    gSPCullDisplayList(DisplayListHead++, 0, 7);
+	gSPDisplayList(DisplayListHead++,localAddress);		
 	
 }
 
@@ -384,7 +384,7 @@ void DrawGeometrySVectorScale(SVector localPosition, short localAngle[], int loc
 		return;
 	}
 	
-	gSPDisplayList(GraphPtrOffset++,localAddress);		
+	gSPDisplayList(DisplayListHead++,localAddress);		
 	
 }
 
@@ -425,7 +425,7 @@ void GFXPiranha(int PakkunAddress, float Distance)
 {
 	//Load Texture Block
 	//
-	gDPLoadTextureBlock(GraphPtrOffset++, PakkunAddress, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
+	gDPLoadTextureBlock(DisplayListHead++, PakkunAddress, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
 		G_TX_MIRROR,   G_TX_CLAMP ,
 		G_TX_NOMASK, G_TX_NOMASK,     G_TX_NOLOD, G_TX_NOLOD
 	);
@@ -433,55 +433,55 @@ void GFXPiranha(int PakkunAddress, float Distance)
 	//
 
 
-	gSPTexture(GraphPtrOffset++, 65535, 65535,0, 0, 1);
-	gDPPipeSync(GraphPtrOffset++);
+	gSPTexture(DisplayListHead++, 65535, 65535,0, 0, 1);
+	gDPPipeSync(DisplayListHead++);
 	
 	
 	if ((HotSwapID > 0) && (OverKartHeader.FogStart > 0))
 	{
-		gDPSetRenderMode(GraphPtrOffset++, G_RM_FOG_SHADE_A,G_RM_AA_ZB_TEX_EDGE2);
-     	gDPSetCombineMode(GraphPtrOffset++, G_CC_MODULATERGBDECALA,G_CC_PASS2);
+		gDPSetRenderMode(DisplayListHead++, G_RM_FOG_SHADE_A,G_RM_AA_ZB_TEX_EDGE2);
+     	gDPSetCombineMode(DisplayListHead++, G_CC_MODULATERGBDECALA,G_CC_PASS2);
 	}
 	else
 	{
-		gDPSetRenderMode(GraphPtrOffset++, G_RM_AA_ZB_TEX_EDGE,G_RM_AA_ZB_TEX_EDGE2);
-		gDPSetCombineMode(GraphPtrOffset++, G_CC_MODULATERGBDECALA,G_CC_MODULATERGBDECALA);
+		gDPSetRenderMode(DisplayListHead++, G_RM_AA_ZB_TEX_EDGE,G_RM_AA_ZB_TEX_EDGE2);
+		gDPSetCombineMode(DisplayListHead++, G_CC_MODULATERGBDECALA,G_CC_MODULATERGBDECALA);
 	}
 	
 	
 	
 
-	gDPTileSync(GraphPtrOffset++);
-	gDPSetTile(GraphPtrOffset++, G_IM_FMT_CI,G_IM_SIZ_8b,((32 + 7)>>3),0,0,0,G_TX_CLAMP,6,0,G_TX_MIRROR,5,0);	
-	gDPSetTileSize(GraphPtrOffset++, 0,0,0,(32-1)<<2,(64-1)<<2);
+	gDPTileSync(DisplayListHead++);
+	gDPSetTile(DisplayListHead++, G_IM_FMT_CI,G_IM_SIZ_8b,((32 + 7)>>3),0,0,0,G_TX_CLAMP,6,0,G_TX_MIRROR,5,0);	
+	gDPSetTileSize(DisplayListHead++, 0,0,0,(32-1)<<2,(64-1)<<2);
 
-	gDPSetTextureLUT(GraphPtrOffset++, G_TT_RGBA16);
+	gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
 	
 	
-	gDPSetTextureImage(GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &PakkunColor);
-	gDPTileSync(GraphPtrOffset++);
-	gDPSetTile(GraphPtrOffset++, 0, 0, 0, 256, G_TX_LOADTILE, 0 , 0, 0, 0, 0, 0, 0);
-	gDPLoadSync(GraphPtrOffset++);
-	gDPLoadTLUTCmd(GraphPtrOffset++, G_TX_LOADTILE, 255);
-	gDPPipeSync(GraphPtrOffset++);
+	gDPSetTextureImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &PakkunColor);
+	gDPTileSync(DisplayListHead++);
+	gDPSetTile(DisplayListHead++, 0, 0, 0, 256, G_TX_LOADTILE, 0 , 0, 0, 0, 0, 0, 0);
+	gDPLoadSync(DisplayListHead++);
+	gDPLoadTLUTCmd(DisplayListHead++, G_TX_LOADTILE, 255);
+	gDPPipeSync(DisplayListHead++);
 
 
 
-	gSPVertex(GraphPtrOffset++, &PakkunV[0], 4, 0);
-	gSP2Triangles(GraphPtrOffset++, 0, 1, 2, 0 ,0, 2, 3, 0);
-	gDPSetTextureLUT(GraphPtrOffset++, G_TT_NONE);
+	gSPVertex(DisplayListHead++, &PakkunV[0], 4, 0);
+	gSP2Triangles(DisplayListHead++, 0, 1, 2, 0 ,0, 2, 3, 0);
+	gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
 
 	
 }
 
 void GFXTree1(float Distance)
 {
-	gDPSetTextureImage(GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &TreePalette);
-	gDPTileSync(GraphPtrOffset++);
-	gDPSetTile(GraphPtrOffset++, 0, 0, 0, 256, G_TX_LOADTILE, 0 , 0, 0, 0, 0, 0, 0);
-	gDPLoadSync(GraphPtrOffset++);
-	gDPLoadTLUTCmd(GraphPtrOffset++, G_TX_LOADTILE, 255);
-	gDPPipeSync(GraphPtrOffset++);
+	gDPSetTextureImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &TreePalette);
+	gDPTileSync(DisplayListHead++);
+	gDPSetTile(DisplayListHead++, 0, 0, 0, 256, G_TX_LOADTILE, 0 , 0, 0, 0, 0, 0, 0);
+	gDPLoadSync(DisplayListHead++);
+	gDPLoadTLUTCmd(DisplayListHead++, G_TX_LOADTILE, 255);
+	gDPPipeSync(DisplayListHead++);
 
 	
 	
@@ -489,44 +489,44 @@ void GFXTree1(float Distance)
 	
 	if ((HotSwapID > 0) && (OverKartHeader.FogStart > 0))
 	{
-		gDPSetRenderMode(GraphPtrOffset++, G_RM_FOG_SHADE_A,G_RM_AA_ZB_TEX_EDGE2);
-     	gDPSetCombineMode(GraphPtrOffset++, G_CC_DECALRGBA, G_CC_PASS2);
+		gDPSetRenderMode(DisplayListHead++, G_RM_FOG_SHADE_A,G_RM_AA_ZB_TEX_EDGE2);
+     	gDPSetCombineMode(DisplayListHead++, G_CC_DECALRGBA, G_CC_PASS2);
 	}
 	else
 	{
-		gDPSetRenderMode(GraphPtrOffset++, G_RM_AA_ZB_TEX_EDGE,G_RM_AA_ZB_TEX_EDGE2);
-		gDPSetCombineMode(GraphPtrOffset++, G_CC_MODULATERGBA,G_CC_MODULATERGBA);
+		gDPSetRenderMode(DisplayListHead++, G_RM_AA_ZB_TEX_EDGE,G_RM_AA_ZB_TEX_EDGE2);
+		gDPSetCombineMode(DisplayListHead++, G_CC_MODULATERGBA,G_CC_MODULATERGBA);
 	}
 	
-	gSPTexture(GraphPtrOffset++, 0xFFFF,0xFFFF, 0, G_TX_RENDERTILE, G_ON);
-	gDPSetTextureLUT(GraphPtrOffset++, G_TT_RGBA16);
+	gSPTexture(DisplayListHead++, 0xFFFF,0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+	gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
 	
-	gDPTileSync(GraphPtrOffset++);
-	gDPSetTile(GraphPtrOffset++, G_IM_FMT_CI,G_IM_SIZ_8b,((32 + 7)>>3),0,0,0,G_TX_CLAMP,6,0,G_TX_CLAMP,5,0);
+	gDPTileSync(DisplayListHead++);
+	gDPSetTile(DisplayListHead++, G_IM_FMT_CI,G_IM_SIZ_8b,((32 + 7)>>3),0,0,0,G_TX_CLAMP,6,0,G_TX_CLAMP,5,0);
 	
-	gDPSetTileSize(GraphPtrOffset++, 0,0,0,(32-1)<<2,(64-1)<<2);
+	gDPSetTileSize(DisplayListHead++, 0,0,0,(32-1)<<2,(64-1)<<2);
 	
 	//Load Texture Block
 	//
-	gDPLoadTextureBlock(GraphPtrOffset++, 0x03009000, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
+	gDPLoadTextureBlock(DisplayListHead++, 0x03009000, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
 		G_TX_CLAMP | G_TX_NOMIRROR,   G_TX_CLAMP | G_TX_NOMIRROR,
 		G_TX_NOMASK, G_TX_NOMASK,     G_TX_NOLOD, G_TX_NOLOD
 	);
 	//
 	//
 	
-	gSPVertex(GraphPtrOffset++, &Tree1V[0], 4, 0);
+	gSPVertex(DisplayListHead++, &Tree1V[0], 4, 0);
 	
-	gSP2Triangles(GraphPtrOffset++, 0, 1, 2, 0,		0, 2, 3, 0);
+	gSP2Triangles(DisplayListHead++, 0, 1, 2, 0,		0, 2, 3, 0);
 	
-	gDPSetTextureLUT(GraphPtrOffset++, G_TT_NONE);
+	gDPSetTextureLUT(DisplayListHead++, G_TT_NONE);
 }
 
 
 void DisplayPiranhaBypass(Camera* PlayerCamera, AffineMtx Affine, Object* PiranhaObject)
 {
 	
-	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
+	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&Cameras[0]) ) / (sizeof(Camera) ) );
 
 	// Calc Distance
 	float LocalDistance = 
@@ -577,7 +577,7 @@ void DisplayPiranhaBypass(Camera* PlayerCamera, AffineMtx Affine, Object* Piranh
 }
 void DisplayTree1Bypass(Camera* PlayerCamera, AffineMtx Affine, Object* TreeObj)
 {
-	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
+	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&Cameras[0]) ) / (sizeof(Camera) ) );
 
 	// Calc Distance
 	//
@@ -625,13 +625,13 @@ void DisplayTree1Loop(Screen *PlayerScreen, AffineMtx Affine)
 		{
 			if (!TreeLoaded)
 			{
-				gDPLoadTLUT_pal256(GraphPtrOffset++, &TreePalette[0]);
-				gDPSetCombineMode(GraphPtrOffset++, G_CC_MODULATERGBA,G_CC_MODULATERGBA);
-				gDPSetRenderMode(GraphPtrOffset++, G_RM_AA_ZB_TEX_EDGE,G_RM_AA_ZB_TEX_EDGE2);
-				gSPTexture(GraphPtrOffset++, 0xFFFF,0xFFFF, 0, G_TX_RENDERTILE, G_ON);
-				gDPSetTextureLUT(GraphPtrOffset++, G_TT_RGBA16);
+				gDPLoadTLUT_pal256(DisplayListHead++, &TreePalette[0]);
+				gDPSetCombineMode(DisplayListHead++, G_CC_MODULATERGBA,G_CC_MODULATERGBA);
+				gDPSetRenderMode(DisplayListHead++, G_RM_AA_ZB_TEX_EDGE,G_RM_AA_ZB_TEX_EDGE2);
+				gSPTexture(DisplayListHead++, 0xFFFF,0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+				gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
 				g_Nin_SetUpTileDescrip(G_IM_FMT_CI,G_IM_SIZ_8b,32,64,0,0,G_TX_CLAMP,5,0,G_TX_CLAMP,6,0);
-    			gDPLoadTextureBlock(GraphPtrOffset++, 0x06000320, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
+    			gDPLoadTextureBlock(DisplayListHead++, 0x06000320, G_IM_FMT_CI, G_IM_SIZ_8b, 32, 64, 0,
                              G_TX_CLAMP | G_TX_NOMIRROR,   G_TX_CLAMP | G_TX_NOMIRROR,
     	                     G_TX_NOMASK, G_TX_NOMASK,     G_TX_NOLOD, G_TX_NOLOD);
 			}

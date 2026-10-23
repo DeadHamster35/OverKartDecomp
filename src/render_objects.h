@@ -207,6 +207,7 @@ void IceMode(s32, s32, s32, s32, s32, s32, s32);
 void SparkMode(s32, s32, s32);
 void Color2Mode(u32, u32, u32, u32, u32, u32, u32);
 void SprDrawNoclip(s32, s32, s32, s32, s32);
+void SprDrawClip(s32, s32, s32, s32, s32);
 void func_8004BB34(void);
 void SprDrawClipScale(s32, s32, s32, s32, f32);
 void KwspriteRGBAMorph(s32, s32, u32, u32, s32, u16*, u16*);
@@ -452,7 +453,7 @@ extern u8* Balloon2;
 
 extern u8* KaoIndexList[];
 
-extern Lights1 dosun_material;
+extern Lights1 DosunMaterial;
 extern Lights1 D_800E4650;
 extern Lights1 D_800E4668;
 extern Lights1 D_800E4680;

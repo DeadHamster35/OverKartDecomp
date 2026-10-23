@@ -9,11 +9,11 @@
       - '#include <ultra64.h>'
       - '#include <common_structs.h>'
   tables:
-    pukupuku_material:
+    PukupukuMaterial:
       range: [0x800E45C0, 0x800E4608]
       mode: APPEND
-pukupuku_material:
-  symbol: pukupuku_material
+PukupukuMaterial:
+  symbol: PukupukuMaterial
   type: lights
   offset: 0x800E45C0
 D_800E45D8:
@@ -29,11 +29,11 @@ D_800E4608:
   type: lights
   offset: 0x800E4608
 iceblock3_material:
-  symbol: iceblock3_material
+  symbol: Iceblock3Material
   type: lights
   offset: 0x800E4620
 dosun_material:
-  symbol: dosun_material
+  symbol: DosunMaterial
   type: lights
   offset: 0x800E4638
 D_800E4650:

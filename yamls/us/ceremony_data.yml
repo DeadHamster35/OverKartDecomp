@@ -10,41 +10,41 @@
       - "#include <path.h>"
 
 silver_trophy_dl:
-  symbol: silver_trophy_dl
+  symbol: SilverTrophyDL
   type: gfx
   offset: 0xFE0
 silver_trophy_dl2:
-  symbol: silver_trophy_dl2
+  symbol: SilverTrophyDL2
   type: gfx
   offset: 0x10B8
 silver_trophy_dl3:
-  symbol: silver_trophy_dl3
+  symbol: SilverTrophyDL3
   type: gfx
   offset: 0x1188
 silver_trophy_dl4:
-  symbol: silver_trophy_dl4
+  symbol: SilverTrophyDL4
   type: gfx
   offset: 0x1260
 silver_trophy_dl5:
-  symbol: silver_trophy_dl5
+  symbol: SilverTrophyDL5
   type: gfx
   offset: 0x1418
 silver_trophy_dl6:
-  symbol: silver_trophy_dl6
+  symbol: SilverTrophyDL6
   type: gfx
   offset: 0x14D0
 some_vtx:
-  symbol: unused_trophy_base_with_handle
+  symbol: UnusedTrophyBaseWithHandle
   type: vtx
   offset: 0x18C0 # 2200
   count: 211 # 274
 some_vtx2:
-  symbol: unused_trophy_base2
+  symbol: UnusedTrophyBase2
   type: vtx
   offset: 0x2F30
   count: 63
 reflection_map_brass:
-  symbol: reflection_map_brass
+  symbol: ReflectionMapBrass
   type: Texture
   ctype: u16
   offset: 0x4670
@@ -53,7 +53,7 @@ reflection_map_brass:
   height: 32
   format: RGBA16
 reflection_map_silver:
-  symbol: reflection_map_silver
+  symbol: ReflectionMapSilver
   type: Texture
   ctype: u16
   offset: 0x4E70
@@ -62,7 +62,7 @@ reflection_map_silver:
   height: 32
   format: RGBA16
 reflection_map_gold:
-  symbol: reflection_map_gold
+  symbol: ReflectionMapGold
   type: Texture
   ctype: u16
   offset: 0x5670
@@ -71,71 +71,71 @@ reflection_map_gold:
   height: 32
   format: RGBA16
 gold_trophy_dl:
-  symbol: gold_trophy_dl
+  symbol: GoldTrophyDL
   type: gfx
   offset: 0x5E70
 gold_trophy_dl2:
-  symbol: gold_trophy_dl2
+  symbol: GoldTrophyDL2
   type: gfx
   offset: 0x5F20
 gold_trophy_dl3:
-  symbol: gold_trophy_dl3
+  symbol: GoldTrophyDL3
   type: gfx
   offset: 0x5FD0
 gold_trophy_dl4:
-  symbol: gold_trophy_dl4
+  symbol: GoldTrophyDL4
   type: gfx
   offset: 0x6218
 gold_trophy_dl5:
-  symbol: gold_trophy_dl5
+  symbol: GoldTrophyDL5
   type: gfx
   offset: 0x62C8
 gold_trophy_dl6:
-  symbol: gold_trophy_dl6
+  symbol: GoldTrophyDL6
   type: gfx
   offset: 0x6518
 gold_trophy_dl7:
-  symbol: gold_trophy_dl7
+  symbol: GoldTrophyDL7
   type: gfx
   offset: 0x6720
 gold_trophy_dl8:
-  symbol: gold_trophy_dl8
+  symbol: GoldTrophyDL8
   type: gfx
   offset: 0x6880
 gold_trophy_dl9:
-  symbol: gold_trophy_dl9
+  symbol: GoldTrophyDL9
   type: gfx
   offset: 0x6948
 gold_trophy_dl10:
-  symbol: gold_trophy_dl10
+  symbol: GoldTrophyDL10
   type: gfx
   offset: 0x69D8
 gold_trophy_dl11:
-  symbol: gold_trophy_dl11
+  symbol: GoldTrophyDL11
   type: gfx
   offset: 0x6A28
 gold_trophy_dl12:
-  symbol: gold_trophy_dl12
+  symbol: GoldTrophyDL12
   type: gfx
   offset: 0x6A78
 gold_trophy_dl13:
-  symbol: gold_trophy_dl13
+  symbol: GoldTrophyDL13
   type: gfx
   offset: 0x6AC8
 gold_trophy_dl14:
-  symbol: gold_trophy_dl14
+  symbol: GoldTrophyDL14
   type: gfx
   offset: 0x6B18
 gold_trophy_dl15:
-  symbol: gold_trophy_dl15
+  symbol: GoldTrophyDL15
   type: gfx
   offset: 0x6B68
 light1:
-  symbol: light1
+  symbol: Light1
   type: lights
   offset: 0x6BB8
 texture_podium1:
-  symbol: gTexturePodium1
+  symbol: TexturePodium1
   type: Texture
   ctype: u16
   offset: 0x6BD0
@@ -144,27 +144,27 @@ texture_podium1:
   height: 32
   format: RGBA16
 podium_dl:
-  symbol: podium_dl
+  symbol: PodiumDL
   type: gfx
   offset: 0x7510
 podium_dl2:
-  symbol: podium_dl2
+  symbol: PodiumDL2
   type: gfx
   offset: 0x75E0
 podium_dl3:
-  symbol: podium_dl3
+  symbol: PodiumDL3
   type: gfx
   offset: 0x75F0
 podium_dl4:
-  symbol: podium_dl4
+  symbol: PodiumDL4
   type: gfx
   offset: 0x7600
 light2:
-  symbol: light2
+  symbol: Light2
   type: lights
   offset: 0x7748
 texture_podium2:
-  symbol: gTexturePodium2
+  symbol: TexturePodium2
   type: Texture
   ctype: u16
   offset: 0x7760
@@ -173,27 +173,27 @@ texture_podium2:
   height: 32
   format: RGBA16
 podium2_dl:
-  symbol: podium2_dl
+  symbol: Podium2DL
   type: gfx
   offset: 0x7F60
 podium2_dl2:
-  symbol: podium2_dl2
+  symbol: Podium2DL2
   type: gfx
   offset: 0x8030
 podium2_dl3:
-  symbol: podium2_dl3
+  symbol: Podium2DL3
   type: gfx
   offset: 0x8040
 podium2_dl4:
-  symbol: podium2_dl4
+  symbol: Podium2DL4
   type: gfx
   offset: 0x8050
 light3:
-  symbol: light3
+  symbol: Light3
   type: lights
   offset: 0x8058
 texture_podium3:
-  symbol: gTexturePodium3
+  symbol: TexturePodium3
   type: Texture
   ctype: u16
   offset: 0x8070
@@ -202,38 +202,38 @@ texture_podium3:
   height: 32
   format: RGBA16
 podium3_dl:
-  symbol: podium3_dl
+  symbol: Podium3DL
   type: gfx
   offset: 0x89B0
 podium3_dl2:
-  symbol: podium3_dl2
+  symbol: Podium3DL2
   type: gfx
   offset: 0x8A80
 podium3_dl3:
-  symbol: podium3_dl3
+  symbol: Podium3DL3
   type: gfx
   offset: 0x8A90
 podium3_dl4:
-  symbol: podium3_dl4
+  symbol: Podium3DL4
   type: gfx
   offset: 0x8AA0
 ending_sequence:
-  symbol: podium_ceremony_path
+  symbol: PodiumCeremonyPath
   type: mk64:track_path
   offset: 0x8AA8
   count: 24
 ending_sequence2:
-  symbol: podium_ceremony_path_2
+  symbol: PodiumCeremonyPath2
   type: mk64:track_path
   offset: 0x8B68
   count: 23
 ending_sequence3:
-  symbol: podium_ceremony_path_3
+  symbol: PodiumCeremonyPath3
   type: mk64:track_path
   offset: 0x8C20
   count: 24
 ending_sequence4:
-  symbol: podium_ceremony_path_4
+  symbol: PodiumCeremonyPath4
   type: mk64:track_path
   offset: 0x8CE0
   count: 21

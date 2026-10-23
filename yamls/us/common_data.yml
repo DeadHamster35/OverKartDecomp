@@ -11,15 +11,15 @@
     - '#include <ultra64.h>'
     - '#include <common_structs.h>'
   tables:
-    common_grand_prix_human_item_curve:
+    CommonGrandPrixHumanItemCurve:
       range: [0x8150, 0x840C]
-    common_grand_prix_cpu_item_curve:
+    CommonGrandPrixCPUItemCurve:
       range:  [0x8470, 0x872C]
-    common_versus_2_player_item_curve:
+    CommonVersus2PlayerItemCurve:
       range: [0x8790, 0x87F4]
-    common_versus_3_player_item_curve:
+    CommonVersus3PlayerItemCurve:
       range: [0x8858, 0x8920]
-    common_versus_4_player_item_curve:
+    CommonVersus4PlayerItemCurve:
       range: [0x8984, 0x8AB0]
     common_texture_hud_place:
       range: [0xD258, 0x14258]
@@ -49,7 +49,7 @@
       range: [0x2BC58, 0x2C858]
       mode: APPEND
 common_tlut_finish_line_banner:
-  symbol: common_tlut_finish_line_banner
+  symbol: CommonTLUTFinishLineBanner
   type: Texture
   ctype: u16
   offset: 0x0
@@ -58,7 +58,7 @@ common_tlut_finish_line_banner:
   height: 16
   format: RGBA16
 common_texture_particle_fire:
-  symbol: common_texture_particle_fire
+  symbol: CommonTextureParticleFire
   type: Texture
   ctype: u16
   offset: 0x200
@@ -112,12 +112,12 @@ D_0D001360:
   offset: 0x1360
   count: 3
 common_vtx_finish_line_banner:
-  symbol: common_vtx_finish_line_banner
+  symbol: CommonVTXFinishLineBanner
   type: vtx
   offset: 0x1390
   count: 32
 common_vtx_finish_post:
-  symbol: common_vtx_finish_post
+  symbol: CommonVTXFinishPost
   type: vtx
   offset: 0x1590
   count: 24
@@ -167,7 +167,7 @@ D_0D001840:
   type: gfx
   offset: 0x1840
 common_model_finish_post:
-  symbol: common_model_finish_post
+  symbol: CommonModelFinishPost
   type: gfx
   offset: 0x1AB8
 D_0D001B68:
@@ -192,12 +192,12 @@ D_0D001C88:
   offset: 0x1C88
 
 common_vtx_itembox:
-  symbol: common_vtx_itembox
+  symbol: CommonVTXItembox
   type: VTX
   offset: 0x0D001CE8
   count: 32
 common_texture_item_box_question_mark:
-  symbol: common_texture_item_box_question_mark
+  symbol: CommonTextureItemBoxQuestionMark
   type: Texture
   ctype: u16
   offset: 0x1EE8
@@ -206,20 +206,20 @@ common_texture_item_box_question_mark:
   height: 64
   format: RGBA16
 D_0D002EE8:
-  symbol: D_0D002EE8
+  symbol: GFXItemBoxShadow
   type: gfx
   offset: 0x2EE8
 common_fake_item_box_question_mark_vertices:
-  symbol: common_fake_item_box_question_mark_vertices
+  symbol: CommonFakeItemBoxQuestionMarkVertices
   type: vtx
   offset: 0x2F40
   count: 4
 common_model_fake_itembox:
-  symbol: common_model_fake_itembox
+  symbol: CommonModelFakeItembox
   type: gfx
   offset: 0x2F80
 itemBoxQuestionMarkModel:
-  symbol: itemBoxQuestionMarkModel
+  symbol: ItemBoxQuestionMarkModel
   type: gfx
   offset: 0x3008
   
@@ -268,17 +268,17 @@ D_0D003288:
   type: gfx
   offset: 0x3288
 common_vtx_banana:
-  symbol: common_vtx_banana
+  symbol: CommonVTXBanana
   type: vtx
   count: 5
   offset: 0x3298
 common_vtx_flat_banana:
-  symbol: common_vtx_flat_banana
+  symbol: CommonVTXFlatBanana
   type: vtx
   count: 6
   offset: 0x32E8
 common_texture_banana:
-  symbol: common_texture_banana
+  symbol: CommonTextureBanana
   type: Texture
   ctype: u16
   size: 2048
@@ -287,7 +287,7 @@ common_texture_banana:
   offset: 0x3348
   format: RGBA16
 common_texture_flat_banana:
-  symbol: common_texture_flat_banana
+  symbol: CommonTextureFlatBanana
   type: Texture
   ctype: u16
   size: 4096
@@ -296,15 +296,15 @@ common_texture_flat_banana:
   offset: 0x3B48
   format: RGBA16
 common_model_banana:
-  symbol: common_model_banana
+  symbol: CommonModelBanana
   type: gfx
   offset: 0x4B48
 common_model_flat_banana:
-  symbol: common_model_flat_banana
+  symbol: CommonModelFlatBanana
   type: gfx
   offset: 0x4BD8
 common_tlut_trees_import:
-  symbol: common_tlut_trees_import
+  symbol: CommonTLUTTreesImport
   type: Texture
   ctype: u16
   size: 0x1D0
@@ -313,7 +313,7 @@ common_tlut_trees_import:
   offset: 0x4C68
   format: RGBA16
 common_tlut_green_shell:
-  symbol: common_tlut_green_shell
+  symbol: CommonTLUTGreenShell
   type: Texture
   ctype: u16
   size: 0x200
@@ -322,7 +322,7 @@ common_tlut_green_shell:
   offset: 0x4E38
   format: RGBA16
 common_tlut_blue_shell:
-  symbol: common_tlut_blue_shell
+  symbol: CommonTLUTBlueShell
   type: Texture
   ctype: u16
   size: 0x200
@@ -372,22 +372,22 @@ D_0D005430:
   offset: 0x5430
   count: 4
 common_vtx_player_minimap_icon:
-  symbol: Vtx_KTile8x8
+  symbol: VtxKTile8X8
   type: vtx
   offset: 0x5470
   count: 4
 D_0D0054B0:
-  symbol: Vtx_KTile8x16
+  symbol: VtxKTile8X16
   type: vtx
   offset: 0x54B0
   count: 44
 common_vtx_rectangle:
-  symbol: Vtx_KTile16x16
+  symbol: VtxKTile16X16
   type: vtx
   offset: 0x5770
   count: 4
 D_0D0057B0:
-  symbol: Vtx_KTile16x16XFlip
+  symbol: VtxKTile16X16XFlip
   type: vtx
   offset: 0x57B0
   count: 4
@@ -407,12 +407,12 @@ D_0D005AA0:
   offset: 0x5AA0
   count: 4
 D_0D005AE0:
-  symbol: Vtx_KTile32x32
+  symbol: VtxKTile32X32
   type: vtx
   offset: 0x5AE0
   count: 4
 D_0D005B20:
-  symbol: Vtx_KTile32x32XFlip
+  symbol: VtxKTile32X32XFlip
   type: vtx
   offset: 0x5B20
   count: 4
@@ -437,7 +437,7 @@ D_0D005C00:
   offset: 0x5C00
   count: 3
 D_0D005C30:
-  symbol: Vtx_KTile40x32
+  symbol: VtxKTile40X32
   type: vtx
   offset: 0x5C30
   count: 37
@@ -447,7 +447,7 @@ D_0D005E80:
   offset: 0x5E80
   count: 3
 common_vtx_lakitu:
-  symbol: common_vtx_lakitu
+  symbol: CommonVTXLakitu
   type: vtx
   offset: 0x5EB0
   count: 8
@@ -472,7 +472,7 @@ D_0D006030:
   offset: 0x6030
   count: 8
 common_vtx_hedgehog:
-  symbol: Vtx_KTile64x64BL
+  symbol: VtxKTile64X64BL
   type: vtx
   offset: 0x60B0
   count: 8
@@ -497,7 +497,7 @@ D_0D0064B0:
   offset: 0x64B0
   count: 40
 common_vtx_also_lakitu:
-  symbol: common_vtx_also_lakitu
+  symbol: CommonVTXAlsoLakitu
   type: vtx
   offset: 0x6730
   count: 28
@@ -511,7 +511,7 @@ D_0D006930:
   type: gfx
   offset: 0x6930
 common_rectangle_display:
-  symbol: common_rectangle_display
+  symbol: CommonRectangleDisplay
   type: gfx
   offset: 0x6940
 D_0D006950:
@@ -559,7 +559,7 @@ D_0D006A40:
   type: gfx
   offset: 0x6A40
 common_shadow_i4:
-  symbol: common_shadow_i4
+  symbol: CommonShadowI4
   offset: 0x6A58
   size: 0x80
   type: Texture
@@ -575,7 +575,7 @@ D_0D006AD8:
   height: 32
   format: i4
 common_tlut_debug_font:
-  symbol: common_tlut_debug_font
+  symbol: CommonTLUTDebugFont
   offset: 0x6ED8
   size: 0x20
   type: Texture
@@ -584,7 +584,7 @@ common_tlut_debug_font:
   height: 32
   format: tlut
 common_texture_debug_font:
-  symbol: common_texture_debug_font
+  symbol: CommonTextureDebugFont
   type: Texture
   offset: 0x6EF8
   size: 0x800
@@ -657,7 +657,7 @@ D_0D0079A8:
   type: gfx
   offset: 0x79A8
 D_0D0079C8:
-  symbol: kwtexture_rgba_xlu_aa_zb_bl_init
+  symbol: KWTextureRGBAXLUAAZBBlInit
   type: gfx
   offset: 0x79C8
 D_0D0079E8:
@@ -713,11 +713,11 @@ D_0D007C88:
   type: gfx
   offset: 0x7C88
 D_0D007CB8:
-  symbol: kwsprite_rgba_pt_init
+  symbol: KWSpriteRGBAPtInit
   type: gfx
   offset: 0x7CB8
 D_0D007CD8:
-  symbol: kwsprite_rgba_aa_bl_init
+  symbol: KWSpriteRGBAAABlInit
   type: gfx
   offset: 0x7CD8
 D_0D007CF8:
@@ -849,107 +849,107 @@ D_0D008138:
   type: gfx
   offset: 0x8138
 common_grand_prix_human_item_curve:
-  symbol: common_grand_prix_human_item_curve
+  symbol: CommonGrandPrixHumanItemCurve
   type: mk64:item_curve
   offset: 0x8150
 common_grand_prix_human_item_curve2:
-  symbol: common_grand_prix_human_item_curve2
+  symbol: CommonGrandPrixHumanItemCurve2
   type: mk64:item_curve
   offset: 0x81B4
 common_grand_prix_human_item_curve3:
-  symbol: common_grand_prix_human_item_curve3
+  symbol: CommonGrandPrixHumanItemCurve3
   type: mk64:item_curve
   offset: 0x8218
 common_grand_prix_human_item_curve4:
-  symbol: common_grand_prix_human_item_curve4
+  symbol: CommonGrandPrixHumanItemCurve4
   type: mk64:item_curve
   offset: 0x827C
 common_grand_prix_human_item_curve5:
-  symbol: common_grand_prix_human_item_curve5
+  symbol: CommonGrandPrixHumanItemCurve5
   type: mk64:item_curve
   offset: 0x82E0
 common_grand_prix_human_item_curve6:
-  symbol: common_grand_prix_human_item_curve6
+  symbol: CommonGrandPrixHumanItemCurve6
   type: mk64:item_curve
   offset: 0x8344
 common_grand_prix_human_item_curve7:
-  symbol: common_grand_prix_human_item_curve7
+  symbol: CommonGrandPrixHumanItemCurve7
   type: mk64:item_curve
   offset: 0x83A8
 common_grand_prix_human_item_curve8:
-  symbol: common_grand_prix_human_item_curve8
+  symbol: CommonGrandPrixHumanItemCurve8
   type: mk64:item_curve
   offset: 0x840C
 common_grand_prix_cpu_item_curve:
-  symbol: common_grand_prix_cpu_item_curve
+  symbol: CommonGrandPrixCPUItemCurve
   type: mk64:item_curve
   offset: 0x8470
 common_grand_prix_cpu_item_curve2:
-  symbol: common_grand_prix_cpu_item_curve2
+  symbol: CommonGrandPrixCPUItemCurve2
   type: mk64:item_curve
   offset: 0x84D4
 common_grand_prix_cpu_item_curve3:
-  symbol: common_grand_prix_cpu_item_curve3
+  symbol: CommonGrandPrixCPUItemCurve3
   type: mk64:item_curve
   offset: 0x8538
 common_grand_prix_cpu_item_curve4:
-  symbol: common_grand_prix_cpu_item_curve4
+  symbol: CommonGrandPrixCPUItemCurve4
   type: mk64:item_curve
   offset: 0x859C
 common_grand_prix_cpu_item_curve5:
-  symbol: common_grand_prix_cpu_item_curve5
+  symbol: CommonGrandPrixCPUItemCurve5
   type: mk64:item_curve
   offset: 0x8600
 common_grand_prix_cpu_item_curve6:
-  symbol: common_grand_prix_cpu_item_curve6
+  symbol: CommonGrandPrixCPUItemCurve6
   type: mk64:item_curve
   offset: 0x8664
 common_grand_prix_cpu_item_curve7:
-  symbol: common_grand_prix_cpu_item_curve7
+  symbol: CommonGrandPrixCPUItemCurve7
   type: mk64:item_curve
   offset: 0x86C8
 common_grand_prix_cpu_item_curve8:
-  symbol: common_grand_prix_cpu_item_curve8
+  symbol: CommonGrandPrixCPUItemCurve8
   type: mk64:item_curve
   offset: 0x872C
 common_versus_2_player_item_curve:
-  symbol: common_versus_2_player_item_curve
+  symbol: CommonVersus2PlayerItemCurve
   type: mk64:item_curve
   offset: 0x8790
 common_versus_2_player_item_curve2:
-  symbol: common_versus_2_player_item_curve2
+  symbol: CommonVersus2PlayerItemCurve2
   type: mk64:item_curve
   offset: 0x87F4
 common_versus_3_player_item_curve:
-  symbol: common_versus_3_player_item_curve
+  symbol: CommonVersus3PlayerItemCurve
   type: mk64:item_curve
   offset: 0x8858
 common_versus_3_player_item_curve2:
-  symbol: common_versus_3_player_item_curve2
+  symbol: CommonVersus3PlayerItemCurve2
   type: mk64:item_curve
   offset: 0x88BC
 common_versus_3_player_item_curve3:
-  symbol: common_versus_3_player_item_curve3
+  symbol: CommonVersus3PlayerItemCurve3
   type: mk64:item_curve
   offset: 0x8920
 common_versus_4_player_item_curve:
-  symbol: common_versus_4_player_item_curve
+  symbol: CommonVersus4PlayerItemCurve
   type: mk64:item_curve
   offset: 0x8984
 common_versus_4_player_item_curve2:
-  symbol: common_versus_4_player_item_curve2
+  symbol: CommonVersus4PlayerItemCurve2
   type: mk64:item_curve
   offset: 0x89E8
 common_versus_4_player_item_curve3:
-  symbol: common_versus_4_player_item_curve3
+  symbol: CommonVersus4PlayerItemCurve3
   type: mk64:item_curve
   offset: 0x8A4C
 common_versus_4_player_item_curve4:
-  symbol: common_versus_4_player_item_curve4
+  symbol: CommonVersus4PlayerItemCurve4
   type: mk64:item_curve
   offset: 0x8AB0
 common_battle_item_curve:
-  symbol: common_battle_item_curve
+  symbol: CommonBattleItemCurve
   type: mk64:item_curve
   offset: 0x8B14
 D_0D008B78:
@@ -974,7 +974,7 @@ D_0D008C38:
   count: 4
 
 common_square_plain_render:
-  symbol: common_square_plain_render
+  symbol: CommonSquarePlainRender
   type: gfx
   offset: 0x8C78
 D_0D008C90:
@@ -982,7 +982,7 @@ D_0D008C90:
   type: gfx
   offset: 0x8C90
 common_setting_render_character:
-  symbol: common_setting_render_character
+  symbol: CommonSettingRenderCharacter
   type: gfx
   offset: 0x8CD8
 D_0D008D10:
@@ -1121,7 +1121,7 @@ cpu_OffTrackTargetSpeed:
   ctype: Vec4f
   file_path: "assets/course_metadata/cpu_OffTrackTargetSpeed.inc.c"
 common_texture_speedometer:
-  symbol: common_texture_speedometer
+  symbol: CommonTextureSpeedometer
   type: Texture
   ctype: u8
   offset: 0x9958
@@ -1130,7 +1130,7 @@ common_texture_speedometer:
   height: 96
   format: I4
 common_texture_speedometer_needle:
-  symbol: common_texture_speedometer_needle
+  symbol: CommonTextureSpeedometerNeedle
   type: Texture
   offset: 0xA558
   ctype: u8
@@ -1139,7 +1139,7 @@ common_texture_speedometer_needle:
   height: 32
   format: I4
 common_texture_hud_lap:
-  symbol: common_texture_hud_lap
+  symbol: CommonTextureHUDLap
   type: Texture
   offset: 0xA958
   ctype: u16
@@ -1148,7 +1148,7 @@ common_texture_hud_lap:
   height: 8
   format: RGBA16
 common_texture_hud_123:
-  symbol: common_texture_hud_123
+  symbol: CommonTextureHUD123
   type: Texture
   offset: 0xAB58
   size: 0x200
@@ -1157,7 +1157,7 @@ common_texture_hud_123:
   height: 8
   format: RGBA16
 common_texture_hud_lap_time:
-  symbol: common_texture_hud_lap_time
+  symbol: CommonTextureHUDLapTime
   type: Texture
   offset: 0xAD58
   size: 0x400
@@ -1166,7 +1166,7 @@ common_texture_hud_lap_time:
   height: 16
   format: RGBA16
 common_texture_hud_lap_1_on_3:
-  symbol: common_texture_hud_lap_1_on_3
+  symbol: CommonTextureHUDLap1On3
   type: Texture
   offset: 0xB158
   size: 0x400
@@ -1175,7 +1175,7 @@ common_texture_hud_lap_1_on_3:
   height: 16
   format: RGBA16
 common_texture_hud_lap_2_on_3:
-  symbol: common_texture_hud_lap_2_on_3
+  symbol: CommonTextureHUDLap2On3
   type: Texture
   offset: 0xB558
   ctype: u16
@@ -1184,7 +1184,7 @@ common_texture_hud_lap_2_on_3:
   height: 16
   format: RGBA16
 common_texture_hud_lap_3_on_3:
-  symbol: common_texture_hud_lap_3_on_3
+  symbol: CommonTextureHUDLap3On3
   type: Texture
   offset: 0xB958
   size: 0x400
@@ -1193,7 +1193,7 @@ common_texture_hud_lap_3_on_3:
   height: 16
   format: RGBA16
 common_texture_hud_total_time:
-  symbol: common_texture_hud_total_time
+  symbol: CommonTextureHUDTotalTime
   type: Texture
   offset: 0xBD58
   size: 0x400
@@ -1202,7 +1202,7 @@ common_texture_hud_total_time:
   height: 16
   format: RGBA16
 common_texture_hud_time:
-  symbol: common_texture_hud_time
+  symbol: CommonTextureHUDTime
   type: Texture
   offset: 0xC158
   size: 0x400
@@ -1211,7 +1211,7 @@ common_texture_hud_time:
   height: 16
   format: RGBA16
 common_texture_hud_normal_digit:
-  symbol: common_texture_hud_normal_digit
+  symbol: CommonTextureHUDNormalDigit
   type: Texture
   offset: 0xC558
   size: 0xD00
@@ -1220,7 +1220,7 @@ common_texture_hud_normal_digit:
   height: 16
   format: RGBA16
 common_texture_hud_1st:
-  symbol: common_texture_hud_1st
+  symbol: CommonTextureHUD1st
   type: Texture
   offset: 0xD258
   size: 0x1000
@@ -1229,7 +1229,7 @@ common_texture_hud_1st:
   height: 64
   format: I4
 common_texture_hud_2nd:
-  symbol: common_texture_hud_2nd
+  symbol: CommonTextureHUD2nd
   type: Texture
   offset: 0xE258
   size: 0x1000
@@ -1238,7 +1238,7 @@ common_texture_hud_2nd:
   height: 64
   format: I4
 common_texture_hud_3rd:
-  symbol: common_texture_hud_3rd
+  symbol: CommonTextureHUD3rd
   type: Texture
   offset: 0xF258
   size: 0x1000
@@ -1247,7 +1247,7 @@ common_texture_hud_3rd:
   height: 64
   format: I4
 common_texture_hud_4th:
-  symbol: common_texture_hud_4th
+  symbol: CommonTextureHUD4th
   type: Texture
   offset: 0x10258
   size: 0x1000
@@ -1256,7 +1256,7 @@ common_texture_hud_4th:
   height: 64
   format: I4
 common_texture_hud_5th:
-  symbol: common_texture_hud_5th
+  symbol: CommonTextureHUD5th
   type: Texture
   offset: 0x11258
   size: 0x1000
@@ -1265,7 +1265,7 @@ common_texture_hud_5th:
   height: 64
   format: I4
 common_texture_hud_6th:
-  symbol: common_texture_hud_6th
+  symbol: CommonTextureHUD6th
   type: Texture
   offset: 0x12258
   size: 0x1000
@@ -1274,7 +1274,7 @@ common_texture_hud_6th:
   height: 64
   format: I4
 common_texture_hud_7th:
-  symbol: common_texture_hud_7th
+  symbol: CommonTextureHUD7th
   type: Texture
   offset: 0x13258
   size: 0x1000
@@ -1283,7 +1283,7 @@ common_texture_hud_7th:
   height: 64
   format: I4
 common_texture_hud_8th:
-  symbol: common_texture_hud_8th
+  symbol: CommonTextureHUD8th
   type: Texture
   offset: 0x14258
   size: 0x1000
@@ -1292,7 +1292,7 @@ common_texture_hud_8th:
   height: 64
   format: I4
 common_texture_first_place:
-  symbol: common_texture_first_place # 132B50_15258
+  symbol: CommonTextureFirstPlace # 132B50_15258
   type: Texture
   offset: 0x15258
   size: 0x800
@@ -1301,7 +1301,7 @@ common_texture_first_place:
   height: 64
   format: I4
 common_texture_second_place:
-  symbol: common_texture_second_place # 132B50_15A58
+  symbol: CommonTextureSecondPlace # 132B50_15A58
   type: Texture
   offset: 0x15A58
   size: 0x800
@@ -1310,7 +1310,7 @@ common_texture_second_place:
   height: 64
   format: I4
 common_texture_third_place:
-  symbol: common_texture_third_place # 132B50_16258
+  symbol: CommonTextureThirdPlace # 132B50_16258
   type: Texture
   offset: 0x16258
   size: 0x800
@@ -1319,7 +1319,7 @@ common_texture_third_place:
   height: 64
   format: I4
 common_texture_fourth_place:
-  symbol: common_texture_fourth_place # 132B50_16A58
+  symbol: CommonTextureFourthPlace # 132B50_16A58
   type: Texture
   offset: 0x16A58
   size: 0x800
@@ -1328,7 +1328,7 @@ common_texture_fourth_place:
   height: 64
   format: I4
 common_tlut_player_emblem: # // tlut for 1p, 2p, 3p, 4p
-  symbol: common_tlut_player_emblem
+  symbol: CommonTLUTPlayerEmblem
   type: Texture
   offset: 0x17258
   size: 0x200
@@ -1337,7 +1337,7 @@ common_tlut_player_emblem: # // tlut for 1p, 2p, 3p, 4p
   height: 16
   format: tlut
 common_texture_player_emblem_1p:
-  symbol: common_texture_player_emblem_1p
+  symbol: CommonTexturePlayerEmblem1P
   type: Texture
   offset: 0x17458
   size: 0x800
@@ -1345,9 +1345,9 @@ common_texture_player_emblem_1p:
   width: 64
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_player_emblem
+  tlut_symbol: CommonTLUTPlayerEmblem
 common_texture_player_emblem_2p:
-  symbol: common_texture_player_emblem_2p
+  symbol: CommonTexturePlayerEmblem2P
   type: Texture
   offset: 0x17C58
   size: 0x800
@@ -1355,9 +1355,9 @@ common_texture_player_emblem_2p:
   width: 64
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_player_emblem
+  tlut_symbol: CommonTLUTPlayerEmblem
 common_texture_player_emblem_3p:
-  symbol: common_texture_player_emblem_3p
+  symbol: CommonTexturePlayerEmblem3P
   type: Texture
   offset: 0x18458
   size: 0x800
@@ -1365,9 +1365,9 @@ common_texture_player_emblem_3p:
   width: 64
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_player_emblem
+  tlut_symbol: CommonTLUTPlayerEmblem
 common_texture_player_emblem_4p:
-  symbol: common_texture_player_emblem_4p
+  symbol: CommonTexturePlayerEmblem4P
   type: Texture
   offset: 0x18C58
   size: 0x800
@@ -1375,9 +1375,9 @@ common_texture_player_emblem_4p:
   width: 64
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_player_emblem
+  tlut_symbol: CommonTLUTPlayerEmblem
 common_tlut_hud_type_C_rank_font: # Font tlut for 12345678
-  symbol: common_tlut_hud_type_C_rank_font
+  symbol: CommonTLUTHUDTypeCRankFont
   type: Texture
   offset: 0x19458
   size: 0x200
@@ -1386,7 +1386,7 @@ common_tlut_hud_type_C_rank_font: # Font tlut for 12345678
   height: 16
   format: tlut
 common_texture_hud_type_C_rank_font_1:
-  symbol: common_texture_hud_type_C_rank_font_1
+  symbol: CommonTextureHUDTypeCRankFont1
   type: Texture
   offset: 0x19658
   size: 0x100
@@ -1394,9 +1394,9 @@ common_texture_hud_type_C_rank_font_1:
   width: 16
   height: 16
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_font
+  tlut_symbol: CommonTLUTHUDTypeCRankFont
 common_texture_hud_type_C_rank_font_2:
-  symbol: common_texture_hud_type_C_rank_font_2
+  symbol: CommonTextureHUDTypeCRankFont2
   type: Texture
   offset: 0x19758
   size: 0x100
@@ -1404,9 +1404,9 @@ common_texture_hud_type_C_rank_font_2:
   width: 16
   height: 16
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_font
+  tlut_symbol: CommonTLUTHUDTypeCRankFont
 common_texture_hud_type_C_rank_font_3:
-  symbol: common_texture_hud_type_C_rank_font_3
+  symbol: CommonTextureHUDTypeCRankFont3
   type: Texture
   offset: 0x19858
   size: 0x100
@@ -1414,9 +1414,9 @@ common_texture_hud_type_C_rank_font_3:
   width: 16
   height: 16
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_font
+  tlut_symbol: CommonTLUTHUDTypeCRankFont
 common_texture_hud_type_C_rank_font_4:
-  symbol: common_texture_hud_type_C_rank_font_4
+  symbol: CommonTextureHUDTypeCRankFont4
   type: Texture
   offset: 0x19958
   size: 0x100
@@ -1424,9 +1424,9 @@ common_texture_hud_type_C_rank_font_4:
   width: 16
   height: 16
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_font
+  tlut_symbol: CommonTLUTHUDTypeCRankFont
 common_texture_hud_type_C_rank_font_5:
-  symbol: common_texture_hud_type_C_rank_font_5
+  symbol: CommonTextureHUDTypeCRankFont5
   type: Texture
   offset: 0x19A58
   size: 0x100
@@ -1434,9 +1434,9 @@ common_texture_hud_type_C_rank_font_5:
   width: 16
   height: 16
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_font
+  tlut_symbol: CommonTLUTHUDTypeCRankFont
 common_texture_hud_type_C_rank_font_6:
-  symbol: common_texture_hud_type_C_rank_font_6
+  symbol: CommonTextureHUDTypeCRankFont6
   type: Texture
   offset: 0x19B58
   size: 0x100
@@ -1444,9 +1444,9 @@ common_texture_hud_type_C_rank_font_6:
   width: 16
   height: 16
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_font
+  tlut_symbol: CommonTLUTHUDTypeCRankFont
 common_texture_hud_type_C_rank_font_7:
-  symbol: common_texture_hud_type_C_rank_font_7
+  symbol: CommonTextureHUDTypeCRankFont7
   type: Texture
   offset: 0x19C58
   size: 0x100
@@ -1454,9 +1454,9 @@ common_texture_hud_type_C_rank_font_7:
   width: 16
   height: 16
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_font
+  tlut_symbol: CommonTLUTHUDTypeCRankFont
 common_texture_hud_type_C_rank_font_8:
-  symbol: common_texture_hud_type_C_rank_font_8
+  symbol: CommonTextureHUDTypeCRankFont8
   type: Texture
   offset: 0x19D58
   size: 0x100
@@ -1464,9 +1464,9 @@ common_texture_hud_type_C_rank_font_8:
   width: 16
   height: 16
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_font
+  tlut_symbol: CommonTLUTHUDTypeCRankFont
 common_tlut_hud_type_C_rank_tiny_font: # Font tlut for 0123456789
-  symbol: common_tlut_hud_type_C_rank_tiny_font
+  symbol: CommonTLUTHUDTypeCRankTinyFont
   type: Texture
   offset: 0x19E58
   size: 0x200
@@ -1475,7 +1475,7 @@ common_tlut_hud_type_C_rank_tiny_font: # Font tlut for 0123456789
   height: 16
   format: tlut
 common_texture_hud_type_C_rank_tiny_font_0:
-  symbol: common_texture_hud_type_C_rank_tiny_font_0
+  symbol: CommonTextureHUDTypeCRankTinyFont0
   type: Texture
   offset: 0x1A058
   size: 0x40
@@ -1483,9 +1483,9 @@ common_texture_hud_type_C_rank_tiny_font_0:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_1:
-  symbol: common_texture_hud_type_C_rank_tiny_font_1
+  symbol: CommonTextureHUDTypeCRankTinyFont1
   type: Texture
   offset: 0x1A098
   size: 0x40
@@ -1493,9 +1493,9 @@ common_texture_hud_type_C_rank_tiny_font_1:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_2:
-  symbol: common_texture_hud_type_C_rank_tiny_font_2
+  symbol: CommonTextureHUDTypeCRankTinyFont2
   type: Texture
   offset: 0x1A0D8
   size: 0x40
@@ -1503,9 +1503,9 @@ common_texture_hud_type_C_rank_tiny_font_2:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_3:
-  symbol: common_texture_hud_type_C_rank_tiny_font_3
+  symbol: CommonTextureHUDTypeCRankTinyFont3
   type: Texture
   offset: 0x1A118
   size: 0x40
@@ -1513,9 +1513,9 @@ common_texture_hud_type_C_rank_tiny_font_3:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_4:
-  symbol: common_texture_hud_type_C_rank_tiny_font_4
+  symbol: CommonTextureHUDTypeCRankTinyFont4
   type: Texture
   offset: 0x1A158
   size: 0x40
@@ -1523,9 +1523,9 @@ common_texture_hud_type_C_rank_tiny_font_4:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_5:
-  symbol: common_texture_hud_type_C_rank_tiny_font_5
+  symbol: CommonTextureHUDTypeCRankTinyFont5
   type: Texture
   offset: 0x1A198
   size: 0x40
@@ -1533,9 +1533,9 @@ common_texture_hud_type_C_rank_tiny_font_5:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_6:
-  symbol: common_texture_hud_type_C_rank_tiny_font_6
+  symbol: CommonTextureHUDTypeCRankTinyFont6
   type: Texture
   offset: 0x1A1D8
   size: 0x40
@@ -1543,9 +1543,9 @@ common_texture_hud_type_C_rank_tiny_font_6:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_7:
-  symbol: common_texture_hud_type_C_rank_tiny_font_7
+  symbol: CommonTextureHUDTypeCRankTinyFont7
   type: Texture
   offset: 0x1A218
   size: 0x40
@@ -1553,9 +1553,9 @@ common_texture_hud_type_C_rank_tiny_font_7:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_8:
-  symbol: common_texture_hud_type_C_rank_tiny_font_8
+  symbol: CommonTextureHUDTypeCRankTinyFont8
   type: Texture
   offset: 0x1A258
   size: 0x40
@@ -1563,9 +1563,9 @@ common_texture_hud_type_C_rank_tiny_font_8:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_hud_type_C_rank_tiny_font_9:
-  symbol: common_texture_hud_type_C_rank_tiny_font_9
+  symbol: CommonTextureHUDTypeCRankTinyFont9
   type: Texture
   offset: 0x1A298
   size: 0x40
@@ -1573,9 +1573,9 @@ common_texture_hud_type_C_rank_tiny_font_9:
   width: 8
   height: 8
   format: CI8
-  tlut_symbol: common_tlut_hud_type_C_rank_tiny_font
+  tlut_symbol: CommonTLUTHUDTypeCRankTinyFont
 common_texture_character_portrait_border:
-  symbol: common_texture_character_portrait_border
+  symbol: CommonTextureCharacterPortraitBorder
   type: Texture
   offset: 0x1A2D8
   size: 0x200
@@ -1584,7 +1584,7 @@ common_texture_character_portrait_border:
   height: 32
   format: IA4
 common_tlut_portrait_mario:
-  symbol: common_tlut_portrait_mario
+  symbol: CommonTLUTPortraitMario
   type: Texture
   offset: 0x1A4D8
   size: 0x200
@@ -1593,7 +1593,7 @@ common_tlut_portrait_mario:
   height: 16
   format: tlut
 common_tlut_portrait_luigi:
-  symbol: common_tlut_portrait_luigi
+  symbol: CommonTLUTPortraitLuigi
   type: Texture
   offset: 0x1A6D8
   size: 0x200
@@ -1602,7 +1602,7 @@ common_tlut_portrait_luigi:
   height: 16
   format: tlut
 common_tlut_portrait_peach:
-  symbol: common_tlut_portrait_peach
+  symbol: CommonTLUTPortraitPeach
   type: Texture
   offset: 0x1A8D8
   size: 0x200
@@ -1611,7 +1611,7 @@ common_tlut_portrait_peach:
   height: 16
   format: tlut
 common_tlut_portrait_toad:
-  symbol: common_tlut_portrait_toad
+  symbol: CommonTLUTPortraitToad
   type: Texture
   offset: 0x1AAD8
   size: 0x200
@@ -1620,7 +1620,7 @@ common_tlut_portrait_toad:
   height: 16
   format: tlut
 common_tlut_portrait_yoshi:
-  symbol: common_tlut_portrait_yoshi
+  symbol: CommonTLUTPortraitYoshi
   type: Texture
   offset: 0x1ACD8
   size: 0x200
@@ -1629,7 +1629,7 @@ common_tlut_portrait_yoshi:
   height: 16
   format: tlut
 common_tlut_portrait_donkey_kong:
-  symbol: common_tlut_portrait_donkey_kong
+  symbol: CommonTLUTPortraitDonkeyKong
   type: Texture
   offset: 0x1AED8
   size: 0x200
@@ -1638,7 +1638,7 @@ common_tlut_portrait_donkey_kong:
   height: 16
   format: tlut
 common_tlut_portrait_wario:
-  symbol: common_tlut_portrait_wario
+  symbol: CommonTLUTPortraitWario
   type: Texture
   offset: 0x1B0D8
   size: 0x200
@@ -1647,7 +1647,7 @@ common_tlut_portrait_wario:
   height: 16
   format: tlut
 common_tlut_portrait_bowser:
-  symbol: common_tlut_portrait_bowser
+  symbol: CommonTLUTPortraitBowser
   type: Texture
   offset: 0x1B2D8
   size: 0x200
@@ -1656,7 +1656,7 @@ common_tlut_portrait_bowser:
   height: 16
   format: tlut
 common_tlut_portrait_bomb_kart_and_question_mark:
-  symbol: common_tlut_portrait_bomb_kart_and_question_mark
+  symbol: CommonTLUTPortraitBombKartAndQuestionMark
   type: Texture
   offset: 0x1B4D8
   size: 0x200
@@ -1665,7 +1665,7 @@ common_tlut_portrait_bomb_kart_and_question_mark:
   height: 16
   format: tlut
 common_texture_portrait_mario:
-  symbol: common_texture_portrait_mario # 132B50_16A58
+  symbol: CommonTexturePortraitMario # 132B50_16A58
   type: Texture
   offset: 0x1B6D8
   size: 0x400
@@ -1673,9 +1673,9 @@ common_texture_portrait_mario:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_mario
+  tlut_symbol: CommonTLUTPortraitMario
 common_texture_portrait_luigi:
-  symbol: common_texture_portrait_luigi # 132B50_16A58
+  symbol: CommonTexturePortraitLuigi # 132B50_16A58
   type: Texture
   offset: 0x1BAD8
   size: 0x400
@@ -1683,9 +1683,9 @@ common_texture_portrait_luigi:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_luigi
+  tlut_symbol: CommonTLUTPortraitLuigi
 common_texture_portrait_peach:
-  symbol: common_texture_portrait_peach # 132B50_16A58
+  symbol: CommonTexturePortraitPeach # 132B50_16A58
   type: Texture
   offset: 0x1BED8
   size: 0x400
@@ -1693,9 +1693,9 @@ common_texture_portrait_peach:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_peach
+  tlut_symbol: CommonTLUTPortraitPeach
 common_texture_portrait_toad:
-  symbol: common_texture_portrait_toad # 132B50_16A58
+  symbol: CommonTexturePortraitToad # 132B50_16A58
   type: Texture
   offset: 0x1C2D8
   size: 0x400
@@ -1703,9 +1703,9 @@ common_texture_portrait_toad:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_toad
+  tlut_symbol: CommonTLUTPortraitToad
 common_texture_portrait_yoshi:
-  symbol: common_texture_portrait_yoshi # 132B50_16A58
+  symbol: CommonTexturePortraitYoshi # 132B50_16A58
   type: Texture
   offset: 0x1C6D8
   size: 0x400
@@ -1713,9 +1713,9 @@ common_texture_portrait_yoshi:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_yoshi
+  tlut_symbol: CommonTLUTPortraitYoshi
 common_texture_portrait_donkey_kong:
-  symbol: common_texture_portrait_donkey_kong # 132B50_16A58
+  symbol: CommonTexturePortraitDonkeyKong # 132B50_16A58
   type: Texture
   offset: 0x1CAD8
   size: 0x400
@@ -1723,9 +1723,9 @@ common_texture_portrait_donkey_kong:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_donkey_kong
+  tlut_symbol: CommonTLUTPortraitDonkeyKong
 common_texture_portrait_wario:
-  symbol: common_texture_portrait_wario # 132B50_16A58
+  symbol: CommonTexturePortraitWario # 132B50_16A58
   type: Texture
   offset: 0x1CED8
   size: 0x400
@@ -1733,9 +1733,9 @@ common_texture_portrait_wario:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_wario
+  tlut_symbol: CommonTLUTPortraitWario
 common_texture_portrait_bowser:
-  symbol: common_texture_portrait_bowser # 132B50_16A58
+  symbol: CommonTexturePortraitBowser # 132B50_16A58
   type: Texture
   offset: 0x1D2D8
   size: 0x400
@@ -1743,9 +1743,9 @@ common_texture_portrait_bowser:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_bowser
+  tlut_symbol: CommonTLUTPortraitBowser
 common_texture_portrait_bomb_kart:
-  symbol: common_texture_portrait_bomb_kart # 132B50_16A58
+  symbol: CommonTexturePortraitBombKart # 132B50_16A58
   type: Texture
   offset: 0x1D6D8
   size: 0x400
@@ -1753,9 +1753,9 @@ common_texture_portrait_bomb_kart:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_bomb_kart_and_question_mark
+  tlut_symbol: CommonTLUTPortraitBombKartAndQuestionMark
 common_texture_portrait_question_mark:
-  symbol: common_texture_portrait_question_mark # 132B50_16A58
+  symbol: CommonTexturePortraitQuestionMark # 132B50_16A58
   type: Texture
   offset: 0x1DAD8
   size: 0x400
@@ -1763,9 +1763,9 @@ common_texture_portrait_question_mark:
   width: 32
   height: 32
   format: CI8
-  tlut_symbol: common_tlut_portrait_bomb_kart_and_question_mark
+  tlut_symbol: CommonTLUTPortraitBombKartAndQuestionMark
 common_tlut_item_window_none:
-  symbol: common_tlut_item_window_none
+  symbol: CommonTLUTItemWindowNone
   type: Texture
   offset: 0x1DED8
   ctype: u16
@@ -1773,7 +1773,7 @@ common_tlut_item_window_none:
   height: 16
   format: tlut
 common_tlut_item_window_banana:
-  symbol: common_tlut_item_window_banana
+  symbol: CommonTLUTItemWindowBanana
   type: Texture
   offset: 0x1E0D8
   ctype: u16
@@ -1781,7 +1781,7 @@ common_tlut_item_window_banana:
   height: 16
   format: tlut
 common_tlut_item_window_banana_bunch:
-  symbol: common_tlut_item_window_banana_bunch
+  symbol: CommonTLUTItemWindowBananaBunch
   type: Texture
   offset: 0x1E2D8
   ctype: u16
@@ -1789,7 +1789,7 @@ common_tlut_item_window_banana_bunch:
   height: 16
   format: tlut
 common_tlut_item_window_mushroom:
-  symbol: common_tlut_item_window_mushroom
+  symbol: CommonTLUTItemWindowMushroom
   type: Texture
   offset: 0x1E4D8
   ctype: u16
@@ -1797,7 +1797,7 @@ common_tlut_item_window_mushroom:
   height: 16
   format: tlut
 common_tlut_item_window_double_mushroom:
-  symbol: common_tlut_item_window_double_mushroom
+  symbol: CommonTLUTItemWindowDoubleMushroom
   type: Texture
   offset: 0x1E6D8
   ctype: u16
@@ -1805,7 +1805,7 @@ common_tlut_item_window_double_mushroom:
   height: 16
   format: tlut
 common_tlut_item_window_triple_mushroom:
-  symbol: common_tlut_item_window_triple_mushroom
+  symbol: CommonTLUTItemWindowTripleMushroom
   type: Texture
   offset: 0x1E8D8
   ctype: u16
@@ -1813,7 +1813,7 @@ common_tlut_item_window_triple_mushroom:
   height: 16
   format: tlut
 common_tlut_item_window_super_mushroom:
-  symbol: common_tlut_item_window_super_mushroom
+  symbol: CommonTLUTItemWindowSuperMushroom
   type: Texture
   offset: 0x1EAD8
   ctype: u16
@@ -1821,7 +1821,7 @@ common_tlut_item_window_super_mushroom:
   height: 16
   format: tlut
 common_tlut_item_window_blue_shell:
-  symbol: common_tlut_item_window_blue_shell
+  symbol: CommonTLUTItemWindowBlueShell
   type: Texture
   offset: 0x1ECD8
   ctype: u16
@@ -1829,7 +1829,7 @@ common_tlut_item_window_blue_shell:
   height: 16
   format: tlut
 common_tlut_item_window_boo:
-  symbol: common_tlut_item_window_boo
+  symbol: CommonTLUTItemWindowBoo
   type: Texture
   offset: 0x1EED8
   ctype: u16
@@ -1837,7 +1837,7 @@ common_tlut_item_window_boo:
   height: 16
   format: tlut
 common_tlut_item_window_green_shell:
-  symbol: common_tlut_item_window_green_shell
+  symbol: CommonTLUTItemWindowGreenShell
   type: Texture
   offset: 0x1F0D8
   ctype: u16
@@ -1845,7 +1845,7 @@ common_tlut_item_window_green_shell:
   height: 16
   format: tlut
 common_tlut_item_window_triple_green_shell:
-  symbol: common_tlut_item_window_triple_green_shell
+  symbol: CommonTLUTItemWindowTripleGreenShell
   type: Texture
   offset: 0x1F2D8
   ctype: u16
@@ -1853,7 +1853,7 @@ common_tlut_item_window_triple_green_shell:
   height: 16
   format: tlut
 common_tlut_item_window_red_shell:
-  symbol: common_tlut_item_window_red_shell
+  symbol: CommonTLUTItemWindowRedShell
   type: Texture
   offset: 0x1F4D8
   ctype: u16
@@ -1861,7 +1861,7 @@ common_tlut_item_window_red_shell:
   height: 16
   format: tlut
 common_tlut_item_window_triple_red_shell:
-  symbol: common_tlut_item_window_triple_red_shell
+  symbol: CommonTLUTItemWindowTripleRedShell
   type: Texture
   offset: 0x1F6D8
   ctype: u16
@@ -1869,7 +1869,7 @@ common_tlut_item_window_triple_red_shell:
   height: 16
   format: tlut
 common_tlut_item_window_star:
-  symbol: common_tlut_item_window_star
+  symbol: CommonTLUTItemWindowStar
   type: Texture
   offset: 0x1F8D8
   ctype: u16
@@ -1877,7 +1877,7 @@ common_tlut_item_window_star:
   height: 16
   format: tlut
 common_tlut_item_window_thunder_bolt:
-  symbol: common_tlut_item_window_thunder_bolt
+  symbol: CommonTLUTItemWindowThunderBolt
   type: Texture
   offset: 0x1FAD8
   ctype: u16
@@ -1885,7 +1885,7 @@ common_tlut_item_window_thunder_bolt:
   height: 16
   format: tlut
 common_tlut_item_window_fake_item_box:
-  symbol: common_tlut_item_window_fake_item_box
+  symbol: CommonTLUTItemWindowFakeItemBox
   type: Texture
   offset: 0x1FCD8
   ctype: u16
@@ -1893,135 +1893,135 @@ common_tlut_item_window_fake_item_box:
   height: 16
   format: tlut
 common_texture_item_window_none:
-  symbol: common_texture_item_window_none
+  symbol: CommonTextureItemWindowNone
   type: Texture
   offset: 0x1FED8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_none
+  tlut_symbol: CommonTLUTItemWindowNone
 common_texture_item_window_banana:
-  symbol: common_texture_item_window_banana
+  symbol: CommonTextureItemWindowBanana
   type: Texture
   offset: 0x203D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_banana
+  tlut_symbol: CommonTLUTItemWindowBanana
 common_texture_item_window_banana_bunch:
-  symbol: common_texture_item_window_banana_bunch
+  symbol: CommonTextureItemWindowBananaBunch
   type: Texture
   offset: 0x208D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_banana_bunch
+  tlut_symbol: CommonTLUTItemWindowBananaBunch
 common_texture_item_window_mushroom:
-  symbol: common_texture_item_window_mushroom
+  symbol: CommonTextureItemWindowMushroom
   type: Texture
   offset: 0x20DD8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_mushroom
+  tlut_symbol: CommonTLUTItemWindowMushroom
 common_texture_item_window_double_mushroom:
-  symbol: common_texture_item_window_double_mushroom
+  symbol: CommonTextureItemWindowDoubleMushroom
   type: Texture
   offset: 0x212D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_double_mushroom
+  tlut_symbol: CommonTLUTItemWindowDoubleMushroom
 common_texture_item_window_triple_mushroom:
-  symbol: common_texture_item_window_triple_mushroom
+  symbol: CommonTextureItemWindowTripleMushroom
   type: Texture
   offset: 0x217D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_triple_mushroom
+  tlut_symbol: CommonTLUTItemWindowTripleMushroom
 common_texture_item_window_super_mushroom:
-  symbol: common_texture_item_window_super_mushroom
+  symbol: CommonTextureItemWindowSuperMushroom
   type: Texture
   offset: 0x21CD8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_super_mushroom
+  tlut_symbol: CommonTLUTItemWindowSuperMushroom
 common_texture_item_window_blue_shell:
-  symbol: common_texture_item_window_blue_shell
+  symbol: CommonTextureItemWindowBlueShell
   type: Texture
   offset: 0x221D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_blue_shell
+  tlut_symbol: CommonTLUTItemWindowBlueShell
 common_texture_item_window_boo:
-  symbol: common_texture_item_window_boo
+  symbol: CommonTextureItemWindowBoo
   type: Texture
   offset: 0x226D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_boo
+  tlut_symbol: CommonTLUTItemWindowBoo
 common_texture_item_window_green_shell:
-  symbol: common_texture_item_window_green_shell
+  symbol: CommonTextureItemWindowGreenShell
   type: Texture
   offset: 0x22BD8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_green_shell
+  tlut_symbol: CommonTLUTItemWindowGreenShell
 common_texture_item_window_triple_green_shell:
-  symbol: common_texture_item_window_triple_green_shell
+  symbol: CommonTextureItemWindowTripleGreenShell
   type: Texture
   offset: 0x230D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_triple_green_shell
+  tlut_symbol: CommonTLUTItemWindowTripleGreenShell
 common_texture_item_window_red_shell:
-  symbol: common_texture_item_window_red_shell
+  symbol: CommonTextureItemWindowRedShell
   type: Texture
   offset: 0x235D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_red_shell
+  tlut_symbol: CommonTLUTItemWindowRedShell
 common_texture_item_window_triple_red_shell:
-  symbol: common_texture_item_window_triple_red_shell
+  symbol: CommonTextureItemWindowTripleRedShell
   type: Texture
   offset: 0x23AD8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_triple_red_shell
+  tlut_symbol: CommonTLUTItemWindowTripleRedShell
 common_texture_item_window_star:
-  symbol: common_texture_item_window_star
+  symbol: CommonTextureItemWindowStar
   type: Texture
   offset: 0x23FD8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_star
+  tlut_symbol: CommonTLUTItemWindowStar
 common_texture_item_window_thunder_bolt:
-  symbol: common_texture_item_window_thunder_bolt
+  symbol: CommonTextureItemWindowThunderBolt
   type: Texture
   offset: 0x244D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_thunder_bolt
+  tlut_symbol: CommonTLUTItemWindowThunderBolt
 common_texture_item_window_fake_item_box:
-  symbol: common_texture_item_window_fake_item_box
+  symbol: CommonTextureItemWindowFakeItemBox
   type: Texture
   offset: 0x249D8
   width: 40
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_item_window_fake_item_box
+  tlut_symbol: CommonTLUTItemWindowFakeItemBox
 common_tlut_lakitu_no_lights:
-  symbol: common_tlut_lakitu_no_lights
+  symbol: CommonTLUTLakituNoLights
   type: Texture
   offset: 0x24ED8
   ctype: u16
@@ -2029,7 +2029,7 @@ common_tlut_lakitu_no_lights:
   height: 16
   format: tlut
 common_tlut_lakitu_red_lights:
-  symbol: common_tlut_lakitu_red_lights
+  symbol: CommonTLUTLakituRedLights
   type: Texture
   offset: 0x250D8
   ctype: u16
@@ -2037,7 +2037,7 @@ common_tlut_lakitu_red_lights:
   height: 16
   format: tlut
 common_tlut_lakitu_blue_lights:
-  symbol: common_tlut_lakitu_blue_lights
+  symbol: CommonTLUTLakituBlueLights
   type: Texture
   offset: 0x252D8
   ctype: u16
@@ -2045,7 +2045,7 @@ common_tlut_lakitu_blue_lights:
   height: 16
   format: tlut
 common_tlut_lakitu_checkered_flag:
-  symbol: common_tlut_lakitu_checkered_flag
+  symbol: CommonTLUTLakituCheckeredFlag
   type: Texture
   offset: 0x254D8
   ctype: u16
@@ -2053,7 +2053,7 @@ common_tlut_lakitu_checkered_flag:
   height: 16
   format: rgba16
 common_tlut_lakitu_second_lap:
-  symbol: common_tlut_lakitu_second_lap
+  symbol: CommonTLUTLakituSecondLap
   type: Texture
   offset: 0x256D8
   ctype: u16
@@ -2061,7 +2061,7 @@ common_tlut_lakitu_second_lap:
   height: 16
   format: rgba16
 common_tlut_lakitu_final_lap:
-  symbol: common_tlut_lakitu_final_lap
+  symbol: CommonTLUTLakituFinalLap
   type: Texture
   offset: 0x258D8
   ctype: u16
@@ -2069,7 +2069,7 @@ common_tlut_lakitu_final_lap:
   height: 16
   format: rgba16
 common_tlut_lakitu_reverse:
-  symbol: common_tlut_lakitu_reverse
+  symbol: CommonTLUTLakituReverse
   type: Texture
   offset: 0x25AD8
   ctype: u16
@@ -2077,7 +2077,7 @@ common_tlut_lakitu_reverse:
   height: 16
   format: rgba16
 common_tlut_lakitu_fishing:
-  symbol: common_tlut_lakitu_fishing
+  symbol: CommonTLUTLakituFishing
   type: Texture
   offset: 0x25CD8
   ctype: u16
@@ -2085,94 +2085,94 @@ common_tlut_lakitu_fishing:
   height: 16
   format: rgba16
 common_tlut_traffic_light:
-  symbol: common_tlut_traffic_light
+  symbol: CommonTLUTTrafficLight
   type: Texture
   offset: 0x25ED8
   ctype: u16
   colors: 256
   format: tlut
 common_texture_traffic_light_01:
-  symbol: common_texture_traffic_light_01
+  symbol: CommonTextureTrafficLight01
   type: Texture
   offset: 0x260D8
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_02:
-  symbol: common_texture_traffic_light_02
+  symbol: CommonTextureTrafficLight02
   type: Texture
   offset: 0x26558
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_03:
-  symbol: common_texture_traffic_light_03
+  symbol: CommonTextureTrafficLight03
   type: Texture
   offset: 0x269D8
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_04:
-  symbol: common_texture_traffic_light_04
+  symbol: CommonTextureTrafficLight04
   type: Texture
   offset: 0x26E58
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_05:
-  symbol: common_texture_traffic_light_05
+  symbol: CommonTextureTrafficLight05
   type: Texture
   offset: 0x272D8
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_06:
-  symbol: common_texture_traffic_light_06
+  symbol: CommonTextureTrafficLight06
   type: Texture
   offset: 0x27758
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_07:
-  symbol: common_texture_traffic_light_07
+  symbol: CommonTextureTrafficLight07
   type: Texture
   offset: 0x27BD8
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_08:
-  symbol: common_texture_traffic_light_08
+  symbol: CommonTextureTrafficLight08
   type: Texture
   offset: 0x28058
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_09:
-  symbol: common_texture_traffic_light_09
+  symbol: CommonTextureTrafficLight09
   type: Texture
   offset: 0x284D8
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_traffic_light_10:
-  symbol: common_texture_traffic_light_10
+  symbol: CommonTextureTrafficLight10
   type: Texture
   offset: 0x28958
   width: 24
   height: 48
   format: ci8
-  tlut_symbol: common_tlut_traffic_light
+  tlut_symbol: CommonTLUTTrafficLight
 common_texture_particle_leaf:
-  symbol: common_texture_particle_leaf
+  symbol: CommonTextureParticleLeaf
   type: Texture
   offset: 0x28DD8
   width: 32
@@ -2180,7 +2180,7 @@ common_texture_particle_leaf:
   ctype: u16
   format: rgba16
 common_texture_unused_particle_leaf:
-  symbol: common_texture_unused_particle_leaf
+  symbol: CommonTextureUnusedParticleLeaf
   type: Texture
   offset: 0x291D8
   width: 16
@@ -2202,7 +2202,7 @@ D_0D029458: # Smoke?
   height: 32
   format: i8
 common_tlut_bomb: # This is placed below in rom. Hack to make torch extract the tlut first.
-  symbol: common_tlut_bomb
+  symbol: CommonTLUTBomb
   type: Texture
   offset: 0x2A858
   ctype: u16
@@ -2210,37 +2210,37 @@ common_tlut_bomb: # This is placed below in rom. Hack to make torch extract the 
   height: 16
   format: tlut
 common_texture_bomb_1: # Smoke?
-  symbol: common_texture_bomb_1
+  symbol: CommonTextureBomb1
   type: Texture
   offset: 0x29858
   width: 32
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_bomb
+  tlut_symbol: CommonTLUTBomb
 common_texture_bomb_2: # Smoke?
-  symbol: common_texture_bomb_2
+  symbol: CommonTextureBomb2
   type: Texture
   offset: 0x29C58
   width: 32
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_bomb
+  tlut_symbol: CommonTLUTBomb
 common_texture_bomb_3: # Smoke?
-  symbol: common_texture_bomb_3
+  symbol: CommonTextureBomb3
   type: Texture
   offset: 0x2A058
   width: 32
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_bomb
+  tlut_symbol: CommonTLUTBomb
 common_texture_bomb_4: # Smoke?
-  symbol: common_texture_bomb_4
+  symbol: CommonTextureBomb4
   type: Texture
   offset: 0x2A458
   width: 32
   height: 32
   format: ci8
-  tlut_symbol: common_tlut_bomb
+  tlut_symbol: CommonTLUTBomb
 D_0D02AA58:
   symbol: D_0D02AA58
   type: Texture
@@ -2250,7 +2250,7 @@ D_0D02AA58:
   height: 16
   format: rgba16
 common_texture_particle_spark_1:
-  symbol: common_texture_particle_spark_1
+  symbol: CommonTextureParticleSpark1
   offset: 0x2AC58
   width: 32
   height: 32
@@ -2258,56 +2258,56 @@ common_texture_particle_spark_1:
   type: Texture
   format: i8
 common_texture_particle_spark_2:
-  symbol: common_texture_particle_spark_2
+  symbol: CommonTextureParticleSpark2
   offset: 0x2B058
   width: 32
   height: 32
   type: Texture
   format: i8
 common_texture_particle_spark_3:
-  symbol: common_texture_particle_spark_3
+  symbol: CommonTextureParticleSpark3
   offset: 0x2B458
   width: 32
   height: 32
   type: Texture
   format: i8
 common_texture_particle_spark_4:
-  symbol: common_texture_particle_spark_4
+  symbol: CommonTextureParticleSpark4
   offset: 0x2B858
   width: 32
   height: 32
   type: Texture
   format: i8
 common_texture_particle_smoke_1:
-  symbol: common_texture_particle_smoke_1
+  symbol: CommonTextureParticleSmoke1
   offset: 0x2BC58
   width: 32
   height: 32
   type: Texture
   format: i8
 common_texture_particle_smoke_2:
-  symbol: common_texture_particle_smoke_2
+  symbol: CommonTextureParticleSmoke2
   offset: 0x2C058
   width: 32
   height: 32
   type: Texture
   format: i8
 common_texture_particle_smoke_3:
-  symbol: common_texture_particle_smoke_3
+  symbol: CommonTextureParticleSmoke3
   offset: 0x2C458
   width: 32
   height: 32
   type: Texture
   format: i8
 common_texture_particle_smoke_4:
-  symbol: common_texture_particle_smoke_4
+  symbol: CommonTextureParticleSmoke4
   offset: 0x2C858
   width: 32
   height: 32
   type: Texture
   format: i8
 common_texture_minimap_finish_line:
-  symbol: common_texture_minimap_finish_line
+  symbol: CommonTextureMinimapFinishLine
   offset: 0x2CC58
   width: 8
   height: 8
@@ -2315,7 +2315,7 @@ common_texture_minimap_finish_line:
   type: Texture
   format: rgba16
 common_texture_minimap_kart_mario:
-  symbol: common_texture_minimap_kart_mario
+  symbol: CommonTextureMinimapKartMario
   offset: 0x2CCD8
   ctype: u16
   width: 8
@@ -2323,7 +2323,7 @@ common_texture_minimap_kart_mario:
   type: Texture
   format: rgba16
 common_texture_minimap_kart_luigi:
-  symbol: common_texture_minimap_kart_luigi
+  symbol: CommonTextureMinimapKartLuigi
   offset: 0x2CD58
   ctype: u16
   width: 8
@@ -2331,7 +2331,7 @@ common_texture_minimap_kart_luigi:
   type: Texture
   format: rgba16
 common_texture_minimap_kart_yoshi:
-  symbol: common_texture_minimap_kart_yoshi
+  symbol: CommonTextureMinimapKartYoshi
   offset: 0x2CDD8
   ctype: u16
   width: 8
@@ -2339,7 +2339,7 @@ common_texture_minimap_kart_yoshi:
   type: Texture
   format: rgba16
 common_texture_minimap_kart_toad:
-  symbol: common_texture_minimap_kart_toad
+  symbol: CommonTextureMinimapKartToad
   offset: 0x2CE58
   ctype: u16
   width: 8
@@ -2347,7 +2347,7 @@ common_texture_minimap_kart_toad:
   type: Texture
   format: rgba16
 common_texture_minimap_kart_donkey_kong:
-  symbol: common_texture_minimap_kart_donkey_kong
+  symbol: CommonTextureMinimapKartDonkeyKong
   offset: 0x2CED8
   ctype: u16
   width: 8
@@ -2355,7 +2355,7 @@ common_texture_minimap_kart_donkey_kong:
   type: Texture
   format: rgba16
 common_texture_minimap_kart_wario:
-  symbol: common_texture_minimap_kart_wario
+  symbol: CommonTextureMinimapKartWario
   offset: 0x2CF58
   ctype: u16
   width: 8
@@ -2363,7 +2363,7 @@ common_texture_minimap_kart_wario:
   type: Texture
   format: rgba16
 common_texture_minimap_kart_peach:
-  symbol: common_texture_minimap_kart_peach
+  symbol: CommonTextureMinimapKartPeach
   offset: 0x2CFD8
   ctype: u16
   width: 8
@@ -2371,7 +2371,7 @@ common_texture_minimap_kart_peach:
   type: Texture
   format: rgba16
 common_texture_minimap_kart_bowser:
-  symbol: common_texture_minimap_kart_bowser
+  symbol: CommonTextureMinimapKartBowser
   offset: 0x2D058
   ctype: u16
   width: 8
@@ -2379,7 +2379,7 @@ common_texture_minimap_kart_bowser:
   type: Texture
   format: rgba16
 common_texture_minimap_progress_dot:
-  symbol: common_texture_minimap_progress_dot
+  symbol: CommonTextureMinimapProgressDot
   offset: 0x2D0D8
   ctype: u16
   width: 8

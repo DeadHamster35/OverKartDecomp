@@ -9,7 +9,7 @@
     - '#include <macros.h>'
     - '#include <defines.h>'
 gTLUTRainbowRoadNeonPeach:
-  symbol: gTLUTRainbowRoadNeonPeach
+  symbol: TLUTRainbowRoadNeonPeach
   type: Texture
   ctype: u16
   width: 16
@@ -17,7 +17,7 @@ gTLUTRainbowRoadNeonPeach:
   offset: 0x07200
   format: rgba16
 gTLUTRainbowRoadNeonLuigi:
-  symbol: gTLUTRainbowRoadNeonLuigi
+  symbol: TLUTRainbowRoadNeonLuigi
   type: Texture
   ctype: u16
   width: 16
@@ -25,7 +25,7 @@ gTLUTRainbowRoadNeonLuigi:
   offset: 0x07400
   format: rgba16
 gTLUTRainbowRoadNeonDonkeyKong:
-  symbol: gTLUTRainbowRoadNeonDonkeyKong
+  symbol: TLUTRainbowRoadNeonDonkeyKong
   type: Texture
   ctype: u16
   width: 16
@@ -33,7 +33,7 @@ gTLUTRainbowRoadNeonDonkeyKong:
   offset: 0x07600
   format: rgba16
 gTLUTRainbowRoadNeonYoshi:
-  symbol: gTLUTRainbowRoadNeonYoshi
+  symbol: TLUTRainbowRoadNeonYoshi
   type: Texture
   ctype: u16
   width: 16
@@ -41,7 +41,7 @@ gTLUTRainbowRoadNeonYoshi:
   offset: 0x07800
   format: rgba16
 gTLUTRainbowRoadNeonBowser:
-  symbol: gTLUTRainbowRoadNeonBowser
+  symbol: TLUTRainbowRoadNeonBowser
   type: Texture
   ctype: u16
   width: 16
@@ -49,7 +49,7 @@ gTLUTRainbowRoadNeonBowser:
   offset: 0x07A00
   format: rgba16
 gTLUTRainbowRoadNeonWario:
-  symbol: gTLUTRainbowRoadNeonWario
+  symbol: TLUTRainbowRoadNeonWario
   type: Texture
   ctype: u16
   width: 16
@@ -57,7 +57,7 @@ gTLUTRainbowRoadNeonWario:
   offset: 0x07C00
   format: rgba16
 gTLUTRainbowRoadNeonToad:
-  symbol: gTLUTRainbowRoadNeonToad
+  symbol: TLUTRainbowRoadNeonToad
   type: Texture
   ctype: u16
   width: 16

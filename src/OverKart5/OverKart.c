@@ -163,7 +163,7 @@ bool CheckEndGame()
 {
 	if (PlayerCount == 0x01)
 	{
-		if (g_playerPosition1 <= 3)
+		if (GPCurrentRaceRankByPlayerId[0] <= 3)
 		{
 			return true;
 		}
@@ -178,7 +178,7 @@ bool CheckEndGame()
 	}
 	else
 	{
-		if ((g_playerPosition1 <= 3) || (g_playerPosition2 <= 3))
+		if ((GPCurrentRaceRankByPlayerId[0] <= 3) || (GPCurrentRaceRankByPlayerId[1] <= 3))
 		{
 			return true;
 		}
@@ -407,7 +407,7 @@ void CheckBattleCDown()
                 {
                     if (GlobalController[ThisPlayer]->ButtonPressed & BTN_CDOWN)				
                     {
-                        ExecuteItem((Player*)&GlobalPlayer[ThisPlayer]);
+                        ExecuteItem((Player*)&GamePlayers[ThisPlayer]);
                     }
                 } }
                 break;
@@ -438,7 +438,7 @@ void CheckBattleCDown()
         {
             if (GlobalController[ThisPlayer]->ButtonPressed & BTN_CDOWN)				
             {
-                ExecuteItem((Player*)&GlobalPlayer[ThisPlayer]);
+                ExecuteItem((Player*)&GamePlayers[ThisPlayer]);
             }
         } }
     }
@@ -755,7 +755,7 @@ void GameCode(void)
 	{
 		if (RaceStatus != 5)
 		{
-			GPTotalTime[0] += g_TrialTime[0];
+			GPTotalTime[0] += TimePlayerLastTouchedFinishLine[0];
 			RaceStatus = 5;
 		}
 		if (GameMode == GAMEMODE_GP)

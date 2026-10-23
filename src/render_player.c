@@ -1356,7 +1356,7 @@ void DrawShadow(Player* Player, s8 PlayerId, s8 screenId) {
     gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
     gSPVertex(DisplayListHead++, &D_800E51D0[0], 4, 0);
 
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gDPLoadTextureBlock(DisplayListHead++, (KageBitmap + SOME_TEXTURE_POINTER_MATH), G_IM_FMT_I,
                         G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK,
                         G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
@@ -1364,7 +1364,7 @@ void DrawShadow(Player* Player, s8 PlayerId, s8 screenId) {
     gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
     gSPVertex(DisplayListHead++, &D_800E5210[0], 4, 0);
 
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
 }
 
@@ -1411,7 +1411,7 @@ void DrawResultShadow(Player* Player, s8 PlayerId, s8 Arg2) {
     gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
     gSPVertex(DisplayListHead++, &D_800E51D0[0], 4, 0);
 
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gDPLoadTextureBlock(DisplayListHead++, (KageBitmap + SOME_TEXTURE_POINTER_MATH), G_IM_FMT_I,
                         G_IM_SIZ_8b, 64, 32, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK,
                         G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
@@ -1419,7 +1419,7 @@ void DrawResultShadow(Player* Player, s8 PlayerId, s8 Arg2) {
     gDPSetRenderMode(DisplayListHead++, G_RM_ZB_CLD_SURF, G_RM_ZB_CLD_SURF2);
     gSPVertex(DisplayListHead++, &D_800E5210[0], 4, 0);
 
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
 }
 
@@ -1487,7 +1487,7 @@ void DrawMainkart(Player* Player, s8 PlayerId, s8 Arg2, s8 flipOffset) {
         if (Arg2 == PlayerId) {
             gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXKart[PlayerId + (Arg2 * 8)]),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-            gSPDisplayList(DisplayListHead++, common_setting_render_character);
+            gSPDisplayList(DisplayListHead++, CommonSettingRenderCharacter);
             gDPLoadTLUT_pal256(DisplayListHead++, PlayerPalette);
             gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
             IceMode(ColorPlayer0R[PlayerId], BrightG[PlayerId], BrightB[PlayerId],
@@ -1501,7 +1501,7 @@ void DrawMainkart(Player* Player, s8 PlayerId, s8 Arg2, s8 flipOffset) {
         } else {
             gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXKart[PlayerId + (Arg2 * 8)]),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-            gSPDisplayList(DisplayListHead++, common_setting_render_character);
+            gSPDisplayList(DisplayListHead++, CommonSettingRenderCharacter);
             gDPLoadTLUT_pal256(DisplayListHead++, PlayerPalette);
             gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
             IceMode(ColorPlayer0R[PlayerId], BrightG[PlayerId], BrightB[PlayerId],
@@ -1517,7 +1517,7 @@ void DrawMainkart(Player* Player, s8 PlayerId, s8 Arg2, s8 flipOffset) {
                (Player->Weapon & PRESS_BECOME_BOMB)) {
         gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXKart[PlayerId + (Arg2 * 8)]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPDisplayList(DisplayListHead++, common_setting_render_character);
+        gSPDisplayList(DisplayListHead++, CommonSettingRenderCharacter);
         gDPLoadTLUT_pal256(DisplayListHead++, PlayerPalette);
         gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
         IceMode(ColorPlayer0R[PlayerId], BrightG[PlayerId], BrightB[PlayerId],
@@ -1528,7 +1528,7 @@ void DrawMainkart(Player* Player, s8 PlayerId, s8 Arg2, s8 flipOffset) {
     } else {
         gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXKart[PlayerId + (Arg2 * 8)]),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        gSPDisplayList(DisplayListHead++, common_setting_render_character);
+        gSPDisplayList(DisplayListHead++, CommonSettingRenderCharacter);
         gDPLoadTLUT_pal256(DisplayListHead++, PlayerPalette);
         gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
         IceMode(ColorPlayer0R[PlayerId], BrightG[PlayerId], BrightB[PlayerId],
@@ -1541,13 +1541,13 @@ void DrawMainkart(Player* Player, s8 PlayerId, s8 Arg2, s8 flipOffset) {
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, &KartVtx[PlayerId][flipOffset], 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
 
     gDPLoadTextureBlock(DisplayListHead++, SKartLowerTexture, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, &KartVtx[PlayerId][flipOffset + 4], 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
     gDPSetAlphaCompare(DisplayListHead++, G_AC_NONE);
 }
@@ -1603,7 +1603,7 @@ void DrawGhostkart(Player* Player, s8 PlayerId, s8 screenId, s8 flipOffset) {
 
     gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXKart[PlayerId + (screenId * 8)]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(DisplayListHead++, common_setting_render_character);
+    gSPDisplayList(DisplayListHead++, CommonSettingRenderCharacter);
     gDPLoadTLUT_pal256(DisplayListHead++, PlayerPalette);
     gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
     IceMode(ColorPlayer0R[PlayerId], BrightG[PlayerId], BrightB[PlayerId],
@@ -1618,13 +1618,13 @@ void DrawGhostkart(Player* Player, s8 PlayerId, s8 screenId, s8 flipOffset) {
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, &KartVtx[PlayerId][flipOffset], 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
 
     gDPLoadTextureBlock(DisplayListHead++, SKartLowerTexture, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, &KartVtx[PlayerId][flipOffset + 4], 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
     gDPSetAlphaCompare(DisplayListHead++, G_AC_NONE);
 }
@@ -1662,13 +1662,13 @@ void DrawTurbokart(Player* Player, s8 PlayerId, s8 screenId, s8 flipOffset) {
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, &KartVtx[PlayerId][flipOffset], 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
 
     gDPLoadTextureBlock(DisplayListHead++, SKartLowerTexture, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, &KartVtx[PlayerId][flipOffset + 4], 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
     Effectcount += 1;
 }
@@ -1696,7 +1696,7 @@ void DrawReflectkart(Player* Player, s8 PlayerId, s8 screenId, s8 flipOffset) {
 
     gSPMatrix(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&DynamicP->MTXEffect[Effectcount]),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(DisplayListHead++, common_setting_render_character);
+    gSPDisplayList(DisplayListHead++, CommonSettingRenderCharacter);
     gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
     IceMode(ColorPlayer0R[PlayerId], BrightG[PlayerId], BrightB[PlayerId],
                   AdjustR[PlayerId], AdjustG[PlayerId], AdjustB[PlayerId],
@@ -1706,12 +1706,12 @@ void DrawReflectkart(Player* Player, s8 PlayerId, s8 screenId, s8 flipOffset) {
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, &KartVtx[PlayerId][flipOffset], 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gDPLoadTextureBlock(DisplayListHead++, SKartLowerTexture, G_IM_FMT_CI, G_IM_SIZ_8b, 64, 32, 0,
                         G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
     gSPVertex(DisplayListHead++, &KartVtx[PlayerId][flipOffset + 4], 4, 0);
-    gSPDisplayList(DisplayListHead++, common_square_plain_render);
+    gSPDisplayList(DisplayListHead++, CommonSquarePlainRender);
     gSPTexture(DisplayListHead++, 1, 1, 0, G_TX_RENDERTILE, G_OFF);
     Effectcount += 1;
 }

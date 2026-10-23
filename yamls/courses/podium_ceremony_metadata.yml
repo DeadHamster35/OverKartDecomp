@@ -34,10 +34,10 @@ course:
   # Unused except in podium ceremony
   path_table_unknown:
     [
-      podium_ceremony_path,
-      podium_ceremony_path_2,
-      podium_ceremony_path_3,
-      podium_ceremony_path_4,
+      PodiumCeremonyPath,
+      PodiumCeremonyPath2,
+      PodiumCeremonyPath3,
+      PodiumCeremonyPath4,
     ]
 
   sky_colors: [238, 144, 255, 255, 224, 240]

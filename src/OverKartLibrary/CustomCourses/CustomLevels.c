@@ -62,17 +62,17 @@ void PreviewRefresh(void)
 	// Used on the Map Select screen when we swap to a new set of custom levels.
 	if (GameMode != GAMEMODE_BATTLE)
 	{
-		g_menuPreviewValue1 = 9;
-		g_menuPreviewValue2 = 9;
-		g_menuPreviewValue3 = 9;
-		g_menuPreviewValue4 = 9;
+		(((s8 *) &MenuItems[11].Work1)[3]) = 9;
+		(((s8 *) &MenuItems[12].Work1)[3]) = 9;
+		(((s8 *) &MenuItems[13].Work1)[3]) = 9;
+		(((s8 *) &MenuItems[14].Work1)[3]) = 9;
 	}
 	else
 	{
-		g_BattlePreviewValue1 = 9;
-		g_BattlePreviewValue2 = 9;
-		g_BattlePreviewValue3 = 9;
-		g_BattlePreviewValue4 = 9;
+		(((s8 *) &MenuItems[5].Work1)[3]) = 9;
+		(((s8 *) &MenuItems[6].Work1)[3]) = 9;
+		(((s8 *) &MenuItems[7].Work1)[3]) = 9;
+		(((s8 *) &MenuItems[8].Work1)[3]) = 9;
 	}
 }
 
@@ -85,18 +85,18 @@ void CopyCourseTable(int copyMode)
 	{
 		if (sCourseTableSaved == 0)
 		{
-			*SourceAddress = (long)(&g_CupArray[0]);
+			*SourceAddress = (long)(&((s16 *) CupCourseOrder)[0]);
 			*TargetAddress = (long)&ok_CourseTable;
 			RunRAM();
 			sCourseTableSaved = 1;
 			return;
 		}
 		*SourceAddress = (long)&ok_CourseTable;
-		*TargetAddress = (long)(&g_CupArray[0]);
+		*TargetAddress = (long)(&((s16 *) CupCourseOrder)[0]);
 	}
 	else
 	{
-		*SourceAddress = (long)(&g_CupArray[0]);
+		*SourceAddress = (long)(&((s16 *) CupCourseOrder)[0]);
 		*TargetAddress = (long)&ok_CourseTable;
 		sCourseTableSaved = 1;
 	}
@@ -109,29 +109,29 @@ void HsTableSet(void)
 
 	for (Index = 0; Index < 20; Index++)
 	{
-		g_CupArray[Index] = Index;
+		((s16 *) CupCourseOrder)[Index] = Index;
 	}
 }
 
 /*
 void stockTableSet(void)
 {
-	g_cup0Array0 = 8;
-	g_cup0Array1 = 9;
-	g_cup0Array2 = 6;
-	g_cup0Array3 = 11;
-	g_cup1Array0 = 10;
-	g_cup1Array1 = 5;
-	g_cup1Array2 = 1;
-	g_cup1Array3 = 0;
-	g_cup2Array0 = 14;
-	g_cup2Array1 = 12;
-	g_cup2Array2 = 7;
-	g_cup2Array3 = 2;
-	g_cup3Array0 = 18;
-	g_cup3Array1 = 4;
-	g_cup3Array2 = 3;
-	g_cup3Array3 = 13;
+	((s16 *) CupCourseOrder)[0] = 8;
+	((s16 *) CupCourseOrder)[1] = 9;
+	((s16 *) CupCourseOrder)[2] = 6;
+	((s16 *) CupCourseOrder)[3] = 11;
+	((s16 *) CupCourseOrder)[4] = 10;
+	((s16 *) CupCourseOrder)[5] = 5;
+	((s16 *) CupCourseOrder)[6] = 1;
+	((s16 *) CupCourseOrder)[7] = 0;
+	((s16 *) CupCourseOrder)[8] = 14;
+	((s16 *) CupCourseOrder)[9] = 12;
+	((s16 *) CupCourseOrder)[10] = 7;
+	((s16 *) CupCourseOrder)[11] = 2;
+	((s16 *) CupCourseOrder)[12] = 18;
+	((s16 *) CupCourseOrder)[13] = 4;
+	((s16 *) CupCourseOrder)[14] = 3;
+	((s16 *) CupCourseOrder)[15] = 13;
 }
 */
 
@@ -159,26 +159,26 @@ void OverkartASM(void)
 	/* highpolypipe*..unknown*: stock LUI/ORI of MR DLs. Native: DisplayKT1Hook. */
 
 	CopyCourseTable(1);
-	g_cup0Array0 = 0;
-	g_cup0Array1 = 1;
-	g_cup0Array2 = 2;
-	g_cup0Array3 = 3;
-	g_cup1Array0 = 4;
-	g_cup1Array1 = 5;
-	g_cup1Array2 = 6;
-	g_cup1Array3 = 7;
-	g_cup2Array0 = 8;
-	g_cup2Array1 = 9;
-	g_cup2Array2 = 10;
-	g_cup2Array3 = 11;
-	g_cup3Array0 = 12;
-	g_cup3Array1 = 13;
-	g_cup3Array2 = 14;
-	g_cup3Array3 = 15;
-	g_cupBArray0 = 16;
-	g_cupBArray1 = 17;
-	g_cupBArray2 = 18;
-	g_cupBArray3 = 19;
+	((s16 *) CupCourseOrder)[0] = 0;
+	((s16 *) CupCourseOrder)[1] = 1;
+	((s16 *) CupCourseOrder)[2] = 2;
+	((s16 *) CupCourseOrder)[3] = 3;
+	((s16 *) CupCourseOrder)[4] = 4;
+	((s16 *) CupCourseOrder)[5] = 5;
+	((s16 *) CupCourseOrder)[6] = 6;
+	((s16 *) CupCourseOrder)[7] = 7;
+	((s16 *) CupCourseOrder)[8] = 8;
+	((s16 *) CupCourseOrder)[9] = 9;
+	((s16 *) CupCourseOrder)[10] = 10;
+	((s16 *) CupCourseOrder)[11] = 11;
+	((s16 *) CupCourseOrder)[12] = 12;
+	((s16 *) CupCourseOrder)[13] = 13;
+	((s16 *) CupCourseOrder)[14] = 14;
+	((s16 *) CupCourseOrder)[15] = 15;
+	((s16 *) CupCourseOrder)[16] = 16;
+	((s16 *) CupCourseOrder)[17] = 17;
+	((s16 *) CupCourseOrder)[18] = 18;
+	((s16 *) CupCourseOrder)[19] = 19;
 }
 
 
@@ -863,7 +863,7 @@ void SetWeather3D(bool Weather3DEnable) // Enables 3D weather effects (snow/rain
 
 void SnowCustomCheck(int SnowIndex)
 {
-	if (DynamicObjects[SnowIndex].pos[1] <= GlobalPlayer[0].Position[1] - 5.0 || DynamicObjects[SnowIndex].pos[1] >= GlobalPlayer[0].Position[1] + 60.0)
+	if (DynamicObjects[SnowIndex].pos[1] <= GamePlayers[0].Position[1] - 5.0 || DynamicObjects[SnowIndex].pos[1] >= GamePlayers[0].Position[1] + 60.0)
 	{
 		DynamicObjects[SnowIndex].Anmptr = 1;
 	}
@@ -887,12 +887,12 @@ void EventDisplayAfter(int Player)
 {
 	if (HotSwapID == 0)
 	{
-		KWDisplayEvent_After(Player);
+		RenderSnowingEffect(Player);
 	}
 	else
 	{
 		KWDisplayIceBlock(Player);
-		KWDisplayEvent_After(Player);
+		RenderSnowingEffect(Player);
 	}
 
 	DrawCustomParticle(Player);
@@ -2028,7 +2028,7 @@ static u16 *BannerPixels(int CourseIndex)
 	return NULL;
 }
 
-/* Host dest: OverKart g_CupArray; Amped stock cup IDs (name bars). */
+/* Host dest: OverKart ((s16 *) CupCourseOrder); Amped stock cup IDs (name bars). */
 static int BannerDestCourse(int slot)
 {
 	return BannerDestCourseDefault(slot);
@@ -2240,7 +2240,7 @@ void SwapHS(int Direction)
 				    int Index;
 				for (Index = 0; Index < 20; Index++)
 				{
-					g_CupArray[Index] = Index;
+					((s16 *) CupCourseOrder)[Index] = Index;
 				}
 				}
 			}
@@ -2280,7 +2280,7 @@ void SetHS(int HS_ID)
 		 * map-select preview on course 0. */
 		for (Index = 0; Index < 20; Index++)
 		{
-			g_CupArray[Index] = Index;
+			((s16 *) CupCourseOrder)[Index] = Index;
 		}
 	}
 
@@ -2446,26 +2446,26 @@ void DisplayKT1Hook(Screen *Display)
 	{
 		if (OverKartHeader.FogStart > 0)
 		{
-			g_fogToggleBanshee = 1;
-			g_fogR = (Uint)OverKartHeader.FogRGBA[0];
-			g_fogG = (Uint)OverKartHeader.FogRGBA[1];
-			g_fogB = (Uint)OverKartHeader.FogRGBA[2];
-			gDPSetFogColor(GraphPtrOffset++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], 255);
-			gSPFogPosition(GraphPtrOffset++, OverKartHeader.FogStart, OverKartHeader.FogStop);
+			SkyToggle = 1;
+			FogRed = (Uint)OverKartHeader.FogRGBA[0];
+			FogGreen = (Uint)OverKartHeader.FogRGBA[1];
+			FogBlue = (Uint)OverKartHeader.FogRGBA[2];
+			gDPSetFogColor(DisplayListHead++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], 255);
+			gSPFogPosition(DisplayListHead++, OverKartHeader.FogStart, OverKartHeader.FogStop);
 		}
 		if (OverKartHeader.Version <= 6)
 		{
-			gSPClearGeometryMode(GraphPtrOffset++,G_SHADE | G_LIGHTING | G_CULL_BOTH);
-			gSPTexture(GraphPtrOffset++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
-			gSPSetGeometryMode(GraphPtrOffset++, G_SHADING_SMOOTH | G_ZBUFFER | G_CULL_BACK);
-			gDPSetCombineMode(GraphPtrOffset++, G_CC_MODULATERGBA,G_CC_MODULATERGBA);
-			gDPSetRenderMode(GraphPtrOffset++, G_RM_AA_ZB_OPA_SURF,G_RM_AA_ZB_OPA_SURF2);
+			gSPClearGeometryMode(DisplayListHead++,G_SHADE | G_LIGHTING | G_CULL_BOTH);
+			gSPTexture(DisplayListHead++, 0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+			gSPSetGeometryMode(DisplayListHead++, G_SHADING_SMOOTH | G_ZBUFFER | G_CULL_BACK);
+			gDPSetCombineMode(DisplayListHead++, G_CC_MODULATERGBA,G_CC_MODULATERGBA);
+			gDPSetRenderMode(DisplayListHead++, G_RM_AA_ZB_OPA_SURF,G_RM_AA_ZB_OPA_SURF2);
 		}
 
 		DisplayGroupmap(SegmentAddress(6, OverKartHeader.SectionViewPosition), Display);
-		gSPClearGeometryMode(GraphPtrOffset++, G_FOG );
-		gDPSetCycleType(GraphPtrOffset++, G_CYC_1CYCLE);
-        gSPSetGeometryMode(GraphPtrOffset++, G_SHADE);
+		gSPClearGeometryMode(DisplayListHead++, G_FOG );
+		gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
+        gSPSetGeometryMode(DisplayListHead++, G_SHADE);
 	}
 	else
 	{
@@ -2489,23 +2489,23 @@ void XLUDisplay(Screen *Display)
 		{
 			if (OverKartHeader.FogStart > 0)
 			{
-				g_fogToggleBanshee = 1;
-				g_fogR = (Uint)OverKartHeader.FogRGBA[0];
-				g_fogG = (Uint)OverKartHeader.FogRGBA[1];
-				g_fogB = (Uint)OverKartHeader.FogRGBA[2];
-				gDPSetFogColor(GraphPtrOffset++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], 255);
-			    gSPFogPosition(GraphPtrOffset++, OverKartHeader.FogStart, OverKartHeader.FogStop);
-				gDPPipeSync(GraphPtrOffset++);
+				SkyToggle = 1;
+				FogRed = (Uint)OverKartHeader.FogRGBA[0];
+				FogGreen = (Uint)OverKartHeader.FogRGBA[1];
+				FogBlue = (Uint)OverKartHeader.FogRGBA[2];
+				gDPSetFogColor(DisplayListHead++, (Uint)OverKartHeader.FogRGBA[0], (Uint)OverKartHeader.FogRGBA[1], (Uint)OverKartHeader.FogRGBA[2], 255);
+			    gSPFogPosition(DisplayListHead++, OverKartHeader.FogStart, OverKartHeader.FogStop);
+				gDPPipeSync(DisplayListHead++);
 			}
             
             DisplayGroupmap(SegmentAddress(6, OverKartHeader.XLUSectionViewPosition), Display);
-            gSPClearGeometryMode(GraphPtrOffset++, G_FOG );
-            gDPSetCycleType(GraphPtrOffset++, G_CYC_1CYCLE);
+            gSPClearGeometryMode(DisplayListHead++, G_FOG );
+            gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
             
 		}
 		else
 		{
-			gSPDisplayList(GraphPtrOffset++, (0x06000000 | OverKartHeader.XLUSectionViewPosition));	
+			gSPDisplayList(DisplayListHead++, (0x06000000 | OverKartHeader.XLUSectionViewPosition));	
 		}
 	}
 	
@@ -2519,10 +2519,10 @@ void DisplayKT16Hook(Screen *Display)
 
 	if (HotSwapID > 0)
 	{
-		gSPTexture(GraphPtrOffset++, 0xFFFF,0xFFFF, 0, G_TX_RENDERTILE, G_ON);
-		gSPSetGeometryMode(GraphPtrOffset++,G_SHADING_SMOOTH);
-		gSPClearGeometryMode(GraphPtrOffset++,G_LIGHTING);
-		gSPDisplayList(GraphPtrOffset++, (0x06000000 | OverKartHeader.SectionViewPosition));	
+		gSPTexture(DisplayListHead++, 0xFFFF,0xFFFF, 0, G_TX_RENDERTILE, G_ON);
+		gSPSetGeometryMode(DisplayListHead++,G_SHADING_SMOOTH);
+		gSPClearGeometryMode(DisplayListHead++,G_LIGHTING);
+		gSPDisplayList(DisplayListHead++, (0x06000000 | OverKartHeader.SectionViewPosition));	
         
 		
 	}

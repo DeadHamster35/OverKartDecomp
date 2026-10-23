@@ -438,58 +438,58 @@ void GFXFrame(void)
 	//Start Texture Load
 	//Net
 
-	gSPTexture( GraphPtrOffset++, 65535, 65535, 0, 0, 1);
-	gDPPipeSync( GraphPtrOffset++);
-	gDPSetCombineMode( GraphPtrOffset++, G_CC_MODULATERGBA, G_CC_MODULATERGBA);
-	gDPSetRenderMode( GraphPtrOffset++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
-	gDPTileSync( GraphPtrOffset++);
-	gDPSetTile( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, ((128 + 7) >> 3), 0, 0, 0, G_TX_WRAP, 5, 0, G_TX_WRAP, 6, 0);
-	gDPSetTileSize( GraphPtrOffset++, 0, 0, 0, (64 - 1) << 2, (32 - 1) << 2);
-	gSPClearGeometryMode( GraphPtrOffset++, 10433029);
-	gSPSetGeometryMode( GraphPtrOffset++, 8397317);
-	gDPSetTextureImage( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &Net );
-	gDPTileSync( GraphPtrOffset++);
-	gDPSetTile( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0);
-	gDPLoadSync( GraphPtrOffset++);
-	gDPLoadBlock( GraphPtrOffset++, 7, 0, 0, ((64 * 32) - 1), 128);
+	gSPTexture( DisplayListHead++, 65535, 65535, 0, 0, 1);
+	gDPPipeSync( DisplayListHead++);
+	gDPSetCombineMode( DisplayListHead++, G_CC_MODULATERGBA, G_CC_MODULATERGBA);
+	gDPSetRenderMode( DisplayListHead++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+	gDPTileSync( DisplayListHead++);
+	gDPSetTile( DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, ((128 + 7) >> 3), 0, 0, 0, G_TX_WRAP, 5, 0, G_TX_WRAP, 6, 0);
+	gDPSetTileSize( DisplayListHead++, 0, 0, 0, (64 - 1) << 2, (32 - 1) << 2);
+	gSPClearGeometryMode( DisplayListHead++, 10433029);
+	gSPSetGeometryMode( DisplayListHead++, 8397317);
+	gDPSetTextureImage( DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &Net );
+	gDPTileSync( DisplayListHead++);
+	gDPSetTile( DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0);
+	gDPLoadSync( DisplayListHead++);
+	gDPLoadBlock( DisplayListHead++, 7, 0, 0, ((64 * 32) - 1), 128);
 
 	//End Texture Load
 	//Start DrawCalls
 
 
-	gSPVertex( GraphPtrOffset++, &FrameV[0] , 30, 0);
-		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
-		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
-		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
-		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
-		gSP2Triangles( GraphPtrOffset++, 24, 25, 26, 0, 27, 28, 29, 0 );
+	gSPVertex( DisplayListHead++, &FrameV[0] , 30, 0);
+		gSP2Triangles( DisplayListHead++, 0, 1, 2, 0, 3, 4, 5, 0 );
+		gSP2Triangles( DisplayListHead++, 6, 7, 8, 0, 9, 10, 11, 0 );
+		gSP2Triangles( DisplayListHead++, 12, 13, 14, 0, 15, 16, 17, 0 );
+		gSP2Triangles( DisplayListHead++, 18, 19, 20, 0, 21, 22, 23, 0 );
+		gSP2Triangles( DisplayListHead++, 24, 25, 26, 0, 27, 28, 29, 0 );
 
-	gSPVertex( GraphPtrOffset++, &FrameV[30] , 30, 0);
-		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
-		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
-		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
-		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
-		gSP2Triangles( GraphPtrOffset++, 24, 25, 26, 0, 27, 28, 29, 0 );
+	gSPVertex( DisplayListHead++, &FrameV[30] , 30, 0);
+		gSP2Triangles( DisplayListHead++, 0, 1, 2, 0, 3, 4, 5, 0 );
+		gSP2Triangles( DisplayListHead++, 6, 7, 8, 0, 9, 10, 11, 0 );
+		gSP2Triangles( DisplayListHead++, 12, 13, 14, 0, 15, 16, 17, 0 );
+		gSP2Triangles( DisplayListHead++, 18, 19, 20, 0, 21, 22, 23, 0 );
+		gSP2Triangles( DisplayListHead++, 24, 25, 26, 0, 27, 28, 29, 0 );
 
-	gSPVertex( GraphPtrOffset++, &FrameV[60] , 30, 0);
-		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
-		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
-		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
-		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
-		gSP2Triangles( GraphPtrOffset++, 24, 25, 26, 0, 27, 28, 29, 0 );
+	gSPVertex( DisplayListHead++, &FrameV[60] , 30, 0);
+		gSP2Triangles( DisplayListHead++, 0, 1, 2, 0, 3, 4, 5, 0 );
+		gSP2Triangles( DisplayListHead++, 6, 7, 8, 0, 9, 10, 11, 0 );
+		gSP2Triangles( DisplayListHead++, 12, 13, 14, 0, 15, 16, 17, 0 );
+		gSP2Triangles( DisplayListHead++, 18, 19, 20, 0, 21, 22, 23, 0 );
+		gSP2Triangles( DisplayListHead++, 24, 25, 26, 0, 27, 28, 29, 0 );
 
-	gSPVertex( GraphPtrOffset++, &FrameV[90] , 30, 0);
-		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
-		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
-		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
-		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
-		gSP2Triangles( GraphPtrOffset++, 24, 25, 26, 0, 27, 28, 29, 0 );
+	gSPVertex( DisplayListHead++, &FrameV[90] , 30, 0);
+		gSP2Triangles( DisplayListHead++, 0, 1, 2, 0, 3, 4, 5, 0 );
+		gSP2Triangles( DisplayListHead++, 6, 7, 8, 0, 9, 10, 11, 0 );
+		gSP2Triangles( DisplayListHead++, 12, 13, 14, 0, 15, 16, 17, 0 );
+		gSP2Triangles( DisplayListHead++, 18, 19, 20, 0, 21, 22, 23, 0 );
+		gSP2Triangles( DisplayListHead++, 24, 25, 26, 0, 27, 28, 29, 0 );
 
-	gSPVertex( GraphPtrOffset++, &FrameV[120] , 30, 0);
-		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
-		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
-		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
-		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
+	gSPVertex( DisplayListHead++, &FrameV[120] , 30, 0);
+		gSP2Triangles( DisplayListHead++, 0, 1, 2, 0, 3, 4, 5, 0 );
+		gSP2Triangles( DisplayListHead++, 6, 7, 8, 0, 9, 10, 11, 0 );
+		gSP2Triangles( DisplayListHead++, 12, 13, 14, 0, 15, 16, 17, 0 );
+		gSP2Triangles( DisplayListHead++, 18, 19, 20, 0, 21, 22, 23, 0 );
 
 	//End DrawCalls
 	//End Frame
@@ -502,31 +502,31 @@ void GFXNet(void)
 	//Start Texture Load
 	//Net
 
-	gSPTexture( GraphPtrOffset++, 65535, 65535, 0, 0, 1);
-	gDPPipeSync( GraphPtrOffset++);
-	gDPSetCombineMode( GraphPtrOffset++, G_CC_MODULATERGBA, G_CC_MODULATERGBA);
+	gSPTexture( DisplayListHead++, 65535, 65535, 0, 0, 1);
+	gDPPipeSync( DisplayListHead++);
+	gDPSetCombineMode( DisplayListHead++, G_CC_MODULATERGBA, G_CC_MODULATERGBA);
 	
-	gDPTileSync( GraphPtrOffset++);
-	gDPSetTile( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, ((128 + 7) >> 3), 0, 0, 0, G_TX_WRAP, 5, 0, G_TX_WRAP, 6, 0);
-	gDPSetTileSize( GraphPtrOffset++, 0, 0, 0, (64 - 1) << 2, (32 - 1) << 2);
-	gSPClearGeometryMode( GraphPtrOffset++, 10433029);
-	gSPSetGeometryMode( GraphPtrOffset++, 8397317);
-	gDPSetTextureImage( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &Net );
-	gDPTileSync( GraphPtrOffset++);
-	gDPSetTile( GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0);
-	gDPLoadSync( GraphPtrOffset++);
-	gDPLoadBlock( GraphPtrOffset++, 7, 0, 0, ((64 * 32) - 1), 128);
+	gDPTileSync( DisplayListHead++);
+	gDPSetTile( DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, ((128 + 7) >> 3), 0, 0, 0, G_TX_WRAP, 5, 0, G_TX_WRAP, 6, 0);
+	gDPSetTileSize( DisplayListHead++, 0, 0, 0, (64 - 1) << 2, (32 - 1) << 2);
+	gSPClearGeometryMode( DisplayListHead++, 10433029);
+	gSPSetGeometryMode( DisplayListHead++, 8397317);
+	gDPSetTextureImage( DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &Net );
+	gDPTileSync( DisplayListHead++);
+	gDPSetTile( DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0);
+	gDPLoadSync( DisplayListHead++);
+	gDPLoadBlock( DisplayListHead++, 7, 0, 0, ((64 * 32) - 1), 128);
 
-	gDPSetRenderMode( GraphPtrOffset++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
+	gDPSetRenderMode( DisplayListHead++, G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2);
 	//End Texture Load
 	//Start DrawCalls
 
 
-	gSPVertex( GraphPtrOffset++, &NetV[0] , 30, 0);
-		gSP2Triangles( GraphPtrOffset++, 0, 1, 2, 0, 3, 4, 5, 0 );
-		gSP2Triangles( GraphPtrOffset++, 6, 7, 8, 0, 9, 10, 11, 0 );
-		gSP2Triangles( GraphPtrOffset++, 12, 13, 14, 0, 15, 16, 17, 0 );
-		gSP2Triangles( GraphPtrOffset++, 18, 19, 20, 0, 21, 22, 23, 0 );
+	gSPVertex( DisplayListHead++, &NetV[0] , 30, 0);
+		gSP2Triangles( DisplayListHead++, 0, 1, 2, 0, 3, 4, 5, 0 );
+		gSP2Triangles( DisplayListHead++, 6, 7, 8, 0, 9, 10, 11, 0 );
+		gSP2Triangles( DisplayListHead++, 12, 13, 14, 0, 15, 16, 17, 0 );
+		gSP2Triangles( DisplayListHead++, 18, 19, 20, 0, 21, 22, 23, 0 );
 
 	//End DrawCalls
 	//End Net
@@ -537,7 +537,7 @@ void GFXNet(void)
 
 void DrawTheNet(Camera* PlayerCamera, AffineMtx Affine, Object* TreeObj)
 {
-	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&g_CameraTable) ) / (sizeof(Camera) ) );
+	int LocalPlayer = (int)( ( (Uint)(PlayerCamera) - (Uint)(&Cameras[0]) ) / (sizeof(Camera) ) );
 
 	// Calc Distance
 	//

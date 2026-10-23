@@ -41,7 +41,7 @@ void PrintDetails()
      {
           MenuPosition[0] = 58;
           MenuPosition[1] = 175;
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + 185, MenuPosition[1] + 58, 0, 0, 0, 175);
+          DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + 185, MenuPosition[1] + 58, 0, 0, 0, 175);
           LoadFont();
 
 
@@ -73,25 +73,25 @@ void PrintDetails()
                {
                     case 0x00:
                     {
-                         WholeNumber = (int) GlobalPlayer[0].Position[0];
-                         DecimalNumber = (int) ((GlobalPlayer[0].Position[0] - WholeNumber) * 1000);
+                         WholeNumber = (int) GamePlayers[0].Position[0];
+                         DecimalNumber = (int) ((GamePlayers[0].Position[0] - WholeNumber) * 1000);
                          break;
                     }
                     case 0x01:
                     {
-                         WholeNumber = (int) GlobalPlayer[0].Position[1];
-                         DecimalNumber = (int) ((GlobalPlayer[0].Position[1] - WholeNumber) * 1000);
+                         WholeNumber = (int) GamePlayers[0].Position[1];
+                         DecimalNumber = (int) ((GamePlayers[0].Position[1] - WholeNumber) * 1000);
                          break;
                     }
                     case 0x02:
                     {
-                         WholeNumber = (int) GlobalPlayer[0].Position[2];
-                         DecimalNumber = (int) ((GlobalPlayer[0].Position[2] - WholeNumber) * 1000);
+                         WholeNumber = (int) GamePlayers[0].Position[2];
+                         DecimalNumber = (int) ((GamePlayers[0].Position[2] - WholeNumber) * 1000);
                          break;
                     }
                     case 0x03:
                     {
-                         float playerAngle = (((float)GlobalPlayer[0].Direction[0] / 65536) * 360);
+                         float playerAngle = (((float)GamePlayers[0].Direction[0] / 65536) * 360);
                          WholeNumber = playerAngle;
                          DecimalNumber = (int) ((playerAngle - WholeNumber) * 1000);
                          break;
@@ -172,8 +172,8 @@ void PrintDetails()
                     {
                          if (SaveGame.RenderSettings.DetailMode == 1)
                          {
-                              WholeNumber = (int) GlobalPlayer[0].Velocity[0];
-                              DecimalNumber = (int) ((GlobalPlayer[0].Velocity[0] - WholeNumber) * 1000);
+                              WholeNumber = (int) GamePlayers[0].Velocity[0];
+                              DecimalNumber = (int) ((GamePlayers[0].Velocity[0] - WholeNumber) * 1000);
                          }
                          else
                          {
@@ -186,12 +186,12 @@ void PrintDetails()
                     {
                          if (SaveGame.RenderSettings.DetailMode == 1)
                          {
-                              WholeNumber = (int) GlobalPlayer[0].Velocity[1];
-                              DecimalNumber = (int) ((GlobalPlayer[0].Velocity[1] - WholeNumber) * 1000);
+                              WholeNumber = (int) GamePlayers[0].Velocity[1];
+                              DecimalNumber = (int) ((GamePlayers[0].Velocity[1] - WholeNumber) * 1000);
                          }
                          else
                          {
-                              WholeNumber = (int) GlobalPlayer[0].JugemuFlag;
+                              WholeNumber = (int) GamePlayers[0].JugemuFlag;
                          }
 
                          break;
@@ -200,8 +200,8 @@ void PrintDetails()
                     {
                          if (SaveGame.RenderSettings.DetailMode == 1)
                          {
-                              WholeNumber = (int) GlobalPlayer[0].Velocity[2];
-                              DecimalNumber = (int) ((GlobalPlayer[0].Velocity[2] - WholeNumber) * 1000);
+                              WholeNumber = (int) GamePlayers[0].Velocity[2];
+                              DecimalNumber = (int) ((GamePlayers[0].Velocity[2] - WholeNumber) * 1000);
                          }
                          else
                          {
@@ -212,8 +212,8 @@ void PrintDetails()
                     }
                     case 0x03:
                     {
-                         WholeNumber = (int) GlobalPlayer[0].Speed;
-                         DecimalNumber = (int) ((GlobalPlayer[0].Speed - WholeNumber) * 1000);
+                         WholeNumber = (int) GamePlayers[0].Speed;
+                         DecimalNumber = (int) ((GamePlayers[0].Speed - WholeNumber) * 1000);
                          break;
                     }
                }
@@ -291,7 +291,7 @@ void PrintAnticheat()
      
      if (SaveGame.GameSettings.GameType == 3)
      {
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (12 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
+          DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (12 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
           LoadFont();
 
           PrintString(MenuPosition[0],MenuPosition[1], "Practice  ON");
@@ -300,7 +300,7 @@ void PrintAnticheat()
      
      if (SaveGame.GameSettings.ItemMode > 0)
      {
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (11 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
+          DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (11 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
           LoadFont();
 
           PrintString(MenuPosition[0],MenuPosition[1], "Force Items");
@@ -314,14 +314,14 @@ void PrintAnticheat()
                // PRACTICE BUILD overlay text.
                case 0x01 :
                {
-                    GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (10 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
+                    DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (10 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
                     LoadFont();
                     PrintString(MenuPosition[0],MenuPosition[1], "Versus CPU");
                     break;
                }
                case 0x02 :
                {
-                    GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (9 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
+                    DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (9 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
                     LoadFont();
                     PrintString(MenuPosition[0],MenuPosition[1], "Debug CPU");
                     break;
@@ -331,7 +331,7 @@ void PrintAnticheat()
      }
      else if ((SaveGame.GameSettings.StatsMode == 1) && (HotSwapID == 0) )
      {
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (11 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
+          DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + (11 * 8) + 19, MenuPosition[1] + 28, 0, 0,0, 175);
           LoadFont();
           PrintString(MenuPosition[0],MenuPosition[1], "Force Stats");
           MenuPosition[1] +=10;
@@ -453,7 +453,7 @@ void GameOptionsHandler(short PlayerIndex)
                               {
                                    short *l_courseID;
 
-                                   if (SYSTEM_Region == 0x00)
+                                   if (osTvType == 0x00)
                                    {
                                         GlobalAddressA = (cup_PAL + (MenuCup * 8) + ((ParameterIndex - 2) * 2));
                                    }
@@ -511,7 +511,7 @@ void GameOptionsHandler(short PlayerIndex)
                               {
                                    short *l_courseID;
 
-                                   if (SYSTEM_Region == 0x00)
+                                   if (osTvType == 0x00)
                                    {
                                         GlobalAddressA = (cup_PAL + (MenuCup * 8) + ((ParameterIndex - 2) * 2));
                                    }
@@ -632,7 +632,7 @@ void TitleMenuHandler(short PlayerIndex)
                               {
                                    short *l_courseID;
 
-                                   if (SYSTEM_Region == 0x00)
+                                   if (osTvType == 0x00)
                                    {
                                         GlobalAddressA = (cup_PAL + (MenuCup * 8) + ((ParameterIndex - 2) * 2));
                                    }
@@ -690,7 +690,7 @@ void TitleMenuHandler(short PlayerIndex)
                               {
                                    short *l_courseID;
 
-                                   if (SYSTEM_Region == 0x00)
+                                   if (osTvType == 0x00)
                                    {
                                         GlobalAddressA = (cup_PAL + (MenuCup * 8) + ((ParameterIndex - 2) * 2));
                                    }
@@ -779,12 +779,12 @@ void TitleMenuHandler(short PlayerIndex)
 void Title2()
 {
      return;
-     gDPPipeSync(GraphPtrOffset++);
-	gDPSetCycleType(GraphPtrOffset++, G_CYC_FILL);
-     gDPSetColorImage(GraphPtrOffset++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320,
+     gDPPipeSync(DisplayListHead++);
+	gDPSetCycleType(DisplayListHead++, G_CYC_FILL);
+     gDPSetColorImage(DisplayListHead++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320,
 					 K0_TO_PHYS(CfbPtrs[DispFrame]));
-     gDPSetFillColor(GraphPtrOffset++, GPACK_RGBA5551(255,0,0,1)<<16 | GPACK_RGBA5551(255,0,0,1));
-     gDPFillRectangle(GraphPtrOffset++, 0, 0, 319, 239);
+     gDPSetFillColor(DisplayListHead++, GPACK_RGBA5551(255,0,0,1)<<16 | GPACK_RGBA5551(255,0,0,1));
+     gDPFillRectangle(DisplayListHead++, 0, 0, 319, 239);
 }
 
 void TitleMenu()
@@ -811,15 +811,15 @@ void TitleMenu()
      
      
      InitRDP();
-     SetViewport((Screen*)&g_Screen1);                
-     gSPClearGeometryMode(GraphPtrOffset++, 0xFFFFFFFF);
-     gSPSetGeometryMode(GraphPtrOffset++, G_CLIPPING |G_SHADE |G_SHADING_SMOOTH);
-     ClearZBuffer2((Screen*)&g_Screen1);
+     SetViewport((Screen*)&D_8015F480[0]);                
+     gSPClearGeometryMode(DisplayListHead++, 0xFFFFFFFF);
+     gSPSetGeometryMode(DisplayListHead++, G_CLIPPING |G_SHADE |G_SHADING_SMOOTH);
+     ClearZBuffer2((Screen*)&D_8015F480[0]);
 
      
      
      guPerspective(&DynamicP->MTXPersp[0],&PerspectiveValue, 80.0f, 320.0f/240.0f, 1.0f, 15000.0f, 1.0f);
-     gSPPerspNormalize(GraphPtrOffset++, PerspectiveValue);
+     gSPPerspNormalize(DisplayListHead++, PerspectiveValue);
      guLookAt(&DynamicP->MTXLookAt[0],
           0,0,0,
           0,0,-7500,
@@ -827,17 +827,17 @@ void TitleMenu()
 
 
 
-     gSPMatrix(GraphPtrOffset++, &DynamicP->MTXPersp[0], 
+     gSPMatrix(DisplayListHead++, &DynamicP->MTXPersp[0], 
                G_MTX_PROJECTION | G_MTX_LOAD | G_MTX_NOPUSH);
-     gSPMatrix(GraphPtrOffset++, &DynamicP->MTXLookAt[0], 
+     gSPMatrix(DisplayListHead++, &DynamicP->MTXLookAt[0], 
                G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
 
      
 
      //Segmented Address of title screen 3D logo is 0x0A000000
-     gSPSetGeometryMode(GraphPtrOffset++,G_CULL_BACK | G_ZBUFFER | G_SHADING_SMOOTH | G_SHADE);
+     gSPSetGeometryMode(DisplayListHead++,G_CULL_BACK | G_ZBUFFER | G_SHADING_SMOOTH | G_SHADE);
      
-     gSPDisplayList(GraphPtrOffset++,0x08000000);		
+     gSPDisplayList(DisplayListHead++,0x08000000);		
 
 
           
@@ -894,7 +894,7 @@ void PlayerSelectSetup()
 
      
 	*TargetAddress = (long)&BackupPortraitTable;
-	*SourceAddress = (long)&SelectPortraitTable;
+	*SourceAddress = (long)&D_800E8320;
 	DataLength = 288;
 	RunRAM();
 	
@@ -920,7 +920,7 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
 {
      
      CheckMenuButton(PlayerIndex);
-     GlobalIntC = *(int*)(long)(&PlayerOK);
+     GlobalIntC = *(int*)(long)(&CharacterGridIsSelected);
      
      if ((KBGNumberNext) && (MenuBackup == 0))
      {
@@ -955,7 +955,7 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
                
                if (MenuProgress[PlayerIndex] == 0)
                {
-                    PlayerOK[PlayerIndex] = 0;
+                    CharacterGridIsSelected[PlayerIndex] = 0;
                     PlayerShowStats[PlayerIndex] = 0;
                     OKPSelSkipCursor[PlayerIndex] = 1;
                     switch (MenuButtonHeld[PlayerIndex])
@@ -1001,7 +1001,7 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
                }
                else if (MenuProgress[PlayerIndex] == 1)
                {
-                    PlayerOK[PlayerIndex] = 0;
+                    CharacterGridIsSelected[PlayerIndex] = 0;
                     PlayerShowStats[PlayerIndex] = 1;
                     OKPSelSkipCursor[PlayerIndex] = 0;
 
@@ -1042,7 +1042,7 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
                }
                else if (MenuProgress[PlayerIndex] == 2)
                {
-                    PlayerOK[PlayerIndex] = 0;
+                    CharacterGridIsSelected[PlayerIndex] = 0;
                     PlayerShowStats[PlayerIndex] = 1;
                     OKPSelSkipCursor[PlayerIndex] = 0;
 
@@ -1085,10 +1085,10 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
                else if (MenuProgress[PlayerIndex] == 3)
                {
                     PlayerShowStats[PlayerIndex] = 0;
-                    if (PlayerOK[PlayerIndex] != 1)
+                    if (CharacterGridIsSelected[PlayerIndex] != 1)
                     {
                          int SoundOffset;
-                         PlayerOK[PlayerIndex] = 1;
+                         CharacterGridIsSelected[PlayerIndex] = 1;
                          SoundOffset = (0x10 * CharacterConvert[(int)PlayerCharacterSelect[PlayerIndex] + 1]);
                          PlaySound(0x2900800e + SoundOffset);  
                     }
@@ -1109,7 +1109,7 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
                     {
                          PlayerShowStats[PlayerIndex] = 1;
                          OKPSelSkipCursor[PlayerIndex] = 1;
-                         PlayerOK[PlayerIndex] = 0;
+                         CharacterGridIsSelected[PlayerIndex] = 0;
 
                          switch (MenuButtonHeld[PlayerIndex])
                          {
@@ -1153,10 +1153,10 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
                     case 1:
                     {
                          PlayerShowStats[PlayerIndex] = 0;
-                         if (PlayerOK[PlayerIndex] != 1)
+                         if (CharacterGridIsSelected[PlayerIndex] != 1)
                          {
                               int SoundOffset;
-                              PlayerOK[PlayerIndex] = 1;
+                              CharacterGridIsSelected[PlayerIndex] = 1;
                               SoundOffset = (0x10 * CharacterConvert[(int)PlayerCharacterSelect[PlayerIndex] + 1]);
                               PlaySound(0x2900800e + SoundOffset);  
                          }
@@ -1179,7 +1179,7 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
      GlobalBoolA = true;
      { int ThisController; for (ThisController = 0; ThisController < PlayerCount; ThisController++)
      {
-          if (PlayerOK[ThisController] == 0)
+          if (CharacterGridIsSelected[ThisController] == 0)
           {
                GlobalBoolA = false;
           }
@@ -1206,7 +1206,7 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
           MenuScreenC = 0;
           { int ThisController; for (ThisController = 0; ThisController < PlayerCount; ThisController++)
           {
-               PlayerOK[ThisController] = 0;
+               CharacterGridIsSelected[ThisController] = 0;
                if (StatsMode == 2)
                {
                     MenuProgress[ThisController] = 1;
@@ -1224,9 +1224,9 @@ void PlayerSelectMenu(short StatsMode, short PlayerIndex)
      
      { int CurrentHUD; for (CurrentHUD = 0; CurrentHUD < 32; CurrentHUD++)
      {
-          if ((GlobalMenuHUD[CurrentHUD].Kind >= KO_PSEL_MA) && (GlobalMenuHUD[CurrentHUD].Kind <= KO_PSEL_KU))
+          if ((MenuItems[CurrentHUD].Kind >= KO_PSEL_MA) && (MenuItems[CurrentHUD].Kind <= KO_PSEL_KU))
           {
-               GlobalMenuHUD[CurrentHUD].Pattern = 4;               
+               MenuItems[CurrentHUD].Pattern = 4;               
           }
      } }
 }
@@ -1317,7 +1317,7 @@ void MapSelectMenu(short PlayerIndex)
           LoadCustomHeader(CourseValue + GPCourseIndex);
      }
 
-     *(int*)(&PlayerOK) = 0;
+     *(int*)(&CharacterGridIsSelected) = 0;
      if (HotSwapID > 0)
      {
           CourseValue = -1;
@@ -1361,11 +1361,11 @@ void DrawGameSelect()
     
     if (ROptionPressed > 0)
     {
-        KWTexture2DRGBA(70, 200, 0, 1.0f, (Uchar*)MenuIconsRAM + 0x1000, (void*)&V64x32, 64, 32, 64, 32);
+        KWTexture2DRGBA(70, 200, 0, 1.0f, (u16 *) MenuIconsRAM + 0x1000, (void*)&V64x32, 64, 32, 64, 32);
     }
     else
     {
-        KWTexture2DRGBA(70, 200, 0, 1.0f, (Uchar*)MenuIconsRAM, (void*)&V64x32, 64, 32, 64, 32);
+        KWTexture2DRGBA(70, 200, 0, 1.0f, (u16 *) MenuIconsRAM, (void*)&V64x32, 64, 32, 64, 32);
     }
      
 
@@ -1452,11 +1452,11 @@ void DrawMapSelect()
      
      if (ROptionPressed > 0)
      {
-          KWTexture2DRGBA(70, 200, 0, 1.0f, (Uchar*)MenuIconsRAM + 0x1000, (void*)&V64x32, 64, 32, 64, 32);
+          KWTexture2DRGBA(70, 200, 0, 1.0f, (u16 *) MenuIconsRAM + 0x1000, (void*)&V64x32, 64, 32, 64, 32);
      }
      else
      {
-          KWTexture2DRGBA(70, 200, 0, 1.0f, (Uchar*)MenuIconsRAM, (void*)&V64x32, 64, 32, 64, 32);
+          KWTexture2DRGBA(70, 200, 0, 1.0f, (u16 *) MenuIconsRAM, (void*)&V64x32, 64, 32, 64, 32);
      }
      SpriteBtnCLeft(45,35,1.0,false);
      SpriteBtnCRight(279,35,1.0,false);
@@ -1482,7 +1482,7 @@ void DrawPlayerSelect(short StatsMode)
                //Set Portraits and Banner for Character Selected
                { int ThisPortrait; for (ThisPortrait = 0; ThisPortrait < 8; ThisPortrait++)
                {
-                    SelectPortraitTable[ThisPortrait].TextureOffset[CurrentPlayer] = BackupPortraitTable[ThisPortrait].TextureOffset[(int)PlayerCharacterSelect[CurrentPlayer]];
+                    D_800E8320[ThisPortrait].TextureOffset[CurrentPlayer] = BackupPortraitTable[ThisPortrait].TextureOffset[(int)PlayerCharacterSelect[CurrentPlayer]];
                } }
                SelectNamePlateTable.TextureOffset[CurrentPlayer] = BackupNamePlateTable.TextureOffset[(int)PlayerCharacterSelect[CurrentPlayer]];	
                //
@@ -1508,10 +1508,10 @@ void DrawPlayerSelect(short StatsMode)
                          {
                               MenuFlash[CurrentPlayer]+=10;
                          }		
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA - 1,GlobalIntB - 1,GlobalIntA + 66,GlobalIntB + 71,(int)MenuFlash[CurrentPlayer],(int)MenuFlash[CurrentPlayer],(int)MenuFlash[CurrentPlayer],255);	
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA - 1,GlobalIntB - 1,GlobalIntA + 66,GlobalIntB + 71,(int)MenuFlash[CurrentPlayer],(int)MenuFlash[CurrentPlayer],(int)MenuFlash[CurrentPlayer],255);	
                                    
                     }
-                    GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB,GlobalIntA + 64,GlobalIntB + 69,0,0,0,255);	
+                    DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB,GlobalIntA + 64,GlobalIntB + 69,0,0,0,255);	
                     
                     
                     
@@ -1520,13 +1520,13 @@ void DrawPlayerSelect(short StatsMode)
                     {
                          
                          GlobalIntB = PlayerSelectPositions[CurrentPlayer].y + 88;
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB,GlobalIntA + 8,GlobalIntB + 4,255,255,255,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB,GlobalIntA + 8,GlobalIntB + 4,255,255,255,255);
                          GlobalIntB +=17;
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB,GlobalIntA + 8,GlobalIntB + 4,255,255,255,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB,GlobalIntA + 8,GlobalIntB + 4,255,255,255,255);
                          GlobalIntB +=17;
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB,GlobalIntA + 8,GlobalIntB + 4,255,255,255,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB,GlobalIntA + 8,GlobalIntB + 4,255,255,255,255);
                          GlobalIntB +=17;
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB,GlobalIntA + 8,GlobalIntB + 4,255,255,255,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB,GlobalIntA + 8,GlobalIntB + 4,255,255,255,255);
                          GlobalIntA += 10;
                     } }
                     
@@ -1542,37 +1542,37 @@ void DrawPlayerSelect(short StatsMode)
                     {
                          GlobalIntC = 58 - (58 * 8 * (1 - (GlobalStat.AccelerationCount[RaceClass][(int)CharacterConvert[(int)PlayerCharacterSelect[CurrentPlayer] + 1]] / GlobalStat.AccelerationCount[RaceClass][6])));
                          
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,255,0,0,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,255,0,0,255);
                          GlobalIntB +=17;
                          GlobalIntC = 58 + (58 * (1 - (GlobalStat.PowerDownRT[(int)CharacterConvert[(int)PlayerCharacterSelect[CurrentPlayer] +1]][7] / GlobalStat.PowerDownRT[6][7])));
                          
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,0,255,0,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,0,255,0,255);
                          GlobalIntB +=17;
                          GlobalIntC = 58 * (GlobalStat.PowerBandAcceleration[(int)CharacterConvert[(int)PlayerCharacterSelect[CurrentPlayer] + 1]] / GlobalStat.PowerBandAcceleration[6]);
                          
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,0,0,255,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,0,0,255,255);
                          GlobalIntB +=17;
                          GlobalIntC = 58 + (58 * (1 - (GlobalStat.ProOffsetAngle[(int)CharacterConvert[(int)PlayerCharacterSelect[CurrentPlayer] + 1]] / GlobalStat.ProOffsetAngle[7])));
                          
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,255,0,0,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,255,0,0,255);
                     }
                     else
                     {
                          GlobalIntC = 58 - (58 * 8 * (1 - (GlobalStat.AccelerationCount[RaceClass][(int)CharacterConvert[(int)PlayerCharacterSelect[CurrentPlayer] + 1]] / (float)(EngineSpeed[RaceClass][2]))));
                          
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,255,0,0,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,255,0,0,255);
                          GlobalIntB +=17;
                          GlobalIntC = 58 + (58 * (1 - (GlobalStat.PowerDownRT[(int)CharacterConvert[(int)PlayerCharacterSelect[CurrentPlayer] +1]][7] /((float)EnginePowerDownRT[1][7] / 100))));
                          
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,0,255,0,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,0,255,0,255);
                          GlobalIntB +=17;
                          GlobalIntC = 29 + (29 * (GlobalStat.PowerBandAcceleration[(int)CharacterConvert[(int)PlayerCharacterSelect[CurrentPlayer] + 1]] /((float)PowerBand[1] / 10)));
                          
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,0,0,255,255);
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,0,0,255,255);
                          GlobalIntB +=17;
                          GlobalIntC = 58 + (58 * (1 - (GlobalStat.ProOffsetAngle[(int)CharacterConvert[(int)PlayerCharacterSelect[CurrentPlayer] + 1]] /((float)SteerAngle[2] / 100))));
                          
-                         GraphPtr = FillRect1ColorF(GraphPtr,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,255,0,0,255);					
+                         DisplayListHead = FillRect1ColorF(DisplayListHead,GlobalIntA,GlobalIntB + 1,GlobalIntA + GlobalIntC,GlobalIntB + 3,255,0,0,255);					
                     }
 
 
@@ -1830,7 +1830,7 @@ void TitleMenuSwitch(Controller *controller, u16 i)
 }
 
 
-void MiniMapDraw()
+void MiniMapDraw(void)
 {    
 
      if (SaveGame.GameSettings.GameType == 1)

@@ -3,6 +3,10 @@
 #include "replays.h"
 
 void EnemyTekagenSub(s32 PlayerId, Player* Player);
+void DrawPerScreen(Camera* LocalCamera);
+void ExecuteItemHook(Player* Car);
+void MiniMapDraw(void);
+void ItemboxCollideCheck(Player* Car, Object* Target);
 void RubberBandMan(s32 PlayerId, Player* Player);
 
 /*
@@ -151,7 +155,7 @@ void MapStartupDefault(short InputID)
 	SetCustomData();
 	SetSky();
 	SetWater();
-	LoadMapData(InputID);
+	LoadCourse(InputID);
 	LoadIceKage();
 	CheckCourseMemoryHighWater();
 
@@ -210,7 +214,7 @@ void MapSelectMenuDefault(void)
 		}
 	}
 
-	*(int*) (&PlayerOK) = 0;
+	*(int*) (&CharacterGridIsSelected) = 0;
 	if (HotSwapID > 0)
 	{
 		CourseValue = -1;
@@ -301,9 +305,9 @@ int BannerDestCourseDefault(int slot)
 {
 	if (GameMode == GAMEMODE_BATTLE)
 	{
-		return g_CupArray[16 + slot];
+		return ((s16 *) CupCourseOrder)[16 + slot];
 	}
-	return g_CupArray[slot];
+	return ((s16 *) CupCourseOrder)[slot];
 }
 
 void EventDisplayAfterHookDefault(int Player)
@@ -454,7 +458,7 @@ void DrawButtonInputDisplayDefault(bool FullMenu)
 	for (i = 0; i < PlayerCount; i++)
 	{
 
-		if (GlobalPlayer[i].Flag&IS_CPU_PLAYER)
+		if (GamePlayers[i].Flag&IS_CPU_PLAYER)
 		{
 			continue;
 		}
@@ -462,7 +466,7 @@ void DrawButtonInputDisplayDefault(bool FullMenu)
 		PosX[i] = GlobalScreen[i]->Posx-GlobalScreen[i]->Width/2 +OffsetX;
 		PosY[i] = GlobalScreen[i]->Posy-GlobalScreen[i]->Height/2 +OffsetY;
 
-		GraphPtr = FillRect1ColorF(GraphPtr,
+		DisplayListHead = FillRect1ColorF(DisplayListHead,
 		PosX[i] - 20, PosY[i] - 22, PosX[i] + 40, PosY[i] + 10,
 		0, 0, 0, 64);
 

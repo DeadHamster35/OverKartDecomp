@@ -65,20 +65,20 @@ void ModCheck()
 		AudioLanguage = SaveGame.RenderSettings.AudioMode;
 		if (AudioLanguage == 0)
 		{
-			g_MUSRawAudioTable.Pointer[0].Address = *(long*)&ok_USAudio;
-			g_MUSRawAudioTable.Pointer[0].Length = 0x24C3F0;
+			(*(RawAudioTable *) AlTbl).Pointer[0].Address = *(long*)&ok_USAudio;
+			(*(RawAudioTable *) AlTbl).Pointer[0].Length = 0x24C3F0;
 
-			g_MUSInstrumentTable.Pointer[0].Address = *(long*)(&ok_USAudio + 1);
-			g_MUSInstrumentTable.Pointer[0].Length = 0x44D0;
+			(*(InstrumentTable *) AlCtlHeader).Pointer[0].Address = *(long*)(&ok_USAudio + 1);
+			(*(InstrumentTable *) AlCtlHeader).Pointer[0].Length = 0x44D0;
 
 		}
 		else
 		{
-			g_MUSRawAudioTable.Pointer[0].Address = (long)&JP_Audio;
-			g_MUSRawAudioTable.Pointer[0].Length = 0x24C580;
+			(*(RawAudioTable *) AlTbl).Pointer[0].Address = (long)&JP_Audio;
+			(*(RawAudioTable *) AlTbl).Pointer[0].Length = 0x24C580;
 
-			g_MUSInstrumentTable.Pointer[0].Address = (long)&JP_Bank;
-			g_MUSInstrumentTable.Pointer[0].Length = 0x4540;
+			(*(InstrumentTable *) AlCtlHeader).Pointer[0].Address = (long)&JP_Bank;
+			(*(InstrumentTable *) AlCtlHeader).Pointer[0].Length = 0x4540;
 			
 		}		
 		InitMKCode();
@@ -345,7 +345,7 @@ void DrawInputDisplay()
 {
 	
 	GlobalUShortA = 0x8000;
-	GraphPtr = FillRect1ColorF(GraphPtr,
+	DisplayListHead = FillRect1ColorF(DisplayListHead,
 	ControllerInputX, ControllerInputY, ControllerInputX + 43, ControllerInputY + 16, //x1, y1, x2, y2
 	0, 0, 0, 128); //r, g, b, a
 
@@ -369,7 +369,7 @@ void DrawInputDisplay()
 			AnalogInput[0] = ControllerInputX + (Coords[i][0] * 6);
 			AnalogInput[1] = ControllerInputY + (Coords[i][1] * 5);
 
-			GraphPtr = FillRect1ColorF(GraphPtr,
+			DisplayListHead = FillRect1ColorF(DisplayListHead,
 				AnalogInput[0] + 1 , AnalogInput[1] + 1, AnalogInput[0]+6, AnalogInput[1]+5, //x1, y1, x2, y2
 				InputColor[0], InputColor[1], InputColor[2], InputColor[3]); //r, g, b, a
 
@@ -395,7 +395,7 @@ void DrawInputDisplay()
 			AnalogInput[0] = ControllerInputX + (StickCoord[i][0] * 6);
 			AnalogInput[1] = ControllerInputY + (StickCoord[i][1] * 5);
 
-			GraphPtr = FillRect1ColorF(GraphPtr,
+			DisplayListHead = FillRect1ColorF(DisplayListHead,
 				AnalogInput[0] + 1 , AnalogInput[1] + 1, AnalogInput[0]+6, AnalogInput[1]+5, //x1, y1, x2, y2
 				InputColor[0], InputColor[1], InputColor[2], InputColor[3]); //r, g, b, a
 
@@ -412,7 +412,7 @@ void DrawInputDisplay()
 	AnalogInput[0] = ControllerInputX + ((StickCoord[4][0] * 6) + (Controllers[0].AnalogX / 127.0f * 6));
 	AnalogInput[1] = ControllerInputY + ((StickCoord[4][1] * 5) + (Controllers[0].AnalogY / -127.0f * 5));
 
-	GraphPtr = FillRect1ColorF(GraphPtr,
+	DisplayListHead = FillRect1ColorF(DisplayListHead,
 		AnalogInput[0] + 1 , AnalogInput[1] + 1, AnalogInput[0]+6, AnalogInput[1]+5, //x1, y1, x2, y2
 		InputColor[0], InputColor[1], InputColor[2], InputColor[3]); //r, g, b, a
 
@@ -430,14 +430,14 @@ void RotateCamera(float inputAngle)
 	FlyCamLook[0][0] = GlobalCamera[0]->LookatPos[0] - GlobalCamera[0]->CameraPos[0];
 	FlyCamLook[1][0] = GlobalCamera[0]->LookatPos[2] - GlobalCamera[0]->CameraPos[2];
 
-	FlyCamLook[0][1] = FlyCamLook[0][0] * cosF(FlyCamRadian) - FlyCamLook[1][0] * sinF(FlyCamRadian);
-	FlyCamLook[1][1] = FlyCamLook[0][0] * sinF(FlyCamRadian) + FlyCamLook[1][0] * cosF(FlyCamRadian);
+	FlyCamLook[0][1] = FlyCamLook[0][0] * cosf(FlyCamRadian) - FlyCamLook[1][0] * sinf(FlyCamRadian);
+	FlyCamLook[1][1] = FlyCamLook[0][0] * sinf(FlyCamRadian) + FlyCamLook[1][0] * cosf(FlyCamRadian);
 
 	GlobalCamera[0]->LookatPos[0] = GlobalCamera[0]->CameraPos[0] + FlyCamLook[0][1];
 	GlobalCamera[0]->LookatPos[2] = GlobalCamera[0]->CameraPos[2] + FlyCamLook[1][1] + 0.01;
 	*/
-	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + 80 * sinF(FlyCamRadian));
-	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + 80 * cosF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + 80 * sinf(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + 80 * cosf(FlyCamRadian));
 
 	
 }
@@ -447,11 +447,11 @@ void MoveCamera(int inputDistance)
 {
 	FlyCamRadian = (((float)FlyCamDirection / 65535) * 360) * 0.0174533;
 
-	GlobalCamera[0]->CameraPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->CameraPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->CameraPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + inputDistance * sinf(FlyCamRadian));
+	GlobalCamera[0]->CameraPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + inputDistance * cosf(FlyCamRadian));
 
-	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinf(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosf(FlyCamRadian));
 }
 
 
@@ -461,11 +461,11 @@ void StrafeCamera(int inputDistance)
 {
 	FlyCamRadian = ((((float)FlyCamDirection / 65535) * 360) + 90) * 0.0174533;
 
-	GlobalCamera[0]->CameraPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->CameraPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->CameraPos[0] = (float)(GlobalCamera[0]->CameraPos[0] + inputDistance * sinf(FlyCamRadian));
+	GlobalCamera[0]->CameraPos[2] = (float)(GlobalCamera[0]->CameraPos[2] + inputDistance * cosf(FlyCamRadian));
 
-	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinf(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosf(FlyCamRadian));
 }
 void MoveCameraTilt(int inputDistance, int tilt)
 {
@@ -483,8 +483,8 @@ void MoveCameraTilt(int inputDistance, int tilt)
 
 
 	FlyCamRadian = (int)FlyCamRadian * -0.0174533;
-	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinF(FlyCamRadian));
-	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosF(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[0] = (float)(GlobalCamera[0]->LookatPos[0] + inputDistance * sinf(FlyCamRadian));
+	GlobalCamera[0]->LookatPos[2] = (float)(GlobalCamera[0]->LookatPos[2] + inputDistance * cosf(FlyCamRadian));
 }
 
 //SaveGame.ModSettings.PracticeMode is > 0 then
@@ -505,9 +505,9 @@ void PracticeHack()
 		}
 		if (GlobalCharD == 0x02)
 		{
-			GlobalPlayer[0].Position[1] = GlobalPlayer[0].Position[1] + 3;
-			GlobalPlayer[0].Velocity[1] = 0;
-			GraphPtr = FillRect1ColorF(GraphPtr, 23, 43, 120, 53, 0, 0,0, 175);
+			GamePlayers[0].Position[1] = GamePlayers[0].Position[1] + 3;
+			GamePlayers[0].Velocity[1] = 0;
+			DisplayListHead = FillRect1ColorF(DisplayListHead, 23, 43, 120, 53, 0, 0,0, 175);
 			LoadFont();
 			PrintString(5,25, "FLYING");
 		}
@@ -529,13 +529,13 @@ void PracticeHack()
 			}
 			case(BTN_DUP):
 			{
-				g_gameLapPlayer1 = 0x00;
+				LapCountByPlayerId[0] = 0x00;
 				GlobalHud[0]->Goalsw = 0x00;
 				GlobalHud[0]->Lapcnt = 0x00;				
 				GlobalHud[0]->Item = 0;
 				GlobalHud[0]->SPItem = 0;
 				GameTimer = 90;
-				GlobalPlayer[0].Item = 0;
+				GamePlayers[0].Item = 0;
 				OKForceRoulette = 1;
 				RouletteStart(0,14);
 				OKForceRoulette = 0;
@@ -546,10 +546,10 @@ void PracticeHack()
 				{
 				short* PositionArray;
 				PositionArray = (short*)GetRealAddress((int) PathTable[CourseID][0]);
-				GlobalPlayer[0].Position[0] = (float)PositionArray[0];
-				GlobalPlayer[0].Position[1] = (float)PositionArray[1];
-				GlobalPlayer[0].Position[2] = (float)PositionArray[2];
-				GlobalPlayer[0].Direction[1] = 0x8000;
+				GamePlayers[0].Position[0] = (float)PositionArray[0];
+				GamePlayers[0].Position[1] = (float)PositionArray[1];
+				GamePlayers[0].Position[2] = (float)PositionArray[2];
+				GamePlayers[0].Direction[1] = 0x8000;
 				}
 				break;
 			}
@@ -567,10 +567,10 @@ void PracticeHack()
 
 		if (StartingIndicator >= 3)
 		{
-			g_GameLapTable[0] = 1;
+			LapCountByPlayerId[0] = 1;
 			{ int ThisPlayer; for (ThisPlayer = 1; ThisPlayer < 8; ThisPlayer++)
 			{
-				g_GameLapTable[ThisPlayer] = 0;
+				LapCountByPlayerId[ThisPlayer] = 0;
 			} }
 		}
 		
@@ -771,8 +771,8 @@ void RunFlyCam()
 			int i;
 
 			FlyCamToggle = 1;
-			GlobalFloatC = GlobalPlayer[0].Offsetsize;
-			GlobalPlayer[0].Offsetsize = 0.001;
+			GlobalFloatC = GamePlayers[0].Offsetsize;
+			GamePlayers[0].Offsetsize = 0.001;
 
 			hudCoords = &GlobalHud[0]->my;
 			camBuf = (s16 *) &ok_FreeCam;
@@ -781,9 +781,9 @@ void RunFlyCam()
 				Backup[i] = hudCoords[i];
 				hudCoords[i] = camBuf[i];
 			}
-			FlyCamBackupPosition[0] = GlobalPlayer[0].Position[0];
-			FlyCamBackupPosition[1] = GlobalPlayer[0].Position[1];
-			FlyCamBackupPosition[2] = GlobalPlayer[0].Position[2];
+			FlyCamBackupPosition[0] = GamePlayers[0].Position[0];
+			FlyCamBackupPosition[1] = GamePlayers[0].Position[1];
+			FlyCamBackupPosition[2] = GamePlayers[0].Position[2];
 			
 		}
 		else
@@ -793,7 +793,7 @@ void RunFlyCam()
 			int i;
 
 			FlyCamToggle = 0;
-			GlobalPlayer[0].Offsetsize = GlobalFloatC;
+			GamePlayers[0].Offsetsize = GlobalFloatC;
 			hudCoords = &GlobalHud[0]->my;
 			Backup = (s16 *) &ok_FreeCamBackup;
 			for (i = 0; i < 16; i++) {
@@ -855,9 +855,9 @@ void RunFlyCam()
 		}	
 		else
 		{	
-			GlobalPlayer[0].Position[0] = FlyCamBackupPosition[0];
-			GlobalPlayer[0].Position[1] = FlyCamBackupPosition[1];
-			GlobalPlayer[0].Position[2] = FlyCamBackupPosition[2];
+			GamePlayers[0].Position[0] = FlyCamBackupPosition[0];
+			GamePlayers[0].Position[1] = FlyCamBackupPosition[1];
+			GamePlayers[0].Position[2] = FlyCamBackupPosition[2];
 			switch(GlobalController[0]->ButtonPressed)
 			{
 				case BTN_DLEFT:

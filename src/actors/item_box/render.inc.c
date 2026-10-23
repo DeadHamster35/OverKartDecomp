@@ -42,7 +42,7 @@ void DisplayItembox(Camera* Camera, struct ItemBox* item_box) {
                 return;
             }
 
-            gSPDisplayList(DisplayListHead++, D_0D002EE8);
+            gSPDisplayList(DisplayListHead++, GFXItemBoxShadow);
             SomeRot[1] = item_box->Angle[1] * 2;
             someVec2[1] = item_box->Position[1];
             CreateModelingMatrix(someMatrix1, someVec2, SomeRot);
@@ -51,7 +51,7 @@ void DisplayItembox(Camera* Camera, struct ItemBox* item_box) {
                 return;
             }
 
-            gSPDisplayList(DisplayListHead++, itemBoxQuestionMarkModel);
+            gSPDisplayList(DisplayListHead++, ItemBoxQuestionMarkModel);
         }
         if (item_box->Sparam == 5) {
             CreateModelingMatrix(someMatrix1, item_box->Position, item_box->Angle);
@@ -60,7 +60,7 @@ void DisplayItembox(Camera* Camera, struct ItemBox* item_box) {
                 return;
             }
 
-            gSPDisplayList(DisplayListHead++, itemBoxQuestionMarkModel);
+            gSPDisplayList(DisplayListHead++, ItemBoxQuestionMarkModel);
         }
         if (item_box->Sparam != 3) {
             CreateModelingMatrix(someMatrix1, item_box->Position, item_box->Angle);

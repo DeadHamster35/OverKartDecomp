@@ -34,14 +34,19 @@ extern void DisplayFlagGateCheck(Camera* LocalCamera);
 
 extern void DisplayObject(void* car, Object* inputObject);
 extern void CollideObject(Player* Car, Object* Target);
-extern void ItemboxCollideCheck(Player* Car, Object* Target);
-extern void DrawPerScreen(Camera* LocalCamera);
+extern void ItemboxCollideCheckDefault(Player* Car, Object* Target);
+extern void DrawPerScreenDefault(Camera* LocalCamera);
 extern void TitleMenu(void);
-extern void MiniMapDraw(void);
+extern void MiniMapDrawDefault(void);
 extern void GameCode(void);
 extern void AllRun(void);
 extern void PrintMenuFunction(void);
-extern void ExecuteItemHook(Player* Car);
+extern void ExecuteItemHookDefault(Player* Car);
+
+extern void ramCopy(Uint dst, Uint src, Uint n);
+Gfx* FillRect1ColorF(Gfx*, s32, s32, s32, s32, u32, u32, u32, u32);
+void SprDrawClip(s32, s32, s32, s32, s32);
+extern u16 CommonTextureHUDNormalDigit[];
 
 
 extern int LoadOKData(Uint SourceInput, Uint SizeData);

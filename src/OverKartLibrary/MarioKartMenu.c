@@ -136,8 +136,8 @@ void PrintMap(int devParameter)
      
      MenuPosition[0] = 25;
      MenuPosition[1] = 150;
-     GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + 185, MenuPosition[1] + 68, 0, 0, 0, 175);
-     GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0] + 18, MenuPosition[1] + 18 + (devParameter * 10), MenuPosition[0] + 74, MenuPosition[1] + 28 + (devParameter * 10), 200, 0, 0, 175);
+     DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0] + 18, MenuPosition[1] + 18, MenuPosition[0] + 185, MenuPosition[1] + 68, 0, 0, 0, 175);
+     DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0] + 18, MenuPosition[1] + 18 + (devParameter * 10), MenuPosition[0] + 74, MenuPosition[1] + 28 + (devParameter * 10), 200, 0, 0, 175);
      LoadFont();
 
 
@@ -174,16 +174,16 @@ void CourseMenu(int Alpha)
      if (ParameterIndex == 0) //currentParameter
      {
           MenuPosition[0] = 157 -(10 * 4);
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0], 19, MenuPosition[0] + (10 * 8), 29, 200, 0, 0, 200);
+          DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0], 19, MenuPosition[0] + (10 * 8), 29, 200, 0, 0, 200);
      }
      else if (ParameterIndex == 1) //currentParameter
      {
           MenuPosition[0] = 155 - ((CupChar[MenuCup]) * 4);
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0], 41, MenuPosition[0] + (CupChar[MenuCup] * 8), 51, 0, 200, 0, 200);
+          DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0], 41, MenuPosition[0] + (CupChar[MenuCup] * 8), 51, 0, 200, 0, 200);
      }
      else
      {
-          if (SYSTEM_Region == 0x00)
+          if (osTvType == 0x00)
           {
                GlobalAddressA = (cup_PAL + (MenuCup * 8) + ((ParameterIndex - 2) * 2));
           }
@@ -194,7 +194,7 @@ void CourseMenu(int Alpha)
           l_courseID = (short *)GlobalAddressA;
           MenuPosition[0] = 157 - ((CourseChar[(long)*l_courseID]) * 4);
           MenuPosition[1] = ((ParameterIndex - 1) * 14) + 44;
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0], MenuPosition[1], MenuPosition[0] + (CourseChar[(long)*l_courseID] * 8), MenuPosition[1]+11, 0, 0, 200, 200);
+          DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0], MenuPosition[1], MenuPosition[0] + (CourseChar[(long)*l_courseID] * 8), MenuPosition[1]+11, 0, 0, 200, 200);
      }
      LoopValue = 0;
      LoadFont();
@@ -203,7 +203,7 @@ void CourseMenu(int Alpha)
      PrintString(MenuPosition[0],22,CupNames[MenuCup]);
      MenuPosition[1] = 40;
      do{
-          if (SYSTEM_Region == 0x00)
+          if (osTvType == 0x00)
           {
                GlobalAddressA = (cup_PAL + (MenuCup * 8) + LoopValue * 2);
           }
@@ -258,7 +258,7 @@ void ModularMenu(OKMenu* OptionsMenu)
      if (ParameterIndex == 0) //currentParameter
      {
           MenuPosition[0] = 158 - ((OptionsMenu->PanelAddress[MenuIndex].NameLength) * 4);
-          GraphPtr = FillRect1ColorF(GraphPtr, MenuPosition[0], 19, MenuPosition[0] + ((OptionsMenu->PanelAddress[MenuIndex].NameLength) * 8), 29, 200, 0, 0, 200);
+          DisplayListHead = FillRect1ColorF(DisplayListHead, MenuPosition[0], 19, MenuPosition[0] + ((OptionsMenu->PanelAddress[MenuIndex].NameLength) * 8), 29, 200, 0, 0, 200);
      }
      else
      {
@@ -354,7 +354,7 @@ void PrintNumberSprite(int X, int Y, int Value)
 	int digit[9];
 	int Index;
 
-	KWSprite(1000,1000,104,16,StockNumberSprites);
+	KWSprite(1000,1000,104,16,CommonTextureHUDNormalDigit);
 
 	negativeVal = 0;
 
@@ -1200,74 +1200,74 @@ void Zanzou2(int Player)
 
 
     //Time
-	if (KWLap[Player].Tptr2) 
+	if (PlayerHUD[Player].Tptr2) 
     {
-		KWSpriteXLU(KWLap[Player].Lap1CompletionTimeX-19,KWLap[Player].ty+8,128,(Ushort*)Time,32,16,32,16);
-        KWPrintLapTimeXLU(KWLap[Player].Lap1CompletionTimeX,KWLap[Player].ty,128,KWLap[Player].Totaltime);
+		KWSpriteXLU(PlayerHUD[Player].Lap1CompletionTimeX-19,PlayerHUD[Player].ty+8,128,(Ushort*)Time,32,16,32,16);
+        KWPrintLapTimeXLU(PlayerHUD[Player].Lap1CompletionTimeX,PlayerHUD[Player].ty,128,PlayerHUD[Player].Totaltime);
 	}
-	if (KWLap[Player].Tptr3) 
+	if (PlayerHUD[Player].Tptr3) 
     {
-        KWSpriteXLU(KWLap[Player].Lap2CompletionTimeX-19,KWLap[Player].ty+8,80,(Ushort*)Time,32,16,32,16);
-        KWPrintLapTimeXLU(KWLap[Player].Lap2CompletionTimeX,KWLap[Player].ty,80,KWLap[Player].Totaltime);
+        KWSpriteXLU(PlayerHUD[Player].Lap2CompletionTimeX-19,PlayerHUD[Player].ty+8,80,(Ushort*)Time,32,16,32,16);
+        KWPrintLapTimeXLU(PlayerHUD[Player].Lap2CompletionTimeX,PlayerHUD[Player].ty,80,PlayerHUD[Player].Totaltime);
 	}
 
-    LocalLapY = KWLap[Player].cy + 3;
-    LocalLapX = KWLap[Player].cx2;
+    LocalLapY = PlayerHUD[Player].cy + 3;
+    LocalLapX = PlayerHUD[Player].cx2;
 
     LocalLapX -= 16;
     LocalLapY -= 4;
     
     //Setup the RCP Color Combiner
-            gDPPipeSync(GraphPtrOffset++);
-            gDPSetCycleType(GraphPtrOffset++, G_CYC_1CYCLE);
-            gSPClearGeometryMode(GraphPtrOffset++,G_ZBUFFER);
+            gDPPipeSync(DisplayListHead++);
+            gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
+            gSPClearGeometryMode(DisplayListHead++,G_ZBUFFER);
 
-            gSPSetGeometryMode(GraphPtrOffset++,G_SHADE | G_SHADING_SMOOTH);
-            gDPSetPrimColor(GraphPtrOffset++, 0, 0, 255, 255, 255, 255);
-            gDPSetCombineLERP(GraphPtrOffset++,0, 0, 0, TEXEL0,
+            gSPSetGeometryMode(DisplayListHead++,G_SHADE | G_SHADING_SMOOTH);
+            gDPSetPrimColor(DisplayListHead++, 0, 0, 255, 255, 255, 255);
+            gDPSetCombineLERP(DisplayListHead++,0, 0, 0, TEXEL0,
                 TEXEL0, 0, PRIMITIVE, 0,
                 0, 0, 0, TEXEL0,
                 TEXEL0, 0, PRIMITIVE, 0);
-            gDPSetTexturePersp(GraphPtrOffset++,G_TP_NONE);
-            gDPSetTextureFilter(GraphPtrOffset++,G_TF_POINT);
-            gDPSetTextureConvert(GraphPtrOffset++,G_TC_FILT);
-            gDPSetTextureLOD(GraphPtrOffset++,G_TL_TILE);
-            gDPSetTextureDetail(GraphPtrOffset++,G_TD_CLAMP);
-            gDPSetTextureLUT(GraphPtrOffset++,G_TT_NONE);
-            gDPSetRenderMode(GraphPtrOffset++,  G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+            gDPSetTexturePersp(DisplayListHead++,G_TP_NONE);
+            gDPSetTextureFilter(DisplayListHead++,G_TF_POINT);
+            gDPSetTextureConvert(DisplayListHead++,G_TC_FILT);
+            gDPSetTextureLOD(DisplayListHead++,G_TL_TILE);
+            gDPSetTextureDetail(DisplayListHead++,G_TD_CLAMP);
+            gDPSetTextureLUT(DisplayListHead++,G_TT_NONE);
+            gDPSetRenderMode(DisplayListHead++,  G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
     //
 
     
-    gDPSetTextureLUT(GraphPtrOffset++, G_TT_RGBA16);
-	gSPTexture(GraphPtrOffset++, 65535, 65535, 0, 0, 1);
-	gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
-	gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
+    gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
+	gSPTexture(DisplayListHead++, 65535, 65535, 0, 0, 1);
+	gDPLoadTLUT_pal16(DisplayListHead++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
+	gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
     
     
-    gDPTileSync(GraphPtrOffset++);
+    gDPTileSync(DisplayListHead++);
     KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
     
-  	if (KWLap[Player].Cptr2)
+  	if (PlayerHUD[Player].Cptr2)
     {
-        LocalLapX =  KWLap[Player].cx2;
-        gDPSetPrimColor(GraphPtrOffset++, 0, 0, 255, 255, 255, 128);
+        LocalLapX =  PlayerHUD[Player].cx2;
+        gDPSetPrimColor(DisplayListHead++, 0, 0, 255, 255, 255, 128);
         KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
 	}
-    if (KWLap[Player].Cptr3)
+    if (PlayerHUD[Player].Cptr3)
     {
-        LocalLapX =  KWLap[Player].cx3;
-        gDPSetPrimColor(GraphPtrOffset++, 0, 0, 255, 255, 255, 80);
+        LocalLapX =  PlayerHUD[Player].cx3;
+        gDPSetPrimColor(DisplayListHead++, 0, 0, 255, 255, 255, 80);
         KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
 	}
 
 
-    gDPPipeSync(GraphPtrOffset++);
-    gDPTileSync(GraphPtrOffset++);
+    gDPPipeSync(DisplayListHead++);
+    gDPTileSync(DisplayListHead++);
 
-    gDPSetPrimColor(GraphPtrOffset++, 0, 0, 255, 255, 255, 255);
+    gDPSetPrimColor(DisplayListHead++, 0, 0, 255, 255, 255, 255);
 
-    LocalLapX = KWLap[Player].cx + 10;
-    LocalLapY = KWLap[Player].cy;
+    LocalLapX = PlayerHUD[Player].cx + 10;
+    LocalLapY = PlayerHUD[Player].cy;
 
     
     LocalLapY -= 8;
@@ -1275,17 +1275,17 @@ void Zanzou2(int Player)
     LapIndex = GetCourseLapIndex(Player);
     
     //1 Player large font.
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + LargeLapNumbers_PaletteOffset);
+    gDPLoadTLUT_pal16(DisplayListHead++, 0, (Uint)&LapCounterTextures + LargeLapNumbers_PaletteOffset);
 
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapIndex), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+    gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapIndex), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
     KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
 
     LocalLapX += 10;
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * 10), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+    gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * 10), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
     KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
 
     LocalLapX += 9;
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapMax), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+    gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapMax), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
     KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
     
     
@@ -1309,7 +1309,7 @@ void KWDisplayUDLapWrapper(int ThisPlayer)
         KWDisplayItembox(ThisPlayer);
         return;
     }
-    if (RadarOn[ThisPlayer] == 1)
+    if (D_80165800[ThisPlayer] == 1)
     {
         KWDisplayItembox(ThisPlayer);
         return;
@@ -1328,35 +1328,35 @@ void KWDisplayUDLapWrapper(int ThisPlayer)
     KWDisplayInit();
     LapMax = GetCourseLapMax();
     
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
+    gDPLoadTLUT_pal16(DisplayListHead++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
+    gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
 
-    LocalLapX = KWLap[ThisPlayer].cx - 16;
-    LocalLapY = KWLap[ThisPlayer].cy -1;
+    LocalLapX = PlayerHUD[ThisPlayer].cx - 16;
+    LocalLapY = PlayerHUD[ThisPlayer].cy -1;
     KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
     
-    if (KWLap[ThisPlayer].Goal != LapMax)
+    if (PlayerHUD[ThisPlayer].Goal != LapMax)
     {
         LapIndex = GetCourseLapIndex(ThisPlayer);
 
         //1 Player large font.
-        gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + LargeLapNumbers_PaletteOffset);
+        gDPLoadTLUT_pal16(DisplayListHead++, 0, (Uint)&LapCounterTextures + LargeLapNumbers_PaletteOffset);
         LocalLapX += 26;
         LocalLapY -= 7;
-        gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapIndex), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+        gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapIndex), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
         KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
 
         LocalLapX += 10;
-        gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * 10), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+        gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * 10), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
         KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
 
         LocalLapX += 9;
-        gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapMax), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
+        gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures + LargeLapNumbers_Offset + (128 * LapMax), G_IM_FMT_CI,16,16,0,G_TX_CLAMP,G_TX_CLAMP,4,4,0,0);
         KWRectangle(LocalLapX,LocalLapY,16,16,0,0,1);
     }
 
     
-    gDPSetRenderMode(GraphPtrOffset++,  G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gDPSetRenderMode(DisplayListHead++,  G_RM_OPA_SURF, G_RM_OPA_SURF2);
 }
 
 void KWDisplay4LapWrapper(int ThisPlayer)
@@ -1370,11 +1370,11 @@ void KWDisplay4LapWrapper(int ThisPlayer)
     if ((KWScreenEnable == 0) || (KWLapSW == 0) )
     {
     
-        if (KWLap[ThisPlayer].Bomb)
+        if (PlayerHUD[ThisPlayer].Bomb)
         {
             KWTexture2DCI8BL(
-                KWLap[ThisPlayer].Bombx, 
-                KWLap[ThisPlayer].Bomby, 
+                PlayerHUD[ThisPlayer].Bombx, 
+                PlayerHUD[ThisPlayer].Bomby, 
                 0, 1.0f, 
                 (u8*)0x0D01B4D8, 
                 (u8*)0x0D01D6D8,
@@ -1391,25 +1391,25 @@ void KWDisplay4LapWrapper(int ThisPlayer)
     KWDisplayInit();
     LapMax = GetCourseLapMax();
 
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
+    gDPLoadTLUT_pal16(DisplayListHead++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
+    gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
 
     
     
-    if (KWLap[ThisPlayer].Goal != LapMax)
+    if (PlayerHUD[ThisPlayer].Goal != LapMax)
     {
-        LocalLapX = KWLap[ThisPlayer].cx - 16;
-        LocalLapY = KWLap[ThisPlayer].cy - 4;
+        LocalLapX = PlayerHUD[ThisPlayer].cx - 16;
+        LocalLapY = PlayerHUD[ThisPlayer].cy - 4;
         KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
     }
 
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + SmallLapNumbers_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, ((Uint)&LapCounterTextures + SmallLapNumbers_Offset), G_IM_FMT_CI,16,128,0,G_TX_CLAMP,G_TX_CLAMP,4,7,0,0);
+    gDPLoadTLUT_pal16(DisplayListHead++, 0, (Uint)&LapCounterTextures + SmallLapNumbers_PaletteOffset);
+    gDPLoadTextureBlock_4b(DisplayListHead++, ((Uint)&LapCounterTextures + SmallLapNumbers_Offset), G_IM_FMT_CI,16,128,0,G_TX_CLAMP,G_TX_CLAMP,4,7,0,0);
 
-    if (KWLap[ThisPlayer].Goal != LapMax)
+    if (PlayerHUD[ThisPlayer].Goal != LapMax)
     {
-        LocalLapX = KWLap[ThisPlayer].cx - 26;
-        LocalLapY = KWLap[ThisPlayer].cy + 4;
+        LocalLapX = PlayerHUD[ThisPlayer].cx - 26;
+        LocalLapY = PlayerHUD[ThisPlayer].cy + 4;
 
         LapIndex = GetCourseLapIndex(ThisPlayer);
 
@@ -1419,11 +1419,11 @@ void KWDisplay4LapWrapper(int ThisPlayer)
     }
     
     
-    if (KWLap[ThisPlayer].Bomb)
+    if (PlayerHUD[ThisPlayer].Bomb)
     {
         KWTexture2DCI8BL(
-            KWLap[ThisPlayer].Bombx, 
-            KWLap[ThisPlayer].Bomby, 
+            PlayerHUD[ThisPlayer].Bombx, 
+            PlayerHUD[ThisPlayer].Bomby, 
             0, 1.0f, 
             (u8*)0x0D01B4D8, 
             (u8*)0x0D01D6D8,
@@ -1432,7 +1432,7 @@ void KWDisplay4LapWrapper(int ThisPlayer)
         );
     }
     
-    gDPSetRenderMode(GraphPtrOffset++,  G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gDPSetRenderMode(DisplayListHead++,  G_RM_OPA_SURF, G_RM_OPA_SURF2);
 }
      
 void KWDisplayLRLapWrapper(int ThisPlayer)
@@ -1455,25 +1455,25 @@ void KWDisplayLRLapWrapper(int ThisPlayer)
 
     KWDisplayInit();
     LapMax = GetCourseLapMax();
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
+    gDPLoadTLUT_pal16(DisplayListHead++, 0, (Uint)&LapCounterTextures + laptext_PaletteOffset);
+    gDPLoadTextureBlock_4b(DisplayListHead++, (Uint)&LapCounterTextures, G_IM_FMT_CI,32,8,0,G_TX_CLAMP,G_TX_CLAMP,5,3,0,0);
 
     
     
-    if (KWLap[ThisPlayer].Goal != LapMax)
+    if (PlayerHUD[ThisPlayer].Goal != LapMax)
     {
-        LocalLapX = KWLap[ThisPlayer].cx - 16;
-        LocalLapY = KWLap[ThisPlayer].cy - 4;
+        LocalLapX = PlayerHUD[ThisPlayer].cx - 16;
+        LocalLapY = PlayerHUD[ThisPlayer].cy - 4;
         KWRectangle(LocalLapX,LocalLapY,32,8,0,0,1);
     }
 
-    gDPLoadTLUT_pal16(GraphPtrOffset++, 0, (Uint)&LapCounterTextures + SmallLapNumbers_PaletteOffset);
-    gDPLoadTextureBlock_4b(GraphPtrOffset++, ((Uint)&LapCounterTextures + SmallLapNumbers_Offset), G_IM_FMT_CI,16,128,0,G_TX_CLAMP,G_TX_CLAMP,4,7,0,0);
+    gDPLoadTLUT_pal16(DisplayListHead++, 0, (Uint)&LapCounterTextures + SmallLapNumbers_PaletteOffset);
+    gDPLoadTextureBlock_4b(DisplayListHead++, ((Uint)&LapCounterTextures + SmallLapNumbers_Offset), G_IM_FMT_CI,16,128,0,G_TX_CLAMP,G_TX_CLAMP,4,7,0,0);
 
-    if (KWLap[ThisPlayer].Goal != LapMax)
+    if (PlayerHUD[ThisPlayer].Goal != LapMax)
     {
-        LocalLapX = KWLap[ThisPlayer].cx;
-        LocalLapY = KWLap[ThisPlayer].cy - 4;
+        LocalLapX = PlayerHUD[ThisPlayer].cx;
+        LocalLapY = PlayerHUD[ThisPlayer].cy - 4;
 
         LapIndex = GetCourseLapIndex(ThisPlayer);
 
@@ -1481,37 +1481,37 @@ void KWDisplayLRLapWrapper(int ThisPlayer)
         KWRectangle(LocalLapX+21,LocalLapY,8,8,0,(8*10),1);
         KWRectangle(LocalLapX+29,LocalLapY,16,8,0,(8*LapMax),1);
     }
-    gDPSetRenderMode(GraphPtrOffset++,  G_RM_OPA_SURF, G_RM_OPA_SURF2);
+    gDPSetRenderMode(DisplayListHead++,  G_RM_OPA_SURF, G_RM_OPA_SURF2);
 
 }
      
 void KWDisplayInit(void)
 {
-    gDPPipeSync(GraphPtrOffset++);
+    gDPPipeSync(DisplayListHead++);
     
-    gDPSetCycleType(GraphPtrOffset++, G_CYC_1CYCLE);
+    gDPSetCycleType(DisplayListHead++, G_CYC_1CYCLE);
     
 
-    gSPClearGeometryMode(GraphPtrOffset++, G_ZBUFFER);
-    gSPSetGeometryMode(GraphPtrOffset++, G_SHADE | G_SHADING_SMOOTH);
+    gSPClearGeometryMode(DisplayListHead++, G_ZBUFFER);
+    gSPSetGeometryMode(DisplayListHead++, G_SHADE | G_SHADING_SMOOTH);
     
-    gDPSetPrimColor(GraphPtrOffset++, 0, 0, 255, 255, 255, 255);
-    gDPSetCombineLERP(GraphPtrOffset++,0, 0, 0, TEXEL0,
+    gDPSetPrimColor(DisplayListHead++, 0, 0, 255, 255, 255, 255);
+    gDPSetCombineLERP(DisplayListHead++,0, 0, 0, TEXEL0,
         TEXEL0, 0, PRIMITIVE, 0,
         0, 0, 0, TEXEL0,
         TEXEL0, 0, PRIMITIVE, 0);
-    gDPSetTexturePersp(GraphPtrOffset++,G_TP_NONE);
-    gDPSetTextureFilter(GraphPtrOffset++,G_TF_POINT);
-    gDPSetTextureConvert(GraphPtrOffset++,G_TC_FILT);
-    gDPSetTextureLOD(GraphPtrOffset++,G_TL_TILE);
-    gDPSetTextureDetail(GraphPtrOffset++,G_TD_CLAMP);
-    gDPSetTextureLUT(GraphPtrOffset++,G_TT_NONE);
-    gDPSetRenderMode(GraphPtrOffset++,  G_RM_XLU_SURF, G_RM_XLU_SURF2);
-    gDPPipeSync(GraphPtrOffset++);
+    gDPSetTexturePersp(DisplayListHead++,G_TP_NONE);
+    gDPSetTextureFilter(DisplayListHead++,G_TF_POINT);
+    gDPSetTextureConvert(DisplayListHead++,G_TC_FILT);
+    gDPSetTextureLOD(DisplayListHead++,G_TL_TILE);
+    gDPSetTextureDetail(DisplayListHead++,G_TD_CLAMP);
+    gDPSetTextureLUT(DisplayListHead++,G_TT_NONE);
+    gDPSetRenderMode(DisplayListHead++,  G_RM_XLU_SURF, G_RM_XLU_SURF2);
+    gDPPipeSync(DisplayListHead++);
     
 
-    gDPSetTextureLUT(GraphPtrOffset++, G_TT_RGBA16);
-    gSPTexture(GraphPtrOffset++, 65535, 65535, 0, 0, 1);
+    gDPSetTextureLUT(DisplayListHead++, G_TT_RGBA16);
+    gSPTexture(DisplayListHead++, 65535, 65535, 0, 0, 1);
     
 }
 

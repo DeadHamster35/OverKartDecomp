@@ -26,24 +26,7 @@ Replace **`src/OverKartLibrary/OverKartDefaults.c`** (keep the same function nam
 
 Empty bodies (`titleMenuDefault`, `DisplayObjectDefault`, `PrintMenuTest`) are intentional. The host fills them.
 
-Library C uses the short names via `StockAliases.h` (Library TUs only — vanilla C includes `OverKartHooks.h`):
-
-| Library name | Resolves to |
-|---|---|
-| `gameCode` | `gameCodeDefault` |
-| `titleMenu` | `titleMenuDefault` |
-| `allRun` / `GlobalCustomCode` | `allRunDefault` |
-| `PrintMenuFunction` | `PrintMenuFunctionDefault` |
-| `DisplayObject` | `DisplayObjectDefault` |
-| `CollideObject` | `CollideObjectDefault` |
-| `ItemboxCollideCheck` | `ItemboxCollideCheckDefault` |
-| `DrawPerScreen` | `DrawPerScreenDefault` |
-| `ExecuteItemHook` | `ExecuteItemHookDefault` |
-| `MiniMapDraw` | `MiniMapDrawDefault` |
-| `MapStartup` | `MapStartupDefault` |
-| `KWKumo_Alloc_Hook` | `KWKumo_Alloc_Hook_Default` |
-| `KWChart_Kumo_Hook` | `KWChart_Kumo_Hook_Default` |
-| `RubberBandMan` | `RubberBandManDefault` |
+Library C calls the `*Default` names directly (Library TUs only — vanilla C includes `OverKartHooks.h`). Host C keeps the short names (`GameCode`, `TitleMenu`, …) as real functions; `OverKartDefaults.c` trampolines `*Default` to those host bodies.
 
 ## RAM map
 
@@ -120,7 +103,7 @@ All live in `OverKartDefaults.c` unless noted. “Vanilla site” is the decomp 
 |---|---|---|---|
 | `DisplayObjectDefault` | `actors.c` hop `default:` | **empty** (custom object IDs) | Draw host object IDs |
 | `CollideObjectDefault` | `actors.c` hop `default:` | Item box → `ItemboxCollideCheck` | Extra collide IDs |
-| `ItemboxCollideCheckDefault` | via `StockAliases` `ItemboxCollideCheck` | Sphere hit → roulette | Keep or wrap |
+| `ItemboxCollideCheckDefault` | `CollideObjectDefault` IBOX path | Sphere hit → roulette | Keep or wrap |
 | `DrawPerScreenDefault` | `actors.c` after actor draw | `DrawOKObjects` when `scrollLock` and `HotSwapID > 0` | Extra per-screen draw |
 | `ExecuteItemHookDefault` | `actors_extended.c` | stock `ExecuteItem` | Custom items |
 | `MiniMapDrawDefault` | `main.c` | `KWReturnViewport` + `KawanoDrawFinal` | Minimap chrome |

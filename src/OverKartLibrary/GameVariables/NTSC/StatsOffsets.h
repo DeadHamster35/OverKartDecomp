@@ -1,7 +1,7 @@
 #ifndef StatsOffsetH
 #define StatsOffsetH
 #include "../../MainInclude.h"
-/* u11_–u14_* / cc50_* / tripleTap_* / turnco* are StockAliases.h */
+/* u11_–u14_* / cc50_* / tripleTap_* / turnco* */
 
 extern float u15_Mario; // 0x800E2548
 extern float u15_Luigi; // 0x800E254C
@@ -123,7 +123,7 @@ extern float maxSpeed_Wario; // 0x800E26A4
 extern float maxSpeed_Peach; // 0x800E26A8
 extern float maxSpeed_Bowser; // 0x800E26AC
 
-/* cc50/100/150/extra_* → gTopSpeed* in StockAliases.h */
+/* cc50/100/150/extra_* → gTopSpeed* */
 
 extern float ccBattle_Mario; // 0x800E25FC
 extern float ccBattle_Luigi; // 0x800E2600
@@ -233,7 +233,7 @@ extern float acc8_Bowser; // 0x800E3004
 extern float acc9_Bowser; // 0x800E3008
 extern float acc10_Bowser; // 0x800E300C
 
-/* tripleTap_* → gKartTripleABoost in StockAliases.h */
+/* tripleTap_* → gKartTripleABoost */
 
 //Grip 
 extern float frontgrip50_Mario; // 0x800E2360

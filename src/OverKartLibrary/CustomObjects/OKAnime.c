@@ -274,7 +274,7 @@ void SkeletalMatrix(OKSkeleton *Bone, float Scale, int Frame)
     
 
     //AffineToMtx(&DynamicP->objectmodeling[MatrixCount],AffineMatrix);
-    //gSPMatrix(GraphPtrOffset++, K0_TO_PHYS((u32) &(DynamicP->objectmodeling[MatrixCount++])), G_MTX_MODELVIEW|G_MTX_MUL|G_MTX_PUSH);
+    //gSPMatrix(DisplayListHead++, K0_TO_PHYS((u32) &(DynamicP->objectmodeling[MatrixCount++])), G_MTX_MODELVIEW|G_MTX_MUL|G_MTX_PUSH);
     
     SetMatrix(AffineMatrix, 3);
 }
@@ -303,7 +303,7 @@ void DrawSkeleton(OKSkeleton *BoneData, int CurrentFrame)
             // skip reloading identical Textures
 
             LastTextureOffset = NodeArray[CurrentNode].TextureOffset;
-            gSPDisplayList(GraphPtrOffset++, NodeArray[CurrentNode].TextureOffset | 0x0A000000);
+            gSPDisplayList(DisplayListHead++, NodeArray[CurrentNode].TextureOffset | 0x0A000000);
             
         }
 
@@ -314,7 +314,7 @@ void DrawSkeleton(OKSkeleton *BoneData, int CurrentFrame)
             Uint CurrentMesh;
         for (CurrentMesh = 0; CurrentMesh < NodeArray[CurrentNode].MeshCount; CurrentMesh++)
         {
-            gSPDisplayList(GraphPtrOffset++, (MeshOffsets[CurrentMesh] | 0x0A000000));
+            gSPDisplayList(DisplayListHead++, (MeshOffsets[CurrentMesh] | 0x0A000000));
         }
         }
 
@@ -331,7 +331,7 @@ void DrawSkeleton(OKSkeleton *BoneData, int CurrentFrame)
     }
     }
 
-    gSPPopMatrix(GraphPtrOffset++, G_MTX_MODELVIEW);
+    gSPPopMatrix(DisplayListHead++, G_MTX_MODELVIEW);
 }
 
 int CheckDraw(int Player, int Object, float RenderRadius)
@@ -340,7 +340,7 @@ int CheckDraw(int Player, int Object, float RenderRadius)
 
     return TestCollideSphere(
         LocalObject->ObjectData.Position, RenderRadius,
-        GlobalPlayer[Player].Position, GlobalPlayer[Player].Radius);
+        GamePlayers[Player].Position, GamePlayers[Player].Radius);
 }
 
 void DrawAnimeObject(int ObjectTypeIndex, int PlayerIndex, int ForceRender)

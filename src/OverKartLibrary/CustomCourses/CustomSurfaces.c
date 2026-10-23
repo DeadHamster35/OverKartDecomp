@@ -20,7 +20,7 @@ float AbsFloat(float Value)
 
 void SurfaceSFX(Player *car, int SFX_ID, float min_Speed)
 {
-	short car_number = car - &GlobalPlayer[0];
+	short car_number = car - &GamePlayers[0];
 
 	if (SPEEDMETER(car->Speed) >= min_Speed && car->Flag&IS_PLAYER)
 	{
@@ -38,7 +38,7 @@ short SurfaceStorage[8];
 
 void AddGravityEdit(Player *car)
 {
-	short car_number = car - &GlobalPlayer[0];
+	short car_number = car - &GamePlayers[0];
 
 	short cont_number = car_number;
 	if (car->Flag&IS_GHOST)
@@ -84,7 +84,7 @@ void AddGravityEdit(Player *car)
 	case FastOoB:
 		if (car->Jumpcount == 0 && car->Wallhitcount == 0)
 		{
-			SetFastOoB(car, car_number);
+			func_80090868(car);
 		}
 		break;
 	case BooSurface:
@@ -234,7 +234,7 @@ void AddGravityEdit(Player *car)
 	{
 		if (car->Bump.DistanceZX >= 0.2f)
 		{
-			float TestGravity = 10.0f * (256 - GlobalPlayer[car_number].Bump.Dummy);
+			float TestGravity = 10.0f * (256 - GamePlayers[car_number].Bump.Dummy);
 			if (TestGravity != 0)
 			{
 				car->Gravity = TestGravity;
@@ -404,11 +404,11 @@ void AddGravityEdit(Player *car)
 		case GapJump:
 		{
 			FaceStruct *SurfaceBuffer = (FaceStruct*)(FaceBuffer);
-			Vtx *TargetVert = (Vtx*)SurfaceBuffer[GlobalPlayer[car_number].Bump.LastZX].p1;
+			Vtx *TargetVert = (Vtx*)SurfaceBuffer[GamePlayers[car_number].Bump.LastZX].p1;
 			//Target Blue-Channel of SurfaceMap Vertex Color
 			if (TargetVert->v.cn[2] != 255)
 			{
-				GlobalPlayer[car_number].Bump.Dummy = TargetVert->v.cn[2];  //use.Bump Dummy; goes Unused by gamecode		
+				GamePlayers[car_number].Bump.Dummy = TargetVert->v.cn[2];  //use.Bump Dummy; goes Unused by gamecode		
 			}
 			
 			if (car->Jumpcount <= 10 && GlobalController[cont_number]->ButtonPressed&BTN_R && SPEEDMETER(car->Speed) >= TRICK_TRIGGER_SPEED_MIN && !(car->SlipFlag&IS_BROKEN) && !(car->SlipFlag&IS_FEATHER_JUMPING) && !(SurfaceStorage[car_number]&STORE_GAP))
@@ -442,9 +442,9 @@ void AddGravityEdit(Player *car)
 				if (car->TireFL.Status == GapJump)
 				{
 					FaceStruct *SurfaceBuffer = (FaceStruct*)(FaceBuffer);
-					Vtx *TargetVert = (Vtx*)SurfaceBuffer[GlobalPlayer[car_number].Bump.LastZX].p1;
+					Vtx *TargetVert = (Vtx*)SurfaceBuffer[GamePlayers[car_number].Bump.LastZX].p1;
 					//Target Blue-Channel of SurfaceMap Vertex Color
-					GlobalPlayer[car_number].Bump.Dummy = TargetVert->v.cn[2];  //use.Bump Dummy; goes Unused by gamecode
+					GamePlayers[car_number].Bump.Dummy = TargetVert->v.cn[2];  //use.Bump Dummy; goes Unused by gamecode
 				}
 				else
 				{
@@ -468,11 +468,11 @@ void AddGravityEdit(Player *car)
 			if (car->TireFL.Status == ForceJump)
 			{
 				FaceStruct *SurfaceBuffer = (FaceStruct*)(FaceBuffer);
-				Vtx *TargetVert = (Vtx*)SurfaceBuffer[GlobalPlayer[car_number].Bump.LastZX].p1;
+				Vtx *TargetVert = (Vtx*)SurfaceBuffer[GamePlayers[car_number].Bump.LastZX].p1;
 				//Target Blue-Channel of SurfaceMap Vertex Color
                 if (TargetVert->v.cn[2] != 255)
 			    {
-				    GlobalPlayer[car_number].Bump.Dummy = TargetVert->v.cn[2];  //use.Bump Dummy; goes Unused by gamecode
+				    GamePlayers[car_number].Bump.Dummy = TargetVert->v.cn[2];  //use.Bump Dummy; goes Unused by gamecode
                 }
 			}
 			else
@@ -645,7 +645,7 @@ void CheckMapBGZXHook(Player *car, Vector normal, Vector Velocity, Vector g_vect
 {
 	if (HotSwapID > 0)
 	{
-		short car_number = car - &GlobalPlayer[0];
+		short car_number = car - &GamePlayers[0];
 		if (car->BumpStatus == Water)
 		{
 			CustomWaterHeight[car_number] = TRUE;
@@ -681,7 +681,7 @@ void ExplorerSetJugemu(Player* Target)
 void ExplorerKWDisplayJugemu(int Player)
 {
 	CheckJugemuMarker();
-	if ((StartingIndicator >= 3 && StartingIndicator < 5) && (SurfaceExplorerMode == true) && (GlobalPlayer[Player].JugemuFlag == 0))
+	if ((StartingIndicator >= 3 && StartingIndicator < 5) && (SurfaceExplorerMode == true) && (GamePlayers[Player].JugemuFlag == 0))
 	{
 		return;
 	}
@@ -700,7 +700,7 @@ void ExplorerCallJugemu(Player* Target)
 	}
 	else
 	{
-		CallLakitu(Target);
+		func_80090868(Target);
 	}
 }
 
@@ -804,7 +804,7 @@ void InitCustomSmoke(Player *car, Vector pos_R, Vector pos_F, short Count, int k
 	int min_speed;
 	int color;
 	char Alpha;
-	short car_number = car-&GlobalPlayer[0];
+	short car_number = car-&GamePlayers[0];
 
 	switch (surface)
 	{
@@ -993,21 +993,21 @@ void LavaFloorRecoil(void)
 		if (LavaFloorRecoilRequired[i])
 		{
 			LavaFloorRecoiling[i] = true;
-			pathPoint = g_playerPathPointTable[i];
+			pathPoint = NearestPathPointByPlayerId[i];
 
 			NAPlyTrgStart(i, 0x1900a40b);
-			GlobalPlayer[i].SlipFlag = 0;
-			GlobalPlayer[i].SlipFlag |= IS_TUMBLING;
-			GlobalPlayer[i].Speed = 0;
+			GamePlayers[i].SlipFlag = 0;
+			GamePlayers[i].SlipFlag |= IS_TUMBLING;
+			GamePlayers[i].Speed = 0;
 
-			Direction = (short)(MakeDirection(GlobalPlayer[i].Position[0], GlobalPlayer[i].Position[2], PathPointPointer[pathPoint].Pointx, PathPointPointer[pathPoint].Pointz) * -1);
-			GlobalPlayer[i].Direction[1] = Direction;
+			Direction = (short)(MakeDirection(GamePlayers[i].Position[0], GamePlayers[i].Position[2], PathPointPointer[pathPoint].Pointx, PathPointPointer[pathPoint].Pointz) * -1);
+			GamePlayers[i].Direction[1] = Direction;
 
-			distZX = Sqrtf(
-				(GlobalPlayer[i].Position[0] - PathPointPointer[pathPoint].Pointx) * (GlobalPlayer[i].Position[0] - PathPointPointer[pathPoint].Pointx)
+			distZX = sqrtf(
+				(GamePlayers[i].Position[0] - PathPointPointer[pathPoint].Pointx) * (GamePlayers[i].Position[0] - PathPointPointer[pathPoint].Pointx)
 				+
-				(GlobalPlayer[i].Position[2] - PathPointPointer[pathPoint].Pointz) * (GlobalPlayer[i].Position[2] - PathPointPointer[pathPoint].Pointz));
-			distY = PathPointPointer[pathPoint].Pointy - GlobalPlayer[i].Position[1];
+				(GamePlayers[i].Position[2] - PathPointPointer[pathPoint].Pointz) * (GamePlayers[i].Position[2] - PathPointPointer[pathPoint].Pointz));
+			distY = PathPointPointer[pathPoint].Pointy - GamePlayers[i].Position[1];
 
 			//Similar Height
 			if (AbsFloat(distY < 30))
@@ -1115,30 +1115,30 @@ void LavaFloorRecoil(void)
 			}
 
 			launchAngleRadians = launchAngle * 3.1415 / 180.0f;
-			vZX = cosF(launchAngleRadians) * vel;
-			vY = sinF(launchAngleRadians) * vel;
+			vZX = cosf(launchAngleRadians) * vel;
+			vY = sinf(launchAngleRadians) * vel;
 
 			ObjectVelocity[0] = 0;
 			ObjectVelocity[1] = vY;
 			ObjectVelocity[2] = vZX;
 
-			MakeAlignVector(ObjectVelocity, GlobalPlayer[i].Direction[1]);
-			GlobalPlayer[i].Gravity = 0;
-			GlobalPlayer[i].GravityXz[0] = 0;
-			GlobalPlayer[i].GravityXz[1] = 0;
-			GlobalPlayer[i].GravityXz[2] = 0;
-			GlobalPlayer[i].Velocity[0] = ObjectVelocity[0];
-			GlobalPlayer[i].Velocity[1] = ObjectVelocity[1];
-			GlobalPlayer[i].Velocity[2] = ObjectVelocity[2];
+			MakeAlignVector(ObjectVelocity, GamePlayers[i].Direction[1]);
+			GamePlayers[i].Gravity = 0;
+			GamePlayers[i].GravityXz[0] = 0;
+			GamePlayers[i].GravityXz[1] = 0;
+			GamePlayers[i].GravityXz[2] = 0;
+			GamePlayers[i].Velocity[0] = ObjectVelocity[0];
+			GamePlayers[i].Velocity[1] = ObjectVelocity[1];
+			GamePlayers[i].Velocity[2] = ObjectVelocity[2];
 			LavaFloorRecoilRequired[i] = false;
 		}
 
 		if (LavaFloorRecoiling[i] && !LavaFloorRecoilRequired[i])
 		{
-			pathPoint = g_playerPathPointTable[i];
+			pathPoint = NearestPathPointByPlayerId[i];
 			if (pathPoint + 2 <= CourseTotalPathPoints[0]) pathPoint += 2;
-			Direction = (short)(MakeDirection(GlobalPlayer[i].Position[0], GlobalPlayer[i].Position[2], PathPointPointer[pathPoint].Pointx, PathPointPointer[pathPoint].Pointz) * -1);
-			GlobalPlayer[i].Direction[1] = Direction;
+			Direction = (short)(MakeDirection(GamePlayers[i].Position[0], GamePlayers[i].Position[2], PathPointPointer[pathPoint].Pointx, PathPointPointer[pathPoint].Pointz) * -1);
+			GamePlayers[i].Direction[1] = Direction;
 		}
 	}
 	}
@@ -1148,12 +1148,12 @@ void LavaFloorRecoil(void)
 
 void InteractLavaFloor(Bump* Bump, Ushort Pointer, int FlagAxis)
 {
-	int PlayerIndex = (*(long*)&Bump - (long)&g_PlayerStructTable - 0x110) / 0xDD8;
+	int PlayerIndex = (*(long*)&Bump - (long)&GamePlayers[0] - 0x110) / 0xDD8;
 	FaceStruct* face = (FaceStruct*)FaceBuffer + Pointer;
 
 	if ((face->Status & 0x00FF) == LavaSurface) //LavaFloor
 	{
-		GlobalPlayer[PlayerIndex].JugemuFlag |= LAVA_EFFECT;
+		GamePlayers[PlayerIndex].JugemuFlag |= LAVA_EFFECT;
 		LavaFloorRecoilRequired[PlayerIndex] = true;
 		LavaFloorBumpCount[PlayerIndex] += 1;
 	}
@@ -1163,12 +1163,12 @@ void InteractLavaFloor(Bump* Bump, Ushort Pointer, int FlagAxis)
 		{
 			if (LavaFloorRecoiling[PlayerIndex])
 			{
-				ResetRolloverFall((Player*)&GlobalPlayer[PlayerIndex], PlayerIndex);
-				if ((GlobalPlayer[PlayerIndex].SlipFlag & IS_TUMBLING) == IS_TUMBLING)
-					GlobalPlayer[PlayerIndex].SlipFlag ^= IS_TUMBLING;
+				ResetRolloverFall((Player*)&GamePlayers[PlayerIndex], PlayerIndex);
+				if ((GamePlayers[PlayerIndex].SlipFlag & IS_TUMBLING) == IS_TUMBLING)
+					GamePlayers[PlayerIndex].SlipFlag ^= IS_TUMBLING;
 
-				if ((GlobalPlayer[PlayerIndex].JugemuFlag & LAVA_EFFECT) == LAVA_EFFECT)
-					GlobalPlayer[PlayerIndex].JugemuFlag ^= LAVA_EFFECT;
+				if ((GamePlayers[PlayerIndex].JugemuFlag & LAVA_EFFECT) == LAVA_EFFECT)
+					GamePlayers[PlayerIndex].JugemuFlag ^= LAVA_EFFECT;
 
 				LavaFloorRecoilRequired[PlayerIndex] = false;
 				LavaFloorRecoiling[PlayerIndex] = false;
@@ -1180,7 +1180,7 @@ void InteractLavaFloor(Bump* Bump, Ushort Pointer, int FlagAxis)
 
 	if (LavaFloorBumpCount[PlayerIndex] >= 4)
 	{
-		CallLakitu(&GlobalPlayer[PlayerIndex]);
+		func_80090868(&GamePlayers[PlayerIndex]);
 	}
 }
 
@@ -1390,7 +1390,7 @@ void CustomLavaSpinKart(Player* car, Camera* Camera, char place, char kno)
 	////// NEW POSITION
 	Speed = Velocity[0] * Velocity[0] + Velocity[2] * Velocity[2];
 	car->OldSpeed = car->Speed;
-	car->Speed = Sqrtf(Speed);
+	car->Speed = sqrtf(Speed);
 
 	if (((car->SlipFlag & ROLLOVER) != ROLLOVER && car->Force <= 0 && car->Speed < 0.13) || ((car->SlipFlag & ROLLOVER) != ROLLOVER && car->Force <= 0 && car->Speed < 0.20 && (car->SlipFlag & BREAKE) == BREAKE)) {
 		Velocity[0] = Velocity[0] + (-1 * Velocity[0]);
@@ -1426,7 +1426,7 @@ void CustomLavaSpinKart(Player* car, Camera* Camera, char place, char kno)
 
 void CustomSpinKart(Player* Car, Camera* Camera, char place, char kno)
 {
-	int PlayerID = (*(long*)&Car - (long)&g_PlayerStructTable) / 0xDD8;
+	int PlayerID = (*(long*)&Car - (long)&GamePlayers[0]) / 0xDD8;
 	if (LavaFloorRecoiling[PlayerID])
 	{
 		CustomLavaSpinKart(Car, Camera, place, kno);

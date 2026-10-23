@@ -48,8 +48,8 @@ void DisplayBanana(Camera* Camera, UNUSED Mat4 arg1, struct BananaActor* banana)
     }
 
     if (banana->Sparam != 5) {
-        gSPDisplayList(DisplayListHead++, &common_model_banana);
+        gSPDisplayList(DisplayListHead++, &CommonModelBanana);
     } else {
-        gSPDisplayList(DisplayListHead++, &common_model_flat_banana);
+        gSPDisplayList(DisplayListHead++, &CommonModelFlatBanana);
     }
 }

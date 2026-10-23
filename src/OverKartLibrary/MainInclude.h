@@ -14,9 +14,15 @@
 #include "camera.h"
 #include "code_800029B0.h"
 #include "main.h"
+#define GlobalPlayer GamePlayers
 #include <decode.h>
 #include "memory.h"
 #include <string.h>
+#include <math.h>
+#define Sqrtf sqrtf
+#define sinF sinf
+#define cosF cosf
+#define fabsf fabs
 #include <defines.h>
 
 typedef s64 Int64;
@@ -33,8 +39,10 @@ typedef struct GfxPool Dynamic;
 
 #include "Struct.h"
 #include "OKStruct.h"
-
-#include "GameVariables/NTSC/StockAliases.h"
+#include "kart_attributes.h"
+#include "menus.h"
+#include "audio/external.h"
+#include <assets/common_data.h>
 
 #include "CustomCourses/CustomLevels.h"
 #include "CustomCourses/CustomSurfaces.h"
@@ -75,6 +83,8 @@ typedef struct GfxPool Dynamic;
 #include "cpu_vehicles_camera_path.h"
 #include "update_objects.h"
 #include "code_8006E9C0.h"
+#include "code_80057C60.h"
+#include "render_objects.h"
 
 #include "GameVariables/NTSC/GameOffsets.h"
 #include "GameVariables/NTSC/OKAssembly.h"

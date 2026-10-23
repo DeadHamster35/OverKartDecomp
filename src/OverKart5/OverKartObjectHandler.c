@@ -74,16 +74,16 @@ void DropCoins(int PlayerIndex)
 	int ThisCoin;
 
 	IFrames[PlayerIndex] = 90;
-	ObjectPosition[0] = GlobalPlayer[PlayerIndex].Position[0];
-	ObjectPosition[1] = GlobalPlayer[PlayerIndex].Position[1];
-	ObjectPosition[2] = GlobalPlayer[PlayerIndex].Position[2];
+	ObjectPosition[0] = GamePlayers[PlayerIndex].Position[0];
+	ObjectPosition[1] = GamePlayers[PlayerIndex].Position[1];
+	ObjectPosition[2] = GamePlayers[PlayerIndex].Position[2];
 
 	for (ThisCoin = 0; ThisCoin < CoinCount[PlayerIndex]; ThisCoin++)
 	{
 		ObjectVelocity[0] = -2 + (MakeRandomLimmit(4));
 		ObjectVelocity[1] = 4;
 		ObjectVelocity[2] = -2 + (MakeRandomLimmit(4));
-		MakeAlignVector(ObjectVelocity,(GlobalPlayer[PlayerIndex].Direction[1]));
+		MakeAlignVector(ObjectVelocity,(GamePlayers[PlayerIndex].Direction[1]));
 		MasterCreateObject(ObjectPosition, ObjectAngle, ObjectVelocity, 48, 3.0); //motion coin
 		ChangeMaxSpeed(PlayerIndex, -3);
 	}
@@ -287,14 +287,14 @@ void Draw3DRacer(Uint ModelAddress, Uint Player)
 	}
 	else
 	{
-		ObjectPosition[0] = GlobalPlayer[Player].Direction[0];
-		ObjectPosition[1] =  GlobalPlayer[Player].Direction[1] +  GlobalPlayer[Player].Sterrangle;
-		ObjectPosition[2] = GlobalPlayer[Player].Direction[2];
+		ObjectPosition[0] = GamePlayers[Player].Direction[0];
+		ObjectPosition[1] =  GamePlayers[Player].Direction[1] +  GamePlayers[Player].Sterrangle;
+		ObjectPosition[2] = GamePlayers[Player].Direction[2];
 		ObjectAngle[2] = BaseTurn + AddTurn;
-		ObjectAngle[0] = 0x3FFF - GlobalPlayer[0].Kartroll * 2;
-		ObjectAngle[1] = GlobalPlayer[0].AngleZ[0] * -2;
+		ObjectAngle[0] = 0x3FFF - GamePlayers[0].Kartroll * 2;
+		ObjectAngle[1] = GamePlayers[0].AngleZ[0] * -2;
 
-		DrawGeometryScale(GlobalPlayer[Player].Position,ObjectAngle,ModelAddress, 0.08);
+		DrawGeometryScale(GamePlayers[Player].Position,ObjectAngle,ModelAddress, 0.08);
 	}
 
 

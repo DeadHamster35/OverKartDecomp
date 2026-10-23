@@ -2,9 +2,9 @@
 #define OVERKARTHOOKS_H
 
 /*
- * Vanilla call-site declarations only. Do not include MainInclude.h or
- * StockAliases.h from decomp C. Types come from decomp headers so this
- * can be included after or instead of an existing Player/Camera/Object set.
+ * Vanilla call-site declarations only. Do not include MainInclude.h from
+ * decomp C. Types come from decomp headers so this can be included after
+ * or instead of an existing Player/Camera/Object set.
  */
 
 #include <common_structs.h>

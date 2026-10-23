@@ -21,6 +21,6 @@ void DisplayRshell(Camera* Camera, Mat4 Matrix, struct ShellActor* shell) {
  * @Param shell
  */
 void DisplayTshell(Camera* Camera, Mat4 Matrix, struct ShellActor* shell) {
-    gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_blue_shell); // set Texture
+    gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTBlueShell); // set Texture
     DisplayShell(Camera, Matrix, shell);
 }

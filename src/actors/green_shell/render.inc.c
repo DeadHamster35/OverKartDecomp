@@ -11,6 +11,6 @@
  * @Param shell
  */
 void DisplayGshell(Camera* Camera, Mat4 Matrix, struct ShellActor* shell) {
-    gDPLoadTLUT_pal256(DisplayListHead++, common_tlut_green_shell); // set Texture
+    gDPLoadTLUT_pal256(DisplayListHead++, CommonTLUTGreenShell); // set Texture
     DisplayShell(Camera, Matrix, shell);
 }

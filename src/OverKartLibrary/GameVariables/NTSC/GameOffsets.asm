@@ -379,13 +379,13 @@
 .definelabel KW4GFCount, 0x801655C4
 .definelabel KW2GFCount, 0x801655CC
 
-.definelabel Vtx_KTile8x16, 0x0D0054B0
-.definelabel Vtx_KTile16x16, 0x0D005770
-.definelabel Vtx_KTile16x16XFlip, 0x0D0057B0
-.definelabel Vtx_KTile40x32, 0x0D005C30
-.definelabel Vtx_KTile32x32, 0x0D005AE0
-.definelabel Vtx_KTile32x32XFlip, 0x0D005B20
-.definelabel Vtx_KTile64x64BL, 0x0D0060B0
+.definelabel VtxKTile8X16, 0x0D0054B0
+.definelabel VtxKTile16X16, 0x0D005770
+.definelabel VtxKTile16X16XFlip, 0x0D0057B0
+.definelabel VtxKTile40X32, 0x0D005C30
+.definelabel VtxKTile32X32, 0x0D005AE0
+.definelabel VtxKTile32X32XFlip, 0x0D005B20
+.definelabel VtxKTile64X64BL, 0x0D0060B0
 .definelabel Vtx_KTile64x64XFlipBL, 0x0D006130
 .definelabel Vtx_KTile64x96BL, 0x0D0063F0
 .definelabel Vtx_KTile96x16, 0x0D006830

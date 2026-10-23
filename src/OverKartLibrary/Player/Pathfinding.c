@@ -342,15 +342,15 @@ void UpdateRacePath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker 
             nearestToTargetPath = ThisPath;
         }       
         //Second find path nearest bot Position
-        CheckDistance = PythagoreanTheorem((float)PathArray[ThisPath][EndMarker].Position[0], GlobalPlayer[PlayerID].Position[0], 
-                                            (float)PathArray[ThisPath][EndMarker].Position[2],  GlobalPlayer[PlayerID].Position[2]);
+        CheckDistance = PythagoreanTheorem((float)PathArray[ThisPath][EndMarker].Position[0], GamePlayers[PlayerID].Position[0], 
+                                            (float)PathArray[ThisPath][EndMarker].Position[2],  GamePlayers[PlayerID].Position[2]);
         if (CheckDistance < DistanceToBot)
         {
             DistanceToBot = CheckDistance;
             nearestToBotPath = ThisPath;
         }
-        CheckDistance = PythagoreanTheorem((float)PathArray[ThisPath][0].Position[0],  GlobalPlayer[PlayerID].Position[0], 
-                                            (float)PathArray[ThisPath][0].Position[2],  GlobalPlayer[PlayerID].Position[2]);
+        CheckDistance = PythagoreanTheorem((float)PathArray[ThisPath][0].Position[0],  GamePlayers[PlayerID].Position[0], 
+                                            (float)PathArray[ThisPath][0].Position[2],  GamePlayers[PlayerID].Position[2]);
         if (CheckDistance < DistanceToBot)
         {
             DistanceToBot = CheckDistance;
@@ -399,7 +399,7 @@ void UpdateRacePath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker 
     //     Progression = MarkerCounts[ThisPath];
     // }
 
-    nearestMarker = FindNearestMarker(GlobalPlayer[PlayerID].Position, PathArray, MarkerCounts[ThisPath], ThisPath, 0);
+    nearestMarker = FindNearestMarker(GamePlayers[PlayerID].Position, PathArray, MarkerCounts[ThisPath], ThisPath, 0);
     Pathfinder->Distance = CheckDistance;
     Pathfinder->TargetPath = ThisPath;
     Pathfinder->Progression = nearestMarker;
@@ -426,7 +426,7 @@ void UpdateBKPath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker *P
     short EndMarker;
     short nearestMarker;
     short ThisPath;
-    float player_height = GlobalPlayer[PlayerID].Position[1];
+    float player_height = GamePlayers[PlayerID].Position[1];
     #ifdef RunawayToggle
     Pathfinder->Distance = -99999999.0f; // Set an impossible Value to ensure the first return is true.    
     #else
@@ -450,7 +450,7 @@ void UpdateBKPath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker *P
             ObjectPosition[1] = (float)PathArray[ThisPath][0].Position[1];
             ObjectPosition[2] = (float)PathArray[ThisPath][0].Position[2];
 
-            if (TestCollideSphere(GlobalPlayer[PlayerID].Position, FirstMarkerDistance, ObjectPosition, 5)) // && (ThisPath != Pathfinder->LastPath))  //check if the first marker is within 125 units of the Player
+            if (TestCollideSphere(GamePlayers[PlayerID].Position, FirstMarkerDistance, ObjectPosition, 5)) // && (ThisPath != Pathfinder->LastPath))  //check if the first marker is within 125 units of the Player
             {
                 CheckDistance = PythagoreanTheorem((float)PathArray[ThisPath][EndMarker].Position[0], Pathfinder->Target[0], 
                                                     (float)PathArray[ThisPath][EndMarker].Position[2], Pathfinder->Target[2]);
@@ -461,7 +461,7 @@ void UpdateBKPath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker *P
                 if (CheckDistance < Pathfinder->Distance)  //compare Distance, if less than the Current update
                 #endif
                 {
-                    nearestMarker = FindNearestMarker(GlobalPlayer[PlayerID].Position, PathArray, MarkerCounts[ThisPath], ThisPath, 0);
+                    nearestMarker = FindNearestMarker(GamePlayers[PlayerID].Position, PathArray, MarkerCounts[ThisPath], ThisPath, 0);
 
                     Pathfinder->Distance = CheckDistance;
                     Pathfinder->TargetPath = ThisPath;
@@ -493,7 +493,7 @@ void UpdateBKPath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker *P
             ObjectPosition[1] = (float)PathArray[ThisPath][EndMarker].Position[1];
             ObjectPosition[2] = (float)PathArray[ThisPath][EndMarker].Position[2];
 
-            if (TestCollideSphere(GlobalPlayer[PlayerID].Position, FirstMarkerDistance, ObjectPosition, 5))// && (ThisPath != Pathfinder->LastPath))  //check if the last marker is within 125 units of the Player
+            if (TestCollideSphere(GamePlayers[PlayerID].Position, FirstMarkerDistance, ObjectPosition, 5))// && (ThisPath != Pathfinder->LastPath))  //check if the last marker is within 125 units of the Player
             {
                 //First Marker has hit true, check Distance of last marker
                 CheckDistance = PythagoreanTheorem((float)PathArray[ThisPath][0].Position[0], Pathfinder->Target[0], 
@@ -504,7 +504,7 @@ void UpdateBKPath(BKPathfinder* Pathfinder, short FirstMarkerDistance, Marker *P
                 if (CheckDistance < Pathfinder->Distance)  //compare Distance, if less than the Current update
                 #endif
                 {
-                    nearestMarker = FindNearestMarker(GlobalPlayer[PlayerID].Position, PathArray, MarkerCounts[ThisPath], ThisPath, EndMarker);
+                    nearestMarker = FindNearestMarker(GamePlayers[PlayerID].Position, PathArray, MarkerCounts[ThisPath], ThisPath, EndMarker);
 
                     Pathfinder->Distance = CheckDistance;
                     Pathfinder->TargetPath = ThisPath;
@@ -565,7 +565,7 @@ void ResetLaneDefaultOffset(int PlayerID)
 
 void ChooseAlternativePathRandm(int PlayerID, short pointCheckMin, short pointCheckMax, Ushort maxPathIDs)
 {
-    if (g_playerPathPointTable[PlayerID] >= pointCheckMin && g_playerPathPointTable[PlayerID] <= pointCheckMax)
+    if (NearestPathPointByPlayerId[PlayerID] >= pointCheckMin && NearestPathPointByPlayerId[PlayerID] <= pointCheckMax)
     {
         CurrentPathID[PlayerID] = MakeRandomLimmit(maxPathIDs);
         ResetLaneDefaultOffset(PlayerID);
@@ -579,10 +579,10 @@ void ChangePathAndPoint(int PlayerID, short pointCheckMin, short pointCheckMax, 
         return;
     }
     
-    if (g_playerPathPointTable[PlayerID] >= pointCheckMin && g_playerPathPointTable[PlayerID] <= pointCheckMax)
+    if (NearestPathPointByPlayerId[PlayerID] >= pointCheckMin && NearestPathPointByPlayerId[PlayerID] <= pointCheckMax)
     {
         CurrentPathID[PlayerID] = newpathID;
-        g_playerPathPointTable[PlayerID] = pointCheckMax;
+        NearestPathPointByPlayerId[PlayerID] = pointCheckMax;
         ResetLaneDefaultOffset(PlayerID);
     }
 }
@@ -624,18 +624,18 @@ void ProSteeringPlusPlus(int i, Marker* PathArray[], Marker* RampArray[], Marker
     }
 
 
-    GlobalShortA = (short)(MakeDirection(GlobalPlayer[i].Position[0],GlobalPlayer[i].Position[2], ObjectPosition[0], ObjectPosition[2]) * -1);
-    GlobalShortA -= GlobalPlayer[i].Direction[1];
+    GlobalShortA = (short)(MakeDirection(GamePlayers[i].Position[0],GamePlayers[i].Position[2], ObjectPosition[0], ObjectPosition[2]) * -1);
+    GlobalShortA -= GamePlayers[i].Direction[1];
     GlobalUInt64 = GlobalShortA * GlobalShortA;
 
     BotButtons[i] = BTN_A;
     BotPressed[i] = 0;
-    GlobalPlayer[i].AccMaxcount = AIPathfinder[i].MaxSpeed; //Default top Speed
+    GamePlayers[i].AccMaxcount = AIPathfinder[i].MaxSpeed; //Default top Speed
    
     
     if ((GlobalUInt64 > STOPTURN)) //| (PathGroup < 0) | (AIPathfinder[i].SlowDown))
     {   
-        GlobalPlayer[i].AccMaxcount = 0.5 * AIPathfinder[i].MaxSpeed; //Slow the bot way down hwen encountering a rival or Item box 
+        GamePlayers[i].AccMaxcount = 0.5 * AIPathfinder[i].MaxSpeed; //Slow the bot way down hwen encountering a rival or Item box 
         BotButtons[i] |= BTN_B;  //continue braking
         if (GlobalShortA > 0)
         {   
@@ -658,7 +658,7 @@ void ProSteeringPlusPlus(int i, Marker* PathArray[], Marker* RampArray[], Marker
     }                        
     else if ((GlobalUInt64 > DRIFTTURN) )
     {
-        GlobalPlayer[i].AccMaxcount = 0.8 * AIPathfinder[i].MaxSpeed; //Slow the bot way down when encountering a rival or Item box 
+        GamePlayers[i].AccMaxcount = 0.8 * AIPathfinder[i].MaxSpeed; //Slow the bot way down when encountering a rival or Item box 
         BotPressed[i] = BTN_R | BTN_B;   //tap brake and Jump
         BotButtons[i] |= BTN_B;
 
@@ -730,11 +730,11 @@ void ProSteeringPlusPlus(int i, Marker* PathArray[], Marker* RampArray[], Marker
 
 void StandardBattleBotBot(int i, int TargetPlayer)
 {
-    switch( ObjectSubBehaviorTurnTarget(GlobalPlayer[i].Position, GlobalPlayer[i].Direction[1], AIPathfinder[i].Target, 0x7) ) //Returns -1 or 1, to give Direction to turn
+    switch( ObjectSubBehaviorTurnTarget(GamePlayers[i].Position, GamePlayers[i].Direction[1], AIPathfinder[i].Target, 0x7) ) //Returns -1 or 1, to give Direction to turn
     {
         case 0:    
         {          
-            if (TestCollideSphere(GlobalPlayer[(int)AIPathfinder[i].RivalPlayer].Position, 40, GlobalPlayer[i].Position, 40) && !TestCollideSphere(GlobalPlayer[(int)AIPathfinder[i].RivalPlayer].Position, 20, GlobalPlayer[i].Position, 20))
+            if (TestCollideSphere(GamePlayers[(int)AIPathfinder[i].RivalPlayer].Position, 40, GamePlayers[i].Position, 40) && !TestCollideSphere(GamePlayers[(int)AIPathfinder[i].RivalPlayer].Position, 20, GamePlayers[i].Position, 20))
             {
 
                 BotPressed[i] = BTN_Z;
@@ -766,7 +766,6 @@ void StandardBattleBotBot(int i, int TargetPlayer)
 
 void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
 {
-    
 
     Marker** CoursePaths = (Marker**)(GetRealAddress(AIHeader->CoursePaths));
     Marker** CourseDrops = (Marker**)(GetRealAddress(AIHeader->CourseDrops));
@@ -776,9 +775,9 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
     short* DropLengths = (short*)(GetRealAddress(AIHeader->DropLengths));
     short* RampLengths = (short*)(GetRealAddress(AIHeader->RampLengths));
 
-    float bot_x = GlobalPlayer[BotIndex].Position[0]; //x,y,z coordinates of Current bot
-    float bot_y = GlobalPlayer[BotIndex].Position[1];
-    float bot_z = GlobalPlayer[BotIndex].Position[2];
+    float bot_x = GamePlayers[BotIndex].Position[0]; //x,y,z coordinates of Current bot
+    float bot_y = GamePlayers[BotIndex].Position[1];
+    float bot_z = GamePlayers[BotIndex].Position[2];
 
     float rival_x = AIPathfinder[BotIndex].Target[0]; //x,y,z coordinates of Current bot
     float rival_y = AIPathfinder[BotIndex].Target[1];
@@ -799,13 +798,13 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
 
     //Check for Item Boxes
     /*
-    else if ((checkItems(i) == 0) && !(GlobalPlayer[i].SlipFlag & STAR) && !isPlayerHoldingFlag(i) && (game_mode != 6))// || hitting_wall)
+    else if ((checkItems(i) == 0) && !(GamePlayers[i].SlipFlag & STAR) && !isPlayerHoldingFlag(i) && (game_mode != 6))// || hitting_wall)
     {
 
         if ((nearest_item_box[i][0] == 0.0))
         {
             //float item_box_position[3] = {0.0, 0.0, 0.0};
-            if (FindNearestItemBox(GlobalPlayer[i].Position, nearest_item_box[i], 225.0f, ci) != -1) //If an Item box is found on the same level, Target that, as long as bot is not hitting wall
+            if (FindNearestItemBox(GamePlayers[i].Position, nearest_item_box[i], 225.0f, ci) != -1) //If an Item box is found on the same level, Target that, as long as bot is not hitting wall
             {
                 rival_x = nearest_item_box[i][0]; //x,y,z Coords of rival
                 rival_y = nearest_item_box[i][1];
@@ -815,9 +814,9 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
             }
             else //else Target rival
             {
-                rival_x = GlobalPlayer[bot_rival_p1[i]].Position[0]; //x,y,z Coords of rival
-                rival_y = GlobalPlayer[bot_rival_p1[i]].Position[1];
-                rival_z = GlobalPlayer[bot_rival_p1[i]].Position[2];    
+                rival_x = GamePlayers[bot_rival_p1[i]].Position[0]; //x,y,z Coords of rival
+                rival_y = GamePlayers[bot_rival_p1[i]].Position[1];
+                rival_z = GamePlayers[bot_rival_p1[i]].Position[2];    
             }            
         }
         else
@@ -853,7 +852,7 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
             dropNodePosition[0] = 0.;
             dropNodePosition[1] = 0.;
             dropNodePosition[2] = 0.;
-            drop_path_index = FindNearestDropNode(GlobalPlayer[BotIndex].Position, dropNodePosition, rival_y, CourseDrops, DropLengths, (short)(AIHeader->TotalDrops), 225.0f);
+            drop_path_index = FindNearestDropNode(GamePlayers[BotIndex].Position, dropNodePosition, rival_y, CourseDrops, DropLengths, (short)(AIHeader->TotalDrops), 225.0f);
             if (drop_path_index != -1) //crash catch
             {
                 AIPathfinder[BotIndex].LastPath = 0;
@@ -911,10 +910,10 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
                     int ThisMarker;
                 for (ThisMarker = 0; ThisMarker <= PathLengths[TargetPath]; ThisMarker++)
                 {
-                    if (sqr(GlobalPlayer[BotIndex].Position[1] - (float)CoursePaths[TargetPath][ThisMarker].Position[1]) < 225.0f) //If Height is not too far off
+                    if (sqr(GamePlayers[BotIndex].Position[1] - (float)CoursePaths[TargetPath][ThisMarker].Position[1]) < 225.0f) //If Height is not too far off
                     {   
-                        GlobalFloatA =  sqr(GlobalPlayer[BotIndex].Position[0] - (float)CoursePaths[TargetPath][ThisMarker].Position[0]) + 
-                                        sqr(GlobalPlayer[BotIndex].Position[2] - (float)CoursePaths[TargetPath][ThisMarker].Position[2])   ;
+                        GlobalFloatA =  sqr(GamePlayers[BotIndex].Position[0] - (float)CoursePaths[TargetPath][ThisMarker].Position[0]) + 
+                                        sqr(GamePlayers[BotIndex].Position[2] - (float)CoursePaths[TargetPath][ThisMarker].Position[2])   ;
                         if (GlobalFloatA < CheckMarkerDistance)
                         {
                             CheckMarkerDistance = GlobalFloatA;
@@ -933,10 +932,10 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
                     int ThisMarker;
                 for (ThisMarker = 0; ThisMarker <= RampLengths[TargetPath]; ThisMarker++)
                 {
-                    if (sqr(GlobalPlayer[BotIndex].Position[1] - (float)CourseRamps[TargetPath][ThisMarker].Position[1]) < 450.0f)
+                    if (sqr(GamePlayers[BotIndex].Position[1] - (float)CourseRamps[TargetPath][ThisMarker].Position[1]) < 450.0f)
                     {   
-                        GlobalFloatA = sqr(GlobalPlayer[BotIndex].Position[0] - (float)CourseRamps[TargetPath][ThisMarker].Position[0]) + 
-                                        sqr(GlobalPlayer[BotIndex].Position[2] - (float)CourseRamps[TargetPath][ThisMarker].Position[2])   ;
+                        GlobalFloatA = sqr(GamePlayers[BotIndex].Position[0] - (float)CourseRamps[TargetPath][ThisMarker].Position[0]) + 
+                                        sqr(GamePlayers[BotIndex].Position[2] - (float)CourseRamps[TargetPath][ThisMarker].Position[2])   ;
                         if (GlobalFloatA < CheckMarkerDistance)
                         {
                             CheckMarkerDistance = GlobalFloatA;
@@ -956,10 +955,10 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
                     int ThisMarker;
                 for (ThisMarker = 0; ThisMarker <= DropLengths[TargetPath]; ThisMarker++)
                 {
-                    if (sqr(GlobalPlayer[BotIndex].Position[1] - (float)CourseDrops[TargetPath][ThisMarker].Position[1]) < 450.0f)
+                    if (sqr(GamePlayers[BotIndex].Position[1] - (float)CourseDrops[TargetPath][ThisMarker].Position[1]) < 450.0f)
                     {   
-                        GlobalFloatA = sqr(GlobalPlayer[BotIndex].Position[0] - (float)CourseDrops[TargetPath][ThisMarker].Position[0]) + 
-                                        sqr(GlobalPlayer[BotIndex].Position[2] - (float)CourseDrops[TargetPath][ThisMarker].Position[2]);
+                        GlobalFloatA = sqr(GamePlayers[BotIndex].Position[0] - (float)CourseDrops[TargetPath][ThisMarker].Position[0]) + 
+                                        sqr(GamePlayers[BotIndex].Position[2] - (float)CourseDrops[TargetPath][ThisMarker].Position[2]);
                         if (GlobalFloatA < CheckMarkerDistance)
                         {
                             CheckMarkerDistance = GlobalFloatA;
@@ -1092,7 +1091,7 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
                     nodePosition[1] = 0.;
                     nodePosition[2] = 0.;
                     //First find nearest ramp
-                    ramp_path_index = FindNearestRampNode(GlobalPlayer[BotIndex].Position, nodePosition, rival_y, CourseRamps, RampLengths, (AIHeader->TotalRamps), 225.0f);
+                    ramp_path_index = FindNearestRampNode(GamePlayers[BotIndex].Position, nodePosition, rival_y, CourseRamps, RampLengths, (AIHeader->TotalRamps), 225.0f);
                     //float diff_x = bot_x - nodePosition[0];
                     //float diff_z = bot_z - nodePosition[2];
 
@@ -1133,12 +1132,12 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
                     dropNodePosition[1] = 0.;
                     dropNodePosition[2] = 0.;
                     //First find nearest ramp and drop
-                    ramp_path_index = FindNearestRampNode(GlobalPlayer[BotIndex].Position, rampNodePosition, rival_y, CourseRamps, RampLengths, (AIHeader->TotalRamps), 225.0f);
-                    drop_path_index = FindNearestDropNode(GlobalPlayer[BotIndex].Position, dropNodePosition, rival_y, CourseDrops, DropLengths, (AIHeader->TotalRamps), 225.0f);
+                    ramp_path_index = FindNearestRampNode(GamePlayers[BotIndex].Position, rampNodePosition, rival_y, CourseRamps, RampLengths, (AIHeader->TotalRamps), 225.0f);
+                    drop_path_index = FindNearestDropNode(GamePlayers[BotIndex].Position, dropNodePosition, rival_y, CourseDrops, DropLengths, (AIHeader->TotalRamps), 225.0f);
                     
                     
-                    dist_to_nearest_ramp = PythagoreanTheorem(GlobalPlayer[BotIndex].Position[0], rampNodePosition[0], GlobalPlayer[BotIndex].Position[2], rampNodePosition[2]);
-                    dist_to_nearest_drop = PythagoreanTheorem(GlobalPlayer[BotIndex].Position[0], dropNodePosition[0], GlobalPlayer[BotIndex].Position[2], dropNodePosition[2]);
+                    dist_to_nearest_ramp = PythagoreanTheorem(GamePlayers[BotIndex].Position[0], rampNodePosition[0], GamePlayers[BotIndex].Position[2], rampNodePosition[2]);
+                    dist_to_nearest_drop = PythagoreanTheorem(GamePlayers[BotIndex].Position[0], dropNodePosition[0], GamePlayers[BotIndex].Position[2], dropNodePosition[2]);
                     if (dist_to_nearest_ramp < dist_to_nearest_drop || drop_path_index == -1) //If a ramp is closer than a drop, use the ramp
                     {
                         if (dist_to_nearest_ramp < RAMPDISTANCESQUARE) //If bot is at ramp, use ramp
@@ -1232,14 +1231,14 @@ void OKBattleBot(int BotIndex, Vector TargetPosition, OKAIHeader *AIHeader)
     }
 
 
-    if (TestCollideSphere(AIPathfinder[BotIndex].Target, 100.0f, GlobalPlayer[BotIndex].Position, 100.0f) && (sqr(bot_y-rival_y) < 225.0f*0.25f))
+    if (TestCollideSphere(AIPathfinder[BotIndex].Target, 100.0f, GamePlayers[BotIndex].Position, 100.0f) && (sqr(bot_y-rival_y) < 225.0f*0.25f))
     {   
         //nearest_item_box[BotIndex][0] = 0.0; //Reset nearest Item box
         //nearest_item_box[BotIndex][1] = 0.0;
         //nearest_item_box[BotIndex][2] = 0.0;
 
 
-        GlobalPlayer[BotIndex].AccMaxcount = 0.75 * AIPathfinder[BotIndex].MaxSpeed; //Slow the bot down when encountering a rival or Item box 
+        GamePlayers[BotIndex].AccMaxcount = 0.75 * AIPathfinder[BotIndex].MaxSpeed; //Slow the bot down when encountering a rival or Item box 
         
         StandardBattleBotBot(BotIndex, (int)AIPathfinder[BotIndex].RivalPlayer);
         return;

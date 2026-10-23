@@ -304,7 +304,7 @@ void CaptureBalls(void)
                             {
                                 if (GameFlag[ThisFlag].IFrames == 0)
                                 {
-                                    if (TestCollideSphere(GlobalPlayer[ThisPlayer].Position, GlobalPlayer[ThisPlayer].Radius, GameFlag[ThisFlag].Position, 5.0))
+                                    if (TestCollideSphere(GamePlayers[ThisPlayer].Position, GamePlayers[ThisPlayer].Radius, GameFlag[ThisFlag].Position, 5.0))
                                     {
                                             Objectives[ThisPlayer].FlagHeld = ThisFlag;
                                             GameFlag[ThisFlag].PlayerHolding = ThisPlayer;
@@ -331,7 +331,7 @@ void CaptureBalls(void)
                 int ThisBase;
             for (ThisBase = 0; ThisBase < FlagCount; ThisBase++)
             {
-                if (TestCollideSphere(GlobalPlayer[ThisPlayer].Position, GlobalPlayer[ThisPlayer].Radius, GameBase[ThisBase].Position, 8.0))
+                if (TestCollideSphere(GamePlayers[ThisPlayer].Position, GamePlayers[ThisPlayer].Radius, GameBase[ThisBase].Position, 8.0))
                 {
                         if (TeamMode == 1)
                         {
@@ -375,18 +375,18 @@ void ShootBall(int PlayerIndex)
     if (Objectives[PlayerIndex].FlagHeld != -1)
     {
         GlobalIntA = (int)Objectives[PlayerIndex].FlagHeld;
-        GameFlag[GlobalIntA].Position[0] = GlobalPlayer[PlayerIndex].Position[0];
-        GameFlag[GlobalIntA].Position[1] = GlobalPlayer[PlayerIndex].Position[1] + 5;
-        GameFlag[GlobalIntA].Position[2] = GlobalPlayer[PlayerIndex].Position[2];
+        GameFlag[GlobalIntA].Position[0] = GamePlayers[PlayerIndex].Position[0];
+        GameFlag[GlobalIntA].Position[1] = GamePlayers[PlayerIndex].Position[1] + 5;
+        GameFlag[GlobalIntA].Position[2] = GamePlayers[PlayerIndex].Position[2];
 
         
         GameFlag[GlobalIntA].Velocity[0] = 0;
         GameFlag[GlobalIntA].Velocity[1] = 5;
         GameFlag[GlobalIntA].Velocity[2] = 4;
 
-        GameFlag[GlobalIntA].Angle[1] = GlobalPlayer[PlayerIndex].Direction[1];
+        GameFlag[GlobalIntA].Angle[1] = GamePlayers[PlayerIndex].Direction[1];
 
-        MakeAlignVector(GameFlag[GlobalIntA].Velocity,(GlobalPlayer[PlayerIndex].Direction[1]));
+        MakeAlignVector(GameFlag[GlobalIntA].Velocity,(GamePlayers[PlayerIndex].Direction[1]));
         
         ChangeMaxSpeed((char)PlayerIndex, 60);
 

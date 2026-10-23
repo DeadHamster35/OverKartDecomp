@@ -2319,7 +2319,7 @@ void LogoProc(void) {
             gSPMatrix(DisplayListHead++, test++, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
             gDPSetRenderMode(DisplayListHead++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
             gDPSetEnvColor(DisplayListHead++, 0x00, 0x00, 0x00, thing);
-            gSPDisplayList(DisplayListHead++, startup_texture_dl4);
+            gSPDisplayList(DisplayListHead++, StartupTextureDL4);
             gSPPopMatrix(DisplayListHead++, G_MTX_MODELVIEW);
         }
     }
@@ -2662,7 +2662,7 @@ Gfx* SetAfontVertex(Gfx* displayListHead, Vtx* arg1) {
 #ifdef AVOID_UB
     gSPVertex(displayListHead++, arg1, 2, 0);
     gSPVertex(displayListHead++, &arg1[(Index + 1) * 2], 2, 2);
-    gSPDisplayList(displayListHead++, common_rectangle_display);
+    gSPDisplayList(displayListHead++, CommonRectangleDisplay);
 #else
     if (arg1 == D_02007BB8) {
         gSPDisplayList(displayListHead++, D_800E84CC[Index]);

@@ -142,10 +142,10 @@ void KwinitItembox(s32 ObjectIndex) {
     temp_v0 = (ItemWindowObjects*) &DynamicObjects[ObjectIndex];
     temp_v0->Output = ITEM_NONE;
     temp_v0->Anmnumbak = temp_v0->Output;
-    temp_v0->Stexaddr = (u8*) common_tlut_item_window_none;
-    temp_v0->Texaddr = (u8*) common_tlut_item_window_none;
-    temp_v0->Sindexaddr = common_texture_item_window_none;
-    temp_v0->Indexaddr = common_texture_item_window_none;
+    temp_v0->Stexaddr = (u8*) CommonTLUTItemWindowNone;
+    temp_v0->Texaddr = (u8*) CommonTLUTItemWindowNone;
+    temp_v0->Sindexaddr = CommonTextureItemWindowNone;
+    temp_v0->Indexaddr = CommonTextureItemWindowNone;
     temp_v0->Timer = -1;
     temp_v0->ix = 0x00A0;  // Screen X Position
     temp_v0->iy = -0x0020; // Screen Y Position
@@ -630,7 +630,7 @@ void KwinitStar(s32 ObjectIndex, s32 arg1, StarData* Arg2) {
     temp_v0->iy = Arg2->PosY;                           // screen Y Position
     temp_v0->Scale = (f32) Arg2->ScalePercent / 100.0; // some Type of scaling on the Texture
     temp_v0->Indexaddr = D_0D0293D8;
-    KwanmInitCommon(ObjectIndex, 0x10U, 0x10U, Vtx_KTile16x16);
+    KwanmInitCommon(ObjectIndex, 0x10U, 0x10U, VtxKTile16X16);
 }
 
 void KwsetStarram(StarData* starList) {

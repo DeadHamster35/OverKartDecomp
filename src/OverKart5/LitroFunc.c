@@ -77,8 +77,8 @@ void ResetMenuUpdateTimers(void)
 
 void SetZoomLevel(int Zoom)
 {
-	g_zoomLevelPlayer1 = Zoom;
-	g_zoomLevelPlayer2 = Zoom;
-	g_zoomLevelPlayer3 = Zoom;
-	g_zoomLevelPlayer4 = Zoom;
+	KoteiGakakuMode[0] = Zoom;
+	KoteiGakakuMode[1] = Zoom;
+	KoteiGakakuMode[2] = Zoom;
+	KoteiGakakuMode[3] = Zoom;
 }

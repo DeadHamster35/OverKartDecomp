@@ -101,15 +101,15 @@ void PlacePlayerSpawn(const SVector Position, int PlayerID)
     SpawnPoint[PlayerID][1] = (float)Position[1] + 5.0f;
     SpawnPoint[PlayerID][2] = (float)Position[2];
     
-    GlobalPlayer[PlayerID].Position[0] = (float)Position[0];
-    GlobalPlayer[PlayerID].Position[1] = (float)Position[1] + 5.0f;
-    GlobalPlayer[PlayerID].Position[2] = (float)Position[2];
+    GamePlayers[PlayerID].Position[0] = (float)Position[0];
+    GamePlayers[PlayerID].Position[1] = (float)Position[1] + 5.0f;
+    GamePlayers[PlayerID].Position[2] = (float)Position[2];
 
-    GlobalPlayer[PlayerID].OldPosition[0] = (float)Position[0];
-    GlobalPlayer[PlayerID].OldPosition[1] = (float)Position[1] + 5.0f;
-    GlobalPlayer[PlayerID].OldPosition[2] = (float)Position[2];
+    GamePlayers[PlayerID].OldPosition[0] = (float)Position[0];
+    GamePlayers[PlayerID].OldPosition[1] = (float)Position[1] + 5.0f;
+    GamePlayers[PlayerID].OldPosition[2] = (float)Position[2];
 
-    GlobalPlayer[PlayerID].Ground = (float)Position[1];
+    GamePlayers[PlayerID].Ground = (float)Position[1];
 
     GlobalCamera[PlayerID]->CameraPos[0] = (float)Position[0];
     GlobalCamera[PlayerID]->CameraPos[1] = (float)Position[1] + 5.0f;
@@ -128,19 +128,19 @@ void PlacePlayerSpawn(const SVector Position, int PlayerID)
      
 
 
-    GlobalPlayer[PlayerID].Direction[1] = (short)(CalcDirection(GlobalPlayer[PlayerID].Position, Origin) * -1);
-    GlobalCamera[PlayerID]->CameraDirection[1] = GlobalPlayer[PlayerID].Direction[1];
-    GlobalCamera[PlayerID]->ChaseDirection = GlobalPlayer[PlayerID].Direction[1];
+    GamePlayers[PlayerID].Direction[1] = (short)(CalcDirection(GamePlayers[PlayerID].Position, Origin) * -1);
+    GlobalCamera[PlayerID]->CameraDirection[1] = GamePlayers[PlayerID].Direction[1];
+    GlobalCamera[PlayerID]->ChaseDirection = GamePlayers[PlayerID].Direction[1];
     CheckBump2
     (    
-        (Bump*)&GlobalPlayer[PlayerID].Bump, 
+        (Bump*)&GamePlayers[PlayerID].Bump, 
         5.0, 
-        GlobalPlayer[PlayerID].Position[0], GlobalPlayer[PlayerID].Position[1], GlobalPlayer[PlayerID].Position[2], 
-        GlobalPlayer[PlayerID].OldPosition[0], GlobalPlayer[PlayerID].OldPosition[1], GlobalPlayer[PlayerID].OldPosition[2] 
+        GamePlayers[PlayerID].Position[0], GamePlayers[PlayerID].Position[1], GamePlayers[PlayerID].Position[2], 
+        GamePlayers[PlayerID].OldPosition[0], GamePlayers[PlayerID].OldPosition[1], GamePlayers[PlayerID].OldPosition[2] 
     );
     
 
-    ManualBump((Bump*)&GlobalPlayer[PlayerID].Bump, GlobalPlayer[PlayerID].Position);     
+    ManualBump((Bump*)&GamePlayers[PlayerID].Bump, GamePlayers[PlayerID].Position);     
 }
 
 void PlaceFlagSpawn(const SVector Position, int FlagID)
@@ -173,7 +173,7 @@ void DrawGameBase(Camera* LocalCamera)
      for (ThisFlag = 0; ThisFlag < FlagCount; ThisFlag++)
      {    
           Uint *GArray = (Uint*)(GameBase[ThisFlag].F3D);
-          gSPDisplayList(GraphPtrOffset++, GArray[0]);
+          gSPDisplayList(DisplayListHead++, GArray[0]);
           DrawGeometryScale(GameBase[ThisFlag].Position, ObjectAngle, GArray[1], 0.35);
      }
      }
@@ -195,9 +195,9 @@ void DrawGameFlags(Camera* LocalCamera)
           GameFlag[ThisFlag].Angle[2] += (DEG1 * GameFlag[ThisFlag].AngularVel[2]);
           if (GlobalIntA != -1)
           {
-               GameFlag[ThisFlag].Position[0] = GlobalPlayer[GlobalIntA].Position[0];
-               GameFlag[ThisFlag].Position[1] = GlobalPlayer[GlobalIntA].Position[1] + 5;
-               GameFlag[ThisFlag].Position[2] = GlobalPlayer[GlobalIntA].Position[2];              
+               GameFlag[ThisFlag].Position[0] = GamePlayers[GlobalIntA].Position[0];
+               GameFlag[ThisFlag].Position[1] = GamePlayers[GlobalIntA].Position[1] + 5;
+               GameFlag[ThisFlag].Position[2] = GamePlayers[GlobalIntA].Position[2];              
                GameFlag[ThisFlag].Velocity[0] = 0;
                GameFlag[ThisFlag].Velocity[1] = 0;
                GameFlag[ThisFlag].Velocity[2] = 0;
@@ -270,7 +270,7 @@ void DrawGameFlags(Camera* LocalCamera)
           
 
           GArray = (Uint*)(GameFlag[ThisFlag].F3D);
-          gSPDisplayList(GraphPtrOffset++, GArray[0]);
+          gSPDisplayList(DisplayListHead++, GArray[0]);
           DrawGeometryScale(GameFlag[ThisFlag].Position, GameFlag[ThisFlag].Angle, GArray[1], ((float)(GameFlag[ThisFlag].Scale / 1000.0f)));
      }
      }
@@ -282,16 +282,16 @@ void DropFlag(int PlayerIndex)
      if (Objectives[PlayerIndex].FlagHeld != -1)
      {
           GlobalIntA = (int)Objectives[PlayerIndex].FlagHeld;
-          GameFlag[GlobalIntA].Position[0] = GlobalPlayer[PlayerIndex].Position[0];
-          GameFlag[GlobalIntA].Position[1] = GlobalPlayer[PlayerIndex].Position[1] + 5;
-          GameFlag[GlobalIntA].Position[2] = GlobalPlayer[PlayerIndex].Position[2];
+          GameFlag[GlobalIntA].Position[0] = GamePlayers[PlayerIndex].Position[0];
+          GameFlag[GlobalIntA].Position[1] = GamePlayers[PlayerIndex].Position[1] + 5;
+          GameFlag[GlobalIntA].Position[2] = GamePlayers[PlayerIndex].Position[2];
 
           
           GameFlag[GlobalIntA].Velocity[0] = -2 + (MakeRandomLimmit(4));
           GameFlag[GlobalIntA].Velocity[1] = (float)(GameFlag[GlobalIntA].Lift) / 1000.0;
           GameFlag[GlobalIntA].Velocity[2] = -3 + (MakeRandomLimmit(6));
 
-          MakeAlignVector(ObjectVelocity,(GlobalPlayer[PlayerIndex].Direction[1]));
+          MakeAlignVector(ObjectVelocity,(GamePlayers[PlayerIndex].Direction[1]));
           
           ChangeMaxSpeed((char)PlayerIndex, 60);
 
