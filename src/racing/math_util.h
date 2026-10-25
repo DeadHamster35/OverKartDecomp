@@ -40,6 +40,7 @@ void RotateVector(Vec3f b, Vec3s rotate); // Unused
 void func_802B5CAC(s16, s16, Vec3f);       // Unused
 void MakeMapLight(s16, s16, s32);         // Unused
 void MakeLight(Lights1*, s16, s16, s32);
+void InitialLight(s16 RotY, s16 rotX, Vec3f Arg2);
 void ScalingMatrix(Mat4, f32);
 void CreateModelingMatrix(Mat4, Vec3f, Vec3s);
 void MultipleMatrixByVector(Vec3f, Mat3);

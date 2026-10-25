@@ -197,12 +197,6 @@ extern void BumpObject(Object* InputObject);
 /* InitializePlayer: spawn_players.h */
 /* DrawLocalSkeletonShape: animation.h (Armature*, Animation**) */
 
-extern long asm_itemJump1A;// 0x8007B084  //3C058016
-extern long asm_itemJump1B;// 0x8007B098  //84A543BA
-
-extern long asm_itemJump2A;// 0x8007AFC0  //3C058016
-extern long asm_itemJump2B;// 0x8007AFD4  //84A543BA
-
 /* sqrtf → sqrtf */
 
 extern void colorFont(int color);

@@ -123,6 +123,7 @@ extern char FlyCamToggle;
 extern short FlyCamSection;
 
 void MiniMapDrawDefault(void);
+void CheckExpansionPakAndHalt(void);
 void LoadBigFont(void);
 void RadarFinishLine(u32 ulx, u32 uly, u16* Addr);
 f32 HijackScaleMinimapX(f32 x);

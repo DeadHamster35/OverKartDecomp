@@ -9,4 +9,5 @@ extern void RunFlyCam();
 extern void FlyCamInit();
 extern void SaveState(void);
 extern void LoadState(void);
+extern void InitMKCode(void);
 #endif

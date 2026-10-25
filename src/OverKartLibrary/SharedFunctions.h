@@ -55,6 +55,7 @@ extern int LoadPressDataBypass(Uint RomStart, Uint RomEnd);
 
 
 extern void DetectEmulator(void);
+extern void CheckExpansionPakAndHalt(void);
 
 extern void RunDMA(void);
 extern void RunRAM(void);

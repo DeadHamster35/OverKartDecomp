@@ -1,6 +1,9 @@
 #include "MainInclude.h"
 #include "save.h"
 #include "replays.h"
+#include "crash_screen.h"
+
+extern void CrashScreenPrint(s32 x, s32 y, const char* fmt, ...);
 
 void EnemyTekagenSub(s32 PlayerId, Player* Player);
 void DrawPerScreen(Camera* LocalCamera);
@@ -610,4 +613,24 @@ Vtx *AllocCourseVerticesDefault(int Size)
 {
 	VertexMemoryPointer -= Size;
 	return (Vtx *)VertexMemoryPointer;
+}
+
+void ShowExpansionPakWarningDefault(void)
+{
+	u16 *fb = (u16 *) 0x801D6000;
+	s32 i;
+
+	for (i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++)
+	{
+		fb[i] = 1;
+	}
+	SetFaultFrameBuffer(fb);
+	CrashScreenPrint(40, 80, "OVERKART");
+	CrashScreenPrint(40, 100, "EXPANSION PAK REQUIRED");
+	osWritebackDCache(fb, SCREEN_WIDTH * SCREEN_HEIGHT * 2);
+	osViSwapBuffer(fb);
+	osViBlack(0);
+	while (1)
+	{
+	}
 }

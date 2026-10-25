@@ -533,6 +533,7 @@ void InitializeSystemWorks(void) {
     UNUSED s32 unknown_padding;
 
     InitMkcode();
+    CheckExpansionPakAndHalt();
     InitOverkart();
     LastMemoryPointer = SEG_RACING;
     SetSegment(0, (void*) SEG_START);
