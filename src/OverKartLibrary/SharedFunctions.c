@@ -78,15 +78,6 @@ void DetectEmulator(void)
 	return;
 }
 
-void CheckExpansionPakAndHalt(void)
-{
-	if (osMemSize >= 0x800000)
-	{
-		return;
-	}
-	ShowExpansionPakWarningDefault();
-}
-
 void RunDMA(void)
 {
 	DMA((u8 *) (uintptr_t) *TargetAddress, (u8 *) (uintptr_t) *SourceAddress, (size_t) DataLength);

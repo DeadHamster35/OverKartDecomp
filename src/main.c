@@ -521,6 +521,28 @@ void DMA(u8* dest, u8* romAddr, size_t Size) {
     }
 }
 
+extern void CrashScreenPrint(s32 x, s32 y, const char* fmt, ...);
+
+void CheckExpansionPakAndHalt(void) {
+    u16* fb;
+    s32 i;
+
+    if (osMemSize >= 0x800000) {
+        return;
+    }
+    fb = (u16*) 0x801D6000;
+    for (i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
+        fb[i] = 1;
+    }
+    SetFaultFrameBuffer(fb);
+    CrashScreenPrint(40, 80, "OVERKART");
+    CrashScreenPrint(40, 100, "EXPANSION PAK REQUIRED");
+    osWritebackDCache(fb, SCREEN_WIDTH * SCREEN_HEIGHT * 2);
+    osViSwapBuffer(fb);
+    osViBlack(0);
+    while (1) {}
+}
+
 /**
  * Setup Main segments and framebuffers.
  */
