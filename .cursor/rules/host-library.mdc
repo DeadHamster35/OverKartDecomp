@@ -1,29 +1,20 @@
 ---
-description: Host projects on OverKart Library — read docs/host_overrides.md first.
+description: OverKart5 host on OverKart Library — read AGENTS.md first.
 alwaysApply: true
 ---
 
-# Host Library (LibraryDecomp)
+# Host Library (OverKart5)
 
-Start-here: **`docs/host_overrides.md`**. Shared `*Default` trampolines live in `src/OverKartLibrary/OverKartDefaults.c`; host bodies live outside that directory. Vanilla already calls the `*Default` names. `src/OverKartLibrary/` must be identical across AmpedUpDecomp, OverKartDecomp, and LibraryDecomp.
+Start-here: **`AGENTS.md`**. RAM: **`docs/memory_map.md`**. Override contract: **`docs/host_overrides.md`**.
 
-**OverKart5 host integration** (first host link): **`docs/overkart5_host_handoff.md`**, then `docs/overkart5_integration.md`. If the user says continue on OverKart5, that file is the batch list. Host code lives in `src/OverKart5/`; the twelve host-owned `StockAliases.h` `#define`s get deleted and each `*Default` forwards to the host name.
+This tree’s host is **OverKart5** (`src/OverKart5/`). Defaults body: `src/OverKart5/OverKartDefaults.c`. `OverKartDefaults.h` stays in Library. Vanilla already calls the `*Default` names. `src/OverKartLibrary/` must be identical across AmpedUpDecomp, OverKartDecomp, and LibraryDecomp.
 
-`Code/Protec/Cheat.c` is closed-source and lives outside every repo by design. Never copy it into the tree or commit it — ship only the IDO-built `.o`.
+`Code/Protec/Cheat.c` is closed-source and lives outside every repo. Never copy it into the tree — ship only the IDO-built `.o`.
 
 Work only in **this repo**. Do not edit KimuraDecomp. Sibling `Library/` is historical copy source only.
 
 - NTSC only. Tarmac `ok_HeaderROM` stays `0xBE9178`.
-- Single toolchain: **IDO**. `COMPARE=0`, `AVOID_UB=1`. Native ELF; no Library code DMA.
-- Vanilla C includes `OverKartHooks.h`, not `MainInclude.h`.
-- `ok_FreeSpace` is a temp scratch pad for non-course compressed data. Do not move it onto the course pools.
-- Payload at `0x80400000`; OKHeader BSS at payload RAM_END; may overflow into `0x80500000`, must not reach FB0 at `0x805DA800`.
-- Z at `0x80300000`. FBs at `0x805DA800` (FB0) / `0x80600000` (FB1) / `0x80700000` (FB2). `ok_ObjectPool` is leftover after gfx/audio up to `0x80400000`.
-- `gFaceBuffer` at `0x80625800` growing forward toward Vtx (from `0x80700000` back). Full map: **`docs/host_overrides.md`**.
-- Do not nest leftover stock shape (`USbit`, Shake 0x18, Hud `tx[5]`) unless asked.
-- Do not strip unused Library files. KartCheck / CameraCheck are host-owned.
-- Do not fork `src/OverKartLibrary/`. Host discrepancies live outside that directory. Full rule: `.cursor/rules/shared-overkart-library.mdc`.
-- `GameOffsets.asm` is stock NTSC **RAM** labels (`0x80xxxxxx`), not ROM. `COMPARE=0` / `AVOID_UB=1` moved those objects, so never copy a `.definelabel` value into C, never add it to `undefined_syms.txt`, and never write that RAM literal as if it were live.
-- A `GameOffsets.h` name must resolve to a decomp symbol (struct member, array, function, or the C statement at that text offset).
-- If no matching variable is obvious: look up the name in `GameOffsets.asm` for the stock RAM address, then find that address in the labelled matching decomp (KimuraDecomp `symbols/Stock.map`, `proposed_renames_ram.csv`, `conflicts.csv`, or the function+offset in C). Use the decomp name or statement. Mid-function RAM is a code site (SMC), not BSS.
+- IDO. `COMPARE=0`, `AVOID_UB=1`. Native ELF. Vanilla C includes `OverKartHooks.h`, not `MainInclude.h`.
+- `GameOffsets.asm` is stock NTSC RAM, not live. Never copy a `.definelabel` into C or `undefined_syms.txt`. Resolve names to decomp symbols. Mid-function RAM is SMC, not BSS.
+- `ok_FreeSpace` is non-course scratch. Do not relocate FB or Z. Do not fork `src/OverKartLibrary/`. KartCheck / CameraCheck are host-owned.
 - Approval/review still apply.

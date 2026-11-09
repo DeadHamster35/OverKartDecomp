@@ -1,9 +1,6 @@
-# OverKart RDRAM Memory Map
+# OverKart5 RDRAM / ROM map
 
-Reference for agents integrating a **host** project on LibraryDecomp (OverKart5, Amped Up, new hosts). NTSC (USA) only. Do not invent new banks without asking.
-
-Host override mechanics (which `*Default` to replace, build flags): **`docs/host_overrides.md`**.  
-OverKart5 link steps: **`docs/overkart5_host_handoff.md`**.
+NTSC (USA) only. Do not invent new banks without asking. Override mechanics: **`docs/host_overrides.md`**. Operating rules: **`AGENTS.md`**.
 
 8MB RDRAM. Each color/depth buffer is `320×240×u16` = `0x25800` (150 KB). Banks are 1MB.
 
@@ -54,6 +51,8 @@ OverKart5 link steps: **`docs/overkart5_host_handoff.md`**.
 
 Keep `OKHeader.h` and any ASM mirror in lockstep if you add destination labels.
 
+Host menu storage (`ok5_MenuStorage`) is host BSS in the bank-5 window after `OKHeaderEND`, guarded by `ASSERT((ok5_MenuStorageEnd <= 0x805da800))`. That is the replacement for the removed `ok_Storage`. ROM assets live in `data/overkart5/` and DMA on demand.
+
 ## Course load (pointer directions)
 
 `load_course` / `MapStartupDefault` roughly:
@@ -76,10 +75,18 @@ Keep `OKHeader.h` and any ASM mirror in lockstep if you add destination labels.
 - Face end `>=` `0x80700000` or overlapping Vtx
 - `ObjectMemoryPointer` `>=` `0x80400000`
 
-## Agent rules when adding a host
+## Framebuffer placement (fixed)
 
-- Prefer Library/host text in the main ELF; payload stays at `0x80400000`. If 4MB fills, overflow into expansion RAM per project policy — do not steal FB or course pools.
+FB0 `0x805DA800`, FB1 `0x80600000`, FB2 `0x80700000`, Z `0x80300000`. No two color buffers share a 1 MB bank and none shares a bank with Z. **Do not relocate FB or Z to make room.** Move host data to ROM instead.
+
+## ROM layout
+
+Stock mk64 is 12 MB. Custom content starts at `0xC00000`. `.overkart` ROM starts at `0xC00000` (Library default; wrong for Amped Up). `ok_HeaderROM` stays `0xBE9178`.
+
+## Rules when changing the map
+
+- Prefer Library/host text in the main ELF; payload stays at `0x80400000`. Do not steal FB or course pools.
 - Measure remaining room as `0x805DA800 - OKHeaderEND` (or payload end) after a real link; do not assume bank 5 is empty.
 - Do not relocate Z, FBs, `gFaceBuffer`, or `ok_HeaderROM` for convenience.
-- `GameOffsets.asm` labels are **stock** NTSC RAM from a matching build — not live addresses under `COMPARE=0` / `AVOID_UB=1`. Never copy those literals into C as if they were this ELF’s layout.
+- `GameOffsets.asm` labels are **stock** NTSC RAM from a matching build — not live addresses under `COMPARE=0` / `AVOID_UB=1`.
 - Sibling historical `Library/` is copy source only; live tree is `src/OverKartLibrary/`.

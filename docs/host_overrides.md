@@ -1,28 +1,45 @@
-# Hosting a project on OverKart Library (LibraryDecomp)
+# Hosting a project on OverKart Library
 
 This tree is a mk64 decomp with OverKart Library linked natively (one IDO toolchain). Vanilla C already calls Library. A **host** (OverKart5, Amped Up, a new project) supplies UI, KartCheck/CameraCheck, and any extra objects — it does not re-do Armips ROM hooks.
 
-Start-here for hosts: **this file**. Source of the defaults: `src/OverKartLibrary/OverKartDefaults.c`. Vanilla-safe decls: `src/OverKartLibrary/OverKartHooks.h` (vanilla C must not include `MainInclude.h`).
+Start here for the override contract. Agent operating rules: **`AGENTS.md`**. RAM/ROM map: **`docs/memory_map.md`**. Vanilla-safe decls: `src/OverKartLibrary/OverKartHooks.h` (vanilla C must not include `MainInclude.h`).
 
-**OverKart5 is the first host being linked.** Implementation start-here: `docs/overkart5_host_handoff.md`, then `docs/overkart5_integration.md`.
+`OverKartDefaults.h` stays in Library. The Defaults **body** is host-owned:
+
+- AmpedUpDecomp: `src/AmpedUp/OverKartDefaults.c`
+- OverKartDecomp: `src/OverKart5/OverKartDefaults.c`
+- LibraryDecomp: `src/OverKartDefaults.c`
 
 Sibling `Library/` is the historical GCC/Armips copy. `KimuraDecomp` is the frozen matching tree. Do not edit either from here.
 
 NTSC (USA) only for custom courses. Tarmac `ok_HeaderROM` stays `0xBE9178`.
 
+## This tree (OverKart5)
+
+Host code lives in `src/OverKart5/`. `OVERKART_BUILD=0` is Tarmac Patch (community); `=1` is OverKart (personal). Drive the flag from the Makefile.
+
+`make AMPEDUP_FONT=1` selects AmpedUpFont; default `0` is `LibraryFont` (`assets/OverKartLibrary/NewFont.MIO0`).
+
+`GameOffsets.asm` is stock NTSC RAM (`0x80xxxxxx`), not live addresses: use it only to find the matching decomp symbol or statement, never as the value written in C.
+
+`Code/Protec/Cheat.c` is closed-source and lives outside every repo. Never commit that source; only the compiled IDO `.o` (`lib/private/Cheat.o`). With `OVERKART_BUILD=0`, the object must not be required.
+
+Do not overlay another project's `Library/` onto `src/OverKartLibrary/`. `ok_Storage` / `ok_Knowledge` / `SwopCheck` are gone. Host overflow is `0x80500000`–`0x805DA800` after `OKHeaderEND`.
+
 ## Build
 
 ```
 make AVOID_UB=1 COMPARE=0 -j
+make AVOID_UB=1 COMPARE=0 OVERKART_BUILD=1 -j
 ```
 
-Those are the Makefile defaults. Compare ROM is not a goal. `make AMPEDUP_FONT=1` selects AmpedUpFont; default `0` is `LibraryFont` (`assets/OverKartLibrary/NewFont.MIO0`). Need `baserom.us.z64` in the repo root.
+Those are the Makefile defaults. Compare ROM is not a goal. Need `baserom.us.z64` in the repo root.
 
 ## How a host overrides
 
 Vanilla already JALs the `*Default` names. There is one ELF, so there can be only one definition of each.
 
-Replace **`src/OverKartLibrary/OverKartDefaults.c`** (keep the same function names and signatures) or drop that `.o` from the link and supply your own. Do not add a second `gameCode` next to `gameCodeDefault`.
+Replace the host-owned `OverKartDefaults.c` (keep the same function names and signatures). Do not add a second `gameCode` next to `gameCodeDefault`. Do not put the body back inside `src/OverKartLibrary/`.
 
 Empty bodies (`titleMenuDefault`, `DisplayObjectDefault`, `PrintMenuTest`) are intentional. The host fills them.
 
@@ -30,47 +47,13 @@ Library C calls the `*Default` names directly (Library TUs only — vanilla C in
 
 ## RAM map
 
-8MB RDRAM. Each color/depth buffer is `320×240×u16` = `0x25800` (150 KB). Banks are 1MB.
+See **`docs/memory_map.md`**. Frozen labels:
 
-```
-80000400   main code/data
-801978D0   FreeMemory 768KB — boot seg 2+0xD, then course 6/9, collision table, actors, IceKage
-802578D0   (pool end)
-80280000   ending
-8028DF00   racing + trig + kart textures/palettes
-80300000   Z-buffer
-80325800   gfx output + audio, then ok_ObjectPool (LoadOKData) → 80400000
-80400000   OverKart .overkart + OKHeader BSS  (may enter 80500000, stop before FB0)
-80500000   host / payload overflow   (~872 KB)
-805DA800   FB0   (flush against 80600000)
-80600000   FB1
-80625800   gFaceBuffer → grows forward
-           Vtx (seg 4) ← grows back from 80700000
-80700000   FB2
-80725800   F3DEX + map textures ← from 80800000
-80800000   top
-```
-
-| Range | Use |
-|---|---|
-| `0x801978D0`–`0x802578D0` | 768 KB `FreeMemory` hole. Boot: segment 2 + `0xD`. After `StaticMemoryPointer`: course seg 6/9, collision table, actors, IceKage. |
-| `0x80300000` | `gZBuffer` (`0x25800`) |
-| after Z–`0x80400000` | gfx output + audio, then **`ok_ObjectPool`** (`LoadOKData` / OK objects). `ok_ObjectPoolStart`..`ok_ObjectPoolEnd`. |
-| `0x80400000` then into `0x80500000` | Library `.overkart` then OKHeader BSS. May overflow into bank 5; must not reach FB0 at `0x805DA800`. |
-| `0x80500000`–`0x805DA800` | Host / payload overflow (front of bank 5). |
-| `0x805DA800` | `gFramebuffer0` (`0x25800`, flush against FB1) |
-| `0x80600000` | `gFramebuffer1` |
-| `0x80625800`–`0x80700000` | `gFaceBuffer` grows forward; decoded Vtx (seg 4) grow back from `0x80700000` |
-| `0x80700000` | `gFramebuffer2` |
-| `0x80725800`–`0x80800000` | F3DEX + map textures, `LastMemoryPointer` grows back from `0x80800000` |
-| `ok_FreeSpace` | OKHeader BSS scratch (`0x20000` after `ok_TKMSpace`). Temp pad for **non-course** compressed data (fonts, HUD buttons, banners, ghosts). |
-| `ok_HeaderROM` | `0xBE9178` (Tarmac table). Frozen. |
+- `ok_HeaderROM` `0xBE9178`
+- `ok_FreeSpace` — non-course compressed scratch
+- `ok_ObjectPool` — leftover after gfx/audio up to payload (`LoadOKData`)
 
 `LoadOKData` uses `ObjectMemoryPointer` in `ok_ObjectPool`. `MapStartupDefault` resets course pointers. Keep `OKHeader.h` and `OKHeader.asm` in lockstep if you add dest labels.
-
-Course load (`load_course`): DMA geography (0xF) onto FreeMemory as throwaway → verts (4) from `VertexMemoryPointer` → packed DLs (7) from `LastMemoryPointer` → rewind FreeMemory → eat-own-tail seg 6 → offsets (9) → map textures (5). `MakeCollision` leaves faces in `gFaceBuffer`; the u16 `collision_table` stays on FreeMemory.
-
-Runtime high-water (`CheckCourseMemoryHighWater`): hang if `FreeMemoryPointer` `>` `0x802578D0`, `VertexMemoryPointer` `<` `0x80625800`, `LastMemoryPointer` `<` `0x80725800` (ending/credits: `<` pool end), face end `>=` `0x80700000` or overlapping Vtx, or `ObjectMemoryPointer` `>=` `0x80400000`.
 
 Boot: `init_overkart()` in `src/main.c` DMAs `.overkart` and calls `loadBigFont()`.
 
@@ -78,7 +61,7 @@ Boot: `init_overkart()` in `src/main.c` DMAs `.overkart` and calls `loadBigFont(
 
 ## `*Default` functions
 
-All live in `OverKartDefaults.c` unless noted. “Vanilla site” is the decomp C that already calls them.
+All live in the host-owned `OverKartDefaults.c` unless noted. “Vanilla site” is the decomp C that already calls them.
 
 ### Race / main loop
 
@@ -146,21 +129,7 @@ Dead on purpose: `DetectEmulator` (uncalled). Do not revive BootCode / PreCode D
 
 ## KartCheck / CameraCheck
 
-Unresolved by design. The host project owns them. Do not import OverKart5 `.o` here.
-
-## Other host projects
-
-**OverKart5 (in progress):** `docs/overkart5_host_handoff.md` is the batch list; `docs/overkart5_integration.md` holds the file inventory, `BUILD.asm` patch table, and RAM hazards. Host code lands in `src/OverKart5/`. `GameOffsets.asm` is stock NTSC RAM (`0x80xxxxxx`), not live addresses: use it only to find the matching decomp symbol or statement, never as the value written in C.
-
-The twelve host-owned `#define`s at `StockAliases.h:90-104` get **deleted** as part of that work. The host then defines the real `gameCode` / `allRun` / `titleMenu` / etc., and each `*Default` body forwards to it. Deletion and the host definitions must land together — `OverKartDefaults.c:40` and `SharedFunctions.h:35-39` depend on those aliases today. `MapStartup`, `KWKumo_Alloc_Hook`, and `KWChart_Kumo_Hook` keep their aliases; OverKart5 does not override them.
-
-OverKart5's `OverKartBuild=1` build pulls a **closed-source** object built from `Code/Protec/Cheat.c`, which lives outside every repo on purpose. Never commit that source; only the compiled `.o`.
-
-Amped Up, OverKart5, and new projects stay **guests**. Do not overlay another project's `Library/` onto `src/OverKartLibrary/`. Put project UI, KartCheck, CameraCheck, EEPROM blobs, and extra sprites in the host. Shared Library keeps the Tarmac course runtime.
-
-**Amped Up Library gaps (current):** `docs/ampedup_library_handoff.md` then `docs/ampedup_integration.md`. Fill OverKart Library vs Amped Up’s older fork. Do not overlay that `Library/` tree and do not link the Amped Up host yet.
-
-When Amped Up is later a guest: do not write `0x80600000` as a course/storage pool (FB1), `0x805F0000` as Knowledge (inside FB0), or `0x80410800` as scratch (inside `.overkart`). Host overflow is `0x80500000`–`0x805DA800` after `OKHeaderEND`. Course DLs still grow back from `0x80800000` but must stay above `0x80725800`. `ok_Storage` / `ok_Knowledge` / `SwopCheck` are gone from this tree.
+Unresolved by design. The host project owns them. On this tree they arrive via the private `Cheat.o`.
 
 ## Contracts not to break
 
@@ -169,3 +138,5 @@ When Amped Up is later a guest: do not write `0x80600000` as a course/storage po
 - Player shape already uses Library names (`tire_FL`, `sus`, `up_vector`, Smoke `trx`/`try`/`trz`)
 - Single compiler: **IDO**. `COMPARE=0`, `AVOID_UB=1`
 - Do not strip “unused” Library files; other hosts may still call them
+- `src/OverKartLibrary/` must stay identical across AmpedUpDecomp, OverKartDecomp, and LibraryDecomp
+- Do not copy closed-source `Cheat.c` into the tree

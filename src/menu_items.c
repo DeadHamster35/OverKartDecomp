@@ -1302,28 +1302,55 @@ void InitMKCode(void) {
     s32 why = 0;
     s32 i;
 
+#ifdef DEBUG
+    osSyncPrintf("boot InitMKCode\n");
+#endif
     if (FirstTimeOnlyFlg) {
         FirstTimeOnlyFlg = why;
         VSResultCursor = 10;
         TaResultCursor = 5;
         BtResultCursor = 10;
+#ifdef DEBUG
+        osSyncPrintf("boot eeprom probe\n");
+#endif
         if (osEepromProbe(&SIEventMesgQueue) != 0) {
+#ifdef DEBUG
+            osSyncPrintf("boot stock eeprom\n");
+#endif
             LoadFunc800B4A10Default();
+#ifdef DEBUG
+            osSyncPrintf("boot stock eeprom done\n");
+#endif
         }
+#ifdef DEBUG
+        osSyncPrintf("boot contpack\n");
+#endif
         if (CheckContPackMenu() != 0) {
             KBGNumber = CONTROLLER_PAK_MENU;
         }
     }
     if (KBGNumber == LOGO_INTRO_MENU) {
+#ifdef DEBUG
+        osSyncPrintf("boot logo dma\n");
+#endif
         FreeMemoryPointer = StaticMemoryPointer;
         SetSegment(6, LoadPressData((u8*) STARTUP_LOGO_ROM_START, (u8*) STARTUP_LOGO_ROM_END));
+#ifdef DEBUG
+        osSyncPrintf("boot logo dma done\n");
+#endif
     }
     FreeMemoryPointer = StaticMemoryPointer;
     // Hypothetically, this should be a ptr... But only hypothetically.
+#ifdef DEBUG
+    osSyncPrintf("boot alloc\n");
+#endif
     TexBuff = AllocateMemory(0x000900B0);
     MeltBuff = AllocateMemory(0x0000CE00);
     KWork = (u8*) AllocateMemory(SCREEN_WIDTH * SCREEN_HEIGHT);
     KdlBuff = (struct_8018EE10_entry*) AllocateMemory(0x00001000);
+#ifdef DEBUG
+    osSyncPrintf("boot alloc done\n");
+#endif
     AllocFlagobj();
     FBClearFlg = 0;
 
@@ -1340,7 +1367,13 @@ void InitMKCode(void) {
     D_800DC5EC->Width = SCREEN_WIDTH;
     D_800DC5EC->Height = SCREEN_HEIGHT;
     KBGChange = FADE_MODE_MAIN;
+#ifdef DEBUG
+    osSyncPrintf("boot TexDataChange\n");
+#endif
     TexDataChange();
+#ifdef DEBUG
+    osSyncPrintf("boot TexDataChange done\n");
+#endif
 
     for (i = 0; i < 4; i++) {
         NaPlyEngStop((u8) i);
@@ -1352,6 +1385,9 @@ void InitMKCode(void) {
 
     SettingSoundOutMode();
     osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
+#ifdef DEBUG
+    osSyncPrintf("boot InitMKCode done\n");
+#endif
 }
 
 s32 CheckContPackMenu(void) {
@@ -2362,6 +2398,15 @@ void DoCheckerFlag(struct GfxPool* arg0, UNUSED s32 arg1) {
 }
 
 void DoGameSelect(struct GfxPool* Pool) {
+#ifdef DEBUG
+    {
+        static s32 sOnce;
+        if (!sOnce) {
+            sOnce = 1;
+            osSyncPrintf("boot DoGameSelect kbg=%d\n", KBGNumber);
+        }
+    }
+#endif
     Modelingnum = 0;
     Effectcount = 0;
     gSPViewport(DisplayListHead++, VIRTUAL_TO_PHYSICAL(&D_802B8880));
@@ -2369,7 +2414,25 @@ void DoGameSelect(struct GfxPool* Pool) {
     guOrtho(&Pool->MTXScreen, 0.0f, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1, 0.0f, -100.0f, 100.0f, 1.0f);
     gSPMatrix(DisplayListHead++, &Pool->MTXScreen, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     gSPDisplayList(DisplayListHead++, D_02007650);
+#ifdef DEBUG
+    {
+        static s32 sOnce;
+        if (!sOnce) {
+            sOnce = 1;
+            osSyncPrintf("boot DoGameSelect TexDataChange\n");
+        }
+    }
+#endif
     TexDataChange();
+#ifdef DEBUG
+    {
+        static s32 sOnce;
+        if (!sOnce) {
+            sOnce = 1;
+            osSyncPrintf("boot DoGameSelect AfterFade\n");
+        }
+    }
+#endif
     VCAutoChanger(4, VcColorNum, VcColorStep);
     VCAutoChanger(5, &VcColorNum[1], &VcColorStep[1]);
     InitChangeTexData();
@@ -2391,7 +2454,25 @@ void DoGameSelect(struct GfxPool* Pool) {
             DoChangeTexData();
             break;
     }
+#ifdef DEBUG
+    {
+        static s32 sOnce;
+        if (!sOnce) {
+            sOnce = 1;
+            osSyncPrintf("boot TitleMenu\n");
+        }
+    }
+#endif
     TitleMenuDefault();
+#ifdef DEBUG
+    {
+        static s32 sOnce;
+        if (!sOnce) {
+            sOnce = 1;
+            osSyncPrintf("boot TitleMenu done\n");
+        }
+    }
+#endif
     FadeMain();
     KFlashCounter += 1;
     gDPPipeSync(DisplayListHead++);

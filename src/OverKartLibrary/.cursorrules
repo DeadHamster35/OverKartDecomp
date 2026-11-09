@@ -1,40 +1,18 @@
-# OverKart Library (LibraryDecomp copy)
+# OverKart Library (shared copy)
 
 This directory is the live OverKart Library, compiled with **IDO** and linked into the mk64 ELF. It is not the GCC/Armips sibling `Library/` tree.
 
-This directory must match the same folder in AmpedUpDecomp, OverKartDecomp, and LibraryDecomp. `OverKartDefaults.c` stays the shared `*Default` trampolines; host bodies forward from there and live outside this folder. Vanilla already calls those symbols. See **`docs/host_overrides.md`**.
+Read **`AGENTS.md`** at the repo root. RAM: `docs/memory_map.md`. Host contract: `docs/host_overrides.md`.
+
+This directory must match the same folder in AmpedUpDecomp, OverKartDecomp, and LibraryDecomp. `OverKartDefaults.h` stays here. `OverKartDefaults.c` does **not** — host bodies live outside this folder. Vanilla already calls the `*Default` names.
 
 Vanilla C must include `OverKartHooks.h`, not `MainInclude.h`.
 
-# Working Rules
+## Hard constraints
 
-## Data contract
-
-Treat the Tarmac → Library → host data contract as frozen. Course headers, object layouts, and `ok_HeaderROM` at `0xBE9178` are shared across C# writers and C readers.
-
-## RAM map
-
-- Payload (`.overkart`) at `0x80400000`. OKHeader BSS may overflow into `0x80500000`; must not reach FB0 at `0x805DA800`.
-- Z at `0x80300000`. FBs at `0x805DA800` (FB0) / `0x80600000` (FB1) / `0x80700000` (FB2).
-- `gFaceBuffer` at `0x80625800` growing forward. Vtx from `0x80700000` back. DLs from `0x80800000` back.
-- `FreeMemory` 768 KB at `0x801978D0`–`0x802578D0`. `ok_ObjectPool` is leftover to `0x80400000` for `LoadOKData`.
-- `ok_FreeSpace` is a temp scratch pad for **non-course** compressed data. Do not move it onto the course pools.
-- Full map: **`docs/host_overrides.md`**.
-
-Keep `OKHeader.h` and `OKHeader.asm` in lockstep. Do not invent new RAM without asking.
-
-## Regions
-
-NTSC (USA) only for Tarmac and custom levels. Do not mix region offsets.
-
-## Library bloat
-
-Do not clean, modernize, or delete "unused" Library code. Other hosts may still depend on it.
-
-## Stack and style
-
-N64 C is IDO. Do not switch to GCC. Do not change ABI or microcode unless asked.
-
-## Shared copy
-
-This directory must match the same folder in AmpedUpDecomp, OverKartDecomp, and LibraryDecomp. Do not fork, specialize, or host-patch files here. Host differences belong outside this directory (`src/AmpedUp/`, `src/OverKart5/`, vanilla hooks). KartCheck and CameraCheck are host-owned.
+- Do not fork, specialize, or host-patch files here. Host differences belong in `src/AmpedUp/`, `src/OverKart5/`, vanilla hooks, or the host Defaults body.
+- Tarmac course headers, object layouts, and `ok_HeaderROM` `0xBE9178` are frozen.
+- Do not invent new RAM without asking. Do not relocate FB or Z. `ok_FreeSpace` is non-course scratch.
+- NTSC only for Tarmac and custom levels.
+- Do not clean, modernize, or delete “unused” Library code. KartCheck and CameraCheck are host-owned.
+- IDO only. Do not switch to GCC. Do not change ABI or microcode unless asked.

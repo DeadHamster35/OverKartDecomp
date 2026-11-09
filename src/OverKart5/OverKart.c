@@ -1,6 +1,10 @@
 #include "MainInclude.h"
 #include "OKInclude.h"
 
+#ifdef DEBUG
+extern void osSyncPrintf(const char* fmt, ...);
+#endif
+
 //OverKart6
 
 extern unsigned short Net[];
@@ -101,9 +105,18 @@ void SetMenuPanels(int SwitchMode)
 }
 void OKSetup(void)
 {
+#ifdef DEBUG
+	osSyncPrintf("boot OKSetup\n");
+#endif
 	LoadLogo();
+#ifdef DEBUG
+	osSyncPrintf("boot LoadLogo\n");
+#endif
 	LoadArrows();
 	LoadHeaderOffsets();
+#ifdef DEBUG
+	osSyncPrintf("boot LoadHeaderOffsets\n");
+#endif
 	LoadHudButtons();
 	SetupFontF3D();
 	
@@ -111,6 +124,9 @@ void OKSetup(void)
 	
 	
 	LoadEEPROM((Uint)&SaveGame);
+#ifdef DEBUG
+	osSyncPrintf("boot LoadEEPROM\n");
+#endif
 	
 	CheckContPackMenu();
 	
@@ -158,6 +174,9 @@ void OKSetup(void)
 	
 	SetMenuPanels(RACESWITCH);
 	StartupSwitch = 1;
+#ifdef DEBUG
+	osSyncPrintf("boot OKSetup done\n");
+#endif
 }
 bool CheckEndGame()
 {

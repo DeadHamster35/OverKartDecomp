@@ -195,6 +195,10 @@ s16 Videoframe = 0;
 UNUSED s16 D_800DC590 = 0;
 f32 Timer = 0.0f;
 f32 GameTimer = 0.0f;
+#ifdef DEBUG
+static s32 sBootFrame;
+extern char MenuChanged;
+#endif
 
 void SysCreateThread(OSThread* thread, OSId id, void (*entry)(void*), void* arg, void* sp, OSPri pri) {
     thread->next = NULL;
@@ -209,6 +213,7 @@ void MainFunc(void) {
     osInitialize();
 #ifdef DEBUG
     isPrintfInit(); // init osSyncPrintf
+    osSyncPrintf("boot MainFunc\n");
 #endif
     SysCreateThread(&IdleThread, 1, &Thread1Idle, NULL, IdleThreadStack + ARRAY_COUNT(IdleThreadStack), 100);
     osStartThread(&IdleThread);
@@ -231,6 +236,9 @@ void Thread1Idle(void* arg) {
     osViBlack(true);
     osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
     osCreatePiManager(OS_PRIORITY_PIMGR, &PIMesgQueue, PIMesgBuf, ARRAY_COUNT(PIMesgBuf));
+#ifdef DEBUG
+    osSyncPrintf("boot idle vi/pi\n");
+#endif
     ResertType = (s16) osResetType;
     CreateDebugThread();
     StartDebugThread();
@@ -461,14 +469,39 @@ void BeginGameframe(void) {
  * Selects the Next framebuffer to be rendered and displayed.
  */
 void FlushDisplaylist(void) {
+#ifdef DEBUG
+    if (sBootFrame < 8) {
+        osSyncPrintf("boot f%d flush wait gfx\n", sBootFrame);
+    }
+#endif
     SetGraphCPUTime(BEFORE_DISPLAY_LISTS);
     osRecvMesg(&GfxVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+#ifdef DEBUG
+    if (sBootFrame < 8) {
+        osSyncPrintf("boot f%d flush gfx ack\n", sBootFrame);
+    }
+#endif
     StartGraphicTask(&DynamicP->SPTask);
+#ifdef DEBUG
+    if (sBootFrame < 8) {
+        osSyncPrintf("boot f%d flush task go\n", sBootFrame);
+    }
+#endif
     SetGraphCPUTime(AFTER_DISPLAY_LISTS);
     osRecvMesg(&GameVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+#ifdef DEBUG
+    if (sBootFrame < 8) {
+        osSyncPrintf("boot f%d flush vi1\n", sBootFrame);
+    }
+#endif
     osViSwapBuffer((void*) PHYSICAL_TO_VIRTUAL(CfbPtrs[DispFrame]));
     SetGraphCPUTime(THREAD5_END);
     osRecvMesg(&GameVblankQueue, &MainReceivedMesg, OS_MESG_BLOCK);
+#ifdef DEBUG
+    if (sBootFrame < 8) {
+        osSyncPrintf("boot f%d flush vi2\n", sBootFrame);
+    }
+#endif
     SetFaultFrameBuffer(CfbPtrs[DispFrame]);
 
     if (++DispFrame == 3) {
@@ -497,12 +530,21 @@ void InitMkcode(void) {
 }
 
 void InitOverkart(void) {
+#ifdef DEBUG
+    osSyncPrintf("boot InitOverkart dma rom=%x ram=%x\n", (u32) SEG_OVERKART_ROM_SIZE, (u32) SEG_OVERKART_SIZE);
+#endif
     bzero((void*) SEG_OVERKART, SEG_OVERKART_SIZE);
     osWritebackDCacheAll();
     DMA((u8*) SEG_OVERKART, (u8*) SEG_OVERKART_ROM_START, SEG_OVERKART_ROM_SIZE);
     osInvalICache((void*) SEG_OVERKART, SEG_OVERKART_SIZE);
     osInvalDCache((void*) SEG_OVERKART, SEG_OVERKART_SIZE);
+#ifdef DEBUG
+    osSyncPrintf("boot InitOverkart dma done\n");
+#endif
     LoadBigFont();
+#ifdef DEBUG
+    osSyncPrintf("boot InitOverkart font\n");
+#endif
 }
 
 void DMA(u8* dest, u8* romAddr, size_t Size) {
@@ -521,28 +563,6 @@ void DMA(u8* dest, u8* romAddr, size_t Size) {
     }
 }
 
-extern void CrashScreenPrint(s32 x, s32 y, const char* fmt, ...);
-
-void CheckExpansionPakAndHalt(void) {
-    u16* fb;
-    s32 i;
-
-    if (osMemSize >= 0x800000) {
-        return;
-    }
-    fb = (u16*) 0x801D6000;
-    for (i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
-        fb[i] = 1;
-    }
-    SetFaultFrameBuffer(fb);
-    CrashScreenPrint(40, 80, "OVERKART");
-    CrashScreenPrint(40, 100, "EXPANSION PAK REQUIRED");
-    osWritebackDCache(fb, SCREEN_WIDTH * SCREEN_HEIGHT * 2);
-    osViSwapBuffer(fb);
-    osViBlack(0);
-    while (1) {}
-}
-
 /**
  * Setup Main segments and framebuffers.
  */
@@ -554,8 +574,13 @@ void InitializeSystemWorks(void) {
     uintptr_t allocatedMemory;
     UNUSED s32 unknown_padding;
 
+#ifdef DEBUG
+    osSyncPrintf("boot InitMkcode\n");
+#endif
     InitMkcode();
-    CheckExpansionPakAndHalt();
+#ifdef DEBUG
+    osSyncPrintf("boot InitMkcode done\n");
+#endif
     InitOverkart();
     LastMemoryPointer = SEG_RACING;
     SetSegment(0, (void*) SEG_START);
@@ -597,6 +622,9 @@ void InitializeSystemWorks(void) {
     StaticMemoryPointer = FreeMemoryPointer;
     VertexMemoryPointer = VERTEX_MEMORY_TOP;
     ObjectMemoryPointer = (uintptr_t) ok_ObjectPoolStart;
+#ifdef DEBUG
+    osSyncPrintf("boot InitializeSystemWorks done\n");
+#endif
 }
 
 /**
@@ -605,7 +633,14 @@ void InitializeSystemWorks(void) {
  */
 void BootSequence(void) {
     NewSequenceMode = 0; // = START_MENU_FROM_QUIT?
+#ifdef DEBUG
+    osSyncPrintf("boot BootSequence BeginDrawing\n");
+#endif
+    BeginDrawing();
     SoftwareBlanking(0);
+#ifdef DEBUG
+    osSyncPrintf("boot BootSequence blanked\n");
+#endif
 }
 
 void RaceSequence(void) {
@@ -934,10 +969,55 @@ void ExecuteSequence(void) {
         case PLAYER_SELECT_MENU_FROM_QUIT:
         case COURSE_SELECT_MENU_FROM_QUIT:
             // Display black
+#ifdef DEBUG
+            {
+                static s32 sTitleExecPrinted;
+                if (!sTitleExecPrinted) {
+                    sTitleExecPrinted = 1;
+                    osSyncPrintf("boot title exec\n");
+                }
+            }
+#endif
             osViBlack(0);
+#ifdef DEBUG
+            {
+                static s32 sOnce;
+                if (!sOnce) {
+                    sOnce = 1;
+                    osSyncPrintf("boot osViBlack\n");
+                }
+            }
+#endif
             UpdateController();
+#ifdef DEBUG
+            {
+                static s32 sOnce;
+                if (!sOnce) {
+                    sOnce = 1;
+                    osSyncPrintf("boot UpdateController\n");
+                }
+            }
+#endif
             BeginDrawing();
+#ifdef DEBUG
+            {
+                static s32 sOnce;
+                if (!sOnce) {
+                    sOnce = 1;
+                    osSyncPrintf("boot BeginDrawing\n");
+                }
+            }
+#endif
             DoGameSelect(DynamicP);
+#ifdef DEBUG
+            {
+                static s32 sOnce;
+                if (!sOnce) {
+                    sOnce = 1;
+                    osSyncPrintf("boot DoGameSelect done\n");
+                }
+            }
+#endif
 #if DVDL
             display_dvdl();
 #endif
@@ -952,7 +1032,18 @@ void ExecuteSequence(void) {
             EndingSequence();
             break;
     }
+#ifdef DEBUG
+    if (sBootFrame < 8) {
+        osSyncPrintf("boot f%d PrintMenu MenuChanged=%d GameState=%d\n", sBootFrame, MenuChanged,
+                     GameState);
+    }
+#endif
     PrintMenuFunctionDefault();
+#ifdef DEBUG
+    if (sBootFrame < 8) {
+        osSyncPrintf("boot f%d PrintMenu done\n", sBootFrame);
+    }
+#endif
 }
 
 void YieldRSPTask(void) {
@@ -1117,6 +1208,9 @@ void Mainproc(UNUSED void* arg0) {
     for (i = 0; i < 19200; i++) {
         framebuffer1[i] = 0;
     }
+#ifdef DEBUG
+    osSyncPrintf("boot Mainproc fb\n");
+#endif
     SetupMessagequeue();
     InitializeSystemWorks();
 
@@ -1126,6 +1220,9 @@ void Mainproc(UNUSED void* arg0) {
     SysCreateThread(&GameLoopThread, 5, &Gameproc, 0, GameLoopThreadStack + ARRAY_COUNT(GameLoopThreadStack),
                   10);
     osStartThread(&GameLoopThread);
+#ifdef DEBUG
+    osSyncPrintf("boot Mainproc threads\n");
+#endif
 
     while (true) {
         osRecvMesg(&IntrMesgQueue, &msg, OS_MESG_BLOCK);
@@ -1166,8 +1263,14 @@ void InitialMapselectSequence(void) {
 
 void InitialTitleSequence(void) {
     InitMKCode();
+#ifdef DEBUG
+    osSyncPrintf("boot title after InitMKCode\n");
+#endif
     ScreenSplitA = SCREEN_MODE_1P;
     InititalPerspective();
+#ifdef DEBUG
+    osSyncPrintf("boot title done\n");
+#endif
 }
 
 /**
@@ -1176,6 +1279,9 @@ void InitialTitleSequence(void) {
  *
  */
 void InitializeSequence(void) {
+#ifdef DEBUG
+    osSyncPrintf("boot seq %d\n", GameState);
+#endif
     switch (GameState) {
         case START_MENU_FROM_QUIT:
             InitialTitleSequence();
@@ -1210,9 +1316,15 @@ void InitializeSequence(void) {
 }
 
 void Gameproc(UNUSED void* arg) {
+#ifdef DEBUG
+    osSyncPrintf("boot Gameproc\n");
+#endif
     osCreateMesgQueue(&GfxVblankQueue, GfxMesgBuf, 1);
     osCreateMesgQueue(&GameVblankQueue, &GameMesgBuf, 1);
     InitControllers();
+#ifdef DEBUG
+    osSyncPrintf("boot controllers\n");
+#endif
     if (!ResertType) {
         InitializeFirstOnce();
     }
@@ -1231,6 +1343,9 @@ void Gameproc(UNUSED void* arg) {
     InitialGameframe();
     ReadControllers();
     NaiInitInterface();
+#ifdef DEBUG
+    osSyncPrintf("boot Gameproc loop\n");
+#endif
 
     while (true) {
         NasAudioInput();
@@ -1244,8 +1359,24 @@ void Gameproc(UNUSED void* arg) {
         BeginGameframe();
         ReadControllers();
         ExecuteSequence();
+#ifdef DEBUG
+        if (sBootFrame < 8) {
+            osSyncPrintf("boot f%d EndDrawing\n", sBootFrame);
+        }
+#endif
         EndDrawing();
+#ifdef DEBUG
+        if (sBootFrame < 8) {
+            osSyncPrintf("boot f%d flush start\n", sBootFrame);
+        }
+#endif
         FlushDisplaylist();
+#ifdef DEBUG
+        if (sBootFrame < 8) {
+            osSyncPrintf("boot f%d flush done\n", sBootFrame);
+            sBootFrame++;
+        }
+#endif
         AllRunDefault();
     }
 }

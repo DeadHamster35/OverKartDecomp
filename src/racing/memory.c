@@ -108,9 +108,26 @@ void* GetSegment(s32 segment) {
  * @brief converts an RSP segment + Offset Address to a normal memory Address
  */
 void* SegmentToVirtual(const void* Addr) {
-    size_t segment = (uintptr_t) Addr >> 24;
-    size_t Offset = (uintptr_t) Addr & 0x00FFFFFF;
+    uintptr_t addr = (uintptr_t) Addr;
+    size_t segment;
+    size_t Offset;
 
+    /* K0/K1 (payload at 0x80400000, main RAM at 0x80000000) are already virtual.
+     * SegmentTable only has 16 slots; treating 0x80 as a segment index is OOB. */
+    if (addr >= 0x80000000U) {
+#ifdef DEBUG
+        {
+            static s32 sOnce;
+            if (!sOnce) {
+                sOnce = 1;
+                osSyncPrintf("boot SegmentToVirtual kseg %x\n", (u32) addr);
+            }
+        }
+#endif
+        return (void*) Addr;
+    }
+    segment = addr >> 24;
+    Offset = addr & 0x00FFFFFF;
     return (void*) ((SegmentTable[segment] + Offset) | 0x80000000);
 }
 

@@ -1,8 +1,38 @@
 ---
-description: Require explicit user approval before any file changes
+description: Require explicit user approval before any file change, and user review of every change
 alwaysApply: true
 ---
 
-# Require Approval Before Changes
+# Require Approval and Review for Every Change
 
-Do not make changes to any files without first confirming approval. Do not delete files without confirming approval. Do not modify or add any code without explicit manual review and approval by the User.
+Applies to **any and all** files in this repository — C, headers, ASM, `Makefile`,
+`mk64.ld`, YAML, scripts, docs, and these rule files. No exception for "small",
+"obvious", "temporary", or "just a doc".
+
+## Before changing anything
+
+1. State which files you will create, edit, rename, or delete.
+2. State what will change and why.
+3. Wait for **explicit user approval**.
+
+An approval given for an earlier batch is not approval for this one. Do not create,
+edit, rename, or delete a file, and do not add or modify code, before approval.
+
+## After changing anything
+
+Every change is **submitted to the user for review** before it is treated as done:
+
+- Present the full diff of what was actually changed.
+- List every file touched, including files added or deleted.
+- Do not self-approve, do not report the work complete, and do not begin the next
+  batch until the user has reviewed.
+- "Go ahead and implement" authorizes the edit. It never waives the review.
+
+If anything was changed that was not approved, say so in the review and offer to revert it.
+
+## Scope
+
+- One approved batch at a time. No unapproved extras bundled in.
+- No drive-by refactors, formatting passes, or deletion of code that looks unused.
+- Temporary diagnostic code (progress meters, debug pokes) is a change too: approval
+  to add, review to remove.
