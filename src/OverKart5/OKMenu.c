@@ -844,8 +844,11 @@ void TitleMenu()
 
      #endif
      
-     LoadFont();
-     PrintString(10,200,VersionString);
+     if (MenuChanged == 10)
+     {
+          LoadFont();
+          PrintString(10,200,VersionString);
+     }
 
 
 
@@ -1320,25 +1323,7 @@ void MapSelectMenu(short PlayerIndex)
      *(int*)(&CharacterGridIsSelected) = 0;
      if (HotSwapID > 0)
      {
-          CourseValue = -1;
-          GPCourseIndex = 0;
-          switch(GameMode)
-          {
-               //GRAND PRIX
-
-               case 0:
-               {
-                    CourseValue = (CupSelect * 4);                    
-                    break;
-               }
-               case 1:
-               case 2:
-               case 3:
-               {
-                    CourseValue = (CupSelect * 4) + CourseSelect;
-                    break;
-               }
-          }
+          SetHotSwapCourseValue();
      }
      else
      {

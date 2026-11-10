@@ -1679,15 +1679,18 @@ void MSelController(struct Controller* arg0, u16 controllerIdx) {
     if (!FadeChecker()) {
         switch (MenuScreenA) {
             case SUB_MENU_MAP_SELECT_CUP:
+                if (AsmCupCount == 15) {
+                    CupSelect = MUSHROOM_CUP;
+                }
                 if ((btnAndStick & R_JPAD) != 0) {
-                    if (CupSelect < SPECIAL_CUP) {
+                    if ((AsmCupCount < 15) && (CupSelect < SPECIAL_CUP)) {
                         BeforeCupSelect = CupSelect;
                         ++CupSelect;
                         FlashCounterReset();
                         PlaySound(SOUND_MENU_CURSOR_MOVE);
                     }
                 }
-                if (((btnAndStick & L_JPAD) != 0) && (CupSelect > MUSHROOM_CUP)) {
+                if (((btnAndStick & L_JPAD) != 0) && (AsmCupCount < 15) && (CupSelect > MUSHROOM_CUP)) {
                     BeforeCupSelect = CupSelect;
                     --CupSelect;
                     FlashCounterReset();
@@ -1700,7 +1703,7 @@ void MSelController(struct Controller* arg0, u16 controllerIdx) {
                     SetFadeOutB();
                     PlaySound(SOUND_MENU_GO_BACK);
                 } else if ((btnAndStick & A_BUTTON) != 0) {
-                    if (GameMode != GRAND_PRIX) {
+                    if ((GameMode != GRAND_PRIX) || (AsmCupCount == 0)) {
                         MenuScreenA = SUB_MENU_MAP_SELECT_COURSE;
                         PlaySound(SOUND_MENU_SELECT);
                     } else {
@@ -1752,7 +1755,11 @@ void MSelController(struct Controller* arg0, u16 controllerIdx) {
                 if ((btnAndStick & B_BUTTON) != 0) {
                     switch (GameMode) {
                         case GRAND_PRIX:
-                            MenuScreenA = SUB_MENU_MAP_SELECT_CUP;
+                            if (AsmCupCount == 0) {
+                                MenuScreenA = SUB_MENU_MAP_SELECT_COURSE;
+                            } else {
+                                MenuScreenA = SUB_MENU_MAP_SELECT_CUP;
+                            }
                             break;
                         case BATTLE:
                             MenuScreenA = SUB_MENU_MAP_SELECT_BATTLE_COURSE;
@@ -1949,6 +1956,9 @@ void KVarInit(s32 menuSelection) {
             BeforeCupSelect = 0;
             if (GameMode == GRAND_PRIX) {
                 CourseSelect = 0;
+                if (AsmCupCount == 15) {
+                    CupSelect = MUSHROOM_CUP;
+                }
             }
 
             for (i = 0; i < ARRAY_COUNT(PlayerGPpoints); i++) {

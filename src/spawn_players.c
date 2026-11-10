@@ -25,6 +25,7 @@
 #include "menu_items.h"
 #include "effects.h"
 #include "decode.h"
+#include "OverKart5Hooks.h"
 
 f32 GridX[8];
 f32 GridZ[8];
@@ -466,7 +467,7 @@ void MakeRank(void) {
         0, 1, 2, 3, 4, 5, 6, 7,
     };
 
-    if (((CourseSelect == COURSE_ONE) && (D_8016556E == 0)) || (DemoFlag == 1) ||
+    if ((AsmCupCount == 0) || ((CourseSelect == COURSE_ONE) && (D_8016556E == 0)) || (DemoFlag == 1) ||
         (TitleMode == DEBUG_MENU_OPTION_SELECTED)) {
         for (i = 0; i < NUM_PLAYERS; i++) {
             Kartrank[i] = sp2C[i];
@@ -484,7 +485,7 @@ UNUSED s16 D_800E43A8 = 0;
 
 void MarioGP1P(f32* arg0, f32* arg1, f32 Arg2) {
     MakeRank();
-    if (((CourseSelect == COURSE_ONE) && (D_8016556E == 0)) || (DemoFlag == 1) ||
+    if ((AsmCupCount == 0) || ((CourseSelect == COURSE_ONE) && (D_8016556E == 0)) || (DemoFlag == 1) ||
         (TitleMode == DEBUG_MENU_OPTION_SELECTED)) {
         s16 rand;
         s16 i;
@@ -608,7 +609,8 @@ void TimeAttack(f32* arg0, f32* arg1, f32 Arg2) {
 
 void MarioGP2P(f32* arg0, f32* arg1, f32 Arg2) {
     MakeRank();
-    if ((CourseSelect == COURSE_ONE) || (DemoFlag == 1) || (TitleMode == DEBUG_MENU_OPTION_SELECTED)) {
+    if ((AsmCupCount == 0) || (CourseSelect == COURSE_ONE) || (DemoFlag == 1) ||
+        (TitleMode == DEBUG_MENU_OPTION_SELECTED)) {
         s16 rand;
         s16 i;
 

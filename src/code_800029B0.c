@@ -190,7 +190,7 @@ void InitialRaceSequence(void) {
         MirrorValue = 1.0f;
     }
     if (GameMode == GRAND_PRIX) {
-        CourseID = CupCourseOrder[CupSelect][CourseSelect];
+        CourseID = GetGPCourseID();
     }
     ScreenSplitA = ScreenSplitB;
     /* HotSwap GP pins CourseID to 0, so the stock skip would reuse the first

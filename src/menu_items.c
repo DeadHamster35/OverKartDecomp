@@ -2323,9 +2323,6 @@ void KawanoDraw(s32 arg0) {
 
 void LogoProc(void) {
     Mtx* test;
-    f32 var_f26;
-    s32 var_s2;
-    s32 thing;
     test = &DynamicP->MTXObject[0];
     gSPMatrix(DisplayListHead++, &DynamicP->MTXScreen, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     gSPMatrix(DisplayListHead++, &DynamicP->MTXLookAt[0], G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -2341,24 +2338,7 @@ void LogoProc(void) {
     gSPDisplayList(DisplayListHead++, 0x080052A0);
     
     gSPPopMatrix(DisplayListHead++, G_MTX_MODELVIEW);
-    if (LogoDelaySize > 0) {
-        var_f26 = LogoYangSpeed;
-        if (var_f26 > 10.0f) {
-            var_f26 = 10.0f;
-        }
-        for (var_s2 = 0, thing = 0xC0; var_s2 < 0xC; var_s2++, thing -= 0x10) {
-            guRotate(test, 0.0f, 1.0f, 0.0f, 0.0f);
-            guRotate(test + 1, (var_s2 + 1) * LogoDelaySize * var_f26, 0.0f, 1.0f, 0.0f);
-            guScale(test + 2, 1.0f, 1.0f, 2.0f);
-            gSPMatrix(DisplayListHead++, test++, G_MTX_PUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-            gSPMatrix(DisplayListHead++, test++, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-            gSPMatrix(DisplayListHead++, test++, G_MTX_NOPUSH | G_MTX_MUL | G_MTX_MODELVIEW);
-            gDPSetRenderMode(DisplayListHead++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
-            gDPSetEnvColor(DisplayListHead++, 0x00, 0x00, 0x00, thing);
-            gSPDisplayList(DisplayListHead++, StartupTextureDL4);
-            gSPPopMatrix(DisplayListHead++, G_MTX_MODELVIEW);
-        }
-    }
+    /* Stock N ghost trail (StartupTextureDL4) is not valid for the Kimura logo. */
 }
 
 void DoNintenLogo(struct GfxPool* arg0, UNUSED s32 arg1) {
@@ -9153,7 +9133,7 @@ void MselSub2(ObjBlock* arg0) {
     gDPSetCombineMode(DisplayListHead++, G_CC_DECALRGBA, G_CC_DECALRGBA);
     for (someIndex = 0; someIndex < NUM_COURSES_PER_CUP; someIndex++) {
         if ((someIndex == CourseSelect) && (MenuScreenA > SUB_MENU_MAP_SELECT_CUP) &&
-            (GameMode != GRAND_PRIX)) {
+            ((GameMode != GRAND_PRIX) || (AsmCupCount == 0))) {
             if ((MenuScreenA == SUB_MENU_MAP_SELECT_COURSE) ||
                 (MenuScreenA == SUB_MENU_MAP_SELECT_BATTLE_COURSE)) {
                 DisplayListHead = FlashRectangle2(
@@ -9185,7 +9165,7 @@ void MselSub4(ObjBlock* arg0) {
     gDPPipeSync(DisplayListHead++);
     gDPSetRenderMode(DisplayListHead++, G_RM_OPA_SURF, G_RM_OPA_SURF2);
     gDPSetCombineMode(DisplayListHead++, G_CC_DECALRGBA, G_CC_DECALRGBA);
-    if (GameMode == GRAND_PRIX) {
+    if ((GameMode == GRAND_PRIX) && (AsmCupCount != 0)) {
         if (MenuScreenA != SUB_MENU_MAP_SELECT_OK) {
             for (var_s0 = 0; var_s0 < 4; var_s0++) {
                 // Wut?
@@ -10399,7 +10379,7 @@ void DOBMselAnimeMapman(ObjBlock* Item) {
     for (i = 0; i < 4; i++) {
         _items[i] = GetOBJBlockPtr(i + 0x5F);
     }
-    if (GameMode != 0) {
+    if ((GameMode != 0) || (AsmCupCount == 0)) {
         if (MenuScreenA != SUB_MENU_MAP_SELECT_CUP) {
             Item->Pattern = 0;
             Item->Work2 = 0;
@@ -10895,7 +10875,7 @@ void DOBGamePoint(ObjBlock* arg0) {
             if (arg0->Work1 <= 0) {
                 arg0->Pattern = 0x0000000A;
                 arg0->Work1 = 0;
-                if (CourseSelect == 3) {
+                if (CourseSelect >= AsmCupCount) {
                     for (var_a1 = 0; var_a1 < 8; var_a1++) {
                         if (NameToNum[DPointsRank[var_a1]] < MenuMultiplayerSelection) {
                             SaveCupStatus(var_a1);

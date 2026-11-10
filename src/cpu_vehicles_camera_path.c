@@ -2256,7 +2256,7 @@ void OgawaCameraInit(s32 cameraIndex) {
 
     D_801646CC = 0;
     KoteiGakakuMode[cameraIndex] = GakakuMode[cameraIndex];
-    if ((GameMode != 1) && ((CourseSelect == COURSE_ONE) || (DemoFlag == (u16) 1))) {
+    if ((GameMode != 1) && ((AsmCupCount == 0) || (CourseSelect == COURSE_ONE) || (DemoFlag == (u16) 1))) {
         KoteiGakakuMode[cameraIndex] = 0;
     } else if ((KoteiGakakuMode[cameraIndex] != 0) && (KoteiGakakuMode[cameraIndex] != (s16) 1) &&
                (KoteiGakakuMode[cameraIndex] != 2) && (KoteiGakakuMode[cameraIndex] != 3)) {

@@ -220,23 +220,7 @@ void MapSelectMenuDefault(void)
 	*(int*) (&CharacterGridIsSelected) = 0;
 	if (HotSwapID > 0)
 	{
-		CourseValue = -1;
-		GPCourseIndex = 0;
-		switch (GameMode)
-		{
-			case 0:
-			{
-				CourseValue = (CupSelect * 4);
-				break;
-			}
-			case 1:
-			case 2:
-			case 3:
-			{
-				CourseValue = (CupSelect * 4) + CourseSelect;
-				break;
-			}
-		}
+		SetHotSwapCourseValue();
 	}
 	else
 	{

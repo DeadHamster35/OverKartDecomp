@@ -797,6 +797,10 @@ void GameCode(void)
 			
 			EndRace();
 		}
+		if (GameMode == GAMEMODE_GP)
+		{
+			PrintGPTime(GPTotalTime[0],0);
+		}
 		
 	}
 	
@@ -815,6 +819,35 @@ void ResetMap()
 
 
 Ushort PiracyCountdown = 0;
+
+void InitSaveDefaults(void)
+{
+	SaveGame.SaveVersion = 9;
+	SaveGame.Initial = 0;
+	{ int This; for (This = 0; This < 8; This++)
+	{
+		RenderMode[This] = 0;
+		GameType[This] = 0;
+		LevelSettingsMode[This] = 0;
+		BattleMode[This] = 0;
+	} }
+	{ int This; for (This = 8; This < 16; This++)
+	{
+		RenderMode[This]  = 0;
+	} }
+	SaveGame.RenderSettings.AliasMode = 1;
+	SaveGame.RenderSettings.Platform = 1;
+	SaveGame.RenderSettings.CullMode = 1;
+	SaveGame.LevelSettings.ScaleXMode = 2;
+	SaveGame.LevelSettings.ScaleYMode = 2;
+	SaveGame.LevelSettings.ScaleZMode = 2;
+	SaveGame.GameSettings.CupMode = 1;
+
+	#if ProtectMode
+		//SaveGame.TENNES = DPR();
+		//DPRSave();
+	#endif
+}
 
 
 
@@ -883,28 +916,18 @@ void AllRun()
 	}
 	
 
-	if (SaveGame.GameSettings.CupMode > 0x00)
+	switch (SaveGame.GameSettings.CupMode)
 	{
-
-		AsmCupCount = 15;
-
-	}
-	else
-	{
-		#if(DEBUGBUILD)
-		{
+		case 0:
 			AsmCupCount = 0;
-		}
-		#else
-		{
+			break;
+		case 2:
+			AsmCupCount = 15;
+			break;
+		default:
 			AsmCupCount = 3;
-		}
-		#endif
-		
+			break;
 	}
-
-    //winter 2026
-    AsmCupCount = 3;
 	
 	SetWeather3D(OverKartHeader.SkyType == 3);
 
@@ -1067,34 +1090,9 @@ void AllRun()
 
 
 
-				if ((SaveGame.SaveVersion != 8) && (SaveGame.SaveVersion != 99))
+				if ((SaveGame.SaveVersion != 9) && (SaveGame.SaveVersion != 99))
 				{
-					SaveGame.SaveVersion = 8;	
-					SaveGame.Initial = 0;
-					{ int This; for (This = 0; This < 8; This++)
-					{
-						RenderMode[This] = 0;
-						GameType[This] = 0;
-						LevelSettingsMode[This] = 0;
-						BattleMode[This] = 0;
-					} }
-					{ int This; for (This = 8; This < 16; This++)
-					{
-						RenderMode[This]  = 0;
-					} }
-					SaveGame.RenderSettings.AliasMode = 1;
-					SaveGame.RenderSettings.Platform = 1;
-					SaveGame.RenderSettings.CullMode = 1;
-					
-					SaveGame.LevelSettings.ScaleXMode = 2;
-					SaveGame.LevelSettings.ScaleYMode = 2;
-					SaveGame.LevelSettings.ScaleZMode = 2;
-
-					#if ProtectMode
-						//SaveGame.TENNES = DPR();
-						//DPRSave();
-					#endif
-					
+					InitSaveDefaults();
 				}
 
 				ScrollLock = false;

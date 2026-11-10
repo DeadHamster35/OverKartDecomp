@@ -95,12 +95,13 @@ void PrintGPTime(float printTime, int OffsetY)
 
 
      LoadFont();
-     MenuPosition[1] = 170+(int)OffsetY;
-     MenuPosition[0] = 55;
+     MenuPosition[1] = 94+(int)OffsetY;
+     MenuPosition[0] = 47;
+     DrawBox(MenuPosition[0] + 18, MenuPosition[1] + 18, 190, 16, 0, 0, 0, 175);
 
      PrintString(MenuPosition[0],MenuPosition[1],"Total Time:");
 
-     MenuPosition[0] = 145;
+     MenuPosition[0] = 137;
 
 
      PrintString(MenuPosition[0] + PrintOffsetA, MenuPosition[1], "'");

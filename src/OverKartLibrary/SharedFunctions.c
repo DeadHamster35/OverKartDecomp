@@ -334,8 +334,40 @@ short CustomLevelID(void)
     }
 }
 
+void SetHotSwapCourseValue(void)
+{
+	if (HotSwapID == 0)
+	{
+		return;
+	}
 
+	CourseValue = -1;
+	GPCourseIndex = 0;
+	if (GameMode == GAMEMODE_GP)
+	{
+		if (AsmCupCount == 0)
+		{
+			CourseValue = (CupSelect * 4) + CourseSelect;
+		}
+		else
+		{
+			CourseValue = (CupSelect * 4);
+		}
+	}
+	else
+	{
+		CourseValue = (CupSelect * 4) + CourseSelect;
+	}
+}
 
+s16 GetGPCourseID(void)
+{
+	if (AsmCupCount == 15)
+	{
+		return CupCourseOrder[CourseSelect / 4][CourseSelect % 4];
+	}
+	return CupCourseOrder[CupSelect][CourseSelect];
+}
 
 void LoadBigFont(void)
 {

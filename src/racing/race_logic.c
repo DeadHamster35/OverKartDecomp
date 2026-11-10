@@ -161,7 +161,7 @@ void CheckFinish(void) {
 
     if (RaceClearFlag) {
 
-        if (CourseSelect == AsmCupCount) {
+        if (CourseSelect >= AsmCupCount) {
             NextSequenceMode = ENDING;
         } else {
             CupNumber++;

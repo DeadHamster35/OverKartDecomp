@@ -1,0 +1,119 @@
+# OverKartDecomp build warnings summary
+
+- **Run:** 2026-11-09 18:26:58–18:29:42 ET (make clean, then full build)
+- **Command:** `make clean VERSION=us` then `make -j DEBUG=0 AVOID_UB=1 COMPARE=0 OVERKART_BUILD=0 VERSION=us`
+- **Compiler:** IDO (GCC runs only as the syntax-only CC_CHECK)
+- **Result:** PASS (CLEAN_EXIT:0, MAKE_EXIT:0)
+- **ROM:** build/us/OverKart_V8.z64 (16,777,216 bytes)
+- **ROM SHA1:** 1633128dd867aef2e3e1b8b95f5e44cb38e0b5b9 (previous: 72ed6a360d437b04458043c725bd04ca4689d513, DEBUG=1)
+
+## Counts
+
+- Files compiled: 319
+- GCC check warnings: 85
+- IDO cfe notice lines: 97 (non-fatal)
+- Compile errors: 0
+- Undefined references / multiple definitions: 0
+
+## GCC check warnings by flag
+
+- -Wunused-parameter: 37
+- -Wunused-variable: 14
+- -Wsign-compare: 11
+- -Wtype-limits: 6
+- -Wunknown-pragmas: 4
+- -Wunused-value: 4
+- -Wreturn-local-addr: 3
+- -Wincompatible-pointer-types: 2
+- -Wmissing-braces: 1
+- -Warray-parameter=: 1
+- -Waddress: 1
+- -Wint-conversion: 1
+
+## All GCC check warnings
+
+- src/code_80086E70.c:1284:18: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+- src/code_80086E70.c:1300:18: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+- src/code_80086E70.c:1315:18: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+- src/math_util_2.c:16: warning: ignoring '#pragma intrinsic ' [-Wunknown-pragmas]
+- src/math_util_2.c:345:12: warning: function returns address of local variable [-Wreturn-local-addr]
+- src/math_util_2.c:354:12: warning: function returns address of local variable [-Wreturn-local-addr]
+- src/math_util_2.c:363:12: warning: function returns address of local variable [-Wreturn-local-addr]
+- src/math_util_2.c:461:18: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+- src/player_controller.c:757:38: warning: comparison is always true due to limited range of data type [-Wtype-limits]
+- src/menus.c:491:25: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+- src/crash_screen.c:28:27: warning: missing braces around initializer [-Wmissing-braces]
+- src/replays.c:514:26: warning: comparison of integer expressions of different signedness: 'u32' {aka 'unsigned int'} and 'int' [-Wsign-compare]
+- src/render_objects.c:2948:13: warning: unused variable 'Dummy' [-Wunused-variable]
+- src/update_objects.c:7813:31: warning: passing argument 2 of 'KwanmInitCI8' from incompatible pointer type [-Wincompatible-pointer-types]
+- src/update_objects.c:7814:25: warning: passing argument 3 of 'KwanmInitCI8' from incompatible pointer type [-Wincompatible-pointer-types]
+- src/racing/collision.c:16: warning: ignoring '#pragma intrinsic ' [-Wunknown-pragmas]
+- src/racing/actors_extended.c:849:18: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+- src/actors/green_shell/update.inc.c:186:37: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+- src/racing/race_logic.c:32: warning: ignoring '#pragma intrinsic ' [-Wunknown-pragmas]
+- src/racing/math_util.c:12: warning: ignoring '#pragma intrinsic ' [-Wunknown-pragmas]
+- src/audio/external.c:341:67: warning: argument 3 of type 'f32 *' {aka 'float *'} declared as a pointer [-Warray-parameter=]
+- src/audio/external.c:900:5: warning: statement with no effect [-Wunused-value]
+- src/audio/external.c:1911:13: warning: the address of 'D_800E9EC4' will always evaluate as 'true' [-Waddress]
+- src/audio/synthesis.c:466:75: warning: passing argument 1 of 'NasWaveDmaFrameWork' makes integer from pointer without a cast [-Wint-conversion]
+- src/audio/synthesis.c:367:9: warning: unused variable 'pad5' [-Wunused-variable]
+- src/audio/synthesis.c:347:9: warning: unused variable 'Pad3' [-Wunused-variable]
+- src/audio/synthesis.c:342:9: warning: unused variable 'Pad2' [-Wunused-variable]
+- src/audio/synthesis.c:336:9: warning: unused variable 'pad4' [-Wunused-variable]
+- src/audio/synthesis.c:332:9: warning: unused variable 'pad' [-Wunused-variable]
+- src/OverKartLibrary/MarioKartObjects.c:14:78: warning: unused parameter 'localVelocity' [-Wunused-parameter]
+- src/OverKartLibrary/MarioKart3D.c:424:42: warning: unused parameter 'Distance' [-Wunused-parameter]
+- src/OverKartLibrary/MarioKart3D.c:477:21: warning: unused parameter 'Distance' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/ObjectHandler.c:5:47: warning: unused parameter 'Kno' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/ObjectHandler.c:13:38: warning: unused parameter 'Kno' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/ObjectHandler.c:21:39: warning: unused parameter 'Kno' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/ObjectHandler.c:28:36: warning: unused parameter 'Kno' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/ObjectHandler.c:36:37: warning: unused parameter 'Kno' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/ObjectHandler.c:43:34: warning: unused parameter 'Kno' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/ObjectHandler.c:49:42: warning: unused parameter 'Kno' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/ObjectHandler.c:56:42: warning: unused parameter 'Kno' [-Wunused-parameter]
+- src/OverKartLibrary/SharedFunctions.c:389:52: warning: unused parameter 'v_buff' [-Wunused-parameter]
+- src/OverKartLibrary/CustomObjects/OKAnime.c:112:40: warning: unused parameter 'Scale' [-Wunused-parameter]
+- src/OverKartLibrary/CustomCourses/CustomLevels.c:1125:58: warning: unused parameter 'Code' [-Wunused-parameter]
+- src/OverKartLibrary/CustomCourses/CustomLevels.c:1149:58: warning: unused parameter 'Code' [-Wunused-parameter]
+- src/OverKartLibrary/CustomCourses/CustomLevels.c:1192:60: warning: unused parameter 'Code' [-Wunused-parameter]
+- src/OverKartLibrary/CustomCourses/CustomLevels.c:1226:28: warning: unused parameter 'ramaddress' [-Wunused-parameter]
+- src/OverKartLibrary/CustomCourses/CustomSurfaces.c:722:29: warning: unused parameter 'Null' [-Wunused-parameter]
+- src/OverKartLibrary/CustomCourses/CustomSurfaces.c:802:56: warning: unused parameter 'pos_F' [-Wunused-parameter]
+- src/OverKartLibrary/CustomCourses/CustomSurfaces.c:1187:46: warning: unused parameter 'Camera' [-Wunused-parameter]
+- src/OverKartLibrary/Player/MarioKartStats.c:322:22: warning: unused parameter 'Mode' [-Wunused-parameter]
+- src/OverKartLibrary/Player/Pathfinding.c:201:83: warning: unused parameter 'TargetY' [-Wunused-parameter]
+- src/OverKartLibrary/Player/Pathfinding.c:201:120: warning: unused parameter 'MarkerCounts' [-Wunused-parameter]
+- src/OverKartLibrary/Player/Pathfinding.c:247:103: warning: unused parameter 'MarkerCounts' [-Wunused-parameter]
+- src/OverKartLibrary/Player/Pathfinding.c:313:53: warning: unused parameter 'FirstMarkerDistance' [-Wunused-parameter]
+- src/OverKartLibrary/Player/Pathfinding.c:731:38: warning: unused parameter 'TargetPlayer' [-Wunused-parameter]
+- src/OverKartLibrary/Player/Pathfinding.c:767:39: warning: unused parameter 'TargetPosition' [-Wunused-parameter]
+- src/OverKartLibrary/Gametypes/GameTypesGeneric.c:165:27: warning: unused parameter 'LocalCamera' [-Wunused-parameter]
+- src/OverKartLibrary/Gametypes/GameTypesGeneric.c:182:28: warning: unused parameter 'LocalCamera' [-Wunused-parameter]
+- src/OverKart5/OKMenu.c:411:101: warning: comparison of integer expressions of different signedness: 'char' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OKMenu.c:439:40: warning: comparison of integer expressions of different signedness: 'int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OKMenu.c:477:40: warning: comparison of integer expressions of different signedness: 'int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OKMenu.c:497:40: warning: comparison of integer expressions of different signedness: 'int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OKMenu.c:551:35: warning: comparison of integer expressions of different signedness: 'int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OKMenu.c:561:66: warning: comparison of integer expressions of different signedness: 'int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OKMenu.c:581:66: warning: comparison of integer expressions of different signedness: 'int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OKMenu.c:1311:30: warning: comparison of integer expressions of different signedness: 'short int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OKMenu.c:1447:29: warning: unused parameter 'StatsMode' [-Wunused-parameter]
+- src/OverKart5/OKMenu.c:1659:36: warning: unused parameter 'pad' [-Wunused-parameter]
+- src/OverKart5/OKMenu.c:1659:51: warning: unused parameter 'newbutton' [-Wunused-parameter]
+- src/OverKart5/OKMenu.c:1732:30: warning: comparison of integer expressions of different signedness: 'int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OverKart.c:1273:39: warning: comparison of integer expressions of different signedness: 'int' and 'Uint' {aka 'unsigned int'} [-Wsign-compare]
+- src/OverKart5/OverKartObjectHandler.c:95:36: warning: unused parameter 'HitType' [-Wunused-parameter]
+- src/OverKart5/OverKartObjectHandler.c:304:26: warning: unused parameter 'Car' [-Wunused-parameter]
+- src/OverKart5/Gametypes/CTF.c:98:65: warning: unused parameter 'BattleBaseF3D' [-Wunused-parameter]
+- src/OverKart5/Gametypes/Soccer.c:82:42: warning: unused parameter 'BattleBaseF3D' [-Wunused-parameter]
+- src/cpu_vehicles_camera_path/cpu_speed_control.inc.c:129:34: warning: unused parameter 'targetSpeed' [-Wunused-parameter]
+- build/us/src/cpu_vehicles_camera_path.jp.c:969:10: warning: unused variable 'var_v1' [-Wunused-variable]
+- build/us/src/cpu_vehicles_camera_path.jp.c:962:10: warning: unused variable 'var_a0_3' [-Wunused-variable]
+- src/cpu_vehicles_camera_path/bomb_kart.inc.c:218:31: warning: comparison is always false due to limited range of data type [-Wtype-limits]
+- build/us/src/cpu_vehicles_camera_path.jp.c:2851:9: warning: unused variable 'stackPadding8' [-Wunused-variable]
+- build/us/src/cpu_vehicles_camera_path.jp.c:2850:9: warning: unused variable 'stackPadding7' [-Wunused-variable]
+- build/us/src/cpu_vehicles_camera_path.jp.c:2840:9: warning: unused variable 'stackPadding3' [-Wunused-variable]
+- build/us/src/cpu_vehicles_camera_path.jp.c:2839:9: warning: unused variable 'stackPadding2' [-Wunused-variable]
+- build/us/src/cpu_vehicles_camera_path.jp.c:2835:9: warning: unused variable 'stackPadding1' [-Wunused-variable]
+- build/us/src/cpu_vehicles_camera_path.jp.c:2834:9: warning: unused variable 'stackPadding0' [-Wunused-variable]

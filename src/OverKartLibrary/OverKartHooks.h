@@ -17,6 +17,8 @@ extern short HotSwapID;
 extern short HotSwapGP;
 extern short GPCourseIndex;
 extern short AsmCupCount;
+void SetHotSwapCourseValue(void);
+s16 GetGPCourseID(void);
 extern s32 OKCheckSplashEnabled;
 extern s32 OKLakituIce;
 extern s32 OKForceRoulette;

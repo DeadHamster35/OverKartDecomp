@@ -67,6 +67,8 @@ extern Uint GetStarTimer(Uchar PlayerID);
 extern Uint GetBooTimer(Uchar PlayerID);
 
 extern short CustomLevelID(void);
+extern void SetHotSwapCourseValue(void);
+extern s16 GetGPCourseID(void);
 
 extern Ushort GetRGBA16(int R, int G, int B, int A);
 extern Uint GetRGB32(int R, int G, int B);

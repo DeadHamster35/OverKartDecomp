@@ -6,6 +6,7 @@
 extern void LoadLogo(void);
 extern void SetMenuPanels(int SwitchMode);
 extern void OKSetup(void);
+extern void InitSaveDefaults(void);
 extern bool CheckEndGame(void);
 extern void StartRace(void);
 extern void EndRace(void);

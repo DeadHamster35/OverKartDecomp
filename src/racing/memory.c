@@ -1404,11 +1404,7 @@ void CheckCourseMemoryHighWater(void) {
     if ((faceEnd > FACE_BUFFER_START) && (faceEnd > VertexMemoryPointer)) {
         while (1) {}
     }
-    if ((GameState == ENDING) || (GameState == CREDITS_SEQUENCE)) {
-        if (LastMemoryPointer < MEMORY_POOL_END) {
-            while (1) {}
-        }
-    } else if (LastMemoryPointer < LAST_MEMORY_FLOOR) {
+    if (LastMemoryPointer < LAST_MEMORY_FLOOR) {
         while (1) {}
     }
 }
@@ -1460,11 +1456,7 @@ u8* LoadCourse(s32 courseId) {
         }
     }
 
-    if ((GameState == ENDING) || (GameState == CREDITS_SEQUENCE)) {
-        LastMemoryPointer = SEG_ENDING;
-    } else {
-        LastMemoryPointer = LAST_MEMORY_TOP;
-    }
+    LastMemoryPointer = LAST_MEMORY_TOP;
 
     FreeMemoryPointer = StaticMemoryPointer;
 

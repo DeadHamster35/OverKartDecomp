@@ -4,7 +4,7 @@
 
 
 typedef struct RaceOptions{
-     char GameType, StatsMode, GPMode, CupMode, ItemMode, AIMode, ExploreMode, FlycamMode; //8
+     char GameType, StatsMode, GPMode, CupMode, ItemMode, AIMode, ExploreMode, FlycamMode; /* CupMode: 0=1, 1=4, 2=16 */
 } RaceOptions;
 
 typedef struct BattleOptions{
